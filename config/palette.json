@@ -39,7 +39,9 @@
     "flower_pink": "#d9a3a0",
     "ion_train": "#d8d5cc",
     "ion_accent": "#4f7fa8",
-    "bus": "#d9d6cd"
+    "bus": "#d9d6cd",
+    "prop_hydrant": "#c97a64",
+    "prop_shelter": "#b9c2bf"
   },
   "goose": {
     "neck": "#2b2b2b",
@@ -63,5 +65,10 @@
     "text": "#2f3a33",
     "panel": "#f2efe6",
     "accent": "#5f8a5c"
+  },
+  "light": {
+    "sun": "#fffaf0",
+    "sky": "#fff6e5",
+    "ground": "#9fb59a"
   }
 }

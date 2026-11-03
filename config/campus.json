@@ -83,6 +83,6 @@
     "play_max_distance_m": 60
   },
   "stream": { "full_radius_chunks": 1 },
-  "fog": { "near_m": 250, "far_m": 1400 },
+  "fog": { "near_m": 400, "far_m": 2200 },
   "sun": { "azimuth_deg": 210, "elevation_deg": 55, "shadow_intensity": 0.25, "shadow_extent_m": 150 }
 }
