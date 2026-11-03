@@ -70,3 +70,25 @@ describe("navmesh planner", () => {
     expect(Math.hypot(s.npcs.get("w")!.pos.x - 10, s.npcs.get("w")!.pos.z)).toBeLessThan(1);
   });
 });
+
+describe("wearables", () => {
+  it("bowing with a hard hat in front of a calm person gets it put on the goose", () => {
+    const s = new Sim({ seed: 3 });
+    s.addNpc({ id: "k", name: "K", archetype: "normal", home: { x: 0, z: 0 } });
+    s.addItem({ id: "hardhat_0", name: "a hard hat", kind: "take", weight: "carry", owner: null, homePos: { x: 0.5, z: 1 },
+      zone: "z", flags: { wearable: true } });
+    s.goose.pos = { x: 0.5, z: 1 };
+    expect(s.gooseGrab()).toBe("hardhat_0");
+    s.goose.crouched = true;
+    run(s, 2);
+    expect(s.goose.wearing).toBe("hardhat_0");
+    expect(s.goose.holding).toBeNull();
+    expect(s.events.some((e) => e.type === "worn")).toBe(true);
+    // grab with nothing in reach shakes it off
+    s.goose.crouched = false;
+    s.goose.pos = { x: 6, z: 6 };
+    run(s, 0.1);
+    expect(s.gooseGrab()).toBeNull();
+    expect(s.goose.wearing).toBeNull();
+  });
+});

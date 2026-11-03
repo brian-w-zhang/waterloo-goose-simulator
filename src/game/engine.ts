@@ -423,6 +423,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   if (testMode) goose.rig.root.visible = false;
   hotspot = new HotspotRuntime(physics, (x, z) => stream.heightAt(x, z), mats.vertexColor, makeMarkMaterial(),
     mats.vertexColor, HOTSPOT_SEED);
+  hotspot.gooseHeadGroup = goose.rig.head;
   scene.add(hotspot.root);
   if (params.get("jev") === "1") hotspot.decisions = new DecisionClient();
   // navmeshes per hotspot, baked when the goose first comes near (the chunks there are then loaded)

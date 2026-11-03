@@ -4,7 +4,7 @@ import { click, honk as honkSound } from "@/audio/honk";
 import type { Physics } from "@/physics/physics";
 import { DecisionClient } from "@/ai/decide";
 import { Menace } from "@/sim/menace";
-import { Sim, type SimEvent, type V2 } from "@/sim/sim";
+import { Sim, type SimEvent, type V2, WORN } from "@/sim/sim";
 import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actors";
 import { HOTSPOTS, LOOKS, populate } from "./hotspot";
 
@@ -29,6 +29,8 @@ export class HotspotRuntime {
   readonly menace = new Menace();
   /** Set by the game: is (x, z) open water? Used for the "into water" score. */
   isWater: (x: number, z: number) => boolean = () => false;
+  /** the goose head group: worn items are parented to it */
+  gooseHeadGroup: THREE.Object3D | null = null;
   private chaseScored = new Set<string>();
   private escalated = new Set<string>();
   private dragM = 0;
@@ -203,6 +205,16 @@ export class HotspotRuntime {
     const hand = new THREE.Vector3();
     for (const it of this.sim.items.values()) {
       const m = this.items.get(it.id)!;
+      if (it.heldBy === WORN && this.gooseHeadGroup) {
+        if (m.parent !== this.gooseHeadGroup) {
+          this.gooseHeadGroup.add(m);
+          m.position.set(0, 0.045, 0.01);
+          m.rotation.set(-0.15, 0, 0);
+          m.scale.setScalar(0.55);
+        }
+        continue;
+      }
+      if (m.parent !== this.root) { this.root.add(m); m.scale.setScalar(ITEM_SCALE); }
       if (it.heldBy === "goose") {
         m.position.copy(gooseBill).add(new THREE.Vector3(0, -0.06, 0));
         const sw = this.swing;

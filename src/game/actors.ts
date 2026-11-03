@@ -164,6 +164,7 @@ export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t
     r.body.rotation.x = -0.35 + Math.sin(t * 20) * 0.05;
     armL = armR = -1.4;
   }
+  if (n.gesture === "dress") { armL = armR = -1.0; armZ = -0.15; }   // reaching down to put a hat on the goose
   if (n.gesture === "clap") { armL = armR = -1.2 - Math.abs(Math.sin(t * 14)) * 0.3; armZ = -0.35 + Math.abs(Math.sin(t * 14)) * 0.3; }
   if (n.state === "fallen") {
     // pratfall: tip over backward onto the grass for a moment, then get up (never hurt)

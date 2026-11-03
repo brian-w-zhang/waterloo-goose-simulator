@@ -35,6 +35,9 @@ export interface Item {
   heldBy: string | null;   // "goose", an NPC id, or null
 }
 
+/** heldBy value for an item the goose is wearing */
+export const WORN = "goose:worn";
+
 export type Archetype = "normal" | "chaser" | "scaredy" | "tidy";
 
 export type State = "routine" | "react" | "investigate" | "chase" | "shoo" | "search" | "retrieve"
@@ -62,7 +65,7 @@ export interface Npc {
   line: string;
   lineTime: number;
   grip: number;             // seconds spent within reach of the goose while chasing
-  gesture: "" | "shake" | "clap";
+  gesture: "" | "shake" | "clap" | "dress";
   gestureTime: number;
   /** speed and vision multiplier after escalation (spec V-ANIM-8) */
   alert: number;
@@ -71,7 +74,11 @@ export interface Npc {
   pathTime: number;
 }
 
-export interface GooseState { pos: V2; speed: number; holding: string | null; crouched: boolean; hidden: boolean }
+export interface GooseState {
+  pos: V2; speed: number; holding: string | null; crouched: boolean; hidden: boolean;
+  /** a wearable someone put on the goose (spec I-17) */
+  wearing: string | null;
+}
 
 export type SimEvent =
   | { t: number; type: "honk"; pos: V2 }
@@ -85,7 +92,8 @@ export type SimEvent =
   | { t: number; type: "fall"; npc: string }
   | { t: number; type: "returned"; npc: string; item: string }
   | { t: number; type: "grab"; who: string; item: string }
-  | { t: number; type: "release"; who: string; item: string };
+  | { t: number; type: "release"; who: string; item: string }
+  | { t: number; type: "worn"; npc: string; item: string };
 
 export const LINES = {
   shock: ["Hey!", "Whoa!", "Not again!", "Goose!"],
@@ -93,6 +101,7 @@ export const LINES = {
   shoo: ["Shoo! Go away!", "Off you go!", "Not on my watch!", "Out of here, goose!"],
   giveup: ["Huh.", "Where did it go?", "Forget it.", "Unbelievable."],
   wonder: ["What was that?", "Hm?", "Was that a goose?"],
+  dress: ["Aww, there you go.", "Safety first, buddy.", "Looking sharp!"],
 };
 
 export const PERCEPTION = {
@@ -114,7 +123,9 @@ export class Sim {
   t = 0;
   items = new Map<string, Item>();
   npcs = new Map<string, Npc>();
-  goose: GooseState = { pos: { x: 0, z: 0 }, speed: 0, holding: null, crouched: false, hidden: false };
+  goose: GooseState = { pos: { x: 0, z: 0 }, speed: 0, holding: null, crouched: false, hidden: false, wearing: null };
+  /** seconds the goose has been bowing with a wearable in front of someone calm */
+  private bowT = 0;
   /** Bushes the goose can hide in (spec I-14), as ground positions with a radius. */
   hideSpots: { pos: V2; r: number }[] = [];
   /** Current tug-of-war (spec I-20). */
@@ -196,7 +207,15 @@ export class Sim {
       const d = dist(it.pos, this.goose.pos);
       if (d < bd) { bd = d; best = it; }
     }
-    if (!best) return null;
+    if (!best) {
+      // nothing to pick up: shake off whatever the goose is wearing
+      if (this.goose.wearing) {
+        const w = this.items.get(this.goose.wearing)!;
+        w.heldBy = null; w.pos = { ...this.goose.pos }; this.goose.wearing = null;
+        this.emit({ t: this.t, type: "release", who: "goose", item: w.id });
+      }
+      return null;
+    }
     best.heldBy = "goose";
     this.goose.holding = best.id;
     this.emit({ t: this.t, type: "grab", who: "goose", item: best.id });
@@ -350,11 +369,34 @@ export class Sim {
       if (tg.t > PERCEPTION.tugWinS && pulled) this.endTug(true);
       else if (tg.t > PERCEPTION.tugLoseS) this.endTug(false);
     }
+    this.dressing(dt);
     for (const it of this.items.values()) {
-      if (it.heldBy === "goose") it.pos = { ...this.goose.pos };
+      if (it.heldBy === "goose" || it.heldBy === WORN) it.pos = { ...this.goose.pos };
       else if (it.heldBy && this.npcs.has(it.heldBy)) it.pos = { ...this.npcs.get(it.heldBy)!.pos };
     }
     for (const n of this.npcs.values()) this.think(n, dt);
+  }
+
+  /**
+   * Wearables (spec I-17): the goose cannot dress itself, but if it bows (crouches) holding a
+   * wearable in front of someone calm for 1.2 s, they put it on the goose's head.
+   */
+  private dressing(dt: number) {
+    const id = this.goose.holding;
+    const it = id ? this.items.get(id)! : null;
+    const helper = it?.flags.wearable && this.goose.crouched && !this.goose.wearing
+      ? [...this.npcs.values()].find((n) => n.state === "routine" && dist(n.pos, this.goose.pos) < 1.8) : undefined;
+    if (!helper || !it) { this.bowT = 0; return; }
+    this.bowT += dt;
+    helper.facing = Math.atan2(this.goose.pos.z - helper.pos.z, this.goose.pos.x - helper.pos.x);
+    if (this.bowT < 1.2) return;
+    this.bowT = 0;
+    it.heldBy = WORN;
+    this.goose.holding = null;
+    this.goose.wearing = it.id;
+    helper.gesture = "dress"; helper.gestureTime = this.t;
+    this.say(helper, "dress");
+    this.emit({ t: this.t, type: "worn", npc: helper.id, item: it.id });
   }
 
   private think(n: Npc, dt: number) {

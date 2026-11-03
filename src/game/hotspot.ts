@@ -68,6 +68,7 @@ export const HOTSPOTS: HotspotDef[] = [
       { id: "flag", text: "Run off with the tour flag", test: grabbed("the tour flag") },
       { id: "ring", text: "Hide an engineer's iron ring box", test: movedFar("an iron ring box", 20) },
       { id: "giveup", text: "Make someone give up and scratch their head", test: (e, s) => e.type === "giveup" && npcIn("green", s, e.npc) },
+      { id: "hardhat", text: "Bow to get someone to put a hard hat on you", test: (e, s) => e.type === "worn" && npcIn("green", s, e.npc) },
       { id: "finale", text: "Finale: deliver the professor's laptop to the SLC plaza", gate: 4,
         test: (e, s) => e.type === "release" && s.items.get(e.item)!.name === "the professor's laptop"
           && Math.hypot(s.items.get(e.item)!.pos.x - 722, s.items.get(e.item)!.pos.z + 290) < 15 },
@@ -157,7 +158,7 @@ export function populate(sim: Sim) {
       for (const it of c.items) {
         const id = `${it.kind}_${k++}`;
         sim.addItem({ id, name: it.name, kind: "take", weight: ITEM_WEIGHT[it.kind] ?? "carry",
-          owner: npcId, homePos: at(it.at), zone: h.id, flags: { noisy: it.kind === "laptop" } });
+          owner: it.kind === "hardhat" ? null : npcId, homePos: at(it.at), zone: h.id, flags: { noisy: it.kind === "laptop", wearable: it.kind === "hardhat" } });
         // some things start in their owner's hands: honk first to make them drop it
         if (it.held) { sim.items.get(id)!.heldBy = npcId; sim.npcs.get(npcId)!.holding = id; }
       }
