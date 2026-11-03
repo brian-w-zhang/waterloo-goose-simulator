@@ -9,7 +9,7 @@ from ..config import CAMPUS
 
 EDGE_STEP_M = 0.8
 EDGE_INSET_M = 0.35
-SCATTER_PER_M2 = 1 / 5
+SCATTER_PER_M2 = 1 / 8
 FLOWER_SHARE = 0.06
 
 

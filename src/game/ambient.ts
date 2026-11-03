@@ -31,15 +31,17 @@ export class AmbientCrowd {
   private m = new THREE.Matrix4();
   private q = new THREE.Quaternion();
   private up = new THREE.Vector3(0, 1, 0);
+  private cap: number;
 
   constructor(private graph: WalkGraph, private heightAt: (x: number, z: number) => number,
     material: THREE.Material, private count: number, seed: number) {
     this.rng = rngStream(seed);
+    this.cap = Math.ceil((count / LOOKS.length) * 1.6);
     this.root.name = "ambient";
     this.meshes = LOOKS.map((look) => {
       // full capacity from the start (the WebGPU backend sizes instance buffers on first use);
       // unused slots get a zero-scale matrix
-      const im = new THREE.InstancedMesh(personGeometry(look), material, count);
+      const im = new THREE.InstancedMesh(personGeometry(look), material, this.cap);
       im.castShadow = true;
       im.frustumCulled = false;
       this.root.add(im);
@@ -114,6 +116,7 @@ export class AmbientCrowd {
     }
     const counts = new Array(LOOKS.length).fill(0);
     for (const w of this.walkers) {
+      if (counts[w.look] >= this.cap) continue;
       const im = this.meshes[w.look];
       const y = this.heightAt(w.x, w.z);
       this.q.setFromAxisAngle(this.up, w.facing);
@@ -123,7 +126,7 @@ export class AmbientCrowd {
     }
     const hidden = new THREE.Matrix4().makeScale(0, 0, 0);
     this.meshes.forEach((im, k) => {
-      for (let i = counts[k]; i < this.count; i++) im.setMatrixAt(i, hidden);
+      for (let i = counts[k]; i < this.cap; i++) im.setMatrixAt(i, hidden);
       im.instanceMatrix.needsUpdate = true;
     });
   }

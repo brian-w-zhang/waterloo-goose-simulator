@@ -30,6 +30,8 @@ export interface GameHandle {
   render(): void;
   info(): { backend: string; calls: number; triangles: number; loaded: string[]; loads: number; evictions: number };
   heightAt(x: number, z: number): number;
+  /** Triangles per mesh name across the loaded world (instances counted). */
+  census(): Record<string, number>;
   /** Debug material views and the magenta hole background (doc 08 sections 2.2, 2.3, 3.2). */
   debugView(mode: DebugMode): void;
   holeBackground(on: boolean): void;
@@ -199,6 +201,19 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       loaded: stream.loadedKeys(), loads: stream.loadsTotal, evictions: stream.evictionsTotal,
     }),
     heightAt: (x, z) => stream.heightAt(x, z),
+    census: () => {
+      const out: Record<string, number> = {};
+      scene.traverse((o) => {
+        const m = o as THREE.Mesh;
+        if (!m.isMesh || !m.visible) return;
+        const g = m.geometry;
+        const tris = (g.index ? g.index.count : g.getAttribute("position").count) / 3;
+        const n = (m as THREE.InstancedMesh).isInstancedMesh ? (m as THREE.InstancedMesh).count : 1;
+        const key = m.name || m.parent?.name || "unnamed";
+        out[key] = (out[key] ?? 0) + Math.round(tris * n);
+      });
+      return out;
+    },
     debugView: (mode) => {
       applyDebugView([stream.root, far.root, goose.rig.root], mode, stream.index.ground_classes);
       far.root.visible = mode !== "id";

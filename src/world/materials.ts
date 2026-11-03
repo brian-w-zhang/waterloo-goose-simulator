@@ -88,7 +88,7 @@ function propGeometries(): Record<string, THREE.BufferGeometry> {
 function treeGeometries() {
   // Deciduous crown: three soft spheres in a unit box (y 0 to 1, radius about 1).
   const s = (r: number, x: number, y: number, z: number) => {
-    const g = new THREE.SphereGeometry(r, 12, 8);
+    const g = new THREE.SphereGeometry(r, 9, 6);
     g.scale(1, 0.5 / 0.6, 1);
     g.translate(x, y, z);
     g.deleteAttribute("uv");
@@ -126,11 +126,13 @@ function tuftGeometries(): [THREE.BufferGeometry, THREE.BufferGeometry, THREE.Bu
     g.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
     return g;
   };
+  // flat six-petal discs facing up (a few triangles each) on top of a tuft
+  const disc = (r: number, color: string, x: number, y: number, z: number) =>
+    part(new THREE.CircleGeometry(r, 6).rotateX(-Math.PI / 2), color, x, y, z);
   const flower = (petal: string) => mergeGeometries([
     blades("grass_dark", "grass"),
-    part(new THREE.CylinderGeometry(0.05, 0.05, 0.02, 7), petal, 0.02, 0.27, 0.01),
-    part(new THREE.CylinderGeometry(0.045, 0.045, 0.02, 7), petal, -0.06, 0.22, 0.05),
-    part(new THREE.CylinderGeometry(0.02, 0.02, 0.025, 6), "flower_yellow", 0.02, 0.28, 0.01),
+    disc(0.06, petal, 0.02, 0.3, 0.01), disc(0.025, "flower_yellow", 0.02, 0.305, 0.01),
+    disc(0.05, petal, -0.06, 0.24, 0.05),
   ].map((g) => (g.index ? g.toNonIndexed() : g)));
   return [blades("grass_shadow", "grass"), flower("stucco_white"), flower("flower_pink")];
 }

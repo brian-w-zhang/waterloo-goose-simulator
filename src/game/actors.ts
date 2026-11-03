@@ -20,7 +20,10 @@ function paint(g: THREE.BufferGeometry, color: string, group: Group, x = 0, y = 
   return ng;
 }
 
-const capsule = (r: number, l: number) => new THREE.CapsuleGeometry(r, l, 4, 10);
+let detail = 1;
+const capsule = (r: number, l: number) => new THREE.CapsuleGeometry(r, l, detail > 0.5 ? 4 : 2, detail > 0.5 ? 10 : 6);
+const sphere = (r: number, w: number, h: number, ...rest: number[]) =>
+  new THREE.SphereGeometry(r, Math.max(5, Math.round(w * detail)), Math.max(4, Math.round(h * detail)), ...rest);
 
 export interface PersonLook { skin: string; hair: string; top: string; bottom: string; hat?: string }
 
@@ -43,14 +46,14 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
   root.add(body);
   const torso = new THREE.Mesh(mergeGeometries([
     paint(capsule(0.2, 0.42), look.top, "people", 0, 1.18, 0),
-    paint(new THREE.SphereGeometry(0.06, 8, 6), look.skin, "people", 0, 1.5, 0),
+    paint(sphere(0.06, 8, 6), look.skin, "people", 0, 1.5, 0),
   ]), material);
   body.add(torso);
   const head = new THREE.Group();
   head.position.set(0, 1.6, 0);
   head.add(new THREE.Mesh(mergeGeometries([
-    paint(new THREE.SphereGeometry(0.15, 14, 10), look.skin, "people", 0, 0.05, 0),
-    paint(new THREE.SphereGeometry(0.158, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.5), look.hair, "people", 0, 0.07, -0.015),
+    paint(sphere(0.15, 14, 10), look.skin, "people", 0, 0.05, 0),
+    paint(sphere(0.158, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.5), look.hair, "people", 0, 0.07, -0.015),
     ...(look.hat ? [paint(new THREE.CylinderGeometry(0.17, 0.19, 0.12, 12), look.hat, "people", 0, 0.2, 0),
       paint(new THREE.CylinderGeometry(0.24, 0.24, 0.02, 14), look.hat, "people", 0, 0.15, 0.04)] : []),
   ]), material));
@@ -60,7 +63,7 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
   const legGeo = mergeGeometries([paint(capsule(0.085, 0.62), look.bottom, "people", 0, -0.4, 0),
     paint(new THREE.BoxGeometry(0.15, 0.08, 0.26), "shoes", "people", 0, -0.82, 0.05)]);
   const armGeo = mergeGeometries([paint(capsule(0.065, 0.42), look.top, "people", 0, -0.27, 0),
-    paint(new THREE.SphereGeometry(0.07, 8, 6), look.skin, "people", 0, -0.56, 0)]);
+    paint(sphere(0.07, 8, 6), look.skin, "people", 0, -0.56, 0)]);
   [-1, 1].forEach((s, k) => {
     legs[k].position.set(s * 0.1, 0.86, 0);
     legs[k].add(new THREE.Mesh(legGeo, material));
@@ -141,10 +144,12 @@ export function itemGeometry(kind: string): THREE.BufferGeometry {
   }
 }
 
-/** One merged, static-pose geometry of a person (for the instanced ambient crowd). */
+/** One merged, static-pose, low-tessellation geometry of a person (for the instanced ambient crowd). */
 export function personGeometry(look: PersonLook): THREE.BufferGeometry {
   const dummy = new THREE.MeshBasicNodeMaterial();
+  detail = 0.5;
   const rig = makePerson(look, dummy, dummy);
+  detail = 1;
   rig.root.updateMatrixWorld(true);
   const parts: THREE.BufferGeometry[] = [];
   rig.root.traverse((o) => {
