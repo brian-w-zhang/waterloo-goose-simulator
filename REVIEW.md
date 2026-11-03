@@ -2,20 +2,23 @@
 
 ## Summary
 
-The whole University of Waterloo game area (2.56 x 1.79 km, 70 chunks of 256 m) is compiled from open data by a reproducible Python pipeline: 1,108 City of Waterloo footprints with Ontario lidar heights and height tiers, a 2 m lidar terrain, lakes with shore bands, OSM paths, roads with painted markings, plazas with paving joints, 19,520 trees, 1,115 OSM props, transit platforms with canopies, lawn tufts and flowers, a walk network and a far LOD. A Next.js 16 app streams the chunks and renders them with three.js 0.187 (WebGPU, WebGL2 fallback, both verified) in a flat pastel toon style tuned against the measured reference statistics. A code-built Canada goose walks it on a Rapier character controller with a follow camera that lifts and opens a see-through circle when buildings or tree crowns block it. Three playable hotspots (doc 03 R-W3), the MC and DC green, the SLC and PAC plaza and the Village 1 ring, have twelve fictional characters with a hierarchical state machine (notice, react, investigate, chase, shoo, search, return, flee, give up), 75 owned items (30, 25 and 20 per hotspot), honk, grab, crouch, flap and run, a fifteen-task to-do list that follows the nearest hotspot, and 220 ambient students on the OSM path graph who startle at a honk. An automated harness measures every claim on the packed chunks and real screenshots: the latest full run passes **55 of 57 gates on both WebGPU and WebGL2** (the two reds are path-width gates discussed below), all 8 self-test mutants are caught, and 14 unit and behaviour tests pass (including headless task checks for both hotspots).
+The whole University of Waterloo game area (2.56 x 1.79 km, 70 chunks of 256 m) is compiled from open data by a reproducible Python pipeline: 1,108 City of Waterloo footprints with Ontario lidar heights and height tiers, a 2 m lidar terrain, lakes with shore bands, OSM paths, roads with painted markings, plazas with paving joints, 19,520 trees, 1,115 OSM props, transit platforms with canopies, lawn tufts and flowers, a walk network and a far LOD. A Next.js 16 app streams the chunks and renders them with three.js 0.187 (WebGPU, WebGL2 fallback, both verified) in a flat pastel toon style tuned against the measured reference statistics. A code-built Canada goose walks it on a Rapier character controller with a follow camera that lifts and opens a see-through circle when buildings or tree crowns block it. Three playable hotspots (doc 03 R-W3), the MC and DC green, the SLC and PAC plaza and the Village 1 ring, have twelve fictional characters with a hierarchical state machine (notice, react, investigate, chase, shoo, search, return, flee, give up), 75 owned items (30, 25 and 20 per hotspot), honk, grab, crouch, flap and run, a fifteen-task to-do list that follows the nearest hotspot, and 220 ambient students on the OSM path graph who startle at a honk. An automated harness measures every claim on the packed chunks and real screenshots: the latest full run passes **58 of 60 gates on WebGPU** and 55 of 57 on WebGL2 (the code gates were added after that run; the two reds on both are path-width gates discussed below), all 9 self-test mutants are caught, and 14 unit and behaviour tests pass (including headless task checks for both hotspots).
 
 How to run: see `README.md` (`npm run pipeline`, `npm run build && npm start`, open http://localhost:3100).
 
 ## Metrics
 
-Latest full run: `bench/results/verify/20261103-0358-0e4f9b4/summary.json` (WebGPU, headless Chromium 156 on the build machine). Change column: against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only). Ledger: `VERIFY-LEDGER.md`.
+Latest full run: `bench/results/verify/20261103-0442-6a2c4c8/summary.json` (WebGPU, headless Chromium 156 on the build machine). Change column: against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only). Ledger: `VERIFY-LEDGER.md`.
 
 | metric | value | gate | pass | first run of the night | change |
 |---|---|---|---|---|---|
+| code.typecheck_errors | 0 | <= 0 | pass | - | new |
+| code.unit_test_failures | 0 | <= 0 | pass | - | new |
+| code.python_test_failures | 0 | <= 0 | pass | - | new |
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new |
-| flythrough.frame_ms_p95 | 7.8 | record only | - | - | new |
+| flythrough.frame_ms_p95 | 8.8 | record only | - | - | new |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 |
@@ -54,13 +57,13 @@ Latest full run: `bench/results/verify/20261103-0358-0e4f9b4/summary.json` (WebG
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 |
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 |
-| style.sat_mean | 0.226 | between [0.18, 0.35] | pass | - | new |
-| style.val_mean | 0.5847 | between [0.45, 0.65] | pass | - | new |
-| style.val_std | 0.0835 | between [0.08, 0.18] | pass | - | new |
+| style.sat_mean | 0.2256 | between [0.18, 0.35] | pass | - | new |
+| style.val_mean | 0.5843 | between [0.45, 0.65] | pass | - | new |
+| style.val_std | 0.08425 | between [0.08, 0.18] | pass | - | new |
 | style.dark_share | 0 | <= 0.002 | pass | - | new |
-| style.edge_share | 0.003505 | <= 0.045 | pass | - | new |
-| style.colourfulness | 0.1119 | between [0.1, 0.25] | pass | - | new |
-| style.kmeans12_residual_de | 0.831 | <= 6.0 | pass | - | new |
+| style.edge_share | 0.004515 | <= 0.045 | pass | - | new |
+| style.colourfulness | 0.1116 | between [0.1, 0.25] | pass | - | new |
+| style.kmeans12_residual_de | 0.8365 | <= 6.0 | pass | - | new |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 |
@@ -69,9 +72,8 @@ Latest full run: `bench/results/verify/20261103-0358-0e4f9b4/summary.json` (WebG
 | topdown.topdown_building_iou_min | 0.9782 | >= 0.95 | pass | - | new |
 | topdown.topdown_chamfer_mean_m | 0.05854 | <= 0.5 | pass | - | new |
 | topdown.topdown_chamfer_p95_m | 0 | <= 1.5 | pass | - | new |
-| topdown.topdown_path_iou_min | 0.9866 | >= 0.85 | pass | - | new |
+| topdown.topdown_path_iou_min | 0.9867 | >= 0.85 | pass | - | new |
 | walk.goose_walk_falls | 0 | <= 0 | pass | - | new |
-
 
 WebGL2 (forced): `bench/results/verify/20261103-0411-bfa6872` passes **55 of 57**, the same two width reds as WebGPU (an earlier WebGL2 run, `20261103-0341-0aada59`, passed 53/57 before the ID and palette passes moved to no-MSAA rendering).
 
@@ -79,7 +81,7 @@ First load (`bench/results/firstload-2026-11-03-6a549a2.json`): 5.34 MB transfer
 
 Frame time (`bench/results/frametime-2026-11-03-f23b7d4.json`, headless, uncapped, 1280 x 720, 220 ambient students, 201 draw calls, 1.26 M triangles including the shadow pass): WebGPU p50 1.2 ms, p95 1.6 ms; WebGL2 p50 2.7 ms, p95 5.0 ms. Not the doc 02 reference iGPU: the build machine only.
 
-Looks (advisory, agent vision, two shuffled passes): mean 2.76 of 5 (silhouette 2.5, proportions 2.95, pattern 2.75, colour 3.3, recognisability 2.33); disagreement 0.03, which understates real noise because one agent scored both passes minutes apart and reused justification wording where an observation did not change.
+Looks (advisory, agent vision, two shuffled passes): mean 2.83 of 5 (silhouette 2.5, proportions 2.95, pattern 2.9, colour 3.35, recognisability 2.43); disagreement 0.03, which understates real noise because one agent scored both passes minutes apart and reused justification wording where an observation did not change.
 
 ## Contact sheet and overlays
 
