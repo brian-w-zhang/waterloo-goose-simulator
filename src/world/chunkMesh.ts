@@ -102,6 +102,11 @@ function lakeGeometry(c: Chunk): THREE.BufferGeometry | null {
   }
   const g = new THREE.BufferGeometry();
   g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  // distance to shore in metres (pipeline stores decimetres as u8) for the lighter edge band
+  const d = c.arrays.lake_d as Uint8Array | undefined;
+  const shore = new Float32Array(nv);
+  for (let v = 0; v < nv; v++) shore[v] = d ? d[v] / 10 : 10;
+  g.setAttribute("shore", new THREE.BufferAttribute(shore, 1));
   g.setIndex(new THREE.BufferAttribute(idx, 1));
   g.computeVertexNormals();
   return g;
