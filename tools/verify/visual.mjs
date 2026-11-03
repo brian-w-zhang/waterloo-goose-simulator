@@ -252,6 +252,34 @@ if (suites.includes("viewpoints")) {
   await page.close();
 }
 
+if (suites.includes("calib")) {
+  // pose calibration candidates (doc 08 section 2.4): heading offsets x camera stepped back along the heading
+  const { page } = await openPage([640, 360]);
+  const dir = join(runDir, "calib");
+  mkdirSync(dir, { recursive: true });
+  const only = (process.env.WGS_VP ?? "").split(",").filter(Boolean);
+  const dh = (process.env.WGS_DH ?? "-24,-12,0,12,24").split(",").map(Number);
+  const back = (process.env.WGS_BACK ?? "0,15,28").split(",").map(Number);
+  const side = Number(process.env.WGS_SIDE ?? 0);
+  for (const vp of viewpoints.filter((v) => !only.length || only.includes(v.id))) {
+    const p0 = photoPose(vp);
+    for (const b of back) {
+      for (const d of dh) {
+        const yawT = p0.yaw * Math.PI / 180;
+        const x = p0.x - Math.sin(yawT) * b + Math.cos(yawT) * side, z = p0.z + Math.cos(yawT) * b + Math.sin(yawT) * side;
+        await page.evaluate(async ({ x, z, yaw, pitch, fov, eye }) => {
+          const g = window.__wgs;
+          await g.load(x, z, 1);
+          g.setPose({ x, y: g.heightAt(x, z) + eye, z, yaw, pitch, fov });
+          g.render(); g.render();
+        }, { x, z, yaw: p0.yaw + d, pitch: p0.pitch, fov: p0.fov, eye: p0.eye });
+        writeFileSync(join(dir, `${vp.id}_b${b}_h${d}.png`), await page.screenshot());
+      }
+    }
+  }
+  await page.close();
+}
+
 if (suites.includes("style")) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
   await page.goto(`http://localhost:${port}/?scene=style${webgl ? "&webgl" : ""}`);

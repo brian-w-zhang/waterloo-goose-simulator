@@ -1,0 +1,186 @@
+{
+ "frozen": "2026-11-03T03:10-05:00",
+ "rules": "Calibrated once by comparing candidate renders with the reference photo (camera only: position within 30 m, heading, pitch, FOV 40 to 75). Frozen: never moved to improve a later score; the world is never edited to match a photo (doc 08 sections 2.4 and 4.4).",
+ "poses": {
+  "V01": {
+   "x": 1077.65,
+   "z": -459.37,
+   "heading_true_deg": 203.1,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 15,
+   "reason": "stepped back 15 m so the glass vault recedes left across the frame as in the photo"
+  },
+  "V02": {
+   "x": 1082.06,
+   "z": -501.1,
+   "heading_true_deg": 217.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "heading +12 puts the long glass facade across the frame like the view from the tracks"
+  },
+  "V03": {
+   "x": 998.31,
+   "z": -379.49,
+   "heading_true_deg": 205.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 28,
+   "reason": "prior sat against the MC wall; 28 m back and heading -45 shows the long facade across the green"
+  },
+  "V04": {
+   "x": 831.39,
+   "z": -293.25,
+   "heading_true_deg": 63.5,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 15,
+   "reason": "15 m back, heading +12 centres the tall MC mass where the tie tower is"
+  },
+  "V05": {
+   "x": 790.43,
+   "z": -431.06,
+   "heading_true_deg": 58.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 28,
+   "reason": "prior was inside a 2018-lidar tree; 28 m back shows the M3 facade over the lawn"
+  },
+  "V06": {
+   "x": 728.39,
+   "z": -123.24,
+   "heading_true_deg": 38.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 15,
+   "reason": "Ring Road ahead with QNC on the left as in the photo"
+  },
+  "V07": {
+   "x": 1014.83,
+   "z": -16.94,
+   "heading_true_deg": 8.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "prior already frames the Dana Porter tower on its podium"
+  },
+  "V08": {
+   "x": 1079.62,
+   "z": -120.03,
+   "heading_true_deg": 237.1,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "prior frames the Dana Porter silhouette"
+  },
+  "V09": {
+   "x": 1003.54,
+   "z": -10.55,
+   "heading_true_deg": 27.9,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "heading +12 centres Dana Porter beyond the Arts quad; further back is inside a building"
+  },
+  "V10": {
+   "x": 1172.43,
+   "z": 131.84,
+   "heading_true_deg": 262.1,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 15,
+   "reason": "15 m back, heading -24 shows the brick mass of Hagey Hall"
+  },
+  "V11": {
+   "x": 813.81,
+   "z": -360.58,
+   "heading_true_deg": 225.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "SLC courtyard glass facade across the frame (footprint is polygonal, the real facade is curved)"
+  },
+  "V12": {
+   "x": 844.13,
+   "z": -361.85,
+   "heading_true_deg": 228.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 75,
+   "moved_m": 0,
+   "reason": "panorama photo: widest allowed FOV 75 and heading -12 face the courtyard"
+  },
+  "V13": {
+   "x": 1118.36,
+   "z": -389.53,
+   "heading_true_deg": 50.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 15,
+   "reason": "E5 long facade beyond the road, matching the photo framing"
+  },
+  "V14": {
+   "x": 1125.56,
+   "z": -478.13,
+   "heading_true_deg": 108.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 28,
+   "reason": "28 m back, heading -12 frames the E5 corner"
+  },
+  "V15": {
+   "x": 1047.64,
+   "z": -111.97,
+   "heading_true_deg": 20.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "Physics building behind the paved plaza as in the photo"
+  },
+  "V16": {
+   "x": 861.56,
+   "z": 133.38,
+   "heading_true_deg": 82.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "best of the grid; lidar trees hide EV3 and the estimated position may be off Ring Road"
+  },
+  "V17": {
+   "x": 108.71,
+   "z": -143.52,
+   "heading_true_deg": 270.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 28,
+   "reason": "prior is flush against the REV entrance wall; 28 m back shows the entrance block"
+  },
+  "V18": {
+   "x": 135.34,
+   "z": -454.52,
+   "heading_true_deg": 280.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "prior matches the lake and far tree line"
+  },
+  "V19": {
+   "x": 1117.98,
+   "z": -542.94,
+   "heading_true_deg": 196.4,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "prior heading; the bus platform canopies are not modelled yet"
+  },
+  "V20": {
+   "x": 1075.35,
+   "z": -500.06,
+   "heading_true_deg": 108.0,
+   "pitch_deg": 5.0,
+   "hfov_deg": 60.0,
+   "moved_m": 0,
+   "reason": "heading -12 frames E5 and E7 behind the station area"
+  }
+ }
+}
