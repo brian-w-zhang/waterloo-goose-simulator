@@ -70,7 +70,8 @@ export interface HudState { tasks: { text: string; done: boolean }[]; prompt: st
 export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState) => void): Promise<() => void> {
   const params = new URLSearchParams(window.location.search);
   const testMode = params.has("test");
-  const rig = await createScene(canvas, params.has("webgl"));
+  // ?noaa: no MSAA, used by the palette-ID check so every pixel is exactly one material colour
+  const rig = await createScene(canvas, params.has("webgl"), !params.has("noaa"));
   const { renderer, scene } = rig;
   const mats = makeMaterials();
   const stream = new WorldStream(mats);
@@ -215,7 +216,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       return out;
     },
     debugView: (mode) => {
-      applyDebugView([stream.root, far.root, goose.rig.root], mode, stream.index.ground_classes);
+      applyDebugView([stream.root, far.root, goose.rig.root, ...(hotspot ? [hotspot.root] : [])], mode, stream.index.ground_classes);
       far.root.visible = mode !== "id";
     },
     holeBackground: (on) => { scene.background = on ? swatch("clear_hole", "debug") : swatch("sky"); },

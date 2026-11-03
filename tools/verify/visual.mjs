@@ -33,12 +33,12 @@ function evaluate(group, metrics) {
 
 const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-angle=metal", "--ignore-gpu-blocklist"] });
 
-async function openPage(size = [1280, 720]) {
+async function openPage(size = [1280, 720], extra = "") {
   const page = await browser.newPage({ viewport: { width: size[0], height: size[1] }, deviceScaleFactor: 1 });
   const logs = [];
   page.on("console", (m) => logs.push(`${m.type()}: ${m.text()}`));
   page.on("pageerror", (e) => logs.push(`pageerror: ${e.message}`));
-  await page.goto(`http://localhost:${port}/?test${webgl ? "&webgl" : ""}`);
+  await page.goto(`http://localhost:${port}/?test${webgl ? "&webgl" : ""}${extra}`);
   await page.waitForFunction(() => window.__wgs, null, { timeout: 90000 });
   return { page, logs };
 }
@@ -195,7 +195,8 @@ if (suites.includes("flythrough")) {
 }
 
 if (suites.includes("topdown")) {
-  const { page } = await openPage([512, 512]);
+  // ID buffers are rendered without MSAA so every pixel is exactly one class
+  const { page } = await openPage([512, 512], "&noaa");
   const idx = JSON.parse(readFileSync("public/world/index.json", "utf8"));
   const dir = join(runDir, "topdown");
   mkdirSync(dir, { recursive: true });
@@ -217,6 +218,7 @@ if (suites.includes("topdown")) {
 
 if (suites.includes("viewpoints")) {
   const { page } = await openPage([1280, 720]);
+  const { page: noaa } = await openPage([1280, 720], "&noaa");
   const dir = join(runDir, "viewpoints");
   mkdirSync(dir, { recursive: true });
   const gc = JSON.parse(readFileSync("verify/ground-truth/viewpoints.json", "utf8")).game_camera_preset;
@@ -236,20 +238,21 @@ if (suites.includes("viewpoints")) {
     // the style-suite camera follows a goose standing at the photo position, looking along its heading
     const tx = p.x, tz = p.z;
     for (const mode of [null, "palette"]) {
-      await page.evaluate(async ({ tx, tz, yaw, gc, mode }) => {
+      const pg = mode ? noaa : page;
+      await pg.evaluate(async ({ tx, tz, yaw, gc, mode }) => {
         const g = window.__wgs;
         await g.load(tx, tz, 1);
         g.debugView(mode);
         g.setFollow({ x: tx, z: tz, yaw, pitch: gc.pitch_deg, dist: gc.distance_m, fov: gc.vfov_deg });
         g.render(); g.render();
       }, { tx, tz, yaw: p.yaw, gc, mode });
-      writeFileSync(join(dir, `${mode ? "palette" : "game"}_${vp.id}.png`), await page.screenshot());
+      writeFileSync(join(dir, `${mode ? "palette" : "game"}_${vp.id}.png`), await pg.screenshot());
     }
-    await page.evaluate(() => window.__wgs.debugView(null));
   }
   writeFileSync(join(dir, "poses.json"), JSON.stringify(poses, null, 1));
   console.log("viewpoints", viewpoints.length);
   await page.close();
+  await noaa.close();
 }
 
 if (suites.includes("calib")) {

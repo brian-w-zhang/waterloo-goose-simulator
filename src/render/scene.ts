@@ -11,8 +11,8 @@ export interface SceneRig {
   followShadow: (target: THREE.Vector3) => void;
 }
 
-export async function createScene(canvas: HTMLCanvasElement, forceWebGL: boolean): Promise<SceneRig> {
-  const renderer = new THREE.WebGPURenderer({ canvas, antialias: true, forceWebGL });
+export async function createScene(canvas: HTMLCanvasElement, forceWebGL: boolean, antialias = true): Promise<SceneRig> {
+  const renderer = new THREE.WebGPURenderer({ canvas, antialias, forceWebGL });
   await renderer.init();
   const backend = (renderer.backend as { isWebGPUBackend?: boolean }).isWebGPUBackend ? "webgpu" : "webgl2";
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

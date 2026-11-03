@@ -56,19 +56,19 @@ export function applyDebugView(roots: THREE.Object3D[], mode: DebugMode, classes
     root.traverse((o) => {
       const mesh = o as THREE.Mesh;
       if (!mesh.isMesh) return;
-      const ud = mesh.userData as { orig?: THREE.Material; origVisible?: boolean; origInstanceColor?: unknown };
+      const ud = mesh.userData as { orig?: THREE.Material; hidByDebug?: boolean; origInstanceColor?: unknown };
       if (ud.orig) {
         mesh.material = ud.orig;
-        mesh.visible = ud.origVisible ?? true;
+        // only undo our own hiding: other systems (far LOD, streaming) own visibility otherwise
+        if (ud.hidByDebug) mesh.visible = true;
         const im = mesh as THREE.InstancedMesh;
         if (ud.origInstanceColor !== undefined) im.instanceColor = ud.origInstanceColor as THREE.InstancedBufferAttribute | null;
-        delete ud.orig; delete ud.origVisible; delete ud.origInstanceColor;
+        delete ud.orig; delete ud.hidByDebug; delete ud.origInstanceColor;
       }
       if (!mode) return;
       const dm = debugMaterial(mesh, mode, classes);
       ud.orig = mesh.material as THREE.Material;
-      ud.origVisible = mesh.visible;
-      if (!dm) { mesh.visible = false; return; }
+      if (!dm) { if (mesh.visible) { mesh.visible = false; ud.hidByDebug = true; } return; }
       const im = mesh as THREE.InstancedMesh;
       if (im.isInstancedMesh) { ud.origInstanceColor = im.instanceColor; im.instanceColor = null; }
       mesh.material = dm;

@@ -1,0 +1,42 @@
+{
+ "metrics": {
+  "hole_frames": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "chunks_never_loaded": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "bad_vertices": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "frame_ms_p95": {
+   "value": 36.60000038146973,
+   "gate": null,
+   "op": "record",
+   "pass": null,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "frames": 297,
+  "holes": [],
+  "building_count_mismatch": [],
+  "frame_ms_p50": 0.7999997138977051,
+  "draw_calls_p95": 299,
+  "triangles_p95": 4199798,
+  "note": "headless frame times are CPU submit times on the build machine, recorded only",
+  "errors": []
+ }
+}

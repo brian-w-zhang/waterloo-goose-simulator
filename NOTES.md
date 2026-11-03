@@ -58,3 +58,8 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 
 - Ways with an explicit `width` tag (not crossings) now cut into road surfaces: the University Avenue separated cycle track (`width=3 m`) was swallowed by the 12 m road ribbon. Data-driven, not tuned on the sites.
 - The tagged-width check samples only inside the packed world (several trails run past the chunk grid) and skips samples inside building footprints (untagged passages). Remaining red: way 952173528 (`width=4`) measures 9.15 m because it runs alongside another path and the class union cannot separate them; the ortho Laurel Trail site (tag 2.5 m used, by-eye 3.0 m). Both listed under gates to discuss.
+
+## 2026-11-03 03:55 ID and palette renders without MSAA
+
+- The palette-ID check (doc 08 3.2) assumes every pixel is exactly one material colour; MSAA breaks that at thin geometry. ID passes (top-down and palette) now come from a page started with `?noaa` (renderer created without antialiasing); the lit frames keep MSAA. Palette-ID off share is now exactly 0 on both backends, and top-down IoU no longer depends on the backend (both 0.978).
+- Fixed a real bug found on the way: restoring the debug view reset every mesh's visibility, which re-showed far-LOD tiles under loaded chunks. Restore now only undoes the debug view's own hiding. The hotspot (people, items) is included in the debug views.
