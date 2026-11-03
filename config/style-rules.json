@@ -2,6 +2,12 @@
   "note": "Building style classes (doc 02 section 6), revised from the photo research in docs/research/building-looks.md (Nov 3, 2026). First matching rule wins: City BLDG_ABBREV lists, then OSM building:material, then OSM building value; small non-UW footprints are houses. Colours are palette names. pattern: ribbon (horizontal window bands), punched (window grid), curtain (glass with mullion grid), slot (narrow vertical slots between fins), diamond (faceted panels, E5), none. Unmatched non-house buildings take one of default_variants by a hash of their OBJECTID (varied, stable, not evidence about any one building). Second research pass (docs/research/building-looks-pass2.json) moved B1, B2, C2, ESC, E2 to buff brick and STC, EV1, GSC to brown brick.",
   "rules": [
     {
+      "style": "glass_qnc",
+      "abbrev": [
+        "QNC"
+      ]
+    },
+    {
       "style": "glass_vault",
       "abbrev": [
         "DC"
@@ -28,7 +34,6 @@
     {
       "style": "glass_blue",
       "abbrev": [
-        "QNC",
         "SLC",
         "TJB"
       ],
@@ -254,9 +259,7 @@
       "pattern": "curtain",
       "storey_m": 3.8,
       "bay_m": 1.6,
-      "roof_alt": "roof_gravel",
-      "base": "brick_charcoal",
-      "base_m": 4.2
+      "roof_alt": "roof_gravel"
     },
     "glass_teal": {
       "wall": "glass_teal",
@@ -522,6 +525,18 @@
       "storey_m": 3.0,
       "bay_m": 1.8,
       "storefront": true
+    },
+    "glass_qnc": {
+      "wall": "glass_blue",
+      "accent": "brick_charcoal",
+      "window": "mullion",
+      "roof": "roof_light",
+      "pattern": "curtain",
+      "storey_m": 3.8,
+      "bay_m": 1.6,
+      "roof_alt": "roof_gravel",
+      "base": "brick_charcoal",
+      "base_m": 4.2
     }
   },
   "default_variants": [
