@@ -258,7 +258,7 @@
     },
     "glass_blue": {
       "wall": "glass_blue",
-      "accent": "brick_charcoal",
+      "accent": "metal_shade",
       "window": "mullion",
       "roof": "roof_light",
       "pattern": "curtain",
@@ -533,7 +533,7 @@
     },
     "glass_qnc": {
       "wall": "glass_blue",
-      "accent": "brick_charcoal",
+      "accent": "metal_shade",
       "window": "mullion",
       "roof": "roof_light",
       "pattern": "curtain",
