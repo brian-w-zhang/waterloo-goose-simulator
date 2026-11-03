@@ -16,9 +16,10 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import doors, far, ground, network, props, structures, terrain, tufts, vegetation
+from . import doors, far, ground, network, osm, props, structures, terrain, tufts, vegetation
 
 C = CAMPUS["chunk"]
+BARRIER_KINDS = ["fence", "hedge", "wall", "retaining_wall"]
 SIZE = C["size_m"]
 CELL = terrain.CELL
 NPC = int(SIZE / CELL)          # cells per chunk side
@@ -120,6 +121,15 @@ def main():
     trees = vegetation.build(bl, lk)
     plats = structures.build()
     door_list = doors.build(bl)
+    # barriers: OSM fences, hedges and walls as straight segments (kind, e1, n1, e2, n2)
+    bar = []
+    for wid, t in osm.ways_where(lambda t: t.get("barrier") in BARRIER_KINDS):
+        pts = osm.way_coords(wid)
+        if pts and len(pts) > 1:
+            q = [bmod.osm_to_city(*p) for p in pts]
+            bar += [(BARRIER_KINDS.index(t["barrier"]), *a, *b) for a, b in zip(q, q[1:])]
+    bar = np.array(bar) if bar else np.zeros((0, 5))
+    print(f"barrier segments {len(bar)}")
     print(f"doors {len(door_list)}")
     tuft_map = tufts.build(gcls, bl, chunk_frame)
     print(f"tufts {sum(len(v) for v in tuft_map.values())} ({time.time() - t0:.0f}s)")
@@ -141,7 +151,7 @@ def main():
     index = {"version": 1, "chunk_size": SIZE, "cols": C["cols"], "rows": C["rows"],
              "grid_origin_e": C["grid_origin_e"], "grid_origin_n": C["grid_origin_n"],
              "origin": CAMPUS["origin"], "base_elevation_m": BASE_ELEV,
-             "ground_classes": ground.CLASSES, "prop_kinds": props.KINDS, "chunks": []}
+             "ground_classes": ground.CLASSES, "prop_kinds": props.KINDS, "barrier_kinds": BARRIER_KINDS, "chunks": []}
     for j in range(C["rows"]):
         for i in range(C["cols"]):
             e0, n1 = chunk_frame(i, j)
@@ -249,6 +259,16 @@ def main():
                 arrays["door_xyz"] = np.array([[d[0] - e0, bl[d[3]]["ground"] - BASE_ELEV, n1 - d[1]] for d in dsel],
                                               dtype=np.float32).ravel()
                 arrays["door_rot"] = np.array([d[2] for d in dsel], dtype=np.float32)
+            # barrier segments assigned by midpoint
+            if len(bar):
+                mid_i = np.floor(((bar[:, 1] + bar[:, 3]) / 2 - C["grid_origin_e"]) / SIZE).astype(int)
+                mid_j = np.floor(((bar[:, 2] + bar[:, 4]) / 2 - C["grid_origin_n"]) / SIZE).astype(int)
+                bs = bar[(mid_i == i) & (mid_j == j)]
+                if len(bs):
+                    y1 = terrain.sample(hf, bs[:, 1], bs[:, 2]) - BASE_ELEV
+                    y2 = terrain.sample(hf, bs[:, 3], bs[:, 4]) - BASE_ELEV
+                    arrays["bar_seg"] = np.c_[bs[:, 1] - e0, y1, n1 - bs[:, 2], bs[:, 3] - e0, y2, n1 - bs[:, 4]].astype(np.float32).ravel()
+                    arrays["bar_kind"] = bs[:, 0].astype(np.uint8)
             # grass tufts and flowers
             tf = tuft_map[(i, j)]
             if len(tf):

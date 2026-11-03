@@ -7,7 +7,7 @@ import { pavingClass } from "@/render/materials";
 
 export interface WorldIndex {
   chunk_size: number; cols: number; rows: number; grid_origin_e: number; grid_origin_n: number;
-  ground_classes: string[]; prop_kinds: string[];
+  ground_classes: string[]; prop_kinds: string[]; barrier_kinds: string[];
   chunks: { i: number; j: number; file: string; buildings: number; trees: number; props: number; bytes: number }[];
 }
 
@@ -67,7 +67,7 @@ export class WorldStream {
     if (!entry) return;
     const buf = await (await fetch(`/world/${entry.file}`)).arrayBuffer();
     const chunk = decodeChunk(buf);
-    const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds);
+    const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds, this.index.barrier_kinds);
     this.loaded.set(key, built);
     this.root.add(built.group);
     this.onLoad?.(key, built);

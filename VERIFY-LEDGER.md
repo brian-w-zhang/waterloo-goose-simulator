@@ -17,3 +17,4 @@ One line per run, appended by `tools/verify/gate.py`; old lines are never edited
 | 2026-11-03 04:02 | 0f7ab5e | none | fast | 35/37 | 1.000 | 0.61 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0402-0f7ab5e |
 | 2026-11-03 04:12 | bfa6872 | webgl2 | full | 55/57 | 1.000 | 0.61 / 0.61 | 0.03 | 0.084 | n/a | 0 | bench/results/verify/20261103-0411-bfa6872 |
 | 2026-11-03 04:16 | 54843d7 | none | fast | 35/37 | 1.000 | 0.61 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0416-54843d7 |
+| 2026-11-03 04:18 | ffbf926 | none | fast | 35/37 | 1.000 | 0.61 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0418-ffbf926 |

@@ -1,5 +1,6 @@
 import * as THREE from "three/webgpu";
-import { campus, swatch } from "@/config";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { swatch } from "@/config";
 import { type Chunk, sampleHeight, terrainHeights } from "./decode";
 import type { Materials } from "./materials";
 
@@ -467,6 +468,46 @@ function doorMesh(c: Chunk, mats: Materials): THREE.Object3D | null {
   return im;
 }
 
+const BARRIER_STYLE: Record<string, { color: string; h: number; w: number }> = {
+  hedge: { color: "hedge", h: 1.2, w: 0.9 }, wall: { color: "concrete", h: 1.2, w: 0.3 },
+  retaining_wall: { color: "concrete_shadow", h: 0.8, w: 0.4 }, fence: { color: "prop_wood", h: 1.1, w: 0.06 },
+};
+
+/** OSM fences, hedges and walls: boxes along each segment, fences as posts and two rails. */
+function barrierGeometry(c: Chunk, kinds: string[]): THREE.BufferGeometry | null {
+  const seg = c.arrays.bar_seg as Float32Array | undefined;
+  if (!seg) return null;
+  const kind = c.arrays.bar_kind as Uint8Array;
+  const parts: THREE.BufferGeometry[] = [];
+  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
+  const add = (color: string, cx: number, cy: number, cz: number, yaw: number, sx: number, sy: number, sz: number) => {
+    const g = new THREE.BoxGeometry(1, 1, 1).toNonIndexed();
+    g.deleteAttribute("uv");
+    q.setFromAxisAngle(up, yaw);
+    g.applyMatrix4(m.compose(new THREE.Vector3(cx, cy, cz), q, new THREE.Vector3(sx, sy, sz)));
+    const col = swatch(color), n = g.getAttribute("position").count, arr = new Float32Array(n * 3);
+    for (let k = 0; k < n; k++) arr.set([col.r, col.g, col.b], k * 3);
+    g.setAttribute("color", new THREE.BufferAttribute(arr, 3));
+    parts.push(g);
+  };
+  for (let k = 0; k < kind.length; k++) {
+    const [x1, y1, z1, x2, y2, z2] = seg.slice(k * 6, k * 6 + 6);
+    const len = Math.hypot(x2 - x1, z2 - z1);
+    if (len < 0.2) continue;
+    const yaw = Math.atan2(x2 - x1, z2 - z1);
+    const st = BARRIER_STYLE[kinds[kind[k]]];
+    const mx = (x1 + x2) / 2, mz = (z1 + z2) / 2, my = Math.min(y1, y2);
+    if (kinds[kind[k]] !== "fence") { add(st.color, mx, my + st.h / 2 - 0.2, mz, yaw, st.w, st.h + 0.4, len + st.w); continue; }
+    for (const h of [0.45, 0.95]) add(st.color, mx, my + h, mz, yaw, 0.05, 0.07, len);
+    const n = Math.max(1, Math.round(len / 2.4));
+    for (let p = 0; p <= n; p++) {
+      const t = p / n;
+      add(st.color, x1 + (x2 - x1) * t, (y1 + (y2 - y1) * t) + st.h / 2 - 0.1, z1 + (z2 - z1) * t, yaw, 0.09, st.h + 0.2, 0.09);
+    }
+  }
+  return parts.length ? mergeGeometries(parts) : null;
+}
+
 function propMeshes(c: Chunk, mats: Materials, kinds: string[]): THREE.Object3D[] {
   const xyz = c.arrays.prop_xyz as Float32Array | undefined;
   if (!xyz) return [];
@@ -495,7 +536,7 @@ function propMeshes(c: Chunk, mats: Materials, kinds: string[]): THREE.Object3D[
   return out;
 }
 
-export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKinds: string[]): BuiltChunk {
+export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKinds: string[], barrierKinds: string[]): BuiltChunk {
   const g = new THREE.Group();
   const { x0, z0 } = c.header.chunk;
   g.position.set(x0, 0, z0);
@@ -542,6 +583,14 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
   const doors = doorMesh(c, mats);
   if (doors) g.add(doors);
+  const bars = barrierGeometry(c, barrierKinds);
+  if (bars) {
+    const bm = new THREE.Mesh(bars, mats.vertexColor);
+    bm.castShadow = true;
+    bm.receiveShadow = true;
+    bm.name = "barriers";
+    g.add(bm);
+  }
   const parts = buildingMeshes.map((m) => m.geometry.getAttribute("position").array as Float32Array);
   const total = parts.reduce((a, p) => a + p.length, 0);
   const walls = total ? new Float32Array(total) : null;
