@@ -29,6 +29,7 @@ export class Goose {
   private honkT = 1;
   private flapT = 0;
   private crouchK = 0;
+  private idle = 0;
   private time = 0;
   private body: RAPIER.RigidBody | null = null;
   private collider: RAPIER.Collider | null = null;
@@ -75,7 +76,7 @@ export class Goose {
       const desiredYaw = Math.PI - heading;   // goose faces +z locally; compass 0 (north) is -z
       let d = desiredYaw - this.yaw;
       d = Math.atan2(Math.sin(d), Math.cos(d));
-      this.yaw += d * Math.min(1, dt * 12);
+      this.yaw += d * Math.min(1, dt * (input.run ? 16 : 12));
     }
     const fwd = new THREE.Vector3(Math.sin(this.yaw), 0, Math.cos(this.yaw));
     this.vy = this.grounded ? -1 : this.vy - 9.81 * dt;
@@ -138,7 +139,11 @@ export class Goose {
     const honk = Math.sin(Math.min(this.honkT, 1) * Math.PI);
     const look = Math.sin(this.time * 0.7) * 0.25 * (1 - moving);
     const bob = Math.sin(this.phase * 2) * 0.02 * moving;
-    const low = Math.max(run * 0.6, crouch);
+    // idle grazing: every few seconds of standing still, a quick dip to peck at the grass
+    this.idle = moving > 0.1 ? 0 : this.idle + dt;
+    const pc = (this.idle % 5.5) - 3.5;
+    const peck = pc > 0 && pc < 1.2 ? Math.sin((pc / 1.2) * Math.PI) * (0.7 + 0.3 * Math.sin(pc * 25)) : 0;
+    const low = Math.max(run * 0.6, crouch, peck * 1.25);
     const base = new THREE.Vector3(0, 0.52, 0.24);
     const head = new THREE.Vector3(look * 0.12, 0.86 - 0.32 * low + 0.04 * honk, 0.33 + 0.22 * low + 0.12 * honk + bob);
     const ctrl = new THREE.Vector3(look * 0.05, 0.62 + 0.15 * (1 - low), 0.42 - 0.12 * (1 - low));
