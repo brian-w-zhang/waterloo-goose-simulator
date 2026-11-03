@@ -64,7 +64,10 @@ def main():
     kind = sys.argv[1] if len(sys.argv) > 1 else "fast"
     sha = sh("git", "rev-parse", "--short", "HEAD").stdout.strip()
     # uncommitted source changes: the run tested HEAD plus a working-tree diff, so say so
-    if sh("git", "status", "--porcelain", "--untracked-files=no").stdout.strip():
+    # (the ledger and results are written by verify itself, so they do not count)
+    changed = [ln for ln in sh("git", "status", "--porcelain", "--untracked-files=no").stdout.splitlines()
+               if not ln[3:].startswith(("VERIFY-LEDGER.md", "bench/"))]
+    if changed:
         sha += "+dirty"
     stamp = datetime.now(ZoneInfo("America/Toronto")).strftime("%Y%m%d-%H%M")
     reuse = Path(sys.argv[2]) if len(sys.argv) > 2 else None

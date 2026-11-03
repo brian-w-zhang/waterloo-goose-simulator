@@ -130,3 +130,8 @@ not an independent test of this feature (same leakage as M3 and QNC, 06:55).
 Red steel portal frames stand 1.8 m out from the Davis Centre's two OSM entrance=main nodes, from
 research row 25 ("bright red painted steel portal frames at entrances", three sources, one of which
 is the V01 photo). Only main entrances get one: DC has 31 mapped entrances, mostly exits and service doors.
+
+## 2026-11-03 10:17 "+dirty" false positive
+The 10:16 WebGL ledger line says 6d1cea8+dirty only because the 10:13 WebGPU verify had appended
+to the tracked VERIFY-LEDGER.md. The source was exactly 6d1cea8. verify.py now ignores the ledger
+and bench/ results when deciding whether the tree is dirty.
