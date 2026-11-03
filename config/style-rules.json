@@ -1,0 +1,23 @@
+{
+  "note": "Tag to style class (doc 02 section 6). First matching rule wins: abbreviation lists, then OSM building:material, then OSM building value. Abbreviation lists are provisional until the photo research in docs/research/building-looks.md is applied.",
+  "rules": [
+    { "style": "concrete", "abbrev": ["MC", "DC", "HH", "LIB", "ML", "PAS", "NH", "B1", "B2"], "material": ["concrete"] },
+    { "style": "brick", "abbrev": ["V1", "REV", "MKV East", "MKV West", "UWP", "CLV"], "material": ["brick"], "building": ["dormitory", "residential", "apartments"] },
+    { "style": "glass", "abbrev": ["E5", "E6", "E7", "PSE - E7", "QNC", "EIT", "M3", "EV3", "STC"], "material": ["glass", "steel", "metal"] },
+    { "style": "limestone", "building": ["university", "college"] },
+    { "style": "canopy", "building": ["roof", "carport"] },
+    { "style": "utility", "building": ["shed", "service", "garage", "garages"] }
+  ],
+  "house_max_area_m2": 400,
+  "house": "house",
+  "default": "limestone",
+  "styles": {
+    "concrete": { "wall": "concrete", "band": "window_band", "roof": "concrete_shadow", "storey_m": 3.6, "band_lo": 0.4, "band_hi": 0.78 },
+    "brick": { "wall": "brick", "band": "window_band", "roof": "roof", "storey_m": 3.0, "band_lo": 0.35, "band_hi": 0.7 },
+    "glass": { "wall": "glass", "band": "glass_band", "roof": "roof", "storey_m": 3.8, "band_lo": 0.15, "band_hi": 0.85 },
+    "limestone": { "wall": "limestone", "band": "window_band", "roof": "roof", "storey_m": 3.6, "band_lo": 0.4, "band_hi": 0.75 },
+    "utility": { "wall": "utility", "band": "utility", "roof": "roof_dark", "storey_m": 3.6, "band_lo": 0.0, "band_hi": 0.0 },
+    "canopy": { "wall": "path", "band": "path", "roof": "roof", "storey_m": 3.6, "band_lo": 0.0, "band_hi": 0.0 },
+    "house": { "wall": "limestone", "band": "window_band", "roof": "roof_dark", "storey_m": 2.8, "band_lo": 0.4, "band_hi": 0.7 }
+  }
+}

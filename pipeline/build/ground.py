@@ -1,0 +1,117 @@
+"""Ground classes: disjoint polygons for water, roads, paths, parking, pitches, rail and woods."""
+import json
+
+from shapely import union_all
+from shapely.geometry import LineString, MultiPolygon, Polygon, shape
+from shapely.ops import polygonize
+
+from ..config import CAMPUS, RAW
+from . import osm
+from .buildings import osm_to_city
+
+W = CAMPUS["path_widths_m"]
+ROADS = {"service", "residential", "tertiary", "secondary", "primary", "unclassified",
+         "living_street", "secondary_link", "tertiary_link", "primary_link"}
+PATHS = {"footway", "path", "cycleway", "pedestrian", "steps", "platform", "track"}
+# Draw order: earlier classes win where polygons overlap.
+CLASSES = ["water", "rail", "road", "paving", "path", "parking", "pitch", "wood"]
+CREEK_HALF_WIDTH_M = 2.0
+RAIL_HALF_WIDTH_M = 1.8
+
+
+def _width(tags):
+    w = tags.get("width", "").replace("m", "").strip()
+    try:
+        return float(w)
+    except ValueError:
+        pass
+    if tags.get("name") == "Ring Road":
+        return CAMPUS["ring_road_width_m"]
+    return W.get(tags.get("highway"), 2.0)
+
+
+def _line(wid):
+    pts = osm.way_coords(wid)
+    if not pts or len(pts) < 2:
+        return None
+    return LineString([osm_to_city(e, n) for e, n in pts])
+
+
+def _area_polys(pred):
+    """Closed OSM ways and multipolygon relations matching pred, as polygons in the City frame."""
+    d = osm.load()
+    out = []
+    for wid, tags in osm.ways_where(pred):
+        pts = osm.way_coords(wid)
+        if pts and len(pts) >= 4 and pts[0] == pts[-1]:
+            p = Polygon([osm_to_city(e, n) for e, n in pts])
+            out.append(p if p.is_valid else p.buffer(0))
+    for rid, (members, tags) in d["rels"].items():
+        if tags.get("type") != "multipolygon" or not pred(tags):
+            continue
+        outer = [_line(r) for t, r, role in members if t == "way" and role == "outer" and r in d["ways"]]
+        inner = [_line(r) for t, r, role in members if t == "way" and role == "inner" and r in d["ways"]]
+        outer = [g for g in outer if g is not None]
+        inner = [g for g in inner if g is not None]
+        if not outer:
+            continue
+        shell = union_all(list(polygonize(outer)))
+        if inner:
+            shell = shell.difference(union_all(list(polygonize(inner))))
+        out.append(shell)
+    return [p for p in out if not p.is_empty]
+
+
+def highway_lines(kind_set):
+    out = []
+    for wid, tags in osm.ways_where(lambda t: t.get("highway") in kind_set):
+        if tags.get("indoor") == "yes" or tags.get("tunnel") in ("yes", "building_passage") \
+                or tags.get("level", "0") not in ("0", ""):
+            continue
+        if tags.get("area") == "yes":
+            continue
+        ln = _line(wid)
+        if ln is not None:
+            out.append((wid, tags, ln))
+    return out
+
+
+def classes(lakes, buildings):
+    """Dict of class name to a (Multi)Polygon in the City frame, made disjoint by CLASSES order."""
+    creeks = json.loads((RAW / "city" / "city_creeks.geojson").read_text())["features"]
+    creek_poly = union_all([shape(f["geometry"]).buffer(CREEK_HALF_WIDTH_M) for f in creeks])
+    raw = {
+        "water": union_all([lk["geom"] for lk in lakes] + [creek_poly]),
+        "rail": union_all([_line(w).buffer(RAIL_HALF_WIDTH_M) for w, t in osm.ways_where(
+            lambda t: t.get("railway") in ("light_rail", "rail")) if _line(w) is not None]),
+        "road": union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(ROADS)]
+                          + _area_polys(lambda t: t.get("area:highway") in ROADS)),
+        "paving": union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(PATHS)
+                             if t.get("surface") in ("paving_stones", "sett", "brick")]
+                            + _area_polys(lambda t: t.get("highway") == "pedestrian")),
+        "path": union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(PATHS)]
+                          + _area_polys(lambda t: t.get("highway") == "footway" and t.get("area") == "yes")),
+        "parking": union_all(_area_polys(lambda t: t.get("amenity") == "parking")),
+        "pitch": union_all(_area_polys(lambda t: t.get("leisure") == "pitch")),
+        "wood": union_all(_area_polys(lambda t: t.get("natural") == "wood" or t.get("landuse") == "forest")),
+    }
+    taken = union_all([b["footprint"] for b in buildings])
+    out = {}
+    for name in CLASSES:
+        g = raw[name]
+        if g.is_empty:
+            continue
+        g = g.difference(taken).buffer(0)
+        out[name] = g
+        taken = union_all([taken, g])
+    return out
+
+
+def polygons(geom):
+    if geom.is_empty:
+        return []
+    if isinstance(geom, Polygon):
+        return [geom]
+    if isinstance(geom, MultiPolygon):
+        return list(geom.geoms)
+    return [g for g in getattr(geom, "geoms", []) if isinstance(g, Polygon)]

@@ -9,7 +9,7 @@
   "base_elevation_m": 320.0,
   "chunk": {
     "size_m": 256,
-    "grid_origin_e": 535593,
+    "grid_origin_e": 535440,
     "grid_origin_n": 4812326,
     "cols": 10,
     "rows": 7
