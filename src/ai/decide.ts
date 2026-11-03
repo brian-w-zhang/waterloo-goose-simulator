@@ -35,6 +35,11 @@ export class DecisionClient {
 
   constructor(private endpoint = "/api/decide", private fetchFn: typeof fetch = (...a) => fetch(...a)) {}
 
+  /** Ask the server to open its gateway connection now, so the first real decision is not cold. */
+  warm() {
+    this.fetchFn(this.endpoint, { method: "GET" }).catch((e) => this.warnOnce("warm-up failed", e));
+  }
+
   /** Resolves with an answer, or null if the deadline passes, the cap is hit or the call fails. */
   async decide(r: DecisionRequest): Promise<DecisionAnswer | null> {
     const key = situationKey(r);

@@ -437,7 +437,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     mats.vertexColor, HOTSPOT_SEED);
   hotspot.gooseHeadGroup = goose.rig.head;
   scene.add(hotspot.root);
-  if (params.get("jev") === "1") hotspot.decisions = new DecisionClient();
+  if (params.get("jev") === "1") { hotspot.decisions = new DecisionClient(); hotspot.decisions.warm(); }
   // navmeshes per hotspot, baked when the goose first comes near (the chunks there are then loaded)
   const bakes = new Map<string, { bake: NavBake; at: { x: number; z: number }; plan: (a: V2, b: V2) => V2[] }>();
   const NAV_R = 70;

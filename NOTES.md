@@ -112,3 +112,10 @@ docs/plan/research/se390-mp2-notion-page.md. The 61 differing lines are fetch fo
 wrapper, mention tags) and course logistics (MP2 slides and private video due Wed Nov 4, the MS
 Teams review on Thu Nov 5, MP3 starting Nov 5). No build requirement changed. The build stays
 the MP2 demo; the slides and video are the team's to make.
+
+## 2026-11-03 07:50 Jev cold start
+With the new fallback logging, the first live call after a server start showed "timed out at
+1400 ms" (a cold TLS connection to the gateway), which explains an earlier unexplained mock
+answer. The client now sends one warm-up GET when ?jev=1 starts, and the server opens the
+connection with a keyless HEAD to the gateway host (nothing billed). After a fresh server start:
+warm-up 269 ms, then the first real decision was live at 826 ms.

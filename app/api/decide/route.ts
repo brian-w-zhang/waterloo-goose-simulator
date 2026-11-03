@@ -102,3 +102,20 @@ export async function POST(req: Request) {
   if (ans.source === "live") cache.set(key, ans);
   return Response.json(ans);
 }
+
+/**
+ * Warm-up: the first gateway call after a server start pays for TLS and a cold connection and can
+ * overrun the 1.4 s budget. The client calls this once when ?jev=1 starts; a keyless HEAD to the
+ * gateway host opens the connection (no key is sent, nothing is billed).
+ */
+export async function GET() {
+  if (!process.env.AI_GATEWAY_API_KEY) return Response.json({ warm: false, reason: "no key" });
+  const t0 = Date.now();
+  try {
+    await fetch(new URL(GATEWAY).origin, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+    return Response.json({ warm: true, ms: Date.now() - t0 });
+  } catch (e) {
+    console.warn("[jev] warm-up failed", (e as Error).message);
+    return Response.json({ warm: false, ms: Date.now() - t0 });
+  }
+}
