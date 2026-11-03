@@ -145,6 +145,9 @@ export const HOTSPOTS: HotspotDef[] = [
   },
 ];
 
+/** glass and china that shatter if dropped at a run (spec I-9) */
+const FRAGILE = new Set(["the don's mug", "a sparkling water", "a lemonade"]);
+
 export const ITEM_WEIGHT: Record<string, "carry" | "drag"> = { cone: "drag", backpack: "drag", basket: "drag", umbrella: "carry", flag: "carry", pizza: "carry" };
 
 /** Populate the simulation with every hotspot's characters and items; ids are "<hotspot>:<id>". */
@@ -158,7 +161,7 @@ export function populate(sim: Sim) {
       for (const it of c.items) {
         const id = `${it.kind}_${k++}`;
         sim.addItem({ id, name: it.name, kind: "take", weight: ITEM_WEIGHT[it.kind] ?? "carry",
-          owner: it.kind === "hardhat" ? null : npcId, homePos: at(it.at), zone: h.id, flags: { noisy: it.kind === "laptop", wearable: it.kind === "hardhat" } });
+          owner: it.kind === "hardhat" ? null : npcId, homePos: at(it.at), zone: h.id, flags: { noisy: it.kind === "laptop", wearable: it.kind === "hardhat", breakable: FRAGILE.has(it.name) } });
         // some things start in their owner's hands: honk first to make them drop it
         if (it.held) { sim.items.get(id)!.heldBy = npcId; sim.npcs.get(npcId)!.holding = id; }
       }

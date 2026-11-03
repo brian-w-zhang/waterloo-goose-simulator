@@ -92,3 +92,30 @@ describe("wearables", () => {
     expect(s.goose.wearing).toBeNull();
   });
 });
+
+describe("fragile items", () => {
+  it("a mug dropped at a run shatters, and its owner sets out a new one 20 s later", () => {
+    const s = new Sim({ seed: 4 });
+    s.addNpc({ id: "o", name: "O", archetype: "normal", home: { x: 30, z: 30 } });
+    s.addItem({ id: "bottle_0", name: "a mug", kind: "take", weight: "carry", owner: "o", homePos: { x: 0, z: 0 },
+      zone: "z", flags: { breakable: true } });
+    s.goose.pos = { x: 0, z: 0 };
+    expect(s.gooseGrab()).toBe("bottle_0");
+    s.goose.pos = { x: 5, z: 0 };
+    s.goose.speed = 2;        // a walking drop is fine
+    s.gooseRelease();
+    expect(s.events.some((e) => e.type === "broke")).toBe(false);
+    s.goose.pos = { x: 5, z: 0 };
+    expect(s.gooseGrab()).toBe("bottle_0");
+    s.goose.speed = 4.2;      // dropped at a run
+    s.gooseRelease();
+    expect(s.events.filter((e) => e.type === "broke")).toHaveLength(1);
+    const it = s.items.get("bottle_0")!;
+    expect(it.heldBy).toBe("broken");
+    expect(s.gooseGrab()).toBeNull();
+    run(s, 21);
+    expect(it.heldBy).toBeNull();
+    expect(it.pos).toEqual({ x: 0, z: 0 });
+    expect(s.events.some((e) => e.type === "replaced")).toBe(true);
+  });
+});

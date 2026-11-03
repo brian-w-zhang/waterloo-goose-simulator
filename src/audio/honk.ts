@@ -118,3 +118,32 @@ export function step(kind: "land" | "water") {
   src.connect(f).connect(g).connect(a.destination);
   src.start(t);
 }
+
+/** Glass shattering (spec I-9): a bright filtered noise burst with a few tinkles. */
+export function smash() {
+  const a = audio();
+  if (!a) return;
+  const t = a.currentTime;
+  const len = Math.floor(a.sampleRate * 0.35);
+  const buf = a.createBuffer(1, len, a.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+  const src = a.createBufferSource();
+  src.buffer = buf;
+  const hp = a.createBiquadFilter();
+  hp.type = "highpass";
+  hp.frequency.value = 2500;
+  const g = a.createGain();
+  g.gain.value = 0.3;
+  src.connect(hp).connect(g).connect(a.destination);
+  src.start(t);
+  [3100, 4200, 5300].forEach((f, k) => {
+    const o = a.createOscillator(), og = a.createGain();
+    o.frequency.value = f;
+    og.gain.setValueAtTime(0.05, t + 0.04 * (k + 1));
+    og.gain.exponentialRampToValueAtTime(0.0001, t + 0.04 * (k + 1) + 0.25);
+    o.connect(og).connect(a.destination);
+    o.start(t + 0.04 * (k + 1));
+    o.stop(t + 0.04 * (k + 1) + 0.3);
+  });
+}

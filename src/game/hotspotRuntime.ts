@@ -1,11 +1,11 @@
 import * as THREE from "three/webgpu";
 import { campus, swatch, swatchHex } from "@/config";
-import { click, honk as honkSound } from "@/audio/honk";
+import { click, honk as honkSound, smash } from "@/audio/honk";
 import type RAPIER from "@dimforge/rapier3d-compat";
 import { GROUP_ITEM, type Physics } from "@/physics/physics";
 import { DecisionClient } from "@/ai/decide";
 import { Menace } from "@/sim/menace";
-import { Sim, type SimEvent, type V2, WORN } from "@/sim/sim";
+import { BROKEN, Sim, type SimEvent, type V2, WORN } from "@/sim/sim";
 import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actors";
 import { HOTSPOTS, LOOKS, populate } from "./hotspot";
 
@@ -126,6 +126,7 @@ export class HotspotRuntime {
     for (; this.seen < this.sim.events.length; this.seen++) {
       const e = this.sim.events[this.seen];
       if (e.type === "snatched") this.onSnatched?.();
+      if (e.type === "broke") this.shatter(e.item);
       this.score(e);
       if (e.type === "giveup" && this.decisions) {
         const n = this.sim.npcs.get(e.npc)!;
@@ -238,6 +239,34 @@ export class HotspotRuntime {
     }
   }
 
+  /** Shards for a shattered item: a few pieces that hop out and fade in about a second. */
+  private shards: { m: THREE.Mesh; v: THREE.Vector3; t: number }[] = [];
+  private shatter(id: string) {
+    smash();
+    const at = this.items.get(id)!.position.clone();
+    const geo = new THREE.TetrahedronGeometry(0.05);
+    for (let k = 0; k < 7; k++) {
+      const m = new THREE.Mesh(geo, this.items.get(id)!.material as THREE.Material);
+      m.position.copy(at).setY(at.y + 0.1);
+      const a = (k / 7) * Math.PI * 2;
+      this.root.add(m);
+      this.shards.push({ m, v: new THREE.Vector3(Math.cos(a) * 1.4, 2.2 + (k % 3) * 0.4, Math.sin(a) * 1.4), t: 0 });
+    }
+  }
+
+  private updateShards(dt: number) {
+    for (let k = this.shards.length - 1; k >= 0; k--) {
+      const s = this.shards[k];
+      s.t += dt;
+      s.v.y -= 9.8 * dt;
+      s.m.position.addScaledVector(s.v, dt);
+      const floor = this.ground(s.m.position.x, s.m.position.z) + 0.03;
+      if (s.m.position.y < floor) { s.m.position.y = floor; s.v.multiplyScalar(0.3); }
+      s.m.rotation.x += dt * 9;
+      if (s.t > 1.2) { this.root.remove(s.m); this.shards.splice(k, 1); }
+    }
+  }
+
   /** Sync meshes to the simulation (call once per rendered frame). */
   private gooseHead = new THREE.Vector3();
   // carried-item pendulum (spec I-6): swing angle and velocity about two axes, driven by bill acceleration
@@ -245,6 +274,7 @@ export class HotspotRuntime {
 
   sync(dt: number, t: number, camera: THREE.Camera, gooseBill: THREE.Vector3) {
     this.gooseHead.copy(gooseBill);
+    this.updateShards(dt);
     for (const n of this.sim.npcs.values()) {
       const r = this.people.get(n.id)!;
       const prev = this.lastPos.get(n.id) ?? n.pos;
@@ -257,6 +287,8 @@ export class HotspotRuntime {
     const hand = new THREE.Vector3();
     for (const it of this.sim.items.values()) {
       const m = this.items.get(it.id)!;
+      if (it.heldBy === BROKEN) { m.visible = false; continue; }
+      m.visible = true;
       if (it.heldBy === WORN && this.gooseHeadGroup) {
         if (m.parent !== this.gooseHeadGroup) {
           this.gooseHeadGroup.add(m);
@@ -313,6 +345,7 @@ export class HotspotRuntime {
       case "drop": m.add("honk_drop", t, e.npc); break;
       case "tug": if (e.won) m.add("steal_hand", t, e.npc); break;
       case "fall": m.add("slapstick", t, e.npc); break;
+      case "broke": m.add("smash", t); break;
       case "snatched": m.bail(); break;
       case "giveup": if (this.sim.goose.hidden) m.add("lose_chaser", t, e.npc); break;
       case "release": {

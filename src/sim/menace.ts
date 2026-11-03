@@ -6,7 +6,7 @@
  */
 export const MENACE_BASE = {
   honk_wonder: 10, honk_drop: 50, steal_hand: 75, steal_worn: 100, drag_10m: 5, into_water: 120,
-  chase_10s: 40, lose_chaser: 150, scatter: 60, slapstick: 150, interrupt: 200, task: 500,
+  chase_10s: 40, lose_chaser: 150, scatter: 60, slapstick: 150, smash: 120, interrupt: 200, task: 500,
 } as const;
 export type MenaceEvent = keyof typeof MENACE_BASE;
 

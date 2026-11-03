@@ -32,11 +32,17 @@ export interface Item {
   zone: string;
   flags: { noisy?: boolean; wearable?: boolean; breakable?: boolean; respawn?: boolean; hidingSpot?: boolean };
   pos: V2;
-  heldBy: string | null;   // "goose", an NPC id, or null
+  heldBy: string | null;   // "goose", an NPC id, WORN, BROKEN, or null
+  brokenAt?: number;
 }
 
 /** heldBy value for an item the goose is wearing */
 export const WORN = "goose:worn";
+/** heldBy value for a fragile item that shattered; its owner replaces it after REPLACE_S */
+export const BROKEN = "broken";
+const REPLACE_S = 20;
+/** goose speed (m/s) above which a dropped fragile item shatters: dropped while running */
+const SMASH_SPEED = 3;
 
 export type Archetype = "normal" | "chaser" | "scaredy" | "tidy";
 
@@ -95,7 +101,9 @@ export type SimEvent =
   | { t: number; type: "returned"; npc: string; item: string }
   | { t: number; type: "grab"; who: string; item: string }
   | { t: number; type: "release"; who: string; item: string }
-  | { t: number; type: "worn"; npc: string; item: string };
+  | { t: number; type: "worn"; npc: string; item: string }
+  | { t: number; type: "broke"; item: string }
+  | { t: number; type: "replaced"; item: string };
 
 export const LINES = {
   shock: ["Hey!", "Whoa!", "Not again!", "Goose!"],
@@ -234,6 +242,15 @@ export class Sim {
     it.pos = { ...this.goose.pos };
     this.goose.holding = null;
     this.emit({ t: this.t, type: "release", who: "goose", item: id });
+    // fragile things dropped at a run shatter (spec I-9); the owner sets out a new one later
+    if (it.flags.breakable && this.goose.speed > SMASH_SPEED) {
+      it.heldBy = BROKEN;
+      it.brokenAt = this.t;
+      this.emit({ t: this.t, type: "broke", item: id });
+      const owner = it.owner ? this.npcs.get(it.owner) : undefined;
+      if (owner && dist(owner.pos, it.pos) < PERCEPTION.honkRange) { this.setMark(owner, "!"); this.say(owner, "shock"); }
+      it.pos = { ...it.homePos };
+    }
   }
 
   private endTug(won: boolean) {
@@ -376,6 +393,12 @@ export class Sim {
       else if (tg.t > PERCEPTION.tugLoseS) this.endTug(false);
     }
     this.dressing(dt);
+    for (const it of this.items.values()) {
+      if (it.heldBy === BROKEN && this.t - (it.brokenAt ?? 0) > REPLACE_S) {
+        it.heldBy = null;
+        this.emit({ t: this.t, type: "replaced", item: it.id });
+      }
+    }
     for (const it of this.items.values()) {
       if (it.heldBy === "goose" || it.heldBy === WORN) it.pos = { ...this.goose.pos };
       else if (it.heldBy && this.npcs.has(it.heldBy)) it.pos = { ...this.npcs.get(it.heldBy)!.pos };
