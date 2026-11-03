@@ -1,0 +1,9 @@
+# Accepted regressions (doc 08 section 4.3). Never on holdout metrics or the ground-truth hash.
+- metric: heights.height_pixel_median_abs_m
+  old: 0.310
+  new: 0.320
+  reason: >-
+    Footprint areas that no lidar height tier covered (dropped small regions, simplification slivers)
+    were holes in roofs, a visible defect from the game camera; they now join the largest tier, which
+    is slightly wrong in height over those few square metres. Gate is 1.5 m.
+  recovery: none planned; accepted trade-off (a per-region height for the remainder would recover it)

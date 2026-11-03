@@ -57,6 +57,7 @@ def worse(name, group, new, old):
         return False
     if group == "flythrough" and name == "frame_ms_p95":
         return new > old * (1 + band)
+    new, old = round(new, 6), round(old, 6)  # float32 decode noise is not a regression
     return (new < old - band) if better == "higher" else (new > old + band)
 
 
