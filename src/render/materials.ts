@@ -90,3 +90,12 @@ export function makeVertexColorMaterial(): THREE.MeshToonNodeMaterial {
   m.vertexColors = true;
   return m;
 }
+
+/** Reaction marks: unlit, unfogged vertex colours so "?" and "!" always read. */
+export function makeMarkMaterial(): THREE.MeshBasicNodeMaterial {
+  const m = new THREE.MeshBasicNodeMaterial();
+  m.vertexColors = true;
+  m.fog = false;
+  m.depthTest = false;
+  return m;
+}

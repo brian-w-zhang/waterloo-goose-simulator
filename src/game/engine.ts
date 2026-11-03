@@ -3,7 +3,8 @@ import { campus } from "@/config";
 import { Goose, type GooseInput } from "@/goose/goose";
 import { type Network, WalkGraph } from "@/nav/graph";
 import { loadRapier, Physics } from "@/physics/physics";
-import { makeGooseMaterial, occlusion } from "@/render/materials";
+import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
+import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
 import { applyDebugView, type DebugMode } from "@/render/debug";
 import { createScene } from "@/render/scene";
 import { swatch } from "@/config";
@@ -44,6 +45,12 @@ export interface GameHandle {
     walkTo(x: number, z: number, maxSeconds?: number): Promise<WalkResult>;
     nearestPathPoint(x: number, z: number): [number, number];
   };
+  hotspot: {
+    grab(): string | null;
+    honk(): void;
+    npcs(): { id: string; state: string; mark: string; x: number; z: number; holding: string | null }[];
+    tasks(): { text: string; done: boolean }[];
+  };
 }
 
 export interface WalkResult {
@@ -53,7 +60,9 @@ export interface WalkResult {
 
 declare global { interface Window { __wgs?: GameHandle } }
 
-export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> {
+export interface HudState { tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string }
+
+export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState) => void): Promise<() => void> {
   const params = new URLSearchParams(window.location.search);
   const testMode = params.has("test");
   const rig = await createScene(canvas, params.has("webgl"));
@@ -149,10 +158,12 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
       honk: keys.has("Space"), flap: keys.has("KeyF") };
   };
 
+  let hotspot: HotspotRuntime | null = null;
   let lastChunk = "";
   const step = (dt: number, input: GooseInput) => {
     goose.update(dt, input, follow.yaw);
     physics.world.step();
+    hotspot?.step(dt, goose.position, goose.speed, input.crouch);
     if (followGoose) {
       follow.x = THREE.MathUtils.damp(follow.x, goose.position.x, 6, dt);
       follow.z = THREE.MathUtils.damp(follow.z, goose.position.z, 6, dt);
@@ -170,11 +181,16 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
   };
 
   const handle: GameHandle = {
+    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [] },
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
     setFollow: (f) => { pose = null; Object.assign(follow, f); placeCamera(); },
     load: async (x, z, radius) => { await stream.update(x, z, radius); placeCamera(); },
-    render: () => { placeCamera(); renderer.render(scene, camera); },
+    render: () => {
+      placeCamera();
+      hotspot?.sync(1 / 60, performance.now() / 1000, camera, goose.rig.lowerBill.getWorldPosition(new THREE.Vector3()));
+      renderer.render(scene, camera);
+    },
     info: () => ({
       backend: rig.backend, calls: renderer.info.render.drawCalls, triangles: renderer.info.render.triangles,
       loaded: stream.loadedKeys(), loads: stream.loadsTotal, evictions: stream.evictionsTotal,
@@ -267,11 +283,36 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
       },
     },
   };
+  handle.hotspot = {
+    grab: () => hotspot?.grabOrDrop() ?? null,
+    honk: () => hotspot?.honk(),
+    npcs: () => [...(hotspot?.sim.npcs.values() ?? [])].map((n) => ({ id: n.id, state: n.state, mark: n.mark, x: n.pos.x, z: n.pos.z, holding: n.holding })),
+    tasks: () => hotspot?.tasks.map((t) => ({ text: t.text, done: t.done })) ?? [],
+  };
   window.__wgs = handle;
   console.log(`[wgs] backend ${rig.backend}`);
 
   await spawn(follow.x, follow.z);
   if (testMode) goose.rig.root.visible = false;
+  hotspot = new HotspotRuntime(physics, (x, z) => stream.heightAt(x, z), mats.vertexColor, makeMarkMaterial(),
+    mats.vertexColor, HOTSPOT_SEED);
+  scene.add(hotspot.root);
+  goose.onHonk = () => hotspot?.honk();
+  const hud = (): HudState => ({
+    tasks: hotspot!.tasks.map((t) => ({ text: t.text, done: t.done })),
+    prompt: hotspot!.sim.goose.holding ? `G: drop ${hotspot!.sim.items.get(hotspot!.sim.goose.holding)!.name}`
+      : (hotspot!.nearestItem() ? `G: grab ${hotspot!.nearestItem()}` : ""),
+    holding: hotspot!.sim.goose.holding, backend: rig.backend,
+  });
+  hotspot.onTask = () => onHud?.(hud());
+  const grab = () => { hotspot?.grabOrDrop(); onHud?.(hud()); };
+  const onGrabKey = (e: KeyboardEvent) => { if (e.code === "KeyG" && !e.repeat) grab(); };
+  const onMouse = (e: MouseEvent) => { if (e.button === 0) grab(); };
+  window.addEventListener("keydown", onGrabKey);
+  canvas.addEventListener("mousedown", onMouse);
+  onHud?.(hud());
+  let hudTimer = 0;
+  const bill = new THREE.Vector3();
 
   let running = true;
   let last = performance.now();
@@ -287,6 +328,9 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
       if (keys.has("KeyQ")) follow.yaw -= 70 * FIXED_DT;
       if (keys.has("KeyE")) follow.yaw += 70 * FIXED_DT;
       placeCamera();
+      goose.rig.lowerBill.getWorldPosition(bill);
+      hotspot?.sync(1 / 60, now / 1000, camera, bill);
+      if ((hudTimer += 1) % 15 === 0) onHud?.(hud());
       renderer.render(scene, camera);
     }
     requestAnimationFrame(frame);
@@ -299,6 +343,8 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
     window.removeEventListener("keydown", onKey);
     window.removeEventListener("keyup", onKey);
     window.removeEventListener("wheel", onWheel);
+    window.removeEventListener("keydown", onGrabKey);
+    canvas.removeEventListener("mousedown", onMouse);
     renderer.dispose();
   };
 }

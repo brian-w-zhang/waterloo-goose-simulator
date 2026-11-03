@@ -14,6 +14,7 @@ export interface GooseInput {
 export const WALK_SPEED = 1.6;
 export const RUN_SPEED = 4.2;
 const CROUCH_SPEED = 0.9;
+const FLAP_BOOST = 1.25;
 const CAPSULE_R = 0.24;
 const CAPSULE_HALF = 0.2;
 
@@ -65,7 +66,8 @@ export class Goose {
   update(dt: number, input: GooseInput, cameraYaw: number) {
     this.time += dt;
     const want = input.move.length() > 0.05;
-    const target = input.crouch ? CROUCH_SPEED : input.run ? RUN_SPEED : WALK_SPEED;
+    // flapping while running gives the escape burst (doc 03 R-G1)
+    const target = input.crouch ? CROUCH_SPEED : input.run ? RUN_SPEED * (input.flap ? FLAP_BOOST : 1) : WALK_SPEED;
     this.speed = THREE.MathUtils.damp(this.speed, want ? target * Math.min(input.move.length(), 1) : 0, 10, dt);
     if (want) {
       // camera yaw is a compass heading; forward on screen is that heading

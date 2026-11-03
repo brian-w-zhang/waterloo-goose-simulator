@@ -1,0 +1,11 @@
+import { chromium } from "@playwright/test";
+const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-angle=metal"] });
+const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+page.on("pageerror", (e) => console.log("pageerror", e.message));
+await page.goto("http://localhost:3100/");
+await page.waitForFunction(() => window.__wgs?.hotspot, null, { timeout: 60000 });
+await page.waitForTimeout(1500);
+await page.keyboard.down("KeyW"); await page.waitForTimeout(1200); await page.keyboard.up("KeyW");
+await page.keyboard.press("Space"); await page.waitForTimeout(150);
+await page.screenshot({ path: "review/look/hud.png" });
+await browser.close();

@@ -60,6 +60,7 @@ export interface Npc {
   speedWalk: number;
   speedRun: number;
   line: string;
+  grip: number;             // seconds spent within reach of the goose while chasing
 }
 
 export interface GooseState { pos: V2; speed: number; holding: string | null; crouched: boolean }
@@ -77,7 +78,7 @@ export type SimEvent =
 export const PERCEPTION = {
   coneDeg: 110, coneRange: 18, periphRange: 4, honkRange: 25, closeHonk: 4,
   itemCheckRange: 8, reactTime: 0.6, chaseGiveUpS: 12, chaseLeashM: 40, gooseMemoryS: 30,
-  repeatedHonks: 3, repeatedWindowS: 6, fleeS: 3, grabReach: 0.9,
+  repeatedHonks: 3, repeatedWindowS: 6, fleeS: 3, grabReach: 0.9, gripS: 0.5,
 };
 
 export interface SimOptions {
@@ -109,7 +110,7 @@ export class Sim {
       pos: { ...n.home }, facing: 0, routine: [{ ...n.home }], routineIdx: 0, state: "routine", stateTime: 0,
       mark: "", markTime: 0, holding: null, target: null, wantItem: null,
       memory: { gooseSeen: null, gooseSeenAt: -1e9, itemSeen: {}, honks: [] },
-      speedWalk: 1.3, speedRun: 4.4, line: "", ...n,
+      speedWalk: 1.3, speedRun: 4.4, line: "", grip: 0, ...n,
     });
   }
 
@@ -275,8 +276,10 @@ export class Sim {
         if (n.stateTime < dt * 1.5) this.emit({ t: this.t, type: "chase", npc: n.id });
         const chaseSpeed = Math.max(n.speedRun, this.goose.speed * 1.05);
         this.moveToward(n, n.memory.gooseSeen ?? this.goose.pos, chaseSpeed, dt);
-        // close enough: snatch the item back (tug-of-war is a later feature)
-        if (dist(n.pos, this.goose.pos) < 0.8) {
+        // staying within reach for a moment snatches the item back
+        n.grip = dist(n.pos, this.goose.pos) < 0.8 ? n.grip + dt : 0;
+        if (n.grip >= PERCEPTION.gripS) {
+          n.grip = 0;
           this.goose.holding = null;
           it.heldBy = n.id;
           n.holding = it.id;
