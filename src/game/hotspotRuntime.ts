@@ -11,7 +11,7 @@ const EYE_M = 1.6;
 // props are drawn larger than life so they read from the diorama camera (the map itself stays to scale)
 const ITEM_SCALE = 1.5;
 
-export interface Task { id: string; hotspot: string; text: string; done: boolean; test: (e: SimEvent, sim: Sim) => boolean }
+export interface Task { id: string; hotspot: string; text: string; gate?: number; done: boolean; test: (e: SimEvent, sim: Sim) => boolean }
 
 /** The hotspot's simulation plus its people, items, tasks and sounds. */
 export class HotspotRuntime {
