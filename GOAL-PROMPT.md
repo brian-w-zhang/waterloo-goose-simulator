@@ -6,6 +6,19 @@ The self-contained prompt Brian pastes into Claude Code as a long-running /goal 
 
 You are building **Waterloo Goose Simulator** overnight, alone, with no human available until morning. Work autonomously in small verified increments. Never stall waiting for a person. Never invent data. Never fake a check.
 
+## 0. Amendments after the Nov 3 audit (these override the sections below)
+
+Agreed with Brian on Nov 3, 2026 at about 2 am America/Toronto. Reasons are in `NOTES.md`.
+
+1. **Next.js, not Vite.** Next.js 16 App Router. The game is a client-only canvas component loaded with `dynamic(() => import(...), { ssr: false })`; packed chunks are served from `public/world/`; the Jev proxy is `app/api/decide/route.ts`. Vitest and Playwright stay. Visual verification runs against `next build && next start`, never the dev server.
+2. **Vertical slice first, harness grows with it.** Order: (a) frozen ground truth with `SHA256SUMS`, coordinate module and the cheap geometry validators; (b) the real pipeline end to end; (c) streamed world rendering with the toon style; (d) goose and follow camera; (e) top-down, fly-through, style, viewpoint and contact-sheet gates, `verify:selftest` and pose calibration. Every anti-reward-hacking rule in section 8 and doc 08 section 4.4 still binds; gates are only added, never weakened.
+3. **The goose is a Waterloo Canada goose**, stylised to work in the flat toon look and its animation: black head and neck, white chinstrap, brown-grey back and wings with lighter feather-edge bands, pale tan breast, white undertail, black tail, dark bill and legs. Doc 02's orange beak and white body describe the UGG goose and are wrong for us. Readability comes from the black neck and white chinstrap against the world, a slight value lift and a soft contact shadow.
+4. **Gameplay camera is closer than the style-suite camera.** The doc 08 game-camera (pitch 50 degrees, vertical FOV 25 degrees, 60 m) stays for the style statistics; the playable follow camera defaults to about 18 to 25 m with zoom so the goose fills roughly 8 to 15% of the frame height, as in the UGG references.
+5. **Props, trees and ground detail are P1 look work**, not P2: every OSM bench, bin, bike rack, lamp, picnic table and bus stop as an instanced prop; trees from OSM and City points plus lidar canopy maxima; paving-slab paths, grass tufts, hedges.
+6. **Look-iteration loop.** Besides the 20 viewpoints, keep fixed close beauty shots (game camera at about 6 hotspots plus goose close-ups) and iterate on them with screenshots, comparing against the UGG references (looking only) and campus photos (from web research). Log each iteration in `REVIEW.md` under "look log". Research building materials and colours from photos before the style pass; doc 02's abbreviation lists are guesses (doc 02 calls Hagey Hall concrete while doc 08 calls it brick).
+7. **This build is the MP2 demo** (slides due end of Wed Nov 4, review Thu Nov 5). Morning priority: a demo-ready, good-looking build with screenshots and measured results. P2 only after the core looks good and the P1 gates are reported.
+8. Private reference files (UGG screenshots, orthophoto sample, course guide, Notion copy) are gitignored and must never be committed. The planning pack lives in `docs/plan/`.
+
 ## 1. Mission
 
 Build a browser 3D game of the **whole University of Waterloo main campus as one continuous open world**, where the player is a Canada goose menace. It must be **geometrically accurate to real Waterloo maps** (footprints, heights, distances, paths, terrain, water, landmark positions) and **look like a recognisable campus drawn in the Untitled Goose Game style**: flat pastel colours, no textures, no ink outlines, faint soft shadows, a high narrow-FOV diorama camera. All graphics come from code and open data. Accuracy and looks are proven by an automated verification harness you build first and run every increment.
