@@ -414,10 +414,10 @@
   "play": {
     "playtest_tasks_done": {
       "op": ">=",
-      "gate": 6,
+      "gate": 8,
       "better": "higher",
       "band": 0,
-      "reason": "2026-11-03 07:13 tightened from 3: the playtest now plays the green and the plaza and finishes 7 tasks on both backends; 6 leaves one task of slack for timing"
+      "reason": "2026-11-03 08:30 tightened from 6: the playtest plays all three hotspots and finished 9 of 9 in 7 straight runs (both backends); 8 leaves one task of slack"
     },
     "playtest_page_errors": {
       "op": "<=",
