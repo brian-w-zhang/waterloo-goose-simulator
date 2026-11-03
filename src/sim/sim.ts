@@ -239,7 +239,7 @@ export class Sim {
     if (!id) return;
     const it = this.items.get(id)!;
     it.heldBy = null;
-    it.pos = { ...this.goose.pos };
+    it.pos = { ...(this.goose.bill ?? this.goose.pos) };   // it falls from the bill
     this.goose.holding = null;
     this.emit({ t: this.t, type: "release", who: "goose", item: id });
     // fragile things dropped at a run shatter (spec I-9); the owner sets out a new one later
@@ -341,11 +341,14 @@ export class Sim {
   private stepToward(n: Npc, target: V2, speed: number, dt: number): boolean {
     const v = sub(target, n.pos);
     const d = len(v);
-    if (d < 0.05) return true;
+    // personal space keeps people PERCEPTION.personalM from the goose, so a target close to a
+    // standing goose counts as reached from the edge of that space (they reach for it)
+    const reach = 0.3 + Math.max(0, PERCEPTION.personalM - dist(target, this.goose.pos));
+    if (d < 0.05 || d < reach) return true;
     const stepLen = Math.min(d, speed * dt);
     n.pos = { x: n.pos.x + (v.x / d) * stepLen, z: n.pos.z + (v.z / d) * stepLen };
     n.facing = Math.atan2(v.z, v.x);
-    return d - stepLen < 0.3;
+    return d - stepLen < reach;
   }
 
   private ownedMissing(n: Npc): Item | null {
@@ -517,6 +520,8 @@ export class Sim {
         const it = n.wantItem ? this.items.get(n.wantItem) : undefined;
         if (!it) { this.go(n, "giveup"); return; }
         if (it.heldBy === "goose") { this.go(n, "chase"); return; }
+        // smashed, on the goose's head, or already in someone's hands: nothing to pick up
+        if (it.heldBy) { this.go(n, "giveup"); return; }
         if (n.stateTime > 20) { this.go(n, "giveup"); return; }
         if (this.moveToward(n, it.pos, n.speedWalk * 1.4, dt)) {
           it.heldBy = n.id;

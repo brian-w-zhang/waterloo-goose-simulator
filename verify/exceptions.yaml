@@ -29,3 +29,11 @@
     (ring vertices 54,700 to 40,392, parts 4,619 to 3,956). Dev RMSE improved 0.569 to 0.528 m and
     holdout is unchanged (0.609 to 0.608 m); the random-20 sample moved 2.5 mm, gate 2.0 m.
   recovery: none needed; revisit if the random-20 sample worsens by more than 0.05 m
+- metric: heights.height_rmse_dev_m
+  old: 0.5279
+  new: 0.5317
+  reason: >-
+    Code-review fix: tier "teeth" are reassigned only when they touch another level (within 3 px),
+    so a narrow wing with no neighbour keeps its own height instead of taking a distant level's.
+    Correctness over a 3.8 mm average; still below the 0.569 m before tier smoothing, gate 1.5 m.
+  recovery: none needed

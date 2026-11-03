@@ -1,0 +1,9 @@
+{
+ "sha": "40d1f71",
+ "transferred_bytes_at_ready": 6176923,
+ "transferred_mb": 6.18,
+ "ms_to_ready": 614,
+ "requests": 23,
+ "gate_mb": 10,
+ "note": "Production server (next start, compression on), cold cache, localhost"
+}

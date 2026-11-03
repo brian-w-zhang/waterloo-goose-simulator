@@ -119,3 +119,37 @@ describe("fragile items", () => {
     expect(s.events.some((e) => e.type === "replaced")).toBe(true);
   });
 });
+
+describe("review fixes", () => {
+  it("an owner chasing the goose for a mug gives up when it smashes, and does not pick up the pieces", () => {
+    const s = new Sim({ seed: 5 });
+    s.addNpc({ id: "o", name: "O", archetype: "chaser", home: { x: 0, z: 0 } });
+    s.addItem({ id: "bottle_0", name: "a mug", kind: "take", weight: "carry", owner: "o", homePos: { x: 1, z: 0 },
+      zone: "z", flags: { breakable: true } });
+    s.goose.pos = { x: 1, z: 0 };
+    s.gooseGrab();
+    s.goose.pos = { x: 6, z: 0 };
+    run(s, 1.5);                         // the owner notices and gives chase
+    s.goose.speed = 4.2;
+    s.gooseRelease();                    // smashed at a run
+    run(s, 5);
+    const it = s.items.get("bottle_0")!;
+    expect(it.heldBy).toBe("broken");
+    expect(s.npcs.get("o")!.holding).toBeNull();
+    expect(s.events.some((e) => e.type === "returned")).toBe(false);
+  });
+
+  it("someone returning an item reaches home even with the goose standing on it", () => {
+    const s = new Sim({ seed: 6 });
+    s.addNpc({ id: "o", name: "O", archetype: "normal", home: { x: 8, z: 0 } });
+    s.addItem({ id: "textbook_0", name: "a book", kind: "take", weight: "carry", owner: "o", homePos: { x: 0, z: 0 },
+      zone: "z", flags: {} });
+    const it = s.items.get("textbook_0")!;
+    const n = s.npcs.get("o")!;
+    it.heldBy = "o"; n.holding = it.id;
+    (s as unknown as { go(n: unknown, st: string): void }).go(n, "return");
+    s.goose.pos = { x: 0, z: 0 };       // the goose stands on the item's home
+    run(s, 15);
+    expect(s.events.some((e) => e.type === "returned")).toBe(true);
+  });
+});

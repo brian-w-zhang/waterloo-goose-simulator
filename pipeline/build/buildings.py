@@ -199,8 +199,10 @@ def tiers(poly, nd, t, base_h):
         opened = ndimage.binary_opening(reg, iterations=TIER_OPEN_PX)
         teeth = reg & ~opened
         if teeth.any() and opened.any():
-            near = ndimage.distance_transform_edt(~((lev >= 0) & ~teeth & (lev != L)), return_distances=False, return_indices=True)
-            lev[teeth] = lev[near[0][teeth], near[1][teeth]]
+            dist, near = ndimage.distance_transform_edt(~((lev >= 0) & ~teeth & (lev != L)), return_indices=True)
+            # only teeth touching another level move to it; a narrow wing with no neighbour stays put
+            move = teeth & (dist <= TIER_OPEN_PX + 1)
+            lev[move] = lev[near[0][move], near[1][move]]
     levels = np.unique(lev[lev >= 0])
     for L in levels:
         reg = (lev == L).astype(np.uint8)

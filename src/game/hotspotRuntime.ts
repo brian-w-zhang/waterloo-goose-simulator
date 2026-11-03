@@ -15,6 +15,8 @@ const ARCHETYPE_WORDS = { normal: "calm", chaser: "territorial, easily annoyed",
 const ITEM_SCALE = 1.5;
 /** half extents (m, after ITEM_SCALE) of the physics box for items the goose drags */
 const DRAG_BOX: Record<string, [number, number, number]> = { cone: [0.26, 0.4, 0.26], backpack: [0.24, 0.27, 0.16], basket: [0.3, 0.2, 0.22] };
+/** one shared shard shape for every shatter (never disposed: it lives as long as the page) */
+const SHARD = new THREE.TetrahedronGeometry(0.05);
 /** item kinds that roll */
 const ROUND = new Set(["apple", "ball"]);
 
@@ -94,8 +96,10 @@ export class HotspotRuntime {
 
   grabOrDrop(): string | null {
     if (this.sim.goose.holding) { this.sim.gooseRelease(); click(600); return null; }
+    // where it lay: sim.step moves a held item to the goose, but a dragged body must start here
+    const before = new Map([...this.sim.items.values()].map((it) => [it.id, { ...it.pos }]));
     const id = this.sim.gooseGrab();
-    if (id) click(1000);
+    if (id) { click(1000); this.grabbedAt.set(id, before.get(id)!); }
     return id;
   }
 
@@ -165,6 +169,8 @@ export class HotspotRuntime {
    */
   private drag = new Map<string, { body: RAPIER.RigidBody; joint: RAPIER.ImpulseJoint | null; hy: number; freeT: number }>();
   private anchor: RAPIER.RigidBody | null = null;
+  /** ground position of each item when it was grabbed (consumed when its drag body is made) */
+  private grabbedAt = new Map<string, V2>();
 
   private dragPhysics(dt: number) {
     const R = this.physics.R, w = this.physics.world;
@@ -176,10 +182,12 @@ export class HotspotRuntime {
       let d = this.drag.get(it.id);
       const [hx, hy, hz] = DRAG_BOX[it.id.split("_")[0]] ?? [0.25, 0.25, 0.25];
       if (!d) {
-        const g = this.heightAt(it.pos.x, it.pos.z);
+        const at = this.grabbedAt.get(it.id) ?? it.pos;
+        const g = this.heightAt(at.x, at.z);
         if (!Number.isFinite(g)) return;   // no collider under it yet: drag it once the chunk is in
+        this.grabbedAt.delete(it.id);
         const y = g + hy + 0.02;
-        const body = w.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(it.pos.x, y, it.pos.z)
+        const body = w.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(at.x, y, at.z)
           .setLinearDamping(1.2).setAngularDamping(1.5).setCanSleep(true));
         w.createCollider(R.ColliderDesc.cuboid(hx, hy, hz).setDensity(25).setFriction(0.8).setCollisionGroups(GROUP_ITEM), body);
         d = { body, joint: null, hy, freeT: 0 };
@@ -250,7 +258,7 @@ export class HotspotRuntime {
   private shatter(id: string) {
     smash();
     const at = this.items.get(id)!.position.clone();
-    const geo = new THREE.TetrahedronGeometry(0.05);
+    const geo = SHARD;
     for (let k = 0; k < 7; k++) {
       const m = new THREE.Mesh(geo, this.items.get(id)!.material as THREE.Material);
       m.position.copy(at).setY(at.y + 0.1);
@@ -388,11 +396,13 @@ export class HotspotRuntime {
 
   /** Attention target for the goose head: a free item within 1.3 m, else the nearest person within 8 m. */
   attention(gx: number, gz: number): { point: THREE.Vector3; kind: "item" | "person" } | null {
+    const bill = this.sim.goose.bill ?? { x: gx, z: gz };
     let best: { point: THREE.Vector3; kind: "item" | "person" } | null = null, bd = 1.3;
     if (!this.sim.goose.holding) {
       for (const it of this.sim.items.values()) {
         if (it.heldBy) continue;
-        const d = Math.hypot(it.pos.x - gx, it.pos.z - gz);
+        // items are judged from the bill, like the grab itself; people from the body
+        const d = Math.hypot(it.pos.x - bill.x, it.pos.z - bill.z);
         if (d < bd) { bd = d; best = { point: this.items.get(it.id)!.position.clone(), kind: "item" }; }
       }
     }
@@ -415,7 +425,8 @@ export class HotspotRuntime {
     let best: string | null = null, bd = 0.9;
     for (const it of this.sim.items.values()) {
       if (it.heldBy) continue;
-      const d = Math.hypot(it.pos.x - this.sim.goose.pos.x, it.pos.z - this.sim.goose.pos.z);
+      const from = this.sim.goose.bill ?? this.sim.goose.pos;
+      const d = Math.hypot(it.pos.x - from.x, it.pos.z - from.z);
       if (d < bd) { bd = d; best = it.name; }
     }
     return best;

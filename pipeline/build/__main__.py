@@ -129,10 +129,8 @@ def main():
     sign_list = signs.build(bl, door_list, STRtree(plines), plines)
 
     def sign_chunk(s):
-        """A sign's own chunk; signs beyond the grid edge go with their building's (clamped) chunk."""
-        ci, cj = int((s[0] - C["grid_origin_e"]) // SIZE), int((s[1] - C["grid_origin_n"]) // SIZE)
-        if 0 <= ci < C["cols"] and 0 <= cj < C["rows"]:
-            return ci, cj
+        """Signs travel with their building's chunk: the mesher marks shop-front walls from the
+        signs in the same chunk, and signs past the grid edge still have a home."""
         return int(bci[s[6]]), int(bcj[s[6]])
     print(f"signs {len(sign_list)} ({sum(1 for s in sign_list if s[5] == 'shop')} businesses)")
     # barriers: OSM fences, hedges and walls as straight segments (kind, e1, n1, e2, n2)
