@@ -40,6 +40,7 @@ export interface GooseRig {
   legs: [THREE.Group, THREE.Group];
   feet: [THREE.Mesh, THREE.Mesh];
   material: THREE.Material;
+  honkLines: THREE.Group;
 }
 
 const NECK_SEGS = 12;
@@ -175,5 +176,16 @@ export function makeGoose(material: THREE.Material): GooseRig {
   });
 
   root.traverse((o) => { if ((o as THREE.Mesh).isMesh) { o.castShadow = true; o.receiveShadow = true; } });
-  return { root, body, neck, head, lowerBill, wings, legs, feet, material };
+  // honk strokes: three short pale dashes fanning out in front of the bill, shown briefly on a honk
+  const honkLines = new THREE.Group();
+  const dash = painted(new THREE.CapsuleGeometry(0.012, 0.09, 2, 6).rotateX(Math.PI / 2), () => "chinstrap");
+  for (const a of [-0.5, 0, 0.5]) {
+    const m = new THREE.Mesh(dash, material);
+    m.position.set(Math.sin(a) * 0.12, Math.cos(a) * 0.05, 0.28);
+    m.rotation.y = a;
+    honkLines.add(m);
+  }
+  honkLines.visible = false;
+  head.add(honkLines);
+  return { root, body, neck, head, lowerBill, wings, legs, feet, material, honkLines };
 }

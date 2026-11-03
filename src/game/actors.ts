@@ -36,6 +36,8 @@ export interface PersonRig {
   hand: THREE.Object3D;
   mark: THREE.Group;
   marks: Record<"?" | "!" | "swirl", THREE.Mesh>;
+  bubble: THREE.Group;
+  bubbleItem: string | null;
   phase: number;
 }
 
@@ -92,8 +94,18 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
   const marks = { "?": query, "!": bang, swirl };
   for (const m of Object.values(marks)) { m.visible = false; mark.add(m); }
   root.add(mark);
-  root.traverse((o) => { if ((o as THREE.Mesh).isMesh && o.parent !== mark) o.castShadow = true; });
-  return { root, body, legs, arms, head, hand, mark, marks, phase: 0 };
+  // thought bubble showing the wanted item (doc 03 R-N2): a pale disc with two trailing dots
+  const bubble = new THREE.Group();
+  bubble.position.set(0.6, 2.8, 0);
+  bubble.add(new THREE.Mesh(mergeGeometries([
+    paint(new THREE.CircleGeometry(0.32, 20), "mark_bg", "items"),
+    paint(new THREE.CircleGeometry(0.07, 10), "mark_bg", "items", -0.32, -0.36, 0),
+    paint(new THREE.CircleGeometry(0.045, 8), "mark_bg", "items", -0.45, -0.52, 0)]), markMaterial));
+  bubble.children[0].renderOrder = 1;
+  bubble.visible = false;
+  root.add(bubble);
+  root.traverse((o) => { if ((o as THREE.Mesh).isMesh && o.parent !== mark && o.parent !== bubble) o.castShadow = true; });
+  return { root, body, legs, arms, head, hand, mark, marks, bubble, bubbleItem: null, phase: 0 };
 }
 
 /** Pose the person from the simulation state; speed in m/s drives the walk or run cycle. */
@@ -116,6 +128,23 @@ export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t
   r.arms[1].rotation.z = armZ;
   r.head.rotation.y = n.state === "giveup" ? Math.sin(t * 5) * 0.3 : 0;
   for (const [k, m] of Object.entries(r.marks)) m.visible = n.mark === k;
+  const wants = n.wantItem && ["search", "chase", "retrieve"].includes(n.state) ? n.wantItem : null;
+  if (wants !== r.bubbleItem) {
+    while (r.bubble.children.length > 1) r.bubble.remove(r.bubble.children[1]);
+    if (wants) {
+      const icon = new THREE.Mesh(itemGeometry(wants.split("_")[0]), (r.bubble.children[0] as THREE.Mesh).material as THREE.Material);
+      const box = new THREE.Box3().setFromObject(icon);
+      const size = Math.max(...box.getSize(new THREE.Vector3()).toArray(), 0.01);
+      icon.scale.setScalar(0.38 / size);
+      icon.position.set(0, -0.1, 0.05);
+      icon.rotation.set(0.5, 0.6, 0);
+      icon.renderOrder = 2;  // marks draw without depth test, so order decides what is on top
+      r.bubble.add(icon);
+    }
+    r.bubbleItem = wants;
+  }
+  r.bubble.visible = !!wants;
+  r.bubble.quaternion.copy(r.root.quaternion).invert().multiply(camera.quaternion);
   r.mark.position.y = 2.25 + Math.sin(t * 6) * 0.03;
   // face the camera: world rotation = camera rotation, so remove the parent's yaw
   r.mark.quaternion.copy(r.root.quaternion).invert().multiply(camera.quaternion);

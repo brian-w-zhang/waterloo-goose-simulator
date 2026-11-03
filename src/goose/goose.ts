@@ -146,5 +146,7 @@ export class Goose {
     r.head.position.copy(head);
     r.head.rotation.set(0.15 * low - 0.25 * honk, look, 0);
     r.lowerBill.rotation.x = 0.45 * honk;
+    r.honkLines.visible = this.honkT < 0.6;
+    r.honkLines.scale.setScalar(1 + this.honkT * 1.5);
   }
 }
