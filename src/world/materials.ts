@@ -102,10 +102,19 @@ function propGeometries(): Record<string, THREE.BufferGeometry> {
     part(box(1.2, 0.8, 0.06), "stucco_white", 0, 1.35, 0),
   ]);
   const bollard = part(cyl(0.11, 0.9, 8), "prop_metal", 0, 0.45, 0);
+  // Davis Centre entrance: a bright red steel portal (two columns, a beam, a top brace)
+  const portal = mergeGeometries([
+    part(box(0.28, 5.6, 0.28), "accent_red", -1.9, 2.8, 0),
+    part(box(0.28, 5.6, 0.28), "accent_red", 1.9, 2.8, 0),
+    part(box(4.4, 0.32, 0.32), "accent_red", 0, 5.6, 0),
+    part(box(4.4, 0.2, 0.2), "accent_red", 0, 4.4, -0.9),
+    part(box(0.2, 0.2, 1.2), "accent_red", -1.9, 5.0, -0.5),
+    part(box(0.2, 0.2, 1.2), "accent_red", 1.9, 5.0, -0.5),
+  ]);
   return {
     bench, waste_basket: bin, bicycle_parking: rack, street_lamp: lamp,
     picnic_table: picnic, bus_stop: shelter, fire_hydrant: hydrant,
-    stop, phone, recycling, post_box: post, information, bollard,
+    stop, phone, recycling, post_box: post, information, bollard, portal_frame: portal,
   };
 }
 

@@ -146,7 +146,7 @@ def main():
     tuft_map = tufts.build(gcls, bl, chunk_frame)
     print(f"tufts {sum(len(v) for v in tuft_map.values())} ({time.time() - t0:.0f}s)")
     pcent = np.array([[p.centroid.x, p.centroid.y] for p, *_ in plats]) if plats else np.zeros((0, 2))
-    pr = props.build(path_lines)
+    pr = np.vstack([props.build(path_lines), props.portals(bl)])
     print(f"trees {len(trees)}, props {len(pr)} ({time.time() - t0:.0f}s)")
     with open(BUILD / "buildings.pkl", "wb") as f:
         pickle.dump(bl, f)

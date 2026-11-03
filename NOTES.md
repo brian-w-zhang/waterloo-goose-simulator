@@ -125,3 +125,8 @@ Hagey Hall gets its own style (brick_hh): walls above 13 m are blank brick with 
 under the roofline, from research row 32 ("a huge nearly windowless brown-brick block with a
 clerestory strip at the top"). That row cites the V10 photo as one of its two sources, so V10 is
 not an independent test of this feature (same leakage as M3 and QNC, 06:55).
+
+## 2026-11-03 10:05 DC portal frames
+Red steel portal frames stand 1.8 m out from the Davis Centre's two OSM entrance=main nodes, from
+research row 25 ("bright red painted steel portal frames at entrances", three sources, one of which
+is the V01 photo). Only main entrances get one: DC has 31 mapped entrances, mostly exits and service doors.

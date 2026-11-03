@@ -9,7 +9,11 @@ from .buildings import osm_to_city
 KINDS = ["bench", "waste_basket", "bicycle_parking", "street_lamp", "picnic_table",
          "bus_stop", "fire_hydrant",
          # stop signs, the blue-light emergency phones, recycling, post boxes, notice boards, bollards
-         "stop", "phone", "recycling", "post_box", "information", "bollard"]
+         "stop", "phone", "recycling", "post_box", "information", "bollard",
+         # red steel portal frames at the Davis Centre entrances (docs/research/building-looks.md row 25)
+         "portal_frame"]
+PORTAL_BUILDINGS = {"DC"}
+PORTAL_OUT_M = 1.8    # frame stands this far out from the wall at each mapped entrance
 
 
 STOP_VERGE_M = 0.7    # a stop sign stands this far beyond the drawn road edge
@@ -21,6 +25,22 @@ def kind_of(tags):
         if tags.get(k) in KINDS:
             return KINDS.index(tags[k])
     return None
+
+
+def portals(buildings):
+    """[(e, n, kind, rot)] portal frames at the main entrances (OSM entrance=main) of PORTAL_BUILDINGS."""
+    from .signs import wall_frame
+    k = KINDS.index("portal_frame")
+    fps = [b["footprint"] for b in buildings if b["abbrev"] in PORTAL_BUILDINGS]
+    out = []
+    for e, n, tags in osm.node_points(lambda t: t.get("entrance") == "main"):
+        p = Point(*osm_to_city(e, n))
+        for fp in fps:
+            if fp.exterior.distance(p) < 3:
+                q, ang = wall_frame(fp, p)
+                # local x of a prop runs along rot: along the wall, so the beam spans the doorway
+                out.append((q.x + np.cos(ang) * PORTAL_OUT_M, q.y + np.sin(ang) * PORTAL_OUT_M, k, ang - np.pi / 2))
+    return np.array(out) if out else np.zeros((0, 4))
 
 
 def build(path_lines):
