@@ -1,0 +1,28 @@
+{
+ "sha": "ebad0a0",
+ "date": "2026-11-03T09:52:37.708Z",
+ "device": "Apple M4, darwin 24.5.0",
+ "note": "Headless Chromium on the build machine at 1280x720, DPR 1; rAF intervals while the goose walks and runs across the MC and DC green with 220 ambient students.",
+ "runs": [
+  {
+   "backend": "webgpu",
+   "frames": 5088,
+   "p50_ms": 1.5999999999985448,
+   "p95_ms": 1.9000000000005457,
+   "p99_ms": 2.799999999999727,
+   "mean_fps": 630.4754587923322,
+   "draw_calls": 225,
+   "triangles": 1466183
+  },
+  {
+   "backend": "webgl2",
+   "frames": 2815,
+   "p50_ms": 3,
+   "p95_ms": 5.399999999999636,
+   "p99_ms": 6,
+   "mean_fps": 348.1196591766321,
+   "draw_calls": 225,
+   "triangles": 1466183
+  }
+ ]
+}

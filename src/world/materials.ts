@@ -89,7 +89,7 @@ function propGeometries(): Record<string, THREE.BufferGeometry> {
 function treeGeometries() {
   // Deciduous crown: three soft spheres in a unit box (y 0 to 1, radius about 1).
   const s = (r: number, x: number, y: number, z: number) => {
-    const g = new THREE.SphereGeometry(r, 9, 6);
+    const g = new THREE.SphereGeometry(r, 7, 5);
     g.scale(1, 0.5 / 0.6, 1);
     g.translate(x, y, z);
     g.deleteAttribute("uv");
@@ -137,14 +137,14 @@ function tuftGeometries(): THREE.BufferGeometry[] {
   ].map((g) => (g.index ? g.toNonIndexed() : g)));
   // foundation shrubs: three low clumped spheres, a plain and a flowering variant
   const clump = (r: number, x: number, z: number, h: number) => {
-    const g = new THREE.SphereGeometry(r, 8, 6).toNonIndexed();
+    const g = new THREE.SphereGeometry(r, 6, 4).toNonIndexed();
     g.scale(1, 0.75, 1);
     g.deleteAttribute("uv");
     return part(g, "hedge", x, h, z);
   };
   const shrubBase = [clump(0.6, 0, 0, 0.45), clump(0.45, 0.5, 0.2, 0.35), clump(0.42, -0.45, -0.15, 0.33)];
   const dots = [[0.2, 0.9, 0.3], [-0.3, 0.75, 0.25], [0.55, 0.62, -0.1], [-0.1, 0.85, -0.35], [0.0, 0.95, 0.0]]
-    .map(([x, y, z]) => part(new THREE.SphereGeometry(0.08, 6, 4).toNonIndexed(), "flower_pink", x, y, z));
+    .map(([x, y, z]) => part(new THREE.OctahedronGeometry(0.09, 0), "flower_pink", x, y, z));
   dots.forEach((d) => d.deleteAttribute("uv"));
   return [blades("grass_shadow", "grass"), flower("stucco_white"), flower("flower_pink"),
     mergeGeometries(shrubBase), mergeGeometries([...shrubBase.map((g) => g.clone()), ...dots])];
