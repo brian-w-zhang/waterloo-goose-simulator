@@ -100,9 +100,34 @@ export const HOTSPOTS: HotspotDef[] = [
       { id: "shoo", text: "Get shooed off the plaza", test: (e, s) => e.type === "shoo" && npcIn("plaza", s, e.npc) },
     ],
   },
+  {
+    id: "village", name: "Village 1 ring", anchor: { x: 442, z: -232 },
+    characters: [
+      { id: "don", name: "Residence don Taylor", archetype: "chaser",
+        look: { skin: "skin_b", hair: "hair_brown", top: "cloth_navy", bottom: "denim" },
+        home: [-4, 3], routine: [[-4, 3], [2, 6], [5, -2], [-3, -4]],
+        items: [{ kind: "watcard", at: [-3.5, 3.5], name: "the don's master key card", held: true }, { kind: "bottle", at: [-5, 2], name: "the don's mug" }] },
+      { id: "laundry", name: "Student with laundry, Riley", archetype: "normal",
+        look: { skin: "skin_a", hair: "hair_blond", top: "cloth_green", bottom: "cloth_grey" },
+        home: [6, 4], routine: [[6, 4], [9, 1], [4, 8]],
+        items: [{ kind: "basket", at: [6.5, 4.5], name: "a laundry basket", held: true }, { kind: "sock", at: [7, 3], name: "a stray sock" },
+          { kind: "sock", at: [5.5, 5.5], name: "another stray sock" }] },
+      { id: "frisbee", name: "Ultimate player Jordan", archetype: "scaredy",
+        look: { skin: "skin_c", hair: "hair_dark", top: "cloth_red", bottom: "cloth_black" },
+        home: [-6, -8], routine: [[-6, -8], [2, -10], [-8, -4]],
+        items: [{ kind: "frisbee", at: [-5, -8.5], name: "the team frisbee" }, { kind: "bottle", at: [-7, -9], name: "a sports drink" },
+          { kind: "backpack", at: [-6.5, -7], name: "a gym bag" }] },
+    ],
+    tasks: [
+      { id: "key", text: "Snatch the don's master key card", test: grabbed("the don's master key card") },
+      { id: "basket", text: "Make Riley drop the laundry basket", test: (e, s) => e.type === "drop" && s.items.get(e.item)!.name === "a laundry basket" },
+      { id: "sock", text: "Run off with a stray sock", test: grabbed("a stray sock") },
+      { id: "frisbee", text: "Steal the team frisbee and drop it far away", test: movedFar("the team frisbee", 20) },
+    ],
+  },
 ];
 
-export const ITEM_WEIGHT: Record<string, "carry" | "drag"> = { cone: "drag", backpack: "drag", umbrella: "carry", flag: "carry", pizza: "carry" };
+export const ITEM_WEIGHT: Record<string, "carry" | "drag"> = { cone: "drag", backpack: "drag", basket: "drag", umbrella: "carry", flag: "carry", pizza: "carry" };
 
 /** Populate the simulation with every hotspot's characters and items; ids are "<hotspot>:<id>". */
 export function populate(sim: Sim) {

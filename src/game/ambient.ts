@@ -21,7 +21,7 @@ const STARTLE_R = 6;
 const SIDESTEP_R = 2;
 
 interface Walker { route: [number, number][]; idx: number; x: number; z: number; speed: number; look: number;
-  phase: number; mode: "walk" | "flee" | "film"; modeT: number; fx: number; fz: number; facing: number }
+  phase: number; mode: "walk" | "flee" | "film"; modeT: number; fx: number; fz: number; facing: number; lane: number }
 
 export class AmbientCrowd {
   readonly root = new THREE.Group();
@@ -64,7 +64,8 @@ export class AmbientCrowd {
       // start part-way along so the crowd does not pop in at nodes all at once
       const idx = Math.floor(this.rng() * (route.length - 1));
       return { route, idx: idx + 1, x: route[idx][0], z: route[idx][1], speed: 1.1 + this.rng() * 0.5,
-        look: Math.floor(this.rng() * LOOKS.length), phase: this.rng() * 10, mode: "walk", modeT: 0, fx: 0, fz: 0, facing: 0 };
+        look: Math.floor(this.rng() * LOOKS.length), phase: this.rng() * 10, mode: "walk", modeT: 0, fx: 0, fz: 0, facing: 0,
+        lane: (this.rng() - 0.5) * 1.6 };
     }
     return null;
   }
@@ -98,7 +99,10 @@ export class AmbientCrowd {
       } else if (w.mode === "film") {
         w.facing = Math.atan2(gx - w.x, gz - w.z);
       } else {
-        const [tx, tz] = w.route[w.idx];
+        // walk a personal lane beside the centreline so people pass side by side instead of in file
+        const [rx, rz] = w.route[w.idx], [px, pz] = w.route[w.idx - 1] ?? w.route[w.idx];
+        const sl = Math.hypot(rx - px, rz - pz) || 1;
+        const tx = rx + (-(rz - pz) / sl) * w.lane, tz = rz + ((rx - px) / sl) * w.lane;
         const dx = tx - w.x, dz = tz - w.z, d = Math.hypot(dx, dz);
         if (d < 0.4) {
           w.idx++;

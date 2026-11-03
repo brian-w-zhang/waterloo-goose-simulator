@@ -173,6 +173,8 @@ export function itemGeometry(kind: string): THREE.BufferGeometry {
     case "ball": return mergeGeometries([P(new THREE.SphereGeometry(0.12, 14, 10), "ball", 0, 0.12), P(new THREE.TorusGeometry(0.121, 0.006, 4, 20), "ball_line", 0, 0.12)]);
     case "bottle": return mergeGeometries([P(new THREE.CylinderGeometry(0.035, 0.035, 0.2, 10), "bottle", 0, 0.1), P(new THREE.CylinderGeometry(0.02, 0.02, 0.03, 8), "bottle_cap", 0, 0.215)]);
     case "hat": return mergeGeometries([P(new THREE.CylinderGeometry(0.11, 0.12, 0.1, 14), "hat", 0, 0.06), P(new THREE.CylinderGeometry(0.17, 0.17, 0.015, 16), "hat", 0, 0.01)]);
+    case "basket": return mergeGeometries([P(new THREE.BoxGeometry(0.5, 0.28, 0.36), "basket", 0, 0.14), P(new THREE.BoxGeometry(0.44, 0.06, 0.3), "laundry", 0, 0.3)]);
+    case "sock": return mergeGeometries([P(new THREE.BoxGeometry(0.06, 0.03, 0.2), "sock", 0, 0.015), P(new THREE.BoxGeometry(0.06, 0.03, 0.08), "sock", 0.04, 0.015, -0.08)]);
     default: return P(new THREE.BoxGeometry(0.1, 0.1, 0.1), "paper", 0, 0.05);
   }
 }

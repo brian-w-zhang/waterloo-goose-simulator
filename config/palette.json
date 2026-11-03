@@ -145,6 +145,9 @@
     "ball_line": "#4a4846",
     "bottle": "#6f9ab4",
     "bottle_cap": "#e8e2d4",
-    "hat": "#56637f"
+    "hat": "#56637f",
+    "basket": "#9fb3b8",
+    "laundry": "#ece5d6",
+    "sock": "#d9a3a0"
   }
 }
