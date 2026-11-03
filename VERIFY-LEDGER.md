@@ -12,3 +12,4 @@ One line per run, appended by `tools/verify/gate.py`; old lines are never edited
 | 2026-11-03 03:34 | ef8ec1a | webgpu | full | 55/57 | 1.000 | 0.61 / 0.61 | 0.03 | 0.085 | 2.76 (dis 0.03) | 0 | bench/results/verify/20261103-0332-ef8ec1a |
 | 2026-11-03 03:35 | 29b24c1 | none | fast | 35/37 | 1.000 | 0.61 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0335-29b24c1 |
 | 2026-11-03 03:42 | 0aada59 | webgl2 | full | 53/57 | 1.000 | 0.61 / 0.61 | 0.03 | 0.085 | n/a | 0 | bench/results/verify/20261103-0341-0aada59 |
+| 2026-11-03 03:53 | 66a28f0 | none | fast | 35/37 | 1.000 | 0.61 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0353-66a28f0 |
