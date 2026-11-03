@@ -1,0 +1,202 @@
+{
+ "generated": "2026-11-03T07:26:29+00:00",
+ "source": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Base/MapServer/3",
+ "source_sha256": "f2efca4bdc217a0fed53b296dd83ae932688e245b818662e2cd82fade3c84192",
+ "fetched_at": "2026-11-03T07:08:40+00:00",
+ "method": "Union of the ground-truth OBJECTIDs from the native EPSG:26917 City layer (outSR=26917); centroid of the union.",
+ "buildings": {
+  "DC": {
+   "utm_e": 537034.287,
+   "utm_n": 4813395.753,
+   "area_m2": 10098.5,
+   "objectids": [
+    21642,
+    33305
+   ],
+   "missing": []
+  },
+  "MC": {
+   "utm_e": 536888.007,
+   "utm_n": 4813337.652,
+   "area_m2": 5229.4,
+   "objectids": [
+    33399
+   ],
+   "missing": []
+  },
+  "M3": {
+   "utm_e": 536873.281,
+   "utm_n": 4813460.736,
+   "area_m2": 2081.3,
+   "objectids": [
+    33392
+   ],
+   "missing": []
+  },
+  "QNC": {
+   "utm_e": 536869.641,
+   "utm_n": 4813241.967,
+   "area_m2": 4807.5,
+   "objectids": [
+    29450
+   ],
+   "missing": []
+  },
+  "SLC": {
+   "utm_e": 536775.401,
+   "utm_n": 4813320.51,
+   "area_m2": 7328.7,
+   "objectids": [
+    19801,
+    3111
+   ],
+   "missing": []
+  },
+  "PAC": {
+   "utm_e": 536710.253,
+   "utm_n": 4813367.207,
+   "area_m2": 7107.0,
+   "objectids": [
+    30168,
+    33730
+   ],
+   "missing": []
+  },
+  "LIB": {
+   "utm_e": 537024.113,
+   "utm_n": 4813082.52,
+   "area_m2": 2472.3,
+   "objectids": [
+    34807
+   ],
+   "missing": []
+  },
+  "HH": {
+   "utm_e": 537077.352,
+   "utm_n": 4812894.176,
+   "area_m2": 6483.9,
+   "objectids": [
+    29452,
+    34223
+   ],
+   "missing": []
+  },
+  "ML": {
+   "utm_e": 536973.219,
+   "utm_n": 4812994.1,
+   "area_m2": 2195.7,
+   "objectids": [
+    33395
+   ],
+   "missing": []
+  },
+  "E5": {
+   "utm_e": 537202.243,
+   "utm_n": 4813433.677,
+   "area_m2": 2761.6,
+   "objectids": [
+    34882
+   ],
+   "missing": []
+  },
+  "E6": {
+   "utm_e": 537312.891,
+   "utm_n": 4813446.709,
+   "area_m2": 1909.1,
+   "objectids": [
+    33795
+   ],
+   "missing": []
+  },
+  "E7": {
+   "utm_e": 537239.696,
+   "utm_n": 4813438.82,
+   "area_m2": 3579.3,
+   "objectids": [
+    31064
+   ],
+   "missing": []
+  },
+  "EIT": {
+   "utm_e": 537039.969,
+   "utm_n": 4813277.567,
+   "area_m2": 3685.3,
+   "objectids": [
+    20608
+   ],
+   "missing": []
+  },
+  "STC": {
+   "utm_e": 536928.359,
+   "utm_n": 4813171.106,
+   "area_m2": 2495.2,
+   "objectids": [
+    34894
+   ],
+   "missing": []
+  },
+  "EV3": {
+   "utm_e": 536946.206,
+   "utm_n": 4812896.86,
+   "area_m2": 2445.5,
+   "objectids": [
+    34889
+   ],
+   "missing": []
+  },
+  "V1": {
+   "utm_e": 536398.618,
+   "utm_n": 4813285.693,
+   "area_m2": 3296.9,
+   "objectids": [
+    33524
+   ],
+   "missing": []
+  },
+  "REV": {
+   "utm_e": 536056.047,
+   "utm_n": 4813142.342,
+   "area_m2": 2075.3,
+   "objectids": [
+    33300
+   ],
+   "missing": []
+  },
+  "PHY": {
+   "utm_e": 537078.202,
+   "utm_n": 4813195.74,
+   "area_m2": 4500.3,
+   "objectids": [
+    3110
+   ],
+   "missing": []
+  },
+  "CPH": {
+   "utm_e": 537262.132,
+   "utm_n": 4813214.138,
+   "area_m2": 3972.4,
+   "objectids": [
+    33298
+   ],
+   "missing": []
+  },
+  "B1": {
+   "utm_e": 536962.842,
+   "utm_n": 4813190.595,
+   "area_m2": 2466.8,
+   "objectids": [
+    30566
+   ],
+   "missing": []
+  },
+  "EV2": {
+   "utm_e": 536949.34,
+   "utm_n": 4812883.207,
+   "area_m2": 2202.7,
+   "objectids": [
+    30172
+   ],
+   "missing": []
+  }
+ }
+}
