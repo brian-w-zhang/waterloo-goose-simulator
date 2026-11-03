@@ -1,0 +1,12 @@
+shapely==2.2.0
+pyproj==3.8.0
+rasterio==1.5.2
+opencv-python-headless==5.0.0.93
+numpy
+pillow
+remotezip
+scipy
+mapbox-earcut
+pytest
+pyyaml
+requests

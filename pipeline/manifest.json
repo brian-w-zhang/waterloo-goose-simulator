@@ -1,0 +1,217 @@
+{
+  "inputs": {
+    "city_creeks": {
+      "bytes": 76167,
+      "features": 43,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/city/city_creeks.geojson",
+      "sha256": "d38946bc50d47e14ec421210ffe5ae016c239d666b6bfbb830e32a076d536c78",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Base/MapServer/17"
+    },
+    "city_footprints": {
+      "bytes": 1315346,
+      "features": 1097,
+      "fetched_at": "2026-11-03T07:08:40+00:00",
+      "path": "data/raw/city/city_footprints.geojson",
+      "sha256": "f2efca4bdc217a0fed53b296dd83ae932688e245b818662e2cd82fade3c84192",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Base/MapServer/3"
+    },
+    "city_roads": {
+      "bytes": 414497,
+      "features": 180,
+      "fetched_at": "2026-11-03T07:08:41+00:00",
+      "path": "data/raw/city/city_roads.geojson",
+      "sha256": "0588dc0b0fc52c6b35d112f41cc37a83d4f499f00ec1344325972c13f5d212db",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Base/MapServer/12"
+    },
+    "city_trails": {
+      "bytes": 175633,
+      "features": 146,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/city/city_trails.geojson",
+      "sha256": "27638019d300ee9d3e40e3437f51cb77a68a6e7d6a8624f9f4bddea90aee25f5",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Operations/MapServer/31"
+    },
+    "city_trees": {
+      "bytes": 5966194,
+      "features": 3229,
+      "fetched_at": "2026-11-03T07:08:43+00:00",
+      "path": "data/raw/city/city_trees.geojson",
+      "sha256": "abfcf3dc216bb179904ccc518a246740330d97cdfb8f98933fe84a0fb42b3ea1",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Forestry_Mobile/MapServer/1"
+    },
+    "city_water": {
+      "bytes": 47286,
+      "features": 10,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/city/city_water.geojson",
+      "sha256": "d4035ab0f0c39021893c4071fb9a3d43b334fcac54bc091b3055411636663959",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Base/MapServer/21"
+    },
+    "lidar_dsm_1km175350481202018LLAKEERIE_DSM.img": {
+      "bytes": 16035950,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/lidar/dsm/1km175350481202018LLAKEERIE_DSM.img",
+      "sha256": "173b86f715106eb1d22e441223e7631522b45c7b93735af7e9f5bfb0fd89faab",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175350481202018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175350481302018LLAKEERIE_DSM.img": {
+      "bytes": 14552620,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/lidar/dsm/1km175350481302018LLAKEERIE_DSM.img",
+      "sha256": "8c4af84abfcd338a4dad475c7221244fe008eafb4e2e9c5b19492e216434e0b1",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175350481302018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175350481402018LLAKEERIE_DSM.img": {
+      "bytes": 15173311,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/lidar/dsm/1km175350481402018LLAKEERIE_DSM.img",
+      "sha256": "f2f2bad675f14aca10bb48d50d0e44ad616235938dd4eab60fd7bf237ae59092",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175350481402018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175360481202018LLAKEERIE_DSM.img": {
+      "bytes": 16038742,
+      "fetched_at": "2026-11-03T07:08:43+00:00",
+      "path": "data/raw/lidar/dsm/1km175360481202018LLAKEERIE_DSM.img",
+      "sha256": "7957e3b05e5f3318980c789e9563657d5a0e3ce7f1894a2391c2f93a046a93a9",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175360481202018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175360481302018LLAKEERIE_DSM.img": {
+      "bytes": 15563923,
+      "fetched_at": "2026-11-03T07:08:43+00:00",
+      "path": "data/raw/lidar/dsm/1km175360481302018LLAKEERIE_DSM.img",
+      "sha256": "127acae3f6a426014587593457eb60c77cd43bcda4eacb76f690d874b2a1810e",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175360481302018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175360481402018LLAKEERIE_DSM.img": {
+      "bytes": 15476117,
+      "fetched_at": "2026-11-03T07:08:45+00:00",
+      "path": "data/raw/lidar/dsm/1km175360481402018LLAKEERIE_DSM.img",
+      "sha256": "46209281fab06bdacb183c956df3f7376674c2e8fe9b08017773f2d2ce43b365",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175360481402018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175370481202018LLAKEERIE_DSM.img": {
+      "bytes": 15905759,
+      "fetched_at": "2026-11-03T07:08:45+00:00",
+      "path": "data/raw/lidar/dsm/1km175370481202018LLAKEERIE_DSM.img",
+      "sha256": "05f056c1e84459383d7d9269b781c8b3b472dcc9508dabea6d9b9bd1ed551ea9",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175370481202018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175370481302018LLAKEERIE_DSM.img": {
+      "bytes": 15994533,
+      "fetched_at": "2026-11-03T07:08:46+00:00",
+      "path": "data/raw/lidar/dsm/1km175370481302018LLAKEERIE_DSM.img",
+      "sha256": "841c3264871c8c368e9920235257927b29e38648d7947de23524460c0ef0167f",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175370481302018LLAKEERIE_DSM.img"
+    },
+    "lidar_dsm_1km175370481402018LLAKEERIE_DSM.img": {
+      "bytes": 15905392,
+      "fetched_at": "2026-11-03T07:08:46+00:00",
+      "path": "data/raw/lidar/dsm/1km175370481402018LLAKEERIE_DSM.img",
+      "sha256": "a45b887d721edcb7a6c9d697527fa6b18bff215685fc954ae67828d7165a96cb",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/Lake-Erie-DSM-29.zip#1km175370481402018LLAKEERIE_DSM.img"
+    },
+    "lidar_dtm_1km175350481202018LLAKEERIE.img": {
+      "bytes": 12827892,
+      "fetched_at": "2026-11-03T07:08:39+00:00",
+      "path": "data/raw/lidar/dtm/1km175350481202018LLAKEERIE.img",
+      "sha256": "93c6f3c145bfaa62e0ec19feb0e46d03b3cdf1e6764cf1211a1c1cde06cb1197",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175350481202018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175350481302018LLAKEERIE.img": {
+      "bytes": 11745527,
+      "fetched_at": "2026-11-03T07:08:40+00:00",
+      "path": "data/raw/lidar/dtm/1km175350481302018LLAKEERIE.img",
+      "sha256": "f9a9d270a8566b8657555da19ba0d7d3d1011123192a992018b244d5f26fcc00",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175350481302018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175350481402018LLAKEERIE.img": {
+      "bytes": 12558018,
+      "fetched_at": "2026-11-03T07:08:40+00:00",
+      "path": "data/raw/lidar/dtm/1km175350481402018LLAKEERIE.img",
+      "sha256": "cfaf705a2b2a026fa203899d4d9b8cb500279b3db0fa230cf49ebe755656208d",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175350481402018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175360481202018LLAKEERIE.img": {
+      "bytes": 14038765,
+      "fetched_at": "2026-11-03T07:08:40+00:00",
+      "path": "data/raw/lidar/dtm/1km175360481202018LLAKEERIE.img",
+      "sha256": "861eb806e89defc5b79ac161a07a026c298a2ca98ea9f0ac6c30f1ed6f845605",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175360481202018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175360481302018LLAKEERIE.img": {
+      "bytes": 12871112,
+      "fetched_at": "2026-11-03T07:08:40+00:00",
+      "path": "data/raw/lidar/dtm/1km175360481302018LLAKEERIE.img",
+      "sha256": "51487ed82b4fa40c32114069521cedce9894b281e05c36858366abeb884c9f22",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175360481302018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175360481402018LLAKEERIE.img": {
+      "bytes": 11643332,
+      "fetched_at": "2026-11-03T07:08:41+00:00",
+      "path": "data/raw/lidar/dtm/1km175360481402018LLAKEERIE.img",
+      "sha256": "b127005dd1d3ebfaf7d5fd3ec1a085ce29cd7453cef973bb0cd88d1149eb3a3a",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175360481402018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175370481202018LLAKEERIE.img": {
+      "bytes": 12582104,
+      "fetched_at": "2026-11-03T07:08:41+00:00",
+      "path": "data/raw/lidar/dtm/1km175370481202018LLAKEERIE.img",
+      "sha256": "b2f1d3e298a465b77178581f02f4971401b8e293255578261547fbbf98ffb1f3",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175370481202018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175370481302018LLAKEERIE.img": {
+      "bytes": 12082035,
+      "fetched_at": "2026-11-03T07:08:41+00:00",
+      "path": "data/raw/lidar/dtm/1km175370481302018LLAKEERIE.img",
+      "sha256": "61b102003f85f5be9be0a4ef6d5720349d7c0be80e9e2165b4b812a5fac428c4",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175370481302018LLAKEERIE.img"
+    },
+    "lidar_dtm_1km175370481402018LLAKEERIE.img": {
+      "bytes": 11677690,
+      "fetched_at": "2026-11-03T07:08:42+00:00",
+      "path": "data/raw/lidar/dtm/1km175370481402018LLAKEERIE.img",
+      "sha256": "6362db921d28ecbb80a8cd7cca14e73b748c14d927ca2f430efc92aca5c2296f",
+      "url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/LIDAR2016to18_DTM-LkErie-S.zip#1km175370481402018LLAKEERIE.img"
+    },
+    "osm_campus_relation": {
+      "bytes": 64374,
+      "fetched_at": "2026-11-03T07:09:04+00:00",
+      "path": "data/raw/osm/campus_relation.osm",
+      "sha256": "44b2183348f16a599bb42ed07adb6b749eba1c90b2d85f1cdbff34ea82ff8d8a",
+      "url": "https://api.openstreetmap.org/api/0.6/relation/11680616/full"
+    },
+    "osm_map_00": {
+      "bytes": 2709557,
+      "fetched_at": "2026-11-03T07:08:51+00:00",
+      "newest_element": "2026-10-22T22:45:47Z",
+      "path": "data/raw/osm/map_00.osm",
+      "sha256": "374c89bc52c66363b06e71c9bcc013f95b36fa159316dc5dff2d45c6a8609584",
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-80.56,43.463,-80.5455,43.471000000000004"
+    },
+    "osm_map_01": {
+      "bytes": 2243861,
+      "fetched_at": "2026-11-03T07:08:54+00:00",
+      "newest_element": "2026-10-22T22:45:47Z",
+      "path": "data/raw/osm/map_01.osm",
+      "sha256": "3fb336b38ec2189494a36ba872af4bb6ae440ab1690cdc9532fd7a31f32f6a38",
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-80.56,43.471000000000004,-80.5455,43.479"
+    },
+    "osm_map_10": {
+      "bytes": 3034627,
+      "fetched_at": "2026-11-03T07:08:58+00:00",
+      "newest_element": "2026-11-02T14:37:01Z",
+      "path": "data/raw/osm/map_10.osm",
+      "sha256": "0473162fbfc869b966f1857ad0c0681698c0cdaf2237bebdba6904663ee492a0",
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-80.5455,43.463,-80.531,43.471000000000004"
+    },
+    "osm_map_11": {
+      "bytes": 3943491,
+      "fetched_at": "2026-11-03T07:09:01+00:00",
+      "newest_element": "2026-11-02T17:36:37Z",
+      "path": "data/raw/osm/map_11.osm",
+      "sha256": "4b828bb1ef6c6c30c977d186eb4331de2841790dd08ee936e77467317d833eed",
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-80.5455,43.471000000000004,-80.531,43.479"
+    }
+  }
+}
