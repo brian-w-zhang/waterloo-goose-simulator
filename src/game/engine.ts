@@ -205,6 +205,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     camera.updateProjectionMatrix();
     const focus = goose.position.clone().setY(goose.position.y + 0.45);
     occlusion.depth.value = camera.position.distanceTo(focus);
+    occlusion.goose.value.copy(goose.position);
     const ndc = focus.clone().project(camera);
     const size = renderer.getDrawingBufferSize(new THREE.Vector2());
     occlusion.screen.value.set((ndc.x * 0.5 + 0.5) * size.x, (0.5 - ndc.y * 0.5) * size.y);

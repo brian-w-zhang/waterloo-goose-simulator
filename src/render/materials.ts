@@ -1,7 +1,7 @@
 import * as THREE from "three/webgpu";
 import {
-  abs, attribute, dot, float, floor, fract, hash, length, mix, mx_noise_float, positionView, positionWorld,
-  screenCoordinate, smoothstep, step, uniform, vec2, vec3,
+  abs, attribute, cameraViewMatrix, dot, float, floor, fract, hash, length, mix, modelWorldMatrix, mx_noise_float,
+  positionView, positionWorld, screenCoordinate, smoothstep, step, uniform, vec2, vec3, vec4,
 } from "three/tsl";
 import { swatch } from "@/config";
 import { facadeColor } from "./facade";
@@ -16,6 +16,8 @@ export const occlusion = {
   depth: uniform(0),
   radius: uniform(120),
   enabled: uniform(1),
+  /** the goose's world position (crowns over its head fade whole) */
+  goose: uniform(new THREE.Vector3(0, -1e4, 0)),
 };
 
 function occlusionMask(scale = 1, foreground = false) {
@@ -23,11 +25,23 @@ function occlusionMask(scale = 1, foreground = false) {
   const depth = positionView.z.negate();
   const nearer = step(depth, occlusion.depth.sub(1.5));
   const r = occlusion.radius.mul(scale);
-  const inside = float(1).sub(smoothstep(r.mul(0.75), r, d));
+  // trees get a crisp cut with a thin dithered rim; walls keep the softer rim
+  const inside = float(1).sub(smoothstep(r.mul(foreground ? 0.92 : 0.75), r, d));
   let fade = inside.mul(nearer);
-  // foreground trees (UGG fades whole occluders): anything much closer than the goose dithers out
-  // across the screen: gone within 60% of the goose's depth, back by 68% (a short dithered edge)
-  if (foreground) fade = fade.max(float(1).sub(smoothstep(occlusion.depth.mul(0.6), occlusion.depth.mul(0.68), depth)));
+  if (foreground) {
+    // whole trees fade as one (UGG fades occluders, it does not cut holes): the decision uses the
+    // tree's crown centre, so every fragment of a tree gets the same level and no ghost is left
+    const t = attribute("tree", "vec4");
+    const c = modelWorldMatrix.mul(vec4(t.xyz, 1));
+    const cDepth = cameraViewMatrix.mul(c).z.negate();
+    const cNearer = step(cDepth, occlusion.depth.sub(1));
+    // a crown over the goose (its edge within 1.5 m of the goose, centre above head height)
+    const dxz = length(c.xz.sub(occlusion.goose.xz)).sub(t.w);
+    const over = float(1).sub(smoothstep(float(1.5), float(3), dxz)).mul(step(occlusion.goose.y.add(1.5), c.y));
+    // and any tree well in front of the goose, between it and the camera
+    const front = float(1).sub(smoothstep(occlusion.depth.mul(0.6), occlusion.depth.mul(0.7), cDepth));
+    fade = fade.max(over.max(front).mul(cNearer));
+  }
   fade = fade.mul(occlusion.enabled);
   const p = floor(screenCoordinate.xy);
   const ign = fract(float(52.9829189).mul(fract(dot(p, vec2(0.06711056, 0.00583715)))));

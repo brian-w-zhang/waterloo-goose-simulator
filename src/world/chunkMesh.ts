@@ -541,8 +541,17 @@ function treeMeshes(c: Chunk, mats: Materials, geo: Materials["geo"]): THREE.Obj
   const out: THREE.Object3D[] = [];
   const m = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(), p = new THREE.Vector3();
   const tint = new THREE.Color();
-  const canopy = [new THREE.InstancedMesh(geo.blob, mats.canopy, counts[0]), new THREE.InstancedMesh(geo.cone, mats.conifer, counts[1])];
-  const trunks = new THREE.InstancedMesh(geo.trunk, mats.trunk, n);
+  // per-tree crown centre and radius (chunk-local), so a whole tree can fade as one (render/materials)
+  const centres = [new Float32Array(counts[0] * 4), new Float32Array(counts[1] * 4)], trunkCentres = new Float32Array(n * 4);
+  const withCentres = (g: THREE.BufferGeometry, a: Float32Array) => {
+    const c = g.clone();   // a full copy of a small tree mesh (about 100 vertices), owned by this chunk
+    c.setAttribute("tree", new THREE.InstancedBufferAttribute(a, 4));
+    c.userData.perChunk = true;   // disposed when the chunk is evicted (world/stream)
+    return c;
+  };
+  const canopy = [new THREE.InstancedMesh(withCentres(geo.blob, centres[0]), mats.canopy, counts[0]),
+    new THREE.InstancedMesh(withCentres(geo.cone, centres[1]), mats.conifer, counts[1])];
+  const trunks = new THREE.InstancedMesh(withCentres(geo.trunk, trunkCentres), mats.trunk, n);
   const fill = [0, 0];
   for (let k = 0; k < n; k++) {
     const x = xyz[k * 3], y = xyz[k * 3 + 1], z = xyz[k * 3 + 2];
@@ -559,6 +568,8 @@ function treeMeshes(c: Chunk, mats: Materials, geo: Materials["geo"]): THREE.Obj
     const v = 0.92 + 0.16 * (((Math.sin(k * 78.233) * 43758.5453) % 1 + 1) % 1);
     tint.setRGB(v, v, v);
     canopy[kd].setColorAt(fill[kd], tint);
+    centres[kd].set([x, y + crownBase + crownH / 2, z, r], fill[kd] * 4);
+    trunkCentres.set([x, y + crownBase + crownH / 2, z, r], k * 4);
     fill[kd]++;
     s.set(Math.max(r * 0.09, 0.18), crownBase + crownH * 0.3, Math.max(r * 0.09, 0.18));
     p.set(x, y, z);

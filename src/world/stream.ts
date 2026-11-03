@@ -187,8 +187,11 @@ export class WorldStream {
     for (const [key, c] of this.loaded) {
       if (want.has(key)) continue;
       this.root.remove(c.group);
-      // instanced tree and prop geometries are shared between chunks, so only per-chunk meshes are disposed
-      c.group.traverse((o) => { if ((o as THREE.Mesh).isMesh && !(o as THREE.InstancedMesh).isInstancedMesh) (o as THREE.Mesh).geometry.dispose(); });
+      // shared geometries (props, tufts) stay; per-chunk meshes and the per-chunk tree copies are disposed
+      c.group.traverse((o) => {
+        const g = (o as THREE.Mesh).geometry;
+        if ((o as THREE.Mesh).isMesh && (!(o as THREE.InstancedMesh).isInstancedMesh || g.userData.perChunk)) g.dispose();
+      });
       const signs = c.group.getObjectByName("signs");
       if (signs) disposeSigns(signs);
       this.loaded.delete(key);
