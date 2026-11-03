@@ -178,6 +178,7 @@ export class Sim {
   private next = new Map<string, State>();
 
   private go(n: Npc, s: State, after?: State) {
+    if (s === "giveup" && n.state !== "giveup") this.emit({ t: this.t, type: "giveup", npc: n.id });
     n.state = s;
     n.stateTime = 0;
     if (after) this.next.set(n.id, after); else this.next.delete(n.id);
@@ -291,7 +292,7 @@ export class Sim {
         const tooLong = n.stateTime > PERCEPTION.chaseGiveUpS;
         const tooFar = dist(n.pos, n.home) > PERCEPTION.chaseLeashM;
         const lost = this.t - n.memory.gooseSeenAt > 4;
-        if (tooLong || tooFar || lost) { this.emit({ t: this.t, type: "giveup", npc: n.id }); this.go(n, "giveup"); return; }
+        if (tooLong || tooFar || lost) { this.go(n, "giveup"); return; }
         if (n.stateTime < dt * 1.5) this.emit({ t: this.t, type: "chase", npc: n.id });
         const chaseSpeed = Math.max(n.speedRun, this.goose.speed * 1.05);
         this.moveToward(n, n.memory.gooseSeen ?? this.goose.pos, chaseSpeed, dt);

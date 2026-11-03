@@ -17,7 +17,7 @@ const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
 page.on("pageerror", (e) => console.log("pageerror", e.message));
 await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?hud=0`);
-await page.waitForFunction(() => window.__wgs?.hotspot, null, { timeout: 90000 });
+await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 90000 });
 for (const s of SPOTS) {
   await page.evaluate(async (s) => {
     const g = window.__wgs;

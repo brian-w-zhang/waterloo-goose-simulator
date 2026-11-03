@@ -39,7 +39,7 @@ async function openPage(size = [1280, 720], extra = "") {
   page.on("console", (m) => logs.push(`${m.type()}: ${m.text()}`));
   page.on("pageerror", (e) => logs.push(`pageerror: ${e.message}`));
   await page.goto(`http://localhost:${port}/?test${webgl ? "&webgl" : ""}${extra}`);
-  await page.waitForFunction(() => window.__wgs, null, { timeout: 90000 });
+  await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 90000 });
   return { page, logs };
 }
 

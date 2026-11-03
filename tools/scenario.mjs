@@ -8,7 +8,7 @@ const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
 page.on("pageerror", (e) => console.log("pageerror", e.message));
 await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?test`);
-await page.waitForFunction(() => window.__wgs?.hotspot, null, { timeout: 60000 });
+await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 60000 });
 const snap = async (name, yaw = 250, dist = 26) => {
   await page.evaluate(({ yaw, dist }) => {
     const g = window.__wgs; const s = g.goose.state();
@@ -19,9 +19,15 @@ const snap = async (name, yaw = 250, dist = 26) => {
 };
 await page.evaluate(async () => {
   const g = window.__wgs;
-  await g.goose.place(933.2, -377);
+  const prof = g.hotspot.npcs().find((n) => n.id === "prof");
+  await g.goose.place(prof.x + 1.5, prof.z + 0.5);
   g.goose.show(true);
+  await g.goose.simulate(0.2, {});
+  g.hotspot.honk();                       // close honk: the professor drops the coffee
   await g.goose.simulate(0.3, {});
+  const p2 = g.hotspot.npcs().find((n) => n.id === "prof");
+  await g.goose.place(p2.x + 0.6, p2.z + 0.3);
+  await g.goose.simulate(0.1, {});
   console.log("grabbed", g.hotspot.grab());
 });
 await snap("1_grab");

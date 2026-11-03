@@ -5,7 +5,7 @@ const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 page.on("pageerror", (e) => console.log("pageerror", e.message));
 await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?yaw=${yaw}`);
-await page.waitForFunction(() => window.__wgs?.hotspot, null, { timeout: 60000 });
+await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 60000 });
 if (x !== undefined) await page.evaluate(async ({ x, z, dist }) => {
   const [px, pz] = window.__wgs.goose.nearestPathPoint(Number(x), Number(z));
   await window.__wgs.goose.place(px, pz);

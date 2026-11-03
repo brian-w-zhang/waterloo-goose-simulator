@@ -26,6 +26,8 @@ export interface Follow { x: number; z: number; yaw: number; pitch: number; dist
 /** Test and debug handle exposed as window.__wgs. */
 export interface GameHandle {
   backend: string;
+  /** True once the world, goose and hotspot are all set up. */
+  ready: boolean;
   setPose(p: Pose): void;
   setFollow(f: Partial<Follow>): void;
   load(x: number, z: number, radius?: number): Promise<void>;
@@ -212,6 +214,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
 
   const handle: GameHandle = {
     hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], crowd: () => 0 },
+    ready: false,
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
     setFollow: (f) => { pose = null; Object.assign(follow, f); placeCamera(); },
@@ -342,6 +345,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     mats.vertexColor, HOTSPOT_SEED);
   scene.add(hotspot.root);
   if (params.get("jev") === "1") hotspot.decisions = new DecisionClient();
+  handle.ready = true;
   const crowd = new AmbientCrowd(graph, (x, z) => stream.heightAt(x, z), mats.vertexColor, AMBIENT_COUNT, HOTSPOT_SEED + 1);
   scene.add(crowd.root);
   goose.onHonk = () => { hotspot?.honk(); crowd.honkAt(goose.position.x, goose.position.z); };

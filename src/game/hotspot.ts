@@ -10,14 +10,14 @@ export const ANCHOR: V2 = { x: 940, z: -382 };
 
 interface CharacterDef {
   id: string; name: string; archetype: Archetype; look: PersonLook; home: [number, number];
-  routine: [number, number][]; items: { kind: string; at: [number, number]; name: string }[];
+  routine: [number, number][]; items: { kind: string; at: [number, number]; name: string; held?: boolean }[];
 }
 
 export const CHARACTERS: CharacterDef[] = [
   { id: "prof", name: "Professor Larkin", archetype: "normal",
     look: { skin: "skin_a", hair: "hair_grey", top: "cloth_cream", bottom: "cloth_grey" },
     home: [-8, 4], routine: [[-8, 4], [-12, -2], [-6, -6], [-3, 2]],
-    items: [{ kind: "coffee", at: [-7, 5], name: "the professor's coffee" }, { kind: "textbook", at: [-9, 5.5], name: "a calculus textbook" },
+    items: [{ kind: "coffee", at: [-7, 5], name: "the professor's coffee", held: true }, { kind: "textbook", at: [-9, 5.5], name: "a calculus textbook" },
       { kind: "laptop", at: [-8.5, 3], name: "the professor's laptop" }, { kind: "apple", at: [-6.5, 3.5], name: "an apple" },
       { kind: "textbook", at: [-10, 2], name: "a linear algebra textbook" }, { kind: "coffee", at: [-11, -1], name: "a forgotten coffee" }] },
   { id: "keeper", name: "Groundskeeper Morgan", archetype: "chaser",
@@ -29,7 +29,7 @@ export const CHARACTERS: CharacterDef[] = [
   { id: "guide", name: "Tour guide Priya", archetype: "normal",
     look: { skin: "skin_b", hair: "hair_dark", top: "cloth_gold", bottom: "cloth_black" },
     home: [2, 12], routine: [[2, 12], [-6, 10], [-2, 15], [6, 14]],
-    items: [{ kind: "flag", at: [3, 13], name: "the tour flag" }, { kind: "watcard", at: [1, 11], name: "a WatCard" },
+    items: [{ kind: "flag", at: [3, 13], name: "the tour flag", held: true }, { kind: "watcard", at: [1, 11], name: "a WatCard" },
       { kind: "umbrella", at: [4, 11], name: "an umbrella" }, { kind: "coffee", at: [0, 13.5], name: "a latte" },
       { kind: "backpack", at: [5, 12.5], name: "a tote of brochures" }] },
   { id: "frosh", name: "First-year Sam", archetype: "scaredy",
@@ -56,8 +56,11 @@ export function populate(sim: Sim) {
   for (const c of CHARACTERS) {
     sim.addNpc({ id: c.id, name: c.name, archetype: c.archetype, home: at(c.home), routine: c.routine.map(at) });
     for (const it of c.items) {
-      sim.addItem({ id: `${it.kind}_${k++}`, name: it.name, kind: "take", weight: ITEM_WEIGHT[it.kind] ?? "carry",
+      const id = `${it.kind}_${k++}`;
+      sim.addItem({ id, name: it.name, kind: "take", weight: ITEM_WEIGHT[it.kind] ?? "carry",
         owner: c.id, homePos: at(it.at), zone: "mc_dc_green", flags: { noisy: it.kind === "laptop" } });
+      // some things start in their owner's hands: honk first to make them drop it (the UGG pattern)
+      if (it.held) { sim.items.get(id)!.heldBy = c.id; sim.npcs.get(c.id)!.holding = id; }
     }
   }
 }

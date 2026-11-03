@@ -13,7 +13,7 @@ const logs = [];
 page.on("console", (m) => logs.push(`${m.type()}: ${m.text()}`));
 page.on("pageerror", (e) => logs.push(`pageerror: ${e.message}`));
 await page.goto(url);
-await page.waitForFunction(() => window.__wgs, null, { timeout: 60000 });
+await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 60000 });
 const info = await page.evaluate(async ({ s, radius }) => {
   const g = window.__wgs;
   const p = s.pose ?? s.follow;

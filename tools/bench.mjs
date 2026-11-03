@@ -13,7 +13,7 @@ for (const webgl of [false, true]) {
   const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-angle=metal", "--disable-gpu-vsync", "--disable-frame-rate-limit"] });
   const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
   await page.goto(`http://localhost:${process.env.PORT ?? 3100}/${webgl ? "?webgl" : ""}`);
-  await page.waitForFunction(() => window.__wgs?.hotspot, null, { timeout: 90000 });
+  await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 90000 });
   await page.waitForTimeout(2000);
   await page.evaluate(() => {
     window.__frames = [];
