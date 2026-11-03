@@ -42,11 +42,19 @@ def static_checks(run: Path):
 
 
 def main():
+    """fast | render | full [RUN_DIR]: render makes a run folder with the browser suites only, so the
+    agent can score looks.json against those exact renders; full RUN_DIR then finishes that run."""
     kind = sys.argv[1] if len(sys.argv) > 1 else "fast"
     sha = sh("git", "rev-parse", "--short", "HEAD").stdout.strip()
     stamp = datetime.now(ZoneInfo("America/Toronto")).strftime("%Y%m%d-%H%M")
-    run = RESULTS / f"{stamp}-{sha}"
+    reuse = Path(sys.argv[2]) if len(sys.argv) > 2 else None
+    run = reuse or RESULTS / f"{stamp}-{sha}"
     run.mkdir(parents=True, exist_ok=True)
+    if kind == "render":
+        r = sh("node", "tools/verify/visual.mjs", str(run), check=False)
+        print(r.stdout[-4000:], r.stderr[-2000:])
+        print(f"RUN {run}")
+        return
     r = sh(sys.executable, "-m", "pipeline.validate.run", str(run), check=False)
     print(r.stdout[-6000:])
     if r.returncode == 2:
@@ -54,8 +62,9 @@ def main():
     static_checks(run)
     backend = "none"
     if kind == "full":
-        r = sh("node", "tools/verify/visual.mjs", str(run), check=False)
-        print(r.stdout[-4000:], r.stderr[-2000:])
+        if not (reuse and (run / "viewpoints").exists()):
+            r = sh("node", "tools/verify/visual.mjs", str(run), check=False)
+            print(r.stdout[-4000:], r.stderr[-2000:])
         info = run / "visual_info.json"
         if info.exists():
             backend = json.loads(info.read_text()).get("backend", "unknown")

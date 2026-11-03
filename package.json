@@ -13,7 +13,8 @@
     "verify:fast": ".venv/bin/python -m tools.verify.verify fast",
     "verify": ".venv/bin/python -m tools.verify.verify full",
     "verify:geometry": ".venv/bin/python -m pipeline.validate.run /tmp/wgs-geometry",
-    "test:py": ".venv/bin/python -m pytest -q pipeline"
+    "test:py": ".venv/bin/python -m pytest -q pipeline",
+    "verify:render": ".venv/bin/python -m tools.verify.verify render"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.21.0",
