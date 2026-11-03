@@ -75,7 +75,7 @@ Latest full run: `bench/results/verify/20261103-0358-0e4f9b4/summary.json` (WebG
 
 WebGL2 (forced): `bench/results/verify/20261103-0411-bfa6872` passes **55 of 57**, the same two width reds as WebGPU (an earlier WebGL2 run, `20261103-0341-0aada59`, passed 53/57 before the ID and palette passes moved to no-MSAA rendering).
 
-First load (`bench/results/firstload-2026-11-03-3c0574f.json`): 5.34 MB transferred before the game is ready (doc 06 M1 gate: under 10 MB), 21 requests, chunks gzip-compressed by the pipeline (whole world 20 MB). Before compression the same measure was 9.05 MB.
+First load (`bench/results/firstload-2026-11-03-6a549a2.json`): 5.34 MB transferred before the game is ready (doc 06 M1 gate: under 10 MB), 21 requests, chunks gzip-compressed by the pipeline (whole world 20 MB). Before compression the same measure was 9.05 MB.
 
 Frame time (`bench/results/frametime-2026-11-03-f23b7d4.json`, headless, uncapped, 1280 x 720, 220 ambient students, 201 draw calls, 1.26 M triangles including the shadow pass): WebGPU p50 1.2 ms, p95 1.6 ms; WebGL2 p50 2.7 ms, p95 5.0 ms. Not the doc 02 reference iGPU: the build machine only.
 

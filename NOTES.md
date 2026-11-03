@@ -71,3 +71,7 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 ## 2026-11-03 04:20 Jev layer
 
 - `AI_GATEWAY_API_KEY` is not set on this machine, so per the goal only the mock and recorded-replay paths exist: `app/api/decide/route.ts` answers from `data/jev/recorded.json` (by situation key) when present, otherwise from a deterministic mock. No live gateway call was written or tested. The client (`src/ai/decide.ts`, `?jev=1`, off by default) is fallback-first with a 1.5 s deadline, 8 in flight, a cache, and a 0.6 confidence floor; answers only switch an NPC that is still in routine and only to allowed choices.
+
+## 2026-11-03 04:30 First-load measurement
+
+- The 9.05 MB first-load figure was measured at 3c0574f (uncompressed chunks). The 5.34 MB figure was measured with the gzip change still uncommitted, wrote a file with the same name, and overwrote it. That mislabelled file is removed; the committed result is `bench/results/firstload-2026-11-03-6a549a2.json`, rerun at the commit that contains the change. The 9.05 MB number survives only in this note and the commit message.
