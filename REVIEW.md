@@ -5,24 +5,30 @@
 The whole University of Waterloo game area (2.56 x 1.79 km, 70 chunks of 256 m) is compiled from open data by a reproducible Python pipeline. It includes:
 
 - 1,108 City of Waterloo footprints with Ontario lidar heights and height tiers, styled from two rounds of photo research;
+- OSM round roofs for the Davis Centre vault (teal glass with ducts) and the parking lots' painted stalls;
 - a 2 m lidar terrain, and lakes with shore bands;
 - OSM paths, roads with painted markings, plazas with paving joints, fences, hedges and walls, and doors at entrances;
+- monument signs at every named building's main door, and fascia signs for the plaza's shops and restaurants from OSM, spread so they never overlap;
 - 19,520 trees, 1,115 OSM props, and transit platforms with canopies;
 - procedural lawn tufts, flowers and foundation shrubs;
 - a walk network and a far level of detail.
 
-A Next.js 16 app streams the gzip-compressed chunks (5.4 MB before the game is ready) and renders them with three.js 0.187 in a flat pastel toon style, on WebGPU and WebGL2, both verified. A code-built Canada goose walks the campus on a Rapier character controller, with honk, grab, crouch, flap, run and an idle peck. The follow camera tilts, swings to a clear angle or pulls in when buildings block it, and opens a dithered see-through circle through walls and tree crowns.
+A Next.js 16 app streams the gzip-compressed chunks (6.2 MB before the game is ready) and renders them with three.js 0.187 in a flat pastel toon style, on WebGPU and WebGL2, both verified. A code-built Canada goose walks the campus on a Rapier character controller, with honk, grab, crouch, flap, run, swim and an idle peck. Its head turns toward nearby items and people, and carried items swing from its bill. Some carried items change the honk (a traffic cone resonates, a cup muffles it). Loose items get shoved when the goose runs into them, apples and balls roll downhill, and anything dropped in water floats and drifts. The follow camera tilts, swings to a clear angle or pulls in when buildings block it, and opens a dithered see-through circle through walls and tree crowns.
 
-There are three playable hotspots (doc 03 R-W3): the MC and DC green, the SLC and PAC plaza, and the Village 1 ring. They hold twelve fictional characters with a hierarchical state machine (notice, react, investigate, chase, shoo, search, return, flee, give up), speech lines and thought bubbles, plus 75 owned items (30, 25 and 20 per hotspot). A fifteen-task to-do list follows the nearest hotspot and includes a gated finale. Around them, 220 students walk the OSM path graph and startle at a honk, and the ION train runs on the real line.
+There are three playable hotspots (doc 03 R-W3): the MC and DC green, the SLC and PAC plaza, and the Village 1 ring. They hold twelve fictional characters, each with a hierarchical state machine (notice, react, investigate, chase, shoo, search, return, flee, give up, tug-of-war, pratfall). Characters walk Recast navmeshes baked in the browser around each hotspot (about 110 ms each), so they path around buildings. They have speech lines and thought bubbles, plus 75 items (30, 25 and 20 per hotspot). The goose can hide in bushes, win tug-of-wars, and bow with the spare hard hat until someone puts it on its head.
 
-An automated harness measures every claim on the packed chunks and real screenshots. The latest full run passes **58 of 60 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 14 unit and behaviour tests pass, including headless task checks for every hotspot.
+A seventeen-task to-do list follows the nearest hotspot and includes a gated finale. A Menace score adds combos, and a "No Geese" sign goes up once a hotspot is mostly done. A game clock drives class-change crowd waves, and an adaptive procedural piano plays calm or chase phrases. Around the hotspots, up to 330 students walk the OSM path graph and startle at a honk, and the ION train runs on the real line.
+
+When a character gives up a chase, the optional Jev layer (`?jev=1`) picks their next move through the Vercel AI Gateway, called from the server only (about 280 ms, $0.000017 a call). Calls are cached and replayed from `data/jev/recorded.jsonl`, with a deterministic mock fallback.
+
+An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses, records a video and must finish four tasks. The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
 
 How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm start`, then open http://localhost:3100).
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0453-168c23d/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0454-168c23d/summary.json`, 58/60 with the same reds.
+- **Latest full run:** `bench/results/verify/20261103-0622-4960136/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-0624-4960136-webgl/summary.json`, 62/64 with the same reds. Its playtest finished only 3 of 4 tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb, and three reruns since (two WebGPU, one WebGL2) each finish 4.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -34,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new |
-| flythrough.frame_ms_p95 | 8.9 | record only | - | - | new |
+| flythrough.frame_ms_p95 | 11.5 | record only | - | - | new |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 |
@@ -46,16 +52,18 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | geometry.key_area_max_rel_err | 0.001049 | <= 0.03 | pass | 0.001049 | +0 |
 | geometry.key_obb_side_fail_count | 0 | <= 0 | pass | 0 | +0 |
 | geometry.key_bearing_max_err_deg | 0.07075 | <= 2.0 | pass | 0.07075 | +0 |
+| geometry.uw_buildings_signed_share | 0.9901 | >= 0.95 | pass | - | new |
+| geometry.signs_inside_footprints | 0 | <= 0 | pass | - | new |
 | geometry.landmark_pos_median_m | 0.0006034 | < 0.5 | pass | 0.0006034 | +0 |
 | geometry.landmark_pos_max_m | 0.5832 | < 2.0 | pass | 0.5832 | +0 |
 | geometry.distance_fail_count | 0 | <= 0 | pass | 0 | +0 |
 | geometry.distance_median_err_m | 0.03261 | < 0.5 | pass | 0.03261 | +0 |
 | geometry.azimuth_max_err_deg | 0.1295 | <= 1.0 | pass | 0.1295 | +0 |
 | heights.height_key_max_err_m | 1.3 | <= 2.0 | pass | 1.3 | +0 |
-| heights.height_rmse_dev_m | 0.6102 | < 1.5 | pass | 0.6102 | +0 |
+| heights.height_rmse_dev_m | 0.5691 | < 1.5 | pass | 0.6102 | -0.04113 |
 | heights.height_rmse_holdout_m | 0.609 | < 2.0 | pass | 0.609 | +0 |
-| heights.height_random20_rmse_m | 0.5745 | < 2.0 | pass | 0.5745 | +0 |
-| heights.height_pixel_median_abs_m | 0.32 | < 1.5 | pass | 0.31 | +0.009949 |
+| heights.height_random20_rmse_m | 0.5477 | < 2.0 | pass | 0.5745 | -0.02671 |
+| heights.height_pixel_median_abs_m | 0.33 | < 1.5 | pass | 0.31 | +0.01998 |
 | network.ring_road_osm_rel_err | 7.137e-06 | <= 0.01 | pass | 7.137e-06 | +0 |
 | network.ring_road_city_rel_err | 0.01211 | <= 0.02 | pass | 0.01211 | +0 |
 | network.laurel_creek_rel_err | 0.00128 | <= 0.02 | pass | 0.00128 | +0 |
@@ -69,49 +77,52 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | network.network_length_rel_err | 1.198e-06 | <= 0.01 | pass | 1.198e-06 | +0 |
 | palette.palette_id_off_share | 0 | <= 0.0 | pass | - | new |
 | palette.lit_palette_share | 1 | >= 0.95 | pass | - | new |
+| play.playtest_tasks_done | 4 | >= 3 | pass | - | new |
+| play.playtest_page_errors | 0 | <= 0 | pass | - | new |
 | selftest.selftest_survivors | 0 | <= 0 | pass | - | new |
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 |
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 |
-| style.sat_mean | 0.2302 | between [0.18, 0.35] | pass | - | new |
-| style.val_mean | 0.5807 | between [0.45, 0.65] | pass | - | new |
-| style.val_std | 0.08495 | between [0.08, 0.18] | pass | - | new |
+| style.sat_mean | 0.232 | between [0.18, 0.35] | pass | - | new |
+| style.val_mean | 0.5781 | between [0.45, 0.65] | pass | - | new |
+| style.val_std | 0.0816 | between [0.08, 0.18] | pass | - | new |
 | style.dark_share | 0 | <= 0.002 | pass | - | new |
-| style.edge_share | 0.004545 | <= 0.045 | pass | - | new |
-| style.colourfulness | 0.1126 | between [0.1, 0.25] | pass | - | new |
-| style.kmeans12_residual_de | 0.877 | <= 6.0 | pass | - | new |
+| style.edge_share | 0.004685 | <= 0.045 | pass | - | new |
+| style.colourfulness | 0.1129 | between [0.1, 0.25] | pass | - | new |
+| style.kmeans12_residual_de | 0.931 | <= 6.0 | pass | - | new |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 |
 | terrain.terrain_max_m | 0.3871 | < 1.5 | pass | 0.3871 | +0 |
 | terrain.seam_max_m | 0.0003152 | < 0.01 | pass | 0.0003152 | +0 |
 | topdown.topdown_building_iou_min | 0.9782 | >= 0.95 | pass | - | new |
-| topdown.topdown_chamfer_mean_m | 0.05854 | <= 0.5 | pass | - | new |
+| topdown.topdown_chamfer_mean_m | 0.05865 | <= 0.5 | pass | - | new |
 | topdown.topdown_chamfer_p95_m | 0 | <= 1.5 | pass | - | new |
 | topdown.topdown_path_iou_min | 0.9867 | >= 0.85 | pass | - | new |
 | walk.goose_walk_falls | 0 | <= 0 | pass | - | new |
 
+**First load** (`bench/results/firstload-2026-11-03-666acfb.json`): 6.19 MB transferred before the game is ready, against the doc 06 M1 gate of under 10 MB, in 23 requests and 626 ms on localhost.
 
-**First load** (`bench/results/firstload-2026-11-03-ebad0a0.json`): 5.36 MB transferred before the game is ready, against the doc 06 M1 gate of under 10 MB, in 21 requests. The pipeline gzip-compresses the chunks, so the whole world is 20 MB; before compression the same measure was 9.05 MB.
-
-**Frame time** (`bench/results/frametime-2026-11-03-967393d.json`): measured headless and uncapped at 1280 x 720, with 220 ambient students, 233 draw calls and 1,469,163 triangles including the shadow pass. This is within the doc 02 budget of 1.5 M triangles and 300 draw calls. Results are from the build machine only, not the doc 02 reference iGPU.
+**Frame time** (`bench/results/frametime-2026-11-03-666acfb.json`, rerun after 90c1eb7): measured headless and uncapped at 1280 x 720, with the full crowd, 245 draw calls and 1,357,379 triangles including the shadow pass. This is within the doc 02 budget of 1.5 M triangles and 300 draw calls. Before 90c1eb7, the hidden crowd slots added 0.5 M triangles. Results are from the build machine only, not the doc 02 reference iGPU.
 
 | Backend | p50 | p95 |
 |---|---|---|
-| WebGPU | 1.5 ms | 1.9 ms |
-| WebGL2 | 3.0 ms | 5.4 ms |
+| WebGPU | 1.5 ms | 1.8 ms |
+| WebGL2 | 3.0 ms | 5.6 ms |
 
-**Looks** (advisory, agent vision, two shuffled passes): mean 2.81 of 5.
+**Heights baseline** (`bench/results/heights-baseline-2026-11-03-8cd9ca7.json`, doc 06 section 5): against lidar p90 on 118 UW footprints, the packed lidar tiers have an RMSE of 0.59 m. OSM levels x 3.5 m gives 6.63 m (61 footprints with a tag), and City FIRE_STOREYS x 3.5 m gives 5.10 m.
+
+**Looks** (advisory, agent vision, shuffled): mean 2.83 of 5.
 
 | Criterion | Mean |
 |---|---|
 | Silhouette | 2.5 |
 | Proportions | 2.95 |
-| Pattern | 2.9 |
+| Pattern | 2.95 |
 | Colour | 3.25 |
-| Recognisability | 2.43 |
+| Recognisability | 2.48 |
 
-The 0.03 disagreement between passes understates real noise. One agent scored both passes minutes apart, and it reused wording where an observation did not change.
+The 0.03 disagreement between passes understates real noise. One agent scored both passes, and in the latest run both came from one shuffled viewing (`looks.json` says so).
 
 ## Contact sheet and overlays
 
@@ -130,6 +141,7 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
 - **Accepted regressions** (`verify/exceptions.yaml`):
   - Per-pixel height median went from 0.310 to 0.320 m (roof-gap fix).
   - The 12-colour k-means residual went from 0.794 to 0.840 (tufts, flowers, canopies).
+  - Top-down chamfer mean went from 0.05854 to 0.05865 m (the DC vault overhangs its footprint by centimetres).
 - **Weak viewpoints:**
   - V19 (bus platforms) scores recognisability 1: only one canopy corner is in frame from the frozen pose.
   - V16: the frozen pose shows a brick block, not EV3.
@@ -137,19 +149,19 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
   - V06: QNC sits far behind a foreground wall.
   - V03: the frozen pose frames the buff neighbour, not MC's concrete.
 - **Landmark gaps:**
-  - DC has teal glass walls but no barrel vault, ducts or red portal frames. A vault override was tried and reverted because the lidar tiers are irregular.
-  - MC lacks the blank stair towers and the tie: the lidar has no taller tier there, so placing them would be guesswork.
-  - QNC lacks the honeycomb cube.
+  - DC now has its OSM round-roof vault with teal ducts, but no red portal frames.
+  - MC has the pink tie (placed by a ray from the V04 photo pose), but no blank stair towers: the lidar has no taller tier there, so placing them would be guesswork.
+  - QNC has blue glass over a charcoal brick base, but no honeycomb cube.
   - M3 is all brick, with no glass centre bay.
-  - SLC's crescent facade is polygonal.
+  - SLC's crescent facade is polygonal, and its brick ends are missing.
 - **Post-2018 buildings** (median nDSM under 1 m; heights from tags or an 8 m default), 29 in total: SLC (8.0 m, default), Passageway (8.0 m, default), OBJECTID 21481 (8.0 m, default), OBJECTID 21482 (8.0 m, default), OBJECTID 21483 (8.0 m, default), OBJECTID 26443 (57.92 m, osm_levels), OBJECTID 28007 (8.0 m, default), WATERLOO MEMORIAL RECREATION COMPLEX (8.0 m, default), WATERLOO MEMORIAL RECREATION COMPLEX (10.86 m, osm_levels), OBJECTID 29877 (32.58 m, fire_storeys), ESC (8.0 m, default), OBJECTID 30616 (43.44 m, fire_storeys), AVR (3.62 m, osm_levels), OBJECTID 31061 (21.72 m, fire_storeys), OBJECTID 31175 (8.0 m, default), Elora House (76.02 m, osm_levels), OBJECTID 32023 (8.0 m, default), CIF (8.0 m, default), Waterloo Park Splash Pad Pavilion (8.0 m, default), OBJECTID 32961 (54.3 m, fire_storeys), OBJECTID 33044 (8.0 m, default), OBJECTID 33136 (21.72 m, osm_levels), OBJECTID 33888 (72.4 m, fire_storeys), OBJECTID 34101 (21.72 m, fire_storeys), MHR (8.0 m, default), CIF (8.0 m, default), Waterloo Park Splash Pad Pavilion (8.0 m, default), OBJECTID 38185 (8.0 m, default), OBJECTID 39717 (8.0 m, default).
-- **Item physics:** the goose carries and drags items through the simulation, not a Rapier joint as doc 05 asks.
+- **Item physics:** items are carried, dragged, shoved, rolled and floated by the simulation and a small kinematic step, not Rapier rigid bodies and joints as doc 05 asks. Items do not stack, and fragile items do not break.
 - **Fly-through frame time:** the harness's 36.6 ms p95 is the CPU time of a forced synchronous render in a test loop, not game frame time. Use the frame-time benchmark instead.
 - **Data provenance:** there is no sample data in the build; every layer was fetched live (`pipeline/manifest.json`).
 
 ## Blockers
 
-There are no blockers (`BLOCKERS.md`). `AI_GATEWAY_API_KEY` was not available, so the optional Jev layer (`?jev=1`) has only the mock and recorded-replay paths, as the goal specifies.
+There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.js server route and never reaches the client or the repo.
 
 ## Gates to discuss
 
@@ -184,17 +196,21 @@ There are no blockers (`BLOCKERS.md`). `AI_GATEWAY_API_KEY` was not available, s
 7. **Camera:** an occlusion tilt, a whisker swing toward the nearest clear angle, and a spring-arm pull-in.
 8. **Research round 2** (`docs/research/building-looks-pass2.json`): B1, B2, C2, ESC and E2 are buff brick, and STC, EV1, GSC and SCH are brown brick, where round 1 had guessed grey concrete or red brick.
 9. **Density:** foundation shrubs along walls facing lawn. Triangles dropped from 2.04 M to 1.47 M through low-poly shrubs, flower dots and tree crowns.
+10. **Landmarks:** the DC vault from OSM `roof:shape=round` with teal ducts, MC's pink tie, QNC's charcoal base, and parapets on flat roofs.
+11. **Signs:** UW monument signs (proportions from the UW sign standard) at main doors, a wall plaque where there is no free ground, and plaza shop fascias de-overlapped along each wall.
+12. **Roofs and ground:** a darker light-roof swatch, so low terraces stop reading as holes in a wall from above. Parking stalls became their own class, so they never paint over drive aisles.
+13. **People:** chunky nose-only figures with hairstyles, eye contact with the goose, and tug, fall, clap, shake and dressing gestures. The groundskeeper got a dome hard hat.
+14. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 
 1. Replace the Laurel Trail ortho-width gate with the tag value or a surveyed reading (see gates to discuss).
 2. Add per-way ribbon geometry to the chunks, so tagged widths can be measured per way.
 3. Add landmark overrides as authored geometry, checked by the geometry gates:
-   - DC: the vault, ducts and red frames;
+   - DC: the red portal frames;
    - QNC: the cube;
-   - SLC: the crescent;
+   - SLC: the crescent and brick ends;
    - M3: the glass bay.
-4. Rapier joints for dragging heavy items (cones, backpacks, baskets), and a tug-of-war when a character grabs an item back.
-5. A music system and per-surface footstep and drag sounds (doc 03 R-S1, R-S2).
+4. Rapier rigid bodies for items, so they can stack and topple, plus fragile items that break (spec I-7, I-9).
+5. Per-surface footstep and drag sounds (doc 03 R-S2).
 6. Re-run the frame-time benchmark on the doc 02 reference iGPU laptop.
-7. Build the live Jev path once a gateway key exists, with record and replay into `data/jev/recorded.json`.
