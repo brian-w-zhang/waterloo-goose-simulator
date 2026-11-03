@@ -38,6 +38,8 @@ export interface GameHandle {
   ready: boolean;
   setPose(p: Pose): void;
   setFollow(f: Partial<Follow>): void;
+  /** the live follow camera (its yaw moves when the camera swings around walls) */
+  follow(): Follow;
   load(x: number, z: number, radius?: number): Promise<void>;
   render(): void;
   info(): { backend: string; calls: number; triangles: number; loaded: string[]; loads: number; evictions: number };
@@ -299,6 +301,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
     setFollow: (f) => { pose = null; Object.assign(follow, f); placeCamera(); },
+    follow: () => ({ ...follow }),
     load: async (x, z, radius) => { await stream.update(x, z, radius); placeCamera(); },
     render: () => {
       placeCamera();
