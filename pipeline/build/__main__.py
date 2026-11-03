@@ -16,7 +16,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import far, ground, network, props, structures, terrain, tufts, vegetation
+from . import doors, far, ground, network, props, structures, terrain, tufts, vegetation
 
 C = CAMPUS["chunk"]
 SIZE = C["size_m"]
@@ -119,6 +119,8 @@ def main():
     print(f"ground classes ({time.time() - t0:.0f}s)")
     trees = vegetation.build(bl, lk)
     plats = structures.build()
+    door_list = doors.build(bl)
+    print(f"doors {len(door_list)}")
     tuft_map = tufts.build(gcls, bl, chunk_frame)
     print(f"tufts {sum(len(v) for v in tuft_map.values())} ({time.time() - t0:.0f}s)")
     pcent = np.array([[p.centroid.x, p.centroid.y] for p, *_ in plats]) if plats else np.zeros((0, 2))
@@ -241,6 +243,12 @@ def main():
                 arrays["plat_xz"] = np.vstack(pxz).astype(np.float32).ravel()
                 arrays["plat_count"] = np.array(pcount, dtype=np.uint32)
             header["platforms"] = pinfo
+            # doors on walls at OSM entrances (y at the building's ground level)
+            dsel = [d for d in door_list if bci[d[3]] == i and bcj[d[3]] == j]
+            if dsel:
+                arrays["door_xyz"] = np.array([[d[0] - e0, bl[d[3]]["ground"] - BASE_ELEV, n1 - d[1]] for d in dsel],
+                                              dtype=np.float32).ravel()
+                arrays["door_rot"] = np.array([d[2] for d in dsel], dtype=np.float32)
             # grass tufts and flowers
             tf = tuft_map[(i, j)]
             if len(tf):

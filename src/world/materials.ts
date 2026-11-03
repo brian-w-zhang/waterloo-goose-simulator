@@ -17,6 +17,7 @@ export interface Materials {
   geo: { blob: THREE.BufferGeometry; cone: THREE.BufferGeometry; trunk: THREE.BufferGeometry;
     tufts: [THREE.BufferGeometry, THREE.BufferGeometry, THREE.BufferGeometry] };
   props: Record<string, THREE.BufferGeometry>;
+  door: THREE.BufferGeometry;
 }
 
 function solid(color: string, mat?: THREE.MeshToonNodeMaterial): THREE.MeshToonNodeMaterial {
@@ -154,5 +155,11 @@ export function makeMaterials(): Materials {
     },
     geo: { ...treeGeometries(), tufts: tuftGeometries() },
     props: propGeometries(),
+    // a glazed double door in a pale frame, front face toward local +z
+    door: mergeGeometries([
+      part(box(2.1, 2.6, 0.12), "mullion", 0, 1.3, 0.02),
+      part(box(1.8, 2.35, 0.06), "window_dark", 0, 1.2, 0.08),
+      part(box(0.05, 2.35, 0.07), "mullion", 0, 1.2, 0.1),
+    ]),
   };
 }

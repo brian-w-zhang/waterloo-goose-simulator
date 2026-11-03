@@ -450,6 +450,23 @@ function tuftMeshes(c: Chunk, h: Float32Array, mats: Materials): THREE.Object3D[
   return out;
 }
 
+function doorMesh(c: Chunk, mats: Materials): THREE.Object3D | null {
+  const xyz = c.arrays.door_xyz as Float32Array | undefined;
+  if (!xyz) return null;
+  const rot = c.arrays.door_rot as Float32Array;
+  const im = new THREE.InstancedMesh(mats.door, mats.vertexColor, rot.length);
+  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), one = new THREE.Vector3(1, 1, 1), up = new THREE.Vector3(0, 1, 0);
+  for (let k = 0; k < rot.length; k++) {
+    // door_rot is the outward wall normal angle in the east-north frame; local +z must face it
+    q.setFromAxisAngle(up, rot[k] + Math.PI / 2);
+    m.compose(new THREE.Vector3(xyz[k * 3], xyz[k * 3 + 1], xyz[k * 3 + 2]), q, one);
+    im.setMatrixAt(k, m);
+  }
+  im.receiveShadow = true;
+  im.name = "doors";
+  return im;
+}
+
 function propMeshes(c: Chunk, mats: Materials, kinds: string[]): THREE.Object3D[] {
   const xyz = c.arrays.prop_xyz as Float32Array | undefined;
   if (!xyz) return [];
@@ -523,6 +540,8 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   for (const o of treeMeshes(c, mats, mats.geo)) g.add(o);
   for (const o of tuftMeshes(c, h, mats)) g.add(o);
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
+  const doors = doorMesh(c, mats);
+  if (doors) g.add(doors);
   const parts = buildingMeshes.map((m) => m.geometry.getAttribute("position").array as Float32Array);
   const total = parts.reduce((a, p) => a + p.length, 0);
   const walls = total ? new Float32Array(total) : null;

@@ -31,12 +31,13 @@ export function facadeColor(name: string, sharp: boolean) {
   const n = normalWorld;
   const tangent = normalize(vec2(n.z.negate(), n.x).add(vec2(1e-5, 0)));
   const u = dot(positionWorld.xz, tangent);
-  const st = fract(positionWorld.y.div(s.storey_m)) as N;
-  const su = fract(u.div(s.bay_m)) as N;
   const hAbove = attribute("hAbove", "float");
+  // storeys count up from each building's own ground, so window rows line up with its base
+  const st = fract(hAbove.div(s.storey_m)) as N;
+  const su = fract(u.div(s.bay_m)) as N;
   const hTop = attribute("hTop", "float");
   const seed = attribute("seed", "float");
-  const upper = step(float(s.storey_m * 0.8), hAbove);         // no windows in the plinth zone
+  const upper = step(float(0.9), hAbove);                      // no windows below sill height
   const below = step(hAbove, hTop.sub(0.7));                   // nor in the cornice band
   let win: N;
   switch (s.pattern) {
