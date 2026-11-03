@@ -28,6 +28,7 @@ interface Walker { route: [number, number][]; idx: number; x: number; z: number;
 export class AmbientCrowd {
   readonly root = new THREE.Group();
   private meshes: THREE.InstancedMesh[];
+  private frames = 0;
   private walkers: Walker[] = [];
   private rng: () => number;
   private m = new THREE.Matrix4();
@@ -136,8 +137,12 @@ export class AmbientCrowd {
       im.setMatrixAt(counts[w.look]++, this.m);
     }
     const hidden = new THREE.Matrix4().makeScale(0, 0, 0);
+    this.frames++;
     this.meshes.forEach((im, k) => {
       for (let i = counts[k]; i < this.cap; i++) im.setMatrixAt(i, hidden);
+      // after the first frames have sized the instance buffers at full capacity, draw only the
+      // walkers in use (zero-scale slots still cost their triangles)
+      if (this.frames > 3) im.count = counts[k];
       im.instanceMatrix.needsUpdate = true;
     });
   }
