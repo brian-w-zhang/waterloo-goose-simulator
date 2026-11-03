@@ -15,20 +15,20 @@ The whole University of Waterloo game area (2.56 x 1.79 km, 70 chunks of 256 m) 
 
 A Next.js 16 app streams the gzip-compressed chunks (6.2 MB before the game is ready) and renders them with three.js 0.187 in a flat pastel toon style, on WebGPU and WebGL2, both verified. A code-built Canada goose walks the campus on a Rapier character controller, with honk, grab, crouch, flap, run, swim and an idle peck. Its head turns toward nearby items and people, and carried items swing from its bill. Some carried items change the honk (a traffic cone resonates, a cup muffles it). Loose items get shoved when the goose runs into them, apples and balls roll downhill, and anything dropped in water floats and drifts. The follow camera tilts, swings to a clear angle or pulls in when buildings block it, and opens a dithered see-through circle through walls and tree crowns.
 
-There are three playable hotspots (doc 03 R-W3): the MC and DC green, the SLC and PAC plaza, and the Village 1 ring. They hold twelve fictional characters, each with a hierarchical state machine (notice, react, investigate, chase, shoo, search, return, flee, give up, tug-of-war, pratfall). Characters walk Recast navmeshes baked in the browser around each hotspot (about 110 ms each), so they path around buildings. They have speech lines and thought bubbles, plus 75 items (30, 25 and 20 per hotspot). The goose can hide in bushes, win tug-of-wars, and bow with the spare hard hat until someone puts it on its head.
+There are three playable hotspots (doc 03 R-W3): the MC and DC green, the SLC and PAC plaza, and the Village 1 ring. They hold twelve fictional characters, each with a hierarchical state machine (notice, react, investigate, chase, shoo, search, return, flee, give up, tug-of-war, pratfall). Characters walk Recast navmeshes baked in the browser around each hotspot (about 110 ms each), so they path around buildings. They have speech lines and thought bubbles, plus 75 items (30, 25 and 20 per hotspot). The goose can hide in bushes, win tug-of-wars, and bow with the spare hard hat until someone puts it on its head. It grabs whatever its bill points at. Glass and china dropped at a run shatter, and their owner sets out a new one 20 s later.
 
 A seventeen-task to-do list follows the nearest hotspot and includes a gated finale. A Menace score adds combos, and a "No Geese" sign goes up once a hotspot is mostly done. A game clock drives class-change crowd waves, and an adaptive procedural piano plays calm or chase phrases. Around the hotspots, up to 330 students walk the OSM path graph and startle at a honk, and the ION train runs on the real line.
 
 When a character gives up a chase, the optional Jev layer (`?jev=1`) picks their next move through the Vercel AI Gateway, called from the server only (about 280 ms, $0.000017 a call). Calls are cached and replayed from `data/jev/recorded.jsonl`, with a deterministic mock fallback.
 
-An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses on the green and the plaza, records a video and must finish at least six tasks (it finishes seven). The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
+An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses at all three hotspots (it teleports between them), records a video and must finish at least six tasks. It usually finishes nine; the thesis-laptop carry misses about one run in three. The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
 
 How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm start`, then open http://localhost:3100).
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0716-34b2406/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0717-34b2406-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-0749-aa79309/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-0750-aa79309-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 10.7 | record only | - | - | new | 14.5 |
+| flythrough.frame_ms_p95 | 10.2 | record only | - | - | new | 14.6 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -52,7 +52,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | geometry.key_area_max_rel_err | 0.001049 | <= 0.03 | pass | 0.001049 | +0 | 0.001049 |
 | geometry.key_obb_side_fail_count | 0 | <= 0 | pass | 0 | +0 | 0 |
 | geometry.key_bearing_max_err_deg | 0.07075 | <= 2.0 | pass | 0.07075 | +0 | 0.07075 |
-| geometry.uw_buildings_signed_share | 0.9901 | >= 0.95 | pass | - | new | 0.9901 |
+| geometry.uw_buildings_signed_share | 1 | >= 0.95 | pass | - | new | 1 |
 | geometry.signs_inside_footprints | 0 | <= 0 | pass | - | new | 0 |
 | geometry.landmark_pos_median_m | 0.0006034 | < 0.5 | pass | 0.0006034 | +0 | 0.0006034 |
 | geometry.landmark_pos_max_m | 0.5832 | < 2.0 | pass | 0.5832 | +0 | 0.5832 |
@@ -77,7 +77,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | network.network_length_rel_err | 1.198e-06 | <= 0.01 | pass | 1.198e-06 | +0 | 1.198e-06 |
 | palette.palette_id_off_share | 0 | <= 0.0 | pass | - | new | 0 |
 | palette.lit_palette_share | 1 | >= 0.95 | pass | - | new | 1 |
-| play.playtest_tasks_done | 6 | >= 6 | pass | - | new | 7 |
+| play.playtest_tasks_done | 9 | >= 6 | pass | - | new | 8 |
 | play.playtest_page_errors | 0 | <= 0 | pass | - | new | 0 |
 | selftest.selftest_survivors | 0 | <= 0 | pass | - | new | 0 |
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
@@ -163,6 +163,8 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
 - **Post-2018 buildings** (median nDSM under 1 m; heights from tags or an 8 m default), 29 in total: SLC (8.0 m, default), Passageway (8.0 m, default), OBJECTID 21481 (8.0 m, default), OBJECTID 21482 (8.0 m, default), OBJECTID 21483 (8.0 m, default), OBJECTID 26443 (57.92 m, osm_levels), OBJECTID 28007 (8.0 m, default), WATERLOO MEMORIAL RECREATION COMPLEX (8.0 m, default), WATERLOO MEMORIAL RECREATION COMPLEX (10.86 m, osm_levels), OBJECTID 29877 (32.58 m, fire_storeys), ESC (8.0 m, default), OBJECTID 30616 (43.44 m, fire_storeys), AVR (3.62 m, osm_levels), OBJECTID 31061 (21.72 m, fire_storeys), OBJECTID 31175 (8.0 m, default), Elora House (76.02 m, osm_levels), OBJECTID 32023 (8.0 m, default), CIF (8.0 m, default), Waterloo Park Splash Pad Pavilion (8.0 m, default), OBJECTID 32961 (54.3 m, fire_storeys), OBJECTID 33044 (8.0 m, default), OBJECTID 33136 (21.72 m, osm_levels), OBJECTID 33888 (72.4 m, fire_storeys), OBJECTID 34101 (21.72 m, fire_storeys), MHR (8.0 m, default), CIF (8.0 m, default), Waterloo Park Splash Pad Pavilion (8.0 m, default), OBJECTID 38185 (8.0 m, default), OBJECTID 39717 (8.0 m, default).
 - **Item physics:** dragged items (cones, totes, baskets) are Rapier dynamic bodies on a spherical joint at the bill (`tools/scenario_drag.mjs`). Light items are carried, shoved, rolled and floated by a small kinematic step instead. Items do not stack, and fragile items do not break.
 - **Fly-through frame time:** the harness's 36.6 ms p95 is the CPU time of a forced synchronous render in a test loop, not game frame time. Use the frame-time benchmark instead.
+- **Error handling:** an independent silent-failure review of the runtime found 10 issues; all are fixed (commit b6d2815). Failed chunks now retry with backoff, one frame exception no longer freezes the game, navmeshes wait for their chunks, and Jev failures are logged. A forced 404 on one chunk was logged, reported in `window.__wgs.info()` and recovered.
+- **Jev cold start:** the first live call after a server start used to time out at 1.4 s, so a warm-up request now opens the gateway connection when `?jev=1` starts.
 - **Data provenance:** there is no sample data in the build; every layer was fetched live (`pipeline/manifest.json`).
 
 ## Blockers
