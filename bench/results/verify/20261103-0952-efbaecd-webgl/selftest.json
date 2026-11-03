@@ -1,0 +1,69 @@
+{
+ "metrics": {
+  "selftest_survivors": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "mutants": [
+   {
+    "mutant": "scale_1.01",
+    "metric": "distance_fail_count",
+    "value": 18,
+    "gate_failed": true
+   },
+   {
+    "mutant": "mirror_x",
+    "metric": "azimuth_max_err_deg",
+    "value": 169.41401825978653,
+    "gate_failed": true
+   },
+   {
+    "mutant": "dc_moved_3m",
+    "metric": "landmark_pos_max_m",
+    "value": 2.6628866054472784,
+    "gate_failed": true
+   },
+   {
+    "mutant": "heights_plus_3m",
+    "metric": "height_rmse_dev_m",
+    "value": 2.6553849764617783,
+    "gate_failed": true
+   },
+   {
+    "mutant": "chunk_dropped",
+    "metric": "coverage_uw_core",
+    "value": 105,
+    "gate_failed": true
+   },
+   {
+    "mutant": "terrain_step_0.4m",
+    "metric": "seam_max_m",
+    "value": 0.4001412943144942,
+    "gate_failed": true
+   },
+   {
+    "mutant": "off_palette_colour",
+    "metric": "static_colour_violations",
+    "value": 1,
+    "gate_failed": true
+   },
+   {
+    "mutant": "bloom_enabled",
+    "metric": "static_banned_violations",
+    "value": 1,
+    "gate_failed": true
+   },
+   {
+    "mutant": "type_error",
+    "metric": "typecheck_errors",
+    "value": 1,
+    "gate_failed": true
+   }
+  ]
+ }
+}

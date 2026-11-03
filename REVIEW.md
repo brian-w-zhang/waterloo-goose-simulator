@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0934-7eee7c5/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0935-7eee7c5-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-0951-efbaecd/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-0952-efbaecd-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 13.9 | record only | - | - | new | 14.7 |
+| flythrough.frame_ms_p95 | 10.3 | record only | - | - | new | 43 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -83,13 +83,13 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 | 1 |
-| style.sat_mean | 0.2327 | between [0.18, 0.35] | pass | - | new | 0.2327 |
-| style.val_mean | 0.5779 | between [0.45, 0.65] | pass | - | new | 0.5779 |
-| style.val_std | 0.0819 | between [0.08, 0.18] | pass | - | new | 0.0819 |
+| style.sat_mean | 0.2323 | between [0.18, 0.35] | pass | - | new | 0.2323 |
+| style.val_mean | 0.5784 | between [0.45, 0.65] | pass | - | new | 0.5784 |
+| style.val_std | 0.0814 | between [0.08, 0.18] | pass | - | new | 0.0814 |
 | style.dark_share | 0 | <= 0.002 | pass | - | new | 0 |
-| style.edge_share | 0.0046 | <= 0.045 | pass | - | new | 0.0046 |
-| style.colourfulness | 0.1134 | between [0.1, 0.25] | pass | - | new | 0.1134 |
-| style.kmeans12_residual_de | 0.9265 | <= 6.0 | pass | - | new | 0.937 |
+| style.edge_share | 0.00514 | <= 0.045 | pass | - | new | 0.00514 |
+| style.colourfulness | 0.1132 | between [0.1, 0.25] | pass | - | new | 0.1132 |
+| style.kmeans12_residual_de | 0.917 | <= 6.0 | pass | - | new | 0.9265 |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new | 0.951 |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new | 5.704 |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 | 0.0365 |
@@ -218,7 +218,8 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 16. **UGG frame:** side-by-side against the UGG screenshots (`review/look/ugg_compare.jpg`, local only) showed foreground trees as huge flat shapes and the goose too small. Trees now fade whole when they cover the goose or stand well in front of it (no holes or ghosts), and the play camera is 18 m at 24 degrees (goose about 11% of frame height, inside the amended band).
 17. **Density from data:** the 33 OSM gardens, 2 flowerbeds and 9 scrub areas are planted with shrubs and flowers (which are also hiding spots). Six more street-furniture kinds come from OSM: stop signs (moved to the verge), UW blue-light emergency phones, recycling, post boxes, notice boards and bollards.
 18. **No outlines:** the glass styles' charcoal cornice read as ink lines from the play camera, so it became grey metal. V11's photo has a darker top band, so this is slightly less faithful there.
-19. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
+19. **Windows:** light frames and a paler top quarter on punched and ribbon windows (UGG windows), in full palette swatches (a first version blended them and failed the palette lock, caught by the gate). Windows are drawn only where the whole window fits under the cornice. Hagey Hall's fly tower is blank brick with a clerestory strip, from research row 32, which cites the V10 photo (`NOTES.md`, 09:55).
+20. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 

@@ -1,0 +1,724 @@
+{
+ "metrics": {
+  "playtest_tasks_done": {
+   "value": 9,
+   "gate": 8,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "playtest_page_errors": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "tasks_done": [
+   "Steal the professor's coffee",
+   "Honk someone into dropping what they carry",
+   "Get chased across the green",
+   "Make someone give up and scratch their head",
+   "Carry the thesis laptop 15 m away",
+   "Pinch the busker's tip hat",
+   "Get shooed off the plaza",
+   "Make Riley drop the laundry basket",
+   "Run off with a stray sock"
+  ],
+  "steps": [
+   {
+    "what": "walk to the professor",
+    "ms": 7393,
+    "goose": {
+     "x": 929.2556442748755,
+     "y": 13.091540066585877,
+     "z": -382.4171973299235,
+     "yaw": -2.530436466581401,
+     "speed": 1.5999999999999992,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [],
+    "events": []
+   },
+   {
+    "what": "honk at the professor",
+    "ms": 901,
+    "goose": {
+     "x": 929.0501121685375,
+     "y": 13.069426147822524,
+     "z": -382.51913669367786,
+     "yaw": -2.530436466581401,
+     "speed": 0.00048566262092618654,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Honk someone into dropping what they carry"
+    ],
+    "events": [
+     {
+      "t": 7.516666666666645,
+      "type": "honk",
+      "pos": {
+       "x": 929.2556442748755,
+       "z": -382.4171973299235
+      }
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "drop",
+      "npc": "green:prof",
+      "item": "coffee_0"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:keeper",
+      "what": "honk"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:guide",
+      "what": "honk"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:frosh",
+      "what": "honk"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:eng",
+      "what": "honk"
+     }
+    ]
+   },
+   {
+    "what": "grab the dropped coffee",
+    "ms": 682,
+    "goose": {
+     "x": 928.8422635910101,
+     "y": 13.0714800592346,
+     "z": -383.016469138558,
+     "yaw": -2.8764796642629324,
+     "speed": 0.10018306983276322,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry"
+    ],
+    "events": [
+     {
+      "t": 7.516666666666645,
+      "type": "honk",
+      "pos": {
+       "x": 929.2556442748755,
+       "z": -382.4171973299235
+      }
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "drop",
+      "npc": "green:prof",
+      "item": "coffee_0"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:keeper",
+      "what": "honk"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:guide",
+      "what": "honk"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:frosh",
+      "what": "honk"
+     },
+     {
+      "t": 7.516666666666645,
+      "type": "noticed",
+      "npc": "green:eng",
+      "what": "honk"
+     },
+     {
+      "t": 8.800000000000017,
+      "type": "grab",
+      "who": "goose",
+      "item": "coffee_0"
+     },
+     {
+      "t": 8.816666666666684,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     }
+    ]
+   },
+   {
+    "what": "run away with it",
+    "ms": 11747,
+    "goose": {
+     "x": 967.6919553154148,
+     "y": 13.649890248069424,
+     "z": -406.95747316617053,
+     "yaw": -4.28306713222129,
+     "speed": 0.04665778546061759,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head"
+    ],
+    "events": [
+     {
+      "t": 15.733333333333695,
+      "type": "giveup",
+      "npc": "green:guide"
+     },
+     {
+      "t": 18.666666666666888,
+      "type": "giveup",
+      "npc": "green:frosh"
+     },
+     {
+      "t": 19.25000000000019,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 19.266666666666854,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 19.883333333333486,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 19.90000000000015,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 20.516666666666783,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 20.53333333333345,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     }
+    ]
+   },
+   {
+    "what": "drop it and wander",
+    "ms": 3004,
+    "goose": {
+     "x": 967.7196906814788,
+     "y": 13.649592123142211,
+     "z": -406.93734352583124,
+     "yaw": -4.28306713222129,
+     "speed": 8.769465228912908e-14,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head"
+    ],
+    "events": [
+     {
+      "t": 19.266666666666854,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 19.883333333333486,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 19.90000000000015,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 20.516666666666783,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 20.53333333333345,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 20.850000000000097,
+      "type": "release",
+      "who": "goose",
+      "item": "coffee_0"
+     },
+     {
+      "t": 21.016666666666755,
+      "type": "giveup",
+      "npc": "green:eng"
+     },
+     {
+      "t": 22.216666666666686,
+      "type": "giveup",
+      "npc": "green:keeper"
+     }
+    ]
+   },
+   {
+    "what": "teleport to the plaza",
+    "ms": 874,
+    "goose": {
+     "x": 720.9999982517367,
+     "y": 11.058353237380798,
+     "z": -278.4999978750702,
+     "yaw": -4.28306713222129,
+     "speed": 3.593156651232601e-17,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head"
+    ],
+    "events": [
+     {
+      "t": 19.266666666666854,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 19.883333333333486,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 19.90000000000015,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 20.516666666666783,
+      "type": "giveup",
+      "npc": "green:prof"
+     },
+     {
+      "t": 20.53333333333345,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 20.850000000000097,
+      "type": "release",
+      "who": "goose",
+      "item": "coffee_0"
+     },
+     {
+      "t": 21.016666666666755,
+      "type": "giveup",
+      "npc": "green:eng"
+     },
+     {
+      "t": 22.216666666666686,
+      "type": "giveup",
+      "npc": "green:keeper"
+     }
+    ]
+   },
+   {
+    "what": "pinch the busker's tip hat",
+    "ms": 9130,
+    "goose": {
+     "x": 715.1015086726879,
+     "y": 10.97478446637484,
+     "z": -272.2055034346954,
+     "yaw": -7.090522814065777,
+     "speed": 4.95598070595717e-06,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head",
+     "Pinch the busker's tip hat"
+    ],
+    "events": [
+     {
+      "t": 20.53333333333345,
+      "type": "noticed",
+      "npc": "green:prof",
+      "what": "item_stolen"
+     },
+     {
+      "t": 20.850000000000097,
+      "type": "release",
+      "who": "goose",
+      "item": "coffee_0"
+     },
+     {
+      "t": 21.016666666666755,
+      "type": "giveup",
+      "npc": "green:eng"
+     },
+     {
+      "t": 22.216666666666686,
+      "type": "giveup",
+      "npc": "green:keeper"
+     },
+     {
+      "t": 28.366666666666337,
+      "type": "grab",
+      "who": "goose",
+      "item": "hat_51"
+     },
+     {
+      "t": 28.383333333333002,
+      "type": "noticed",
+      "npc": "plaza:busker",
+      "what": "item_stolen"
+     },
+     {
+      "t": 28.999999999999634,
+      "type": "chase",
+      "npc": "plaza:busker"
+     },
+     {
+      "t": 32.29999999999945,
+      "type": "release",
+      "who": "goose",
+      "item": "hat_51"
+     }
+    ]
+   },
+   {
+    "what": "carry the thesis laptop away",
+    "ms": 24840,
+    "goose": {
+     "x": 741.4436034204723,
+     "y": 13.03484956432163,
+     "z": -282.5528263158447,
+     "yaw": -11.868272687702135,
+     "speed": 5.758027445587743e-06,
+     "grounded": true
+    },
+    "music": "silent",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head",
+     "Carry the thesis laptop 15 m away",
+     "Pinch the busker's tip hat",
+     "Get shooed off the plaza"
+    ],
+    "events": [
+     {
+      "t": 48.91666666666517,
+      "type": "honk",
+      "pos": {
+       "x": 726.7128557026372,
+       "z": -292.03335162579606
+      }
+     },
+     {
+      "t": 50.64999999999841,
+      "type": "noticed",
+      "npc": "plaza:vendor",
+      "what": "item_missing"
+     },
+     {
+      "t": 51.199999999998376,
+      "type": "grab",
+      "who": "goose",
+      "item": "laptop_46"
+     },
+     {
+      "t": 51.93333333333167,
+      "type": "giveup",
+      "npc": "plaza:studier"
+     },
+     {
+      "t": 53.48333333333158,
+      "type": "noticed",
+      "npc": "plaza:studier",
+      "what": "item_stolen"
+     },
+     {
+      "t": 54.09999999999821,
+      "type": "chase",
+      "npc": "plaza:studier"
+     },
+     {
+      "t": 56.33333333333142,
+      "type": "giveup",
+      "npc": "plaza:busker"
+     },
+     {
+      "t": 57.14999999999804,
+      "type": "release",
+      "who": "goose",
+      "item": "laptop_46"
+     }
+    ]
+   },
+   {
+    "what": "teleport to Village 1",
+    "ms": 908,
+    "goose": {
+     "x": 453.0320482533425,
+     "y": 17.83634670888074,
+     "z": -231.94716002000496,
+     "yaw": -11.868272687702135,
+     "speed": 4.994564582722367e-09,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head",
+     "Carry the thesis laptop 15 m away",
+     "Pinch the busker's tip hat",
+     "Get shooed off the plaza"
+    ],
+    "events": [
+     {
+      "t": 48.91666666666517,
+      "type": "honk",
+      "pos": {
+       "x": 726.7128557026372,
+       "z": -292.03335162579606
+      }
+     },
+     {
+      "t": 50.64999999999841,
+      "type": "noticed",
+      "npc": "plaza:vendor",
+      "what": "item_missing"
+     },
+     {
+      "t": 51.199999999998376,
+      "type": "grab",
+      "who": "goose",
+      "item": "laptop_46"
+     },
+     {
+      "t": 51.93333333333167,
+      "type": "giveup",
+      "npc": "plaza:studier"
+     },
+     {
+      "t": 53.48333333333158,
+      "type": "noticed",
+      "npc": "plaza:studier",
+      "what": "item_stolen"
+     },
+     {
+      "t": 54.09999999999821,
+      "type": "chase",
+      "npc": "plaza:studier"
+     },
+     {
+      "t": 56.33333333333142,
+      "type": "giveup",
+      "npc": "plaza:busker"
+     },
+     {
+      "t": 57.14999999999804,
+      "type": "release",
+      "who": "goose",
+      "item": "laptop_46"
+     }
+    ]
+   },
+   {
+    "what": "honk Riley into dropping the laundry basket",
+    "ms": 4868,
+    "goose": {
+     "x": 448.780268596674,
+     "y": 17.710799232615102,
+     "z": -227.9311581249858,
+     "yaw": -13.875367552981807,
+     "speed": 0.00048566262092571036,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head",
+     "Carry the thesis laptop 15 m away",
+     "Pinch the busker's tip hat",
+     "Get shooed off the plaza",
+     "Make Riley drop the laundry basket"
+    ],
+    "events": [
+     {
+      "t": 57.14999999999804,
+      "type": "release",
+      "who": "goose",
+      "item": "laptop_46"
+     },
+     {
+      "t": 59.48333333333124,
+      "type": "returned",
+      "npc": "plaza:vendor",
+      "item": "pizza_30"
+     },
+     {
+      "t": 59.51666666666457,
+      "type": "returned",
+      "npc": "green:prof",
+      "item": "coffee_0"
+     },
+     {
+      "t": 62.683333333331056,
+      "type": "giveup",
+      "npc": "plaza:coach"
+     },
+     {
+      "t": 63.38333333333102,
+      "type": "honk",
+      "pos": {
+       "x": 448.9335733111948,
+       "z": -227.98812175635248
+      }
+     },
+     {
+      "t": 63.38333333333102,
+      "type": "noticed",
+      "npc": "village:don",
+      "what": "honk"
+     },
+     {
+      "t": 63.38333333333102,
+      "type": "drop",
+      "npc": "village:laundry",
+      "item": "basket_60"
+     },
+     {
+      "t": 63.38333333333102,
+      "type": "noticed",
+      "npc": "village:frisbee",
+      "what": "honk"
+     }
+    ]
+   },
+   {
+    "what": "run off with a stray sock",
+    "ms": 6837,
+    "goose": {
+     "x": 459.81492075569076,
+     "y": 17.97376042491902,
+     "z": -238.48234676342668,
+     "yaw": -16.397936987303336,
+     "speed": 0.0005183211724815951,
+     "grounded": true
+    },
+    "music": "calm",
+    "done": [
+     "Steal the professor's coffee",
+     "Honk someone into dropping what they carry",
+     "Get chased across the green",
+     "Make someone give up and scratch their head",
+     "Carry the thesis laptop 15 m away",
+     "Pinch the busker's tip hat",
+     "Get shooed off the plaza",
+     "Make Riley drop the laundry basket",
+     "Run off with a stray sock"
+    ],
+    "events": [
+     {
+      "t": 63.38333333333102,
+      "type": "noticed",
+      "npc": "village:don",
+      "what": "honk"
+     },
+     {
+      "t": 63.38333333333102,
+      "type": "drop",
+      "npc": "village:laundry",
+      "item": "basket_60"
+     },
+     {
+      "t": 63.38333333333102,
+      "type": "noticed",
+      "npc": "village:frisbee",
+      "what": "honk"
+     },
+     {
+      "t": 66.09999999999754,
+      "type": "grab",
+      "who": "goose",
+      "item": "sock_61"
+     },
+     {
+      "t": 66.1166666666642,
+      "type": "noticed",
+      "npc": "village:laundry",
+      "what": "item_stolen"
+     },
+     {
+      "t": 66.73333333333083,
+      "type": "chase",
+      "npc": "village:laundry"
+     },
+     {
+      "t": 70.11666666666397,
+      "type": "release",
+      "who": "goose",
+      "item": "sock_61"
+     },
+     {
+      "t": 70.91666666666393,
+      "type": "giveup",
+      "npc": "village:don"
+     }
+    ]
+   }
+  ],
+  "errors": [],
+  "video": "playtest-2026-11-03T14-54-32.webm"
+ }
+}
