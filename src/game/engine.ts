@@ -2,6 +2,8 @@ import * as THREE from "three/webgpu";
 import { campus, swatchHex } from "@/config";
 import { Goose, type GooseInput } from "@/goose/goose";
 import { type Network, WalkGraph } from "@/nav/graph";
+import { bakeNavMesh, type NavBake, planner as navPlanner } from "@/nav/navmesh";
+import { HOTSPOTS } from "./hotspot";
 import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
 import { AmbientCrowd } from "./ambient";
@@ -66,6 +68,7 @@ export interface GameHandle {
     tasks(): { text: string; done: boolean }[];
     items(): { id: string; name: string; x: number; z: number; heldBy: string | null }[];
     music(): string;
+    navmeshes(): { id: string; ms: number; tris: number }[];
     crowd(): number;
   };
 }
@@ -287,7 +290,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const handle: GameHandle = {
-    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], music: () => "silent", crowd: () => 0 },
+    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], music: () => "silent", navmeshes: () => [], crowd: () => 0 },
     ready: false,
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
@@ -411,6 +414,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     items: () => [...(hotspot?.sim.items.values() ?? [])].map((i) => ({ id: i.id, name: i.name, x: i.pos.x, z: i.pos.z, heldBy: i.heldBy })),
     crowd: () => crowd.size,
     music: () => music.current,
+    navmeshes: () => [...bakes.entries()].filter(([, v]) => v).map(([k, v]) => ({ id: k, ms: v.bake.ms, tris: v.bake.triangles })),
   };
   window.__wgs = handle;
   console.log(`[wgs] backend ${rig.backend}`);
@@ -421,6 +425,29 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     mats.vertexColor, HOTSPOT_SEED);
   scene.add(hotspot.root);
   if (params.get("jev") === "1") hotspot.decisions = new DecisionClient();
+  // navmeshes per hotspot, baked when the goose first comes near (the chunks there are then loaded)
+  const bakes = new Map<string, { bake: NavBake; at: { x: number; z: number } }>();
+  const NAV_R = 70;
+  const maybeBake = async () => {
+    for (const h of HOTSPOTS) {
+      if (bakes.has(h.id) || Math.hypot(h.anchor.x - goose.position.x, h.anchor.z - goose.position.z) > 120) continue;
+      bakes.set(h.id, null as never);
+      const g = stream.geometryNear(h.anchor.x, h.anchor.z, NAV_R);
+      const bake = await bakeNavMesh(g.positions, g.indices);
+      if (bake) { bakes.set(h.id, { bake, at: h.anchor }); console.log(`[wgs] navmesh ${h.id} ${bake.ms.toFixed(0)} ms, ${bake.triangles} tris`); }
+      else bakes.delete(h.id);
+    }
+  };
+  hotspot.sim.planner = (a, b) => {
+    for (const v of bakes.values()) {
+      if (v && Math.abs(a.x - v.at.x) < NAV_R - 2 && Math.abs(a.z - v.at.z) < NAV_R - 2) {
+        return navPlanner(v.bake, (x, z) => stream.heightAt(x, z))(a, b);
+      }
+    }
+    return [b];
+  };
+  void maybeBake();
+  setInterval(() => void maybeBake(), 3000);
   handle.ready = true;
   const crowd = new AmbientCrowd(graph, (x, z) => stream.heightAt(x, z), mats.vertexColor, AMBIENT_COUNT, HOTSPOT_SEED + 1);
   scene.add(crowd.root);

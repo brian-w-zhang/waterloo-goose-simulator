@@ -66,6 +66,9 @@ export interface Npc {
   gestureTime: number;
   /** speed and vision multiplier after escalation (spec V-ANIM-8) */
   alert: number;
+  path: V2[];
+  pathGoal: V2 | null;
+  pathTime: number;
 }
 
 export interface GooseState { pos: V2; speed: number; holding: string | null; crouched: boolean; hidden: boolean }
@@ -102,6 +105,8 @@ export const PERCEPTION = {
 export interface SimOptions {
   /** Line of sight between two ground points (eye height implied); default: always clear. */
   lineOfSight?: (a: V2, b: V2) => boolean;
+  /** Ground path planner (navmesh); default: straight line. */
+  planner?: (a: V2, b: V2) => V2[];
   seed?: number;
 }
 
@@ -116,10 +121,12 @@ export class Sim {
   tug: { npc: string; item: string; t: number; start: V2 } | null = null;
   events: SimEvent[] = [];
   private los: (a: V2, b: V2) => boolean;
+  planner: ((a: V2, b: V2) => V2[]) | null;
   readonly rng: () => number;
 
   constructor(opts: SimOptions = {}) {
     this.los = opts.lineOfSight ?? (() => true);
+    this.planner = opts.planner ?? null;
     this.rng = rngStream(opts.seed ?? 1);
   }
 
@@ -132,7 +139,8 @@ export class Sim {
       pos: { ...n.home }, facing: 0, routine: [{ ...n.home }], routineIdx: 0, state: "routine", stateTime: 0,
       mark: "", markTime: 0, holding: null, target: null, wantItem: null,
       memory: { gooseSeen: null, gooseSeenAt: -1e9, itemSeen: {}, honks: [] },
-      speedWalk: 1.3, speedRun: 4.4, line: "", lineTime: -1e9, grip: 0, gesture: "", gestureTime: -1e9, alert: 1, ...n,
+      speedWalk: 1.3, speedRun: 4.4, line: "", lineTime: -1e9, grip: 0, gesture: "", gestureTime: -1e9, alert: 1,
+      path: [], pathGoal: null, pathTime: -1e9, ...n,
     });
   }
 
@@ -274,6 +282,21 @@ export class Sim {
   }
 
   private moveToward(n: Npc, target: V2, speed: number, dt: number): boolean {
+    if (this.planner) {
+      // replan when the goal moved or the plan is old (moving targets like the goose)
+      if (!n.pathGoal || dist(n.pathGoal, target) > 1.5 || this.t - n.pathTime > 1.5 || !n.path.length) {
+        n.path = this.planner(n.pos, target);
+        n.pathGoal = { ...target };
+        n.pathTime = this.t;
+      }
+      while (n.path.length > 1 && dist(n.path[0], n.pos) < 0.5) n.path.shift();
+      const wp = n.path.length > 1 ? n.path[0] : target;
+      if (wp !== target) { this.stepToward(n, wp, speed, dt); return false; }
+    }
+    return this.stepToward(n, target, speed, dt);
+  }
+
+  private stepToward(n: Npc, target: V2, speed: number, dt: number): boolean {
     const v = sub(target, n.pos);
     const d = len(v);
     if (d < 0.05) return true;

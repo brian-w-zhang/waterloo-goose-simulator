@@ -58,3 +58,15 @@ describe("tug-of-war, hiding, falls (goose mechanics spec)", () => {
     expect(s.npcs.get("a")!.state).not.toBe("fallen");
   });
 });
+
+describe("navmesh planner", () => {
+  it("characters follow planner waypoints around an obstacle instead of a straight line", () => {
+    // a wall along x = 5 from z = -10 to 10: the planner routes via (5, 12)
+    const s = new Sim({ seed: 2, planner: (a, b) => (a.x < 5 && b.x > 5 ? [{ x: 5, z: 12 }, b] : [b]) });
+    s.addNpc({ id: "w", name: "W", archetype: "normal", home: { x: 0, z: 0 }, routine: [{ x: 10, z: 0 }] });
+    let maxZ = 0;
+    run(s, 25, () => { maxZ = Math.max(maxZ, s.npcs.get("w")!.pos.z); });
+    expect(maxZ).toBeGreaterThan(10);
+    expect(Math.hypot(s.npcs.get("w")!.pos.x - 10, s.npcs.get("w")!.pos.z)).toBeLessThan(1);
+  });
+});

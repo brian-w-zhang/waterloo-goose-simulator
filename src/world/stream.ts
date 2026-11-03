@@ -79,6 +79,33 @@ export class WorldStream {
     return out;
   }
 
+  /** World-space ground (2 m grid) and building wall triangles within a square of half-size r. */
+  geometryNear(x: number, z: number, r: number): { positions: Float32Array; indices: Uint32Array } {
+    const pos: number[] = [], idx: number[] = [];
+    const step = 2;
+    const n = Math.floor((2 * r) / step) + 1;
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const px = x - r + j * step, pz = z - r + i * step, h = this.heightAt(px, pz);
+      pos.push(px, Number.isFinite(h) ? h : -50, pz);
+    }
+    for (let i = 0; i + 1 < n; i++) for (let j = 0; j + 1 < n; j++) {
+      const a = i * n + j, b = a + 1, c = a + n, d = c + 1;
+      idx.push(a, c, b, b, c, d);
+    }
+    for (const ch of this.loaded.values()) {
+      if (!ch.walls) continue;
+      const ox = ch.group.position.x, oz = ch.group.position.z, w = ch.walls;
+      for (let k = 0; k < w.length; k += 9) {
+        const cx = (w[k] + w[k + 3] + w[k + 6]) / 3 + ox, cz = (w[k + 2] + w[k + 5] + w[k + 8]) / 3 + oz;
+        if (Math.abs(cx - x) > r || Math.abs(cz - z) > r) continue;
+        const base = pos.length / 3;
+        for (let v = 0; v < 3; v++) pos.push(w[k + v * 3] + ox, w[k + v * 3 + 1], w[k + v * 3 + 2] + oz);
+        idx.push(base, base + 1, base + 2);
+      }
+    }
+    return { positions: new Float32Array(pos), indices: new Uint32Array(idx) };
+  }
+
   buildingMeshes(): THREE.Mesh[] {
     return [...this.loaded.values()].flatMap((c) => c.buildingMeshes);
   }
