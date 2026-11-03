@@ -16,7 +16,7 @@ ROADS = {"service", "residential", "tertiary", "secondary", "primary", "unclassi
          "living_street", "secondary_link", "tertiary_link", "primary_link"}
 PATHS = {"footway", "path", "cycleway", "pedestrian", "steps", "platform", "track"}
 # Draw order: earlier classes win where polygons overlap.
-CLASSES = ["water", "rail", "road", "paving", "path", "parking", "pitch", "wood", "marking"]
+CLASSES = ["water", "rail", "road", "paving", "path", "parking", "pitch", "wood", "marking", "stall"]
 MARKED_ROADS = {"secondary", "tertiary", "primary", "unclassified", "residential", "secondary_link", "tertiary_link"}
 DASH_M, GAP_M, LINE_W_M = 3.0, 4.0, 0.18
 ZEBRA_W_M, ZEBRA_GAP_M = 0.5, 0.55
@@ -165,7 +165,7 @@ def classes(lakes, buildings):
     lots = [p for p in _area_polys(lambda t: t.get("amenity") == "parking" and t.get("parking", "surface") == "surface")
             for p in polygons(p) if p.area > 300]
     stalls = union_all([stall_lines(p) for p in lots]) if lots else Polygon()
-    raw["marking"] = union_all([raw["marking"], stalls])
+    raw["stall"] = stalls.difference(raw["road"]).difference(raw["path"])   # never paint over drive aisles
     raw["parking"] = raw["parking"].difference(stalls)
     # paths with an explicit width tag (not crossings) are surveyed data: they cut into road surfaces
     tagged = union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(PATHS)
@@ -175,7 +175,7 @@ def classes(lakes, buildings):
         raw["road"] = raw["road"].difference(tagged)
     taken = union_all([b["footprint"] for b in buildings])
     out = {}
-    order = ["marking"] + [c for c in CLASSES if c != "marking"]
+    order = ["marking", "stall"] + [c for c in CLASSES if c not in ("marking", "stall")]
     for name in order:
         g = raw[name]
         if g.is_empty:

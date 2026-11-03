@@ -14,3 +14,10 @@
     Grass tufts, flowers, platform canopies and the crowd add small-scale colour variety to the game
     camera frames on purpose (UGG frames measure 2.22 to 5.18 here); the gate is 6.0.
   recovery: none; accepted look feature
+- metric: topdown.topdown_chamfer_mean_m
+  old: 0.05854
+  new: 0.05865
+  reason: >-
+    The Davis Centre vault is built over the OSM part's bounding rectangle, which overhangs the City
+    footprint by a few centimetres in places; 0.1 mm mean change, gate 0.5 m.
+  recovery: clip vault edges to the footprint polygon

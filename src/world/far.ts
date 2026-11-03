@@ -6,7 +6,7 @@ import { fetchChunk } from "./stream";
 
 const CLASS_SWATCH: Record<string, string> = {
   water: "water", rail: "rail", road: "asphalt", paving: "paving", path: "path",
-  parking: "parking", pitch: "pitch", wood: "grass_shadow", marking: "asphalt",
+  parking: "parking", pitch: "pitch", wood: "grass_shadow", marking: "asphalt", stall: "parking",
 };
 
 const FAR_DROP_M = 0.05;   // far terrain sits a hair lower so near-chunk edges win
