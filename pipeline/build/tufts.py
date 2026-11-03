@@ -15,9 +15,10 @@ FLOWER_SHARE = 0.06
 SHRUB_STEP_M = 3.2         # foundation planting along walls that face lawn (procedural decoration)
 SHRUB_OFFSET_M = 1.4
 SHRUB_KEEP = 0.8
-# mapped planting (OSM leisure=garden, landuse=flowerbed, natural=scrub): shrub spacing, share
-# flowering, flowers per m2
-PLANTING = {"garden": (1.7, 0.5, 0.8), "flowerbed": (1.2, 0.7, 3.0), "scrub": (3.4, 0.15, 0.0)}
+# mapped planting (OSM leisure=garden, landuse=flowerbed, natural=scrub, natural=grassland, wetland
+# reedbeds): shrub spacing (0 for none), share flowering, flowers per m2, grass tufts per m2
+PLANTING = {"garden": (1.7, 0.5, 0.8, 0.0), "flowerbed": (1.2, 0.7, 3.0, 0.0), "scrub": (3.4, 0.15, 0.0, 0.0),
+            "grassland": (0.0, 0.0, 0.06, 0.55), "reedbed": (0.0, 0.0, 0.0, 2.5)}
 
 
 def planting_areas():
@@ -28,13 +29,14 @@ def planting_areas():
     from .buildings import osm_to_city
     out = []
     for wid, t in osm.ways_where(lambda t: t.get("leisure") == "garden" or t.get("landuse") == "flowerbed"
-                                 or t.get("natural") == "scrub"):
+                                 or t.get("natural") in ("scrub", "grassland") or t.get("wetland") == "reedbed"):
         pts = osm.way_coords(wid)
         if not pts or len(pts) < 4 or pts[0] != pts[-1]:
             continue
         p = Polygon([osm_to_city(e, n) for e, n in pts])
         p = p if p.is_valid else p.buffer(0)
-        kind = "garden" if t.get("leisure") == "garden" else "flowerbed" if t.get("landuse") == "flowerbed" else "scrub"
+        kind = ("garden" if t.get("leisure") == "garden" else "flowerbed" if t.get("landuse") == "flowerbed"
+                else "reedbed" if t.get("wetland") == "reedbed" else "grassland" if t.get("natural") == "grassland" else "scrub")
         if not p.is_empty:
             out.append((p, kind))
     return out
@@ -42,12 +44,19 @@ def planting_areas():
 
 def plant(area, kind, rng):
     """[(e, n, kind)] shrubs on a jittered grid and flower dots inside one planting area."""
-    step, flowering, flowers = PLANTING[kind]
+    step, flowering, flowers, tufts = PLANTING[kind]
     minx, miny, maxx, maxy = area.bounds
-    gx, gy = np.meshgrid(np.arange(minx + step / 2, maxx, step), np.arange(miny + step / 2, maxy, step))
-    xy = np.c_[gx.ravel(), gy.ravel()] + rng.uniform(-step * 0.35, step * 0.35, (gx.size, 2))
-    xy = xy[shapely.contains_xy(area, xy[:, 0], xy[:, 1])] if len(xy) else xy
-    out = [np.c_[xy, 3 + (rng.random(len(xy)) < flowering)]]
+    out = [np.zeros((0, 3))]
+    if step:
+        gx, gy = np.meshgrid(np.arange(minx + step / 2, maxx, step), np.arange(miny + step / 2, maxy, step))
+        xy = np.c_[gx.ravel(), gy.ravel()] + rng.uniform(-step * 0.35, step * 0.35, (gx.size, 2))
+        xy = xy[shapely.contains_xy(area, xy[:, 0], xy[:, 1])] if len(xy) else xy
+        out.append(np.c_[xy, 3 + (rng.random(len(xy)) < flowering)])
+    m = rng.poisson(area.area * tufts) if tufts else 0
+    if m:
+        t = np.c_[rng.uniform(minx, maxx, m * 2), rng.uniform(miny, maxy, m * 2)]
+        t = t[shapely.contains_xy(area, t[:, 0], t[:, 1])][:m]
+        out.append(np.c_[t, np.zeros(len(t))])
     n = rng.poisson(area.area * flowers)
     if n:
         f = np.c_[rng.uniform(minx, maxx, n * 2), rng.uniform(miny, maxy, n * 2)]
