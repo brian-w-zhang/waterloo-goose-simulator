@@ -127,6 +127,13 @@ def main():
     print(f"landmark decals {len(decals)}")
     plines = [ln for _, _, ln in path_lines]
     sign_list = signs.build(bl, door_list, STRtree(plines), plines)
+
+    def sign_chunk(s):
+        """A sign's own chunk; signs beyond the grid edge go with their building's (clamped) chunk."""
+        ci, cj = int((s[0] - C["grid_origin_e"]) // SIZE), int((s[1] - C["grid_origin_n"]) // SIZE)
+        if 0 <= ci < C["cols"] and 0 <= cj < C["rows"]:
+            return ci, cj
+        return int(bci[s[6]]), int(bcj[s[6]])
     print(f"signs {len(sign_list)} ({sum(1 for s in sign_list if s[5] == 'shop')} businesses)")
     # barriers: OSM fences, hedges and walls as straight segments (kind, e1, n1, e2, n2)
     bar = []
@@ -282,7 +289,7 @@ def main():
                                  "rot": round(d[2], 4), "kind": d[4]["kind"], "bottom": d[4]["bottom_m"], "top": d[4]["top_m"]}
                                 for d in decals if int((d[0] - C["grid_origin_e"]) // SIZE) == i and int((d[1] - C["grid_origin_n"]) // SIZE) == j]
             # signs (assigned by their own position)
-            sl = [s for s in sign_list if int((s[0] - C["grid_origin_e"]) // SIZE) == i and int((s[1] - C["grid_origin_n"]) // SIZE) == j]
+            sl = [s for s in sign_list if sign_chunk(s) == (i, j)]
             header["signs"] = [{"x": round(s[0] - e0, 2), "z": round(n1 - s[1], 2),
                                 "y": round(float(terrain.sample(hf, s[0], s[1])) - BASE_ELEV, 2) if s[5] in ("uw", "uw_plaque")
                                 else round(bl[s[6]]["ground"] - BASE_ELEV, 2),
