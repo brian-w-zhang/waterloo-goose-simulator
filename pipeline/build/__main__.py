@@ -178,13 +178,17 @@ def main():
             # lake surfaces (flat)
             lakes_h = []
             lv, li, base = [], [], 0
+            lake_d = []
             for lake in lk:
                 g = lake["geom"].intersection(cbox)
+                shore = lake["geom"].boundary
                 for p in ground.polygons(g):
-                    v, t = triangulate(p, e0, n1)
+                    # cell-tessellated so the shader gets a distance-to-shore gradient inside the lake
+                    v, t = tessellate(p, e0, n1)
                     if len(t) == 0:
                         continue
                     t = face_up(v, t)
+                    lake_d.append(shapely.distance(shapely.points(e0 + v[:, 0], n1 - v[:, 1]), shore))
                     lakes_h.append({"name": lake["name"], "objectid": lake["objectid"],
                                     "y": lake["level"] - BASE_ELEV, "first": int(sum(len(x) for x in li)),
                                     "count": int(len(t))})
@@ -192,6 +196,7 @@ def main():
                     li.append(t + base)
                     base += len(v)
             if lv:
+                arrays["lake_d"] = np.clip(np.round(np.concatenate(lake_d) * 10), 0, 255).astype(np.uint8)
                 arrays["lake_xz"] = np.vstack(lv).astype(np.float32).ravel()
                 arrays["lake_idx"] = np.concatenate(li).astype(np.uint32)
             header["lakes"] = lakes_h

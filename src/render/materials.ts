@@ -57,10 +57,12 @@ export function makePieceMaterial(): THREE.MeshToonNodeMaterial {
   return m;
 }
 
+/** Water: flat colour with a lighter band near the shore (distance attribute from the pipeline). */
 export function makeWaterMaterial(): THREE.MeshToonNodeMaterial {
   const m = new THREE.MeshToonNodeMaterial();
   const ripple = mx_noise_float(positionWorld.xz.mul(0.08)).mul(0.02);
-  m.colorNode = uniform(swatch("water")).add(ripple);
+  const edge = float(1).sub(smoothstep(float(0.8), float(3.0), attribute("shore", "float")));
+  m.colorNode = mix(uniform(swatch("water")), uniform(swatch("water_edge")), edge).add(ripple);
   return m;
 }
 
