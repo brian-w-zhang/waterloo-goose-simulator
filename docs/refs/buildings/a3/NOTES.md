@@ -1,3 +1,7 @@
 # A3
 
 Status: not started
+
+## Web photos (agent, 2026-11-03)
+
+No usable web photos found. WCRI A-Dorms: 2 photos are in docs/refs/buildings/a1.

@@ -43,7 +43,12 @@ def run(name):
     meta = getattr(mod, "META", {})
     entry = {"name": name, "chunk": chunk_of(objs), "replaces": meta.get("replaces", [])} if meta.get("world") else None
     out = lib.export(OUT / f"{name}.glb", objs)
-    print(f"[art] {name}: {out.stat().st_size / 1024:.0f} KB in {time.time() - t0:.1f}s")
+    raw = out.stat().st_size
+    # meshopt compression (12-bit colours keep the palette within 1/4095; 16-bit positions ~3 mm)
+    import subprocess
+    subprocess.run([str(lib.ROOT / "node_modules" / ".bin" / "gltf-transform"), "meshopt", str(out), str(out),
+                    "--quantize-color", "12", "--quantize-position", "16"], check=True, capture_output=True)
+    print(f"[art] {name}: {raw / 1024:.0f} KB -> {out.stat().st_size / 1024:.0f} KB in {time.time() - t0:.1f}s")
     return entry
 
 

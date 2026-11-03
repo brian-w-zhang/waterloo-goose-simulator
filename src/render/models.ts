@@ -1,12 +1,13 @@
 import * as THREE from "three/webgpu";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 
 /**
  * Art models built by art/build.py (Blender, headless) into public/models/<name>.glb.
  * Meshes carry palette colours in COLOR_0 and no materials; every mesh gets `material`.
  */
 const cache = new Map<string, Promise<GLTF>>();
-const loader = new GLTFLoader();
+const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);   // art/build.py compresses with meshopt
 
 export function loadModel(name: string): Promise<GLTF> {
   let p = cache.get(name);
