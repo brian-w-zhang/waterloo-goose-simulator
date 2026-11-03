@@ -13,6 +13,8 @@ export interface FacadeStyle {
   /** a curtain-wall bay this many metres wide in the middle of each long wall (M3's glass centre) */
   bay_w?: number;
   bay_glass?: string;
+  /** walls above this height are blank brick apart from a clerestory strip under the roofline (HH fly tower) */
+  blank_above_m?: number;
   mansard?: boolean;
 }
 
@@ -66,16 +68,27 @@ export function facadeColor(name: string, sharp: boolean) {
     default: win = float(0);
   }
   win = win.mul(upper).mul(below);
+  if (s.blank_above_m) {
+    const blank = step(float(s.blank_above_m), hAbove);
+    const clerestory = step(hTop.sub(2.2), hAbove).mul(band(fract(u.div(1.8)) as N, 0.1, 0.9));
+    win = mix(win, clerestory.mul(below), blank) as N;
+  }
   // window frames and a glint (UGG windows have light frames and a paler top to the pane):
   // a ring just outside each punched or ribbon window, and the top quarter of the pane lifted
   let frame: N = float(0);
   let glint: N = float(0);
   if (s.pattern === "punched" || s.pattern === "ribbon") {
     const lo = s.w_lo ?? (s.pattern === "punched" ? 0.3 : 0.4), hi = s.w_hi ?? 0.75;
+    // only whole windows: a storey whose window (with frame) would run into the cornice band gets none,
+    // so no slivers of frame or glass are left along the roofline
+    const winTop = hAbove.sub(st.mul(s.storey_m)).add((hi + 0.035) * s.storey_m);
+    const whole = step(winTop, hTop.sub(0.7));
+    win = win.mul(whole) as N;
     const outer = s.pattern === "punched"
       ? band(st, lo - 0.035, hi + 0.035).mul(band(su, (s.b_lo ?? 0.3) - 0.03, (s.b_hi ?? 0.7) + 0.03))
       : band(st, lo - 0.035, hi + 0.035);
-    frame = outer.mul(upper).mul(below).sub(win).max(0) as N;
+    frame = outer.mul(upper).mul(below).mul(whole).sub(win).max(0) as N;
+    if (s.blank_above_m) frame = frame.mul(step(hAbove, float(s.blank_above_m))) as N;   // no frames on blank walls
     glint = win.mul(step(float(hi - (hi - lo) * 0.25), st)) as N;
   }
   let wallBase = uniform(swatch(s.wall)) as N;

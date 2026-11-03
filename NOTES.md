@@ -119,3 +119,9 @@ With the new fallback logging, the first live call after a server start showed "
 answer. The client now sends one warm-up GET when ?jev=1 starts, and the server opens the
 connection with a keyless HEAD to the gateway host (nothing billed). After a fresh server start:
 warm-up 269 ms, then the first real decision was live at 826 ms.
+
+## 2026-11-03 09:55 HH fly tower
+Hagey Hall gets its own style (brick_hh): walls above 13 m are blank brick with a clerestory strip
+under the roofline, from research row 32 ("a huge nearly windowless brown-brick block with a
+clerestory strip at the top"). That row cites the V10 photo as one of its two sources, so V10 is
+not an independent test of this feature (same leakage as M3 and QNC, 06:55).
