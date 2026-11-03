@@ -140,3 +140,17 @@ export function itemGeometry(kind: string): THREE.BufferGeometry {
     default: return P(new THREE.BoxGeometry(0.1, 0.1, 0.1), "paper", 0, 0.05);
   }
 }
+
+/** One merged, static-pose geometry of a person (for the instanced ambient crowd). */
+export function personGeometry(look: PersonLook): THREE.BufferGeometry {
+  const dummy = new THREE.MeshBasicNodeMaterial();
+  const rig = makePerson(look, dummy, dummy);
+  rig.root.updateMatrixWorld(true);
+  const parts: THREE.BufferGeometry[] = [];
+  rig.root.traverse((o) => {
+    const m = o as THREE.Mesh;
+    if (!m.isMesh || rig.mark.children.includes(m)) return;
+    parts.push(m.geometry.clone().applyMatrix4(m.matrixWorld));
+  });
+  return mergeGeometries(parts);
+}

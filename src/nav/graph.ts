@@ -37,23 +37,49 @@ export class WalkGraph {
     return best;
   }
 
-  /** A* shortest path between node ids; returns waypoints or null. */
+  /** A* shortest path between node ids (binary-heap open set); returns waypoints or null. */
   route(from: number, to: number): [number, number][] | null {
-    const goal = this.pos.get(to)!;
+    const goal = this.pos.get(to);
+    if (!goal || !this.pos.has(from)) return null;
     const h = (id: number) => { const p = this.pos.get(id)!; return Math.hypot(p[0] - goal[0], p[1] - goal[1]); };
     const g = new Map<number, number>([[from, 0]]);
     const came = new Map<number, number>();
-    const open = new Map<number, number>([[from, h(from)]]);
+    const heap: [number, number][] = [[h(from), from]];
+    const push = (f: number, id: number) => {
+      heap.push([f, id]);
+      for (let i = heap.length - 1; i > 0;) {
+        const p = (i - 1) >> 1;
+        if (heap[p][0] <= heap[i][0]) break;
+        [heap[p], heap[i]] = [heap[i], heap[p]];
+        i = p;
+      }
+    };
+    const pop = (): [number, number] => {
+      const top = heap[0], last = heap.pop()!;
+      if (heap.length) {
+        heap[0] = last;
+        for (let i = 0; ;) {
+          const l = 2 * i + 1, r = l + 1;
+          let m = i;
+          if (l < heap.length && heap[l][0] < heap[m][0]) m = l;
+          if (r < heap.length && heap[r][0] < heap[m][0]) m = r;
+          if (m === i) break;
+          [heap[m], heap[i]] = [heap[i], heap[m]];
+          i = m;
+        }
+      }
+      return top;
+    };
     const closed = new Set<number>();
-    while (open.size) {
-      let cur = -1, cf = Infinity;
-      for (const [id, f] of open) if (f < cf) { cf = f; cur = id; }
+    while (heap.length) {
+      const [, cur] = pop();
+      if (closed.has(cur)) continue;
       if (cur === to) {
         const out: [number, number][] = [this.pos.get(cur)!];
-        while (came.has(cur)) { cur = came.get(cur)!; out.push(this.pos.get(cur)!); }
+        let c = cur;
+        while (came.has(c)) { c = came.get(c)!; out.push(this.pos.get(c)!); }
         return out.reverse();
       }
-      open.delete(cur);
       closed.add(cur);
       for (const { to: nb, w } of this.adj.get(cur) ?? []) {
         if (closed.has(nb)) continue;
@@ -61,10 +87,17 @@ export class WalkGraph {
         if (ng < (g.get(nb) ?? Infinity)) {
           g.set(nb, ng);
           came.set(nb, cur);
-          open.set(nb, ng + h(nb));
+          push(ng + h(nb), nb);
         }
       }
     }
     return null;
+  }
+
+  /** Node ids within `r` metres of (x, z). */
+  near(x: number, z: number, r: number): number[] {
+    const out: number[] = [];
+    for (const [id, [px, pz]] of this.pos) if (this.adj.has(id) && (px - x) ** 2 + (pz - z) ** 2 < r * r) out.push(id);
+    return out;
   }
 }

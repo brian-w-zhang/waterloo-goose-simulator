@@ -4,6 +4,7 @@ import { Goose, type GooseInput } from "@/goose/goose";
 import { type Network, WalkGraph } from "@/nav/graph";
 import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
+import { AmbientCrowd } from "./ambient";
 import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
 import { applyDebugView, type DebugMode } from "@/render/debug";
 import { createScene } from "@/render/scene";
@@ -15,6 +16,7 @@ import { WorldStream } from "@/world/stream";
 const D2R = THREE.MathUtils.degToRad;
 const CAM = campus.camera;
 const FIXED_DT = 1 / 60;
+const AMBIENT_COUNT = 220;
 
 export interface Pose { x: number; y: number; z: number; yaw: number; pitch: number; fov: number }
 export interface Follow { x: number; z: number; yaw: number; pitch: number; dist: number; fov: number }
@@ -50,6 +52,7 @@ export interface GameHandle {
     honk(): void;
     npcs(): { id: string; state: string; mark: string; x: number; z: number; holding: string | null }[];
     tasks(): { text: string; done: boolean }[];
+    crowd(): number;
   };
 }
 
@@ -181,7 +184,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const handle: GameHandle = {
-    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [] },
+    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], crowd: () => 0 },
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
     setFollow: (f) => { pose = null; Object.assign(follow, f); placeCamera(); },
@@ -288,6 +291,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     honk: () => hotspot?.honk(),
     npcs: () => [...(hotspot?.sim.npcs.values() ?? [])].map((n) => ({ id: n.id, state: n.state, mark: n.mark, x: n.pos.x, z: n.pos.z, holding: n.holding })),
     tasks: () => hotspot?.tasks.map((t) => ({ text: t.text, done: t.done })) ?? [],
+    crowd: () => crowd.size,
   };
   window.__wgs = handle;
   console.log(`[wgs] backend ${rig.backend}`);
@@ -297,7 +301,9 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   hotspot = new HotspotRuntime(physics, (x, z) => stream.heightAt(x, z), mats.vertexColor, makeMarkMaterial(),
     mats.vertexColor, HOTSPOT_SEED);
   scene.add(hotspot.root);
-  goose.onHonk = () => hotspot?.honk();
+  const crowd = new AmbientCrowd(graph, (x, z) => stream.heightAt(x, z), mats.vertexColor, AMBIENT_COUNT, HOTSPOT_SEED + 1);
+  scene.add(crowd.root);
+  goose.onHonk = () => { hotspot?.honk(); crowd.honkAt(goose.position.x, goose.position.z); };
   const hud = (): HudState => ({
     tasks: hotspot!.tasks.map((t) => ({ text: t.text, done: t.done })),
     prompt: hotspot!.sim.goose.holding ? `G: drop ${hotspot!.sim.items.get(hotspot!.sim.goose.holding)!.name}`
@@ -312,6 +318,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   canvas.addEventListener("mousedown", onMouse);
   onHud?.(hud());
   let hudTimer = 0;
+  let lastCrowd = performance.now();
   const bill = new THREE.Vector3();
 
   let running = true;
@@ -330,6 +337,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       placeCamera();
       goose.rig.lowerBill.getWorldPosition(bill);
       hotspot?.sync(1 / 60, now / 1000, camera, bill);
+      crowd.update(Math.min((now - lastCrowd) / 1000, 0.1), goose.position.x, goose.position.z);
+      lastCrowd = now;
       if ((hudTimer += 1) % 15 === 0) onHud?.(hud());
       renderer.render(scene, camera);
     }
