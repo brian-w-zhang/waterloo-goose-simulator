@@ -65,7 +65,8 @@
     "roof_metal": "#8c8f8d",
     "roof_shingle": "#8d7d70",
     "siding_blue": "#a9b5ba",
-    "siding_cream": "#e0d6bf"
+    "siding_cream": "#e0d6bf",
+    "metal_shade": "#a9afb3"
   },
   "goose": {
     "neck": "#2b2b2b",

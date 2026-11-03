@@ -1,5 +1,5 @@
 {
-  "note": "Building style classes (doc 02 section 6), revised from the photo research in docs/research/building-looks.md (Nov 3, 2026). First matching rule wins: City BLDG_ABBREV lists, then OSM building:material, then OSM building value; small non-UW footprints are houses. Colours are palette names. pattern: ribbon (horizontal window bands), punched (window grid), curtain (glass with mullion grid), slot (narrow vertical slots between fins), none.",
+  "note": "Building style classes (doc 02 section 6), revised from the photo research in docs/research/building-looks.md (Nov 3, 2026). First matching rule wins: City BLDG_ABBREV lists, then OSM building:material, then OSM building value; small non-UW footprints are houses. Colours are palette names. pattern: ribbon (horizontal window bands), punched (window grid), curtain (glass with mullion grid), slot (narrow vertical slots between fins), diamond (faceted panels, E5), none.",
   "rules": [
     {
       "style": "glass_vault",
@@ -268,10 +268,10 @@
     },
     "metal": {
       "wall": "metal_silver",
-      "accent": "metal_silver",
-      "window": "window_glass",
+      "accent": "window_glass",
+      "window": "metal_silver",
       "roof": "roof_light",
-      "pattern": "ribbon",
+      "pattern": "diamond",
       "storey_m": 4.2,
       "bay_m": 3.0,
       "w_lo": 0.35,

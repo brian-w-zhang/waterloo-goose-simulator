@@ -6,6 +6,7 @@ import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
 import { AmbientCrowd } from "./ambient";
 import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
+import { chime } from "@/audio/honk";
 import { applyDebugView, type DebugMode } from "@/render/debug";
 import { createScene } from "@/render/scene";
 import { swatch } from "@/config";
@@ -65,7 +66,7 @@ export interface WalkResult {
 
 declare global { interface Window { __wgs?: GameHandle } }
 
-export interface HudState { tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string }
+export interface HudState { tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string; toast: string }
 
 export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState) => void): Promise<() => void> {
   const params = new URLSearchParams(window.location.search);
@@ -324,9 +325,15 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     tasks: hotspot!.tasks.map((t) => ({ text: t.text, done: t.done })),
     prompt: hotspot!.sim.goose.holding ? `G: drop ${hotspot!.sim.items.get(hotspot!.sim.goose.holding)!.name}`
       : (hotspot!.nearestItem() ? `G: grab ${hotspot!.nearestItem()}` : ""),
-    holding: hotspot!.sim.goose.holding, backend: rig.backend,
+    holding: hotspot!.sim.goose.holding, backend: rig.backend, toast,
   });
-  hotspot.onTask = () => onHud?.(hud());
+  let toast = "";
+  hotspot.onTask = (t) => {
+    toast = t.text;
+    chime();
+    onHud?.(hud());
+    setTimeout(() => { if (toast === t.text) { toast = ""; onHud?.(hud()); } }, 3200);
+  };
   const grab = () => { hotspot?.grabOrDrop(); onHud?.(hud()); };
   const onGrabKey = (e: KeyboardEvent) => { if (e.code === "KeyG" && !e.repeat) grab(); };
   const onMouse = (e: MouseEvent) => { if (e.button === 0) grab(); };

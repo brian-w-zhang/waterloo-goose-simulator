@@ -53,3 +53,22 @@ export function click(freq = 900) {
   o.start(t);
   o.stop(t + 0.09);
 }
+
+/** Two-note chime for a finished task. */
+export function chime() {
+  const a = audio();
+  if (!a) return;
+  const t = a.currentTime;
+  [660, 990].forEach((f, k) => {
+    const o = a.createOscillator();
+    const g = a.createGain();
+    o.type = "sine";
+    o.frequency.value = f;
+    g.gain.setValueAtTime(0.0001, t + k * 0.12);
+    g.gain.exponentialRampToValueAtTime(0.18, t + k * 0.12 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + k * 0.12 + 0.5);
+    o.connect(g).connect(a.destination);
+    o.start(t + k * 0.12);
+    o.stop(t + k * 0.12 + 0.55);
+  });
+}

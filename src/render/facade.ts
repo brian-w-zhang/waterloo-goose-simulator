@@ -2,7 +2,7 @@ import { abs, attribute, float, fract, fwidth, hash, mix, normalWorld, normalize
 import { styleRules, swatch } from "@/config";
 
 export interface FacadeStyle {
-  wall: string; accent: string; window: string; roof: string; pattern: "ribbon" | "punched" | "curtain" | "slot" | "none";
+  wall: string; accent: string; window: string; roof: string; pattern: "ribbon" | "punched" | "curtain" | "slot" | "diamond" | "none";
   storey_m: number; bay_m: number; w_lo?: number; w_hi?: number; b_lo?: number; b_hi?: number; stripe?: string; variants?: string[];
   roof_alt?: string;
 }
@@ -45,6 +45,12 @@ export function facadeColor(name: string, sharp: boolean) {
     case "slot": win = band(st, 0.06, 0.94).mul(band(su, s.b_lo ?? 0.4, s.b_hi ?? 0.6)); break;
     // curtain wall: the wall colour is the glass; the "window" mask draws the mullion grid
     case "curtain": win = float(1).sub(band(st, 0.06, 0.94).mul(band(su, 0.05, 0.95))); break;
+    // faceted metal panels (E5): alternating light and shaded diamonds, a glazed ground storey
+    case "diamond": {
+      const dx = abs(su.sub(0.5)).mul(2), dy = abs(st.sub(0.5)).mul(2);
+      win = sharp ? step(dx.add(dy), float(1)) : smoothstep(float(0.96), float(1.04), dx.add(dy)).oneMinus();
+      break;
+    }
     default: win = float(0);
   }
   win = win.mul(upper).mul(below);
@@ -54,7 +60,8 @@ export function facadeColor(name: string, sharp: boolean) {
     const v = s.variants.map((c) => uniform(swatch(c)) as N);
     wallBase = v.slice(1).reduce((acc, c, i) => mix(acc, c, step(float((i + 1) / v.length), k)) as N, v[0]);
   }
-  let wall = mix(wallBase, uniform(swatch(s.window)), win) as N;
+  const windowColor = s.pattern === "diamond" ? uniform(swatch("metal_shade")) : uniform(swatch(s.window));
+  let wall = mix(wallBase, windowColor, win) as N;
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove)) as N;
   const isRoof = step(0.7, abs(n.y));
