@@ -47,10 +47,10 @@ async function live(body: DecisionRequest, key: string): Promise<Answer | null> 
       body: JSON.stringify({ model: MODEL, state: body.situation,
         questions: { action: { type: "choice", instructions: body.question ?? "What does this person most likely do next?", criteria } } }),
     });
-    if (!r.ok) return null;
+    if (!r.ok) { console.warn(`[jev] gateway HTTP ${r.status} after ${Date.now() - t0} ms; using the mock`); return null; }
     const j = await r.json();
     const a = j?.answers?.action;
-    if (!a?.choice || !body.options.includes(a.choice)) return null;
+    if (!a?.choice || !body.options.includes(a.choice)) { console.warn("[jev] answer had no allowed choice; using the mock"); return null; }
     const ans: Answer = { choice: a.choice, confidence: Number(a.confidence ?? 0), source: "live", ms: Date.now() - t0 };
     if (process.env.JEV_RECORD === "1") {
       mkdirSync(join(process.cwd(), "data", "jev"), { recursive: true });
@@ -58,7 +58,9 @@ async function live(body: DecisionRequest, key: string): Promise<Answer | null> 
         ms: ans.ms, generationId: j?.providerMetadata?.gateway?.generationId, model: j?.model }) + "\n");
     }
     return ans;
-  } catch {
+  } catch (e) {
+    const why = (e as Error).name === "AbortError" ? `timed out at ${TIMEOUT_MS} ms` : (e as Error).message;
+    console.warn(`[jev] gateway call failed (${why}); using the mock`);
     return null;
   } finally {
     clearTimeout(timer);
