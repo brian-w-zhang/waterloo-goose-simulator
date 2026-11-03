@@ -7,6 +7,7 @@ How generative AI is used in this repository (SE 390 course guide section 11).
 | Tool | Version | Used for |
 |---|---|---|
 | Claude Code (Anthropic) | model `claude-opus-5-5` | Writing pipeline, game and test code; running the verification harness; scoring viewpoint renders against reference photos (advisory only); drafting notes and review documents |
+| Jev (TypeSafe AI) via the Vercel AI Gateway | `typesafe-ai/jev-1.14.0` | Optional in-game decisions for characters who give up a chase (`?jev=1`, off by default); answers are constrained to fixed options and recorded for replay |
 | Grok Bot (xAI agent) | as recorded in `docs/plan/` AID statements | Collecting data and drafting the planning pack in `docs/plan/` |
 
 ## How AI output is checked before it lands

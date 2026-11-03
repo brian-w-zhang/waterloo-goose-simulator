@@ -1,23 +1,68 @@
-import { readFileSync } from "node:fs";
+import { appendFileSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { type DecisionRequest, mockDecide, situationKey } from "@/ai/decide";
 
 /**
- * Server-side decision proxy (doc 05 section 9.3). AI_GATEWAY_API_KEY was not available when this
- * was built, so only the replay and mock paths exist: recorded answers from data/jev/recorded.json
- * by situation key, otherwise the deterministic mock. The key never reaches the client.
+ * Server-side decision proxy (doc 05 section 9.3). Order: in-memory cache, recorded answers
+ * (data/jev/recorded.jsonl, by situation key), the live Jev model through the Vercel AI Gateway when
+ * AI_GATEWAY_API_KEY is set (never sent to the client), otherwise the deterministic mock.
+ * JEV_RECORD=1 appends live answers to the recording so tests and benchmarks can replay them.
  */
-let recorded: Record<string, { choice: string; confidence: number }> | null = null;
+const MODEL = "typesafe-ai/jev-1.14.0";
+const GATEWAY = "https://ai-gateway.vercel.sh/v1/evaluate";
+const TIMEOUT_MS = 1400;   // under the client deadline (1.5 s)
+const REC = join(process.cwd(), "data", "jev", "recorded.jsonl");
+
+type Answer = { choice: string; confidence: number; source: "mock" | "replay" | "live"; ms?: number };
+const cache = new Map<string, Answer>();
+let recorded: Map<string, Answer> | null = null;
 
 function replay(key: string) {
-  if (recorded === null) {
+  if (!recorded) {
+    recorded = new Map();
     try {
-      recorded = JSON.parse(readFileSync(join(process.cwd(), "data", "jev", "recorded.json"), "utf8"));
-    } catch {
-      recorded = {};
-    }
+      for (const line of readFileSync(REC, "utf8").split("\n")) {
+        if (!line.trim()) continue;
+        const r = JSON.parse(line) as { key: string; choice: string; confidence: number };
+        recorded.set(r.key, { choice: r.choice, confidence: r.confidence, source: "replay" });
+      }
+    } catch { /* no recording yet */ }
   }
-  return recorded![key];
+  return recorded.get(key);
+}
+
+async function live(body: DecisionRequest, key: string): Promise<Answer | null> {
+  const apiKey = process.env.AI_GATEWAY_API_KEY;
+  if (!apiKey) return null;
+  // shuffle option order per call (Jev leans toward the first option); the order is logged with the answer
+  const opts = [...body.options].sort(() => Math.random() - 0.5);
+  const criteria = Object.fromEntries(opts.map((o) => [o, body.labels?.[o] ?? o.replace(/_/g, " ")]));
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
+  const t0 = Date.now();
+  try {
+    const r = await fetch(GATEWAY, {
+      method: "POST", signal: ctl.signal,
+      headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
+      body: JSON.stringify({ model: MODEL, state: body.situation,
+        questions: { action: { type: "choice", instructions: body.question ?? "What does this person most likely do next?", criteria } } }),
+    });
+    if (!r.ok) return null;
+    const j = await r.json();
+    const a = j?.answers?.action;
+    if (!a?.choice || !body.options.includes(a.choice)) return null;
+    const ans: Answer = { choice: a.choice, confidence: Number(a.confidence ?? 0), source: "live", ms: Date.now() - t0 };
+    if (process.env.JEV_RECORD === "1") {
+      mkdirSync(join(process.cwd(), "data", "jev"), { recursive: true });
+      appendFileSync(REC, JSON.stringify({ key, choice: ans.choice, confidence: ans.confidence, order: opts,
+        ms: ans.ms, generationId: j?.providerMetadata?.gateway?.generationId, model: j?.model }) + "\n");
+    }
+    return ans;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 export async function POST(req: Request) {
@@ -26,7 +71,10 @@ export async function POST(req: Request) {
       || body.options.length > 8 || body.situation.length > 600) {
     return Response.json({ error: "bad request" }, { status: 400 });
   }
-  const rec = replay(situationKey(body));
-  if (rec) return Response.json({ ...rec, source: "replay" });
-  return Response.json(mockDecide(body));
+  const key = situationKey(body);
+  const hit = cache.get(key) ?? replay(key);
+  if (hit) return Response.json(hit);
+  const ans = (await live(body, key)) ?? mockDecide(body);
+  cache.set(key, ans);
+  return Response.json(ans);
 }

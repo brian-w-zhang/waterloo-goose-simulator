@@ -4,7 +4,12 @@
  * NPC only if it is still in the same state and the choice is one of the allowed options.
  */
 
-export interface DecisionRequest { npc: string; state: string; situation: string; options: string[] }
+export interface DecisionRequest {
+  npc: string; state: string; situation: string; options: string[];
+  /** Plain-language description per option (Jev choice criteria). */
+  labels?: Record<string, string>;
+  question?: string;
+}
 export interface DecisionAnswer { choice: string; confidence: number; source: "mock" | "replay" | "live" }
 
 const DEADLINE_MS = 1500;

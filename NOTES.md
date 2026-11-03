@@ -75,3 +75,8 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 ## 2026-11-03 04:30 First-load measurement
 
 - The 9.05 MB first-load figure was measured at 3c0574f (uncompressed chunks). The 5.34 MB figure was measured with the gzip change still uncommitted, wrote a file with the same name, and overwrote it. That mislabelled file is removed; the committed result is `bench/results/firstload-2026-11-03-6a549a2.json`, rerun at the commit that contains the change. The 9.05 MB number survives only in this note and the commit message.
+
+## 2026-11-03 05:30 Second goal (Brian, ~05:00): five improvement passes
+
+Brian asked for at least five more full passes (data and signs, goose feel, NPCs and Jev, tooling, building fidelity), then re-audits. He added `AI_GATEWAY_API_KEY` to `.env` (gitignored; the value is never printed or read by the agent, only passed to `fetch` by the server).
+- Live Jev verified: `POST https://ai-gateway.vercel.sh/v1/evaluate` with `typesafe-ai/jev-1.14.0` returns `answers.action.{choice, probabilities, confidence}`; first call 856 ms, then about 280 ms; cost about $0.000017 per call. The route tries cache, then recording, then live (1.4 s timeout), then mock.

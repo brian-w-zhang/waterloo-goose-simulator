@@ -8,6 +8,7 @@ import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actor
 import { HOTSPOTS, LOOKS, populate } from "./hotspot";
 
 const EYE_M = 1.6;
+const ARCHETYPE_WORDS = { normal: "calm", chaser: "territorial, easily annoyed", scaredy: "nervous, easily startled", tidy: "fussy, tidy" };
 // props are drawn larger than life so they read from the diorama camera (the map itself stays to scale)
 const ITEM_SCALE = 1.5;
 
@@ -93,7 +94,9 @@ export class HotspotRuntime {
         const item = this.lastWanted.get(n.id) ?? null;
         const what = item ? this.sim.items.get(item)!.name : "something";
         void this.decisions.decide({ npc: n.id, state: "giveup", options: ["routine", "search_again", "shoo"],
-          situation: `${n.name} (${n.archetype}) just gave up chasing a Canada goose that took ${what}.` })
+          labels: { routine: "Gives up and goes back to what they were doing", search_again: "Goes back to look for the missing thing",
+            shoo: "Turns on the goose, waving and shouting to drive it away" },
+          situation: `${n.name}, a ${ARCHETYPE_WORDS[n.archetype]} person on the University of Waterloo campus, just gave up chasing a Canada goose that ran off with ${what}.` })
           .then((a) => { if (a && this.sim.applyDecision(n.id, a.choice, item)) this.decisions!.stats.applied++; });
       }
       for (const t of this.tasks) {
