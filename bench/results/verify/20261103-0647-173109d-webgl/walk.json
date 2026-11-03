@@ -1,0 +1,44 @@
+{
+ "metrics": {
+  "goose_walk_falls": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "legs": [
+   {
+    "to": "SLC",
+    "arrived": true,
+    "falls": 0,
+    "stuck": false,
+    "seconds": 110,
+    "routeLength": 454,
+    "minClearance": -0.09541719822842332,
+    "end": {
+     "x": 744.7391296215355,
+     "y": 12.991072149222019,
+     "z": -314.82882068678737
+    }
+   },
+   {
+    "to": "V1",
+    "arrived": true,
+    "falls": 0,
+    "stuck": false,
+    "seconds": 92,
+    "routeLength": 391,
+    "minClearance": -0.05769782518329514,
+    "end": {
+     "x": 408.747776536271,
+     "y": 19.518273906726392,
+     "z": -255.1752498820424
+    }
+   }
+  ],
+  "errors": []
+ }
+}
