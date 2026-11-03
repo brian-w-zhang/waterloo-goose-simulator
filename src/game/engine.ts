@@ -258,7 +258,9 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       want.x += dx * w; want.z += dz * w; wsum += w;
     }
     if (wsum > 0) want.multiplyScalar(0.35 / wsum);
-    if (want.length() > 4) want.setLength(4);
+    // at most a fifth of the camera distance (4 m at the play distance), so zoomed-in views keep the goose framed
+    const maxLean = Math.min(4, follow.dist * 0.2);
+    if (want.length() > maxLean) want.setLength(maxLean);
     lean.x = THREE.MathUtils.damp(lean.x, want.x, 1.5, dt);
     lean.z = THREE.MathUtils.damp(lean.z, want.z, 1.5, dt);
   };

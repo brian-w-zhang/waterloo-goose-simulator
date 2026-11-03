@@ -121,7 +121,8 @@ export class Goose {
       this.position.add(delta.setY(0));
     }
     if (input.honk && this.honkT >= 1) { this.honkT = 0; this.onHonk?.(); }
-    if (input.flap) this.flapT = Math.min(this.flapT + dt * 4, 1); else this.flapT = Math.max(this.flapT - dt * 3, 0);
+    // the wings snap open on a tap and fold more slowly
+    if (input.flap) this.flapT = Math.min(this.flapT + dt * 10, 1); else this.flapT = Math.max(this.flapT - dt * 3, 0);
     this.crouchK = THREE.MathUtils.damp(this.crouchK, input.crouch ? 1 : 0, 10, dt);
     this.honkT = Math.min(this.honkT + dt * 2.2, 1);
     this.startleT = Math.min(this.startleT + dt * 1.6, 1);
@@ -176,8 +177,9 @@ export class Goose {
     const beat = Math.sin(this.time * 18) * 0.5 + 0.5;
     r.wings.forEach((w, k) => {
       const sgn = k === 0 ? -1 : 1;
-      w.rotation.z = sgn * (0.08 * run + flap * (0.6 + 0.9 * beat) + startle * 1.3);
-      w.rotation.y = sgn * (flap * 0.4 + startle * 0.3);
+      // a flap swings each folded wing out sideways (full span, as in UGG) and beats it in a wide V
+      w.rotation.z = sgn * (0.08 * run + flap * (0.45 + 0.75 * beat) + startle * 1.3);
+      w.rotation.y = sgn * (flap * 1.15 + startle * 0.3);
     });
     // neck and head: S-curve; forward and low when running or crouching; honk thrusts forward
     const honk = Math.sin(Math.min(this.honkT, 1) * Math.PI);
