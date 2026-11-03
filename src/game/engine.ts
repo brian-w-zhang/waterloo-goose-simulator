@@ -143,7 +143,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       target.copy(camera.position).addScaledVector(dir, 60);
       occlusion.enabled.value = 0;
     } else {
-      const gy = followGoose ? goose.position.y : stream.heightAt(follow.x, follow.z);
+      const gy = followGoose ? goose.rig.root.position.y : stream.heightAt(follow.x, follow.z);
       target.set(follow.x, (Number.isFinite(gy) ? gy : 15) + 0.4, follow.z);
       camera.fov = follow.fov;
       const back = new THREE.Vector3(-Math.sin(D2R(follow.yaw)), 0, Math.cos(D2R(follow.yaw)));
@@ -223,6 +223,9 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   let hotspot: HotspotRuntime | null = null;
   let lastChunk = "";
   const step = (dt: number, input: GooseInput) => {
+    goose.waterLevel = stream.waterLevelAt(goose.position.x, goose.position.z);
+    goose.attention = hotspot?.attention(goose.position.x, goose.position.z) ?? null;
+    goose.holding = hotspot?.heldWeight() ?? null;
     goose.update(dt, input, follow.yaw);
     physics.world.step();
     hotspot?.step(dt, goose.position, goose.speed, input.crouch);
@@ -391,6 +394,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     holding: hotspot!.sim.goose.holding, backend: rig.backend, toast,
   });
   let toast = "";
+  hotspot.onSnatched = () => goose.startle();
   hotspot.onTask = (t) => {
     toast = t.text;
     chime();

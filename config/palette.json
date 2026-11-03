@@ -77,7 +77,8 @@
     "undertail": "#f4f1ea",
     "tail": "#2f2c29",
     "bill": "#333130",
-    "legs": "#3a3633"
+    "legs": "#3a3633",
+    "ripple": "#a3c2bf"
   },
   "debug": {
     "clear_hole": "#ff00ff",

@@ -109,7 +109,8 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
 }
 
 /** Pose the person from the simulation state; speed in m/s drives the walk or run cycle. */
-export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t: number, camera: THREE.Camera) {
+export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t: number, camera: THREE.Camera,
+  goose?: THREE.Vector3) {
   const run = Math.min(Math.max((speed - 1.5) / 2.5, 0), 1);
   r.phase += dt * (speed > 0.05 ? 3.2 + 4 * run + speed * 1.2 : 0);
   const s = Math.sin(r.phase), moving = Math.min(speed / 1.2, 1);
@@ -126,7 +127,17 @@ export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t
   r.arms[1].rotation.x = armR;
   r.arms[0].rotation.z = -armZ;
   r.arms[1].rotation.z = armZ;
-  r.head.rotation.y = n.state === "giveup" ? Math.sin(t * 5) * 0.3 : 0;
+  // eye contact: within 8 m the head turns to look at the goose (spec: the "a-ha" look)
+  let look = 0, tilt = 0;
+  if (goose && n.state !== "giveup") {
+    const local = r.root.worldToLocal(goose.clone());
+    if (Math.hypot(local.x, local.z) < 8) {
+      look = THREE.MathUtils.clamp(Math.atan2(local.x, local.z), -1.2, 1.2);
+      tilt = THREE.MathUtils.clamp(-Math.atan2(1.6 - local.y, Math.hypot(local.x, local.z)) * 0.6, -0.5, 0.2);
+    }
+  }
+  r.head.rotation.y = n.state === "giveup" ? Math.sin(t * 5) * 0.3 : THREE.MathUtils.damp(r.head.rotation.y, look, 6, dt);
+  r.head.rotation.x = THREE.MathUtils.damp(r.head.rotation.x, -tilt, 6, dt);
   for (const [k, m] of Object.entries(r.marks)) m.visible = n.mark === k;
   const wants = n.wantItem && ["search", "chase", "retrieve"].includes(n.state) ? n.wantItem : null;
   if (wants !== r.bubbleItem) {

@@ -62,6 +62,16 @@ export class WorldStream {
     return sampleHeight(c.heights, n, this.index.chunk_size / (n - 1), lx, lz);
   }
 
+  /** Lake surface height at world (x, z) if the point is in water (terrain is lowered there), else null. */
+  waterLevelAt(x: number, z: number): number | null {
+    const [i, j] = this.chunkOf(x, z);
+    const c = this.loaded.get(`${i}_${j}`);
+    if (!c || !c.lakeLevels.length) return null;
+    const h = this.heightAt(x, z);
+    for (const y of c.lakeLevels) if (h < y - 0.1 && h > y - 3) return y;
+    return null;
+  }
+
   buildingMeshes(): THREE.Mesh[] {
     return [...this.loaded.values()].flatMap((c) => c.buildingMeshes);
   }

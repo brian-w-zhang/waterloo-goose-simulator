@@ -73,6 +73,7 @@ export type SimEvent =
   | { t: number; type: "chase"; npc: string }
   | { t: number; type: "giveup"; npc: string }
   | { t: number; type: "shoo"; npc: string }
+  | { t: number; type: "snatched"; npc: string; item: string }
   | { t: number; type: "returned"; npc: string; item: string }
   | { t: number; type: "grab"; who: string; item: string }
   | { t: number; type: "release"; who: string; item: string };
@@ -321,6 +322,7 @@ export class Sim {
         n.grip = dist(n.pos, this.goose.pos) < 0.8 ? n.grip + dt : 0;
         if (n.grip >= PERCEPTION.gripS) {
           n.grip = 0;
+          this.emit({ t: this.t, type: "snatched", npc: n.id, item: it.id });
           this.goose.holding = null;
           it.heldBy = n.id;
           n.holding = it.id;

@@ -41,6 +41,7 @@ export interface GooseRig {
   feet: [THREE.Mesh, THREE.Mesh];
   material: THREE.Material;
   honkLines: THREE.Group;
+  ripple: THREE.Mesh;
 }
 
 const NECK_SEGS = 12;
@@ -187,5 +188,9 @@ export function makeGoose(material: THREE.Material): GooseRig {
   }
   honkLines.visible = false;
   head.add(honkLines);
-  return { root, body, neck, head, lowerBill, wings, legs, feet, material, honkLines };
+  // ripple ring on the water surface while swimming
+  const ripple = new THREE.Mesh(painted(new THREE.RingGeometry(0.46, 0.51, 28).rotateX(-Math.PI / 2), () => "ripple"), material);
+  ripple.visible = false;
+  root.add(ripple);
+  return { root, body, neck, head, lowerBill, wings, legs, feet, material, honkLines, ripple };
 }

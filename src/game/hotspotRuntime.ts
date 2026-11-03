@@ -24,6 +24,7 @@ export class HotspotRuntime {
   private seen = 0;
   readonly tasks: Task[] = HOTSPOTS.flatMap((h) => h.tasks.map((t) => ({ ...t, hotspot: h.id, done: false })));
   onTask?: (t: Task) => void;
+  onSnatched?: () => void;
   /** Optional decision layer (?jev=1): consulted when someone gives up; the sim never waits for it. */
   decisions: DecisionClient | null = null;
   private lastWanted = new Map<string, string | null>();
@@ -89,6 +90,7 @@ export class HotspotRuntime {
     for (const n of this.sim.npcs.values()) if (n.wantItem) this.lastWanted.set(n.id, n.wantItem);
     for (; this.seen < this.sim.events.length; this.seen++) {
       const e = this.sim.events[this.seen];
+      if (e.type === "snatched") this.onSnatched?.();
       if (e.type === "giveup" && this.decisions) {
         const n = this.sim.npcs.get(e.npc)!;
         const item = this.lastWanted.get(n.id) ?? null;
@@ -106,7 +108,10 @@ export class HotspotRuntime {
   }
 
   /** Sync meshes to the simulation (call once per rendered frame). */
+  private gooseHead = new THREE.Vector3();
+
   sync(dt: number, t: number, camera: THREE.Camera, gooseBill: THREE.Vector3) {
+    this.gooseHead.copy(gooseBill);
     for (const n of this.sim.npcs.values()) {
       const r = this.people.get(n.id)!;
       const prev = this.lastPos.get(n.id) ?? n.pos;
@@ -114,7 +119,7 @@ export class HotspotRuntime {
       r.root.position.set(n.pos.x, this.ground(n.pos.x, n.pos.z), n.pos.z);
       // sim facing is counter-clockwise from +x toward +z; people face +z locally
       r.root.rotation.y = Math.PI / 2 - n.facing;
-      animatePerson(r, n, speed, dt, t, camera);
+      animatePerson(r, n, speed, dt, t, camera, this.gooseHead);
     }
     const hand = new THREE.Vector3();
     for (const it of this.sim.items.values()) {
@@ -154,6 +159,30 @@ export class HotspotRuntime {
       if (d < bd) { bd = d; best = h; }
     }
     return best;
+  }
+
+  /** Attention target for the goose head: a free item within 1.3 m, else the nearest person within 8 m. */
+  attention(gx: number, gz: number): { point: THREE.Vector3; kind: "item" | "person" } | null {
+    let best: { point: THREE.Vector3; kind: "item" | "person" } | null = null, bd = 1.3;
+    if (!this.sim.goose.holding) {
+      for (const it of this.sim.items.values()) {
+        if (it.heldBy) continue;
+        const d = Math.hypot(it.pos.x - gx, it.pos.z - gz);
+        if (d < bd) { bd = d; best = { point: this.items.get(it.id)!.position.clone(), kind: "item" }; }
+      }
+    }
+    if (best) return best;
+    bd = 8;
+    for (const n of this.sim.npcs.values()) {
+      const d = Math.hypot(n.pos.x - gx, n.pos.z - gz);
+      if (d < bd) { bd = d; const r = this.people.get(n.id)!; best = { point: r.root.position.clone().setY(r.root.position.y + 1.6), kind: "person" }; }
+    }
+    return best;
+  }
+
+  heldWeight(): "carry" | "drag" | null {
+    const id = this.sim.goose.holding;
+    return id ? this.sim.items.get(id)!.weight : null;
   }
 
   /** Nearest takeable item within reach of the goose (for the grab prompt). */
