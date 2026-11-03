@@ -1,0 +1,733 @@
+[
+ {
+  "id": "2102391212544291072",
+  "user": "bilawalsidhu",
+  "date": "2026-09-22",
+  "views": 33173142,
+  "likes": 57640,
+  "rts": 8397,
+  "metrics": {
+   "bookmark_count": 33903,
+   "impression_count": 33173142,
+   "like_count": 57640,
+   "quote_count": 3502,
+   "reply_count": 972,
+   "repost_count": 8397
+  },
+  "text": "Space and time reconstructed in 4D \n\nIs this how higher dimensional beings see us - every moment at once? \n\nStarting to understand what Vonnegut meant by humans being \u201cgreat millipedes\u201d - clearly it applies to our four legged friends too! \n\nGeolocated 2d video \u2192 per frame 3d gaussians \u2192 each left precisely where & when it happened"
+ },
+ {
+  "id": "2117036576530112909",
+  "user": "bilawalsidhu",
+  "date": "2026-11-01",
+  "views": 900101,
+  "likes": 4215,
+  "rts": 397,
+  "metrics": {
+   "bookmark_count": 2015,
+   "impression_count": 900101,
+   "like_count": 4215,
+   "quote_count": 47,
+   "reply_count": 119,
+   "repost_count": 397
+  },
+  "text": "I made a 4D reconstruction of the harrowing Learjet crash in Palm Beach County.\n\nADS-B, weather radar, satellite, ATC audio, dashcam and drone video, fused into timeline in God's Eye View.\n\n> 35,000 ft to the ground in 78 seconds\n> Flew over a line of thunderstorms\n> Crew reported icing to ATC before the mayday\n> NTSB is investigating\n\nAll nine aboard died. Condolences to everyone who lost a loved one."
+ },
+ {
+  "id": "1954229425199034753",
+  "user": "bilawalsidhu",
+  "date": "2025-08-09",
+  "views": 659746,
+  "likes": 7736,
+  "rts": 778,
+  "metrics": {
+   "bookmark_count": 4392,
+   "impression_count": 659746,
+   "like_count": 7736,
+   "quote_count": 119,
+   "reply_count": 165,
+   "repost_count": 778
+  },
+  "text": "Damn it worked! Genie 3 world --&gt; inpaint UI --&gt; 4x topaz AI upscale --&gt; train 3d gaussian splat\n\nYou can step inside a painting of Socrates from 1787. Better than any image-to-3d model I've seen.\n\nI think Google has stumbled upon the killer app for VR -- the literal holodeck. https://t.co/otVr19r9zE"
+ },
+ {
+  "id": "2107140346576818474",
+  "user": "mrdoob",
+  "date": "2026-10-05",
+  "views": 929411,
+  "likes": 2868,
+  "rts": 196,
+  "metrics": {
+   "bookmark_count": 1210,
+   "impression_count": 929411,
+   "like_count": 2868,
+   "quote_count": 38,
+   "reply_count": 177,
+   "repost_count": 196
+  },
+  "text": "Ported Unity's Megacity (GDC 2019) to Three.js\n\n\u2705 ~45 fps on a MacBook Air M1\n\u2705 Full demo compressed down to 75 MB\n\u274c No live link because of Unity's asset license \ud83d\ude15 https://t.co/tVCFIAh3nB"
+ },
+ {
+  "id": "2082706695646777746",
+  "user": "XRarchitect",
+  "date": "2026-07-30",
+  "views": 974161,
+  "likes": 10474,
+  "rts": 967,
+  "metrics": {
+   "bookmark_count": 2656,
+   "impression_count": 974161,
+   "like_count": 10474,
+   "quote_count": 54,
+   "reply_count": 99,
+   "repost_count": 967
+  },
+  "text": "Love it. Bringing back gameboy graphics into real life is fun. I did a little test in my living room https://t.co/TbVGaDLIuc https://t.co/eRuSYrXYJo"
+ },
+ {
+  "id": "2112207444101541962",
+  "user": "XRarchitect",
+  "date": "2026-10-19",
+  "views": 442646,
+  "likes": 9808,
+  "rts": 749,
+  "metrics": {
+   "bookmark_count": 4478,
+   "impression_count": 442646,
+   "like_count": 9808,
+   "quote_count": 95,
+   "reply_count": 270,
+   "repost_count": 749
+  },
+  "text": "Portal jumping through gaussian splat worlds with WebGPU. real time. sound on. https://t.co/Shlb0vf3xT"
+ },
+ {
+  "id": "2009269974607519773",
+  "user": "ZoldenGames",
+  "date": "2026-01-08",
+  "views": 1356130,
+  "likes": 9456,
+  "rts": 260,
+  "metrics": {
+   "bookmark_count": 1263,
+   "impression_count": 1356130,
+   "like_count": 9456,
+   "quote_count": 33,
+   "reply_count": 154,
+   "repost_count": 260
+  },
+  "text": "Each particle is following the path of least resistance.\n\nDevelopment of my physics engine is seriously delayed by me playing with fluid simulation. https://t.co/omJxh9yoZo"
+ },
+ {
+  "id": "1869511650782658846",
+  "user": "zhou_xian_",
+  "date": "2024-12-18",
+  "views": 3824812,
+  "likes": 15759,
+  "rts": 2944,
+  "metrics": {
+   "bookmark_count": 11388,
+   "impression_count": 3824812,
+   "like_count": 15759,
+   "quote_count": 1607,
+   "reply_count": 553,
+   "repost_count": 2944
+  },
+  "text": "Everything you love about generative models \u2014 now powered by real physics!\n\nAnnouncing the Genesis project \u2014 after a 24-month large-scale research collaboration involving over 20 research labs \u2014 a generative physics engine able to generate 4D dynamical worlds powered by a physics simulation platform designed for general-purpose robotics and physical AI applications.\n\nGenesis's physics engine is developed in pure Python, while being 10-80x faster than existing GPU-accelerated stacks like Isaac Gym and MJX. It delivers a simulation speed ~430,000 faster than in real-time, and takes only 26 seconds to train a robotic locomotion policy transferrable to the real world on a single RTX4090 (see tutorial: https://t.co/bEkIlCKqdf).\n\nThe Genesis physics engine and simulation platform is fully open source at https://t.co/DhBv7NdyqH. We'll gradually roll out access to our generative framework in the near future.\n\nGenesis implements a unified simulation framework all from scratch, integrating a wide spectrum of state-of-the-art physics solvers, allowing simulation of the whole physical world in a virtual realm with the highest realism.\n\nWe aim to build a universal data engine that leverages an upper-level generative framework to autonomously create physical worlds, together with various modes of data, including environments, camera motions, robotic task proposals, reward functions, robot policies, character motions, fully interactive 3D scenes, open-world articulated assets, and more, aiming towards fully\u00a0automated data generation for robotics, physical AI and other applications.\n\nOpen Source Code: https://t.co/DhBv7NdyqH\nProject webpage: https://t.co/SBNyhFB0yn\n\nDocumentation: https://t.co/3yuBoaealV\n\n1/n"
+ },
+ {
+  "id": "2091156855774974333",
+  "user": "NasNakarus",
+  "date": "2026-08-22",
+  "views": 54149151,
+  "likes": 191974,
+  "rts": 7529,
+  "metrics": {
+   "bookmark_count": 20535,
+   "impression_count": 54149151,
+   "like_count": 191974,
+   "quote_count": 3134,
+   "reply_count": 3239,
+   "repost_count": 7529
+  },
+  "text": "i made a game where you literally have to find a needle in a haystack\n\nthe catch is there are 5,000,000 pieces of hay and only 1 needle https://t.co/q2TehY53iJ"
+ },
+ {
+  "id": "2085830810339357147",
+  "user": "matthen2",
+  "date": "2026-08-07",
+  "views": 1609710,
+  "likes": 3993,
+  "rts": 192,
+  "metrics": {
+   "bookmark_count": 1168,
+   "impression_count": 1609710,
+   "like_count": 3993,
+   "quote_count": 109,
+   "reply_count": 135,
+   "repost_count": 192
+  },
+  "text": "To solve a maze, keep the entrance cold and the exit hot. \nOnce it settles, enter and always walk in the hottest direction. https://t.co/8kVURnCIOI"
+ },
+ {
+  "id": "2001722356415500781",
+  "user": "measure_plan",
+  "date": "2025-12-18",
+  "views": 585952,
+  "likes": 2207,
+  "rts": 224,
+  "metrics": {
+   "bookmark_count": 967,
+   "impression_count": 585952,
+   "like_count": 2207,
+   "quote_count": 35,
+   "reply_count": 68,
+   "repost_count": 224
+  },
+  "text": "the secret life of boids\n\nusing gemini 3 flash to simulate simple rules that lead to emergent behaviours (attraction, repulsion, cohesion) https://t.co/pAjIKUBv2j"
+ },
+ {
+  "id": "1998867067324310012",
+  "user": "measure_plan",
+  "date": "2025-12-10",
+  "views": 1257395,
+  "likes": 1156,
+  "rts": 84,
+  "metrics": {
+   "bookmark_count": 801,
+   "impression_count": 1257395,
+   "like_count": 1156,
+   "quote_count": 12,
+   "reply_count": 49,
+   "repost_count": 84
+  },
+  "text": "i trained a computer vision model to detect football players, the ball, net, and goals scored\n\nusing roboflow rapid, SAM3, and a python script\n\nthis took me 2 hours and could be taken much further to create a sports analytics + tracking app\n\nand now let's enjoy Pirlo's panenka penalty versus england at euro 2012"
+ },
+ {
+  "id": "1999150757250060519",
+  "user": "measure_plan",
+  "date": "2025-12-11",
+  "views": 1181961,
+  "likes": 5464,
+  "rts": 410,
+  "metrics": {
+   "bookmark_count": 2968,
+   "impression_count": 1181961,
+   "like_count": 5464,
+   "quote_count": 54,
+   "reply_count": 196,
+   "repost_count": 410
+  },
+  "text": "i trained a computer vision model to count chinups\n\nroboflow rapid + SAM3 detected the chinup bar - hands - head through natural language prompts\n\nthen I wrote a python script to count completed reps (head above bar) and annotate the video\n\nidea for a gamified fitness app? automated tracking of your workout, with rep counts per exercise added to your database. this gives progress stats over time, and a leaderboard with your friends\n\nthese new vision models are neat because they can detect exercise equipment, allowing tracking of dumbbell workouts, bench press, squat, etc."
+ },
+ {
+  "id": "2097715692069859769",
+  "user": "measure_plan",
+  "date": "2026-09-09",
+  "views": 858950,
+  "likes": 5203,
+  "rts": 417,
+  "metrics": {
+   "bookmark_count": 3798,
+   "impression_count": 858950,
+   "like_count": 5203,
+   "quote_count": 70,
+   "reply_count": 234,
+   "repost_count": 417
+  },
+  "text": "i trained a computer vision model to train me at tennis\n\nit tracks ball speed, forehand vs backhand strokes, shot placement, body position when i strike the ball\n\nhow this works:\n- input video from an iphone\n- CV pipeline orchestrated with roboflow agent: data labelling using Astra 6, detection done with a fine-tuned RF-DETR model\n- video annotation using python + openCV\n\ngoal is to make an app that records each practice session, tracks progress over time, and gives feedback on improving my technique\n\nmore to come!"
+ },
+ {
+  "id": "1999491395573174775",
+  "user": "measure_plan",
+  "date": "2025-12-12",
+  "views": 854794,
+  "likes": 538,
+  "rts": 40,
+  "metrics": {
+   "bookmark_count": 423,
+   "impression_count": 854794,
+   "like_count": 538,
+   "quote_count": 10,
+   "reply_count": 25,
+   "repost_count": 40
+  },
+  "text": "i trained a computer vision model to detect basketball players and points made\n\nroboflow rapid + SAM3 found the key objects through natural language prompts\n\nthen I wrote a python script to track the ball and record a basket if the ball enters the hoop from above\n\nideas for improving this: tally up points and assists for each player individually, distinguish between 2 vs 3 pointers, create automated highlight reels from full game footage"
+ },
+ {
+  "id": "2111159964588982545",
+  "user": "MarkRober",
+  "date": "2026-10-16",
+  "views": 3252439,
+  "likes": 793,
+  "rts": 35,
+  "metrics": {
+   "bookmark_count": 241,
+   "impression_count": 3252439,
+   "like_count": 793,
+   "quote_count": 4,
+   "reply_count": 42,
+   "repost_count": 35
+  },
+  "text": "There\u2019s a LOT more happening behind an @mlb Ball-Strike Challenge than you might think. I got to break down the tech behind the call and how @TMobile\u2019s network helps make it all happen. https://t.co/E5XRWswisi"
+ },
+ {
+  "id": "1901449395327094898",
+  "user": "MarkRober",
+  "date": "2025-03-17",
+  "views": 12582443,
+  "likes": 22133,
+  "rts": 748,
+  "metrics": {
+   "bookmark_count": 2916,
+   "impression_count": 12582443,
+   "like_count": 22133,
+   "quote_count": 913,
+   "reply_count": 7581,
+   "repost_count": 748
+  },
+  "text": "Here is the raw footage of my Tesla going through the wall. Not sure why it disengages 17 frames before hitting the wall but my feet weren\u2019t touching the brake or gas. https://t.co/ddmeyqO3ww"
+ },
+ {
+  "id": "2063313658533511184",
+  "user": "skalskip92",
+  "date": "2026-06-06",
+  "views": 891901,
+  "likes": 5699,
+  "rts": 422,
+  "metrics": {
+   "bookmark_count": 7535,
+   "impression_count": 891901,
+   "like_count": 5699,
+   "quote_count": 36,
+   "reply_count": 55,
+   "repost_count": 422
+  },
+  "text": "supervision just hit 40,000 GitHub stars!\n\nit now powers over 6.5k open-source computer vision projects, including all my demos like basketball AI\n\nlink: https://t.co/xXMRaS4ejS https://t.co/rRgRIpPnI0"
+ },
+ {
+  "id": "2057843357234119153",
+  "user": "measure_plan",
+  "date": "2026-05-22",
+  "views": 510667,
+  "likes": 954,
+  "rts": 30,
+  "metrics": {
+   "bookmark_count": 574,
+   "impression_count": 510667,
+   "like_count": 954,
+   "quote_count": 11,
+   "reply_count": 35,
+   "repost_count": 30
+  },
+  "text": "if you take the derivative of a video and timeshift the RGB channels separately, it makes an interesting effect\n\nrecorded live on my macbook without any video editing, coded with vanilla javascript https://t.co/CzhxDPv7uo"
+ },
+ {
+  "id": "2059285453329600848",
+  "user": "measure_plan",
+  "date": "2026-05-26",
+  "views": 740667,
+  "likes": 3886,
+  "rts": 347,
+  "metrics": {
+   "bookmark_count": 1052,
+   "impression_count": 740667,
+   "like_count": 3886,
+   "quote_count": 55,
+   "reply_count": 107,
+   "repost_count": 347
+  },
+  "text": "i made snake but the only way to move is by playing guitar chords https://t.co/hrDXdz4FGn"
+ },
+ {
+  "id": "2107233807023694173",
+  "user": "measure_plan",
+  "date": "2026-10-05",
+  "views": 688258,
+  "likes": 9868,
+  "rts": 1186,
+  "metrics": {
+   "bookmark_count": 3708,
+   "impression_count": 688258,
+   "like_count": 9868,
+   "quote_count": 159,
+   "reply_count": 81,
+   "repost_count": 1186
+  },
+  "text": "more math music https://t.co/QHA1cwuN7H https://t.co/047qlcPMXl"
+ },
+ {
+  "id": "2106649065614418397",
+  "user": "kenkawakenkenke",
+  "date": "2026-10-04",
+  "views": 1981152,
+  "likes": 25652,
+  "rts": 6561,
+  "metrics": {
+   "bookmark_count": 4224,
+   "impression_count": 1981152,
+   "like_count": 25652,
+   "quote_count": 566,
+   "reply_count": 121,
+   "repost_count": 6561
+  },
+  "text": "\u26a1\ufe0fPower Struggle\n\u30b9\u30de\u30db\u540c\u58eb\u3092USB-C\u3067\u3064\u306a\u3050\u3068\u5145\u96fb\u3092\u596a\u3044\u5408\u3048\u308b\u9177\u3044\u30b2\u30fc\u30e0\u3092\u4f5c\u308a\u307e\u3057\u305f\u3002\u753b\u9762\u3092\u9023\u6253\u3059\u308b\u3068\u52dd\u3063\u3066\u308b\u65b9\u306b\u96fb\u6c17\u304c\u6d41\u308c\u3001\u8ca0\u3051\u308b\u3068\u672c\u5f53\u306b\u30d0\u30c3\u30c6\u30ea\u30fc\ud83d\udd0b\u304c\u6e1b\u3063\u3066\u3044\u304d\u307e\u3059\u3002\n\u300c\u7d42\u96fb\u524d\u3001\u4e8c\u4eba\u3068\u30825%\u3067\u3069\u3061\u3089\u3082\u5e30\u308c\u306a\u3044\u300d\u307f\u305f\u3044\u306a\u6642\u306e\u4e00\u9a0e\u6253\u3061\u306b\u304a\u4f7f\u3044\u304f\u3060\u3055\u3044\u3002 https://t.co/7fJsum6PCX"
+ },
+ {
+  "id": "2077086243632873540",
+  "user": "alextoussss",
+  "date": "2026-07-14",
+  "views": 10696220,
+  "likes": 29039,
+  "rts": 1439,
+  "metrics": {
+   "bookmark_count": 5657,
+   "impression_count": 10696220,
+   "like_count": 29039,
+   "quote_count": 2093,
+   "reply_count": 2762,
+   "repost_count": 1439
+  },
+  "text": "Extremely excited to announce our first air-to-air kill of a flying moth by an autonomous micro-drone. This is a big step towards completely eradicating mosquitoes. https://t.co/UhtNqwXCQI"
+ },
+ {
+  "id": "1742603121682153852",
+  "user": "tonyzzhao",
+  "date": "2024-01-03",
+  "views": 1669410,
+  "likes": 4759,
+  "rts": 1098,
+  "metrics": {
+   "bookmark_count": 1923,
+   "impression_count": 1669410,
+   "like_count": 4759,
+   "quote_count": 489,
+   "reply_count": 216,
+   "repost_count": 1098
+  },
+  "text": "Introducing \ud835\udc0c\ud835\udc28\ud835\udc1b\ud835\udc22\ud835\udc25\ud835\udc1e \ud835\udc00\ud835\udc0b\ud835\udc0e\ud835\udc07\ud835\udc00\ud83c\udfc4 -- Hardware!\nA low-cost, open-source, mobile manipulator.\n\nOne of the most high-effort projects in my past 5yrs! Not possible without co-lead @zipengfu and @chelseabfinn.\n\nAt the end, what's better than cooking yourself a meal with the \ud83e\udd16\ud83e\uddd1\u200d\ud83c\udf73"
+ },
+ {
+  "id": "2066302163148550643",
+  "user": "Rainmaker1973",
+  "date": "2026-06-14",
+  "views": 1737695,
+  "likes": 6055,
+  "rts": 716,
+  "metrics": {
+   "bookmark_count": 1309,
+   "impression_count": 1737695,
+   "like_count": 6055,
+   "quote_count": 242,
+   "reply_count": 401,
+   "repost_count": 716
+  },
+  "text": "American research institute IHMC\u2019s six legged robot is built for speed and off road mobility. https://t.co/JA2qWTvh24"
+ },
+ {
+  "id": "2082913353853534515",
+  "user": "mrdoob",
+  "date": "2026-07-30",
+  "views": 1550446,
+  "likes": 23532,
+  "rts": 2051,
+  "metrics": {
+   "bookmark_count": 8860,
+   "impression_count": 1550446,
+   "like_count": 23532,
+   "quote_count": 314,
+   "reply_count": 306,
+   "repost_count": 2051
+  },
+  "text": "Transferring data with rapidly flashing qr codes \ud83e\udef0\nhttps://t.co/3qnijxjV1R https://t.co/NCNXa1WFst"
+ },
+ {
+  "id": "2109949585737052316",
+  "user": "levelsio",
+  "date": "2026-10-13",
+  "views": 1255348,
+  "likes": 4278,
+  "rts": 612,
+  "metrics": {
+   "bookmark_count": 5342,
+   "impression_count": 1255348,
+   "like_count": 4278,
+   "quote_count": 241,
+   "reply_count": 330,
+   "repost_count": 612
+  },
+  "text": "Let's try run Windows XP inside this tweet, tap to open https://t.co/5aMrGt0Hij"
+ },
+ {
+  "id": "2107314678347239665",
+  "user": "4k_isn",
+  "date": "2026-10-06",
+  "views": 3985867,
+  "likes": 39288,
+  "rts": 1485,
+  "metrics": {
+   "bookmark_count": 14876,
+   "impression_count": 3985867,
+   "like_count": 39288,
+   "quote_count": 283,
+   "reply_count": 380,
+   "repost_count": 1485
+  },
+  "text": "GTA 5 is now playable on web browser \n\nHere I am playing GTA 5 on chrome https://t.co/W7L7qfuI2Z"
+ },
+ {
+  "id": "2104980433972703483",
+  "user": "p_e_cooper",
+  "date": "2026-09-29",
+  "views": 4732522,
+  "likes": 7784,
+  "rts": 334,
+  "metrics": {
+   "bookmark_count": 2724,
+   "impression_count": 4732522,
+   "like_count": 7784,
+   "quote_count": 93,
+   "reply_count": 150,
+   "repost_count": 334
+  },
+  "text": "i had opus 5.5 and astra pull the source code for call of duty world at war and port the classic og zombies map over to web\n\ncheck this shit out https://t.co/hgeG4mWDUP"
+ },
+ {
+  "id": "2037713766205608234",
+  "user": "_chenglou",
+  "date": "2026-03-28",
+  "views": 24596932,
+  "likes": 64374,
+  "rts": 7997,
+  "metrics": {
+   "bookmark_count": 61237,
+   "impression_count": 24596932,
+   "like_count": 64374,
+   "quote_count": 2663,
+   "reply_count": 1311,
+   "repost_count": 7997
+  },
+  "text": "My dear front-end developers (and anyone who\u2019s interested in the future of interfaces):\n\nI have crawled through depths of hell to bring you, for the foreseeable years, one of the more important foundational pieces of UI engineering (if not in implementation then certainly at least in concept):\nFast, accurate and comprehensive userland text measurement algorithm in pure TypeScript, usable for laying out entire web pages without CSS, bypassing DOM measurements and reflow"
+ },
+ {
+  "id": "2110557373651931267",
+  "user": "_chenglou",
+  "date": "2026-10-15",
+  "views": 1455259,
+  "likes": 11328,
+  "rts": 1017,
+  "metrics": {
+   "bookmark_count": 13530,
+   "impression_count": 1455259,
+   "like_count": 11328,
+   "quote_count": 465,
+   "reply_count": 453,
+   "repost_count": 1017
+  },
+  "text": "My dear friends, I\u2019d like to show you my latest toy project\n\nIntroducing Handwired: turn your regular JavaScript code into a neural net!\n- no training\n- exact outputs vs the JS program\n- fully differentiable\n\nAll runnable in a browser, without GPU"
+ },
+ {
+  "id": "1894764784983113780",
+  "user": "MiTypeScript",
+  "date": "2025-02-26",
+  "views": 431509,
+  "likes": 3026,
+  "rts": 434,
+  "metrics": {
+   "bookmark_count": 616,
+   "impression_count": 431509,
+   "like_count": 3026,
+   "quote_count": 236,
+   "reply_count": 91,
+   "repost_count": 434
+  },
+  "text": "Doom now runs in @typescript types.  What a journey this one's been. https://t.co/VlEpeS3eGs"
+ },
+ {
+  "id": "1894429987006288259",
+  "user": "levelsio",
+  "date": "2025-02-25",
+  "views": 13468219,
+  "likes": 15301,
+  "rts": 1131,
+  "metrics": {
+   "bookmark_count": 7014,
+   "impression_count": 13468219,
+   "like_count": 15301,
+   "quote_count": 388,
+   "reply_count": 1866,
+   "repost_count": 1131
+  },
+  "text": "IT WORKS!!!!!\n\nA FULL multiplayer with Python websockets server that receives and broadcasts all player positions every 100ms (10 times per second)\n\nAll code written almost 100% by AI with Cursor and Grok 3 wrote the server code\n\nNow you can fly around with everyone else :D It'll probably crash after this tweet but let's try!\n\nhttps://t.co/UVJczDtWZ5\n\nThe reason before it didn't move was it was stale players that already quit and it kept their positions\n\nEvery red plane is someone real flying now too! \ud83d\ude0a"
+ },
+ {
+  "id": "2109962425512734739",
+  "user": "Saccc_c",
+  "date": "2026-10-13",
+  "views": 3880784,
+  "likes": 17122,
+  "rts": 1749,
+  "metrics": {
+   "bookmark_count": 10081,
+   "impression_count": 3880784,
+   "like_count": 17122,
+   "quote_count": 872,
+   "reply_count": 1401,
+   "repost_count": 1749
+  },
+  "text": "\u82b1\u8d3916\u5929\uff0c\u6211\u7528 Opus 5.5 \u5c06\u5c0f\u738b\u5b50\u7684\u6545\u4e8b\u5236\u4f5c\u6210\u4e863D\u5267\u60c5\u6e38\u620f\n\n\u7ed3\u5408Tripo+Blender\uff0cOpus 5.5 \u5c06\u5c0f\u738b\u5b50\u6545\u4e8b\u4e2d\u7684\u6bcf\u4e00\u4e2a\u661f\u7403\u53d8\u6210\u4e86\u53ef\u63a2\u7d22\u76843D\u573a\u666f\n\n\u5e0c\u671b\u5927\u5bb6\u80fd\u652f\u6301\u4e00\u624b\uff0c\u540e\u7eed\u4f1a\u5f00\u6e90\u6574\u4e2a\u6e38\u620f\uff0c\u4ee5\u53ca\u8be6\u7ec6\u5236\u4f5c\u6d41\u7a0b\n\nWelcome to The Little Prince: Across the Stars\u2728\uff1ahttps://t.co/qr4wR0jLu3 https://t.co/fk6mVpZvN1"
+ },
+ {
+  "id": "2049503458844200992",
+  "user": "nealagarwal",
+  "date": "2026-04-29",
+  "views": 1284289,
+  "likes": 16857,
+  "rts": 1852,
+  "metrics": {
+   "bookmark_count": 6170,
+   "impression_count": 1284289,
+   "like_count": 16857,
+   "quote_count": 272,
+   "reply_count": 203,
+   "repost_count": 1852
+  },
+  "text": "Introducing Cursor Camp, a website to hang out with other cursors.\n\nOut now, enjoy :) https://t.co/GEyDUXq33Z"
+ },
+ {
+  "id": "2067624057835500025",
+  "user": "nealagarwal",
+  "date": "2026-06-18",
+  "views": 3811107,
+  "likes": 38653,
+  "rts": 5684,
+  "metrics": {
+   "bookmark_count": 35774,
+   "impression_count": 3811107,
+   "like_count": 38653,
+   "quote_count": 592,
+   "reply_count": 240,
+   "repost_count": 5684
+  },
+  "text": "Made a site that takes objects from wikipedia and turns them into endless I Spy\n\n&gt; https://t.co/3cDJmbdpf9 https://t.co/dOQuxP61KT"
+ },
+ {
+  "id": "2095165021244342649",
+  "user": "nealagarwal",
+  "date": "2026-09-02",
+  "views": 3692168,
+  "likes": 34358,
+  "rts": 2006,
+  "metrics": {
+   "bookmark_count": 22096,
+   "impression_count": 3692168,
+   "like_count": 34358,
+   "quote_count": 538,
+   "reply_count": 230,
+   "repost_count": 2006
+  },
+  "text": "Made a sketch artist game where you have to draw the character based on witness testimony\n\nhttps://t.co/ngfr8tUlJ4 https://t.co/grXhFT6ZUp"
+ },
+ {
+  "id": "2113274561068441646",
+  "user": "nealagarwal",
+  "date": "2026-10-22",
+  "views": 914428,
+  "likes": 8624,
+  "rts": 396,
+  "metrics": {
+   "bookmark_count": 1500,
+   "impression_count": 914428,
+   "like_count": 8624,
+   "quote_count": 265,
+   "reply_count": 191,
+   "repost_count": 396
+  },
+  "text": "Finally made an about page, it includes my heart rate\n\nhttps://t.co/WpetmHEhop https://t.co/5aYHdcZLDT"
+ },
+ {
+  "id": "1751278052154179770",
+  "user": "vnglst",
+  "date": "2024-01-27",
+  "views": 4647880,
+  "likes": 38507,
+  "rts": 4270,
+  "metrics": {
+   "bookmark_count": 8309,
+   "impression_count": 4647880,
+   "like_count": 38507,
+   "quote_count": 545,
+   "reply_count": 530,
+   "repost_count": 4270
+  },
+  "text": "Saw this on Twitter somewhere and I had to recreate it. This is my coding happy place. \ud83e\udeb7 https://t.co/duPSFJhIkQ"
+ },
+ {
+  "id": "2053454275104162102",
+  "user": "measure_plan",
+  "date": "2026-05-10",
+  "views": 2133623,
+  "likes": 12705,
+  "rts": 563,
+  "metrics": {
+   "bookmark_count": 7477,
+   "impression_count": 2133623,
+   "like_count": 12705,
+   "quote_count": 103,
+   "reply_count": 110,
+   "repost_count": 563
+  },
+  "text": "introducing NYC roulette, a website for enjoyers of long random walks\n\nhttps://t.co/pzAPfD5KMD https://t.co/kS41PWjkci https://t.co/gl4LuCCrae"
+ },
+ {
+  "id": "1999400637042426078",
+  "user": "hsgw",
+  "date": "2025-12-12",
+  "views": 345693,
+  "likes": 1025,
+  "rts": 37,
+  "metrics": {
+   "bookmark_count": 77,
+   "impression_count": 345693,
+   "like_count": 1025,
+   "quote_count": 12,
+   "reply_count": 7,
+   "repost_count": 37
+  },
+  "text": "\u30ce\u30d61\u500b\u3067\u6587\u5b57\u5165\u529b\u3059\u308b\u30c7\u30d0\u30a4\u30b9\u3092\u4f5c\u308a\u307e\u3057\u305f\n#\u81ea\u4f5c\u30ad\u30fc\u30dc\u30fc\u30c9 #\u96fb\u5b50\u5de5\u4f5c https://t.co/XSjsORRyjV"
+ },
+ {
+  "id": "2090832898488459699",
+  "user": "yuruyurau",
+  "date": "2026-08-21",
+  "views": 412809,
+  "likes": 5290,
+  "rts": 587,
+  "metrics": {
+   "bookmark_count": 2470,
+   "impression_count": 412809,
+   "like_count": 5290,
+   "quote_count": 55,
+   "reply_count": 63,
+   "repost_count": 587
+  },
+  "text": "a=(m,d=mag(k=9*cos(i*5)*sin(i),e=cos(i*3)*cos(i*2)*9)**3/1999+1.5-sin(t/2+m)**3/3)=&gt;point(99*sin(c=d/16-t/48+m)+k*(p=d**sin(d*d-t+m))+200,99*sin(c*4)+e*p+200)\nt=0,draw=$=&gt;{t||createCanvas(w=400,w);background(9).stroke(w,96);for(t+=PI/20,i=1e4;i--;)a(i%16*13)}//#\u3064\u3076\u3084\u304dProcessing https://t.co/Y4svUrgAo5"
+ },
+ {
+  "id": "2113177383658561721",
+  "user": "mrdoob",
+  "date": "2026-10-22",
+  "views": 369572,
+  "likes": 4064,
+  "rts": 334,
+  "metrics": {
+   "bookmark_count": 2617,
+   "impression_count": 369572,
+   "like_count": 4064,
+   "quote_count": 76,
+   "reply_count": 272,
+   "repost_count": 334
+  },
+  "text": "Spent a bunch of tokens over the last few weeks building a fully procedural New York simulation.\n\nhttps://t.co/YSrGNoIYsK\n\nIt's only 784KB gzipped and the code is on github, so you can do whatever you want with it \u270c\ufe0f https://t.co/tj5wXVxhDR"
+ }
+]

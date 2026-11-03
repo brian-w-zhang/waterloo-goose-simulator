@@ -1,0 +1,451 @@
+{
+ "version": 1,
+ "note": "Street-level reference views. Commons coordinates may be the subject, not the camera; estimated poses are calibrated once in M0 (doc 08 section 2.5) and then frozen. Photos are reference only: never ship them or commit them to a public repo without attribution and share-alike.",
+ "game_camera_preset": {
+  "pitch_deg": 50,
+  "vfov_deg": 25,
+  "distance_m": 60
+ },
+ "viewpoints": [
+  {
+   "id": "V01",
+   "name": "Davis Centre north atrium",
+   "target": "DC",
+   "camera": {
+    "lon": -80.54168,
+    "lat": 43.47302,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 215.1,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 61
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:Davis Centre (University of Waterloo) - Waterloo, ON.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Davis_Centre_(University_of_Waterloo)_-_Waterloo,_ON.jpg",
+    "licence": "CC BY-SA 4.0",
+    "author": "JFVoll",
+    "date": "20 June 20"
+   }
+  },
+  {
+   "id": "V02",
+   "name": "Davis Centre from the ION tracks",
+   "target": "DC",
+   "camera": {
+    "lon": -80.541516,
+    "lat": 43.473506,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 205.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 115
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:UWaterloo Davis Centre.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:UWaterloo_Davis_Centre.jpg",
+    "licence": "CC BY-SA 4.0",
+    "author": "wctaiwan",
+    "date": "2014-04-18"
+   }
+  },
+  {
+   "id": "V03",
+   "name": "MC long facade from the MC and DC green",
+   "target": "MC",
+   "camera": {
+    "lon": -80.542885,
+    "lat": 43.472329,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 250.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 90
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:MC DC Courtyard in Summer.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:MC_DC_Courtyard_in_Summer.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "Sampsonchen",
+    "date": "2013-03-09"
+   }
+  },
+  {
+   "id": "V04",
+   "name": "MC tower with the pink tie",
+   "target": "MC",
+   "camera": {
+    "lon": -80.544484,
+    "lat": 43.471731,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 51.5,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 57
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:UW-MathFaculty-PinkTie.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:UW-MathFaculty-PinkTie.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "",
+    "date": "2006-03-08"
+   }
+  },
+  {
+   "id": "V05",
+   "name": "M3 facade",
+   "target": "M3",
+   "camera": {
+    "lon": -80.544801,
+    "lat": 43.472976,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 70.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 60
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:University of Waterloo Math 3.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:University_of_Waterloo_Math_3.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "Victor Vucicevich",
+    "date": "2012-04-19"
+   }
+  },
+  {
+   "id": "V06",
+   "name": "QNC from Ring Road",
+   "target": "QNC",
+   "camera": {
+    "lon": -80.545772,
+    "lat": 43.470208,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 50.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 170
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:Quantum Nano Center UW 2013.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Quantum_Nano_Center_UW_2013.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "JustSomePics",
+    "date": "2013-06-30"
+   }
+  },
+  {
+   "id": "V07",
+   "name": "Dana Porter Library from the south",
+   "target": "LIB",
+   "camera": {
+    "lon": -80.54238,
+    "lat": 43.46915,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 8.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 67
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:Dana Porter Library - Waterloo, ON.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Dana_Porter_Library_-_Waterloo,_ON.jpg",
+    "licence": "CC BY-SA 4.0",
+    "author": "JFVoll",
+    "date": "20 June 20"
+   }
+  },
+  {
+   "id": "V08",
+   "name": "Dana Porter Library silhouette from the northeast",
+   "target": "LIB",
+   "camera": {
+    "lon": -80.541572,
+    "lat": 43.470075,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 237.1,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 67
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:Dana Porter Library.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Dana_Porter_Library.jpg",
+    "licence": "CC BY-SA 4.0",
+    "author": "Matt Polkiewicz",
+    "date": "2017-03-07"
+   }
+  },
+  {
+   "id": "V09",
+   "name": "Arts quad toward Dana Porter",
+   "target": "LIB",
+   "camera": {
+    "lon": -80.54252,
+    "lat": 43.469093,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 15.9,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 76
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:Waterloo ontario campus 3.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Waterloo_ontario_campus_3.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "DINO2411",
+    "date": "2007-01-24"
+   }
+  },
+  {
+   "id": "V10",
+   "name": "Hagey Hall brick massing",
+   "target": "HH",
+   "camera": {
+    "lon": -80.54062,
+    "lat": 43.46784,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 286.1,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 84
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:Hagey Hall of the Humanities (University of Waterloo) - Waterloo, ON.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Hagey_Hall_of_the_Humanities_(University_of_Waterloo)_-_Waterloo,_ON.jpg",
+    "licence": "CC BY-SA 4.0",
+    "author": "JFVoll",
+    "date": "20 June 20"
+   }
+  },
+  {
+   "id": "V11",
+   "name": "SLC curved glass courtyard",
+   "target": "SLC",
+   "camera": {
+    "lon": -80.544842,
+    "lat": 43.472254,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 225.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 55
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:University of Waterloo Student Life Center.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:University_of_Waterloo_Student_Life_Center.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "Victor Vucicevich",
+    "date": "2012-04-19"
+   }
+  },
+  {
+   "id": "V12",
+   "name": "SLC courtyard panorama",
+   "target": "SLC",
+   "camera": {
+    "lon": -80.544467,
+    "lat": 43.472264,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 240.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 80
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:Student Life Centre Courtyard at the University of Waterloo in August 2007.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Student_Life_Centre_Courtyard_at_the_University_of_Waterloo_in_August_2007.jpg",
+    "licence": "CC BY 3.0",
+    "author": "Giligone at English Wikipedia",
+    "date": "8 Septembe"
+   }
+  },
+  {
+   "id": "V13",
+   "name": "E5 long facade from Ring Road",
+   "target": "E5",
+   "camera": {
+    "lon": -80.540911,
+    "lat": 43.472563,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 62.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 80
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:E5 Building University of Waterloo (19673237343).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:E5_Building_University_of_Waterloo_(19673237343).jpg",
+    "licence": "CC BY-SA 2.0",
+    "author": "Kiyan",
+    "date": "2015-08-04"
+   }
+  },
+  {
+   "id": "V14",
+   "name": "E5 glass corner at sunset",
+   "target": "E5",
+   "camera": {
+    "lon": -80.54068,
+    "lat": 43.473171,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 120.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 60
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:E5 at sunset.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:E5_at_sunset.JPG",
+    "licence": "CC BY-SA 4.0",
+    "author": "Maestroso simplo",
+    "date": "2014-06-16"
+   }
+  },
+  {
+   "id": "V15",
+   "name": "Physics building from the path",
+   "target": "PHY",
+   "camera": {
+    "lon": -80.541968,
+    "lat": 43.470004,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 20.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 90
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:Physics Building University of Waterloo Fall 2012.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Physics_Building_University_of_Waterloo_Fall_2012.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "JustSomePics",
+    "date": "2012-10-18"
+   }
+  },
+  {
+   "id": "V16",
+   "name": "Environment 3 from Ring Road",
+   "target": "EV3",
+   "camera": {
+    "lon": -80.544285,
+    "lat": 43.467804,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 70.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 90
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:Environment 3 University of Waterloo.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Environment_3_University_of_Waterloo.jpg",
+    "licence": "CC BY-SA 3.0",
+    "author": "JustSomePics",
+    "date": "2013-06-30"
+   }
+  },
+  {
+   "id": "V17",
+   "name": "Ron Eydt Village entrance",
+   "target": "REV",
+   "camera": {
+    "lon": -80.55392,
+    "lat": 43.470334,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 270.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 25
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:Entrance to Ron Eydt Village (4773822393).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Entrance_to_Ron_Eydt_Village_(4773822393).jpg",
+    "licence": "CC BY 2.0",
+    "author": "Ben Babcock from Bury St Edmunds, UK",
+    "date": "2010-07-05"
+   }
+  },
+  {
+   "id": "V18",
+   "name": "Columbia Lake shoreline",
+   "target": "COLUMBIA_LAKE",
+   "camera": {
+    "lon": -80.553224,
+    "lat": 43.473133,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 280.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 250
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:Columbia Lake - Waterloo, Ontario 2019-10-11 (01).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Columbia_Lake_-_Waterloo,_Ontario_2019-10-11_(01).jpg",
+    "licence": "CC BY-SA 4.0",
+    "author": "Ryan Hodnett",
+    "date": "2019-10-11"
+   }
+  },
+  {
+   "id": "V19",
+   "name": "University of Waterloo station bus platforms",
+   "target": "ION_UW",
+   "camera": {
+    "lon": -80.541069,
+    "lat": 43.473881,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 196.4,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 60
+   },
+   "pose_status": "position_from_commons_heading_to_target",
+   "reference": {
+    "title": "File:University of Waterloo station bus platforms.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:University_of_Waterloo_station_bus_platforms.jpg",
+    "licence": "CC0",
+    "author": "Radagast",
+    "date": "2022-10-22"
+   }
+  },
+  {
+   "id": "V20",
+   "name": "University of Waterloo ION platform",
+   "target": "ION_UW",
+   "camera": {
+    "lon": -80.541599,
+    "lat": 43.473497,
+    "eye_height_m": 1.7,
+    "heading_true_deg": 120.0,
+    "pitch_deg": 5.0,
+    "hfov_deg": 60.0,
+    "distance_to_target_m": 30
+   },
+   "pose_status": "estimated",
+   "reference": {
+    "title": "File:University of Waterloo Station Nov 2017.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:University_of_Waterloo_Station_Nov_2017.jpg",
+    "licence": "CC0",
+    "author": "Radagast",
+    "date": "2017-11-10"
+   }
+  }
+ ]
+}
