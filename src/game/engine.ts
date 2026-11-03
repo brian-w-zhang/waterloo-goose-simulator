@@ -5,6 +5,7 @@ import { type Network, WalkGraph } from "@/nav/graph";
 import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
 import { AmbientCrowd } from "./ambient";
+import { IonTrain } from "./train";
 import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
 import { chime } from "@/audio/honk";
 import { DecisionClient } from "@/ai/decide";
@@ -374,6 +375,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   handle.ready = true;
   const crowd = new AmbientCrowd(graph, (x, z) => stream.heightAt(x, z), mats.vertexColor, AMBIENT_COUNT, HOTSPOT_SEED + 1);
   scene.add(crowd.root);
+  const train = new IonTrain(net, mats.vertexColor, (x, z) => stream.heightAt(x, z));
+  scene.add(train.root);
   goose.onHonk = () => { hotspot?.honk(); crowd.honkAt(goose.position.x, goose.position.z); };
   const hud = (): HudState => ({
     area: hotspot!.nearestHotspot(goose.position.x, goose.position.z).name,
@@ -459,6 +462,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       goose.rig.lowerBill.getWorldPosition(bill);
       hotspot?.sync(1 / 60, now / 1000, camera, bill);
       crowd.update(Math.min((now - lastCrowd) / 1000, 0.1), goose.position.x, goose.position.z);
+      train.update(Math.min((now - lastCrowd) / 1000, 0.1));
       lastCrowd = now;
       if ((hudTimer += 1) % 15 === 0) onHud?.(hud());
       drawSpeech();
