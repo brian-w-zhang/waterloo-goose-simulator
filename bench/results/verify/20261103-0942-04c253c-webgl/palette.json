@@ -1,0 +1,60 @@
+{
+ "metrics": {
+  "palette_id_off_share": {
+   "value": 0.0008471122843190506,
+   "gate": 0.0,
+   "op": "<=",
+   "pass": false,
+   "report_only": false
+  },
+  "lit_palette_share": {
+   "value": 1.0,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "palette_id_worst": [
+   [
+    "palette_V03.png",
+    0.0005
+   ],
+   [
+    "palette_V06.png",
+    0.0045
+   ],
+   [
+    "palette_V12.png",
+    0.009
+   ],
+   [
+    "palette_V17.png",
+    0.0035
+   ]
+  ],
+  "lit_per_image": {
+   "game_V01.png": 1.0,
+   "game_V02.png": 1.0,
+   "game_V03.png": 1.0,
+   "game_V04.png": 1.0,
+   "game_V05.png": 1.0,
+   "game_V06.png": 1.0,
+   "game_V07.png": 1.0,
+   "game_V08.png": 1.0,
+   "game_V09.png": 1.0,
+   "game_V10.png": 1.0,
+   "game_V11.png": 1.0,
+   "game_V12.png": 1.0,
+   "game_V13.png": 1.0,
+   "game_V14.png": 1.0,
+   "game_V15.png": 1.0,
+   "game_V16.png": 1.0,
+   "game_V17.png": 1.0,
+   "game_V18.png": 1.0,
+   "game_V19.png": 1.0,
+   "game_V20.png": 1.0
+  }
+ }
+}

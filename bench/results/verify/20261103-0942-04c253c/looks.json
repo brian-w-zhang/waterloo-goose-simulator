@@ -1,0 +1,968 @@
+{
+ "scorer": "Claude claude-opus-5-5 (agent vision), advisory only; observations reused where a pair did not change",
+ "order_pass1_seed": 808,
+ "order_pass2_seed": 808,
+ "scores": [
+  {
+   "id": "V01",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "glass facade is flat-topped; the curved vault and teal duct loops are missing"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "glass wall height against the plaza reads close to the photo"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "curtain-wall mullion grid is present like the photo's glazing grid"
+   },
+   "colour": {
+    "score": 4,
+    "why": "teal-tinted glass matches the DC glass family"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "the teal glass grid over a paved plaza hints at DC, recognisable with a label"
+   }
+  },
+  {
+   "id": "V01",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: glass facade is flat-topped; the curved vault and teal duct loops are missing"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: glass wall height against the plaza reads close to the photo"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: curtain-wall mullion grid is present like the photo's glazing grid"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: teal-tinted glass matches the DC glass family"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: the teal glass grid over a paved plaza hints at DC, recognisable with a label"
+   }
+  },
+  {
+   "id": "V02",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the DC glass hall is a set of flat-topped boxes, no barrel vault"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "overall length and height of the glass hall look close"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "curtain grid present; the red portal frames are missing"
+   },
+   "colour": {
+    "score": 4,
+    "why": "teal glass family matches the photo"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "DC is guessable from the teal glass but lacks its vault and ducts"
+   }
+  },
+  {
+   "id": "V02",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the DC glass hall is a set of flat-topped boxes, no barrel vault"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: overall length and height of the glass hall look close"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: curtain grid present; the red portal frames are missing"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: teal glass family matches the photo"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: DC is guessable from the teal glass but lacks its vault and ducts"
+   }
+  },
+  {
+   "id": "V03",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the camera is close; a conifer blocks the centre and the facade is foreshortened"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "storey count of MC reads right"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "window ribbons under spandrel bands are present, with shrubs along the base like the photo's planting"
+   },
+   "colour": {
+    "score": 2,
+    "why": "the facade in frame now reads buff brick with brown bands, while the photo shows MC's grey concrete (the frozen pose frames the buff neighbour)"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "with a conifer in front and a buff wall it does not read as MC's concrete bands"
+   }
+  },
+  {
+   "id": "V03",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the camera is close; a conifer blocks the centre and the facade is foreshortened"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: storey count of MC reads right"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: window ribbons under spandrel bands are present, with shrubs along the base like the photo's planting"
+   },
+   "colour": {
+    "score": 2,
+    "why": "pass 2: the facade in frame now reads buff brick with brown bands, while the photo shows MC's grey concrete (the frozen pose frames the buff neighbour)"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "pass 2: with a conifer in front and a buff wall it does not read as MC's concrete bands"
+   }
+  },
+  {
+   "id": "V04",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the blank concrete stair tower with the tie is not a distinct mass"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "MC height and storey count read close"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "the pink tie now hangs high on the MC wall, though the blank stair tower behind it is still ribbon-windowed"
+   },
+   "colour": {
+    "score": 4,
+    "why": "raw grey concrete matches MC's colour"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "the pink tie on concrete bands makes MC guessable to any UW student"
+   }
+  },
+  {
+   "id": "V04",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the blank concrete stair tower with the tie is not a distinct mass"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: MC height and storey count read close"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: the pink tie now hangs high on the MC wall, though the blank stair tower behind it is still ribbon-windowed"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: raw grey concrete matches MC's colour"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: the pink tie on concrete bands makes MC guessable to any UW student"
+   }
+  },
+  {
+   "id": "V05",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the M3 mass sits behind lidar trees and its glass centre bay is missing"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "height reads about right against the trees, four storeys"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "a gridded teal glass centre between punched brick ends, as in the photo, though partly behind trees"
+   },
+   "colour": {
+    "score": 3,
+    "why": "orange brick right on the ends, but the teal and blue glass centre is absent"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "brick ends around a glass centre bay is M3's signature and now reads"
+   }
+  },
+  {
+   "id": "V05",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the M3 mass sits behind lidar trees and its glass centre bay is missing"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: height reads about right against the trees, four storeys"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: a gridded teal glass centre between punched brick ends, as in the photo, though partly behind trees"
+   },
+   "colour": {
+    "score": 3,
+    "why": "pass 2: orange brick right on the ends, but the teal and blue glass centre is absent"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: brick ends around a glass centre bay is M3's signature and now reads"
+   }
+  },
+  {
+   "id": "V06",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "a beige wall fills the left foreground where the photo has open Ring Road verge"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "QNC appears as a small distant mass instead of the large glass bar"
+   },
+   "pattern": {
+    "score": 2,
+    "why": "QNC fins and honeycomb cube are not legible at that distance"
+   },
+   "colour": {
+    "score": 2,
+    "why": "foreground beige wall dominates; QNC blue glass barely visible"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "QNC is a faint shape behind trees; not recognisable"
+   }
+  },
+  {
+   "id": "V06",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: a beige wall fills the left foreground where the photo has open Ring Road verge"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "pass 2: QNC appears as a small distant mass instead of the large glass bar"
+   },
+   "pattern": {
+    "score": 2,
+    "why": "pass 2: QNC fins and honeycomb cube are not legible at that distance"
+   },
+   "colour": {
+    "score": 2,
+    "why": "pass 2: foreground beige wall dominates; QNC blue glass barely visible"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "pass 2: QNC is a faint shape behind trees; not recognisable"
+   }
+  },
+  {
+   "id": "V07",
+   "pass": 1,
+   "silhouette": {
+    "score": 4,
+    "why": "the fin tower above the podium matches the photo's massing"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "tower and podium proportions look right"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "vertical fins with narrow slots match"
+   },
+   "colour": {
+    "score": 4,
+    "why": "cream precast with the brown band matches"
+   },
+   "recognisability": {
+    "score": 4,
+    "why": "Dana Porter is clearly recognisable"
+   }
+  },
+  {
+   "id": "V07",
+   "pass": 2,
+   "silhouette": {
+    "score": 4,
+    "why": "pass 2: the fin tower above the podium matches the photo's massing"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "pass 2: tower and podium proportions look right"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "pass 2: vertical fins with narrow slots match"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: cream precast with the brown band matches"
+   },
+   "recognisability": {
+    "score": 4,
+    "why": "pass 2: Dana Porter is clearly recognisable"
+   }
+  },
+  {
+   "id": "V08",
+   "pass": 1,
+   "silhouette": {
+    "score": 4,
+    "why": "the square tower over a wider podium matches the silhouette"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "near-cubic tower proportions match"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "dense vertical slots read like the photo's narrow windows"
+   },
+   "colour": {
+    "score": 3,
+    "why": "cream colour versus the dusk-darkened photo, family still right"
+   },
+   "recognisability": {
+    "score": 4,
+    "why": "Dana Porter's tower on its podium is clear"
+   }
+  },
+  {
+   "id": "V08",
+   "pass": 2,
+   "silhouette": {
+    "score": 4,
+    "why": "pass 2: the square tower over a wider podium matches the silhouette"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "pass 2: near-cubic tower proportions match"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "pass 2: dense vertical slots read like the photo's narrow windows"
+   },
+   "colour": {
+    "score": 3,
+    "why": "pass 2: cream colour versus the dusk-darkened photo, family still right"
+   },
+   "recognisability": {
+    "score": 4,
+    "why": "pass 2: Dana Porter's tower on its podium is clear"
+   }
+  },
+  {
+   "id": "V09",
+   "pass": 1,
+   "silhouette": {
+    "score": 4,
+    "why": "tower cantilevered over the podium with the dark band reads as in the photo"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "tower height to width close to the photo"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "vertical fins match the precast fin rhythm"
+   },
+   "colour": {
+    "score": 4,
+    "why": "cream fins and the brown band match"
+   },
+   "recognisability": {
+    "score": 4,
+    "why": "a UW student would name Dana Porter"
+   }
+  },
+  {
+   "id": "V09",
+   "pass": 2,
+   "silhouette": {
+    "score": 4,
+    "why": "pass 2: tower cantilevered over the podium with the dark band reads as in the photo"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "pass 2: tower height to width close to the photo"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "pass 2: vertical fins match the precast fin rhythm"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: cream fins and the brown band match"
+   },
+   "recognisability": {
+    "score": 4,
+    "why": "pass 2: a UW student would name Dana Porter"
+   }
+  },
+  {
+   "id": "V10",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the windowless fly tower is not in frame; a lower brick wing shows on the right"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "the visible block is lower than the photo's tower"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "punched windows on brick fit the low wing but not the blank tower"
+   },
+   "colour": {
+    "score": 4,
+    "why": "warm brown brick matches Hagey Hall"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "brown brick behind trees; not clearly Hagey Hall"
+   }
+  },
+  {
+   "id": "V10",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the windowless fly tower is not in frame; a lower brick wing shows on the right"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "pass 2: the visible block is lower than the photo's tower"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: punched windows on brick fit the low wing but not the blank tower"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: warm brown brick matches Hagey Hall"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "pass 2: brown brick behind trees; not clearly Hagey Hall"
+   }
+  },
+  {
+   "id": "V11",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the facade is straight; the photo's facade curves in a crescent"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "two storeys of glass above the lawn read right"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "mullion grid like the glazing bands, and a framed door at ground level"
+   },
+   "colour": {
+    "score": 4,
+    "why": "blue-grey glass to the ground matches; the cornice is now a light grey where the photo's top band is darker"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "a glass wall with a door over a courtyard; recognisable only with the label"
+   }
+  },
+  {
+   "id": "V11",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the facade is straight; the photo's facade curves in a crescent"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: two storeys of glass above the lawn read right"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: mullion grid like the glazing bands, and a framed door at ground level"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: blue-grey glass to the ground matches; the cornice is now a light grey where the photo's top band is darker"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "pass 2: a glass wall with a door over a courtyard; recognisable only with the label"
+   }
+  },
+  {
+   "id": "V12",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "the long low glass facade is straight, not the crescent around the plaza"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "two-storey height reads right against the plaza"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "ribbon of glass with mullions present but no brick end pavilions"
+   },
+   "colour": {
+    "score": 3,
+    "why": "blue-grey glass right, the brown brick pavilions missing"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "the plaza and glass ribbon only hint at the SLC courtyard"
+   }
+  },
+  {
+   "id": "V12",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: the long low glass facade is straight, not the crescent around the plaza"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: two-storey height reads right against the plaza"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: ribbon of glass with mullions present but no brick end pavilions"
+   },
+   "colour": {
+    "score": 3,
+    "why": "pass 2: blue-grey glass right, the brown brick pavilions missing"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "pass 2: the plaza and glass ribbon only hint at the SLC courtyard"
+   }
+  },
+  {
+   "id": "V13",
+   "pass": 1,
+   "silhouette": {
+    "score": 3,
+    "why": "a long low box beyond the road like E5, with a fence along the verge as in the photo"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "length and height read close to the photo"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "faceted diamond panels now cover the facade like E5's pleated cladding"
+   },
+   "colour": {
+    "score": 4,
+    "why": "silver grey diamond panels match E5's metal family"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "the diamond-panelled box beyond Ring Road is recognisable as E5"
+   }
+  },
+  {
+   "id": "V13",
+   "pass": 2,
+   "silhouette": {
+    "score": 3,
+    "why": "pass 2: a long low box beyond the road like E5, with a fence along the verge as in the photo"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: length and height read close to the photo"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "pass 2: faceted diamond panels now cover the facade like E5's pleated cladding"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: silver grey diamond panels match E5's metal family"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: the diamond-panelled box beyond Ring Road is recognisable as E5"
+   }
+  },
+  {
+   "id": "V14",
+   "pass": 1,
+   "silhouette": {
+    "score": 3,
+    "why": "the E5 corner mass reads; the photo's sharp glass prism corner is a plain box"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "six storeys and the long side receding to the right match the photo's proportions"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "diamond panels instead of the photo's all-glass corner"
+   },
+   "colour": {
+    "score": 3,
+    "why": "silver panels match E5 by day, not the photo's blue sunset glass"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "E5's diamond panels make it guessable"
+   }
+  },
+  {
+   "id": "V14",
+   "pass": 2,
+   "silhouette": {
+    "score": 3,
+    "why": "pass 2: the E5 corner mass reads; the photo's sharp glass prism corner is a plain box"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: six storeys and the long side receding to the right match the photo's proportions"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: diamond panels instead of the photo's all-glass corner"
+   },
+   "colour": {
+    "score": 3,
+    "why": "pass 2: silver panels match E5 by day, not the photo's blue sunset glass"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: E5's diamond panels make it guessable"
+   }
+  },
+  {
+   "id": "V15",
+   "pass": 1,
+   "silhouette": {
+    "score": 3,
+    "why": "the long low PHY slab behind the plaza matches, partly behind trees"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "four-storey slab height reads right"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "dense horizontal window bands match the photo"
+   },
+   "colour": {
+    "score": 4,
+    "why": "buff brick matches the yellowish brick"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "the plaza and buff slab suggest Physics, with the label"
+   }
+  },
+  {
+   "id": "V15",
+   "pass": 2,
+   "silhouette": {
+    "score": 3,
+    "why": "pass 2: the long low PHY slab behind the plaza matches, partly behind trees"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: four-storey slab height reads right"
+   },
+   "pattern": {
+    "score": 4,
+    "why": "pass 2: dense horizontal window bands match the photo"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: buff brick matches the yellowish brick"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: the plaza and buff slab suggest Physics, with the label"
+   }
+  },
+  {
+   "id": "V16",
+   "pass": 1,
+   "silhouette": {
+    "score": 1,
+    "why": "the render shows a red brick slab, not the stepped grey EV3 block"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "the brick block is taller and longer than the EV3 front in the photo"
+   },
+   "pattern": {
+    "score": 1,
+    "why": "no lime-green horizontal stripes at all in view"
+   },
+   "colour": {
+    "score": 1,
+    "why": "red brick versus grey panels with lime stripes: wrong family"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "EV3 is not in view; the visible building is a different brick block"
+   }
+  },
+  {
+   "id": "V16",
+   "pass": 2,
+   "silhouette": {
+    "score": 1,
+    "why": "pass 2: the render shows a red brick slab, not the stepped grey EV3 block"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "pass 2: the brick block is taller and longer than the EV3 front in the photo"
+   },
+   "pattern": {
+    "score": 1,
+    "why": "pass 2: no lime-green horizontal stripes at all in view"
+   },
+   "colour": {
+    "score": 1,
+    "why": "pass 2: red brick versus grey panels with lime stripes: wrong family"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "pass 2: EV3 is not in view; the visible building is a different brick block"
+   }
+  },
+  {
+   "id": "V17",
+   "pass": 1,
+   "silhouette": {
+    "score": 1,
+    "why": "the photo is a close entrance canopy; the render shows a whole brick wing"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "scale of the wing is plausible but the framing is not"
+   },
+   "pattern": {
+    "score": 2,
+    "why": "ribbon windows on brick, photo shows glass doors and grey panels"
+   },
+   "colour": {
+    "score": 2,
+    "why": "red brick versus the grey and glass entrance"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "the REV entrance is not identifiable"
+   }
+  },
+  {
+   "id": "V17",
+   "pass": 2,
+   "silhouette": {
+    "score": 1,
+    "why": "pass 2: the photo is a close entrance canopy; the render shows a whole brick wing"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "pass 2: scale of the wing is plausible but the framing is not"
+   },
+   "pattern": {
+    "score": 2,
+    "why": "pass 2: ribbon windows on brick, photo shows glass doors and grey panels"
+   },
+   "colour": {
+    "score": 2,
+    "why": "pass 2: red brick versus the grey and glass entrance"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "pass 2: the REV entrance is not identifiable"
+   }
+  },
+  {
+   "id": "V18",
+   "pass": 1,
+   "silhouette": {
+    "score": 4,
+    "why": "flat water band with a far tree line matches the lake view"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "water width and distance to the far shore look close"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "no reed island; the lake reads as one plain band"
+   },
+   "colour": {
+    "score": 4,
+    "why": "water blue-grey and green tree line match the family"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "a lake with a tree line; Columbia Lake with a label"
+   }
+  },
+  {
+   "id": "V18",
+   "pass": 2,
+   "silhouette": {
+    "score": 4,
+    "why": "pass 2: flat water band with a far tree line matches the lake view"
+   },
+   "proportions": {
+    "score": 4,
+    "why": "pass 2: water width and distance to the far shore look close"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: no reed island; the lake reads as one plain band"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: water blue-grey and green tree line match the family"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "pass 2: a lake with a tree line; Columbia Lake with a label"
+   }
+  },
+  {
+   "id": "V19",
+   "pass": 1,
+   "silhouette": {
+    "score": 2,
+    "why": "one canopy corner with a yellow soffit at the left; the long platform row is out of frame"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "the canopy reads at the right height but the frame is mostly lawn"
+   },
+   "pattern": {
+    "score": 2,
+    "why": "only one canopy edge visible; no glazing or columns row"
+   },
+   "colour": {
+    "score": 4,
+    "why": "the canopy corner now has the yellow fascia and white soffit of the real canopies; the platforms themselves are out of frame"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "a canopy hints at a transit stop, not specifically these platforms"
+   }
+  },
+  {
+   "id": "V19",
+   "pass": 2,
+   "silhouette": {
+    "score": 2,
+    "why": "pass 2: one canopy corner with a yellow soffit at the left; the long platform row is out of frame"
+   },
+   "proportions": {
+    "score": 2,
+    "why": "pass 2: the canopy reads at the right height but the frame is mostly lawn"
+   },
+   "pattern": {
+    "score": 2,
+    "why": "pass 2: only one canopy edge visible; no glazing or columns row"
+   },
+   "colour": {
+    "score": 4,
+    "why": "pass 2: the canopy corner now has the yellow fascia and white soffit of the real canopies; the platforms themselves are out of frame"
+   },
+   "recognisability": {
+    "score": 1,
+    "why": "pass 2: a canopy hints at a transit stop, not specifically these platforms"
+   }
+  },
+  {
+   "id": "V20",
+   "pass": 1,
+   "silhouette": {
+    "score": 3,
+    "why": "a long platform canopy on posts runs toward E5 like the station canopy, no checker tower"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "canopy height and platform length look close to the photo"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "canopy, posts and soffit read; E5 behind now shows its diamond panels"
+   },
+   "colour": {
+    "score": 3,
+    "why": "yellow soffit and silver E5 match, navy checker tower missing"
+   },
+   "recognisability": {
+    "score": 3,
+    "why": "the platform canopy beside the rail bed and E5 behind make it guessable as the ION stop"
+   }
+  },
+  {
+   "id": "V20",
+   "pass": 2,
+   "silhouette": {
+    "score": 3,
+    "why": "pass 2: a long platform canopy on posts runs toward E5 like the station canopy, no checker tower"
+   },
+   "proportions": {
+    "score": 3,
+    "why": "pass 2: canopy height and platform length look close to the photo"
+   },
+   "pattern": {
+    "score": 3,
+    "why": "pass 2: canopy, posts and soffit read; E5 behind now shows its diamond panels"
+   },
+   "colour": {
+    "score": 3,
+    "why": "pass 2: yellow soffit and silver E5 match, navy checker tower missing"
+   },
+   "recognisability": {
+    "score": 2,
+    "why": "pass 2: the canopy and E5 help, but without the checker sign tower the station is not named"
+   }
+  }
+ ],
+ "note": "fresh shuffled viewing (seed 808) of all 20 pairs after the window-frame change; no score changed, reasons kept; both passes from one viewing"
+}

@@ -86,8 +86,9 @@ export function facadeColor(name: string, sharp: boolean) {
   }
   const windowColor = s.pattern === "diamond" ? uniform(swatch("metal_shade")) : uniform(swatch(s.window));
   let wall = mix(wallBase, windowColor, win) as N;
-  wall = mix(wall, uniform(swatch("mullion")), frame.mul(0.85)) as N;
-  wall = mix(wall, uniform(swatch("window_glass")), glint.mul(0.45)) as N;
+  // full swatches, never blends: the palette lock wants every texel on a palette colour
+  wall = mix(wall, uniform(swatch("mullion")), frame) as N;
+  wall = mix(wall, uniform(swatch("window_glass")), glint) as N;
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove).mul(float(1).sub(vault))) as N;
   if (s.base) wall = mix(wall, uniform(swatch(s.base)), step(hAbove, float(s.base_m ?? 4))) as N;
