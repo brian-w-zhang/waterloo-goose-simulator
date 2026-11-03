@@ -91,3 +91,12 @@ Brian asked for at least five more full passes (data and signs, goose feel, NPCs
 The goal pinned three-mesh-bvh 0.9.18 for camera occlusion and vision rays, but both ended up as
 Rapier ray casts against the colliders the character controller already needs (one acceleration
 structure instead of two). Nothing imported it, so it is removed (anti-slop: no unused dependencies).
+
+## 2026-11-03 06:55 Look changes and the "never edit the world to please a photo" rule
+The M3 glass centre bay (bay_w) and the QNC charcoal base implement rows 27 and 28 of
+docs/research/building-looks.md, written before scoring. Those rows cite two Commons photos each,
+and one of the two is the scored viewpoint photo (V05 "University_of_Waterloo_Math_3.jpg", V06
+"Quantum_Nano_Center_UW_2013.jpg"). So V05 and V06 are not independent tests of those two
+features. The cameras were not moved, and the features apply to every building with the style.
+The bus canopies come from OSM building=roof ways, not from the V19 photo. Future research rows
+should cite photos outside the 20 viewpoints where possible.

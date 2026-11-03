@@ -172,6 +172,7 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 
 - **Laurel Trail ortho width:** the pipeline uses the OSM width tag (2.5 m), and the by-eye ortho reading says 3.0 m. Doc 08 itself calls tags authoritative and ortho readings "not authoritative". Suggest replacing this gate with the tag or a surveyed reading.
 - **Tagged widths where paths abut:** a class-union measurement cannot separate adjacent ribbons. Measuring per way would need per-way geometry in the chunks.
+- **Look leakage:** the research rows behind M3's glass bay and QNC's charcoal base cite the same Commons photos as viewpoints V05 and V06, so those two pairs are not independent tests of those features (`NOTES.md`, 06:55). Research should cite photos outside the 20 viewpoints.
 - **Frozen truth frame:** the frozen centroids carry a datum offset (+0.31 m E, -0.94 m N) from the City's WGS84 export. Positions are gated against `verify/truth-native/` (a native recomputation, which doc 08 section 5 allows), and the error against the frozen truth is reported too (median about 1.0 m).
 - **Game-camera target:** doc 08 does not say what the style camera targets. Targeting building centroids filled frames with roofs, so the style suite targets the viewpoint's ground position instead (`NOTES.md`).
 
