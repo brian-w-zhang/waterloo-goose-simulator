@@ -1,0 +1,31 @@
+{
+ "sha": "8cd9ca7",
+ "date": "2026-11-03T11:12:43+00:00",
+ "population": "pre-2018 UW-owned footprints over 100 m2 with lidar; truth = nDSM p90 inside the footprint eroded 1 m",
+ "estimators": {
+  "ours": {
+   "n": 118,
+   "rmse_m": 0.59,
+   "mae_m": 0.32,
+   "median_abs_m": 0.07
+  },
+  "osm_levels_3p5": {
+   "n": 61,
+   "rmse_m": 6.63,
+   "mae_m": 4.38,
+   "median_abs_m": 3.04
+  },
+  "osm_levels_3p62": {
+   "n": 61,
+   "rmse_m": 6.57,
+   "mae_m": 4.31,
+   "median_abs_m": 2.85
+  },
+  "fire_storeys_3p5": {
+   "n": 64,
+   "rmse_m": 5.1,
+   "mae_m": 3.63,
+   "median_abs_m": 2.22
+  }
+ }
+}
