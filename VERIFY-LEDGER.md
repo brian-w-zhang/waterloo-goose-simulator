@@ -85,3 +85,4 @@ One line per run, appended by `tools/verify/gate.py`; old lines are never edited
 | 2026-11-03 10:09 | 29eaea7 | webgl2 | full | 62/64 | 1.000 | 0.53 / 0.61 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1004-29eaea7-webgl |
 | 2026-11-03 10:13 | 6d1cea8 | webgpu | full | 62/64 | 1.000 | 0.53 / 0.61 | 0.03 | 0.081 | 2.86 (dis 0.03) | 0 | bench/results/verify/20261103-1010-6d1cea8 |
 | 2026-11-03 10:16 | 6d1cea8 | webgl2 | full | 62/64 | 1.000 | 0.53 / 0.61 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1013-6d1cea8+dirty-webgl |
+| 2026-11-03 10:19 | 57d09a0 | none | fast | 40/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-1019-57d09a0+dirty |

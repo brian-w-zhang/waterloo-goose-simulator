@@ -215,15 +215,29 @@ def tiers(poly, nd, t, base_h):
                     out.append((orient(q), h))
     if not out:
         return [(poly, base_h)]
-    # footprint area no tier covers (dropped small regions, simplification slivers) joins the largest tier
+    # footprint area no tier covers (dropped small regions, simplification slivers): each piece joins
+    # the tier along whose edge it lies (longest shared boundary), so a sliver at a low wing's edge
+    # does not rise to the tallest tier's height as a spike
     from shapely import union_all
     rest = poly.difference(union_all([q for q, _ in out]))
     if rest.area > 0.01:
-        k = max(range(len(out)), key=lambda i: out[i][0].area)
-        merged = out[k][0].union(rest)
-        pieces = [merged] if merged.geom_type == "Polygon" else [g for g in getattr(merged, "geoms", []) if g.geom_type == "Polygon"]
-        out[k] = (orient(pieces[0]), out[k][1])
-        out += [(orient(g), out[k][1]) for g in pieces[1:] if g.area > 0.01]
+        geoms = [out[i][0] for i in range(len(out))]
+        add = [[] for _ in out]
+        for g in ([rest] if rest.geom_type == "Polygon" else [x for x in getattr(rest, "geoms", []) if x.geom_type == "Polygon"]):
+            if g.area < 0.01:
+                continue
+            edge = g.boundary
+            shared = [edge.intersection(q.buffer(0.05)).length for q in geoms]
+            k = max(range(len(geoms)), key=lambda i: shared[i]) if max(shared) > 0 else \
+                min(range(len(geoms)), key=lambda i: geoms[i].distance(g))
+            add[k].append(g)
+        merged_out = []
+        for (q, h), extra in zip(out, add):
+            m = union_all([q] + extra) if extra else q
+            for g in ([m] if m.geom_type == "Polygon" else [x for x in getattr(m, "geoms", []) if x.geom_type == "Polygon"]):
+                if g.area > 0.01:
+                    merged_out.append((orient(g), h))
+        out = merged_out
     return out
 
 
