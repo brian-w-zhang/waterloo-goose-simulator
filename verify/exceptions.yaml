@@ -7,3 +7,10 @@
     were holes in roofs, a visible defect from the game camera; they now join the largest tier, which
     is slightly wrong in height over those few square metres. Gate is 1.5 m.
   recovery: none planned; accepted trade-off (a per-region height for the remainder would recover it)
+- metric: style.kmeans12_residual_de
+  old: 0.794
+  new: 0.840
+  reason: >-
+    Grass tufts, flowers, platform canopies and the crowd add small-scale colour variety to the game
+    camera frames on purpose (UGG frames measure 2.22 to 5.18 here); the gate is 6.0.
+  recovery: none; accepted look feature

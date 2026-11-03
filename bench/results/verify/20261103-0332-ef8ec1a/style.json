@@ -1,0 +1,304 @@
+{
+ "metrics": {
+  "sat_mean": {
+   "value": 0.22765,
+   "gate": [
+    0.18,
+    0.35
+   ],
+   "op": "between",
+   "pass": true,
+   "report_only": false
+  },
+  "val_mean": {
+   "value": 0.59135,
+   "gate": [
+    0.45,
+    0.65
+   ],
+   "op": "between",
+   "pass": true,
+   "report_only": false
+  },
+  "val_std": {
+   "value": 0.0853,
+   "gate": [
+    0.08,
+    0.18
+   ],
+   "op": "between",
+   "pass": true,
+   "report_only": false
+  },
+  "dark_share": {
+   "value": 0.0,
+   "gate": 0.002,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "edge_share": {
+   "value": 0.003905,
+   "gate": 0.045,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "colourfulness": {
+   "value": 0.11264999999999999,
+   "gate": [
+    0.1,
+    0.25
+   ],
+   "op": "between",
+   "pass": true,
+   "report_only": false
+  },
+  "kmeans12_residual_de": {
+   "value": 0.8394999999999999,
+   "gate": 6.0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "shadow_ratio": {
+   "value": 0.951048951048951,
+   "gate": 0.75,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "penumbra_px": {
+   "value": 5.705831157528285,
+   "gate": 4,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "outliers_widened_band": {
+   "sat_mean": [],
+   "val_mean": [],
+   "val_std": [],
+   "dark_share": [],
+   "edge_share": [],
+   "colourfulness": [],
+   "kmeans12_residual_de": []
+  },
+  "per_image": {
+   "game_V01.png": {
+    "mean_s": 0.208,
+    "mean_v": 0.561,
+    "std_v": 0.089,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0036,
+    "colourfulness": 0.115,
+    "kmeans12_mean_dE": 1.2,
+    "kmeans12_p90_dE": 3.45
+   },
+   "game_V02.png": {
+    "mean_s": 0.205,
+    "mean_v": 0.59,
+    "std_v": 0.099,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0056,
+    "colourfulness": 0.119,
+    "kmeans12_mean_dE": 0.8,
+    "kmeans12_p90_dE": 1.78
+   },
+   "game_V03.png": {
+    "mean_s": 0.207,
+    "mean_v": 0.543,
+    "std_v": 0.091,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0039,
+    "colourfulness": 0.108,
+    "kmeans12_mean_dE": 1.2,
+    "kmeans12_p90_dE": 2.77
+   },
+   "game_V04.png": {
+    "mean_s": 0.247,
+    "mean_v": 0.62,
+    "std_v": 0.09,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0031,
+    "colourfulness": 0.126,
+    "kmeans12_mean_dE": 1.4,
+    "kmeans12_p90_dE": 3.25
+   },
+   "game_V05.png": {
+    "mean_s": 0.26,
+    "mean_v": 0.605,
+    "std_v": 0.061,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0031,
+    "colourfulness": 0.11,
+    "kmeans12_mean_dE": 0.49,
+    "kmeans12_p90_dE": 0.83
+   },
+   "game_V06.png": {
+    "mean_s": 0.165,
+    "mean_v": 0.623,
+    "std_v": 0.085,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0081,
+    "colourfulness": 0.095,
+    "kmeans12_mean_dE": 1.1,
+    "kmeans12_p90_dE": 3.09
+   },
+   "game_V07.png": {
+    "mean_s": 0.243,
+    "mean_v": 0.58,
+    "std_v": 0.123,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0047,
+    "colourfulness": 0.122,
+    "kmeans12_mean_dE": 1.06,
+    "kmeans12_p90_dE": 2.55
+   },
+   "game_V08.png": {
+    "mean_s": 0.262,
+    "mean_v": 0.582,
+    "std_v": 0.116,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0036,
+    "colourfulness": 0.129,
+    "kmeans12_mean_dE": 0.63,
+    "kmeans12_p90_dE": 1.35
+   },
+   "game_V09.png": {
+    "mean_s": 0.25,
+    "mean_v": 0.559,
+    "std_v": 0.112,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0036,
+    "colourfulness": 0.121,
+    "kmeans12_mean_dE": 0.83,
+    "kmeans12_p90_dE": 2.18
+   },
+   "game_V10.png": {
+    "mean_s": 0.177,
+    "mean_v": 0.567,
+    "std_v": 0.059,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.001,
+    "colourfulness": 0.105,
+    "kmeans12_mean_dE": 0.58,
+    "kmeans12_p90_dE": 1.06
+   },
+   "game_V11.png": {
+    "mean_s": 0.265,
+    "mean_v": 0.566,
+    "std_v": 0.095,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0041,
+    "colourfulness": 0.115,
+    "kmeans12_mean_dE": 0.74,
+    "kmeans12_p90_dE": 1.48
+   },
+   "game_V12.png": {
+    "mean_s": 0.203,
+    "mean_v": 0.575,
+    "std_v": 0.091,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0025,
+    "colourfulness": 0.113,
+    "kmeans12_mean_dE": 0.82,
+    "kmeans12_p90_dE": 1.9
+   },
+   "game_V13.png": {
+    "mean_s": 0.213,
+    "mean_v": 0.589,
+    "std_v": 0.085,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0039,
+    "colourfulness": 0.121,
+    "kmeans12_mean_dE": 0.92,
+    "kmeans12_p90_dE": 2.1
+   },
+   "game_V14.png": {
+    "mean_s": 0.242,
+    "mean_v": 0.592,
+    "std_v": 0.076,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0034,
+    "colourfulness": 0.122,
+    "kmeans12_mean_dE": 0.67,
+    "kmeans12_p90_dE": 1.39
+   },
+   "game_V15.png": {
+    "mean_s": 0.182,
+    "mean_v": 0.689,
+    "std_v": 0.084,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0112,
+    "colourfulness": 0.101,
+    "kmeans12_mean_dE": 0.8,
+    "kmeans12_p90_dE": 2.96
+   },
+   "game_V16.png": {
+    "mean_s": 0.303,
+    "mean_v": 0.554,
+    "std_v": 0.081,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0007,
+    "colourfulness": 0.074,
+    "kmeans12_mean_dE": 0.61,
+    "kmeans12_p90_dE": 1.06
+   },
+   "game_V17.png": {
+    "mean_s": 0.238,
+    "mean_v": 0.589,
+    "std_v": 0.06,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.005,
+    "colourfulness": 0.15,
+    "kmeans12_mean_dE": 1.54,
+    "kmeans12_p90_dE": 4.7
+   },
+   "game_V18.png": {
+    "mean_s": 0.298,
+    "mean_v": 0.622,
+    "std_v": 0.031,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0002,
+    "colourfulness": 0.077,
+    "kmeans12_mean_dE": 0.19,
+    "kmeans12_p90_dE": 0.41
+   },
+   "game_V19.png": {
+    "mean_s": 0.175,
+    "mean_v": 0.635,
+    "std_v": 0.089,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.0018,
+    "colourfulness": 0.11,
+    "kmeans12_mean_dE": 0.53,
+    "kmeans12_p90_dE": 1.4
+   },
+   "game_V20.png": {
+    "mean_s": 0.21,
+    "mean_v": 0.586,
+    "std_v": 0.089,
+    "dark_frac_v_lt_0p12": 0.0,
+    "edge_frac_g_gt_0p2": 0.005,
+    "colourfulness": 0.12,
+    "kmeans12_mean_dE": 0.68,
+    "kmeans12_p90_dE": 1.37
+   }
+  },
+  "any_frame_outside_widened_band": {
+   "sat_mean": false,
+   "val_mean": false,
+   "val_std": false,
+   "dark_share": false,
+   "edge_share": false,
+   "colourfulness": false,
+   "kmeans12_residual_de": false
+  },
+  "shadow": {
+   "shadow_px": 28899
+  }
+ }
+}
