@@ -162,9 +162,15 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const keys = new Set<string>();
+  // free-fly debug camera (V): WASD fly, R and F up and down, Q and E turn, Z and X tilt, Shift faster
+  let free: Pose | null = null;
   const onKey = (e: KeyboardEvent) => {
     if (e.type === "keydown") keys.add(e.code); else keys.delete(e.code);
     if (e.code === "Space") e.preventDefault();
+    if (e.type === "keydown" && e.code === "KeyV" && !e.repeat) {
+      free = free ? null : { x: camera.position.x, y: camera.position.y, z: camera.position.z, yaw: follow.yaw, pitch: -30, fov: 50 };
+      pose = free;
+    }
   };
   const onWheel = (e: WheelEvent) => {
     follow.dist = THREE.MathUtils.clamp(follow.dist * Math.exp(e.deltaY * 0.001), CAM.play_min_distance_m, CAM.play_max_distance_m);
@@ -371,10 +377,25 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     acc += Math.min((now - last) / 1000, 0.1);
     last = now;
     if (!testMode) {
-      const input = readInput();
+      if (free) {
+        const sp = (keys.has("ShiftLeft") ? 120 : 30) * Math.min(acc, 0.1);
+        const fx = Math.sin(D2R(free.yaw)), fz = -Math.cos(D2R(free.yaw));
+        if (keys.has("KeyW")) { free.x += fx * sp; free.z += fz * sp; }
+        if (keys.has("KeyS")) { free.x -= fx * sp; free.z -= fz * sp; }
+        if (keys.has("KeyD")) { free.x -= fz * sp; free.z += fx * sp; }
+        if (keys.has("KeyA")) { free.x += fz * sp; free.z -= fx * sp; }
+        if (keys.has("KeyR")) free.y += sp;
+        if (keys.has("KeyF")) free.y -= sp;
+        if (keys.has("KeyQ")) free.yaw -= 60 * Math.min(acc, 0.1);
+        if (keys.has("KeyE")) free.yaw += 60 * Math.min(acc, 0.1);
+        if (keys.has("KeyZ")) free.pitch = Math.max(-89, free.pitch - 40 * Math.min(acc, 0.1));
+        if (keys.has("KeyX")) free.pitch = Math.min(60, free.pitch + 40 * Math.min(acc, 0.1));
+        void stream.update(free.x, free.z);
+      }
+      const input = free ? { move: new THREE.Vector2(), run: false, crouch: false, honk: false, flap: false } : readInput();
       while (acc >= FIXED_DT) { step(FIXED_DT, input); acc -= FIXED_DT; }
-      if (keys.has("KeyQ")) follow.yaw -= 70 * FIXED_DT;
-      if (keys.has("KeyE")) follow.yaw += 70 * FIXED_DT;
+      if (!free && keys.has("KeyQ")) follow.yaw -= 70 * FIXED_DT;
+      if (!free && keys.has("KeyE")) follow.yaw += 70 * FIXED_DT;
       placeCamera();
       goose.rig.lowerBill.getWorldPosition(bill);
       hotspot?.sync(1 / 60, now / 1000, camera, bill);
