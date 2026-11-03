@@ -37,15 +37,25 @@ The planning pack is at `docs/plan/` (if it is not there, search the repo for `0
 7. `07-licences-and-prior-art.md`: licences, attribution text, UGG IP lines.
 8. `data-samples/README.md` and `data-samples/ground-truth/`: real extracts and the frozen ground truth.
 
+9. Course context (read after the list above, skim for what applies, do not copy it into the repo): `docs/plan/research/se390-mp2-notion-page.md` (a local copy of Brian's Notion page "SE 390 MP2", with the MP2 deadlines, the grading breakdown, the AI-use policy and the deliverables), `docs/plan/research/course-constraints.md` (what the SE 390 course rules mean for this build), and `docs/plan/research/guide.txt` (the full SE 390 course guide v1.2, which is authoritative if anything conflicts). If a Notion connector is available, the live pages are https://app.notion.com/p/40dd23b11b0481f59c9ffe691703220e (SE 390 MP2) and https://app.notion.com/p/e8d45efbaf8c47489cbb46b100dacf4a (the full course guide). Background only: `docs/plan/research/goose-game-research.md` and `docs/plan/research/slop-newyork-teardown.md` (how the reference projects were built).
+
+The course context decides **how the work is judged** (the category is Advanced Technology: measured results, comparison against alternatives, and the AI-use policy with the `Assisted-by` trailer and `AI-USE.md`), not **what to build**. What to build is this prompt and the planning pack.
+
 When a doc and this prompt disagree, this prompt wins; log the disagreement in `NOTES.md`.
 
-## 4. Order of work
+## 4. Scope tonight: a working MVP first
+
+The target for tonight is a **playable, verified MVP**, not a feature-complete game: the real campus map loads from the pipeline, looks like the Untitled Goose Game style, and a goose walks around it with a follow camera while every P1 gate is measured and reported. Depth beats breadth. A smaller world that is accurate and verified beats a bigger one that is not. If you must cut, cut P2 content first, then the number of chunks, and never the verification harness.
+
+**Out of scope tonight (Brian does these later, do not start them):** the MP2 slides, the 5-minute narration script, the YouTube video, the abstract and the peer critiques. Do keep the facts those will need (benchmarks in `bench/results/`, the ledger, `AI-USE.md`, the commit trailers), because the slides and script will be built from them afterwards.
+
+## 5. Order of work
 
 ### Priority 1: world, map, verification, look, movement
 
 Do these in order. Each step ends with `npm run verify:fast` green and a commit.
 
-1. **V0, the harness** (doc 08 section 4.1). Scaffold the repo (section 5), copy `data-samples/ground-truth/` to `verify/ground-truth/` with `SHA256SUMS`, implement the Python validators and npm scripts from doc 08 section 4.5 against a stub world (a few City footprints extruded), the ledger, the gate, the contact sheet and `verify:selftest` with every mutant failing. Calibrate and freeze the 20 viewpoint poses; measure and freeze the starting-value thresholds in `verify/thresholds.json`.
+1. **V0, the harness** (doc 08 section 4.1). Scaffold the repo (section 6), copy `data-samples/ground-truth/` to `verify/ground-truth/` with `SHA256SUMS`, implement the Python validators and npm scripts from doc 08 section 4.5 against a stub world (a few City footprints extruded), the ledger, the gate, the contact sheet and `verify:selftest` with every mutant failing. Calibrate and freeze the 20 viewpoint poses; measure and freeze the starting-value thresholds in `verify/thresholds.json`.
 2. **M0 spikes** (doc 06): three.js 0.187.0 scene with the toon recipe on both backends (`forceWebGL: true` for WebGL2), backend logged; pipeline fetches the 9 lidar tiles (HTTP range requests with `remotezip`) and the City footprints from scratch.
 3. **Pipeline end to end** (doc 01 section 9): fetch with a manifest, clip and project to EPSG:26917 with local origin 536000 E, 4813000 N, terrain at 2 m, buildings (City footprints conflated with OSM ways and relations, parts, lidar p90 heights, post-2018 detector), water, path ribbons, trees, props, pack per 256 m chunk. Geometry gates of doc 08 section 2.1 green.
 4. **Streaming and rendering**: chunk decoder, 3 x 3 full detail plus far LOD, toon materials from `config/palette.json` and `config/style-rules.json`, baked AO as vertex colour, fog, faint shadows following the camera. Top-down (2.2) and fly-through (2.3) gates green.
@@ -61,7 +71,7 @@ Do these in order. Each step ends with `npm run verify:fast` green and a commit.
 
 P1 gates must stay green while you do P2. A P2 change that breaks a P1 gate is reverted.
 
-## 5. Repo layout
+## 6. Repo layout
 
 Use doc 06 section 2, plus:
 
@@ -79,7 +89,7 @@ review/                     pairs/, contact-sheet.jpg, overlays/ (gitignored ima
 VERIFY-LEDGER.md  REVIEW.md  NOTES.md  BLOCKERS.md  AI-USE.md  THIRD_PARTY.md
 ```
 
-## 6. Hard constraints
+## 7. Hard constraints
 
 - Browser game. TypeScript for the game and server, Python 3.12 for data. three.js 0.187.0 with `WebGPURenderer`, imports from `three/webgpu` and `three/tsl`, WebGL2 fallback working; no compute-only features in the core path. Rapier `@dimforge/rapier3d-compat` 0.21.0, `recast-navigation` 0.44.0, `three-mesh-bvh` 0.9.18, Vite, Vitest, Playwright. Pin versions in lockfiles; check an API exists in the installed package source before using it.
 - Colours only from `config/palette.json`; constants (bbox, origin, widths, sources, seeds) only in `config/campus.json`.
@@ -91,7 +101,7 @@ VERIFY-LEDGER.md  REVIEW.md  NOTES.md  BLOCKERS.md  AI-USE.md  THIRD_PARTY.md
 - Tone: slapstick only, nobody hurt, no police, no real people.
 - Do not push, open pull requests, post, email or contact anyone. Work on a local branch named `goal/overnight-<date>`. Brian reviews every change in the morning.
 
-## 7. Self-verification loop
+## 8. Self-verification loop
 
 Every increment:
 
@@ -106,21 +116,21 @@ Definition of done per phase is doc 08 section 4.1. A phase is done only when it
 
 Reward-hacking rules (doc 08 section 4.4) are binding: frozen ground truth with a checked hash; tune only on `dev` items; never tune on holdout items or viewpoints; never move a calibrated camera or edit the world to please a photo; never loosen a threshold without a logged reason; checks read packed chunks and real screenshots, never intermediates; `verify:selftest` must show every mutant failing.
 
-## 8. Logging and the ledger
+## 9. Logging and the ledger
 
 - `VERIFY-LEDGER.md`: one appended line per full run (time in America/Toronto, short SHA, backend, gates passed of total, key metrics, run folder). Never edit old lines.
 - `NOTES.md`: decisions you made and why, doc disagreements, assumptions, with timestamps.
 - `BLOCKERS.md`: anything that stopped an item (what, error text, what you tried, what you did instead).
 - `bench/results/`: every benchmark and verification run as JSON.
 
-## 9. Commit discipline
+## 10. Commit discipline
 
 - One concern per commit, small and reviewable, message says what and why and names the gates that pass.
 - Every AI-assisted commit ends with the trailer `Assisted-by: Claude:<your exact model id> [tools]` (doc 00 rule 3). Never add `Co-authored-by:`, `Generated-by:` or `Signed-off-by:`.
 - No AI notices in source files. Keep `AI-USE.md` current (tools, what for, how generated code is reviewed). Record any third-party code in `THIRD_PARTY.md`.
 - Never commit a change that fails the regression gate.
 
-## 10. When blocked
+## 11. When blocked
 
 - Log it in `BLOCKERS.md`, then move to the next item you can do. Never wait for a human.
 - A failed download: retry with backoff (3 tries), try the documented alternative (Geofabrik plus osmium instead of Overpass; another Overpass mirror; the OSM API map call), then mark the item blocked and continue with cached or sample data, **labelled as sample data** in REVIEW.md.
@@ -128,14 +138,14 @@ Reward-hacking rules (doc 08 section 4.4) are binding: frozen ground truth with 
 - Never fake verification: no hard-coded metric values, no skipped tests reported as passing, no thresholds edited to turn red into green, no screenshots taken from a different build.
 - If a gate looks wrong, do not weaken it: write the evidence in `NOTES.md` and in REVIEW.md under "gates to discuss", keep it red, and continue with other work.
 
-## 11. Budget
+## 12. Budget
 
 - Assume one night of wall-clock time and a finite token and context budget. Work in increments of at most about 45 minutes; commit after each green one.
 - Keep outputs small in your context: write large logs to files and read summaries.
 - Prefer finishing and verifying one thing over starting three.
 - Reserve the last 45 minutes (or the last 15% of your remaining budget, whichever comes first) for the final full verify and the review pack. If you are running out early, stop feature work immediately and produce the pack.
 
-## 12. Anti-slop rules
+## 13. Anti-slop rules
 
 - No dead code, commented-out blocks, unused exports or files "for later".
 - No placeholder data presented as real. Sample, stub or mock data is named as such in code, file names and REVIEW.md.
@@ -147,13 +157,13 @@ Reward-hacking rules (doc 08 section 4.4) are binding: frozen ground truth with 
 - No new dependency without a reason in the commit message and a licence line in `THIRD_PARTY.md`.
 - Tests assert behaviour and numbers, not implementation details.
 
-## 13. Stop condition
+## 14. Stop condition
 
 - Do **not** stop while any P1 gate is red and you still have budget and an unblocked item.
 - When every P1 gate is green and the review pack is produced, continue with P2 in the same increments within the remaining budget.
-- Stop when the budget reserve in section 11 is reached, or when every remaining item is blocked. In every case, finish by running the full `npm run verify` and producing the review pack below. Never end a session without it.
+- Stop when the budget reserve in section 12 is reached, or when every remaining item is blocked. In every case, finish by running the full `npm run verify` and producing the review pack below. Never end a session without it.
 
-## 14. Morning deliverables for Brian
+## 15. Morning deliverables for Brian
 
 1. `REVIEW.md` at the repo root:
    - one-paragraph summary of what now works;
@@ -168,7 +178,7 @@ Reward-hacking rules (doc 08 section 4.4) are binding: frozen ground truth with 
 4. The latest `bench/results/verify/<run>/summary.json` and the ledger.
 5. A clean branch history of small commits with trailers.
 
-## 15. First 30 minutes
+## 16. First 30 minutes
 
 1. Read `00` and `08` fully; skim the rest of the read-first list; write a 10-line plan in `NOTES.md`.
 2. `git init` if needed, create the branch, scaffold the doc 06 layout, `AI-USE.md`, `.gitignore` (data/raw, data/build, public/world, verify/cache, review images).
