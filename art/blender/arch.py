@@ -299,3 +299,91 @@ def inset(ring, d):
         s = d / max(m.dot(n1), 0.3)
         out.append(tuple(p1 + m * s))
     return out
+
+
+def _clip(a, b, s0, s1, z0, z1):
+    """Liang-Barsky clip of segment a-b (2D) to [s0, s1] x [z0, z1]."""
+    t0, t1 = 0.0, 1.0
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    for p, q in ((-dx, a[0] - s0), (dx, s1 - a[0]), (-dy, a[1] - z0), (dy, z1 - a[1])):
+        if abs(p) < 1e-12:
+            if q < 0:
+                return None
+        else:
+            r = q / p
+            if p < 0:
+                t0 = max(t0, r)
+            else:
+                t1 = min(t1, r)
+    if t0 > t1:
+        return None
+    return (a[0] + dx * t0, a[1] + dy * t0), (a[0] + dx * t1, a[1] + dy * t1)
+
+
+def _strip(kit, P, n, a, b, half, depth, colour):
+    """A flat bar from a to b (wall coords s, z), half-width `half`, standing `depth` proud of the wall."""
+    a, b = Vector((a[0], a[1])), Vector((b[0], b[1]))
+    d = b - a
+    if d.length < 1e-4:
+        return
+    side = Vector((-d.y, d.x)).normalized() * half
+    q = [P(*(a + side)), P(*(b + side)), P(*(b - side)), P(*(a - side))]
+    o = n * depth
+    kit.quad(q[3] + o, q[2] + o, q[1] + o, q[0] + o, colour)
+    for i in range(4):
+        kit.quad(q[i], q[(i + 1) % 4], q[(i + 1) % 4] + o, q[i] + o, colour)
+
+
+def honeycomb(kit, p, q, z0, z1, glass, frame, cell_w=5.8, cell_h=8.0, chev=1.6, bar=0.28, depth=0.55, phase=0.0, mullion=None):
+    """Glass wall with a proud hexagonal frame (QNC's cube): tall hex cells, rows offset half a cell."""
+    p3, q3 = Vector((p[0], p[1], 0)), Vector((q[0], q[1], 0))
+    L = (q3 - p3).length
+    t = (q3 - p3) / L
+    n = Vector((t.y, -t.x, 0))
+    P = lambda s, z: p3 + t * s + Vector((0, 0, z))
+    if mullion:
+        kit.curtain(p, q, z0, z1, glass, mullion, bay=1.45, row=z1 - z0, strip=0.06)
+    else:
+        kit.quad(P(0, z0), P(L, z0), P(L, z1), P(0, z1), glass)
+    w2, h2 = cell_w / 2, cell_h / 2
+    rows = int((z1 - z0) / (cell_h - chev)) + 2
+    cols = int(L / cell_w) + 3
+    for r in range(-1, rows):
+        cz = z0 + r * (cell_h - chev)
+        off = (w2 if r % 2 else 0.0) + phase
+        for c in range(-1, cols):
+            cs = c * cell_w + off
+            hexv = [(cs - w2, cz - h2 + chev), (cs, cz - h2), (cs + w2, cz - h2 + chev),
+                    (cs + w2, cz + h2 - chev), (cs, cz + h2), (cs - w2, cz + h2 - chev)]
+            for k in range(6):
+                seg = _clip(hexv[k], hexv[(k + 1) % 6], 0, L, z0, z1)
+                if seg:
+                    _strip(kit, P, n, seg[0], seg[1], bar, depth, frame)
+    # frame border along the wall edges
+    for a, b in (((0, z0), (L, z0)), ((0, z1), (L, z1)), ((0, z0), (0, z1)), ((L, z0), (L, z1))):
+        _strip(kit, P, n, a, b, bar, depth, frame)
+
+
+def fins(kit, p, q, z0, z1, glass, fin, pitch=1.2, depth=0.6, thick=0.12, spandrel=None, storey=None):
+    """Curtain wall with deep vertical fins (QNC's bar, Dana Porter's precast fins)."""
+    p3, q3 = Vector((p[0], p[1], 0)), Vector((q[0], q[1], 0))
+    L = (q3 - p3).length
+    if L < 0.5:
+        return
+    t = (q3 - p3) / L
+    n = Vector((t.y, -t.x, 0))
+    P = lambda s, z: p3 + t * s + Vector((0, 0, z))
+    if spandrel and storey:
+        z = z0
+        while z < z1 - 1e-6:
+            zt = min(z + storey, z1)
+            kit.quad(P(0, z), P(L, z), P(L, z + 0.9 if z + 0.9 < zt else zt), P(0, z + 0.9 if z + 0.9 < zt else zt), spandrel)
+            if z + 0.9 < zt:
+                kit.quad(P(0, z + 0.9), P(L, z + 0.9), P(L, zt), P(0, zt), glass)
+            z = zt
+    else:
+        kit.quad(P(0, z0), P(L, z0), P(L, z1), P(0, z1), glass)
+    nf = max(1, round(L / pitch))
+    for k in range(nf + 1):
+        s = min(L, k * L / nf)
+        _strip(kit, P, n, (s, z0), (s, z1), thick, depth, fin)
