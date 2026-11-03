@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0847-49fac97/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0847-49fac97-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-0927-90bc483/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-0928-90bc483-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 11.3 | record only | - | - | new | 15.2 |
+| flythrough.frame_ms_p95 | 11.2 | record only | - | - | new | 14.6 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -83,13 +83,13 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 | 1 |
-| style.sat_mean | 0.2325 | between [0.18, 0.35] | pass | - | new | 0.2325 |
-| style.val_mean | 0.578 | between [0.45, 0.65] | pass | - | new | 0.578 |
-| style.val_std | 0.0818 | between [0.08, 0.18] | pass | - | new | 0.0818 |
+| style.sat_mean | 0.2327 | between [0.18, 0.35] | pass | - | new | 0.2327 |
+| style.val_mean | 0.5778 | between [0.45, 0.65] | pass | - | new | 0.5778 |
+| style.val_std | 0.08195 | between [0.08, 0.18] | pass | - | new | 0.08195 |
 | style.dark_share | 0 | <= 0.002 | pass | - | new | 0 |
-| style.edge_share | 0.004505 | <= 0.045 | pass | - | new | 0.004515 |
+| style.edge_share | 0.004645 | <= 0.045 | pass | - | new | 0.004645 |
 | style.colourfulness | 0.1134 | between [0.1, 0.25] | pass | - | new | 0.1134 |
-| style.kmeans12_residual_de | 0.9335 | <= 6.0 | pass | - | new | 0.9355 |
+| style.kmeans12_residual_de | 0.925 | <= 6.0 | pass | - | new | 0.9305 |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new | 0.951 |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new | 5.704 |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 | 0.0365 |
@@ -103,26 +103,28 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 **First load** (`bench/results/firstload-2026-11-03-666acfb.json`): 6.19 MB transferred before the game is ready, against the doc 06 M1 gate of under 10 MB, in 23 requests and 626 ms on localhost.
 
-**Frame time** (`bench/results/frametime-2026-11-03-34b2406.json`): measured headless and uncapped at 1280 x 720, with the full crowd, 245 draw calls and 1,342,677 triangles including the shadow pass. This is within the doc 02 budget of 1.5 M triangles and 300 draw calls. Before 90c1eb7, the hidden crowd slots added 0.5 M triangles. Results are from the build machine only, not the doc 02 reference iGPU.
+**Frame time** (`bench/results/frametime-2026-11-03-ff69352.json`, last run after 90bc483): measured headless and uncapped at 1280 x 720, with the full crowd, 241 draw calls and 1,371,684 triangles including the shadow pass. This is within the doc 02 budget of 1.5 M triangles and 300 draw calls. Before 90c1eb7, the hidden crowd slots added 0.5 M triangles. Results are from the build machine only, not the doc 02 reference iGPU.
 
 | Backend | p50 | p95 |
 |---|---|---|
-| WebGPU | 1.4 ms | 1.8 ms |
-| WebGL2 | 3.0 ms | 4.5 ms |
+| WebGPU | 1.5 ms | 1.9 ms |
+| WebGL2 | 3.1 ms | 4.6 ms |
 
 **Heights baseline** (`bench/results/heights-baseline-2026-11-03-8cd9ca7.json`, doc 06 section 5): against lidar p90 on 118 UW footprints, the packed lidar tiers have an RMSE of 0.59 m. OSM levels x 3.5 m gives 6.63 m (61 footprints with a tag), and City FIRE_STOREYS x 3.5 m gives 5.10 m.
 
-**Looks** (advisory, agent vision, shuffled): mean 2.83 of 5.
+**Looks** (advisory, agent vision, shuffled): mean 2.86 of 5.
 
 | Criterion | Mean |
 |---|---|
 | Silhouette | 2.5 |
 | Proportions | 2.95 |
-| Pattern | 2.95 |
-| Colour | 3.25 |
-| Recognisability | 2.48 |
+| Pattern | 3.0 |
+| Colour | 3.3 |
+| Recognisability | 2.53 |
 
-The 0.03 disagreement between passes understates real noise. One agent scored both passes, and in the latest run both came from one shuffled viewing (`looks.json` says so).
+The 0.03 disagreement between passes understates real noise. One agent scored both passes, and in the latest runs both came from one shuffled viewing (`looks.json` says so).
+
+The scores have plateaued for a structural reason. The 20 viewpoints are frozen photo-match poses, and several frame something other than the landmark: V12 stands 100 m from the SLC courtyard where the panorama was taken, V16 faces EV2 in front of EV3, and V06 faces Health Services in front of QNC. Cameras may not be moved and the world may not be edited to please a photo, so most work since went into what the player sees. That work is the play camera, tree fading, planting and furniture from data, and the beauty sets in `review/look/beauty10` and `review/look/ugg_compare.jpg`, which the photo scores do not measure. Re-calibrating V06, V12 and V16 (a human decision under doc 08) would make the scores more informative.
 
 ## Contact sheet and overlays
 
@@ -213,7 +215,9 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 13. **People:** chunky nose-only figures with hairstyles, eye contact with the goose, and tug, fall, clap, shake and dressing gestures. The groundskeeper got a dome hard hat.
 14. **Tiers:** lidar tier outlines simplified at 1.2 m and opened by 2 px, removing pixel stair-steps (ring vertices 54,700 to 40,392).
 15. **Goose:** the run reads (neck forward and low), the flap snaps open to a full sideways span, and the camera's lean toward people scales with zoom.
-16. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
+16. **UGG frame:** side-by-side against the UGG screenshots (`review/look/ugg_compare.jpg`, local only) showed foreground trees as huge flat shapes and the goose too small. Trees now fade whole when they cover the goose or stand well in front of it (no holes or ghosts), and the play camera is 18 m at 24 degrees (goose about 11% of frame height, inside the amended band).
+17. **Density from data:** the 33 OSM gardens, 2 flowerbeds and 9 scrub areas are planted with shrubs and flowers (which are also hiding spots). Six more street-furniture kinds come from OSM: stop signs (moved to the verge), UW blue-light emergency phones, recycling, post boxes, notice boards and bollards.
+18. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 
