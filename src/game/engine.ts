@@ -7,6 +7,7 @@ import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materia
 import { AmbientCrowd } from "./ambient";
 import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
 import { chime } from "@/audio/honk";
+import { DecisionClient } from "@/ai/decide";
 import { applyDebugView, type DebugMode } from "@/render/debug";
 import { createScene } from "@/render/scene";
 import { swatch } from "@/config";
@@ -334,6 +335,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   hotspot = new HotspotRuntime(physics, (x, z) => stream.heightAt(x, z), mats.vertexColor, makeMarkMaterial(),
     mats.vertexColor, HOTSPOT_SEED);
   scene.add(hotspot.root);
+  if (params.get("jev") === "1") hotspot.decisions = new DecisionClient();
   const crowd = new AmbientCrowd(graph, (x, z) => stream.heightAt(x, z), mats.vertexColor, AMBIENT_COUNT, HOTSPOT_SEED + 1);
   scene.add(crowd.root);
   goose.onHonk = () => { hotspot?.honk(); crowd.honkAt(goose.position.x, goose.position.z); };

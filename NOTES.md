@@ -67,3 +67,7 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 ## 2026-11-03 04:05 Height spikes
 
 - The SLC showed a 42 m "tower": a 100 m2 tier far above the roof, with no mapped tree there (likely a 2018 crane or canopy). Two general attempts to separate canopy from roof by lidar roughness (per pixel, then per region interior) made Hagey Hall lose its fly tower (holdout) and raised dev RMSE, so both were reverted. Kept rule: a tier region under 150 m2 rising more than 8 m above every neighbouring level joins its neighbours' level. Every height metric is unchanged (dev 0.610 m, holdout 0.609 m, key max 1.3 m, per-pixel median 0.32 m).
+
+## 2026-11-03 04:20 Jev layer
+
+- `AI_GATEWAY_API_KEY` is not set on this machine, so per the goal only the mock and recorded-replay paths exist: `app/api/decide/route.ts` answers from `data/jev/recorded.json` (by situation key) when present, otherwise from a deterministic mock. No live gateway call was written or tested. The client (`src/ai/decide.ts`, `?jev=1`, off by default) is fallback-first with a 1.5 s deadline, 8 in flight, a cache, and a 0.6 confidence floor; answers only switch an NPC that is still in routine and only to allowed choices.

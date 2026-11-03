@@ -215,6 +215,25 @@ export class Sim {
     return null;
   }
 
+  /**
+   * Apply an optional decision-layer answer (doc 05 section 9): only from routine, only for allowed
+   * choices, and only if it still makes sense (the wanted item must still be away from home).
+   */
+  applyDecision(npcId: string, choice: string, itemId: string | null): boolean {
+    const n = this.npcs.get(npcId);
+    if (!n || n.state !== "routine") return false;
+    if (choice === "search_again" && itemId) {
+      const it = this.items.get(itemId);
+      if (!it || it.heldBy || dist(it.pos, it.homePos) < 1) return false;
+      n.wantItem = itemId;
+      this.setMark(n, "?");
+      this.go(n, "search");
+      return true;
+    }
+    if (choice === "shoo" && n.archetype !== "scaredy") { this.go(n, "shoo"); return true; }
+    return choice === "routine";
+  }
+
   step(dt: number) {
     this.t += dt;
     for (const it of this.items.values()) {

@@ -2,6 +2,7 @@ import * as THREE from "three/webgpu";
 import { campus } from "@/config";
 import { click, honk as honkSound } from "@/audio/honk";
 import type { Physics } from "@/physics/physics";
+import { DecisionClient } from "@/ai/decide";
 import { Sim, type SimEvent, type V2 } from "@/sim/sim";
 import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actors";
 import { CHARACTERS, populate } from "./hotspot";
@@ -33,6 +34,9 @@ export class HotspotRuntime {
     { id: "giveup", text: "Make someone give up and scratch their head", done: false, test: (e) => e.type === "giveup" },
   ];
   onTask?: (t: Task) => void;
+  /** Optional decision layer (?jev=1): consulted when someone gives up; the sim never waits for it. */
+  decisions: DecisionClient | null = null;
+  private lastWanted = new Map<string, string | null>();
 
   constructor(private physics: Physics, private heightAt: (x: number, z: number) => number,
     personMat: THREE.Material, markMat: THREE.Material, itemMat: THREE.Material, seed: number) {
@@ -92,8 +96,17 @@ export class HotspotRuntime {
     this.sim.goose.crouched = crouched;
     for (const n of this.sim.npcs.values()) this.lastPos.set(n.id, { ...n.pos });
     this.sim.step(dt);
+    for (const n of this.sim.npcs.values()) if (n.wantItem) this.lastWanted.set(n.id, n.wantItem);
     for (; this.seen < this.sim.events.length; this.seen++) {
       const e = this.sim.events[this.seen];
+      if (e.type === "giveup" && this.decisions) {
+        const n = this.sim.npcs.get(e.npc)!;
+        const item = this.lastWanted.get(n.id) ?? null;
+        const what = item ? this.sim.items.get(item)!.name : "something";
+        void this.decisions.decide({ npc: n.id, state: "giveup", options: ["routine", "search_again", "shoo"],
+          situation: `${n.name} (${n.archetype}) just gave up chasing a Canada goose that took ${what}.` })
+          .then((a) => { if (a && this.sim.applyDecision(n.id, a.choice, item)) this.decisions!.stats.applied++; });
+      }
       for (const t of this.tasks) {
         if (!t.done && t.test(e, this.sim)) { t.done = true; this.onTask?.(t); }
       }
