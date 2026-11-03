@@ -69,6 +69,8 @@ export interface GameHandle {
     items(): { id: string; name: string; x: number; z: number; heldBy: string | null }[];
     music(): string;
     navmeshes(): { id: string; ms: number; tris: number }[];
+    /** the last n simulation events, for scenario scripts */
+    events(n: number): unknown[];
     crowd(): number;
   };
 }
@@ -290,7 +292,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const handle: GameHandle = {
-    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], music: () => "silent", navmeshes: () => [], crowd: () => 0 },
+    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], music: () => "silent", navmeshes: () => [], events: () => [], crowd: () => 0 },
     ready: false,
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
@@ -414,6 +416,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     items: () => [...(hotspot?.sim.items.values() ?? [])].map((i) => ({ id: i.id, name: i.name, x: i.pos.x, z: i.pos.z, heldBy: i.heldBy })),
     crowd: () => crowd.size,
     music: () => music.current,
+    events: (n) => hotspot?.sim.events.slice(-n) ?? [],
     navmeshes: () => [...bakes.entries()].filter(([, v]) => v).map(([k, v]) => ({ id: k, ms: v.bake.ms, tris: v.bake.triangles })),
   };
   window.__wgs = handle;

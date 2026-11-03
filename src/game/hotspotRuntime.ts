@@ -1,7 +1,8 @@
 import * as THREE from "three/webgpu";
 import { campus, swatch, swatchHex } from "@/config";
 import { click, honk as honkSound } from "@/audio/honk";
-import type { Physics } from "@/physics/physics";
+import type RAPIER from "@dimforge/rapier3d-compat";
+import { GROUP_ITEM, type Physics } from "@/physics/physics";
 import { DecisionClient } from "@/ai/decide";
 import { Menace } from "@/sim/menace";
 import { Sim, type SimEvent, type V2, WORN } from "@/sim/sim";
@@ -12,6 +13,8 @@ const EYE_M = 1.6;
 const ARCHETYPE_WORDS = { normal: "calm", chaser: "territorial, easily annoyed", scaredy: "nervous, easily startled", tidy: "fussy, tidy" };
 // props are drawn larger than life so they read from the diorama camera (the map itself stays to scale)
 const ITEM_SCALE = 1.5;
+/** half extents (m, after ITEM_SCALE) of the physics box for items the goose drags */
+const DRAG_BOX: Record<string, [number, number, number]> = { cone: [0.26, 0.4, 0.26], backpack: [0.24, 0.27, 0.16], basket: [0.3, 0.2, 0.22] };
 /** item kinds that roll */
 const ROUND = new Set(["apple", "ball"]);
 
@@ -116,6 +119,7 @@ export class HotspotRuntime {
       this.dragLast = { ...p };
       if (this.dragM >= 30) { this.dragM -= 10; this.menace.add("drag_10m", this.sim.t); }
     } else { this.dragM = 0; this.dragLast = null; }
+    this.dragPhysics(dt);
     this.itemPhysics(dt, goosePos, gooseSpeed);
     this.menace.tick(this.sim.t);
     for (; this.seen < this.sim.events.length; this.seen++) {
@@ -148,6 +152,49 @@ export class HotspotRuntime {
     }
   }
 
+  /**
+   * Dragged items (goal P2 item 1): a Rapier dynamic body hung by a spherical joint from a kinematic
+   * anchor at the bill, so heavy things trail, swing and catch on walls. After release the body
+   * keeps going until it sleeps (or 4 s), then hands its resting place back to the simulation.
+   */
+  private drag = new Map<string, { body: RAPIER.RigidBody; joint: RAPIER.ImpulseJoint | null; hy: number; freeT: number }>();
+  private anchor: RAPIER.RigidBody | null = null;
+
+  private dragPhysics(dt: number) {
+    const R = this.physics.R, w = this.physics.world;
+    const id = this.sim.goose.holding;
+    const it = id ? this.sim.items.get(id)! : null;
+    this.anchor ??= w.createRigidBody(R.RigidBodyDesc.kinematicPositionBased().setTranslation(this.gooseHead.x, this.gooseHead.y, this.gooseHead.z));
+    this.anchor.setNextKinematicTranslation({ x: this.gooseHead.x, y: this.gooseHead.y, z: this.gooseHead.z });
+    if (it && it.weight === "drag" && !this.drag.get(it.id)?.joint) {
+      let d = this.drag.get(it.id);
+      const [hx, hy, hz] = DRAG_BOX[it.id.split("_")[0]] ?? [0.25, 0.25, 0.25];
+      if (!d) {
+        const y = this.ground(it.pos.x, it.pos.z) + hy + 0.02;
+        const body = w.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(it.pos.x, y, it.pos.z)
+          .setLinearDamping(1.2).setAngularDamping(1.5).setCanSleep(true));
+        w.createCollider(R.ColliderDesc.cuboid(hx, hy, hz).setDensity(25).setFriction(0.8).setCollisionGroups(GROUP_ITEM), body);
+        d = { body, joint: null, hy, freeT: 0 };
+        this.drag.set(it.id, d);
+      }
+      d.body.wakeUp();
+      d.joint = w.createImpulseJoint(R.JointData.spherical({ x: 0, y: 0, z: 0 }, { x: 0, y: hy * 0.6, z: 0 }), this.anchor, d.body, true);
+      d.freeT = 0;
+    }
+    for (const [iid, d] of this.drag) {
+      const item = this.sim.items.get(iid)!;
+      if (d.joint && item.heldBy !== "goose") { w.removeImpulseJoint(d.joint, true); d.joint = null; }
+      const p = d.body.translation();
+      if (!item.heldBy || item.heldBy === "goose") item.pos = { x: p.x, z: p.z };
+      if (!d.joint) d.freeT += dt;
+      // someone else picked it up, or it has come to rest: back to the simulation
+      if (!d.joint && ((item.heldBy && item.heldBy !== "goose") || d.body.isSleeping() || d.freeT > 4)) {
+        w.removeRigidBody(d.body);
+        this.drag.delete(iid);
+      }
+    }
+  }
+
   // loose-item velocities (spec I-7 pushable physics objects, I-8 items float)
   private itemVel = new Map<string, V2>();
   private lastGoose: V2 | null = null;
@@ -157,7 +204,7 @@ export class HotspotRuntime {
     const gv = this.lastGoose ? { x: (g.x - this.lastGoose.x) / dt, z: (g.z - this.lastGoose.z) / dt } : { x: 0, z: 0 };
     this.lastGoose = g;
     for (const it of this.sim.items.values()) {
-      if (it.heldBy) { this.itemVel.delete(it.id); continue; }
+      if (it.heldBy || this.drag.has(it.id)) { this.itemVel.delete(it.id); continue; }
       const v = this.itemVel.get(it.id) ?? { x: 0, z: 0 };
       const kind = it.id.split("_")[0];
       // the goose body (radius 0.35 m) shoves what it walks into, along its own motion; only round
@@ -219,6 +266,14 @@ export class HotspotRuntime {
         continue;
       }
       if (m.parent !== this.root) { this.root.add(m); m.scale.setScalar(ITEM_SCALE); }
+      const d = this.drag.get(it.id);
+      if (d) {
+        // the mesh origin is at its base: offset down from the body centre along the body's up
+        const p = d.body.translation(), q = d.body.rotation();
+        m.quaternion.set(q.x, q.y, q.z, q.w);
+        m.position.set(p.x, p.y, p.z).add(new THREE.Vector3(0, -d.hy, 0).applyQuaternion(m.quaternion));
+        continue;
+      }
       if (it.heldBy === "goose") {
         m.position.copy(gooseBill).add(new THREE.Vector3(0, -0.06, 0));
         const sw = this.swing;

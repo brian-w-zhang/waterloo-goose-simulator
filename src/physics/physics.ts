@@ -10,6 +10,14 @@ export function loadRapier(): Promise<Rapier> {
   return ready;
 }
 
+/**
+ * Collision groups (upper 16 bits membership, lower 16 filter). The world's static colliders keep
+ * the default (all). Dragged items collide with the world and each other but not the goose, whose
+ * capsule would otherwise shove the item it holds.
+ */
+export const GROUP_GOOSE = (0x0002 << 16) | 0xfffb;
+export const GROUP_ITEM = (0x0004 << 16) | 0x0005;
+
 /** Physics world: a terrain heightfield and a building trimesh per loaded chunk. */
 export class Physics {
   readonly world: RAPIER.World;

@@ -155,7 +155,7 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
   - M3 is all brick, with no glass centre bay.
   - SLC's crescent facade is polygonal, and its brick ends are missing.
 - **Post-2018 buildings** (median nDSM under 1 m; heights from tags or an 8 m default), 29 in total: SLC (8.0 m, default), Passageway (8.0 m, default), OBJECTID 21481 (8.0 m, default), OBJECTID 21482 (8.0 m, default), OBJECTID 21483 (8.0 m, default), OBJECTID 26443 (57.92 m, osm_levels), OBJECTID 28007 (8.0 m, default), WATERLOO MEMORIAL RECREATION COMPLEX (8.0 m, default), WATERLOO MEMORIAL RECREATION COMPLEX (10.86 m, osm_levels), OBJECTID 29877 (32.58 m, fire_storeys), ESC (8.0 m, default), OBJECTID 30616 (43.44 m, fire_storeys), AVR (3.62 m, osm_levels), OBJECTID 31061 (21.72 m, fire_storeys), OBJECTID 31175 (8.0 m, default), Elora House (76.02 m, osm_levels), OBJECTID 32023 (8.0 m, default), CIF (8.0 m, default), Waterloo Park Splash Pad Pavilion (8.0 m, default), OBJECTID 32961 (54.3 m, fire_storeys), OBJECTID 33044 (8.0 m, default), OBJECTID 33136 (21.72 m, osm_levels), OBJECTID 33888 (72.4 m, fire_storeys), OBJECTID 34101 (21.72 m, fire_storeys), MHR (8.0 m, default), CIF (8.0 m, default), Waterloo Park Splash Pad Pavilion (8.0 m, default), OBJECTID 38185 (8.0 m, default), OBJECTID 39717 (8.0 m, default).
-- **Item physics:** items are carried, dragged, shoved, rolled and floated by the simulation and a small kinematic step, not Rapier rigid bodies and joints as doc 05 asks. Items do not stack, and fragile items do not break.
+- **Item physics:** dragged items (cones, totes, baskets) are Rapier dynamic bodies on a spherical joint at the bill (`tools/scenario_drag.mjs`). Light items are carried, shoved, rolled and floated by a small kinematic step instead. Items do not stack, and fragile items do not break.
 - **Fly-through frame time:** the harness's 36.6 ms p95 is the CPU time of a forced synchronous render in a test loop, not game frame time. Use the frame-time benchmark instead.
 - **Data provenance:** there is no sample data in the build; every layer was fetched live (`pipeline/manifest.json`).
 
@@ -211,6 +211,6 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
    - QNC: the cube;
    - SLC: the crescent and brick ends;
    - M3: the glass bay.
-4. Rapier rigid bodies for items, so they can stack and topple, plus fragile items that break (spec I-7, I-9).
+4. Rapier bodies for light items too, so they can stack and topple, plus fragile items that break (spec I-7, I-9).
 5. Per-surface footstep and drag sounds (doc 03 R-S2).
 6. Re-run the frame-time benchmark on the doc 02 reference iGPU laptop.

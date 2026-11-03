@@ -1,6 +1,6 @@
 import * as THREE from "three/webgpu";
 import type RAPIER from "@dimforge/rapier3d-compat";
-import type { Physics } from "@/physics/physics";
+import { GROUP_GOOSE, type Physics } from "@/physics/physics";
 import { type GooseRig, makeGoose, updateNeck } from "./model";
 
 export interface GooseInput {
@@ -64,7 +64,8 @@ export class Goose {
     this.position.copy(start);
     this.body = physics.world.createRigidBody(R.RigidBodyDesc.kinematicPositionBased()
       .setTranslation(start.x, start.y + CAPSULE_R + CAPSULE_HALF, start.z));
-    this.collider = physics.world.createCollider(R.ColliderDesc.capsule(CAPSULE_HALF, CAPSULE_R), this.body);
+    this.collider = physics.world.createCollider(R.ColliderDesc.capsule(CAPSULE_HALF, CAPSULE_R)
+      .setCollisionGroups(GROUP_GOOSE), this.body);
     this.controller = physics.world.createCharacterController(0.03);
     this.controller.enableSnapToGround(0.4);
     this.controller.enableAutostep(0.35, 0.2, false);
@@ -108,7 +109,7 @@ export class Goose {
     this.vy = this.grounded ? -1 : this.vy - 9.81 * dt;
     const delta = fwd.multiplyScalar(this.speed * dt).setY(this.vy * dt);
     if (this.controller && this.collider && this.body) {
-      this.controller.computeColliderMovement(this.collider, delta);
+      this.controller.computeColliderMovement(this.collider, delta, undefined, GROUP_GOOSE);
       const m = this.controller.computedMovement();
       this.grounded = this.controller.computedGrounded();
       const t = this.body.translation();

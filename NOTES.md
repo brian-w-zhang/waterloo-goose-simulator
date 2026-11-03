@@ -86,3 +86,8 @@ Brian asked for at least five more full passes (data and signs, goose feel, NPCs
 - `docs/research/plazas-signage-data.{md,json}`: Street View and business photos for the plazas next to campus; the UW Campus Wayfinding sign family drawings (charcoal monolith 589 x 2438 mm, sloped top, gold band, gold code, white name); 29 extra data sources tested.
 - UW's public ArcGIS layers (campus building points, 7,231 parking stalls, 229 bike racks, path polygons) answer without a key but state no licence, so like the City orthophoto they are reference and QA only and nothing derived from them ships. Parking stall lines are generated procedurally from OSM lot outlines instead.
 - Off-campus retail buildings get styles keyed by City OBJECTID from the Street View notes (University Shops Plaza beige siding and brown roof with glazed storefronts; the Lester, Linden, Phillip Square and Sage podium towers).
+
+## 2026-11-03 06:45 three-mesh-bvh removed
+The goal pinned three-mesh-bvh 0.9.18 for camera occlusion and vision rays, but both ended up as
+Rapier ray casts against the colliders the character controller already needs (one acceleration
+structure instead of two). Nothing imported it, so it is removed (anti-slop: no unused dependencies).

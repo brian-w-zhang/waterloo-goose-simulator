@@ -107,7 +107,7 @@ export const LINES = {
 export const PERCEPTION = {
   coneDeg: 110, coneRange: 18, periphRange: 4, honkRange: 25, closeHonk: 4,
   itemCheckRange: 8, reactTime: 0.6, chaseGiveUpS: 12, chaseLeashM: 40, gooseMemoryS: 30,
-  repeatedHonks: 3, repeatedWindowS: 6, fleeS: 3, grabReach: 0.9, gripS: 0.5,
+  repeatedHonks: 3, repeatedWindowS: 6, fleeS: 3, grabReach: 0.9, gripS: 0.5, personalM: 0.65,
   tugWinS: 1.1, tugLoseS: 2.4, tugPullM: 0.6, fallS: 2.2, hideSeeM: 1.2, tripChance: 0.5,
 };
 
@@ -374,7 +374,15 @@ export class Sim {
       if (it.heldBy === "goose" || it.heldBy === WORN) it.pos = { ...this.goose.pos };
       else if (it.heldBy && this.npcs.has(it.heldBy)) it.pos = { ...this.npcs.get(it.heldBy)!.pos };
     }
-    for (const n of this.npcs.values()) this.think(n, dt);
+    for (const n of this.npcs.values()) {
+      this.think(n, dt);
+      // personal space: nobody stands inside the goose (snatching works from 0.8 m)
+      const dx = n.pos.x - this.goose.pos.x, dz = n.pos.z - this.goose.pos.z, d = Math.hypot(dx, dz);
+      if (d < PERCEPTION.personalM && n.state !== "tug") {
+        const k = PERCEPTION.personalM / (d || 1e-3);
+        n.pos = d > 1e-3 ? { x: this.goose.pos.x + dx * k, z: this.goose.pos.z + dz * k } : { x: n.pos.x + PERCEPTION.personalM, z: n.pos.z };
+      }
+    }
   }
 
   /**
