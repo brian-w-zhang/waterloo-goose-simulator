@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-1003-29eaea7/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-1004-29eaea7-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-1010-6d1cea8/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-1013-6d1cea8+dirty-webgl/summary.json` (the "+dirty" was a false positive, see `NOTES.md` 10:17), 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 11.1 | record only | - | - | new | 15.4 |
+| flythrough.frame_ms_p95 | 10.4 | record only | - | - | new | 16.7 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -219,7 +219,8 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 17. **Density from data:** the 33 OSM gardens, 2 flowerbeds and 9 scrub areas are planted with shrubs and flowers (which are also hiding spots). Six more street-furniture kinds come from OSM: stop signs (moved to the verge), UW blue-light emergency phones, recycling, post boxes, notice boards and bollards.
 18. **No outlines:** the glass styles' charcoal cornice read as ink lines from the play camera, so it became grey metal. V11's photo has a darker top band, so this is slightly less faithful there.
 19. **Windows:** light frames and a paler top quarter on punched and ribbon windows (UGG windows), in full palette swatches (a first version blended them and failed the palette lock, caught by the gate). Windows are drawn only where the whole window fits under the cornice. Hagey Hall's fly tower is blank brick with a clerestory strip, from research row 32, which cites the V10 photo (`NOTES.md`, 09:55).
-20. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
+20. **DC and E5 details from research:** red steel portal frames at DC's two OSM main entrances (row 25); glass ribbon bands and a charcoal base on E5 (row 34).
+21. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 
