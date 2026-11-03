@@ -21,14 +21,14 @@ A seventeen-task to-do list follows the nearest hotspot and includes a gated fin
 
 When a character gives up a chase, the optional Jev layer (`?jev=1`) picks their next move through the Vercel AI Gateway, called from the server only (about 280 ms, $0.000017 a call). Calls are cached and replayed from `data/jev/recorded.jsonl`, with a deterministic mock fallback.
 
-An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses at all three hotspots (it teleports between them), records a video and must finish at least six tasks. It usually finishes nine; the thesis-laptop carry misses about one run in three. The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
+An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses at all three hotspots (it teleports between them), records a video and must finish at least eight tasks. It finished all nine in seven straight runs across both backends. The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
 
 How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm start`, then open http://localhost:3100).
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0749-aa79309/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0750-aa79309-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-0847-49fac97/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-0847-49fac97-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 10.2 | record only | - | - | new | 14.6 |
+| flythrough.frame_ms_p95 | 11.3 | record only | - | - | new | 15.2 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -60,7 +60,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | geometry.distance_median_err_m | 0.03261 | < 0.5 | pass | 0.03261 | +0 | 0.03261 |
 | geometry.azimuth_max_err_deg | 0.1295 | <= 1.0 | pass | 0.1295 | +0 | 0.1295 |
 | heights.height_key_max_err_m | 1.3 | <= 2.0 | pass | 1.3 | +0 | 1.3 |
-| heights.height_rmse_dev_m | 0.5279 | < 1.5 | pass | 0.6102 | -0.08234 | 0.5279 |
+| heights.height_rmse_dev_m | 0.5317 | < 1.5 | pass | 0.6102 | -0.0785 | 0.5317 |
 | heights.height_rmse_holdout_m | 0.608 | < 2.0 | pass | 0.609 | -0.001064 | 0.608 |
 | heights.height_random20_rmse_m | 0.5502 | < 2.0 | pass | 0.5745 | -0.02423 | 0.5502 |
 | heights.height_pixel_median_abs_m | 0.34 | < 1.5 | pass | 0.31 | +0.02996 | 0.34 |
@@ -77,26 +77,26 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | network.network_length_rel_err | 1.198e-06 | <= 0.01 | pass | 1.198e-06 | +0 | 1.198e-06 |
 | palette.palette_id_off_share | 0 | <= 0.0 | pass | - | new | 0 |
 | palette.lit_palette_share | 1 | >= 0.95 | pass | - | new | 1 |
-| play.playtest_tasks_done | 9 | >= 6 | pass | - | new | 8 |
+| play.playtest_tasks_done | 9 | >= 8 | pass | - | new | 9 |
 | play.playtest_page_errors | 0 | <= 0 | pass | - | new | 0 |
 | selftest.selftest_survivors | 0 | <= 0 | pass | - | new | 0 |
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 | 1 |
-| style.sat_mean | 0.2324 | between [0.18, 0.35] | pass | - | new | 0.2324 |
-| style.val_mean | 0.5779 | between [0.45, 0.65] | pass | - | new | 0.5779 |
-| style.val_std | 0.08185 | between [0.08, 0.18] | pass | - | new | 0.08185 |
+| style.sat_mean | 0.2325 | between [0.18, 0.35] | pass | - | new | 0.2325 |
+| style.val_mean | 0.578 | between [0.45, 0.65] | pass | - | new | 0.578 |
+| style.val_std | 0.0818 | between [0.08, 0.18] | pass | - | new | 0.0818 |
 | style.dark_share | 0 | <= 0.002 | pass | - | new | 0 |
-| style.edge_share | 0.00451 | <= 0.045 | pass | - | new | 0.00452 |
+| style.edge_share | 0.004505 | <= 0.045 | pass | - | new | 0.004515 |
 | style.colourfulness | 0.1134 | between [0.1, 0.25] | pass | - | new | 0.1134 |
-| style.kmeans12_residual_de | 0.9485 | <= 6.0 | pass | - | new | 0.9395 |
+| style.kmeans12_residual_de | 0.9335 | <= 6.0 | pass | - | new | 0.9355 |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new | 0.951 |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new | 5.704 |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 | 0.0365 |
 | terrain.terrain_max_m | 0.3871 | < 1.5 | pass | 0.3871 | +0 | 0.3871 |
 | terrain.seam_max_m | 0.0003152 | < 0.01 | pass | 0.0003152 | +0 | 0.0003152 |
 | topdown.topdown_building_iou_min | 0.9782 | >= 0.95 | pass | - | new | 0.9782 |
-| topdown.topdown_chamfer_mean_m | 0.05316 | <= 0.5 | pass | - | new | 0.05315 |
+| topdown.topdown_chamfer_mean_m | 0.05336 | <= 0.5 | pass | - | new | 0.05335 |
 | topdown.topdown_chamfer_p95_m | 0 | <= 1.5 | pass | - | new | 0 |
 | topdown.topdown_path_iou_min | 0.9867 | >= 0.85 | pass | - | new | 0.9867 |
 | walk.goose_walk_falls | 0 | <= 0 | pass | - | new | 0 |
@@ -143,6 +143,7 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
   - The 12-colour k-means residual went from 0.794 to 0.840 (tufts, flowers, canopies).
   - Top-down chamfer mean went from 0.05854 to 0.05865 m (the DC vault overhangs its footprint by centimetres).
   - Random-20 height RMSE went from 0.5477 to 0.5502 m when the lidar tiers were smoothed (dev RMSE improved from 0.569 to 0.528 m).
+  - Dev height RMSE went from 0.5279 to 0.5317 m when tier teeth stopped moving to levels they don't touch (a correctness fix).
 - **Viewpoints with recognisability 1 or 2** (scores from both passes):
   - V02 (2 / 3): DC is guessable from the teal glass but lacks its vault and ducts
   - V03 (2 / 2): with a conifer in front and a buff wall it does not read as MC's concrete bands
@@ -164,6 +165,7 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
 - **Item physics:** dragged items (cones, totes, baskets) are Rapier dynamic bodies on a spherical joint at the bill (`tools/scenario_drag.mjs`). Light items are carried, shoved, rolled and floated by a small kinematic step instead. Items do not stack, and fragile items do not break.
 - **Fly-through frame time:** the harness's 36.6 ms p95 is the CPU time of a forced synchronous render in a test loop, not game frame time. Use the frame-time benchmark instead.
 - **Error handling:** an independent silent-failure review of the runtime found 10 issues; all are fixed (commit b6d2815). Failed chunks now retry with backoff, one frame exception no longer freezes the game, navmeshes wait for their chunks, and Jev failures are logged. A forced 404 on one chunk was logged, reported in `window.__wgs.info()` and recovered.
+- **Correctness review:** a second independent review of this session's game code found six bugs, all fixed (commit f9ce7f3) with regression tests. Examples: an owner could pick up the pieces of a smashed mug, people stalled beside a standing goose, dragged items jumped to the goose when grabbed, and shop-front walls missed signs in a neighbouring chunk.
 - **Jev cold start:** the first live call after a server start used to time out at 1.4 s, so a warm-up request now opens the gateway connection when `?jev=1` starts.
 - **Data provenance:** there is no sample data in the build; every layer was fetched live (`pipeline/manifest.json`).
 
