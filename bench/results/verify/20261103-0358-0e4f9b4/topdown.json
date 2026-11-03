@@ -1,0 +1,476 @@
+{
+ "metrics": {
+  "topdown_building_iou_min": {
+   "value": 0.9781955983092844,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "topdown_chamfer_mean_m": {
+   "value": 0.05854267627000809,
+   "gate": 0.5,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "topdown_chamfer_p95_m": {
+   "value": 0.0,
+   "gate": 1.5,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "topdown_path_iou_min": {
+   "value": 0.9866306978220336,
+   "gate": 0.85,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "chunks": [
+   {
+    "chunk": "0_0",
+    "building_iou": 0.9879,
+    "chamfer_mean_m": 0.037,
+    "path_iou": 0.9992
+   },
+   {
+    "chunk": "0_1",
+    "building_iou": 0.995,
+    "chamfer_mean_m": 0.036,
+    "path_iou": 0.9993
+   },
+   {
+    "chunk": "0_2",
+    "building_iou": 0.9828,
+    "chamfer_mean_m": 0.058,
+    "path_iou": 0.9975
+   },
+   {
+    "chunk": "0_3",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9994
+   },
+   {
+    "chunk": "0_4",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9988
+   },
+   {
+    "chunk": "0_5",
+    "path_iou": 0.9963
+   },
+   {
+    "chunk": "0_6"
+   },
+   {
+    "chunk": "1_0",
+    "building_iou": 0.9814,
+    "chamfer_mean_m": 0.059,
+    "path_iou": 0.9985
+   },
+   {
+    "chunk": "1_1",
+    "building_iou": 0.9814,
+    "chamfer_mean_m": 0.065,
+    "path_iou": 0.9986
+   },
+   {
+    "chunk": "1_2",
+    "building_iou": 0.9798,
+    "chamfer_mean_m": 0.073,
+    "path_iou": 0.9985
+   },
+   {
+    "chunk": "1_3",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9997
+   },
+   {
+    "chunk": "1_4",
+    "path_iou": 0.9994
+   },
+   {
+    "chunk": "1_5",
+    "path_iou": 0.9985
+   },
+   {
+    "chunk": "1_6",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.002,
+    "path_iou": 0.9983
+   },
+   {
+    "chunk": "2_0",
+    "building_iou": 0.9799,
+    "chamfer_mean_m": 0.07,
+    "path_iou": 0.9992
+   },
+   {
+    "chunk": "2_1",
+    "building_iou": 0.9792,
+    "chamfer_mean_m": 0.07,
+    "path_iou": 0.999
+   },
+   {
+    "chunk": "2_2",
+    "building_iou": 0.9896,
+    "chamfer_mean_m": 0.04,
+    "path_iou": 0.9995
+   },
+   {
+    "chunk": "2_3",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.001,
+    "path_iou": 0.9993
+   },
+   {
+    "chunk": "2_4",
+    "path_iou": 0.9998
+   },
+   {
+    "chunk": "2_5",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9992
+   },
+   {
+    "chunk": "2_6",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.001,
+    "path_iou": 0.999
+   },
+   {
+    "chunk": "3_0",
+    "building_iou": 0.9953,
+    "chamfer_mean_m": 0.015,
+    "path_iou": 0.9993
+   },
+   {
+    "chunk": "3_1",
+    "building_iou": 0.9905,
+    "chamfer_mean_m": 0.036,
+    "path_iou": 0.9986
+   },
+   {
+    "chunk": "3_2",
+    "building_iou": 0.9896,
+    "chamfer_mean_m": 0.039,
+    "path_iou": 0.9993
+   },
+   {
+    "chunk": "3_3",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.001,
+    "path_iou": 0.9966
+   },
+   {
+    "chunk": "3_4",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9992
+   },
+   {
+    "chunk": "3_5",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9981
+   },
+   {
+    "chunk": "3_6",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.002,
+    "path_iou": 0.9993
+   },
+   {
+    "chunk": "4_0",
+    "building_iou": 0.9782,
+    "chamfer_mean_m": 0.082,
+    "path_iou": 0.9983
+   },
+   {
+    "chunk": "4_1",
+    "building_iou": 0.9945,
+    "chamfer_mean_m": 0.019,
+    "path_iou": 0.9973
+   },
+   {
+    "chunk": "4_2",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.034,
+    "path_iou": 0.998
+   },
+   {
+    "chunk": "4_3",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.058,
+    "path_iou": 0.9983
+   },
+   {
+    "chunk": "4_4",
+    "building_iou": 0.9995,
+    "chamfer_mean_m": 0.012,
+    "path_iou": 0.9992
+   },
+   {
+    "chunk": "4_5",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9991
+   },
+   {
+    "chunk": "4_6",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9995
+   },
+   {
+    "chunk": "5_0",
+    "building_iou": 0.9892,
+    "chamfer_mean_m": 0.036,
+    "path_iou": 0.999
+   },
+   {
+    "chunk": "5_1",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.999
+   },
+   {
+    "chunk": "5_2",
+    "building_iou": 0.9997,
+    "chamfer_mean_m": 0.002,
+    "path_iou": 0.9988
+   },
+   {
+    "chunk": "5_3",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.147,
+    "path_iou": 0.9976
+   },
+   {
+    "chunk": "5_4",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.152,
+    "path_iou": 0.9963
+   },
+   {
+    "chunk": "5_5",
+    "building_iou": 0.9908,
+    "chamfer_mean_m": 0.816,
+    "path_iou": 0.9887
+   },
+   {
+    "chunk": "5_6",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.019,
+    "path_iou": 0.9993
+   },
+   {
+    "chunk": "6_0",
+    "building_iou": 0.9906,
+    "chamfer_mean_m": 0.047,
+    "path_iou": 0.9983
+   },
+   {
+    "chunk": "6_1",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.434,
+    "path_iou": 0.9988
+   },
+   {
+    "chunk": "6_2",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.233,
+    "path_iou": 0.9972
+   },
+   {
+    "chunk": "6_3",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.088,
+    "path_iou": 0.9959
+   },
+   {
+    "chunk": "6_4",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.301,
+    "path_iou": 0.993
+   },
+   {
+    "chunk": "6_5",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.001,
+    "path_iou": 0.9996
+   },
+   {
+    "chunk": "6_6",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9996
+   },
+   {
+    "chunk": "7_0",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9989
+   },
+   {
+    "chunk": "7_1",
+    "path_iou": 0.9991
+   },
+   {
+    "chunk": "7_2",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9994
+   },
+   {
+    "chunk": "7_3",
+    "building_iou": 0.9982,
+    "chamfer_mean_m": 0.062,
+    "path_iou": 0.9866
+   },
+   {
+    "chunk": "7_4",
+    "building_iou": 0.9994,
+    "chamfer_mean_m": 0.028,
+    "path_iou": 0.9982
+   },
+   {
+    "chunk": "7_5",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.024,
+    "path_iou": 0.9975
+   },
+   {
+    "chunk": "7_6",
+    "building_iou": 0.995,
+    "chamfer_mean_m": 0.024,
+    "path_iou": 0.9989
+   },
+   {
+    "chunk": "8_0",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.016,
+    "path_iou": 0.9989
+   },
+   {
+    "chunk": "8_1",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9985
+   },
+   {
+    "chunk": "8_2",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9874
+   },
+   {
+    "chunk": "8_3",
+    "building_iou": 0.9998,
+    "chamfer_mean_m": 0.008,
+    "path_iou": 0.9975
+   },
+   {
+    "chunk": "8_4",
+    "building_iou": 0.9976,
+    "chamfer_mean_m": 0.083,
+    "path_iou": 0.9985
+   },
+   {
+    "chunk": "8_5",
+    "building_iou": 0.9976,
+    "chamfer_mean_m": 0.023,
+    "path_iou": 0.9971
+   },
+   {
+    "chunk": "8_6",
+    "building_iou": 0.9899,
+    "chamfer_mean_m": 0.061,
+    "path_iou": 0.9981
+   },
+   {
+    "chunk": "9_0",
+    "building_iou": 0.9978,
+    "chamfer_mean_m": 0.427,
+    "path_iou": 0.9989
+   },
+   {
+    "chunk": "9_1",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9931
+   },
+   {
+    "chunk": "9_2",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9877
+   },
+   {
+    "chunk": "9_3",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.002,
+    "path_iou": 0.9983
+   },
+   {
+    "chunk": "9_4",
+    "building_iou": 1.0,
+    "chamfer_mean_m": 0.0,
+    "path_iou": 0.9979
+   },
+   {
+    "chunk": "9_5",
+    "building_iou": 0.999,
+    "chamfer_mean_m": 0.035,
+    "path_iou": 0.996
+   },
+   {
+    "chunk": "9_6",
+    "building_iou": 0.9999,
+    "chamfer_mean_m": 0.003,
+    "path_iou": 0.9991
+   }
+  ],
+  "worst_building": [
+   {
+    "chunk": "4_0",
+    "building_iou": 0.9782,
+    "chamfer_mean_m": 0.082,
+    "path_iou": 0.9983
+   },
+   {
+    "chunk": "2_1",
+    "building_iou": 0.9792,
+    "chamfer_mean_m": 0.07,
+    "path_iou": 0.999
+   },
+   {
+    "chunk": "1_2",
+    "building_iou": 0.9798,
+    "chamfer_mean_m": 0.073,
+    "path_iou": 0.9985
+   },
+   {
+    "chunk": "2_0",
+    "building_iou": 0.9799,
+    "chamfer_mean_m": 0.07,
+    "path_iou": 0.9992
+   },
+   {
+    "chunk": "1_0",
+    "building_iou": 0.9814,
+    "chamfer_mean_m": 0.059,
+    "path_iou": 0.9985
+   }
+  ],
+  "path_iou_median": 0.9985835192464323
+ }
+}
