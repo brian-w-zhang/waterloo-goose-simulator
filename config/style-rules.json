@@ -291,7 +291,10 @@
       "bay_m": 3.0,
       "w_lo": 0.35,
       "w_hi": 0.75,
-      "roof_alt": "roof_gravel"
+      "roof_alt": "roof_gravel",
+      "stripe": "window_glass",
+      "base": "brick_charcoal",
+      "base_m": 4.2
     },
     "navy": {
       "wall": "panel_navy",
