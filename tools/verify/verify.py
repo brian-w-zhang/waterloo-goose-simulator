@@ -6,6 +6,7 @@ checks, camera config; then the regression gate and the ledger line. full adds t
 and the contact sheet, which need a running production server (npm run build && npm start).
 """
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime
@@ -64,7 +65,7 @@ def main():
     sha = sh("git", "rev-parse", "--short", "HEAD").stdout.strip()
     stamp = datetime.now(ZoneInfo("America/Toronto")).strftime("%Y%m%d-%H%M")
     reuse = Path(sys.argv[2]) if len(sys.argv) > 2 else None
-    run = reuse or RESULTS / f"{stamp}-{sha}"
+    run = reuse or RESULTS / f"{stamp}-{sha}{'-webgl' if os.environ.get('WGS_WEBGL') == '1' else ''}"
     run.mkdir(parents=True, exist_ok=True)
     if kind == "render":
         r = sh("node", "tools/verify/visual.mjs", str(run), check=False)
