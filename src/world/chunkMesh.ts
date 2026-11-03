@@ -25,6 +25,35 @@ export interface BuiltChunk {
   lakeLevels: number[];
   /** shrub centres in world x, z (hide spots for the goose) */
   shrubs: [number, number][];
+  /** ground class index per 2 m cell (row-major from the north-west corner), 255 where no piece covers it (lawn) */
+  surface: Uint8Array;
+}
+
+export const SURFACE_CELL_M = 2;
+
+/** Rasterise the ground pieces' classes onto a 2 m grid (cell centres tested against each triangle). */
+function surfaceGrid(c: Chunk): Uint8Array {
+  const size = c.header.chunk.size, n = Math.round(size / SURFACE_CELL_M);
+  const out = new Uint8Array(n * n).fill(255);
+  const xz = c.arrays.ground_xz as Uint16Array | undefined;
+  if (!xz) return out;
+  const idx = c.arrays.ground_idx as Uint32Array, cls = c.arrays.ground_cls as Uint8Array;
+  const Q = 256 / 65535;
+  for (let t = 0; t < idx.length; t += 3) {
+    const a = idx[t], b = idx[t + 1], d = idx[t + 2];
+    const ax = xz[a * 2] * Q, az = xz[a * 2 + 1] * Q, bx = xz[b * 2] * Q, bz = xz[b * 2 + 1] * Q, dx = xz[d * 2] * Q, dz = xz[d * 2 + 1] * Q;
+    const den = (bz - dz) * (ax - dx) + (dx - bx) * (az - dz);
+    if (Math.abs(den) < 1e-9) continue;
+    const i0 = Math.max(0, Math.floor(Math.min(ax, bx, dx) / SURFACE_CELL_M)), i1 = Math.min(n - 1, Math.floor(Math.max(ax, bx, dx) / SURFACE_CELL_M));
+    const j0 = Math.max(0, Math.floor(Math.min(az, bz, dz) / SURFACE_CELL_M)), j1 = Math.min(n - 1, Math.floor(Math.max(az, bz, dz) / SURFACE_CELL_M));
+    for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+      const px = (i + 0.5) * SURFACE_CELL_M, pz = (j + 0.5) * SURFACE_CELL_M;
+      const w1 = ((bz - dz) * (px - dx) + (dx - bx) * (pz - dz)) / den;
+      const w2 = ((dz - az) * (px - dx) + (ax - dx) * (pz - dz)) / den;
+      if (w1 >= 0 && w2 >= 0 && w1 + w2 <= 1) out[j * n + i] = cls[a];
+    }
+  }
+  return out;
 }
 
 function terrainGeometry(h: Float32Array, n: number, cell: number): THREE.BufferGeometry {
@@ -759,5 +788,6 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   for (const p of parts) { walls!.set(p, off); off += p.length; }
   return { group: g, heights: h, buildingMeshes, walls, buildingCount: c.header.buildings.length,
     shrubs: shrubCentres(c),
+    surface: surfaceGrid(c),
     lakeLevels: [...new Set(c.header.lakes.map((l) => l.y))] };
 }

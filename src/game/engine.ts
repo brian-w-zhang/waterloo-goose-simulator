@@ -46,6 +46,8 @@ export interface GameHandle {
   info(): { backend: string; calls: number; triangles: number; loaded: string[]; loads: number; evictions: number;
     failedChunks: Record<string, string>; frameErrors: number };
   heightAt(x: number, z: number): number;
+  /** ground class under a point ("lawn" where none is mapped) */
+  surfaceAt(x: number, z: number): string | null;
   /** Triangles per mesh name across the loaded world (instances counted). */
   census(): Record<string, number>;
   /** Debug material views and the magenta hole background (doc 08 sections 2.2, 2.3, 3.2). */
@@ -317,6 +319,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       failedChunks: Object.fromEntries([...stream.failed].map(([k, f]) => [k, f.error])), frameErrors,
     }),
     heightAt: (x, z) => stream.heightAt(x, z),
+    surfaceAt: (x, z) => stream.surfaceAt(x, z),
     census: () => {
       const out: Record<string, number> = {};
       scene.traverse((o) => {
@@ -510,7 +513,12 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   const startAudio = () => { if (!testMode && !params.has("mute")) music.start(); };
   window.addEventListener("keydown", startAudio, { once: true });
   window.addEventListener("pointerdown", startAudio, { once: true });
-  goose.onStep = (water) => { if (!testMode && !params.has("mute")) footstep(water ? "water" : "land"); };
+  // paved classes slap, everything else (lawn, pitches, woods) is soft
+  const HARD = new Set(["road", "paving", "path", "parking", "marking", "stall", "rail"]);
+  goose.onStep = (water) => {
+    if (testMode || params.has("mute")) return;
+    footstep(water ? "water" : HARD.has(stream.surfaceAt(goose.position.x, goose.position.z) ?? "lawn") ? "hard" : "grass");
+  };
   hotspot.onTask = (t) => {
     toast = t.text;
     chime();

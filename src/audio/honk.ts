@@ -108,22 +108,31 @@ export function chime() {
   });
 }
 
-/** Soft "fwap" footstep (spec S-4); splash variant when swimming. */
-export function step(kind: "land" | "water") {
+/** Footstep surfaces (doc 03 R-S2): a soft "fwap" on grass, a slap on paving, a splash when swimming. */
+export type StepSurface = "grass" | "hard" | "water";
+
+const STEP: Record<StepSurface, { len: number; decay: number; filter: BiquadFilterType; hz: number; q: number; gain: number }> = {
+  grass: { len: 0.07, decay: 3, filter: "lowpass", hz: 520, q: 0.7, gain: 0.05 },
+  hard: { len: 0.045, decay: 5, filter: "bandpass", hz: 1700, q: 1.2, gain: 0.07 },
+  water: { len: 0.18, decay: 1.5, filter: "bandpass", hz: 900, q: 1, gain: 0.06 },
+};
+
+export function step(kind: StepSurface) {
   const a = audio();
   if (!a) return;
+  const s = STEP[kind];
   const t = a.currentTime;
-  const len = kind === "water" ? 0.18 : 0.06;
-  const buf = a.createBuffer(1, Math.floor(a.sampleRate * len), a.sampleRate);
+  const buf = a.createBuffer(1, Math.floor(a.sampleRate * s.len), a.sampleRate);
   const d = buf.getChannelData(0);
-  for (let k = 0; k < d.length; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / d.length, kind === "water" ? 1.5 : 3);
+  for (let k = 0; k < d.length; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / d.length, s.decay);
   const src = a.createBufferSource();
   src.buffer = buf;
   const f = a.createBiquadFilter();
-  f.type = kind === "water" ? "bandpass" : "lowpass";
-  f.frequency.value = kind === "water" ? 900 : 700;
+  f.type = s.filter;
+  f.frequency.value = s.hz;
+  f.Q.value = s.q;
   const g = a.createGain();
-  g.gain.value = kind === "water" ? 0.06 : 0.05;
+  g.gain.value = s.gain;
   src.connect(f).connect(g).connect(a.destination);
   src.start(t);
 }

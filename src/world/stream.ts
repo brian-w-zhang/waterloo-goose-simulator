@@ -1,7 +1,7 @@
 import * as THREE from "three/webgpu";
 import { campus } from "@/config";
 import { decodeChunk, sampleHeight } from "./decode";
-import { buildChunk, type BuiltChunk } from "./chunkMesh";
+import { buildChunk, type BuiltChunk, SURFACE_CELL_M } from "./chunkMesh";
 import type { Materials } from "./materials";
 import { pavingClass } from "@/render/materials";
 import { disposeSigns } from "./signs";
@@ -75,6 +75,18 @@ export class WorldStream {
     const lx = x - c.group.position.x, lz = z - c.group.position.z;
     const n = Math.round(Math.sqrt(c.heights.length));
     return sampleHeight(c.heights, n, this.index.chunk_size / (n - 1), lx, lz);
+  }
+
+  /** Ground class name under world (x, z) ("lawn" where no mapped surface covers it), or null if not loaded. */
+  surfaceAt(x: number, z: number): string | null {
+    const [i, j] = this.chunkOf(x, z);
+    const c = this.loaded.get(`${i}_${j}`);
+    if (!c) return null;
+    const n = Math.round(this.index.chunk_size / SURFACE_CELL_M);
+    const ci = Math.floor((x - c.group.position.x) / SURFACE_CELL_M), cj = Math.floor((z - c.group.position.z) / SURFACE_CELL_M);
+    if (ci < 0 || cj < 0 || ci >= n || cj >= n) return null;
+    const k = c.surface[cj * n + ci];
+    return k === 255 ? "lawn" : this.index.ground_classes[k];
   }
 
   /** Lake surface height at world (x, z) if the point is in water (terrain is lowered there), else null. */

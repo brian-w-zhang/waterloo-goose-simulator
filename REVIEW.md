@@ -223,5 +223,5 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
    - SLC: the crescent and brick ends;
    - M3: the glass bay.
 4. Rapier bodies for light items too, so they can stack and topple, plus fragile items that break (spec I-7, I-9).
-5. Per-surface footstep and drag sounds (doc 03 R-S2).
+5. Drag sounds per surface (footsteps already change between grass, paving and water).
 6. Re-run the frame-time benchmark on the doc 02 reference iGPU laptop.
