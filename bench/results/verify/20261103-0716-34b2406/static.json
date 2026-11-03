@@ -1,0 +1,28 @@
+{
+ "metrics": {
+  "static_colour_violations": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "static_banned_violations": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "camera_config_ok": {
+   "value": 1,
+   "gate": 1,
+   "op": "==",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "colour_hits": []
+ }
+}

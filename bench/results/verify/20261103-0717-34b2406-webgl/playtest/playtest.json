@@ -1,0 +1,161 @@
+{
+ "tasks_done": [
+  "Steal the professor's coffee",
+  "Honk someone into dropping what they carry",
+  "Get chased across the green",
+  "Make someone give up and scratch their head",
+  "Carry the thesis laptop 15 m away",
+  "Pinch the busker's tip hat",
+  "Get shooed off the plaza"
+ ],
+ "steps": [
+  {
+   "what": "walk to the professor",
+   "ms": 7386,
+   "goose": {
+    "x": 929.2830490302294,
+    "y": 13.095325729171746,
+    "z": -382.4259253423661,
+    "yaw": -2.530436466581401,
+    "speed": 1.5999999999999992,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": []
+  },
+  {
+   "what": "honk at the professor",
+   "ms": 902,
+   "goose": {
+    "x": 929.0776393197011,
+    "y": 13.073217116938904,
+    "z": -382.5277427242254,
+    "yaw": -2.530436466581401,
+    "speed": 0.00048566262092618654,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "grab the dropped coffee",
+   "ms": 1247,
+   "goose": {
+    "x": 928.5995151797542,
+    "y": 13.130429939485621,
+    "z": -383.8128471629461,
+    "yaw": -2.879789118354959,
+    "speed": 0.10737249813681317,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "run away with it",
+   "ms": 11780,
+   "goose": {
+    "x": 967.4522180706263,
+    "y": 13.658430888065196,
+    "z": -408.06933874925016,
+    "yaw": -3.8327137527572854,
+    "speed": 0.04665778546061759,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  },
+  {
+   "what": "drop it and wander",
+   "ms": 3002,
+   "goose": {
+    "x": 967.455688900865,
+    "y": 13.658331683861034,
+    "z": -408.0701886596794,
+    "yaw": -3.8327137527572854,
+    "speed": 8.769465228912908e-14,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  },
+  {
+   "what": "teleport to the plaza",
+   "ms": 854,
+   "goose": {
+    "x": 720.9999982517367,
+    "y": 11.058353237380798,
+    "z": -278.4999978750702,
+    "yaw": -3.8327137527572854,
+    "speed": 4.174652436888923e-17,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  },
+  {
+   "what": "pinch the busker's tip hat",
+   "ms": 9138,
+   "goose": {
+    "x": 714.8628611946738,
+    "y": 10.99295750059042,
+    "z": -272.25246999168417,
+    "yaw": -7.369075079366354,
+    "speed": 0.000004955980715514635,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head",
+    "Pinch the busker's tip hat"
+   ]
+  },
+  {
+   "what": "carry the thesis laptop away",
+   "ms": 24906,
+   "goose": {
+    "x": 741.3074949984203,
+    "y": 13.035881019337976,
+    "z": -282.23358192243415,
+    "yaw": -12.137568027659285,
+    "speed": 0.000005758027583216154,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
+    "Pinch the busker's tip hat",
+    "Get shooed off the plaza"
+   ]
+  }
+ ],
+ "errors": [],
+ "video": "playtest-2026-11-03T12-21-10.webm"
+}

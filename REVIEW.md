@@ -21,14 +21,14 @@ A seventeen-task to-do list follows the nearest hotspot and includes a gated fin
 
 When a character gives up a chase, the optional Jev layer (`?jev=1`) picks their next move through the Vercel AI Gateway, called from the server only (about 280 ms, $0.000017 a call). Calls are cached and replayed from `data/jev/recorded.jsonl`, with a deterministic mock fallback.
 
-An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses, records a video and must finish four tasks. The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
+An automated harness measures every claim on the packed chunks and real screenshots, and it plays the game. A headless playtest drives the goose with real key presses on the green and the plaza, records a video and must finish at least six tasks (it finishes seven). The latest full run passes **62 of 64 gates on both WebGPU and WebGL2**; the two reds are path-width gates, discussed below. All 9 self-test mutants are caught, and all 24 unit and behaviour tests pass, plus 5 pipeline tests.
 
 How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm start`, then open http://localhost:3100).
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0649-173109d/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0647-173109d-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-0716-34b2406/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-0717-34b2406-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 10.5 | record only | - | - | new | 14.5 |
+| flythrough.frame_ms_p95 | 10.7 | record only | - | - | new | 14.5 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -60,10 +60,10 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | geometry.distance_median_err_m | 0.03261 | < 0.5 | pass | 0.03261 | +0 | 0.03261 |
 | geometry.azimuth_max_err_deg | 0.1295 | <= 1.0 | pass | 0.1295 | +0 | 0.1295 |
 | heights.height_key_max_err_m | 1.3 | <= 2.0 | pass | 1.3 | +0 | 1.3 |
-| heights.height_rmse_dev_m | 0.5691 | < 1.5 | pass | 0.6102 | -0.04113 | 0.5691 |
-| heights.height_rmse_holdout_m | 0.609 | < 2.0 | pass | 0.609 | +0 | 0.609 |
-| heights.height_random20_rmse_m | 0.5477 | < 2.0 | pass | 0.5745 | -0.02671 | 0.5477 |
-| heights.height_pixel_median_abs_m | 0.33 | < 1.5 | pass | 0.31 | +0.01998 | 0.33 |
+| heights.height_rmse_dev_m | 0.5279 | < 1.5 | pass | 0.6102 | -0.08234 | 0.5279 |
+| heights.height_rmse_holdout_m | 0.608 | < 2.0 | pass | 0.609 | -0.001064 | 0.608 |
+| heights.height_random20_rmse_m | 0.5502 | < 2.0 | pass | 0.5745 | -0.02423 | 0.5502 |
+| heights.height_pixel_median_abs_m | 0.34 | < 1.5 | pass | 0.31 | +0.02996 | 0.34 |
 | network.ring_road_osm_rel_err | 7.137e-06 | <= 0.01 | pass | 7.137e-06 | +0 | 7.137e-06 |
 | network.ring_road_city_rel_err | 0.01211 | <= 0.02 | pass | 0.01211 | +0 | 0.01211 |
 | network.laurel_creek_rel_err | 0.00128 | <= 0.02 | pass | 0.00128 | +0 | 0.00128 |
@@ -77,38 +77,38 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | network.network_length_rel_err | 1.198e-06 | <= 0.01 | pass | 1.198e-06 | +0 | 1.198e-06 |
 | palette.palette_id_off_share | 0 | <= 0.0 | pass | - | new | 0 |
 | palette.lit_palette_share | 1 | >= 0.95 | pass | - | new | 1 |
-| play.playtest_tasks_done | 4 | >= 3 | pass | - | new | 4 |
+| play.playtest_tasks_done | 6 | >= 6 | pass | - | new | 7 |
 | play.playtest_page_errors | 0 | <= 0 | pass | - | new | 0 |
 | selftest.selftest_survivors | 0 | <= 0 | pass | - | new | 0 |
 | static.static_colour_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 | 1 |
-| style.sat_mean | 0.232 | between [0.18, 0.35] | pass | - | new | 0.2319 |
-| style.val_mean | 0.5783 | between [0.45, 0.65] | pass | - | new | 0.5783 |
+| style.sat_mean | 0.2324 | between [0.18, 0.35] | pass | - | new | 0.2324 |
+| style.val_mean | 0.5779 | between [0.45, 0.65] | pass | - | new | 0.5779 |
 | style.val_std | 0.08185 | between [0.08, 0.18] | pass | - | new | 0.08185 |
 | style.dark_share | 0 | <= 0.002 | pass | - | new | 0 |
-| style.edge_share | 0.00471 | <= 0.045 | pass | - | new | 0.0047 |
-| style.colourfulness | 0.1131 | between [0.1, 0.25] | pass | - | new | 0.1131 |
-| style.kmeans12_residual_de | 0.931 | <= 6.0 | pass | - | new | 0.947 |
+| style.edge_share | 0.00451 | <= 0.045 | pass | - | new | 0.00452 |
+| style.colourfulness | 0.1134 | between [0.1, 0.25] | pass | - | new | 0.1134 |
+| style.kmeans12_residual_de | 0.9485 | <= 6.0 | pass | - | new | 0.9395 |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new | 0.951 |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new | 5.704 |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 | 0.0365 |
 | terrain.terrain_max_m | 0.3871 | < 1.5 | pass | 0.3871 | +0 | 0.3871 |
 | terrain.seam_max_m | 0.0003152 | < 0.01 | pass | 0.0003152 | +0 | 0.0003152 |
 | topdown.topdown_building_iou_min | 0.9782 | >= 0.95 | pass | - | new | 0.9782 |
-| topdown.topdown_chamfer_mean_m | 0.05865 | <= 0.5 | pass | - | new | 0.05864 |
+| topdown.topdown_chamfer_mean_m | 0.05316 | <= 0.5 | pass | - | new | 0.05315 |
 | topdown.topdown_chamfer_p95_m | 0 | <= 1.5 | pass | - | new | 0 |
 | topdown.topdown_path_iou_min | 0.9867 | >= 0.85 | pass | - | new | 0.9867 |
 | walk.goose_walk_falls | 0 | <= 0 | pass | - | new | 0 |
 
 **First load** (`bench/results/firstload-2026-11-03-666acfb.json`): 6.19 MB transferred before the game is ready, against the doc 06 M1 gate of under 10 MB, in 23 requests and 626 ms on localhost.
 
-**Frame time** (`bench/results/frametime-2026-11-03-666acfb.json`, rerun after 90c1eb7): measured headless and uncapped at 1280 x 720, with the full crowd, 245 draw calls and 1,357,379 triangles including the shadow pass. This is within the doc 02 budget of 1.5 M triangles and 300 draw calls. Before 90c1eb7, the hidden crowd slots added 0.5 M triangles. Results are from the build machine only, not the doc 02 reference iGPU.
+**Frame time** (`bench/results/frametime-2026-11-03-34b2406.json`): measured headless and uncapped at 1280 x 720, with the full crowd, 245 draw calls and 1,342,677 triangles including the shadow pass. This is within the doc 02 budget of 1.5 M triangles and 300 draw calls. Before 90c1eb7, the hidden crowd slots added 0.5 M triangles. Results are from the build machine only, not the doc 02 reference iGPU.
 
 | Backend | p50 | p95 |
 |---|---|---|
-| WebGPU | 1.5 ms | 1.8 ms |
-| WebGL2 | 3.0 ms | 5.6 ms |
+| WebGPU | 1.4 ms | 1.8 ms |
+| WebGL2 | 3.0 ms | 4.5 ms |
 
 **Heights baseline** (`bench/results/heights-baseline-2026-11-03-8cd9ca7.json`, doc 06 section 5): against lidar p90 on 118 UW footprints, the packed lidar tiers have an RMSE of 0.59 m. OSM levels x 3.5 m gives 6.63 m (61 footprints with a tag), and City FIRE_STOREYS x 3.5 m gives 5.10 m.
 
@@ -142,6 +142,7 @@ The 0.03 disagreement between passes understates real noise. One agent scored bo
   - Per-pixel height median went from 0.310 to 0.320 m (roof-gap fix).
   - The 12-colour k-means residual went from 0.794 to 0.840 (tufts, flowers, canopies).
   - Top-down chamfer mean went from 0.05854 to 0.05865 m (the DC vault overhangs its footprint by centimetres).
+  - Random-20 height RMSE went from 0.5477 to 0.5502 m when the lidar tiers were smoothed (dev RMSE improved from 0.569 to 0.528 m).
 - **Viewpoints with recognisability 1 or 2** (scores from both passes):
   - V02 (2 / 3): DC is guessable from the teal glass but lacks its vault and ducts
   - V03 (2 / 2): with a conifer in front and a buff wall it does not read as MC's concrete bands
@@ -206,7 +207,9 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 11. **Signs:** UW monument signs (proportions from the UW sign standard) at main doors, a wall plaque where there is no free ground, and plaza shop fascias de-overlapped along each wall.
 12. **Roofs and ground:** a darker light-roof swatch, so low terraces stop reading as holes in a wall from above. Parking stalls became their own class, so they never paint over drive aisles.
 13. **People:** chunky nose-only figures with hairstyles, eye contact with the goose, and tug, fall, clap, shake and dressing gestures. The groundskeeper got a dome hard hat.
-14. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
+14. **Tiers:** lidar tier outlines simplified at 1.2 m and opened by 2 px, removing pixel stair-steps (ring vertices 54,700 to 40,392).
+15. **Goose:** the run reads (neck forward and low), the flap snaps open to a full sideways span, and the camera's lean toward people scales with zoom.
+16. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 
