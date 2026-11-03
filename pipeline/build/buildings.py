@@ -238,6 +238,26 @@ def tiers(poly, nd, t, base_h):
                 if g.area > 0.01:
                     merged_out.append((orient(g), h))
         out = merged_out
+    # fragments under 4 m2 (left where a union split a tier) fold into the neighbour they share the
+    # longest edge with; one pass, and a fragment touching nothing stays (no area is lost)
+    from shapely import union_all
+    big = [(q, h) for q, h in out if q.area >= 4.0]
+    small = [(q, h) for q, h in out if q.area < 4.0]
+    if big and small:
+        add = [[] for _ in big]
+        for q, h in small:
+            # simplification leaves these slivers a few centimetres off their neighbour: test within 0.5 m
+            shared = [q.boundary.intersection(b.buffer(0.5)).length for b, _ in big]
+            k = max(range(len(big)), key=lambda i: shared[i])
+            if shared[k] > 0:
+                add[k].append(q)
+            else:
+                big.append((q, h))
+                add.append([])
+        out = []
+        for (b, h), extra in zip(big, add):
+            m = union_all([b] + extra) if extra else b
+            out += [(orient(g), h) for g in ([m] if m.geom_type == "Polygon" else [x for x in getattr(m, "geoms", []) if x.geom_type == "Polygon"])]
     return out
 
 
