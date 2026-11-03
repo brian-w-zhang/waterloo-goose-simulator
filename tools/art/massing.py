@@ -97,6 +97,9 @@ def ndsm_tiers(parts, excl, spec):
     h = np.array(dsm[r0:r0 + H, c0:c0 + W]) - np.array(dtm[r0:r0 + H, c0:c0 + W])
     # pixel (row, col) -> art coordinates of the pixel's corner
     T = Affine(0.5, 0, (lidar.E0 + c0 * 0.5) - ORIGIN_E, 0, -0.5, (lidar.N1 - r0 * 0.5) - ORIGIN_N)
+    if spec.get("open"):
+        # grey opening removes features thinner than `open` pixels (a crane boom in the 2018 scan)
+        h = ndimage.grey_opening(h, size=(spec["open"], spec["open"]))
     inside = rasterio.features.geometry_mask([fp], out_shape=h.shape, transform=T, invert=True)
     vals = h[inside & (h > 1.5)]
     hist, edges = np.histogram(vals, bins=np.arange(1.5, vals.max() + 0.5, 0.25))
@@ -115,14 +118,16 @@ def ndsm_tiers(parts, excl, spec):
     out = []
     for g, v in rasterio.features.shapes(lab, mask=lab > 0, transform=T):
         poly = Polygon(g["coordinates"][0], g["coordinates"][1:]).buffer(0)
-        out.append([poly, float(levels[int(v) - 1]), gy])
+        lv = float(levels[int(v) - 1])
+        if lv <= spec.get("max_h", 1e9):
+            out.append([poly, lv, gy])
     return out
 
 
 def main(spec_path, out_path):
     spec = json.loads(Path(spec_path).read_text())
     blds = json.loads((ROOT / "data" / "build" / "art" / "buildings.json").read_text())
-    parts = [b for b in blds.values() if (b["abbrev"] or "").strip() == spec["abbrev"]]
+    parts = [b for b in blds.values() if (b["abbrev"] or "").strip() == spec["abbrev"] and b["objectid"] not in spec.get("skip_objectids", [])]
     excl = unary_union([Polygon(r) for r in spec.get("exclude", [])]) if spec.get("exclude") else None
     tiers = []
     if spec.get("source") == "ndsm":
