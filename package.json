@@ -8,7 +8,12 @@
     "build": "next build",
     "start": "next start -p 3100",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "pipeline": ".venv/bin/python -m pipeline.fetch && .venv/bin/python -m pipeline.build",
+    "verify:fast": ".venv/bin/python -m tools.verify.verify fast",
+    "verify": ".venv/bin/python -m tools.verify.verify full",
+    "verify:geometry": ".venv/bin/python -m pipeline.validate.run /tmp/wgs-geometry",
+    "test:py": ".venv/bin/python -m pytest -q pipeline"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.21.0",

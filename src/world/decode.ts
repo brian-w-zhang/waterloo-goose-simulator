@@ -5,7 +5,7 @@ export interface ArrayEntry { offset: number; dtype: "f4" | "u1" | "u2" | "u4" |
 export interface BuildingPart { h: number; ring_first: number; ring_n: number }
 export interface BuildingInfo {
   id: number; objectid: number; abbrev: string; name: string; owner: string | null; style: string;
-  ground_y: number; p90: number; post2018: boolean; height_source: string;
+  ground_y: number; base_y: number; p90: number; post2018: boolean; height_source: string;
   footprint: { ring_first: number; ring_n: number }; parts: BuildingPart[];
 }
 export interface LakePiece { name: string; objectid: number; y: number; first: number; count: number }

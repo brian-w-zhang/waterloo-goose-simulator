@@ -16,7 +16,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import ground, lidar, props, terrain, vegetation
+from . import ground, network, props, terrain, vegetation
 
 C = CAMPUS["chunk"]
 SIZE = C["size_m"]
@@ -106,7 +106,7 @@ def main():
     bl = bmod.build()
     print(f"buildings {len(bl)} ({time.time() - t0:.0f}s); OSM registration {reg}")
     lk = terrain.lakes()
-    hf = terrain.heightfield(bl, lk)
+    hf = terrain.heightfield(lk)
     np.save(BUILD / "heightfield.npy", hf)
     gcls = ground.classes(lk, bl)
     print(f"ground classes ({time.time() - t0:.0f}s)")
@@ -200,7 +200,8 @@ def main():
                     ring_counts += pc
                 binfo.append({"id": int(b["id"]), "objectid": int(b["objectid"]), "abbrev": b["abbrev"],
                               "name": b["name"], "owner": b["owner"], "style": b["style"],
-                              "ground_y": round(b["ground"] - BASE_ELEV, 3), "p90": round(b["p90"], 3),
+                              "ground_y": round(b["ground"] - BASE_ELEV, 3),
+                              "base_y": round(b["base"] - BASE_ELEV, 3), "p90": round(b["p90"], 3),
                               "post2018": bool(b["post2018"]), "height_source": b["height_source"],
                               "footprint": fp, "parts": parts})
             if rings_xz:
@@ -226,6 +227,9 @@ def main():
             index["chunks"].append({"i": i, "j": j, "file": name, "buildings": len(binfo),
                                     "trees": int(len(ts)), "props": int(len(ps)),
                                     "bytes": (WORLD / name).stat().st_size})
+    net = network.build()
+    (WORLD / "network.json").write_text(json.dumps(net, separators=(",", ":")))
+    index["stations"] = net["stations"]
     (WORLD / "index.json").write_text(json.dumps(index, indent=1))
     total = sum(c["bytes"] for c in index["chunks"])
     report = {"buildings": len(bl), "trees": int(len(trees)), "props": int(len(pr)),

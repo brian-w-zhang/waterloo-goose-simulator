@@ -204,6 +204,8 @@ def build():
         p90 = float(np.percentile(vals, B["height_percentile"])) if vals.size else 0.0
         med = float(np.median(vals)) if vals.size else 0.0
         ground = float(np.median(dtmw[full])) if full.any() else float("nan")
+        ring = _mask(poly.buffer(B["skirt_m"]), ndw.shape, t)
+        base = float(np.min(dtmw[ring])) - 0.3 if ring.any() else ground - B["skirt_m"]
         tags, iou = match_osm(poly, tree, items)
         source = "lidar_p90"
         post2018 = med < B["post2018_median_ndsm_m"]
@@ -225,6 +227,7 @@ def build():
             "owner": props.get("OWNER"),
             "footprint": simple,
             "ground": ground,
+            "base": base,
             "p90": p90,
             "median": med,
             "height_source": source,

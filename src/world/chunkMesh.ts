@@ -3,7 +3,6 @@ import { campus, swatch } from "@/config";
 import { type Chunk, sampleHeight, terrainHeights } from "./decode";
 import type { Materials } from "./materials";
 
-const SKIRT_M = campus.buildings.skirt_m;
 const PIECE_LIFT_M = 0.04;
 const Q = 256 / 65535;
 
@@ -118,7 +117,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   for (const b of c.header.buildings) {
     let a = acc.get(b.style);
     if (!a) { a = { pos: [], nrm: [], seed: [], ha: [] }; acc.set(b.style, a); }
-    const y0 = b.ground_y - SKIRT_M;
+    const y0 = b.base_y;
     for (const part of b.parts) {
       const y1 = b.ground_y + part.h;
       const rings = [];

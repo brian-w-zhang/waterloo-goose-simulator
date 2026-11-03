@@ -1,4 +1,7 @@
-"""Terrain heightfield on the 2 m grid: DTM resampled, lakes burned in, footprints flattened."""
+"""Terrain heightfield on the 2 m grid: DTM resampled and lakes burned in.
+
+Footprints are not flattened (that moved the ground outside them); walls reach down to the
+lowest ground under each footprint instead (buildings.base)."""
 import json
 
 import numpy as np
@@ -47,7 +50,7 @@ def lakes():
     return out
 
 
-def heightfield(buildings, lake_list):
+def heightfield(lake_list):
     h = resample_dtm()
     t = node_transform()
     for lk in lake_list:
@@ -57,10 +60,6 @@ def heightfield(buildings, lake_list):
         if not bed.is_empty:
             deep = rasterio.features.geometry_mask([bed], out_shape=h.shape, transform=t, invert=True)
             h[deep] = lk["level"] - LAKE_BANK_M
-    for b in buildings:
-        m = rasterio.features.geometry_mask([b["footprint"].buffer(0.5)], out_shape=h.shape, transform=t, invert=True)
-        if m.any() and np.isfinite(b["ground"]):
-            h[m] = b["ground"]
     return h
 
 

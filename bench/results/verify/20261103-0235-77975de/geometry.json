@@ -1,0 +1,637 @@
+{
+ "metrics": {
+  "coverage_uw_core": {
+   "value": 115,
+   "gate": 115,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "coverage_all_core": {
+   "value": 480,
+   "gate": 475,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "built_area_uw_rel_err": {
+   "value": 1.4116654912379942e-05,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "built_area_all_rel_err": {
+   "value": 8.443967158596981e-05,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "iou_city_median": {
+   "value": 0.9999993079958365,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "iou_city_p10": {
+   "value": 0.9991213360314667,
+   "gate": 0.88,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "iou_osm_median_report": {
+   "value": 0.8132694733429465,
+   "gate": 0.75,
+   "op": ">=",
+   "pass": true,
+   "report_only": true
+  },
+  "iou_city_key_min": {
+   "value": 0.9989,
+   "gate": 0.9,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "key_area_max_rel_err": {
+   "value": 0.0010490482052805672,
+   "gate": 0.03,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "key_obb_side_fail_count": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "key_bearing_max_err_deg": {
+   "value": 0.07074961972223548,
+   "gate": 2.0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "landmark_pos_median_m": {
+   "value": 0.000603443868309605,
+   "gate": 0.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "landmark_pos_max_m": {
+   "value": 0.5831688575697664,
+   "gate": 2.0,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "distance_fail_count": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "distance_median_err_m": {
+   "value": 0.03261366178440994,
+   "gate": 0.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "azimuth_max_err_deg": {
+   "value": 0.12945379398425416,
+   "gate": 1.0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "coverage": {
+   "uw_area_m2": 216581,
+   "all_area_m2": 366266,
+   "truth_uw": 115,
+   "truth_all": 480
+  },
+  "iou": {
+   "n_city": 992,
+   "n_osm_matched": 975,
+   "worst_city": [
+    [
+     0.952,
+     27018
+    ],
+    [
+     0.958,
+     38185
+    ],
+    [
+     0.986,
+     33816
+    ],
+    [
+     0.988,
+     9839
+    ],
+    [
+     0.988,
+     10566
+    ],
+    [
+     0.989,
+     9796
+    ],
+    [
+     0.989,
+     17036
+    ],
+    [
+     0.989,
+     18099
+    ],
+    [
+     0.989,
+     34798
+    ],
+    [
+     0.99,
+     12724
+    ]
+   ]
+  },
+  "landmark_pos_vs_frozen_truth": {
+   "median_m": 0.988,
+   "max_m": 1.033,
+   "note": "frozen centroids carry the WGS84 export offset; see NOTES.md"
+  },
+  "distances": {
+   "fails": [],
+   "max_err_m": 0.329,
+   "pairs": [
+    {
+     "pair": "DC-MC",
+     "split": "dev",
+     "d": 157.4,
+     "truth": 157.4,
+     "err_m": 0.0,
+     "az_err": 0.05
+    },
+    {
+     "pair": "SLC-PAC",
+     "split": "dev",
+     "d": 80.13,
+     "truth": 80.2,
+     "err_m": 0.07,
+     "az_err": 0.04
+    },
+    {
+     "pair": "MC-QNC",
+     "split": "dev",
+     "d": 97.43,
+     "truth": 97.4,
+     "err_m": 0.03,
+     "az_err": 0.02
+    },
+    {
+     "pair": "E5-E7",
+     "split": "dev",
+     "d": 37.8,
+     "truth": 37.8,
+     "err_m": 0.0,
+     "az_err": 0.1
+    },
+    {
+     "pair": "E5-E6",
+     "split": "holdout",
+     "d": 111.41,
+     "truth": 111.4,
+     "err_m": 0.01,
+     "az_err": 0.0
+    },
+    {
+     "pair": "MC-LIB",
+     "split": "dev",
+     "d": 289.17,
+     "truth": 289.2,
+     "err_m": 0.03,
+     "az_err": 0.04
+    },
+    {
+     "pair": "LIB-HH",
+     "split": "dev",
+     "d": 195.72,
+     "truth": 195.7,
+     "err_m": 0.02,
+     "az_err": 0.03
+    },
+    {
+     "pair": "HH-ML",
+     "split": "holdout",
+     "d": 144.32,
+     "truth": 144.4,
+     "err_m": 0.08,
+     "az_err": 0.03
+    },
+    {
+     "pair": "SLC-DC",
+     "split": "dev",
+     "d": 269.6,
+     "truth": 269.6,
+     "err_m": 0.0,
+     "az_err": 0.01
+    },
+    {
+     "pair": "SLC-LIB",
+     "split": "dev",
+     "d": 344.26,
+     "truth": 344.3,
+     "err_m": 0.04,
+     "az_err": 0.05
+    },
+    {
+     "pair": "V1-REV",
+     "split": "dev",
+     "d": 371.35,
+     "truth": 371.4,
+     "err_m": 0.05,
+     "az_err": 0.0
+    },
+    {
+     "pair": "V1-SLC",
+     "split": "dev",
+     "d": 378.38,
+     "truth": 378.4,
+     "err_m": 0.02,
+     "az_err": 0.03
+    },
+    {
+     "pair": "REV-SLC",
+     "split": "dev",
+     "d": 741.09,
+     "truth": 741.2,
+     "err_m": 0.11,
+     "az_err": 0.01
+    },
+    {
+     "pair": "DC-ION_UW",
+     "split": "dev",
+     "d": 111.63,
+     "truth": 111.3,
+     "err_m": 0.33,
+     "az_err": 0.13
+    },
+    {
+     "pair": "SLC-ION_UW",
+     "split": "dev",
+     "d": 365.29,
+     "truth": 365.0,
+     "err_m": 0.29,
+     "az_err": 0.1
+    },
+    {
+     "pair": "ION_UW-ION_LAURIER",
+     "split": "dev",
+     "d": 720.62,
+     "truth": 720.6,
+     "err_m": 0.02,
+     "az_err": 0.02
+    },
+    {
+     "pair": "PAC-REV",
+     "split": "holdout",
+     "d": 691.77,
+     "truth": 691.8,
+     "err_m": 0.03,
+     "az_err": 0.04
+    },
+    {
+     "pair": "EIT-PHY",
+     "split": "dev",
+     "d": 90.35,
+     "truth": 90.3,
+     "err_m": 0.05,
+     "az_err": 0.04
+    },
+    {
+     "pair": "STC-B1",
+     "split": "dev",
+     "d": 39.6,
+     "truth": 39.6,
+     "err_m": 0.0,
+     "az_err": 0.01
+    },
+    {
+     "pair": "EV3-EV2",
+     "split": "holdout",
+     "d": 14.01,
+     "truth": 14.0,
+     "err_m": 0.01,
+     "az_err": 0.08
+    },
+    {
+     "pair": "DC-V1",
+     "split": "dev",
+     "d": 645.13,
+     "truth": 645.2,
+     "err_m": 0.07,
+     "az_err": 0.01
+    },
+    {
+     "pair": "QNC-STC",
+     "split": "dev",
+     "d": 92.05,
+     "truth": 92.0,
+     "err_m": 0.05,
+     "az_err": 0.04
+    },
+    {
+     "pair": "E7-QNC",
+     "split": "dev",
+     "d": 419.16,
+     "truth": 419.1,
+     "err_m": 0.06,
+     "az_err": 0.01
+    },
+    {
+     "pair": "CPH-E5",
+     "split": "holdout",
+     "d": 227.53,
+     "truth": 227.5,
+     "err_m": 0.03,
+     "az_err": 0.04
+    },
+    {
+     "pair": "V1-COLUMBIA_LAKE",
+     "split": "dev",
+     "d": 550.89,
+     "truth": 550.9,
+     "err_m": 0.01,
+     "az_err": 0.02
+    },
+    {
+     "pair": "M3-DC",
+     "split": "holdout",
+     "d": 173.63,
+     "truth": 173.7,
+     "err_m": 0.07,
+     "az_err": 0.01
+    },
+    {
+     "pair": "LAUREL_LAKE-V1",
+     "split": "holdout",
+     "d": 703.69,
+     "truth": 703.7,
+     "err_m": 0.01,
+     "az_err": 0.04
+    }
+   ]
+  },
+  "key_buildings": {
+   "DC": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     176.6,
+     133.2
+    ],
+    "bearing_err": 0.0,
+    "pos_err_native_m": 0.002,
+    "pos_err_frozen_truth_m": 0.991
+   },
+   "MC": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     93.0,
+     68.3
+    ],
+    "bearing_err": 0.01,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 0.996
+   },
+   "M3": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     46.8,
+     46.8
+    ],
+    "bearing_err": null,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 1.004
+   },
+   "QNC": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     95.0,
+     69.7
+    ],
+    "bearing_err": 0.04,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 0.994
+   },
+   "SLC": {
+    "iou_city": 0.9991,
+    "area_rel_err": 0.0006,
+    "obb": [
+     181.0,
+     77.3
+    ],
+    "bearing_err": 0.01,
+    "pos_err_native_m": 0.025,
+    "pos_err_frozen_truth_m": 1.009
+   },
+   "PAC": {
+    "iou_city": 0.9999,
+    "area_rel_err": 0.0001,
+    "obb": [
+     117.2,
+     83.5
+    ],
+    "bearing_err": 0.04,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 0.96
+   },
+   "LIB": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     49.7,
+     49.7
+    ],
+    "bearing_err": null,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 1.029
+   },
+   "HH": {
+    "iou_city": 0.9999,
+    "area_rel_err": 0.0001,
+    "obb": [
+     104.4,
+     100.1
+    ],
+    "bearing_err": null,
+    "pos_err_native_m": 0.005,
+    "pos_err_frozen_truth_m": 0.986
+   },
+   "ML": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     67.2,
+     61.9
+    ],
+    "bearing_err": null,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 0.955
+   },
+   "E5": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     102.8,
+     29.5
+    ],
+    "bearing_err": 0.04,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 0.985
+   },
+   "E6": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     56.3,
+     37.1
+    ],
+    "bearing_err": 0.04,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 1.033
+   },
+   "E7": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     93.1,
+     41.8
+    ],
+    "bearing_err": 0.0,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 1.024
+   },
+   "EIT": {
+    "iou_city": 0.9989,
+    "area_rel_err": 0.001,
+    "obb": [
+     96.2,
+     69.3
+    ],
+    "bearing_err": 0.05,
+    "pos_err_native_m": 0.03,
+    "pos_err_frozen_truth_m": 0.945
+   },
+   "STC": {
+    "iou_city": 0.999,
+    "area_rel_err": 0.0001,
+    "obb": [
+     71.7,
+     53.7
+    ],
+    "bearing_err": 0.07,
+    "pos_err_native_m": 0.027,
+    "pos_err_frozen_truth_m": 0.95
+   },
+   "EV3": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0002,
+    "obb": [
+     75.7,
+     45.5
+    ],
+    "bearing_err": 0.02,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 0.989
+   },
+   "V1": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0,
+    "obb": [
+     80.6,
+     64.8
+    ],
+    "bearing_err": null,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 0.961
+   },
+   "REV": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     78.4,
+     41.6
+    ],
+    "bearing_err": 0.03,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 1.019
+   },
+   "PHY": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     118.4,
+     90.6
+    ],
+    "bearing_err": 0.01,
+    "pos_err_native_m": 0.0,
+    "pos_err_frozen_truth_m": 1.006
+   },
+   "CPH": {
+    "iou_city": 0.9989,
+    "area_rel_err": 0.0002,
+    "obb": [
+     128.6,
+     56.1
+    ],
+    "bearing_err": 0.01,
+    "pos_err_native_m": 0.03,
+    "pos_err_frozen_truth_m": 0.988
+   },
+   "B1": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     102.0,
+     27.6
+    ],
+    "bearing_err": 0.03,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 0.968
+   },
+   "EV2": {
+    "iou_city": 1.0,
+    "area_rel_err": 0.0001,
+    "obb": [
+     59.7,
+     45.1
+    ],
+    "bearing_err": 0.02,
+    "pos_err_native_m": 0.001,
+    "pos_err_frozen_truth_m": 0.955
+   },
+   "ION_UW": {
+    "pos_err_m": 0.583
+   },
+   "ION_LAURIER": {
+    "pos_err_m": 0.578
+   }
+  }
+ },
+ "seconds": 0.5
+}
