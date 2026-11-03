@@ -53,12 +53,22 @@ export default function Game() {
       {hud && !isTest && (
         <>
           <div style={{ ...panel, top: 16, left: 16, minWidth: 280 }}>
-            <div style={{ fontWeight: 700, marginBottom: 6 }}>Goose to-do list · {hud.area}</div>
+            <div style={{ fontWeight: 700, marginBottom: 2 }}>Goose to-do list · {hud.area}</div>
+            <div style={{ fontSize: 12, opacity: 0.7, marginBottom: 6 }}>{hud.clock}</div>
             {hud.tasks.map((t) => (
               <div key={t.text} style={{ textDecoration: t.done ? "line-through" : "none", opacity: t.done ? 0.55 : 1 }}>
                 {t.done ? "✓" : "○"} {t.text}
               </div>
             ))}
+          </div>
+          <div style={{ ...panel, top: 16, right: 16, textAlign: "right", minWidth: 150 }}>
+            <div style={{ fontSize: 12, opacity: 0.7 }}>MENACE</div>
+            <div style={{ fontSize: 26, fontWeight: 800 }}>{hud.menace.banked.toLocaleString()}</div>
+            {hud.menace.pending > 0 && (
+              <div style={{ fontWeight: 700 }}>+{hud.menace.pending.toLocaleString()} × {hud.menace.multiplier.toFixed(1)}
+                <div style={{ height: 4, background: swatchHex("accent", "ui"), width: `${(hud.menace.window / 4) * 100}%`, borderRadius: 2, marginTop: 3, marginLeft: "auto" }} />
+              </div>
+            )}
           </div>
           {hud.toast && (
             <div style={{ ...panel, top: 16, left: "50%", transform: "translateX(-50%)", fontWeight: 700 }}>✓ {hud.toast}</div>

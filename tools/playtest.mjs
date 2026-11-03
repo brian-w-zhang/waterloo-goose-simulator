@@ -3,7 +3,7 @@
 // The script only reads state through window.__wgs to decide which keys to press; movement, honks
 // and grabs go through the same input path a player uses. Writes playtest.json and a .webm video.
 import { chromium } from "@playwright/test";
-import { mkdirSync, readdirSync, renameSync, writeFileSync } from "node:fs";
+import { mkdirSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const out = process.argv[2] ?? "review/playtest";
@@ -66,12 +66,14 @@ await step("run away with it", async () => {
 await step("drop it and wander", async () => { await page.keyboard.press("KeyG"); await page.waitForTimeout(3000); });
 
 const final = await state();
+const videoPath = await page.video()?.path();
 await page.close();
 await ctx.close();
 await browser.close();
-const vid = readdirSync(out).filter((f) => f.endsWith(".webm")).sort().pop();
+// rename this run's own recording (raw recordings have random names, so never pick by listing)
 const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-if (vid) renameSync(join(out, vid), join(out, `playtest-${stamp}.webm`));
+const vid = videoPath ? videoPath.split("/").pop() : null;
+if (vid) renameSync(videoPath, join(out, `playtest-${stamp}.webm`));
 const result = { tasks_done: final.tasks.filter((t) => t.done).map((t) => t.text), steps: log, errors, video: vid ? `playtest-${stamp}.webm` : null };
 writeFileSync(join(out, "playtest.json"), JSON.stringify(result, null, 1));
 console.log(JSON.stringify({ tasks_done: result.tasks_done, errors: errors.length, video: result.video }));

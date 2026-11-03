@@ -20,7 +20,10 @@ import { WorldStream } from "@/world/stream";
 const D2R = THREE.MathUtils.degToRad;
 const CAM = campus.camera;
 const FIXED_DT = 1 / 60;
-const AMBIENT_COUNT = 220;
+const AMBIENT_COUNT = 160;
+// game clock (doc 05 section 3.2): one game hour is four real minutes, starting mid-morning
+const GAME_MIN_PER_S = 0.25;
+const START_MIN = 10 * 60 + 12;
 const MAX_LIFT_DEG = 14;
 
 export interface Pose { x: number; y: number; z: number; yaw: number; pitch: number; fov: number }
@@ -74,7 +77,8 @@ export interface WalkResult {
 
 declare global { interface Window { __wgs?: GameHandle } }
 
-export interface HudState { area: string; tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string; toast: string }
+export interface HudState { clock: string; menace: { banked: number; pending: number; multiplier: number; window: number; lastBail: number };
+  area: string; tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string; toast: string }
 
 export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState) => void): Promise<() => void> {
   const params = new URLSearchParams(window.location.search);
@@ -226,6 +230,16 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
 
   let hotspot: HotspotRuntime | null = null;
   let hideTick = 0;
+  const t0 = performance.now();
+  const gameMinutes = () => START_MIN + ((performance.now() - t0) / 1000) * GAME_MIN_PER_S;
+  /** UW 50-minute classes end at :20 and :50; the ten minutes after are the rush (doc 01 section 7). */
+  const classChange = (m: number) => { const mm = m % 30; return mm >= 20 && mm < 30; };
+  const clockText = () => {
+    const m = gameMinutes(), h = Math.floor(m / 60) % 24, mm = Math.floor(m % 60);
+    const rush = classChange(m);
+    const toRush = Math.ceil((20 - (m % 30) + 30) % 30);
+    return `${h}:${String(mm).padStart(2, "0")} · ${rush ? "class change!" : `next class change in ${toRush} min`}`;
+  };
   // camera lean toward nearby people (spec C-2): an inverse-distance weighted blend of everyone within
   // 12 m (chasers weigh triple), heavily smoothed so the frame never flips between people
   const lean = new THREE.Vector3();
@@ -412,8 +426,16 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   scene.add(crowd.root);
   const train = new IonTrain(net, mats.vertexColor, (x, z) => stream.heightAt(x, z));
   scene.add(train.root);
-  goose.onHonk = () => { hotspot?.honk(); crowd.honkAt(goose.position.x, goose.position.z); };
+  goose.onHonk = () => {
+    hotspot?.honk();
+    const fled = crowd.honkAt(goose.position.x, goose.position.z);
+    if (fled >= 3) hotspot?.menace.add("scatter", hotspot.sim.t, null, fled);
+  };
+  hotspot.isWater = (x, z) => stream.waterLevelAt(x, z) !== null;
   const hud = (): HudState => ({
+    clock: clockText(),
+    menace: { banked: hotspot!.menace.banked, pending: hotspot!.menace.pending, multiplier: hotspot!.menace.multiplier,
+      window: hotspot!.menace.windowLeft(hotspot!.sim.t), lastBail: hotspot!.menace.lastBail },
     area: hotspot!.nearestHotspot(goose.position.x, goose.position.z).name,
     tasks: hotspot!.tasks.filter((t) => t.hotspot === hotspot!.nearestHotspot(goose.position.x, goose.position.z).id)
       .map((t) => ({ text: hotspot!.unlocked(t) ? t.text : `??? (finish ${t.gate} tasks to unlock)`, done: t.done })),
@@ -503,6 +525,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       placeCamera();
       goose.rig.lowerBill.getWorldPosition(bill);
       hotspot?.sync(1 / 60, now / 1000, camera, bill);
+      crowd.count = classChange(gameMinutes()) ? AMBIENT_COUNT * 1.5 : AMBIENT_COUNT * 0.75;
       crowd.update(Math.min((now - lastCrowd) / 1000, 0.1), goose.position.x, goose.position.z);
       train.update(Math.min((now - lastCrowd) / 1000, 0.1));
       lastCrowd = now;

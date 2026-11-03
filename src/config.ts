@@ -14,7 +14,7 @@ export function swatch(name: string, group: "world" | "goose" | "light" | "debug
   return new Color(hex);
 }
 
-export function swatchHex(name: string, group: "world" | "goose" | "light" | "debug" | "ui" | "signs" = "world"): string {
+export function swatchHex(name: string, group: "world" | "goose" | "light" | "debug" | "ui" | "signs" | "items" | "people" = "world"): string {
   const hex = (palette[group] as Record<string, string>)[name];
   if (!hex) throw new Error(`palette has no ${group}.${name}`);
   return hex;

@@ -1,8 +1,9 @@
 import * as THREE from "three/webgpu";
-import { campus } from "@/config";
+import { campus, swatch, swatchHex } from "@/config";
 import { click, honk as honkSound } from "@/audio/honk";
 import type { Physics } from "@/physics/physics";
 import { DecisionClient } from "@/ai/decide";
+import { Menace } from "@/sim/menace";
 import { Sim, type SimEvent, type V2 } from "@/sim/sim";
 import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actors";
 import { HOTSPOTS, LOOKS, populate } from "./hotspot";
@@ -25,6 +26,13 @@ export class HotspotRuntime {
   readonly tasks: Task[] = HOTSPOTS.flatMap((h) => h.tasks.map((t) => ({ ...t, hotspot: h.id, done: false })));
   onTask?: (t: Task) => void;
   onSnatched?: () => void;
+  readonly menace = new Menace();
+  /** Set by the game: is (x, z) open water? Used for the "into water" score. */
+  isWater: (x: number, z: number) => boolean = () => false;
+  private chaseScored = new Set<string>();
+  private escalated = new Set<string>();
+  private dragM = 0;
+  private dragLast: V2 | null = null;
   /** Optional decision layer (?jev=1): consulted when someone gives up; the sim never waits for it. */
   decisions: DecisionClient | null = null;
   private lastWanted = new Map<string, string | null>();
@@ -87,10 +95,27 @@ export class HotspotRuntime {
     this.sim.goose.crouched = crouched;
     for (const n of this.sim.npcs.values()) this.lastPos.set(n.id, { ...n.pos });
     this.sim.step(dt);
-    for (const n of this.sim.npcs.values()) if (n.wantItem) this.lastWanted.set(n.id, n.wantItem);
+    for (const n of this.sim.npcs.values()) {
+      if (n.wantItem) this.lastWanted.set(n.id, n.wantItem);
+      if (n.state === "chase" && n.stateTime > 10 && !this.chaseScored.has(n.id)) {
+        this.chaseScored.add(n.id);
+        this.menace.add("chase_10s", this.sim.t, n.id);
+      }
+      if (n.state !== "chase") this.chaseScored.delete(n.id);
+    }
+    // dragging heavy things: 5 points per 10 m beyond the first 20 m
+    const held = this.sim.goose.holding ? this.sim.items.get(this.sim.goose.holding)! : null;
+    if (held && held.weight === "drag") {
+      const p = this.sim.goose.pos;
+      if (this.dragLast) this.dragM += Math.hypot(p.x - this.dragLast.x, p.z - this.dragLast.z);
+      this.dragLast = { ...p };
+      if (this.dragM >= 30) { this.dragM -= 10; this.menace.add("drag_10m", this.sim.t); }
+    } else { this.dragM = 0; this.dragLast = null; }
+    this.menace.tick(this.sim.t);
     for (; this.seen < this.sim.events.length; this.seen++) {
       const e = this.sim.events[this.seen];
       if (e.type === "snatched") this.onSnatched?.();
+      this.score(e);
       if (e.type === "giveup" && this.decisions) {
         const n = this.sim.npcs.get(e.npc)!;
         const item = this.lastWanted.get(n.id) ?? null;
@@ -104,9 +129,14 @@ export class HotspotRuntime {
       for (const t of this.tasks) {
         if (!t.done && this.unlocked(t) && t.test(e, this.sim)) {
           t.done = true;
+          this.menace.add("task", this.sim.t);
           this.onTask?.(t);
           const same = this.tasks.filter((o) => o.hotspot === t.hotspot);
-          if (same.filter((o) => o.done).length >= Math.min(4, same.length - 1)) this.sim.escalate(`${t.hotspot}:`);
+          if (same.filter((o) => o.done).length >= Math.min(4, same.length - 1) && !this.escalated.has(t.hotspot)) {
+            this.escalated.add(t.hotspot);
+            this.sim.escalate(`${t.hotspot}:`);
+            this.root.add(noGeeseSign(HOTSPOTS.find((h) => h.id === t.hotspot)!.anchor, this.heightAt));
+          }
         }
       }
     }
@@ -156,6 +186,23 @@ export class HotspotRuntime {
 
   unlocked(t: Task) {
     return !t.gate || this.tasks.filter((o) => o.hotspot === t.hotspot && o !== t && o.done).length >= t.gate;
+  }
+
+  private score(e: SimEvent) {
+    const m = this.menace, t = this.sim.t;
+    switch (e.type) {
+      case "noticed": if (e.what === "honk") m.add("honk_wonder", t, e.npc); break;
+      case "drop": m.add("honk_drop", t, e.npc); break;
+      case "tug": if (e.won) m.add("steal_hand", t, e.npc); break;
+      case "fall": m.add("slapstick", t, e.npc); break;
+      case "snatched": m.bail(); break;
+      case "giveup": if (this.sim.goose.hidden) m.add("lose_chaser", t, e.npc); break;
+      case "release": {
+        const it = this.sim.items.get(e.item)!;
+        if (this.isWater(it.pos.x, it.pos.z)) m.add("into_water", t);
+        break;
+      }
+    }
   }
 
   /** Current speech lines (shown for 2.2 s) with each speaker's head position. */
@@ -216,3 +263,31 @@ export class HotspotRuntime {
 }
 
 export const HOTSPOT_SEED = campus.seeds.sim;
+
+/** "No Geese" sign that the area's characters put up after escalation (doc 03 R-N6, spec V-ANIM-8). */
+function noGeeseSign(anchor: V2, heightAt: (x: number, z: number) => number): THREE.Object3D {
+  const g = new THREE.Group();
+  const c = document.createElement("canvas");
+  c.width = c.height = 256;
+  const ctx = c.getContext("2d")!;
+  ctx.fillStyle = swatchHex("mark_bg", "items"); ctx.fillRect(0, 0, 256, 256);
+  ctx.strokeStyle = swatchHex("shop_a", "signs"); ctx.lineWidth = 22;
+  ctx.beginPath(); ctx.arc(128, 110, 80, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = swatchHex("mark", "items");
+  ctx.beginPath(); ctx.ellipse(118, 125, 34, 20, 0, 0, Math.PI * 2); ctx.fill();       // goose body
+  ctx.fillRect(140, 70, 9, 50); ctx.beginPath(); ctx.arc(146, 68, 10, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = swatchHex("shop_a", "signs"); ctx.beginPath(); ctx.moveTo(72, 54); ctx.lineTo(184, 166); ctx.stroke();
+  ctx.fillStyle = swatchHex("mark", "items"); ctx.font = "800 38px ui-rounded, Arial, sans-serif"; ctx.textAlign = "center";
+  ctx.fillText("NO GEESE", 128, 238);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const face = new THREE.MeshToonNodeMaterial();
+  face.map = tex;
+  const post = new THREE.MeshToonNodeMaterial();
+  post.color = swatch("prop_metal");
+  g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.6, 8).translate(0, 0.8, 0), post));
+  g.add(new THREE.Mesh(new THREE.PlaneGeometry(0.8, 0.8).translate(0, 1.75, 0.05), face));
+  g.position.set(anchor.x + 2, heightAt(anchor.x + 2, anchor.z + 2) || 0, anchor.z + 2);
+  g.name = "no_geese_sign";
+  return g;
+}

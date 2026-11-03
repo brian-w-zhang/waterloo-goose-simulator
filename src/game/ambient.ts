@@ -36,9 +36,9 @@ export class AmbientCrowd {
   private cap: number;
 
   constructor(private graph: WalkGraph, private heightAt: (x: number, z: number) => number,
-    material: THREE.Material, private count: number, seed: number) {
+    material: THREE.Material, public count: number, seed: number) {
     this.rng = rngStream(seed);
-    this.cap = Math.ceil((count / LOOKS.length) * 1.6);
+    this.cap = Math.ceil((count * 1.5 / LOOKS.length) * 1.6);   // room for class-change surges
     this.root.name = "ambient";
     this.meshes = LOOKS.map((look) => {
       // full capacity from the start (the WebGPU backend sizes instance buffers on first use);
@@ -74,19 +74,24 @@ export class AmbientCrowd {
 
   get size() { return this.walkers.length; }
 
-  honkAt(x: number, z: number) {
+  /** Startle walkers near a honk; returns how many fled. */
+  honkAt(x: number, z: number): number {
+    let fled = 0;
     for (const w of this.walkers) {
       const d = Math.hypot(w.x - x, w.z - z);
       if (d > STARTLE_R) continue;
       const flee = this.rng() < 0.7;
+      if (flee) fled++;
       w.mode = flee ? "flee" : "film";
       w.modeT = flee ? 4 : 3;
       w.fx = (w.x - x) / (d || 1);
       w.fz = (w.z - z) / (d || 1);
     }
+    return fled;
   }
 
   update(dt: number, gx: number, gz: number) {
+    // walkers beyond the current target finish their routes and are not replaced
     while (this.walkers.length < this.count) {
       const w = this.spawn(gx, gz);
       if (!w) break;
