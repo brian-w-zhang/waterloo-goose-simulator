@@ -86,7 +86,7 @@ export function facadeColor(name: string, sharp: boolean) {
     wall = mix(wall, glass, inBay) as N;
   }
   if (s.storefront) {
-    const ground = step(hAbove, float(3.0)).mul(step(float(0.25), hAbove));
+    const ground = step(hAbove, float(3.0)).mul(step(float(0.25), hAbove)).mul(attribute("shopFront", "float"));
     const mull = band(fract(u.div(2.2)) as N, 0.04, 0.96);
     wall = mix(wall, mix(uniform(swatch("mullion")), uniform(swatch("window_glass")), mull), ground) as N;
     wall = mix(wall, uniform(swatch(s.accent)), step(float(3.0), hAbove).mul(step(hAbove, float(3.9)))) as N;

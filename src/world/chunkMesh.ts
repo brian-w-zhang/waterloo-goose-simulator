@@ -206,7 +206,13 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   const rc = c.arrays.ring_count as Uint32Array;
   const ringStart = new Uint32Array(rc.length + 1);
   for (let k = 0; k < rc.length; k++) ringStart[k + 1] = ringStart[k] + rc[k];
-  const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[]; ht: number[]; wf: number[] }>();
+  const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[]; ht: number[]; wf: number[]; fr: number[] }>();
+  // shop fronts: wall segments within 4 m of a business sign get storefront glazing; the rest are service walls
+  const shopSigns = (c.header.signs ?? []).filter((s) => s.style === "shop").map((s) => new THREE.Vector2(s.x, s.z));
+  const nearShop = (p: THREE.Vector2, q: THREE.Vector2) => shopSigns.some((s) => {
+    const d = q.clone().sub(p), t = THREE.MathUtils.clamp(s.clone().sub(p).dot(d) / Math.max(d.lengthSq(), 1e-6), 0, 1);
+    return p.clone().addScaledVector(d, t).distanceTo(s) < 4;
+  });
   const plant = { pos: [] as number[], nrm: [] as number[], col: [] as number[] };
   const ring = (k: number) => {
     const pts: THREE.Vector2[] = [];
@@ -215,12 +221,14 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   };
   for (const b of c.header.buildings) {
     let a = acc.get(b.style);
-    if (!a) { a = { pos: [], nrm: [], seed: [], ha: [], ht: [], wf: [] }; acc.set(b.style, a); }
+    if (!a) { a = { pos: [], nrm: [], seed: [], ha: [], ht: [], wf: [], fr: [] }; acc.set(b.style, a); }
     const A = a;
     // wf: signed metres from the middle of the wall segment (for centre bays); 1e4 off walls
+    let front = 0;
     const tri = (p: number[][], n: number[][], top: number, wf = [1e4, 1e4, 1e4]) => {
       for (let k = 0; k < 3; k++) {
         A.pos.push(...p[k]); A.nrm.push(...n[k]); A.seed.push(b.id); A.ha.push(p[k][1] - b.ground_y); A.ht.push(top); A.wf.push(wf[k]);
+        A.fr.push(front);
       }
     };
     const quad = (p0: number[], p1: number[], p2: number[], p3: number[], n: number[], top: number, wf?: number[]) => {
@@ -241,6 +249,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
         // signed distance along the wall from the footprint centre's projection
         const tx = dx / len, tz = dz / len;
         const fp = (p.x - cen.x) * tx + (p.y - cen.y) * tz, fq = (q.x - cen.x) * tx + (q.y - cen.y) * tz;
+        front = shopSigns.length && nearShop(p, q) ? 1 : 0;
         if (!inward) quad([p.x, yb, p.y], [q.x, yb, q.y], [q.x, yt, q.y], [p.x, yt, p.y], [nx, 0, nz], top, [fp, fq, fq, fp]);
         else quad([q.x, yb, q.y], [p.x, yb, p.y], [p.x, yt, p.y], [q.x, yt, q.y], [-nx, 0, -nz], top, [fq, fp, fp, fq]);
       }
@@ -409,6 +418,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
     g.setAttribute("hAbove", new THREE.Float32BufferAttribute(a.ha, 1));
     g.setAttribute("hTop", new THREE.Float32BufferAttribute(a.ht, 1));
     g.setAttribute("wallF", new THREE.Float32BufferAttribute(a.wf, 1));
+    g.setAttribute("shopFront", new THREE.Float32BufferAttribute(a.fr, 1));
     out.set(style, g);
   }
   return out;
