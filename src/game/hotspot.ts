@@ -12,7 +12,8 @@ interface CharacterDef {
   routine: [number, number][]; items: { kind: string; at: [number, number]; name: string; held?: boolean }[];
 }
 
-export interface TaskDef { id: string; text: string; test: (e: SimEvent, sim: Sim) => boolean }
+/** gate: how many other tasks of the same hotspot must be done before this one unlocks (doc 03 R-T1). */
+export interface TaskDef { id: string; text: string; gate?: number; test: (e: SimEvent, sim: Sim) => boolean }
 
 export interface HotspotDef { id: string; name: string; anchor: V2; characters: CharacterDef[]; tasks: TaskDef[] }
 
@@ -67,6 +68,9 @@ export const HOTSPOTS: HotspotDef[] = [
       { id: "flag", text: "Run off with the tour flag", test: grabbed("the tour flag") },
       { id: "ring", text: "Hide an engineer's iron ring box", test: movedFar("an iron ring box", 20) },
       { id: "giveup", text: "Make someone give up and scratch their head", test: (e, s) => e.type === "giveup" && npcIn("green", s, e.npc) },
+      { id: "finale", text: "Finale: deliver the professor's laptop to the SLC plaza", gate: 4,
+        test: (e, s) => e.type === "release" && s.items.get(e.item)!.name === "the professor's laptop"
+          && Math.hypot(s.items.get(e.item)!.pos.x - 722, s.items.get(e.item)!.pos.z + 290) < 15 },
     ],
   },
   {

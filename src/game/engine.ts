@@ -373,7 +373,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   const hud = (): HudState => ({
     area: hotspot!.nearestHotspot(goose.position.x, goose.position.z).name,
     tasks: hotspot!.tasks.filter((t) => t.hotspot === hotspot!.nearestHotspot(goose.position.x, goose.position.z).id)
-      .map((t) => ({ text: t.text, done: t.done })),
+      .map((t) => ({ text: hotspot!.unlocked(t) ? t.text : `??? (finish ${t.gate} tasks to unlock)`, done: t.done })),
     prompt: hotspot!.sim.goose.holding ? `G: drop ${hotspot!.sim.items.get(hotspot!.sim.goose.holding)!.name}`
       : (hotspot!.nearestItem() ? `G: grab ${hotspot!.nearestItem()}` : ""),
     holding: hotspot!.sim.goose.holding, backend: rig.backend, toast,

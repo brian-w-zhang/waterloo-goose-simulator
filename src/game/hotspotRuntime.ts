@@ -97,7 +97,7 @@ export class HotspotRuntime {
           .then((a) => { if (a && this.sim.applyDecision(n.id, a.choice, item)) this.decisions!.stats.applied++; });
       }
       for (const t of this.tasks) {
-        if (!t.done && t.test(e, this.sim)) { t.done = true; this.onTask?.(t); }
+        if (!t.done && this.unlocked(t) && t.test(e, this.sim)) { t.done = true; this.onTask?.(t); }
       }
     }
   }
@@ -126,6 +126,10 @@ export class HotspotRuntime {
         m.position.set(it.pos.x, this.ground(it.pos.x, it.pos.z), it.pos.z);
       }
     }
+  }
+
+  unlocked(t: Task) {
+    return !t.gate || this.tasks.filter((o) => o.hotspot === t.hotspot && o !== t && o.done).length >= t.gate;
   }
 
   /** The hotspot closest to (x, z): its name and tasks drive the HUD. */
