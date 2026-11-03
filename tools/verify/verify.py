@@ -41,6 +41,22 @@ def static_checks(run: Path):
                                                 indent=1))
 
 
+def code_checks(run: Path):
+    """Typecheck and the unit and behaviour tests (TypeScript and Python) as gates."""
+    import re
+    from pipeline.validate.run import evaluate
+    tsc = sh("npx", "tsc", "--noEmit", check=False)
+    ts_errors = len(re.findall(r"error TS\d+", tsc.stdout + tsc.stderr))
+    vt = sh("npx", "vitest", "run", check=False)
+    m = re.search(r"Tests\s+(?:(\d+) failed)?", vt.stdout)
+    failed = int(m.group(1)) if m and m.group(1) else (0 if vt.returncode == 0 else 1)
+    py = sh(sys.executable, "-m", "pytest", "-q", "pipeline", check=False)
+    pm = re.search(r"(\d+) failed", py.stdout)
+    metrics = {"typecheck_errors": ts_errors, "unit_test_failures": failed,
+               "python_test_failures": int(pm.group(1)) if pm else (0 if py.returncode == 0 else 1)}
+    (run / "code.json").write_text(json.dumps({"metrics": evaluate("code", metrics)}, indent=1))
+
+
 def main():
     """fast | render | full [RUN_DIR]: render makes a run folder with the browser suites only, so the
     agent can score looks.json against those exact renders; full RUN_DIR then finishes that run."""
@@ -60,6 +76,7 @@ def main():
     if r.returncode == 2:
         raise SystemExit("ground truth hash mismatch")
     static_checks(run)
+    code_checks(run)
     backend = "none"
     if kind == "full":
         if not (reuse and (run / "viewpoints").exists()):

@@ -1,75 +1,402 @@
 {
   "note": "Gates from docs/plan/08-verification-and-self-checks.md. 'starting': true marks values without a measurement behind them in doc 08; they are frozen after the first measured run and loosening any gate needs a ledger reason (doc 08 section 4.4). op is the pass condition; better says which direction is an improvement for the regression gate; band is the noise band.",
   "geometry": {
-    "coverage_uw_core": { "op": ">=", "gate": 115, "better": "higher", "band": 0 },
-    "coverage_all_core": { "op": ">=", "gate": 475, "better": "higher", "band": 0 },
-    "built_area_uw_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "built_area_all_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "iou_city_median": { "op": ">=", "gate": 0.95, "better": "higher", "band": 0 },
-    "iou_city_p10": { "op": ">=", "gate": 0.88, "better": "higher", "band": 0 },
-    "iou_city_key_min": { "op": ">=", "gate": 0.90, "better": "higher", "band": 0 },
-    "iou_osm_median_report": { "op": ">=", "gate": 0.75, "better": "higher", "band": 0, "report_only": true },
-    "key_area_max_rel_err": { "op": "<=", "gate": 0.03, "better": "lower", "band": 0 },
-    "key_obb_side_fail_count": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "key_bearing_max_err_deg": { "op": "<=", "gate": 2.0, "better": "lower", "band": 0 },
-    "landmark_pos_median_m": { "op": "<", "gate": 0.5, "better": "lower", "band": 0 },
-    "landmark_pos_max_m": { "op": "<", "gate": 2.0, "better": "lower", "band": 0 },
-    "distance_fail_count": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "distance_median_err_m": { "op": "<", "gate": 0.5, "better": "lower", "band": 0 },
-    "azimuth_max_err_deg": { "op": "<=", "gate": 1.0, "better": "lower", "band": 0 }
+    "coverage_uw_core": {
+      "op": ">=",
+      "gate": 115,
+      "better": "higher",
+      "band": 0
+    },
+    "coverage_all_core": {
+      "op": ">=",
+      "gate": 475,
+      "better": "higher",
+      "band": 0
+    },
+    "built_area_uw_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "built_area_all_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "iou_city_median": {
+      "op": ">=",
+      "gate": 0.95,
+      "better": "higher",
+      "band": 0
+    },
+    "iou_city_p10": {
+      "op": ">=",
+      "gate": 0.88,
+      "better": "higher",
+      "band": 0
+    },
+    "iou_city_key_min": {
+      "op": ">=",
+      "gate": 0.9,
+      "better": "higher",
+      "band": 0
+    },
+    "iou_osm_median_report": {
+      "op": ">=",
+      "gate": 0.75,
+      "better": "higher",
+      "band": 0,
+      "report_only": true
+    },
+    "key_area_max_rel_err": {
+      "op": "<=",
+      "gate": 0.03,
+      "better": "lower",
+      "band": 0
+    },
+    "key_obb_side_fail_count": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "key_bearing_max_err_deg": {
+      "op": "<=",
+      "gate": 2.0,
+      "better": "lower",
+      "band": 0
+    },
+    "landmark_pos_median_m": {
+      "op": "<",
+      "gate": 0.5,
+      "better": "lower",
+      "band": 0
+    },
+    "landmark_pos_max_m": {
+      "op": "<",
+      "gate": 2.0,
+      "better": "lower",
+      "band": 0
+    },
+    "distance_fail_count": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "distance_median_err_m": {
+      "op": "<",
+      "gate": 0.5,
+      "better": "lower",
+      "band": 0
+    },
+    "azimuth_max_err_deg": {
+      "op": "<=",
+      "gate": 1.0,
+      "better": "lower",
+      "band": 0
+    }
   },
   "heights": {
-    "height_key_max_err_m": { "op": "<=", "gate": 2.0, "better": "lower", "band": 0 },
-    "height_rmse_dev_m": { "op": "<", "gate": 1.5, "better": "lower", "band": 0 },
-    "height_rmse_holdout_m": { "op": "<", "gate": 2.0, "better": "lower", "band": 0 },
-    "height_random20_rmse_m": { "op": "<", "gate": 2.0, "better": "lower", "band": 0 },
-    "height_pixel_median_abs_m": { "op": "<", "gate": 1.5, "better": "lower", "band": 0, "starting": true }
+    "height_key_max_err_m": {
+      "op": "<=",
+      "gate": 2.0,
+      "better": "lower",
+      "band": 0
+    },
+    "height_rmse_dev_m": {
+      "op": "<",
+      "gate": 1.5,
+      "better": "lower",
+      "band": 0
+    },
+    "height_rmse_holdout_m": {
+      "op": "<",
+      "gate": 2.0,
+      "better": "lower",
+      "band": 0
+    },
+    "height_random20_rmse_m": {
+      "op": "<",
+      "gate": 2.0,
+      "better": "lower",
+      "band": 0
+    },
+    "height_pixel_median_abs_m": {
+      "op": "<",
+      "gate": 1.5,
+      "better": "lower",
+      "band": 0,
+      "starting": true
+    }
   },
   "terrain": {
-    "terrain_rmse_m": { "op": "<", "gate": 0.25, "better": "lower", "band": 0 },
-    "terrain_max_m": { "op": "<", "gate": 1.5, "better": "lower", "band": 0 },
-    "seam_max_m": { "op": "<", "gate": 0.01, "better": "lower", "band": 0 }
+    "terrain_rmse_m": {
+      "op": "<",
+      "gate": 0.25,
+      "better": "lower",
+      "band": 0
+    },
+    "terrain_max_m": {
+      "op": "<",
+      "gate": 1.5,
+      "better": "lower",
+      "band": 0
+    },
+    "seam_max_m": {
+      "op": "<",
+      "gate": 0.01,
+      "better": "lower",
+      "band": 0
+    }
   },
   "network": {
-    "ring_road_osm_rel_err": { "op": "<=", "gate": 0.01, "better": "lower", "band": 0 },
-    "ring_road_city_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "laurel_creek_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "laurel_trail_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "columbia_lake_area_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "laurel_lake_area_rel_err": { "op": "<=", "gate": 0.02, "better": "lower", "band": 0 },
-    "width_ortho_fail_count": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "width_tag_fail_count": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "entrance_reach_15m": { "op": ">=", "gate": 0.95, "better": "higher", "band": 0 },
-    "largest_component_share": { "op": ">=", "gate": 0.98, "better": "higher", "band": 0 },
-    "network_length_rel_err": { "op": "<=", "gate": 0.01, "better": "lower", "band": 0 }
+    "ring_road_osm_rel_err": {
+      "op": "<=",
+      "gate": 0.01,
+      "better": "lower",
+      "band": 0
+    },
+    "ring_road_city_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "laurel_creek_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "laurel_trail_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "columbia_lake_area_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "laurel_lake_area_rel_err": {
+      "op": "<=",
+      "gate": 0.02,
+      "better": "lower",
+      "band": 0
+    },
+    "width_ortho_fail_count": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "width_tag_fail_count": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "entrance_reach_15m": {
+      "op": ">=",
+      "gate": 0.95,
+      "better": "higher",
+      "band": 0
+    },
+    "largest_component_share": {
+      "op": ">=",
+      "gate": 0.98,
+      "better": "higher",
+      "band": 0
+    },
+    "network_length_rel_err": {
+      "op": "<=",
+      "gate": 0.01,
+      "better": "lower",
+      "band": 0
+    }
   },
   "topdown": {
-    "topdown_building_iou_min": { "op": ">=", "gate": 0.95, "better": "higher", "band": 0 },
-    "topdown_chamfer_mean_m": { "op": "<=", "gate": 0.5, "better": "lower", "band": 0 },
-    "topdown_chamfer_p95_m": { "op": "<=", "gate": 1.5, "better": "lower", "band": 0 },
-    "topdown_path_iou_min": { "op": ">=", "gate": 0.85, "better": "higher", "band": 0, "starting": true }
+    "topdown_building_iou_min": {
+      "op": ">=",
+      "gate": 0.95,
+      "better": "higher",
+      "band": 0
+    },
+    "topdown_chamfer_mean_m": {
+      "op": "<=",
+      "gate": 0.5,
+      "better": "lower",
+      "band": 0
+    },
+    "topdown_chamfer_p95_m": {
+      "op": "<=",
+      "gate": 1.5,
+      "better": "lower",
+      "band": 0
+    },
+    "topdown_path_iou_min": {
+      "op": ">=",
+      "gate": 0.85,
+      "better": "higher",
+      "band": 0,
+      "starting": true
+    }
   },
   "flythrough": {
-    "hole_frames": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "chunks_never_loaded": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "bad_vertices": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "goose_walk_falls": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "frame_ms_p95": { "op": "record", "better": "lower", "band": 0.10 }
+    "hole_frames": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "chunks_never_loaded": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "bad_vertices": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "goose_walk_falls": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "frame_ms_p95": {
+      "op": "record",
+      "better": "lower",
+      "band": 0.1
+    }
   },
   "style": {
-    "sat_mean": { "op": "between", "gate": [0.18, 0.35], "better": "none", "band": 0.005 },
-    "val_mean": { "op": "between", "gate": [0.45, 0.65], "better": "none", "band": 0.005 },
-    "val_std": { "op": "between", "gate": [0.08, 0.18], "better": "none", "band": 0.005 },
-    "dark_share": { "op": "<=", "gate": 0.002, "better": "lower", "band": 0.005 },
-    "edge_share": { "op": "<=", "gate": 0.045, "better": "lower", "band": 0.005 },
-    "colourfulness": { "op": "between", "gate": [0.10, 0.25], "better": "none", "band": 0.005 },
-    "kmeans12_residual_de": { "op": "<=", "gate": 6.0, "better": "lower", "band": 0.005 },
-    "palette_id_off_share": { "op": "<=", "gate": 0.0, "better": "lower", "band": 0 },
-    "lit_palette_share": { "op": ">=", "gate": 0.95, "better": "higher", "band": 0.005, "starting": true },
-    "shadow_ratio": { "op": ">=", "gate": 0.75, "better": "higher", "band": 0.005, "starting": true },
-    "penumbra_px": { "op": ">=", "gate": 4, "better": "higher", "band": 0, "starting": true },
-    "camera_config_ok": { "op": "==", "gate": 1, "better": "higher", "band": 0 },
-    "static_colour_violations": { "op": "<=", "gate": 0, "better": "lower", "band": 0 },
-    "static_banned_violations": { "op": "<=", "gate": 0, "better": "lower", "band": 0 }
+    "sat_mean": {
+      "op": "between",
+      "gate": [
+        0.18,
+        0.35
+      ],
+      "better": "none",
+      "band": 0.005
+    },
+    "val_mean": {
+      "op": "between",
+      "gate": [
+        0.45,
+        0.65
+      ],
+      "better": "none",
+      "band": 0.005
+    },
+    "val_std": {
+      "op": "between",
+      "gate": [
+        0.08,
+        0.18
+      ],
+      "better": "none",
+      "band": 0.005
+    },
+    "dark_share": {
+      "op": "<=",
+      "gate": 0.002,
+      "better": "lower",
+      "band": 0.005
+    },
+    "edge_share": {
+      "op": "<=",
+      "gate": 0.045,
+      "better": "lower",
+      "band": 0.005
+    },
+    "colourfulness": {
+      "op": "between",
+      "gate": [
+        0.1,
+        0.25
+      ],
+      "better": "none",
+      "band": 0.005
+    },
+    "kmeans12_residual_de": {
+      "op": "<=",
+      "gate": 6.0,
+      "better": "lower",
+      "band": 0.005
+    },
+    "palette_id_off_share": {
+      "op": "<=",
+      "gate": 0.0,
+      "better": "lower",
+      "band": 0
+    },
+    "lit_palette_share": {
+      "op": ">=",
+      "gate": 0.95,
+      "better": "higher",
+      "band": 0.005,
+      "starting": true
+    },
+    "shadow_ratio": {
+      "op": ">=",
+      "gate": 0.75,
+      "better": "higher",
+      "band": 0.005,
+      "starting": true
+    },
+    "penumbra_px": {
+      "op": ">=",
+      "gate": 4,
+      "better": "higher",
+      "band": 0,
+      "starting": true
+    },
+    "camera_config_ok": {
+      "op": "==",
+      "gate": 1,
+      "better": "higher",
+      "band": 0
+    },
+    "static_colour_violations": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "static_banned_violations": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    }
+  },
+  "code": {
+    "typecheck_errors": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "unit_test_failures": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    },
+    "python_test_failures": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    }
   }
 }

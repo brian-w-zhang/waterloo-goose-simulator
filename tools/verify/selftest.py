@@ -139,6 +139,16 @@ def main():
             v = static_mutant(tmp / name, snippet, script, key)
             results.append({"mutant": name, "metric": key, "value": v, "gate_failed": v > 0})
             print(f"{'ok  ' if v > 0 else 'MISS'} {name}: {key} = {v}")
+        # a type error in the real tree (temporary file, always removed) must turn the typecheck gate red
+        bad = ROOT / "src" / "__selftest_mutant.ts"
+        try:
+            bad.write_text('export const mutant: number = "not a number";\n')
+            r = subprocess.run(["npx", "tsc", "--noEmit"], cwd=ROOT, capture_output=True, text=True)
+            n = r.stdout.count("error TS")
+        finally:
+            bad.unlink(missing_ok=True)
+        results.append({"mutant": "type_error", "metric": "typecheck_errors", "value": n, "gate_failed": n > 0})
+        print(f"{'ok  ' if n > 0 else 'MISS'} type_error: typecheck_errors = {n}")
     survived = [r["mutant"] for r in results if not r["gate_failed"]]
     if run:
         (run / "selftest.json").write_text(json.dumps({"metrics": {"selftest_survivors": {
