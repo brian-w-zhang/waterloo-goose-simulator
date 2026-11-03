@@ -417,6 +417,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
 const CANOPY_UNDERSIDE_M = 3.0;
 const CANOPY_THICK_M = 0.25;
 const POST_SPACING_M = 6;
+const ROOF_UNDERSIDE_M = 3.8;
 
 /** Transit platform decks with canopies on posts where OSM says the platform is sheltered. */
 function platformGeometry(c: Chunk): THREE.BufferGeometry | null {
@@ -451,6 +452,21 @@ function platformGeometry(c: Chunk): THREE.BufferGeometry | null {
     const pts: THREE.Vector2[] = [];
     for (let v = starts[pl.ring_first]; v < starts[pl.ring_first + 1]; v++) pts.push(new THREE.Vector2(px[v * 2], px[v * 2 + 1]));
     const deck = pl.ground_y + pl.deck;
+    if (pl.kind === "roof") {
+      // a freestanding OSM roof: the canopy is the mapped outline, on a row of posts down its middle
+      const y0 = deck + ROOF_UNDERSIDE_M;
+      // yellow fascia and a white soffit, as on the UW station canopies (photo V19)
+      prism(pts, y0, y0 + CANOPY_THICK_M * 1.6, "flower_yellow", "roof_light", "mullion");
+      const r = minRect(pts);
+      const n = Math.max(1, Math.round((2 * r.hu) / POST_SPACING_M));
+      for (let k = 0; k <= n; k++) {
+        const su = (-1 + (2 * k) / n) * Math.max(r.hu - 1, 0.5);
+        const p = new THREE.Vector2(r.cx + r.ux * su, r.cz + r.uz * su), s = 0.12;
+        prism([new THREE.Vector2(p.x - s, p.y - s), new THREE.Vector2(p.x + s, p.y - s), new THREE.Vector2(p.x + s, p.y + s),
+          new THREE.Vector2(p.x - s, p.y + s)], deck - 0.3, y0, "prop_metal", "prop_metal", null);
+      }
+      continue;
+    }
     prism(pts, pl.ground_y - 0.3, deck, "paving", "path", null);
     if (!pl.canopy) continue;
     const r = minRect(pts);
