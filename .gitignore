@@ -25,3 +25,5 @@ playwright-report/
 bench/results/verify/*/renders/
 .DS_Store
 .env*
+review/**/*.webm
+bench/results/verify/*/playtest/*.webm

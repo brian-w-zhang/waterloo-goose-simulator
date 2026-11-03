@@ -82,6 +82,15 @@ def main():
         if not (reuse and (run / "viewpoints").exists()):
             r = sh("node", "tools/verify/visual.mjs", str(run), check=False)
             print(r.stdout[-4000:], r.stderr[-2000:])
+        r = sh("node", "tools/playtest.mjs", str(run / "playtest"), check=False)
+        print(r.stdout[-600:])
+        pt = run / "playtest" / "playtest.json"
+        if pt.exists():
+            from pipeline.validate.run import evaluate
+            p = json.loads(pt.read_text())
+            (run / "play.json").write_text(json.dumps({"metrics": evaluate("play", {
+                "playtest_tasks_done": len(p["tasks_done"]), "playtest_page_errors": len(p["errors"])}),
+                "detail": p}, indent=1))
         info = run / "visual_info.json"
         if info.exists():
             backend = json.loads(info.read_text()).get("backend", "unknown")

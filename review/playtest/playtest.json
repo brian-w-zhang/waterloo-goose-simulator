@@ -1,0 +1,92 @@
+{
+ "tasks_done": [
+  "Steal the professor's coffee",
+  "Honk someone into dropping what they carry",
+  "Get chased across the green",
+  "Make someone give up and scratch their head"
+ ],
+ "steps": [
+  {
+   "what": "walk to the professor",
+   "ms": 7293,
+   "goose": {
+    "x": 929.313005303964,
+    "y": 13.096916333599948,
+    "z": -382.36755990609527,
+    "yaw": -2.5580941780630484,
+    "speed": 1.5999999999999988,
+    "grounded": true
+   },
+   "done": []
+  },
+  {
+   "what": "honk at the professor",
+   "ms": 902,
+   "goose": {
+    "x": 929.1310336042661,
+    "y": 13.077431584361475,
+    "z": -382.4602340052952,
+    "yaw": -2.5580941780630484,
+    "speed": 0.00045434077424521147,
+    "grounded": true
+   },
+   "done": [
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "grab the dropped coffee",
+   "ms": 1247,
+   "goose": {
+    "x": 928.6358773809043,
+    "y": 13.13428373741277,
+    "z": -383.8271022285335,
+    "yaw": -2.879792302895297,
+    "speed": 0.07965334843667753,
+    "grounded": true
+   },
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "run away with it",
+   "ms": 11823,
+   "goose": {
+    "x": 967.3890684530779,
+    "y": 13.658193816651474,
+    "z": -408.04813132803247,
+    "yaw": -3.7480622154732566,
+    "speed": 0.02829937739615901,
+    "grounded": true
+   },
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  },
+  {
+   "what": "drop it and wander",
+   "ms": 3002,
+   "goose": {
+    "x": 967.3907474436385,
+    "y": 13.65829315267416,
+    "z": -408.04842964923944,
+    "yaw": -3.7480622154732566,
+    "speed": 2.6481490392617714e-15,
+    "grounded": true
+   },
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  }
+ ],
+ "errors": [],
+ "video": "playtest-2026-11-03T10-27-39.webm"
+}

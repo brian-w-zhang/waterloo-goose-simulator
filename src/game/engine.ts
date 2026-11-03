@@ -60,6 +60,7 @@ export interface GameHandle {
     honk(): void;
     npcs(): { id: string; state: string; mark: string; x: number; z: number; holding: string | null }[];
     tasks(): { text: string; done: boolean }[];
+    items(): { id: string; name: string; x: number; z: number; heldBy: string | null }[];
     crowd(): number;
   };
 }
@@ -191,10 +192,12 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const keys = new Set<string>();
+  // taps shorter than a simulation step still count: keydown latches until a step consumes it
+  const tapped = new Set<string>();
   // free-fly debug camera (V): WASD fly, R and F up and down, Q and E turn, Z and X tilt, Shift faster
   let free: Pose | null = null;
   const onKey = (e: KeyboardEvent) => {
-    if (e.type === "keydown") keys.add(e.code); else keys.delete(e.code);
+    if (e.type === "keydown") { keys.add(e.code); if (!e.repeat) tapped.add(e.code); } else keys.delete(e.code);
     if (e.code === "Space") e.preventDefault();
     if (e.type === "keydown" && e.code === "KeyV" && !e.repeat) {
       free = free ? null : { x: camera.position.x, y: camera.position.y, z: camera.position.z, yaw: follow.yaw, pitch: -30, fov: 50 };
@@ -214,7 +217,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       (keys.has("KeyW") || keys.has("ArrowUp") ? 1 : 0) - (keys.has("KeyS") || keys.has("ArrowDown") ? 1 : 0));
     if (mv.lengthSq() > 1) mv.normalize();
     return { move: mv, run: keys.has("ShiftLeft") || keys.has("ShiftRight"), crouch: keys.has("KeyC") || keys.has("ControlLeft"),
-      honk: keys.has("Space"), flap: keys.has("KeyF") };
+      honk: keys.has("Space") || tapped.has("Space"), flap: keys.has("KeyF") || tapped.has("KeyF") };
   };
 
   let hotspot: HotspotRuntime | null = null;
@@ -240,7 +243,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const handle: GameHandle = {
-    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], crowd: () => 0 },
+    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], crowd: () => 0 },
     ready: false,
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
@@ -361,6 +364,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     honk: () => hotspot?.honk(),
     npcs: () => [...(hotspot?.sim.npcs.values() ?? [])].map((n) => ({ id: n.id, state: n.state, mark: n.mark, x: n.pos.x, z: n.pos.z, holding: n.holding })),
     tasks: () => hotspot?.tasks.map((t) => ({ text: t.text, done: t.done })) ?? [],
+    items: () => [...(hotspot?.sim.items.values() ?? [])].map((i) => ({ id: i.id, name: i.name, x: i.pos.x, z: i.pos.z, heldBy: i.heldBy })),
     crowd: () => crowd.size,
   };
   window.__wgs = handle;
@@ -452,7 +456,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
         void stream.update(free.x, free.z);
       }
       const input = free ? { move: new THREE.Vector2(), run: false, crouch: false, honk: false, flap: false } : readInput();
-      while (acc >= FIXED_DT) { step(FIXED_DT, input); acc -= FIXED_DT; }
+      while (acc >= FIXED_DT) { step(FIXED_DT, input); acc -= FIXED_DT; tapped.clear(); input.honk = keys.has("Space"); }
       if (!free && (keys.has("KeyQ") || keys.has("KeyE"))) {
         follow.yaw += (keys.has("KeyE") ? 70 : -70) * FIXED_DT;
         yawGoal = null;

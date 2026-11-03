@@ -410,5 +410,19 @@
       "better": "lower",
       "band": 0
     }
+  },
+  "play": {
+    "playtest_tasks_done": {
+      "op": ">=",
+      "gate": 3,
+      "better": "higher",
+      "band": 0
+    },
+    "playtest_page_errors": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
+    }
   }
 }
