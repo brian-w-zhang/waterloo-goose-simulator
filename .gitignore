@@ -28,3 +28,6 @@ bench/results/verify/*/renders/
 .env*
 review/**/*.webm
 bench/results/verify/*/playtest/*.webm
+
+# reference screenshots from Google, Bing and other sites (never republished)
+docs/refs/**/private/
