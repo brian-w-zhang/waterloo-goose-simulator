@@ -19,6 +19,7 @@ const D2R = THREE.MathUtils.degToRad;
 const CAM = campus.camera;
 const FIXED_DT = 1 / 60;
 const AMBIENT_COUNT = 220;
+const MAX_LIFT_DEG = 14;
 
 export interface Pose { x: number; y: number; z: number; yaw: number; pitch: number; fov: number }
 export interface Follow { x: number; z: number; yaw: number; pitch: number; dist: number; fov: number }
@@ -118,6 +119,9 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   const target = new THREE.Vector3();
   // smart follow: when a building blocks the view of the goose, lift the camera toward top-down
   let lift = 0;
+  let blockedFor = 0;
+  let yawGoal: number | null = null;
+  let lastSteer = 0;
   const occluded = (from: THREE.Vector3, to: THREE.Vector3) => {
     const d = to.clone().sub(from);
     const L = d.length();
@@ -140,8 +144,9 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       target.set(follow.x, (Number.isFinite(gy) ? gy : 15) + 0.4, follow.z);
       camera.fov = follow.fov;
       const back = new THREE.Vector3(-Math.sin(D2R(follow.yaw)), 0, Math.cos(D2R(follow.yaw)));
-      const pitch = follow.pitch + (72 - follow.pitch) * lift;
-      const dist = follow.dist * (1 - 0.3 * lift);
+      // a gentle tilt only: the see-through circle does the rest, so the diorama angle survives
+      const pitch = follow.pitch + MAX_LIFT_DEG * lift;
+      const dist = follow.dist * (1 - 0.15 * lift);
       camera.position.copy(target)
         .addScaledVector(back, dist * Math.cos(D2R(pitch)))
         .add(new THREE.Vector3(0, dist * Math.sin(D2R(pitch)), 0));
@@ -149,6 +154,22 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
         const head = goose.position.clone().setY(goose.position.y + 0.6);
         const blocked = occluded(head, camera.position);
         lift = THREE.MathUtils.clamp(lift + (blocked ? 0.04 : -0.02), 0, 1);
+        blockedFor = blocked ? blockedFor + 1 : 0;
+        // whisker search: after a moment blocked, swing toward the nearest clear yaw (Q and E still steer)
+        if (blockedFor > 20 && performance.now() - lastSteer > 1500) {
+          const camAt = (yaw: number) => target.clone()
+            .add(new THREE.Vector3(-Math.sin(D2R(yaw)), 0, Math.cos(D2R(yaw))).multiplyScalar(dist * Math.cos(D2R(pitch))))
+            .add(new THREE.Vector3(0, dist * Math.sin(D2R(pitch)), 0));
+          for (const off of [25, -25, 50, -50, 75, -75, 100, -100, 125, -125]) {
+            if (!occluded(head, camAt(follow.yaw + off))) { yawGoal = follow.yaw + off; break; }
+          }
+          blockedFor = 0;
+        }
+      }
+      if (yawGoal !== null) {
+        const d = yawGoal - follow.yaw;
+        follow.yaw += d * 0.06;
+        if (Math.abs(d) < 0.5) yawGoal = null;
       }
       camera.lookAt(target);
       occlusion.enabled.value = followGoose ? 1 : 0;
@@ -400,8 +421,11 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       }
       const input = free ? { move: new THREE.Vector2(), run: false, crouch: false, honk: false, flap: false } : readInput();
       while (acc >= FIXED_DT) { step(FIXED_DT, input); acc -= FIXED_DT; }
-      if (!free && keys.has("KeyQ")) follow.yaw -= 70 * FIXED_DT;
-      if (!free && keys.has("KeyE")) follow.yaw += 70 * FIXED_DT;
+      if (!free && (keys.has("KeyQ") || keys.has("KeyE"))) {
+        follow.yaw += (keys.has("KeyE") ? 70 : -70) * FIXED_DT;
+        yawGoal = null;
+        lastSteer = performance.now();
+      }
       placeCamera();
       goose.rig.lowerBill.getWorldPosition(bill);
       hotspot?.sync(1 / 60, now / 1000, camera, bill);

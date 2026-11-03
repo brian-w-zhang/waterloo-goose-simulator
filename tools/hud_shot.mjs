@@ -4,7 +4,7 @@ const [out = "review/look/hud.png", x, z, yaw = "30", dist = "20"] = process.arg
 const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-angle=metal"] });
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 page.on("pageerror", (e) => console.log("pageerror", e.message));
-await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?yaw=${yaw}`);
+await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?yaw=${yaw}${process.env.HUD === "0" ? "&hud=0" : ""}`);
 await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 60000 });
 if (x !== undefined) await page.evaluate(async ({ x, z, dist }) => {
   const [px, pz] = window.__wgs.goose.nearestPathPoint(Number(x), Number(z));
