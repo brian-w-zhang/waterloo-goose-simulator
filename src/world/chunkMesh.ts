@@ -23,6 +23,8 @@ export interface BuiltChunk {
   walls: Float32Array | null;
   buildingCount: number;
   lakeLevels: number[];
+  /** shrub centres in world x, z (hide spots for the goose) */
+  shrubs: [number, number][];
 }
 
 function terrainGeometry(h: Float32Array, n: number, cell: number): THREE.BufferGeometry {
@@ -509,6 +511,15 @@ function treeMeshes(c: Chunk, mats: Materials, geo: Materials["geo"]): THREE.Obj
   return out;
 }
 
+function shrubCentres(c: Chunk): [number, number][] {
+  const xz = c.arrays.tuft_xz as Uint16Array | undefined;
+  if (!xz) return [];
+  const kind = c.arrays.tuft_kind as Uint8Array;
+  const out: [number, number][] = [];
+  for (let v = 0; v < kind.length; v++) if (kind[v] >= 3) out.push([xz[v * 2] * Q + c.header.chunk.x0, xz[v * 2 + 1] * Q + c.header.chunk.z0]);
+  return out;
+}
+
 function tuftMeshes(c: Chunk, h: Float32Array, mats: Materials): THREE.Object3D[] {
   const xz = c.arrays.tuft_xz as Uint16Array | undefined;
   if (!xz) return [];
@@ -713,5 +724,6 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   let off = 0;
   for (const p of parts) { walls!.set(p, off); off += p.length; }
   return { group: g, heights: h, buildingMeshes, walls, buildingCount: c.header.buildings.length,
+    shrubs: shrubCentres(c),
     lakeLevels: [...new Set(c.header.lakes.map((l) => l.y))] };
 }

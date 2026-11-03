@@ -38,7 +38,7 @@ export interface Item {
 export type Archetype = "normal" | "chaser" | "scaredy" | "tidy";
 
 export type State = "routine" | "react" | "investigate" | "chase" | "shoo" | "search" | "retrieve"
-  | "return" | "flee" | "giveup";
+  | "return" | "flee" | "giveup" | "tug" | "fallen";
 
 export interface Npc {
   id: string;
@@ -62,9 +62,13 @@ export interface Npc {
   line: string;
   lineTime: number;
   grip: number;             // seconds spent within reach of the goose while chasing
+  gesture: "" | "shake" | "clap";
+  gestureTime: number;
+  /** speed and vision multiplier after escalation (spec V-ANIM-8) */
+  alert: number;
 }
 
-export interface GooseState { pos: V2; speed: number; holding: string | null; crouched: boolean }
+export interface GooseState { pos: V2; speed: number; holding: string | null; crouched: boolean; hidden: boolean }
 
 export type SimEvent =
   | { t: number; type: "honk"; pos: V2 }
@@ -74,6 +78,8 @@ export type SimEvent =
   | { t: number; type: "giveup"; npc: string }
   | { t: number; type: "shoo"; npc: string }
   | { t: number; type: "snatched"; npc: string; item: string }
+  | { t: number; type: "tug"; npc: string; item: string; won: boolean }
+  | { t: number; type: "fall"; npc: string }
   | { t: number; type: "returned"; npc: string; item: string }
   | { t: number; type: "grab"; who: string; item: string }
   | { t: number; type: "release"; who: string; item: string };
@@ -90,6 +96,7 @@ export const PERCEPTION = {
   coneDeg: 110, coneRange: 18, periphRange: 4, honkRange: 25, closeHonk: 4,
   itemCheckRange: 8, reactTime: 0.6, chaseGiveUpS: 12, chaseLeashM: 40, gooseMemoryS: 30,
   repeatedHonks: 3, repeatedWindowS: 6, fleeS: 3, grabReach: 0.9, gripS: 0.5,
+  tugWinS: 1.1, tugLoseS: 2.4, tugPullM: 0.6, fallS: 2.2, hideSeeM: 1.2, tripChance: 0.5,
 };
 
 export interface SimOptions {
@@ -102,7 +109,11 @@ export class Sim {
   t = 0;
   items = new Map<string, Item>();
   npcs = new Map<string, Npc>();
-  goose: GooseState = { pos: { x: 0, z: 0 }, speed: 0, holding: null, crouched: false };
+  goose: GooseState = { pos: { x: 0, z: 0 }, speed: 0, holding: null, crouched: false, hidden: false };
+  /** Bushes the goose can hide in (spec I-14), as ground positions with a radius. */
+  hideSpots: { pos: V2; r: number }[] = [];
+  /** Current tug-of-war (spec I-20). */
+  tug: { npc: string; item: string; t: number; start: V2 } | null = null;
   events: SimEvent[] = [];
   private los: (a: V2, b: V2) => boolean;
   readonly rng: () => number;
@@ -121,7 +132,7 @@ export class Sim {
       pos: { ...n.home }, facing: 0, routine: [{ ...n.home }], routineIdx: 0, state: "routine", stateTime: 0,
       mark: "", markTime: 0, holding: null, target: null, wantItem: null,
       memory: { gooseSeen: null, gooseSeenAt: -1e9, itemSeen: {}, honks: [] },
-      speedWalk: 1.3, speedRun: 4.4, line: "", lineTime: -1e9, grip: 0, ...n,
+      speedWalk: 1.3, speedRun: 4.4, line: "", lineTime: -1e9, grip: 0, gesture: "", gestureTime: -1e9, alert: 1, ...n,
     });
   }
 
@@ -142,6 +153,10 @@ export class Sim {
         if (n.archetype === "scaredy" && n.memory.honks.length >= 2) { this.go(n, "flee"); continue; }
         if (n.memory.honks.length >= PERCEPTION.repeatedHonks && n.archetype === "chaser") { this.go(n, "shoo"); continue; }
         this.go(n, "react");
+      } else if (n.state === "routine" && d < 10 && this.sees(n)) {
+        n.gesture = "shake";
+        n.gestureTime = this.t;
+        n.facing = Math.atan2(p.z - n.pos.z, p.x - n.pos.x);
       } else if (["routine", "giveup", "search"].includes(n.state)) {
         this.setMark(n, "?");
         if (this.rng() < 0.5) this.say(n, "wonder");
@@ -154,7 +169,19 @@ export class Sim {
 
   /** Goose grabs the nearest item within reach (or takes it from an NPC's hands after a shock). */
   gooseGrab(): string | null {
-    if (this.goose.holding) return null;
+    if (this.goose.holding || this.tug) return null;
+    // an item in someone's hands within reach starts a tug-of-war instead (spec I-20)
+    for (const it of this.items.values()) {
+      if (!it.heldBy || it.heldBy === "goose" || !this.npcs.has(it.heldBy)) continue;
+      const n = this.npcs.get(it.heldBy)!;
+      if (dist(n.pos, this.goose.pos) < PERCEPTION.grabReach + 0.5 && n.state !== "fallen") {
+        this.tug = { npc: n.id, item: it.id, t: 0, start: { ...this.goose.pos } };
+        this.setMark(n, "!");
+        this.say(n, "stolen");
+        this.go(n, "tug");
+        return null;
+      }
+    }
     let best: Item | null = null, bd = PERCEPTION.grabReach;
     for (const it of this.items.values()) {
       if (it.kind !== "take" || it.heldBy) continue;
@@ -169,6 +196,7 @@ export class Sim {
   }
 
   gooseRelease() {
+    if (this.tug) { this.endTug(false); return; }
     const id = this.goose.holding;
     if (!id) return;
     const it = this.items.get(id)!;
@@ -176,6 +204,31 @@ export class Sim {
     it.pos = { ...this.goose.pos };
     this.goose.holding = null;
     this.emit({ t: this.t, type: "release", who: "goose", item: id });
+  }
+
+  private endTug(won: boolean) {
+    const tg = this.tug!;
+    const n = this.npcs.get(tg.npc)!;
+    const it = this.items.get(tg.item)!;
+    this.tug = null;
+    this.emit({ t: this.t, type: "tug", npc: n.id, item: it.id, won });
+    if (won) {
+      // the goose yanks it free: the owner topples over (slapstick, never hurt) and the goose has it
+      n.holding = null;
+      it.heldBy = "goose";
+      this.goose.holding = it.id;
+      this.emit({ t: this.t, type: "grab", who: "goose", item: it.id });
+      this.fall(n);
+    } else {
+      this.go(n, "routine");
+    }
+  }
+
+  private fall(n: Npc) {
+    this.emit({ t: this.t, type: "fall", npc: n.id });
+    this.setMark(n, "swirl");
+    if (n.holding) this.npcDrop(n);
+    this.go(n, "fallen");
   }
 
   private npcDrop(n: Npc) {
@@ -209,8 +262,9 @@ export class Sim {
   sees(n: Npc): boolean {
     const g = this.goose.pos;
     const d = dist(n.pos, g);
+    if (this.goose.hidden && d > PERCEPTION.hideSeeM) return false;
     if (d <= PERCEPTION.periphRange) return true;
-    const range = PERCEPTION.coneRange * (this.goose.crouched ? 0.6 : 1);
+    const range = PERCEPTION.coneRange * (this.goose.crouched ? 0.6 : 1) * n.alert;
     if (d > range) return false;
     const v = sub(g, n.pos);
     let a = Math.atan2(v.z, v.x) - n.facing;
@@ -237,6 +291,11 @@ export class Sim {
     return null;
   }
 
+  /** Escalation after most of an area's tasks are done: faster chases, wider eyes (spec V-ANIM-8). */
+  escalate(zonePrefix: string) {
+    for (const n of this.npcs.values()) if (n.id.startsWith(zonePrefix)) n.alert = 1.15;
+  }
+
   /**
    * Apply an optional decision-layer answer (doc 05 section 9): only from routine, only for allowed
    * choices, and only if it still makes sense (the wanted item must still be away from home).
@@ -258,6 +317,16 @@ export class Sim {
 
   step(dt: number) {
     this.t += dt;
+    this.goose.hidden = this.hideSpots.some((h) => dist(h.pos, this.goose.pos) < h.r);
+    if (this.tug) {
+      const tg = this.tug;
+      tg.t += dt;
+      const n = this.npcs.get(tg.npc)!;
+      // pulling means backing away from the owner while holding on
+      const pulled = dist(this.goose.pos, n.pos) - dist(tg.start, n.pos) > PERCEPTION.tugPullM;
+      if (tg.t > PERCEPTION.tugWinS && pulled) this.endTug(true);
+      else if (tg.t > PERCEPTION.tugLoseS) this.endTug(false);
+    }
     for (const it of this.items.values()) {
       if (it.heldBy === "goose") it.pos = { ...this.goose.pos };
       else if (it.heldBy && this.npcs.has(it.heldBy)) it.pos = { ...this.npcs.get(it.heldBy)!.pos };
@@ -267,6 +336,12 @@ export class Sim {
 
   private think(n: Npc, dt: number) {
     n.stateTime += dt;
+    if (n.gesture && this.t - n.gestureTime > 1.6) n.gesture = "";
+    if (n.state === "tug") return;
+    if (n.state === "fallen") {
+      if (n.stateTime > PERCEPTION.fallS) { this.say(n, "giveup"); this.go(n, n.wantItem ? "search" : "routine"); }
+      return;
+    }
     if (n.mark && this.t - n.markTime > 1.5) n.mark = "";
     const seesGoose = this.sees(n);
     if (seesGoose) { n.memory.gooseSeen = { ...this.goose.pos }; n.memory.gooseSeenAt = this.t; }
@@ -316,7 +391,12 @@ export class Sim {
         const lost = this.t - n.memory.gooseSeenAt > 4;
         if (tooLong || tooFar || lost) { this.go(n, "giveup"); return; }
         if (n.stateTime < dt * 1.5) this.emit({ t: this.t, type: "chase", npc: n.id });
-        const chaseSpeed = Math.max(n.speedRun, this.goose.speed * 1.05);
+        // slapstick: running over a ball or frisbee on the ground can trip the chaser (spec V-ANIM-7)
+        for (const o of this.items.values()) {
+          if (o.heldBy || !/^(ball|frisbee)/.test(o.id) || dist(o.pos, n.pos) > 0.45) continue;
+          if (this.rng() < PERCEPTION.tripChance * dt * 10) { this.fall(n); return; }
+        }
+        const chaseSpeed = Math.max(n.speedRun, this.goose.speed * 1.05) * n.alert;
         this.moveToward(n, n.memory.gooseSeen ?? this.goose.pos, chaseSpeed, dt);
         // staying within reach for a moment snatches the item back
         n.grip = dist(n.pos, this.goose.pos) < 0.8 ? n.grip + dt : 0;
@@ -352,6 +432,8 @@ export class Sim {
           n.holding = null;
           n.wantItem = null;
           this.emit({ t: this.t, type: "returned", npc: n.id, item: it.id });
+          n.gesture = "clap";
+          n.gestureTime = this.t;
           this.go(n, "routine");
         }
         return;

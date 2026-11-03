@@ -47,6 +47,8 @@ export class Goose {
   /** Weight class of the held item; "drag" slows the goose and turns it to walk backward. */
   holding: "carry" | "drag" | null = null;
   swimming = false;
+  /** in a tug-of-war: lean back with the neck stretched forward */
+  tugging = false;
   private startleT = 1;
   private headYaw = 0;
 
@@ -149,7 +151,7 @@ export class Goose {
     r.body.position.y = -0.1 * crouch + Math.abs(s) * 0.018 * moving * (1 - swim) + Math.sin(this.time * 2.1) * 0.004 * (1 - moving)
       + swim * Math.sin(this.time * 1.7) * 0.012;
     r.body.rotation.z = s * 0.09 * moving * (1 - 0.5 * run) * (1 - swim);
-    r.body.rotation.x = 0.16 * run * (1 - swim) + 0.12 * crouch - 0.08 * swim - 0.25 * startle;
+    r.body.rotation.x = 0.16 * run * (1 - swim) + 0.12 * crouch - 0.08 * swim - 0.25 * startle - (this.tugging ? 0.3 + 0.08 * Math.sin(this.time * 22) : 0);
     // legs: alternate swing with foot lift; feet stay flat
     for (let k = 0; k < 2; k++) {
       const ph = this.phase + k * Math.PI;

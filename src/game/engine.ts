@@ -222,9 +222,14 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   let hotspot: HotspotRuntime | null = null;
+  let hideTick = 0;
   let lastChunk = "";
   const step = (dt: number, input: GooseInput) => {
     goose.waterLevel = stream.waterLevelAt(goose.position.x, goose.position.z);
+    if (hotspot && (hideTick = (hideTick + 1) % 30) === 0) {
+      hotspot.sim.hideSpots = stream.shrubsNear(goose.position.x, goose.position.z, 30).map(([x, z]) => ({ pos: { x, z }, r: 0.9 }));
+    }
+    goose.tugging = !!hotspot?.sim.tug;
     goose.attention = hotspot?.attention(goose.position.x, goose.position.z) ?? null;
     goose.holding = hotspot?.heldWeight() ?? null;
     goose.update(dt, input, follow.yaw);

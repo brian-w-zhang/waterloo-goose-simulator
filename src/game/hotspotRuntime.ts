@@ -102,7 +102,12 @@ export class HotspotRuntime {
           .then((a) => { if (a && this.sim.applyDecision(n.id, a.choice, item)) this.decisions!.stats.applied++; });
       }
       for (const t of this.tasks) {
-        if (!t.done && this.unlocked(t) && t.test(e, this.sim)) { t.done = true; this.onTask?.(t); }
+        if (!t.done && this.unlocked(t) && t.test(e, this.sim)) {
+          t.done = true;
+          this.onTask?.(t);
+          const same = this.tasks.filter((o) => o.hotspot === t.hotspot);
+          if (same.filter((o) => o.done).length >= Math.min(4, same.length - 1)) this.sim.escalate(`${t.hotspot}:`);
+        }
       }
     }
   }

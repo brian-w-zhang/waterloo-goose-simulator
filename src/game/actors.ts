@@ -152,11 +152,26 @@ export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t
   r.legs[1].rotation.x = -s * 0.6 * moving;
   r.body.position.y = Math.abs(Math.cos(r.phase)) * 0.04 * moving;
   r.body.rotation.x = 0.18 * run;
+  r.body.rotation.z = 0;
+  r.body.position.x = 0;
   let armL = -s * 0.5 * moving, armR = s * 0.5 * moving, armZ = 0;
   if (n.state === "react" && n.mark === "!") { armL = -2.6; armR = -2.6; armZ = 0.3; }
   else if (n.state === "chase" || n.state === "shoo") { armL = -1.2 + Math.sin(t * 14) * 0.4; armR = -1.3 - Math.sin(t * 14) * 0.4; }
   else if (n.state === "giveup") { armR = -2.7; armL = 0.1; }
   if (n.holding && n.state === "return") armR = -0.9;
+  if (n.state === "tug") {
+    // tug-of-war: lean back, both arms forward, little jerks
+    r.body.rotation.x = -0.35 + Math.sin(t * 20) * 0.05;
+    armL = armR = -1.4;
+  }
+  if (n.gesture === "clap") { armL = armR = -1.2 - Math.abs(Math.sin(t * 14)) * 0.3; armZ = -0.35 + Math.abs(Math.sin(t * 14)) * 0.3; }
+  if (n.state === "fallen") {
+    // pratfall: tip over backward onto the grass for a moment, then get up (never hurt)
+    const k = Math.min(n.stateTime / 0.35, 1) * (n.stateTime > 1.8 ? Math.max(0, 1 - (n.stateTime - 1.8) / 0.4) : 1);
+    r.body.rotation.x = -1.45 * k;
+    r.body.position.y = 0.15 * k;
+    armL = -2.4 * k; armR = -2.2 * k;
+  }
   r.arms[0].rotation.x = armL;
   r.arms[1].rotation.x = armR;
   r.arms[0].rotation.z = -armZ;
@@ -170,7 +185,8 @@ export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t
       tilt = THREE.MathUtils.clamp(-Math.atan2(1.6 - local.y, Math.hypot(local.x, local.z)) * 0.6, -0.5, 0.2);
     }
   }
-  r.head.rotation.y = n.state === "giveup" ? Math.sin(t * 5) * 0.3 : THREE.MathUtils.damp(r.head.rotation.y, look, 6, dt);
+  r.head.rotation.y = n.state === "giveup" ? Math.sin(t * 5) * 0.3
+    : n.gesture === "shake" ? Math.sin(t * 7) * 0.4 : THREE.MathUtils.damp(r.head.rotation.y, look, 6, dt);
   r.head.rotation.x = THREE.MathUtils.damp(r.head.rotation.x, -tilt, 6, dt);
   for (const [k, m] of Object.entries(r.marks)) m.visible = n.mark === k;
   const wants = n.wantItem && ["search", "chase", "retrieve"].includes(n.state) ? n.wantItem : null;

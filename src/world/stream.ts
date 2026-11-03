@@ -72,6 +72,13 @@ export class WorldStream {
     return null;
   }
 
+  /** Shrub centres within r of (x, z) across loaded chunks. */
+  shrubsNear(x: number, z: number, r: number): [number, number][] {
+    const out: [number, number][] = [];
+    for (const c of this.loaded.values()) for (const p of c.shrubs) if ((p[0] - x) ** 2 + (p[1] - z) ** 2 < r * r) out.push(p);
+    return out;
+  }
+
   buildingMeshes(): THREE.Mesh[] {
     return [...this.loaded.values()].flatMap((c) => c.buildingMeshes);
   }
