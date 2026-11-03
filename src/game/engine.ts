@@ -229,9 +229,33 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   const onWheel = (e: WheelEvent) => {
     follow.dist = THREE.MathUtils.clamp(follow.dist * Math.exp(e.deltaY * 0.001), CAM.play_min_distance_m, CAM.play_max_distance_m);
   };
+  // right-click and drag turns the camera: sideways for yaw, up and down for pitch.
+  // A left click on open ground teleports the goose there (see onMouse).
+  let drag: { x: number; y: number; moved: number } | null = null;
+  let dragged = false;
+  const onDown = (e: PointerEvent) => { if (e.button === 2) drag = { x: e.clientX, y: e.clientY, moved: 0 }; dragged = false; };
+  const onDrag = (e: PointerEvent) => {
+    if (!drag || !(e.buttons & 2)) { drag = null; return; }
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    drag.x = e.clientX; drag.y = e.clientY;
+    drag.moved += Math.abs(dx) + Math.abs(dy);
+    if (drag.moved < 5) return;
+    dragged = true;
+    const cam = free ?? follow;
+    cam.yaw += dx * 0.3;
+    cam.pitch = free ? THREE.MathUtils.clamp(cam.pitch - dy * 0.2, -89, 60) : THREE.MathUtils.clamp(cam.pitch + dy * 0.2, 8, 80);
+    yawGoal = null;
+    lastSteer = performance.now();
+  };
+  const onUp = () => { drag = null; };
+  const noMenu = (e: MouseEvent) => e.preventDefault();
   window.addEventListener("keydown", onKey);
   window.addEventListener("keyup", onKey);
   window.addEventListener("wheel", onWheel, { passive: true });
+  canvas.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onDrag);
+  window.addEventListener("pointerup", onUp);
+  canvas.addEventListener("contextmenu", noMenu);
 
   const readInput = (): GooseInput => {
     const mv = new THREE.Vector2(
@@ -530,9 +554,28 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
   const grab = () => { hotspot?.grabOrDrop(); onHud?.(hud()); };
   const onGrabKey = (e: KeyboardEvent) => { if (e.code === "KeyG" && !e.repeat) grab(); };
-  const onMouse = (e: MouseEvent) => { if (e.button === 0) grab(); };
+  // left click: cast a ray from the camera through the pointer; teleport only onto ground
+  // (an up-facing hit at terrain height), never onto a roof or into a wall
+  const onMouse = (e: MouseEvent) => {
+    if (e.button !== 0 || dragged || free) return;
+    const r = canvas.getBoundingClientRect();
+    const ndc = new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    const ray = new THREE.Raycaster();
+    ray.setFromCamera(ndc, camera);
+    const o = ray.ray.origin, d = ray.ray.direction;
+    const hit = physics.world.castRayAndGetNormal(new R.Ray(o, d), 2000, true, undefined, undefined, undefined, undefined,
+      (c) => c.parent() === null);
+    if (!hit) return;
+    const p = o.clone().addScaledVector(d, hit.timeOfImpact);
+    const ground = stream.heightAt(p.x, p.z);
+    if (hit.normal.y < 0.7 || !Number.isFinite(ground) || Math.abs(p.y - ground) > 0.8) {
+      console.debug(`[wgs] click at ${p.x.toFixed(1)}, ${p.z.toFixed(1)} is not open ground (normal y ${hit.normal.y.toFixed(2)}, ${(p.y - ground).toFixed(2)} m above it)`);
+      return;
+    }
+    void handle.goose.place(p.x, p.z);
+  };
   window.addEventListener("keydown", onGrabKey);
-  canvas.addEventListener("mousedown", onMouse);
+  canvas.addEventListener("click", onMouse);
   onHud?.(hud());
   let hudTimer = 0;
   // speech labels: plain DOM elements positioned over the canvas each frame
@@ -632,7 +675,11 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     window.removeEventListener("keyup", onKey);
     window.removeEventListener("wheel", onWheel);
     window.removeEventListener("keydown", onGrabKey);
-    canvas.removeEventListener("mousedown", onMouse);
+    canvas.removeEventListener("click", onMouse);
+    canvas.removeEventListener("pointerdown", onDown);
+    window.removeEventListener("pointermove", onDrag);
+    window.removeEventListener("pointerup", onUp);
+    canvas.removeEventListener("contextmenu", noMenu);
     speechLayer.remove();
     music.stop();
     renderer.dispose();

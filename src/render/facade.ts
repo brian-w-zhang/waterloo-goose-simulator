@@ -15,6 +15,11 @@ export interface FacadeStyle {
   bay_glass?: string;
   /** walls above this height are blank brick apart from a clerestory strip under the roofline (HH fly tower) */
   blank_above_m?: number;
+  /** blank walls keep a clerestory strip under the roofline (default true) */
+  clerestory?: boolean;
+  /** roofs at least roof_high_m above the building's ground take this swatch (PAC's white gym roof) */
+  roof_high?: string;
+  roof_high_m?: number;
   mansard?: boolean;
 }
 
@@ -70,7 +75,8 @@ export function facadeColor(name: string, sharp: boolean) {
   win = win.mul(upper).mul(below);
   if (s.blank_above_m) {
     const blank = step(float(s.blank_above_m), hAbove);
-    const clerestory = step(hTop.sub(2.2), hAbove).mul(band(fract(u.div(1.8)) as N, 0.1, 0.9));
+    const clerestory = s.clerestory === false ? float(0)
+      : step(hTop.sub(2.2), hAbove).mul(band(fract(u.div(1.8)) as N, 0.1, 0.9));
     win = mix(win, clerestory.mul(below), blank) as N;
   }
   // window frames and a glint (UGG windows have light frames and a paler top to the pane):
@@ -121,6 +127,7 @@ export function facadeColor(name: string, sharp: boolean) {
   }
   const isRoof = step(0.7, abs(n.y)).mul(float(1).sub(vault));
   // per-building roof swatch: a hard pick between two palette colours (no blend, palette-exact)
-  const roof = s.roof_alt ? mix(uniform(swatch(s.roof)), uniform(swatch(s.roof_alt)), step(0.5, hash(seed.add(3.1)))) : uniform(swatch(s.roof));
+  let roof: N = s.roof_alt ? mix(uniform(swatch(s.roof)), uniform(swatch(s.roof_alt)), step(0.5, hash(seed.add(3.1)))) : uniform(swatch(s.roof));
+  if (s.roof_high) roof = mix(roof, uniform(swatch(s.roof_high)), step(float(s.roof_high_m ?? 10), hAbove));
   return { color: mix(wall, roof, isRoof), isRoof, hAbove, seed };
 }

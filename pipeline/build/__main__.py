@@ -17,7 +17,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import doors, far, ground, landmarks, network, osm, props, signs, structures, terrain, tufts, vegetation
+from . import doors, far, ground, landmarks, minimap, network, osm, props, signs, structures, terrain, tufts, vegetation
 
 C = CAMPUS["chunk"]
 BARRIER_KINDS = ["fence", "hedge", "wall", "retaining_wall"]
@@ -318,6 +318,7 @@ def main():
                                     "bytes": (WORLD / name).stat().st_size})
     far_bytes = far.build(hf, gcls, bl, bci, bcj, chunk_frame)
     print(f"far LOD {far_bytes / 1e6:.1f} MB")
+    print(f"minimap places {minimap.build(gcls, bl, lk)}")
     net = network.build(bl)
     (WORLD / "network.json").write_text(json.dumps(net, separators=(",", ":")))
     index["stations"] = net["stations"]

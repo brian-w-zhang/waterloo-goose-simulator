@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { swatchHex } from "@/config";
 import { type HudState, startGame } from "./engine";
+import Minimap from "./Minimap";
 import { startStyleScene } from "./styleScene";
 
 const CREDITS = [
@@ -79,6 +80,7 @@ export default function Game() {
               </div>
             )}
           </div>
+          <Minimap />
           {hud.toast && (
             <div style={{ ...panel, top: 16, left: "50%", transform: "translateX(-50%)", fontWeight: 700 }}>✓ {hud.toast}</div>
           )}
@@ -92,7 +94,7 @@ export default function Game() {
           )}
           {hud.prompt && <div style={{ ...panel, bottom: 70, left: "50%", transform: "translateX(-50%)" }}>{hud.prompt}</div>}
           <div style={{ ...panel, bottom: 16, left: 16, fontSize: 13, padding: "8px 12px" }}>
-            WASD move · Shift run · Space honk · G or click grab · C crouch · F flap · Q E turn camera · wheel zoom · V free camera
+            WASD move · Shift run · Space honk · G grab · C crouch · F flap · right-drag turn · wheel zoom · click ground: teleport · M map
           </div>
           <div style={{ ...panel, bottom: 16, right: 16, fontSize: 12, padding: "6px 10px", cursor: "pointer" }}
             onClick={() => setCredits((c) => !c)}>

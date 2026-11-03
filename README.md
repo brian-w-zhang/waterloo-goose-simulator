@@ -11,7 +11,7 @@ npm run pipeline                 # fetch open data into data/raw (once), build p
 npm run build && npm start       # http://localhost:3100  (WebGPU, WebGL2 fallback with ?webgl)
 ```
 
-Controls: WASD move, Shift run (F while running: flap boost), Space honk, G or click grab and drop, C crouch (bow), F flap, Q and E turn the camera, mouse wheel zoom, V free camera. The to-do list and clock sit top left, the Menace score top right, credits bottom right.
+Controls: WASD move, Shift run (F while running: flap boost), Space honk, G grab and drop, C crouch (bow), F flap, right-drag or Q and E turn the camera, mouse wheel zoom, left-click the ground to teleport there, M campus map (click a place or a spot to teleport), V free camera. The to-do list and clock sit top left, the Menace score top right, credits bottom right.
 
 Optional: `?jev=1` lets the Jev model on the Vercel AI Gateway choose what a character does after giving up a chase. It needs `AI_GATEWAY_API_KEY` in `.env` (read only by the server route `app/api/decide/route.ts`), and falls back to recorded answers and then a deterministic mock.
 

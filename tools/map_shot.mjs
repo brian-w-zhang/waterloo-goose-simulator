@@ -1,0 +1,37 @@
+// Minimap, teleport and drag-camera check: node tools/map_shot.mjs OUT_DIR
+// Writes hud.png (corner map), map.png (full map), tele.png (after teleporting to the Library), drag.png (camera right-dragged); then left-clicks the ground below the goose.
+import { chromium } from "@playwright/test";
+import { mkdirSync } from "node:fs";
+const out = process.argv[2] ?? "review/look/map";
+mkdirSync(out, { recursive: true });
+const b = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-angle=metal"] });
+const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
+p.on("pageerror", (e) => console.log("pageerror", e.message));
+p.on("console", (m) => { if (m.text().startsWith("[wgs] click")) console.log(m.text()); });
+await p.goto(`http://localhost:${process.env.PORT ?? 3100}/?mute`);
+await p.waitForFunction(() => window.__wgs?.ready, null, { timeout: 60000 });
+await p.keyboard.press("KeyX");
+await p.waitForTimeout(2500);
+await p.screenshot({ path: `${out}/hud.png` });
+await p.keyboard.press("KeyM");
+await p.waitForTimeout(800);
+await p.screenshot({ path: `${out}/map.png` });
+await p.fill("input", "Dana");
+await p.click("text=Dana Porter Arts Library");
+await p.waitForTimeout(3000);
+console.log("after teleport", JSON.stringify(await p.evaluate(() => window.__wgs.goose.state())));
+await p.screenshot({ path: `${out}/tele.png` });
+const yaw0 = await p.evaluate(() => window.__wgs.follow().yaw);
+await p.mouse.move(640, 400); await p.mouse.down({ button: "right" });
+for (let k = 1; k <= 20; k++) await p.mouse.move(640 + k * 15, 400 - k * 3);
+await p.mouse.up({ button: "right" });
+await p.waitForTimeout(500);
+const f = await p.evaluate(() => window.__wgs.follow());
+console.log("drag yaw", yaw0.toFixed(1), "->", f.yaw.toFixed(1), "pitch", f.pitch.toFixed(1));
+await p.screenshot({ path: `${out}/drag.png` });
+const g0 = await p.evaluate(() => window.__wgs.goose.state());
+await p.mouse.click(1000, 600);
+await p.waitForTimeout(800);
+const g1 = await p.evaluate(() => window.__wgs.goose.state());
+console.log("ground click moved the goose", Math.hypot(g1.x - g0.x, g1.z - g0.z).toFixed(1), "m");
+await b.close();

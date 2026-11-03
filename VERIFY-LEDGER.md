@@ -93,3 +93,7 @@ One line per run, appended by `tools/verify/gate.py`; old lines are never edited
 | 2026-11-03 10:43 | 5f6a637 | webgl2 | full | 62/64 | 1.000 | 0.53 / 0.57 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1040-5f6a637-webgl |
 | 2026-11-03 10:48 | ee696c5 | webgpu | full | 62/64 | 1.000 | 0.53 / 0.57 | 0.03 | 0.081 | 2.89 (dis 0.03) | 0 | bench/results/verify/20261103-1046-491eb99+dirty |
 | 2026-11-03 10:51 | ee696c5 | webgl2 | full | 62/64 | 1.000 | 0.53 / 0.57 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1048-ee696c5-webgl |
+| 2026-11-03 15:08 | 72a1090 | webgpu | full | 62/64 | 1.000 | 0.53 / 0.57 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1506-72a1090+dirty |
+| 2026-11-03 15:11 | 72a1090 | webgl2 | full | 62/64 | 1.000 | 0.53 / 0.57 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1508-72a1090+dirty-webgl |
+| 2026-11-03 15:24 | 72a1090 | none | fast | 39/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 1 | bench/results/verify/20261103-1524-72a1090+dirty |
+| 2026-11-03 15:28 | 72a1090 | none | fast | 40/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-1528-72a1090+dirty |
