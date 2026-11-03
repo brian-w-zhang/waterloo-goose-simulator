@@ -138,6 +138,13 @@
     "ringbox": "#5a4a52",
     "backpack": "#5d7aa0",
     "mark": "#2f3a33",
-    "mark_bg": "#f4f1ea"
+    "mark_bg": "#f4f1ea",
+    "pizza": "#d9c29a",
+    "pizza_lid": "#c4605a",
+    "ball": "#d8874f",
+    "ball_line": "#4a4846",
+    "bottle": "#6f9ab4",
+    "bottle_cap": "#e8e2d4",
+    "hat": "#56637f"
   }
 }

@@ -169,6 +169,10 @@ export function itemGeometry(kind: string): THREE.BufferGeometry {
     case "apple": return mergeGeometries([P(new THREE.SphereGeometry(0.045, 10, 8), "apple", 0, 0.045), P(new THREE.BoxGeometry(0.03, 0.005, 0.015), "leaf", 0.01, 0.095)]);
     case "ringbox": return P(new THREE.BoxGeometry(0.08, 0.06, 0.08), "ringbox", 0, 0.03);
     case "backpack": return mergeGeometries([P(new THREE.BoxGeometry(0.32, 0.42, 0.18), "backpack", 0, 0.21), P(new THREE.BoxGeometry(0.26, 0.18, 0.06), "backpack", 0, 0.14, 0.11)]);
+    case "pizza": return mergeGeometries([P(new THREE.BoxGeometry(0.36, 0.05, 0.36), "pizza", 0, 0.025), P(new THREE.BoxGeometry(0.2, 0.006, 0.14), "pizza_lid", 0, 0.053)]);
+    case "ball": return mergeGeometries([P(new THREE.SphereGeometry(0.12, 14, 10), "ball", 0, 0.12), P(new THREE.TorusGeometry(0.121, 0.006, 4, 20), "ball_line", 0, 0.12)]);
+    case "bottle": return mergeGeometries([P(new THREE.CylinderGeometry(0.035, 0.035, 0.2, 10), "bottle", 0, 0.1), P(new THREE.CylinderGeometry(0.02, 0.02, 0.03, 8), "bottle_cap", 0, 0.215)]);
+    case "hat": return mergeGeometries([P(new THREE.CylinderGeometry(0.11, 0.12, 0.1, 14), "hat", 0, 0.06), P(new THREE.CylinderGeometry(0.17, 0.17, 0.015, 16), "hat", 0, 0.01)]);
     default: return P(new THREE.BoxGeometry(0.1, 0.1, 0.1), "paper", 0, 0.05);
   }
 }

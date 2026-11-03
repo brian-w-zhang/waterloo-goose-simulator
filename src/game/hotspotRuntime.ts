@@ -5,13 +5,13 @@ import type { Physics } from "@/physics/physics";
 import { DecisionClient } from "@/ai/decide";
 import { Sim, type SimEvent, type V2 } from "@/sim/sim";
 import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actors";
-import { CHARACTERS, populate } from "./hotspot";
+import { HOTSPOTS, LOOKS, populate } from "./hotspot";
 
 const EYE_M = 1.6;
 // props are drawn larger than life so they read from the diorama camera (the map itself stays to scale)
 const ITEM_SCALE = 1.5;
 
-export interface Task { id: string; text: string; done: boolean; test: (e: SimEvent, sim: Sim) => boolean }
+export interface Task { id: string; hotspot: string; text: string; done: boolean; test: (e: SimEvent, sim: Sim) => boolean }
 
 /** The hotspot's simulation plus its people, items, tasks and sounds. */
 export class HotspotRuntime {
@@ -21,18 +21,7 @@ export class HotspotRuntime {
   private items = new Map<string, THREE.Mesh>();
   private lastPos = new Map<string, V2>();
   private seen = 0;
-  readonly tasks: Task[] = [
-    { id: "coffee", text: "Steal the professor's coffee", done: false,
-      test: (e, s) => e.type === "grab" && e.who === "goose" && s.items.get(e.item)!.name === "the professor's coffee" },
-    { id: "drop", text: "Honk someone into dropping what they carry", done: false, test: (e) => e.type === "drop" },
-    { id: "chase", text: "Get chased across the green", done: false, test: (e) => e.type === "chase" },
-    { id: "flag", text: "Run off with the tour flag", done: false,
-      test: (e, s) => e.type === "grab" && e.who === "goose" && s.items.get(e.item)!.name === "the tour flag" },
-    { id: "ring", text: "Hide an engineer's iron ring box", done: false,
-      test: (e, s) => e.type === "release" && s.items.get(e.item)!.name === "an iron ring box"
-        && Math.hypot(s.items.get(e.item)!.pos.x - s.items.get(e.item)!.homePos.x, s.items.get(e.item)!.pos.z - s.items.get(e.item)!.homePos.z) > 20 },
-    { id: "giveup", text: "Make someone give up and scratch their head", done: false, test: (e) => e.type === "giveup" },
-  ];
+  readonly tasks: Task[] = HOTSPOTS.flatMap((h) => h.tasks.map((t) => ({ ...t, hotspot: h.id, done: false })));
   onTask?: (t: Task) => void;
   /** Optional decision layer (?jev=1): consulted when someone gives up; the sim never waits for it. */
   decisions: DecisionClient | null = null;
@@ -43,9 +32,9 @@ export class HotspotRuntime {
     this.root.name = "hotspot";
     this.sim = new Sim({ seed, lineOfSight: (a, b) => this.lineOfSight(a, b) });
     populate(this.sim);
-    for (const c of CHARACTERS) {
-      const p = makePerson(c.look, personMat, markMat);
-      this.people.set(c.id, p);
+    for (const [id, look] of LOOKS) {
+      const p = makePerson(look, personMat, markMat);
+      this.people.set(id, p);
       this.root.add(p.root);
     }
     for (const it of this.sim.items.values()) {
@@ -137,6 +126,16 @@ export class HotspotRuntime {
         m.position.set(it.pos.x, this.ground(it.pos.x, it.pos.z), it.pos.z);
       }
     }
+  }
+
+  /** The hotspot closest to (x, z): its name and tasks drive the HUD. */
+  nearestHotspot(x: number, z: number) {
+    let best = HOTSPOTS[0], bd = Infinity;
+    for (const h of HOTSPOTS) {
+      const d = Math.hypot(h.anchor.x - x, h.anchor.z - z);
+      if (d < bd) { bd = d; best = h; }
+    }
+    return best;
   }
 
   /** Nearest takeable item within reach of the goose (for the grab prompt). */

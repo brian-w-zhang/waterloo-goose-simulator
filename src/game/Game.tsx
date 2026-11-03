@@ -53,7 +53,7 @@ export default function Game() {
       {hud && !isTest && (
         <>
           <div style={{ ...panel, top: 16, left: 16, minWidth: 280 }}>
-            <div style={{ fontWeight: 700, marginBottom: 6 }}>Goose to-do list · MC and DC green</div>
+            <div style={{ fontWeight: 700, marginBottom: 6 }}>Goose to-do list · {hud.area}</div>
             {hud.tasks.map((t) => (
               <div key={t.text} style={{ textDecoration: t.done ? "line-through" : "none", opacity: t.done ? 0.55 : 1 }}>
                 {t.done ? "✓" : "○"} {t.text}

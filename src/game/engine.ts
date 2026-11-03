@@ -69,7 +69,7 @@ export interface WalkResult {
 
 declare global { interface Window { __wgs?: GameHandle } }
 
-export interface HudState { tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string; toast: string }
+export interface HudState { area: string; tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string; toast: string }
 
 export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState) => void): Promise<() => void> {
   const params = new URLSearchParams(window.location.search);
@@ -350,7 +350,9 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   scene.add(crowd.root);
   goose.onHonk = () => { hotspot?.honk(); crowd.honkAt(goose.position.x, goose.position.z); };
   const hud = (): HudState => ({
-    tasks: hotspot!.tasks.map((t) => ({ text: t.text, done: t.done })),
+    area: hotspot!.nearestHotspot(goose.position.x, goose.position.z).name,
+    tasks: hotspot!.tasks.filter((t) => t.hotspot === hotspot!.nearestHotspot(goose.position.x, goose.position.z).id)
+      .map((t) => ({ text: t.text, done: t.done })),
     prompt: hotspot!.sim.goose.holding ? `G: drop ${hotspot!.sim.items.get(hotspot!.sim.goose.holding)!.name}`
       : (hotspot!.nearestItem() ? `G: grab ${hotspot!.nearestItem()}` : ""),
     holding: hotspot!.sim.goose.holding, backend: rig.backend, toast,

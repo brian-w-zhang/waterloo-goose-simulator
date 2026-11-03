@@ -19,13 +19,13 @@ const snap = async (name, yaw = 250, dist = 26) => {
 };
 await page.evaluate(async () => {
   const g = window.__wgs;
-  const prof = g.hotspot.npcs().find((n) => n.id === "prof");
+  const prof = g.hotspot.npcs().find((n) => n.id === "green:prof");
   await g.goose.place(prof.x + 1.5, prof.z + 0.5);
   g.goose.show(true);
   await g.goose.simulate(0.2, {});
   g.hotspot.honk();                       // close honk: the professor drops the coffee
   await g.goose.simulate(0.3, {});
-  const p2 = g.hotspot.npcs().find((n) => n.id === "prof");
+  const p2 = g.hotspot.npcs().find((n) => n.id === "green:prof");
   await g.goose.place(p2.x + 0.6, p2.z + 0.3);
   await g.goose.simulate(0.1, {});
   console.log("grabbed", g.hotspot.grab());

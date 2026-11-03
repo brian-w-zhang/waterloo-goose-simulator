@@ -71,6 +71,7 @@ export type SimEvent =
   | { t: number; type: "drop"; npc: string; item: string }
   | { t: number; type: "chase"; npc: string }
   | { t: number; type: "giveup"; npc: string }
+  | { t: number; type: "shoo"; npc: string }
   | { t: number; type: "returned"; npc: string; item: string }
   | { t: number; type: "grab"; who: string; item: string }
   | { t: number; type: "release"; who: string; item: string };
@@ -179,6 +180,7 @@ export class Sim {
 
   private go(n: Npc, s: State, after?: State) {
     if (s === "giveup" && n.state !== "giveup") this.emit({ t: this.t, type: "giveup", npc: n.id });
+    if (s === "shoo" && n.state !== "shoo") this.emit({ t: this.t, type: "shoo", npc: n.id });
     n.state = s;
     n.stateTime = 0;
     if (after) this.next.set(n.id, after); else this.next.delete(n.id);
