@@ -2,7 +2,7 @@ import * as THREE from "three/webgpu";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { swatch } from "@/config";
 import {
-  makeFacadeMaterial, makeGroundMaterial, makePieceMaterial, makeVertexColorMaterial, makeWaterMaterial,
+  makeCanopyMaterial, makeFacadeMaterial, makeGroundMaterial, makePieceMaterial, makeVertexColorMaterial, makeWaterMaterial,
 } from "@/render/materials";
 
 export interface Materials {
@@ -110,8 +110,8 @@ export function makeMaterials(): Materials {
     ground: makeGroundMaterial(),
     pieces: makePieceMaterial(),
     water: makeWaterMaterial(),
-    canopy: solid("tree_canopy"),
-    conifer: solid("conifer"),
+    canopy: makeCanopyMaterial("tree_canopy"),
+    conifer: makeCanopyMaterial("conifer"),
     trunk: solid("trunk"),
     vertexColor: makeVertexColorMaterial(),
     facade: (style) => {

@@ -17,6 +17,13 @@ await page.waitForFunction(() => window.__wgs, null, { timeout: 60000 });
 const info = await page.evaluate(async ({ s, radius }) => {
   const g = window.__wgs;
   const p = s.pose ?? s.follow;
+  if (s.goose) {
+    await g.goose.place(s.goose.x, s.goose.z);
+    if (s.goose.sim) await g.goose.simulate(s.goose.sim.t, s.goose.sim);
+    g.goose.show(true);
+    const st = g.goose.state();
+    if (s.follow) { s.follow.x = st.x; s.follow.z = st.z; }
+  }
   await g.load(p.x, p.z, radius);
   if (s.pose) g.setPose(s.pose); else g.setFollow(s.follow);
   g.render(); g.render();

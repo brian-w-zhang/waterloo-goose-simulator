@@ -21,6 +21,8 @@ export class WorldStream {
   loadsTotal = 0;
   evictionsTotal = 0;
   everLoaded = new Set<string>();
+  onLoad?: (key: string, c: BuiltChunk) => void;
+  onEvict?: (key: string) => void;
 
   constructor(private mats: Materials, private radius = campus.stream.full_radius_chunks) {
     this.root.name = "world";
@@ -64,6 +66,7 @@ export class WorldStream {
     const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds);
     this.loaded.set(key, built);
     this.root.add(built.group);
+    this.onLoad?.(key, built);
     this.loadsTotal++;
     this.everLoaded.add(key);
   }
@@ -94,6 +97,7 @@ export class WorldStream {
       // instanced tree and prop geometries are shared between chunks, so only per-chunk meshes are disposed
       c.group.traverse((o) => { if ((o as THREE.Mesh).isMesh && !(o as THREE.InstancedMesh).isInstancedMesh) (o as THREE.Mesh).geometry.dispose(); });
       this.loaded.delete(key);
+      this.onEvict?.(key);
       this.evictionsTotal++;
     }
     await Promise.all(jobs);

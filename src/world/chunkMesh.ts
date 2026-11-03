@@ -16,6 +16,8 @@ export interface BuiltChunk {
   group: THREE.Group;
   heights: Float32Array;
   buildingMeshes: THREE.Mesh[];
+  /** Building triangles in chunk-local coordinates for the physics trimesh. */
+  walls: Float32Array | null;
 }
 
 function terrainGeometry(h: Float32Array, n: number, cell: number): THREE.BufferGeometry {
@@ -264,5 +266,10 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   }
   for (const o of treeMeshes(c, mats, mats.geo)) g.add(o);
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
-  return { group: g, heights: h, buildingMeshes };
+  const parts = buildingMeshes.map((m) => m.geometry.getAttribute("position").array as Float32Array);
+  const total = parts.reduce((a, p) => a + p.length, 0);
+  const walls = total ? new Float32Array(total) : null;
+  let off = 0;
+  for (const p of parts) { walls!.set(p, off); off += p.length; }
+  return { group: g, heights: h, buildingMeshes, walls };
 }
