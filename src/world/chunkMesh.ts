@@ -206,7 +206,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   const rc = c.arrays.ring_count as Uint32Array;
   const ringStart = new Uint32Array(rc.length + 1);
   for (let k = 0; k < rc.length; k++) ringStart[k + 1] = ringStart[k] + rc[k];
-  const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[]; ht: number[] }>();
+  const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[]; ht: number[]; wf: number[] }>();
   const plant = { pos: [] as number[], nrm: [] as number[], col: [] as number[] };
   const ring = (k: number) => {
     const pts: THREE.Vector2[] = [];
@@ -215,18 +215,22 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   };
   for (const b of c.header.buildings) {
     let a = acc.get(b.style);
-    if (!a) { a = { pos: [], nrm: [], seed: [], ha: [], ht: [] }; acc.set(b.style, a); }
+    if (!a) { a = { pos: [], nrm: [], seed: [], ha: [], ht: [], wf: [] }; acc.set(b.style, a); }
     const A = a;
-    const tri = (p: number[][], n: number[][], top: number) => {
+    // wf: signed metres from the middle of the wall segment (for centre bays); 1e4 off walls
+    const tri = (p: number[][], n: number[][], top: number, wf = [1e4, 1e4, 1e4]) => {
       for (let k = 0; k < 3; k++) {
-        A.pos.push(...p[k]); A.nrm.push(...n[k]); A.seed.push(b.id); A.ha.push(p[k][1] - b.ground_y); A.ht.push(top);
+        A.pos.push(...p[k]); A.nrm.push(...n[k]); A.seed.push(b.id); A.ha.push(p[k][1] - b.ground_y); A.ht.push(top); A.wf.push(wf[k]);
       }
     };
-    const quad = (p0: number[], p1: number[], p2: number[], p3: number[], n: number[], top: number) => {
-      tri([p0, p1, p2], [n, n, n], top);
-      tri([p0, p2, p3], [n, n, n], top);
+    const quad = (p0: number[], p1: number[], p2: number[], p3: number[], n: number[], top: number, wf?: number[]) => {
+      tri([p0, p1, p2], [n, n, n], top, wf && [wf[0], wf[1], wf[2]]);
+      tri([p0, p2, p3], [n, n, n], top, wf && [wf[0], wf[2], wf[3]]);
     };
     const y0 = b.base_y;
+    // footprint centre, for centre bays measured along each wall from the middle of the building
+    const fpPts = ring(b.footprint.ring_first);
+    const cen = fpPts.reduce((s, p) => s.add(p), new THREE.Vector2()).divideScalar(Math.max(1, fpPts.length));
     const wall = (pts: THREE.Vector2[], yb: number, yt: number, top: number, inward = false) => {
       for (let v = 0; v < pts.length; v++) {
         const p = pts[v], q = pts[(v + 1) % pts.length];
@@ -234,8 +238,11 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
         const len = Math.hypot(dx, dz);
         if (len < 1e-4) continue;
         const nx = -dz / len, nz = dx / len;
-        if (!inward) quad([p.x, yb, p.y], [q.x, yb, q.y], [q.x, yt, q.y], [p.x, yt, p.y], [nx, 0, nz], top);
-        else quad([q.x, yb, q.y], [p.x, yb, p.y], [p.x, yt, p.y], [q.x, yt, q.y], [-nx, 0, -nz], top);
+        // signed distance along the wall from the footprint centre's projection
+        const tx = dx / len, tz = dz / len;
+        const fp = (p.x - cen.x) * tx + (p.y - cen.y) * tz, fq = (q.x - cen.x) * tx + (q.y - cen.y) * tz;
+        if (!inward) quad([p.x, yb, p.y], [q.x, yb, q.y], [q.x, yt, q.y], [p.x, yt, p.y], [nx, 0, nz], top, [fp, fq, fq, fp]);
+        else quad([q.x, yb, q.y], [p.x, yb, p.y], [p.x, yt, p.y], [q.x, yt, q.y], [-nx, 0, -nz], top, [fq, fp, fp, fq]);
       }
     };
     for (const rf of b.roofs ?? []) {
@@ -401,6 +408,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
     g.setAttribute("seed", new THREE.Float32BufferAttribute(a.seed, 1));
     g.setAttribute("hAbove", new THREE.Float32BufferAttribute(a.ha, 1));
     g.setAttribute("hTop", new THREE.Float32BufferAttribute(a.ht, 1));
+    g.setAttribute("wallF", new THREE.Float32BufferAttribute(a.wf, 1));
     out.set(style, g);
   }
   return out;

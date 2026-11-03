@@ -10,6 +10,9 @@ export interface FacadeStyle {
   /** a differently clad base storey (e.g. QNC's charcoal brick plinth under the glass) */
   base?: string;
   base_m?: number;
+  /** a curtain-wall bay this many metres wide in the middle of each long wall (M3's glass centre) */
+  bay_w?: number;
+  bay_glass?: string;
   mansard?: boolean;
 }
 
@@ -74,6 +77,14 @@ export function facadeColor(name: string, sharp: boolean) {
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove).mul(float(1).sub(vault))) as N;
   if (s.base) wall = mix(wall, uniform(swatch(s.base)), step(hAbove, float(s.base_m ?? 4))) as N;
+  if (s.bay_w) {
+    const wf = attribute("wallF", "float");
+    const inBay = step(abs(wf), float(s.bay_w / 2)).mul(step(float(0.3), hAbove)).mul(below);
+    // panes 1.5 m wide, one per storey, with white mullions
+    const pane = band(st, 0.05, 0.95).mul(band(fract(u.div(1.5)) as N, 0.06, 0.94));
+    const glass = mix(uniform(swatch("mullion")), uniform(swatch(s.bay_glass ?? "glass_teal")), pane);
+    wall = mix(wall, glass, inBay) as N;
+  }
   if (s.storefront) {
     const ground = step(hAbove, float(3.0)).mul(step(float(0.25), hAbove));
     const mull = band(fract(u.div(2.2)) as N, 0.04, 0.96);
