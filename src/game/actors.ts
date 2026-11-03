@@ -88,7 +88,11 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
   else hp.push(paint(new THREE.TorusGeometry(0.17, 0.04, 5, 14, Math.PI).rotateX(Math.PI / 2).rotateY(Math.PI), look.hair, "people", 0, 0.1, -0.02));
   if (st === "long") hp.push(paint(new THREE.BoxGeometry(0.34, 0.34, 0.12), look.hair, "people", 0, -0.02, -0.13));
   if (st === "bun") hp.push(paint(sphere(0.09, 8, 6), look.hair, "people", 0, 0.24, -0.16));
-  if (look.hat) {
+  if (look.hat === "hardhat") {
+    // a dome with a peak, the same yellow as the spare one on the grass
+    hp.push(paint(new THREE.SphereGeometry(0.22, 14, 7, 0, Math.PI * 2, 0, Math.PI / 2).scale(1, 0.85, 1.05), "hardhat", "people", 0, 0.2, 0),
+      paint(new THREE.CylinderGeometry(0.25, 0.25, 0.02, 16).scale(1, 1, 1.15), "hardhat", "people", 0, 0.2, 0.04));
+  } else if (look.hat) {
     hp.push(paint(new THREE.CylinderGeometry(0.2, 0.21, 0.12, 14), look.hat, "people", 0, 0.29, 0),
       paint(new THREE.CylinderGeometry(0.27, 0.27, 0.02, 16).scale(1, 1, 1.1), look.hat, "people", 0, 0.24, 0.05));
   }
