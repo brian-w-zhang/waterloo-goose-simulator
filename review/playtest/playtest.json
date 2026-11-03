@@ -8,43 +8,46 @@
  "steps": [
   {
    "what": "walk to the professor",
-   "ms": 7371,
+   "ms": 7390,
    "goose": {
-    "x": 929.3023327970877,
-    "y": 13.098490045815707,
-    "z": -382.4453968089074,
-    "yaw": -2.646791689429146,
+    "x": 929.2826061993837,
+    "y": 13.0953319477872,
+    "z": -382.42753468453884,
+    "yaw": -2.6895086450954206,
     "speed": 1.5999999999999992,
     "grounded": true
    },
+   "music": "calm",
    "done": []
   },
   {
    "what": "honk at the professor",
-   "ms": 905,
+   "ms": 903,
    "goose": {
-    "x": 929.114797791699,
-    "y": 13.07901808140974,
-    "z": -382.5576785142184,
-    "yaw": -2.646791689429146,
-    "speed": 0.0005642594634052092,
+    "x": 929.0990640106611,
+    "y": 13.076465572960442,
+    "z": -382.5424834670848,
+    "yaw": -2.6895086450954206,
+    "speed": 0.00048566262092618654,
     "grounded": true
    },
+   "music": "calm",
    "done": [
     "Honk someone into dropping what they carry"
    ]
   },
   {
    "what": "grab the dropped coffee",
-   "ms": 1253,
+   "ms": 1310,
    "goose": {
-    "x": 928.6441697904957,
-    "y": 13.136787451122073,
-    "z": -383.84746725152945,
-    "yaw": -2.879790499681455,
-    "speed": 0.09241637789640829,
+    "x": 928.6971849109977,
+    "y": 13.148428145165381,
+    "z": -383.9326993979921,
+    "yaw": -3.315833625146827,
+    "speed": 0.10743079240885449,
     "grounded": true
    },
+   "music": "calm",
    "done": [
     "Steal the professor's coffee",
     "Honk someone into dropping what they carry"
@@ -52,15 +55,16 @@
   },
   {
    "what": "run away with it",
-   "ms": 11735,
+   "ms": 11757,
    "goose": {
-    "x": 967.4288446563296,
-    "y": 13.656897628129228,
-    "z": -407.8503696010157,
-    "yaw": -4.210726919977967,
+    "x": 967.5613814683747,
+    "y": 13.656763088353328,
+    "z": -407.9971400263312,
+    "yaw": -4.0014844967490095,
     "speed": 0.04665778546061759,
     "grounded": true
    },
+   "music": "silent",
    "done": [
     "Steal the professor's coffee",
     "Honk someone into dropping what they carry",
@@ -72,13 +76,14 @@
    "what": "drop it and wander",
    "ms": 3003,
    "goose": {
-    "x": 967.4437260996056,
-    "y": 13.656731686178828,
-    "z": -407.84670166282376,
-    "yaw": -4.210726919977967,
-    "speed": 8.769465228912908e-14,
+    "x": 967.5653690256752,
+    "y": 13.656770134783583,
+    "z": -407.99859444358606,
+    "yaw": -4.0014844967490095,
+    "speed": 7.547948671507535e-14,
     "grounded": true
    },
+   "music": "silent",
    "done": [
     "Steal the professor's coffee",
     "Honk someone into dropping what they carry",
@@ -88,5 +93,5 @@
   }
  ],
  "errors": [],
- "video": "playtest-2026-11-03T10-32-13.webm"
+ "video": "playtest-2026-11-03T10-54-43.webm"
 }

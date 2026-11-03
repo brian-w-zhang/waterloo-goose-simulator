@@ -40,6 +40,7 @@ export class Goose {
   private controller: RAPIER.KinematicCharacterController | null = null;
   grounded = true;
   onHonk?: () => void;
+  onStep?: (water: boolean) => void;
   /** Set each frame by the game: a nearby grabbable item (reach) or person (eye contact), in world space. */
   attention: { point: THREE.Vector3; kind: "item" | "person" } | null = null;
   /** Water surface height under the goose, or null on land. */
@@ -144,7 +145,9 @@ export class Goose {
     const run = THREE.MathUtils.clamp((this.speed - WALK_SPEED) / (RUN_SPEED - WALK_SPEED), 0, 1);
     const moving = THREE.MathUtils.clamp(this.speed / WALK_SPEED, 0, 1);
     const stride = 0.22 + 0.16 * run;
+    const before = Math.floor(this.phase / Math.PI);
     this.phase += (this.speed * dt) / stride * Math.PI;
+    if (Math.floor(this.phase / Math.PI) !== before && this.speed > 0.3) this.onStep?.(this.swimming);
     const s = Math.sin(this.phase), c = Math.cos(this.phase);
     const crouch = this.crouchK;
     // body: waddle roll, bob twice per stride, lean forward when running, sink when crouching

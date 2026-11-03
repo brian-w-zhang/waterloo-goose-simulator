@@ -7,7 +7,8 @@ import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materia
 import { AmbientCrowd } from "./ambient";
 import { IonTrain } from "./train";
 import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
-import { chime } from "@/audio/honk";
+import { chime, step as footstep } from "@/audio/honk";
+import { Music } from "@/audio/music";
 import { DecisionClient } from "@/ai/decide";
 import { applyDebugView, type DebugMode } from "@/render/debug";
 import { createScene } from "@/render/scene";
@@ -61,6 +62,7 @@ export interface GameHandle {
     npcs(): { id: string; state: string; mark: string; x: number; z: number; holding: string | null }[];
     tasks(): { text: string; done: boolean }[];
     items(): { id: string; name: string; x: number; z: number; heldBy: string | null }[];
+    music(): string;
     crowd(): number;
   };
 }
@@ -146,6 +148,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       // aim at the visible body: afloat it sits at the water surface, above the physics body on the lake bed
       const gy = followGoose ? (goose.swimming ? goose.rig.root.position.y : goose.position.y) : stream.heightAt(follow.x, follow.z);
       target.set(follow.x, (Number.isFinite(gy) ? gy : 15) + 0.4, follow.z);
+      if (followGoose && !testMode) target.add(lean);
       camera.fov = follow.fov;
       const back = new THREE.Vector3(-Math.sin(D2R(follow.yaw)), 0, Math.cos(D2R(follow.yaw)));
       // a gentle tilt only: the see-through circle does the rest, so the diorama angle survives
@@ -223,6 +226,23 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
 
   let hotspot: HotspotRuntime | null = null;
   let hideTick = 0;
+  // camera lean toward nearby people (spec C-2): an inverse-distance weighted blend of everyone within
+  // 12 m (chasers weigh triple), heavily smoothed so the frame never flips between people
+  const lean = new THREE.Vector3();
+  const updateLean = (dt: number) => {
+    const want = new THREE.Vector3();
+    let wsum = 0;
+    for (const n of hotspot?.sim.npcs.values() ?? []) {
+      const dx = n.pos.x - goose.position.x, dz = n.pos.z - goose.position.z, d = Math.hypot(dx, dz);
+      if (d > 12 || d < 0.5) continue;
+      const w = (1 / d) * (n.state === "chase" || n.state === "shoo" ? 3 : 1);
+      want.x += dx * w; want.z += dz * w; wsum += w;
+    }
+    if (wsum > 0) want.multiplyScalar(0.35 / wsum);
+    if (want.length() > 4) want.setLength(4);
+    lean.x = THREE.MathUtils.damp(lean.x, want.x, 1.5, dt);
+    lean.z = THREE.MathUtils.damp(lean.z, want.z, 1.5, dt);
+  };
   let lastChunk = "";
   const step = (dt: number, input: GooseInput) => {
     goose.waterLevel = stream.waterLevelAt(goose.position.x, goose.position.z);
@@ -233,6 +253,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     goose.attention = hotspot?.attention(goose.position.x, goose.position.z) ?? null;
     goose.holding = hotspot?.heldWeight() ?? null;
     goose.update(dt, input, follow.yaw);
+    updateLean(dt);
     physics.world.step();
     hotspot?.step(dt, goose.position, goose.speed, input.crouch);
     if (followGoose) {
@@ -252,7 +273,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   };
 
   const handle: GameHandle = {
-    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], crowd: () => 0 },
+    hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], music: () => "silent", crowd: () => 0 },
     ready: false,
     backend: rig.backend,
     setPose: (p) => { pose = p; placeCamera(); },
@@ -375,6 +396,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     tasks: () => hotspot?.tasks.map((t) => ({ text: t.text, done: t.done })) ?? [],
     items: () => [...(hotspot?.sim.items.values() ?? [])].map((i) => ({ id: i.id, name: i.name, x: i.pos.x, z: i.pos.z, heldBy: i.heldBy })),
     crowd: () => crowd.size,
+    music: () => music.current,
   };
   window.__wgs = handle;
   console.log(`[wgs] backend ${rig.backend}`);
@@ -401,6 +423,12 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   });
   let toast = "";
   hotspot.onSnatched = () => goose.startle();
+  // audio starts on the first input (browsers block audio before a user gesture)
+  const music = new Music();
+  const startAudio = () => { if (!testMode && !params.has("mute")) music.start(); };
+  window.addEventListener("keydown", startAudio, { once: true });
+  window.addEventListener("pointerdown", startAudio, { once: true });
+  goose.onStep = (water) => { if (!testMode && !params.has("mute")) footstep(water ? "water" : "land"); };
   hotspot.onTask = (t) => {
     toast = t.text;
     chime();
@@ -478,7 +506,13 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       crowd.update(Math.min((now - lastCrowd) / 1000, 0.1), goose.position.x, goose.position.z);
       train.update(Math.min((now - lastCrowd) / 1000, 0.1));
       lastCrowd = now;
-      if ((hudTimer += 1) % 15 === 0) onHud?.(hud());
+      if ((hudTimer += 1) % 15 === 0) {
+        onHud?.(hud());
+        const npcs = [...(hotspot?.sim.npcs.values() ?? [])];
+        const chasing = npcs.some((n) => n.state === "chase" || n.state === "tug" || n.state === "shoo");
+        const near = npcs.some((n) => Math.hypot(n.pos.x - goose.position.x, n.pos.z - goose.position.z) < 14);
+        music.set(chasing ? "chase" : near ? "calm" : "silent");
+      }
       drawSpeech();
       renderer.render(scene, camera);
     }
@@ -495,6 +529,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     window.removeEventListener("keydown", onGrabKey);
     canvas.removeEventListener("mousedown", onMouse);
     speechLayer.remove();
+    music.stop();
     renderer.dispose();
   };
 }

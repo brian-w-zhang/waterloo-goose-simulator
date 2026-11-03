@@ -16,7 +16,7 @@ page.on("pageerror", (e) => errors.push(e.message));
 await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?yaw=30`);
 await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 90000 });
 await page.keyboard.press("Enter"); // dismiss the title card
-const state = () => page.evaluate(() => ({ g: window.__wgs.goose.state(), npcs: window.__wgs.hotspot.npcs(), tasks: window.__wgs.hotspot.tasks() }));
+const state = () => page.evaluate(() => ({ g: window.__wgs.goose.state(), npcs: window.__wgs.hotspot.npcs(), tasks: window.__wgs.hotspot.tasks(), music: window.__wgs.hotspot.music() }));
 const held = new Set();
 const press = async (want) => {
   for (const k of [...held]) if (!want.has(k)) { await page.keyboard.up(k); held.delete(k); }
@@ -45,7 +45,7 @@ async function goTo(x, z, r = 1.0, maxS = 25, run = false, follow = null) {
   await press(new Set());
 }
 const log = [];
-const step = async (what, fn) => { const t = Date.now(); await fn(); const s = await state(); log.push({ what, ms: Date.now() - t, goose: s.g, done: s.tasks.filter((t) => t.done).map((t) => t.text) }); };
+const step = async (what, fn) => { const t = Date.now(); await fn(); const s = await state(); log.push({ what, ms: Date.now() - t, goose: s.g, music: s.music, done: s.tasks.filter((t) => t.done).map((t) => t.text) }); };
 
 await step("walk to the professor", async () => {
   await goTo(0, 0, 1.8, 25, false, "green:prof");

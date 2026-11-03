@@ -114,6 +114,8 @@ export class HotspotRuntime {
 
   /** Sync meshes to the simulation (call once per rendered frame). */
   private gooseHead = new THREE.Vector3();
+  // carried-item pendulum (spec I-6): swing angle and velocity about two axes, driven by bill acceleration
+  private swing = { ax: 0, az: 0, vx: 0, vz: 0, last: new THREE.Vector3(), vel: new THREE.Vector3() };
 
   sync(dt: number, t: number, camera: THREE.Camera, gooseBill: THREE.Vector3) {
     this.gooseHead.copy(gooseBill);
@@ -131,11 +133,22 @@ export class HotspotRuntime {
       const m = this.items.get(it.id)!;
       if (it.heldBy === "goose") {
         m.position.copy(gooseBill).add(new THREE.Vector3(0, -0.06, 0));
-        if (it.weight === "drag") m.position.y = this.ground(it.pos.x, it.pos.z);
+        const sw = this.swing;
+        const v = gooseBill.clone().sub(sw.last).divideScalar(Math.max(dt, 1e-3));
+        const acc = v.clone().sub(sw.vel).divideScalar(Math.max(dt, 1e-3));
+        sw.last.copy(gooseBill); sw.vel.copy(v);
+        // damped spring pendulum: acceleration kicks it, gravity pulls it back
+        sw.vx += (-acc.z * 0.02 - sw.ax * 40 - sw.vx * 4) * dt;
+        sw.vz += (acc.x * 0.02 - sw.az * 40 - sw.vz * 4) * dt;
+        sw.ax = THREE.MathUtils.clamp(sw.ax + sw.vx * dt, -0.9, 0.9);
+        sw.az = THREE.MathUtils.clamp(sw.az + sw.vz * dt, -0.9, 0.9);
+        m.rotation.set(sw.ax, m.rotation.y, sw.az);
+        if (it.weight === "drag") { m.position.y = this.ground(it.pos.x, it.pos.z); m.rotation.set(0, m.rotation.y, 0); }
       } else if (it.heldBy) {
         this.people.get(it.heldBy)!.hand.getWorldPosition(hand);
         m.position.copy(hand);
       } else {
+        m.rotation.set(0, m.rotation.y, 0);
         m.position.set(it.pos.x, this.ground(it.pos.x, it.pos.z), it.pos.z);
       }
     }

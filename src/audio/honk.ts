@@ -72,3 +72,23 @@ export function chime() {
     o.stop(t + k * 0.12 + 0.55);
   });
 }
+
+/** Soft "fwap" footstep (spec S-4); splash variant when swimming. */
+export function step(kind: "land" | "water") {
+  const a = audio();
+  if (!a) return;
+  const t = a.currentTime;
+  const len = kind === "water" ? 0.18 : 0.06;
+  const buf = a.createBuffer(1, Math.floor(a.sampleRate * len), a.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let k = 0; k < d.length; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / d.length, kind === "water" ? 1.5 : 3);
+  const src = a.createBufferSource();
+  src.buffer = buf;
+  const f = a.createBiquadFilter();
+  f.type = kind === "water" ? "bandpass" : "lowpass";
+  f.frequency.value = kind === "water" ? 900 : 700;
+  const g = a.createGain();
+  g.gain.value = kind === "water" ? 0.06 : 0.05;
+  src.connect(f).connect(g).connect(a.destination);
+  src.start(t);
+}
