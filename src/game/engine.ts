@@ -120,6 +120,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   // smart follow: when a building blocks the view of the goose, lift the camera toward top-down
   let lift = 0;
   let blockedFor = 0;
+  let pull = 1;
   let yawGoal: number | null = null;
   let lastSteer = 0;
   const occluded = (from: THREE.Vector3, to: THREE.Vector3) => {
@@ -146,7 +147,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       const back = new THREE.Vector3(-Math.sin(D2R(follow.yaw)), 0, Math.cos(D2R(follow.yaw)));
       // a gentle tilt only: the see-through circle does the rest, so the diorama angle survives
       const pitch = follow.pitch + MAX_LIFT_DEG * lift;
-      const dist = follow.dist * (1 - 0.15 * lift);
+      const dist = follow.dist * (1 - 0.15 * lift) * pull;
       camera.position.copy(target)
         .addScaledVector(back, dist * Math.cos(D2R(pitch)))
         .add(new THREE.Vector3(0, dist * Math.sin(D2R(pitch)), 0));
@@ -154,15 +155,19 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
         const head = goose.position.clone().setY(goose.position.y + 0.6);
         const blocked = occluded(head, camera.position);
         lift = THREE.MathUtils.clamp(lift + (blocked ? 0.04 : -0.02), 0, 1);
+        if (!blocked) pull = Math.min(1, pull + 0.004);
         blockedFor = blocked ? blockedFor + 1 : 0;
         // whisker search: after a moment blocked, swing toward the nearest clear yaw (Q and E still steer)
         if (blockedFor > 20 && performance.now() - lastSteer > 1500) {
           const camAt = (yaw: number) => target.clone()
             .add(new THREE.Vector3(-Math.sin(D2R(yaw)), 0, Math.cos(D2R(yaw))).multiplyScalar(dist * Math.cos(D2R(pitch))))
             .add(new THREE.Vector3(0, dist * Math.sin(D2R(pitch)), 0));
+          let found = false;
           for (const off of [25, -25, 50, -50, 75, -75, 100, -100, 125, -125]) {
-            if (!occluded(head, camAt(follow.yaw + off))) { yawGoal = follow.yaw + off; break; }
+            if (!occluded(head, camAt(follow.yaw + off))) { yawGoal = follow.yaw + off; found = true; break; }
           }
+          // spring arm: no clear angle at this distance, so pull the camera in toward the goose
+          if (!found) pull = Math.max(pull * 0.7, 0.35);
           blockedFor = 0;
         }
       }

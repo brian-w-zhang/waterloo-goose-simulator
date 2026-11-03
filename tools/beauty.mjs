@@ -11,6 +11,13 @@ export const SPOTS = [
   { id: "B5_ion_station", x: 1101, z: -484, yaw: 120, dist: 28 },
   { id: "B6_hagey", x: 1030, z: 90, yaw: 60, dist: 30 },
 ];
+const EXTRA = [
+  { id: "B7_dana_porter", x: 1000, z: -95, yaw: 80, dist: 45 },
+  { id: "B8_e5_e7", x: 1215, z: -400, yaw: 190, dist: 45 },
+  { id: "B9_qnc", x: 845, z: -230, yaw: 100, dist: 45 },
+  { id: "B10_pac", x: 690, z: -330, yaw: 330, dist: 45 },
+];
+if (process.env.EXTRA === "1") SPOTS.push(...EXTRA);
 const out = process.argv[2] ?? "review/look/beauty";
 mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ args: ["--enable-unsafe-webgpu", "--use-angle=metal"] });
