@@ -45,7 +45,8 @@ async function goTo(x, z, r = 1.0, maxS = 25, run = false, follow = null) {
   await press(new Set());
 }
 const log = [];
-const step = async (what, fn) => { const t = Date.now(); await fn(); const s = await state(); log.push({ what, ms: Date.now() - t, goose: s.g, music: s.music, done: s.tasks.filter((t) => t.done).map((t) => t.text) }); };
+const step = async (what, fn) => { const t = Date.now(); await fn(); const s = await state(); log.push({ what, ms: Date.now() - t, goose: s.g, music: s.music, done: s.tasks.filter((t) => t.done).map((t) => t.text),
+  events: await page.evaluate(() => window.__wgs.hotspot.events(8)) }); };
 
 await step("walk to the professor", async () => {
   await goTo(0, 0, 1.8, 25, false, "green:prof");
@@ -67,6 +68,13 @@ await step("drop it and wander", async () => { await page.keyboard.press("KeyG")
 
 // second hotspot: the SLC and PAC plaza. Getting there is a teleport (a test shortcut, not play);
 // everything after it is real key input.
+/** Run a leg, and once more if its task is still not done (players retry too). */
+const attempt = async (task, fn) => {
+  for (let k = 0; k < 2; k++) {
+    if ((await state()).tasks.find((t) => t.text === task)?.done) return;
+    await fn();
+  }
+};
 const itemAt = async (name) => (await page.evaluate(() => window.__wgs.hotspot.items())).find((i) => i.name === name);
 await step("teleport to the plaza", async () => {
   const hat = await itemAt("the busker's tip hat");
@@ -84,20 +92,22 @@ await step("pinch the busker's tip hat", async () => {
   await page.waitForTimeout(1500);
 });
 await step("carry the thesis laptop away", async () => {
-  const lap = await itemAt("Alex's thesis laptop");
-  await goTo(lap.x, lap.z, 2.5, 30);   // about 25 m from the hat at walking pace
-  // Alex sits beside the laptop and would snatch it straight back: two honks make a scaredy flee
-  await page.keyboard.press("Space");
-  await page.waitForTimeout(500);
-  await page.keyboard.press("Space");
-  await page.waitForTimeout(900);
-  await goTo(lap.x, lap.z, 0.5, 6);
-  await page.keyboard.press("KeyG");
-  await page.waitForTimeout(300);
-  const { g } = await state();
-  await goTo(g.x + 14, g.z + 12, 2, 14, true);
-  await page.keyboard.press("KeyG");
-  await page.waitForTimeout(1500);
+  await attempt("Carry the thesis laptop 15 m away", async () => {
+    const lap = await itemAt("Alex's thesis laptop");
+    await goTo(lap.x, lap.z, 2.5, 30);   // about 25 m from the hat at walking pace
+    // Alex sits beside the laptop and would snatch it straight back: two honks make a scaredy flee
+    await page.keyboard.press("Space");
+    await page.waitForTimeout(500);
+    await page.keyboard.press("Space");
+    await page.waitForTimeout(900);
+    await goTo(lap.x, lap.z, 0.5, 6);
+    await page.keyboard.press("KeyG");
+    await page.waitForTimeout(300);
+    const { g } = await state();
+    await goTo(g.x + 14, g.z + 12, 2, 14, true);
+    await page.keyboard.press("KeyG");
+    await page.waitForTimeout(1500);
+  });
 });
 
 // third hotspot: the Village 1 ring (teleport, then real keys)
@@ -111,16 +121,27 @@ await step("honk Riley into dropping the laundry basket", async () => {
   await page.keyboard.press("Space");
   await page.waitForTimeout(900);
 });
-await step("run off with a stray sock", async () => {
+await step("run off with a stray sock", async () => attempt("Run off with a stray sock", async () => {
+  // a first try may have ended holding something else: drop it before reaching for the sock
+  if ((await page.evaluate(() => window.__wgs.hotspot.items())).some((i) => i.heldBy === "goose")) {
+    await page.keyboard.press("KeyG");
+    await page.waitForTimeout(300);
+  }
   const sock = await itemAt("a stray sock");
-  if (!sock.heldBy) await goTo(sock.x, sock.z, 0.5, 8);
+  // Riley's dropped basket can lie between the goose and the sock: come in from the far side of it
+  const basket = await itemAt("a laundry basket");
+  const ax = sock.x - basket.x, az = sock.z - basket.z, al = Math.hypot(ax, az) || 1;
+  if (!sock.heldBy) {
+    await goTo(sock.x + (ax / al) * 1.2, sock.z + (az / al) * 1.2, 0.4, 10);
+    await goTo(sock.x, sock.z, 0.5, 4);
+  }
   await page.keyboard.press("KeyG");
   await page.waitForTimeout(300);
   const { g } = await state();
   await goTo(g.x + 12, g.z - 10, 2, 8, true);
   await page.keyboard.press("KeyG");
   await page.waitForTimeout(1000);
-});
+}));
 
 const final = await state();
 const videoPath = await page.video()?.path();
