@@ -24,7 +24,8 @@ export default function Game() {
   const [hud, setHud] = useState<HudState | null>(null);
   const [credits, setCredits] = useState(false);
   const isStyle = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("scene") === "style";
-  const isTest = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("test");
+  const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+  const isTest = !!params && (params.has("test") || params.get("hud") === "0");
 
   useEffect(() => {
     document.documentElement.style.setProperty("--sky", swatchHex("sky"));

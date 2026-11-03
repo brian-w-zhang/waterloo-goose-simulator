@@ -4,6 +4,7 @@ import { styleRules, swatch } from "@/config";
 export interface FacadeStyle {
   wall: string; accent: string; window: string; roof: string; pattern: "ribbon" | "punched" | "curtain" | "slot" | "none";
   storey_m: number; bay_m: number; w_lo?: number; w_hi?: number; b_lo?: number; b_hi?: number; stripe?: string; variants?: string[];
+  roof_alt?: string;
 }
 
 export function facadeStyle(name: string): FacadeStyle {
@@ -57,5 +58,7 @@ export function facadeColor(name: string, sharp: boolean) {
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove)) as N;
   const isRoof = step(0.7, abs(n.y));
-  return { color: mix(wall, uniform(swatch(s.roof)), isRoof), isRoof, hAbove, seed };
+  // per-building roof swatch: a hard pick between two palette colours (no blend, palette-exact)
+  const roof = s.roof_alt ? mix(uniform(swatch(s.roof)), uniform(swatch(s.roof_alt)), step(0.5, hash(seed.add(3.1)))) : uniform(swatch(s.roof));
+  return { color: mix(wall, roof, isRoof), isRoof, hAbove, seed };
 }

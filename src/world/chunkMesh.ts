@@ -107,7 +107,53 @@ function lakeGeometry(c: Chunk): THREE.BufferGeometry | null {
 }
 
 const PARAPET_M = 0.45;
+const PLANT_M2_PER_UNIT = 220;   // one rooftop plant box per this much flat roof (doc 02 section 3 step 6)
+const PLANT_MIN_ROOF_M2 = 250;
 const GABLE_MIN_FILL = 0.9;
+
+const PLANT_KEY = "rooftop_plant";
+
+/** An axis-free box (four corners in xz) from y0 to y1, vertex-coloured. */
+function plantBox(acc: { pos: number[]; nrm: number[]; col: number[] }, corners: number[][], y0: number, y1: number, color: string) {
+  const c = swatch(color);
+  const emit = (p: number[][], n: number[]) => { for (const v of p) { acc.pos.push(...v); acc.nrm.push(...n); acc.col.push(c.r, c.g, c.b); } };
+  for (let k = 0; k < 4; k++) {
+    const [ax, az] = corners[k], [bx, bz] = corners[(k + 1) % 4];
+    const dx = bx - ax, dz = bz - az, len = Math.hypot(dx, dz) || 1;
+    const n = [-dz / len, 0, dx / len];
+    const q = [[ax, y0, az], [bx, y0, bz], [bx, y1, bz], [ax, y1, az]];
+    const e1 = [q[1][0] - q[0][0], 0, q[1][2] - q[0][2]], e2 = [q[2][0] - q[0][0], q[2][1] - q[0][1], q[2][2] - q[0][2]];
+    const cx = e1[1] * e2[2] - e1[2] * e2[1], cz = e1[0] * e2[1] - e1[1] * e2[0];
+    const out = cx * n[0] + cz * n[2] >= 0;
+    emit(out ? [q[0], q[1], q[2], q[0], q[2], q[3]] : [q[0], q[2], q[1], q[0], q[3], q[2]], out ? n : n.map((v) => -v));
+  }
+  const top = corners.map(([x, z]) => [x, y1, z]);
+  const ny = (top[1][2] - top[0][2]) * (top[2][0] - top[0][0]) - (top[1][0] - top[0][0]) * (top[2][2] - top[0][2]);
+  emit(ny >= 0 ? [top[0], top[1], top[2], top[0], top[2], top[3]] : [top[0], top[2], top[1], top[0], top[3], top[2]], [0, 1, 0]);
+}
+
+function pointInRings(x: number, z: number, rings: THREE.Vector2[][]) {
+  let inside = false;
+  for (const r of rings) {
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      if ((r[i].y > z) !== (r[j].y > z) && x < ((r[j].x - r[i].x) * (z - r[i].y)) / (r[j].y - r[i].y) + r[i].x) inside = !inside;
+    }
+  }
+  return inside;
+}
+
+function edgeDist(x: number, z: number, rings: THREE.Vector2[][]) {
+  let best = Infinity;
+  for (const r of rings) {
+    for (let k = 0; k < r.length; k++) {
+      const a = r[k], b = r[(k + 1) % r.length];
+      const dx = b.x - a.x, dz = b.y - a.y;
+      const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.y) * dz) / (dx * dx + dz * dz || 1)));
+      best = Math.min(best, Math.hypot(x - (a.x + t * dx), z - (a.y + t * dz)));
+    }
+  }
+  return best;
+}
 
 /** Minimum-area bounding rectangle of a ring (edge-aligned), as centre, unit axis, half sizes. */
 function minRect(pts: THREE.Vector2[]) {
@@ -149,6 +195,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   const ringStart = new Uint32Array(rc.length + 1);
   for (let k = 0; k < rc.length; k++) ringStart[k + 1] = ringStart[k] + rc[k];
   const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[]; ht: number[] }>();
+  const plant = { pos: [] as number[], nrm: [] as number[], col: [] as number[] };
   const ring = (k: number) => {
     const pts: THREE.Vector2[] = [];
     for (let v = ringStart[k]; v < ringStart[k + 1]; v++) pts.push(new THREE.Vector2(rx[v * 2], rx[v * 2 + 1]));
@@ -215,7 +262,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
     }
     for (const part of b.parts) {
       const y1 = b.ground_y + part.h;
-      const rings = [];
+      const rings: THREE.Vector2[][] = [];
       for (let k = part.ring_first; k < part.ring_first + part.ring_n; k++) rings.push(ring(k));
       const top = part.h + PARAPET_M;
       for (const pts of rings) {
@@ -224,13 +271,38 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
       }
       const tris = THREE.ShapeUtils.triangulateShape(rings[0], rings.slice(1));
       const flat = rings.flat();
+      let roofArea = 0;
       for (const t of tris) {
         const [p0, p1, p2] = [flat[t[0]], flat[t[1]], flat[t[2]]];
         const ny = (p1.y - p0.y) * (p2.x - p0.x) - (p1.x - p0.x) * (p2.y - p0.y);
+        roofArea += Math.abs(ny) / 2;
         const order = ny >= 0 ? [p0, p1, p2] : [p0, p2, p1];
         tri(order.map((p) => [p.x, y1, p.y]), [[0, 1, 0], [0, 1, 0], [0, 1, 0]], top + 10);
       }
+      // rooftop plant: seeded boxes inside the roof outline so big flat roofs do not read as blank slabs
+      if (roofArea >= PLANT_MIN_ROOF_M2 && b.style !== "house") {
+        const rnd = (k: number) => { const x = Math.sin(b.id * 91.7 + part.ring_first * 13.1 + k * 7.3) * 43758.5453; return x - Math.floor(x); };
+        const n = Math.min(16, Math.floor(roofArea / PLANT_M2_PER_UNIT));
+        const xs = flat.map((p) => p.x), zs = flat.map((p) => p.y);
+        const [mnx, mxx, mnz, mxz] = [Math.min(...xs), Math.max(...xs), Math.min(...zs), Math.max(...zs)];
+        let placed = 0;
+        for (let k = 0; k < n * 6 && placed < n; k++) {
+          const cx = mnx + rnd(k * 3) * (mxx - mnx), cz = mnz + rnd(k * 3 + 1) * (mxz - mnz);
+          const w = 2 + rnd(k * 3 + 2) * 3, d = 1.5 + rnd(k * 5) * 2.5, h = 1 + rnd(k * 7) * 1.4;
+          const corners = [[cx - w / 2, cz - d / 2], [cx + w / 2, cz - d / 2], [cx + w / 2, cz + d / 2], [cx - w / 2, cz + d / 2]];
+          if (!corners.every(([x, z]) => pointInRings(x, z, rings) && edgeDist(x, z, rings) > 1.2)) continue;
+          plantBox(plant, corners, y1, y1 + h, rnd(k * 11) < 0.5 ? "roof_metal" : "concrete_shadow");
+          placed++;
+        }
+      }
     }
+  }
+  if (plant.pos.length) {
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(plant.pos, 3));
+    g.setAttribute("normal", new THREE.Float32BufferAttribute(plant.nrm, 3));
+    g.setAttribute("color", new THREE.Float32BufferAttribute(plant.col, 3));
+    out.set(PLANT_KEY, g);
   }
   for (const [style, a] of acc) {
     const g = new THREE.BufferGeometry();
@@ -433,10 +505,10 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   }
   const buildingMeshes: THREE.Mesh[] = [];
   for (const [style, geom] of buildingGeometries(c)) {
-    const mesh = new THREE.Mesh(geom, mats.facade(style));
+    const mesh = new THREE.Mesh(geom, style === PLANT_KEY ? mats.vertexColor : mats.facade(style));
     mesh.castShadow = true;
     mesh.receiveShadow = true;
-    mesh.name = `buildings_${style}`;
+    mesh.name = style === PLANT_KEY ? PLANT_KEY : `buildings_${style}`;
     buildingMeshes.push(mesh);
     g.add(mesh);
   }
