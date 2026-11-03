@@ -1,5 +1,5 @@
 import * as THREE from "three/webgpu";
-import { campus } from "@/config";
+import { campus, swatchHex } from "@/config";
 import { Goose, type GooseInput } from "@/goose/goose";
 import { type Network, WalkGraph } from "@/nav/graph";
 import { loadRapier, Physics } from "@/physics/physics";
@@ -392,6 +392,30 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   canvas.addEventListener("mousedown", onMouse);
   onHud?.(hud());
   let hudTimer = 0;
+  // speech labels: plain DOM elements positioned over the canvas each frame
+  const speechLayer = document.createElement("div");
+  speechLayer.style.cssText = "position:absolute;inset:0;pointer-events:none;overflow:hidden";
+  canvas.parentElement?.appendChild(speechLayer);
+  const labels: HTMLDivElement[] = [];
+  const drawSpeech = () => {
+    const lines = hotspot?.speech() ?? [];
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    lines.forEach((l, k) => {
+      let el = labels[k];
+      if (!el) {
+        el = document.createElement("div");
+        el.style.cssText = `position:absolute;transform:translate(-50%,-100%);padding:3px 9px;border-radius:10px;font:600 14px ui-rounded,system-ui,sans-serif;white-space:nowrap;background:${swatchHex("panel", "ui")};color:${swatchHex("text", "ui")}`;
+        speechLayer.appendChild(el);
+        labels[k] = el;
+      }
+      const p = l.pos.clone().project(camera);
+      el.style.display = p.z < 1 ? "block" : "none";
+      el.style.left = `${(p.x * 0.5 + 0.5) * w}px`;
+      el.style.top = `${(0.5 - p.y * 0.5) * h}px`;
+      el.textContent = l.text;
+    });
+    for (let k = lines.length; k < labels.length; k++) labels[k].style.display = "none";
+  };
   let lastCrowd = performance.now();
   const bill = new THREE.Vector3();
 
@@ -432,6 +456,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       crowd.update(Math.min((now - lastCrowd) / 1000, 0.1), goose.position.x, goose.position.z);
       lastCrowd = now;
       if ((hudTimer += 1) % 15 === 0) onHud?.(hud());
+      drawSpeech();
       renderer.render(scene, camera);
     }
     requestAnimationFrame(frame);
@@ -446,6 +471,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     window.removeEventListener("wheel", onWheel);
     window.removeEventListener("keydown", onGrabKey);
     canvas.removeEventListener("mousedown", onMouse);
+    speechLayer.remove();
     renderer.dispose();
   };
 }

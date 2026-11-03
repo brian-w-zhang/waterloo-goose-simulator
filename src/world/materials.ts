@@ -146,7 +146,7 @@ export function makeMaterials(): Materials {
     water: makeWaterMaterial(),
     canopy: makeCanopyMaterial("tree_canopy"),
     conifer: makeCanopyMaterial("conifer"),
-    trunk: solid("trunk"),
+    trunk: makeCanopyMaterial("trunk"),
     vertexColor: makeVertexColorMaterial(),
     facade: (style) => {
       let m = facades.get(style);

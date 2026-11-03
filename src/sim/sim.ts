@@ -60,6 +60,7 @@ export interface Npc {
   speedWalk: number;
   speedRun: number;
   line: string;
+  lineTime: number;
   grip: number;             // seconds spent within reach of the goose while chasing
 }
 
@@ -75,6 +76,14 @@ export type SimEvent =
   | { t: number; type: "returned"; npc: string; item: string }
   | { t: number; type: "grab"; who: string; item: string }
   | { t: number; type: "release"; who: string; item: string };
+
+export const LINES = {
+  shock: ["Hey!", "Whoa!", "Not again!", "Goose!"],
+  stolen: ["My stuff!", "Give that back!", "Hey, that's mine!", "Come back here!"],
+  shoo: ["Shoo! Go away!", "Off you go!", "Not on my watch!", "Out of here, goose!"],
+  giveup: ["Huh.", "Where did it go?", "Forget it.", "Unbelievable."],
+  wonder: ["What was that?", "Hm?", "Was that a goose?"],
+};
 
 export const PERCEPTION = {
   coneDeg: 110, coneRange: 18, periphRange: 4, honkRange: 25, closeHonk: 4,
@@ -111,7 +120,7 @@ export class Sim {
       pos: { ...n.home }, facing: 0, routine: [{ ...n.home }], routineIdx: 0, state: "routine", stateTime: 0,
       mark: "", markTime: 0, holding: null, target: null, wantItem: null,
       memory: { gooseSeen: null, gooseSeenAt: -1e9, itemSeen: {}, honks: [] },
-      speedWalk: 1.3, speedRun: 4.4, line: "", grip: 0, ...n,
+      speedWalk: 1.3, speedRun: 4.4, line: "", lineTime: -1e9, grip: 0, ...n,
     });
   }
 
@@ -127,12 +136,14 @@ export class Sim {
       n.memory.honks = n.memory.honks.filter((h) => this.t - h < PERCEPTION.repeatedWindowS).concat(this.t);
       if (d <= PERCEPTION.closeHonk) {
         this.setMark(n, "!");
+        this.say(n, "shock");
         if (n.holding) this.npcDrop(n);
         if (n.archetype === "scaredy" && n.memory.honks.length >= 2) { this.go(n, "flee"); continue; }
         if (n.memory.honks.length >= PERCEPTION.repeatedHonks && n.archetype === "chaser") { this.go(n, "shoo"); continue; }
         this.go(n, "react");
       } else if (["routine", "giveup", "search"].includes(n.state)) {
         this.setMark(n, "?");
+        if (this.rng() < 0.5) this.say(n, "wonder");
         n.target = { ...p };
         this.emit({ t: this.t, type: "noticed", npc: n.id, what: "honk" });
         this.go(n, "react", "investigate");
@@ -175,6 +186,13 @@ export class Sim {
   }
 
   private setMark(n: Npc, m: Npc["mark"]) { n.mark = m; n.markTime = this.t; }
+
+  /** Short text lines per situation (doc 05 section 5), picked deterministically from the sim stream. */
+  private say(n: Npc, kind: keyof typeof LINES) {
+    const opts = LINES[kind];
+    n.line = opts[Math.floor(this.rng() * opts.length)];
+    n.lineTime = this.t;
+  }
 
   private next = new Map<string, State>();
 
@@ -255,6 +273,7 @@ export class Sim {
     // highest-priority interrupts (doc 05: Flee > Chase > Retrieve > Shoo > Investigate > Routine)
     if (n.state !== "flee" && n.state !== "react" && gooseHasMine && seesGoose && n.state !== "chase") {
       this.setMark(n, "!");
+      this.say(n, "stolen");
       n.wantItem = this.goose.holding;
       this.emit({ t: this.t, type: "noticed", npc: n.id, what: "item_stolen" });
       this.go(n, "react", "chase");
@@ -336,8 +355,8 @@ export class Sim {
         return;
       }
       case "shoo":
-        n.line = "Shoo! Go away!";
-        if (!seesGoose || n.stateTime > 6 || dist(this.goose.pos, n.home) > 14) { n.line = ""; this.go(n, "routine"); return; }
+        if (n.stateTime < dt * 1.5) this.say(n, "shoo");
+        if (!seesGoose || n.stateTime > 6 || dist(this.goose.pos, n.home) > 14) { this.go(n, "routine"); return; }
         if (dist(n.pos, this.goose.pos) > 1.6) this.moveToward(n, this.goose.pos, n.speedWalk * 1.6, dt);
         return;
       case "flee": {
@@ -348,7 +367,7 @@ export class Sim {
         return;
       }
       case "giveup":
-        if (n.stateTime < dt * 1.5) this.setMark(n, "swirl");
+        if (n.stateTime < dt * 1.5) { this.setMark(n, "swirl"); this.say(n, "giveup"); }
         if (n.stateTime > 1.5) { n.wantItem = null; this.go(n, "routine"); }
         return;
     }

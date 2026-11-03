@@ -132,6 +132,17 @@ export class HotspotRuntime {
     return !t.gate || this.tasks.filter((o) => o.hotspot === t.hotspot && o !== t && o.done).length >= t.gate;
   }
 
+  /** Current speech lines (shown for 2.2 s) with each speaker's head position. */
+  speech(): { text: string; pos: THREE.Vector3 }[] {
+    const out: { text: string; pos: THREE.Vector3 }[] = [];
+    for (const n of this.sim.npcs.values()) {
+      if (!n.line || this.sim.t - n.lineTime > 2.2) continue;
+      const r = this.people.get(n.id)!;
+      out.push({ text: n.line, pos: r.root.position.clone().setY(r.root.position.y + 2.9) });
+    }
+    return out;
+  }
+
   /** The hotspot closest to (x, z): its name and tasks drive the HUD. */
   nearestHotspot(x: number, z: number) {
     let best = HOTSPOTS[0], bd = Infinity;
