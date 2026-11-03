@@ -114,3 +114,62 @@ The aerial view I used is a University of Waterloo Athletics drone photo looking
 - **No usable exterior photo, so these entries are guesses:** B1, B2, C2, E3, EV1, BMH and LHI. Treat their entries as placeholders and check them on Mapillary or Street View before relying on them.
 - **Older photos:** SLC, PAC and Optometry have had large recent additions (SLC/PAC expansion in the 2020s, Waterloo Eye Institute). Commons photos from before about 2015 show the older state.
 - **Mapillary:** I could not use it, because its API needs a token.
+
+## Second pass (Nov 3, 2026)
+
+This pass rechecks the low-confidence buildings above, plus two specific questions. Evidence comes from Google Street View panoramas (2014, 2019 and 2025 captures), Google Images previews, Wikimedia Commons originals, and Esri World Imagery aerial tiles. To decide which building a Street View facade belongs to, I checked the camera position and heading against the OSM footprints in `data/raw/osm/`. I downloaded nothing into the repo. Machine-readable version: `building-looks-pass2.json`.
+
+**How the hexes were made:** where a hex says "sampled", it is a pixel median from the photo. The recommended `wall_hex` is lifted a little, because many of the Street View captures are shaded or overcast.
+
+### Specific questions
+
+1. **MC is light warm-grey precast concrete, not brown or tan.**
+   - It looks tan only in golden-hour photos. Commons `UWaterloo_MC.jpg` samples `#c49756` at sunset.
+   - Midday photos are grey: the MC/DC courtyard shot samples `#a7a3a2` and a sunlit close-up `#bebfb8`.
+   - OSM also tags MC as concrete / lightgrey.
+   - Recommended colour: `#aeaba3`. Ground-floor infill is brown brick.
+2. **Roofs in the MC / DC / C2 / ESC / B1 / B2 area are mostly mid warm-grey gravel or ballast.** None are black, and few are white.
+   - Esri medians over the OSM footprints:
+     - MC `#847c72`
+     - C2 `#84776e`
+     - B2 `#8d8077`
+     - B1 `#948b7c`
+     - E2/E3 `#756a68`/`#7a7468`
+   - Lighter exceptions:
+     - STC `#b9bab5`
+     - ESC `#cec4ba`
+     - QNC: a green roof plus light grey (`#a49a8e`)
+   - DC is grey with blue-teal skylight strips along the vault.
+   - Google's 2026 satellite view agrees: everything reads as mid grey.
+   - Suggested defaults: `#857d74` for gravel roofs, `#c0bfb8` for the light roofs.
+   - The Esri imagery is from about 2016-17 (M3 is still under construction in it).
+
+### Building table (pass 2)
+
+| Code | Dominant wall | Hex | Windows | Conf. | Sources |
+|---|---|---|---|---|---|
+| B1 | Buff/tan brick, 1960s. Glass Plant Growth Facility greenhouses on a grey concrete plinth along the south side | `#b59a7c` | punched | medium | [1](https://commons.wikimedia.org/wiki/File:BIO_Greenhouse.jpg) [2](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.47082,-80.54275&heading=270) |
+| B2 | Tan/light-brown brick with recessed vertical window bays in light precast frames | `#9a8168` | punched | medium | [1](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4712,-80.5437&heading=170) [2](https://www.reddit.com/r/uwaterloo/comments/1p8dzki/uwaterloo_building_alignment_chart/) |
+| C2 | Warm orange-tan brick over a raw concrete base | `#a0704c` | ribbon | medium | [1](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4720,-80.5434&heading=90) [2](https://www.reddit.com/r/uwaterloo/comments/1p8dzki/uwaterloo_building_alignment_chart/) |
+| ESC | Buff/tan brick wings. The south facade is white/off-white precast (`#d8d6cc`) with cantilevered window bays and fins, raised on pilotis over the main walkway | `#c4a98a` | punched (brick) / slot (precast) | medium | [1](https://commons.wikimedia.org/wiki/File:BIO_Connetion.jpg) [2](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.47082,-80.54275&heading=0) |
+| E2 | Buff/tan-brown brick with precast band courses and a grid of concrete fins; dark spandrels | `#9c8670` | punched | medium | [1](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4712,-80.5400&heading=240) |
+| E3 | Buff/tan speckled brick on a light concrete base. Only the north-west face was seen | `#a8927a` | ribbon | medium | [1](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4722,-80.5410&heading=150) |
+| STC | Medium-dark brown brick plus stepped dark charcoal metal-panel volumes (`#4f5256`); glass atria and glazed bridges | `#6e5244` | mixed | medium | [1](https://science-teaching-complex-stc.wheree.com/) [2](https://www.google.com/search?udm=2&q=ZAS+Architects+University+of+Waterloo+Science+Teaching+Complex) |
+| EV1 | Red-brown/brown brick with concrete trim; central courtyard under a glass roof | `#7e5040` | ribbon | low | [1](https://uwaterloo.ca/environment/about/ev3-leedr-platinum-certified) |
+| EV2 | Orange-red brick, 2 storeys; EV3 rises behind it | `#9a4e36` | punched | medium | [1](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4676,-80.5440&heading=60) [2](https://uwaterloo.ca/environment/about/ev3-leedr-platinum-certified) |
+| NH | Original block: mid-brown brick with deep recessed window bands. 2015 expansion: orange-red brick (`#a85c3c`), curtain wall, a light grey panel upper volume and a glazed bridge | `#7a5442` | mixed | medium | [1](https://www.allesdrywall.com/Featured-Project-University-of-Waterloo.htm) [2](https://uwaterloo.ca/accessability-services/news/needles-hall-expansion) |
+| TC | Red/red-brown brick box with glazed corner and entrance volumes and a light metal parapet | `#8a4434` | mixed | high | [1](https://commons.wikimedia.org/wiki/File:TC_01.jpg) [2](https://commons.wikimedia.org/wiki/File:Waterloo_ontario_campus_1.jpg) |
+| SCH | Dark chocolate-brown brick with white fascia bands and parapets; stepped massing | `#6a5450` | punched | high | [1](https://commons.wikimedia.org/wiki/File:Panorama_UW_south_campus_hall.jpg) |
+| GSC | Dark brown brick, low service buildings with deep loading canopies; grey metal plant building next door; brick smokestack nearby | `#5c4634` | punched (few) | medium | [1](https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4740,-80.5438&heading=120) [2](https://commons.wikimedia.org/wiki/File:Chimney.jpg) |
+
+### What changed from pass 1
+
+- **E2 is buff/tan-brown brick with concrete fins.** Pass 1 had red-brown brick.
+- **The 1960s science cluster (B1, B2, C2, ESC) is buff/tan brick, not grey precast.** ESC's south facade is the white precast section with the walkway underpass. Pass 1 attributed that facade to B1/B2.
+- **STC is brown brick plus dark charcoal panels**, not red-brown brick.
+- **EV1 is brown/red-brown brick**, not buff (low confidence). **EV2 is orange-red brick**, as pass 1 guessed.
+- **SCH and GSC are darker brown than pass 1's hexes.** TC is confirmed.
+
+### Caveats
+
+- The Street View views of B1/B2/C2/ESC/E2 are from 2014. EV1 is still weak: I found no clear, full exterior photo of it.

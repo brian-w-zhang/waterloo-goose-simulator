@@ -1,5 +1,5 @@
 {
-  "note": "Building style classes (doc 02 section 6), revised from the photo research in docs/research/building-looks.md (Nov 3, 2026). First matching rule wins: City BLDG_ABBREV lists, then OSM building:material, then OSM building value; small non-UW footprints are houses. Colours are palette names. pattern: ribbon (horizontal window bands), punched (window grid), curtain (glass with mullion grid), slot (narrow vertical slots between fins), diamond (faceted panels, E5), none. Unmatched non-house buildings take one of default_variants by a hash of their OBJECTID (varied, stable, not evidence about any one building).",
+  "note": "Building style classes (doc 02 section 6), revised from the photo research in docs/research/building-looks.md (Nov 3, 2026). First matching rule wins: City BLDG_ABBREV lists, then OSM building:material, then OSM building value; small non-UW footprints are houses. Colours are palette names. pattern: ribbon (horizontal window bands), punched (window grid), curtain (glass with mullion grid), slot (narrow vertical slots between fins), diamond (faceted panels, E5), none. Unmatched non-house buildings take one of default_variants by a hash of their OBJECTID (varied, stable, not evidence about any one building). Second research pass (docs/research/building-looks-pass2.json) moved B1, B2, C2, ESC, E2 to buff brick and STC, EV1, GSC to brown brick.",
   "rules": [
     {
       "style": "glass_vault",
@@ -12,10 +12,6 @@
       "abbrev": [
         "MC",
         "PAS",
-        "ESC",
-        "B1",
-        "B2",
-        "C2",
         "E3"
       ],
       "material": [
@@ -119,15 +115,12 @@
         "VW6",
         "MKV East",
         "MKV West",
-        "E2",
         "CLV",
         "EV2",
-        "GSC",
         "UC",
         "BMH",
         "LHI",
         "CIF",
-        "STC",
         "COM",
         "CSB"
       ],
@@ -151,8 +144,11 @@
       "abbrev": [
         "HH",
         "PAC",
-        "SCH",
-        "FED"
+        "FED",
+        "STC",
+        "EV1",
+        "GSC",
+        "SCH"
       ]
     },
     {
@@ -161,14 +157,18 @@
         "PHY",
         "CPH",
         "EIT",
-        "OPT"
+        "OPT",
+        "B1",
+        "B2",
+        "C2",
+        "ESC",
+        "E2"
       ]
     },
     {
       "style": "brick_buff",
       "abbrev": [
         "DWE",
-        "EV1",
         "UWP",
         "UEC",
         "UET",

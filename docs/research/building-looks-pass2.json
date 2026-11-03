@@ -1,0 +1,188 @@
+{
+  "_meta": {
+    "date": "2026-11-03",
+    "method": "Google Street View panoramas (2014, 2019, 2025 captures), Google Images result grids and previews, Wikimedia Commons originals, Esri World Imagery aerial tiles. Hexes marked 'sampled' are pixel medians from photos; wall_hex is a recommended flat daylight colour lifted slightly from shaded/overcast samples.",
+    "street_view_url_pattern": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=LAT,LON&heading=H"
+  },
+  "B1": {
+    "wall": "buff/tan brick (1960s science block); glass Plant Growth Facility greenhouses on a grey concrete plinth along its south side",
+    "wall_hex": "#b59a7c",
+    "windows": "punched (vertical strips in concrete surrounds)",
+    "confidence": "medium",
+    "notes": "Brick behind the greenhouse samples #6b553d in shade. The white precast fin facade over the walkway underpass belongs to ESC, not B1 (checked against OSM footprints).",
+    "sources": [
+      "https://commons.wikimedia.org/wiki/File:BIO_Greenhouse.jpg",
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.47082,-80.54275&heading=270"
+    ]
+  },
+  "B2": {
+    "wall": "tan/light-brown brick with recessed vertical window bays framed in light precast",
+    "wall_hex": "#9a8168",
+    "windows": "punched (stacked vertical bays)",
+    "confidence": "medium",
+    "notes": "Seen from the QNC side. Sunlit brick samples about #897368.",
+    "sources": [
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4712,-80.5437&heading=170",
+      "https://www.reddit.com/r/uwaterloo/comments/1p8dzki/uwaterloo_building_alignment_chart/"
+    ]
+  },
+  "C2": {
+    "wall": "warm orange-tan brick over a raw concrete base",
+    "wall_hex": "#a0704c",
+    "windows": "ribbon (long horizontal bands in dark frames; glazed ground floor)",
+    "confidence": "medium",
+    "notes": "Sunlit brick in Street View samples #74502c, which is dark because of the 2014 capture. Lift for toon use.",
+    "sources": [
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4720,-80.5434&heading=90",
+      "https://www.reddit.com/r/uwaterloo/comments/1p8dzki/uwaterloo_building_alignment_chart/"
+    ]
+  },
+  "ESC": {
+    "wall": "buff/tan brick wings plus a south facade of white/off-white precast concrete with cantilevered window bays and fins, raised on pilotis over the main walkway",
+    "wall_hex": "#c4a98a",
+    "secondary_hex": "#d8d6cc",
+    "windows": "punched (vertical windows in concrete strips on the brick wings); the precast south face reads as slot bands",
+    "confidence": "medium",
+    "notes": "Not grey precast all over, as pass 1 guessed. The building is mostly buff brick, with a white precast section on the south side.",
+    "sources": [
+      "https://commons.wikimedia.org/wiki/File:BIO_Connetion.jpg",
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.47082,-80.54275&heading=0",
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4712,-80.5433&heading=60"
+    ]
+  },
+  "E2": {
+    "wall": "buff/tan-brown brick with precast concrete band courses and a grid of concrete fins; dark spandrel panels under windows",
+    "wall_hex": "#9c8670",
+    "windows": "punched (grid between concrete fins)",
+    "confidence": "medium",
+    "notes": "Contradicts pass 1 ('red-brown brick'). The north courtyard side samples #7b6b5e in sun. White corrugated-metal portables sit alongside.",
+    "sources": [
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4712,-80.5400&heading=240",
+      "https://www.reddit.com/r/uwaterloo/comments/1p8dzki/uwaterloo_building_alignment_chart/"
+    ]
+  },
+  "E3": {
+    "wall": "buff/tan speckled brick over a light concrete base",
+    "wall_hex": "#a8927a",
+    "windows": "ribbon (continuous bands in black frames)",
+    "confidence": "medium",
+    "notes": "Only the north-west face was seen (Street View, May 2025, overcast). It samples #938066.",
+    "sources": [
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4722,-80.5410&heading=150"
+    ]
+  },
+  "STC": {
+    "wall": "medium-dark brown brick plus stepped dark charcoal metal-panel volumes; glass curtain-wall atria and glazed bridges",
+    "wall_hex": "#6e5244",
+    "secondary_hex": "#4f5256",
+    "windows": "mixed (large punched/strip windows in brick, vertical slots in the dark panels, curtain wall at the atria)",
+    "confidence": "medium",
+    "notes": "Brown rather than red-brown. The dark grey panel towers are a major part of the look. A backlit photo samples #574d4b.",
+    "sources": [
+      "https://science-teaching-complex-stc.wheree.com/",
+      "https://www.google.com/search?udm=2&q=ZAS+Architects+University+of+Waterloo+Science+Teaching+Complex"
+    ]
+  },
+  "EV1": {
+    "wall": "red-brown/brown brick with concrete trim; central courtyard under a glass roof",
+    "wall_hex": "#7e5040",
+    "windows": "ribbon",
+    "confidence": "low",
+    "notes": "Seen only at a distance (corner of a uwaterloo drone photo) and in interior courtyard shots. Not the buff brick pass 1 guessed.",
+    "sources": [
+      "https://uwaterloo.ca/environment/about/ev3-leedr-platinum-certified",
+      "https://www.google.com/search?udm=2&q=%22Environment+1%22+EV1+building+University+of+Waterloo"
+    ]
+  },
+  "EV2": {
+    "wall": "orange-red brick, 2 storeys; EV3 rises behind it",
+    "wall_hex": "#9a4e36",
+    "windows": "punched (small)",
+    "confidence": "medium",
+    "notes": "Overcast Street View samples #773e2b. The uwaterloo drone photo shows the same red brick block under EV3's green roof.",
+    "sources": [
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4676,-80.5440&heading=60",
+      "https://uwaterloo.ca/environment/about/ev3-leedr-platinum-certified"
+    ]
+  },
+  "NH": {
+    "wall": "original block: mid-brown brick with deep recessed window bands; 2015 expansion: orange-red brick, glass curtain wall, light grey/white metal-panel upper volume, glazed bridge",
+    "wall_hex": "#7a5442",
+    "secondary_hex": "#a85c3c",
+    "windows": "mixed (ribbon bands on the original; curtain wall plus punched windows on the expansion)",
+    "confidence": "medium",
+    "notes": "Hexes are by eye from Google Images previews (not pixel-sampled). Pass 1 called it dark red-brown. The original is browner than that.",
+    "sources": [
+      "https://www.allesdrywall.com/Featured-Project-University-of-Waterloo.htm",
+      "https://uwaterloo.ca/accessability-services/news/needles-hall-expansion"
+    ]
+  },
+  "TC": {
+    "wall": "red/red-brown brick box with fully glazed corner and entrance volumes; light metal parapet band",
+    "wall_hex": "#8a4434",
+    "windows": "mixed (strip windows in brick, curtain wall at corners)",
+    "confidence": "high",
+    "notes": "Matches pass 1. The shaded face samples #5f342e. Lit brick reads brighter and redder.",
+    "sources": [
+      "https://commons.wikimedia.org/wiki/File:TC_01.jpg",
+      "https://commons.wikimedia.org/wiki/File:Waterloo_ontario_campus_1.jpg"
+    ]
+  },
+  "SCH": {
+    "wall": "dark chocolate-brown brick with white fascia bands and parapets, stepped/terraced massing",
+    "wall_hex": "#6a5450",
+    "windows": "punched (large recessed openings; some long bands under the white fascias)",
+    "confidence": "high",
+    "notes": "Darker than pass 1's #7f5a44. Sunny Commons panorama samples #614e4a to #706060.",
+    "sources": [
+      "https://commons.wikimedia.org/wiki/File:Panorama_UW_south_campus_hall.jpg"
+    ]
+  },
+  "GSC": {
+    "wall": "dark brown brick, low 1-2 storey service buildings with deep flat canopies over loading bays",
+    "wall_hex": "#5c4634",
+    "windows": "punched (very few)",
+    "confidence": "medium",
+    "notes": "Overcast Street View (Jul 2019) samples #302311 in shade. A grey corrugated-metal plant building stands next to it, and a buff-brown brick smokestack is nearby.",
+    "sources": [
+      "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.4740,-80.5438&heading=120",
+      "https://commons.wikimedia.org/wiki/File:Chimney.jpg"
+    ]
+  },
+  "MC": {
+    "wall": "light warm-grey precast concrete (fluted on the stair towers, smooth panels elsewhere); some brown brick infill at ground level",
+    "wall_hex": "#aeaba3",
+    "windows": "ribbon (repetitive small windows between concrete fins)",
+    "confidence": "high",
+    "notes": "Answer to specific question 1: MC is grey concrete, not brown or tan. It looks tan only in golden-hour photos (UWaterloo_MC.jpg samples #c49756 at sunset). A midday courtyard shot samples #a7a3a2 and a sunlit close-up #bebfb8. OSM also tags it concrete/lightgrey.",
+    "sources": [
+      "https://commons.wikimedia.org/wiki/File:MC_DC_Courtyard_in_Summer.jpg",
+      "https://commons.wikimedia.org/wiki/File:MC_Outside_View_01.jpg",
+      "https://commons.wikimedia.org/wiki/File:UWaterloo_MC.jpg"
+    ]
+  },
+  "roofs": {
+    "summary": "Answer to specific question 2: the big roofs in the MC / DC / C2 / ESC / B1 / B2 area are mostly mid warm-grey gravel or ballast. None are black, and few are white. The lighter exceptions are STC, part of QNC (green roof plus light grey), and ESC in the Esri imagery. DC's roof is grey with blue-teal skylight strips along the vault. Google's 2026 satellite view agrees: everything reads as mid grey.",
+    "default_flat_roof_hex": "#857d74",
+    "light_roof_hex": "#c0bfb8",
+    "sampled_medians_esri": {
+      "MC": "#847c72",
+      "C2": "#84776e",
+      "ESC": "#cec4ba",
+      "B1": "#948b7c",
+      "B2": "#8d8077",
+      "QNC": "#a49a8e",
+      "STC": "#b9bab5",
+      "EIT": "#9b8d82",
+      "PHY": "#8f827c",
+      "E2": "#756a68",
+      "E3": "#7a7468",
+      "SLC": "#91877d"
+    },
+    "caveats": "The Esri tiles predate M3 (it is still under construction in them), so they are about 2016-17. Medians are taken over each OSM footprint and include rooftop mechanical units. DC was not sampled: there is no ref match in the local OSM data.",
+    "sources": [
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "https://www.google.com/maps/@43.4712,-80.5428,350m/data=!3m1!1e3"
+    ]
+  }
+}
