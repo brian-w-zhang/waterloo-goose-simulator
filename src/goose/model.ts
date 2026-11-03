@@ -120,12 +120,12 @@ export function makeGoose(material: THREE.Material): GooseRig {
   tail.rotation.x = -0.35;
   body.add(tail);
 
-  // wings: flattened ellipsoids with paler feather-edge bands, pivoting at the shoulder
-  const wingGeo = painted(ellipsoid(0.06, 0.12, 0.3, 14, 10), (p) => {
-    const band = Math.abs(((p.z + 0.3) / 0.075) % 1);
-    if (p.z < -0.22) return "tail";
-    return band > 0.78 ? "body_edge" : "body";
-  });
+  // wings: a solid brown wing over a slightly larger pale ellipsoid that shows as a clean lower rim
+  // (the layered feather edge of a folded Canada goose wing), dark primaries at the tip
+  const wingGeo = mergeGeometries([
+    painted(ellipsoid(0.06, 0.12, 0.3, 16, 12), (p) => (p.z < -0.24 ? "tail" : "body")),
+    painted(ellipsoid(0.055, 0.1, 0.27, 14, 10).translate(0.004, -0.035, 0.01), () => "body_edge"),
+  ]);
   const wings: [THREE.Group, THREE.Group] = [new THREE.Group(), new THREE.Group()];
   [-1, 1].forEach((sgn, k) => {
     const w = wings[k];
