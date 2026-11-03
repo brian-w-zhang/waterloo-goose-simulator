@@ -63,3 +63,7 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 
 - The palette-ID check (doc 08 3.2) assumes every pixel is exactly one material colour; MSAA breaks that at thin geometry. ID passes (top-down and palette) now come from a page started with `?noaa` (renderer created without antialiasing); the lit frames keep MSAA. Palette-ID off share is now exactly 0 on both backends, and top-down IoU no longer depends on the backend (both 0.978).
 - Fixed a real bug found on the way: restoring the debug view reset every mesh's visibility, which re-showed far-LOD tiles under loaded chunks. Restore now only undoes the debug view's own hiding. The hotspot (people, items) is included in the debug views.
+
+## 2026-11-03 04:05 Height spikes
+
+- The SLC showed a 42 m "tower": a 100 m2 tier far above the roof, with no mapped tree there (likely a 2018 crane or canopy). Two general attempts to separate canopy from roof by lidar roughness (per pixel, then per region interior) made Hagey Hall lose its fly tower (holdout) and raised dev RMSE, so both were reverted. Kept rule: a tier region under 150 m2 rising more than 8 m above every neighbouring level joins its neighbours' level. Every height metric is unchanged (dev 0.610 m, holdout 0.609 m, key max 1.3 m, per-pixel median 0.32 m).

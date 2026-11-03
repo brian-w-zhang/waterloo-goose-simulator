@@ -16,6 +16,8 @@ from . import osm
 B = CAMPUS["buildings"]
 TIER_STEP_M = 3.0          # height quantisation for tier segmentation
 TIER_MIN_AREA_M2 = 60.0    # smaller tier regions merge into their neighbours
+SPIKE_MAX_AREA_M2 = 150.0  # small tiers far above all neighbours are cranes, masts or canopy, not mass
+SPIKE_RISE_M = 8.0
 STYLE_RULES = json.loads((ROOT / "config" / "style-rules.json").read_text())
 
 
@@ -169,6 +171,15 @@ def tiers(poly, nd, t, base_h):
                     changed = True
         if not changed:
             break
+    for L in np.unique(lev[lev >= 0]):
+        lab, n = ndimage.label(lev == L)
+        for k in range(1, n + 1):
+            comp = lab == k
+            ring = ndimage.binary_dilation(comp, iterations=2) & ~comp & (lev >= 0)
+            if comp.sum() * px_area < SPIKE_MAX_AREA_M2 and ring.any() \
+                    and (L - lev[ring].max()) * TIER_STEP_M > SPIKE_RISE_M:
+                vals, cnt = np.unique(lev[ring], return_counts=True)
+                lev[comp] = vals[np.argmax(cnt)]
     levels = np.unique(lev[lev >= 0])
     if len(levels) <= 1:
         return [(poly, base_h)]
