@@ -60,7 +60,7 @@ def main():
         if info.exists():
             backend = json.loads(info.read_text()).get("backend", "unknown")
         for mod in ("tools.verify.style_stats", "tools.verify.palette_check", "pipeline.validate.topdown_compare",
-                    "tools.verify.validate_looks", "tools.verify.contact_sheet"):
+                    "tools.verify.validate_looks", "tools.verify.contact_sheet", "tools.verify.selftest"):
             r = sh(sys.executable, "-m", mod, str(run), check=False)
             print(r.stdout[-3000:], r.stderr[-1500:])
     r = sh(sys.executable, "-m", "tools.verify.gate", str(run), backend, kind, check=False)

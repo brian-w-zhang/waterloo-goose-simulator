@@ -1,6 +1,7 @@
 import * as THREE from "three/webgpu";
 import { abs, attribute, equal, float, fract, mix, mx_noise_float, positionWorld, normalWorld, select, step, uniform, vec3 } from "three/tsl";
-import { styleRules, swatch } from "@/config";
+import { swatch } from "@/config";
+import { facadeColor } from "./facade";
 
 /**
  * Debug views for the harness (doc 08 sections 2.2 and 3.2):
@@ -8,8 +9,6 @@ import { styleRules, swatch } from "@/config";
  * - "palette": each material's base palette colour, no lighting, jitter, AO or fog (palette lock).
  */
 export type DebugMode = "id" | "palette" | null;
-
-type Style = { wall: string; band: string; roof: string; storey_m: number; band_lo: number; band_hi: number };
 
 function basic(colorNode: ReturnType<typeof vec3> | ReturnType<typeof uniform>): THREE.MeshBasicNodeMaterial {
   const m = new THREE.MeshBasicNodeMaterial();
@@ -34,14 +33,7 @@ export function debugMaterial(mesh: THREE.Mesh, mode: Exclude<DebugMode, null>, 
     }
     return null;  // trees and props are hidden in the id view
   }
-  if (name.startsWith("buildings_")) {
-    const s = (styleRules.styles as Record<string, Style>)[name.slice("buildings_".length)];
-    const st = fract(positionWorld.y.div(s.storey_m));
-    const inBand = step(float(s.band_lo), st).mul(float(1).sub(step(float(s.band_hi), st)));
-    const isRoof = step(0.7, abs(normalWorld.y));
-    const wall = mix(uniform(swatch(s.wall)), uniform(swatch(s.band)), inBand.mul(float(1).sub(isRoof)));
-    return basic(mix(wall, uniform(swatch(s.roof)), isRoof) as never);
-  }
+  if (name.startsWith("buildings_")) return basic(facadeColor(name.slice("buildings_".length), true).color as never);
   if (name === "terrain") {
     const patches = step(0.2, mx_noise_float(positionWorld.xz.mul(0.035)));
     return basic(mix(uniform(swatch("grass_dark")), uniform(swatch("grass")), patches) as never);

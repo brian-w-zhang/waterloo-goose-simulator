@@ -106,7 +106,7 @@
     "style_distance_m": 60,
     "play_pitch_deg": 48,
     "play_vfov_deg": 26,
-    "play_distance_m": 22,
+    "play_distance_m": 14,
     "play_min_distance_m": 10,
     "play_max_distance_m": 60
   },

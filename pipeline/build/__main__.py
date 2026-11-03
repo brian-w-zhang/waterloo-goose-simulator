@@ -78,11 +78,18 @@ def tessellate(geom, e0, n1):
         for k in np.nonzero(inside)[0]:
             x0, z0 = cc[k] * CELL, rr[k] * CELL
             verts.append(np.array([[x0, z0], [x0 + CELL, z0], [x0 + CELL, z0 + CELL], [x0, z0 + CELL]]))
-            idx.append(np.array([0, 2, 1, 0, 3, 2], dtype=np.uint32) + base)
+            # same diagonal as the client terrain mesh (north-east to south-west), so pieces lie on it
+            idx.append(np.array([0, 3, 1, 1, 3, 2], dtype=np.uint32) + base)
             base += 4
         edge = np.nonzero(~inside & shapely.intersects(poly, cells))[0]
         if len(edge):
-            for g in shapely.intersection(cells[edge], poly):
+            # split partial cells into the terrain's two triangles so clipped pieces stay planar with it
+            ce, cr = cc[edge], rr[edge]
+            xw, xe = e0 + ce * CELL, e0 + (ce + 1) * CELL
+            yn, ys = n1 - cr * CELL, n1 - (cr + 1) * CELL
+            tri_a = shapely.polygons(np.stack([np.c_[xw, yn], np.c_[xw, ys], np.c_[xe, yn]], axis=1))
+            tri_b = shapely.polygons(np.stack([np.c_[xe, yn], np.c_[xw, ys], np.c_[xe, ys]], axis=1))
+            for g in shapely.intersection(np.concatenate([tri_a, tri_b]), poly):
                 for p in ground.polygons(g):
                     if p.area < 1e-4:
                         continue

@@ -1,8 +1,7 @@
 import * as THREE from "three/webgpu";
-import { campus, styleRules, swatch } from "@/config";
+import { campus, swatch } from "@/config";
+import { facadeStyle } from "@/render/facade";
 import { decodeChunk } from "./decode";
-
-type Style = { wall: string; roof: string };
 
 const CLASS_SWATCH: Record<string, string> = {
   water: "water", rail: "rail", road: "asphalt", paving: "paving", path: "path",
@@ -69,7 +68,7 @@ export class FarWorld {
       if (ch.j === C.rows - 1) skirt(line((k) => [0, k]), 0, -1);
       if (ch.j === 0) skirt(line((k) => [n - 1, n - 1 - k]), 0, 1);
       for (const [base, , top, style] of ch.buildings) {
-        const s = (styleRules.styles as Record<string, Style>)[style];
+        const s = facadeStyle(style);
         const wall = swatch(s.wall), roof = swatch(s.roof);
         const pts: THREE.Vector2[] = [];
         for (let v = 0; v < rcount[ring]; v++) pts.push(new THREE.Vector2(rx[(rv + v) * 2], rx[(rv + v) * 2 + 1]));

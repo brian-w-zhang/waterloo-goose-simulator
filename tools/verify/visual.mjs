@@ -83,7 +83,7 @@ function photoPose(vp) {
   const hfov = c?.hfov_deg ?? vp.camera.hfov_deg;
   const vfov = 2 * Math.atan(Math.tan((hfov * Math.PI) / 360) * 720 / 1280) * 180 / Math.PI;
   return { x: c?.x ?? w.x, z: c?.z ?? w.z, yaw: (c?.heading_true_deg ?? vp.camera.heading_true_deg) - conv,
-    pitch: -(c?.pitch_deg ?? vp.camera.pitch_deg), fov: vfov, eye: vp.camera.eye_height_m };
+    pitch: c?.pitch_deg ?? vp.camera.pitch_deg, fov: vfov, eye: vp.camera.eye_height_m };
 }
 
 /** Share of magenta (hole) pixels below the horizon row, counted in the page from the game canvas. */
@@ -212,6 +212,43 @@ if (suites.includes("topdown")) {
   }
   await page.evaluate(() => window.__wgs.debugView(null));
   console.log("topdown", idx.chunks.length, "chunks");
+  await page.close();
+}
+
+if (suites.includes("viewpoints")) {
+  const { page } = await openPage([1280, 720]);
+  const dir = join(runDir, "viewpoints");
+  mkdirSync(dir, { recursive: true });
+  const gc = JSON.parse(readFileSync("verify/ground-truth/viewpoints.json", "utf8")).game_camera_preset;
+  const poses = {};
+  for (const vp of viewpoints) {
+    const p = photoPose(vp);
+    const w = vpWorld[vp.id];
+    poses[vp.id] = p;
+    await page.evaluate(async ({ p }) => {
+      const g = window.__wgs;
+      await g.load(p.x, p.z, 1);
+      const y = g.heightAt(p.x, p.z);
+      g.setPose({ x: p.x, y: y + p.eye, z: p.z, yaw: p.yaw, pitch: p.pitch, fov: p.fov });
+      g.render(); g.render();
+    }, { p });
+    writeFileSync(join(dir, `photo_${vp.id}.png`), await page.screenshot());
+    // the style-suite camera follows a goose standing at the photo position, looking along its heading
+    const tx = p.x, tz = p.z;
+    for (const mode of [null, "palette"]) {
+      await page.evaluate(async ({ tx, tz, yaw, gc, mode }) => {
+        const g = window.__wgs;
+        await g.load(tx, tz, 1);
+        g.debugView(mode);
+        g.setFollow({ x: tx, z: tz, yaw, pitch: gc.pitch_deg, dist: gc.distance_m, fov: gc.vfov_deg });
+        g.render(); g.render();
+      }, { tx, tz, yaw: p.yaw, gc, mode });
+      writeFileSync(join(dir, `${mode ? "palette" : "game"}_${vp.id}.png`), await page.screenshot());
+    }
+    await page.evaluate(() => window.__wgs.debugView(null));
+  }
+  writeFileSync(join(dir, "poses.json"), JSON.stringify(poses, null, 1));
+  console.log("viewpoints", viewpoints.length);
   await page.close();
 }
 

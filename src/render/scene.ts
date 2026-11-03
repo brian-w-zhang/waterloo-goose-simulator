@@ -24,8 +24,8 @@ export async function createScene(canvas: HTMLCanvasElement, forceWebGL: boolean
   scene.background = swatch("sky");
   scene.fogNode = fog(color(swatchHex("sky")), rangeFogFactor(campus.fog.near_m, campus.fog.far_m));
 
-  const hemi = new THREE.HemisphereLight(swatch("sky", "light"), swatch("ground", "light"), 1.9);
-  const sun = new THREE.DirectionalLight(swatch("sun", "light"), 1.45);
+  const hemi = new THREE.HemisphereLight(swatch("sky", "light"), swatch("ground", "light"), 1.6);
+  const sun = new THREE.DirectionalLight(swatch("sun", "light"), 1.3);
   const az = THREE.MathUtils.degToRad(campus.sun.azimuth_deg);
   const el = THREE.MathUtils.degToRad(campus.sun.elevation_deg);
   // direction toward the sun: azimuth clockwise from north (-z), elevation above the horizon

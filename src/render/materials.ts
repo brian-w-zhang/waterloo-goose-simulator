@@ -3,9 +3,8 @@ import {
   abs, attribute, clamp, dot, float, floor, fract, fwidth, hash, length, mix, mx_noise_float, positionWorld,
   normalWorld, screenCoordinate, smoothstep, step, uniform, vec2, vec3,
 } from "three/tsl";
-import { styleRules, swatch } from "@/config";
-
-type Style = { wall: string; band: string; roof: string; storey_m: number; band_lo: number; band_hi: number };
+import { swatch } from "@/config";
+import { facadeColor } from "./facade";
 
 /**
  * Occlusion fade (doc 02 section 8): fragments near the segment from the camera to the goose, in front
@@ -61,22 +60,14 @@ export function makeWaterMaterial(): THREE.MeshToonNodeMaterial {
   return m;
 }
 
-/** Facade: wall colour with world-space storey bands on walls, roof colour on up-facing faces. */
+/** Facade: researched wall colour and window pattern per style, roof colour, baked foot darkening. */
 export function makeFacadeMaterial(styleName: string): THREE.MeshToonNodeMaterial {
-  const s = (styleRules.styles as Record<string, Style>)[styleName];
   const m = new THREE.MeshToonNodeMaterial();
-  const st = fract(positionWorld.y.div(s.storey_m));
-  const aa = fwidth(st).mul(1.5);
-  const inBand = smoothstep(float(s.band_lo).sub(aa), float(s.band_lo).add(aa), st)
-    .mul(float(1).sub(smoothstep(float(s.band_hi).sub(aa), float(s.band_hi).add(aa), st)));
-  const isRoof = step(0.7, abs(normalWorld.y));
-  const seed = attribute("seed", "float");
-  const jitter = hash(seed).sub(0.5).mul(0.05);
-  const wall = mix(uniform(swatch(s.wall)), uniform(swatch(s.band)), inBand.mul(float(1).sub(isRoof)));
-  const lit = mix(wall, uniform(swatch(s.roof)), isRoof).add(vec3(jitter));
+  const f = facadeColor(styleName, false);
+  const jitter = hash(f.seed).sub(0.5).mul(0.04);
   // a whisper of ground darkening at the foot of every wall (baked-AO stand-in)
-  const foot = smoothstep(float(0), float(1.2), attribute("hAbove", "float")).mul(0.12).add(0.88);
-  m.colorNode = lit.mul(mix(foot, float(1), isRoof));
+  const foot = smoothstep(float(0), float(1.2), f.hAbove).mul(0.12).add(0.88);
+  m.colorNode = f.color.add(vec3(jitter)).mul(mix(foot, float(1), f.isRoof));
   m.maskNode = occlusionMask();
   return m;
 }

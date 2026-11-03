@@ -106,7 +106,41 @@ function lakeGeometry(c: Chunk): THREE.BufferGeometry | null {
   return g;
 }
 
-/** Extrude every building part: flat-shaded walls (outward normals) plus a roof cap. */
+const PARAPET_M = 0.45;
+const GABLE_MIN_FILL = 0.9;
+
+/** Minimum-area bounding rectangle of a ring (edge-aligned), as centre, unit axis, half sizes. */
+function minRect(pts: THREE.Vector2[]) {
+  let best = { area: Infinity, cx: 0, cz: 0, ux: 1, uz: 0, hu: 0, hv: 0 };
+  for (let k = 0; k < pts.length; k++) {
+    const p = pts[k], q = pts[(k + 1) % pts.length];
+    const len = Math.hypot(q.x - p.x, q.y - p.y);
+    if (len < 0.5) continue;
+    const ux = (q.x - p.x) / len, uz = (q.y - p.y) / len;
+    let u0 = Infinity, u1 = -Infinity, v0 = Infinity, v1 = -Infinity;
+    for (const r of pts) {
+      const u = r.x * ux + r.y * uz, v = -r.x * uz + r.y * ux;
+      u0 = Math.min(u0, u); u1 = Math.max(u1, u); v0 = Math.min(v0, v); v1 = Math.max(v1, v);
+    }
+    const area = (u1 - u0) * (v1 - v0);
+    if (area < best.area) {
+      const cu = (u0 + u1) / 2, cv = (v0 + v1) / 2;
+      best = { area, cx: cu * ux - cv * uz, cz: cu * uz + cv * ux, ux, uz, hu: (u1 - u0) / 2, hv: (v1 - v0) / 2 };
+    }
+  }
+  if (best.hv > best.hu) {  // make u the long axis
+    best = { ...best, ux: -best.uz, uz: best.ux, hu: best.hv, hv: best.hu };
+  }
+  return best;
+}
+
+function ringArea(pts: THREE.Vector2[]) {
+  let a = 0;
+  for (let k = 0; k < pts.length; k++) { const p = pts[k], q = pts[(k + 1) % pts.length]; a += p.x * q.y - q.x * p.y; }
+  return Math.abs(a) / 2;
+}
+
+/** Extrude every building part: flat-shaded walls with parapets, roof caps, gabled roofs on houses. */
 function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   const rx = c.arrays.ring_xz as Float32Array | undefined;
   const out = new Map<string, THREE.BufferGeometry>();
@@ -114,7 +148,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   const rc = c.arrays.ring_count as Uint32Array;
   const ringStart = new Uint32Array(rc.length + 1);
   for (let k = 0; k < rc.length; k++) ringStart[k + 1] = ringStart[k] + rc[k];
-  const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[] }>();
+  const acc = new Map<string, { pos: number[]; nrm: number[]; seed: number[]; ha: number[]; ht: number[] }>();
   const ring = (k: number) => {
     const pts: THREE.Vector2[] = [];
     for (let v = ringStart[k]; v < ringStart[k + 1]; v++) pts.push(new THREE.Vector2(rx[v * 2], rx[v * 2 + 1]));
@@ -122,24 +156,71 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   };
   for (const b of c.header.buildings) {
     let a = acc.get(b.style);
-    if (!a) { a = { pos: [], nrm: [], seed: [], ha: [] }; acc.set(b.style, a); }
+    if (!a) { a = { pos: [], nrm: [], seed: [], ha: [], ht: [] }; acc.set(b.style, a); }
+    const A = a;
+    const tri = (p: number[][], n: number[][], top: number) => {
+      for (let k = 0; k < 3; k++) {
+        A.pos.push(...p[k]); A.nrm.push(...n[k]); A.seed.push(b.id); A.ha.push(p[k][1] - b.ground_y); A.ht.push(top);
+      }
+    };
+    const quad = (p0: number[], p1: number[], p2: number[], p3: number[], n: number[], top: number) => {
+      tri([p0, p1, p2], [n, n, n], top);
+      tri([p0, p2, p3], [n, n, n], top);
+    };
     const y0 = b.base_y;
+    const wall = (pts: THREE.Vector2[], yb: number, yt: number, top: number, inward = false) => {
+      for (let v = 0; v < pts.length; v++) {
+        const p = pts[v], q = pts[(v + 1) % pts.length];
+        const dx = q.x - p.x, dz = q.y - p.y;
+        const len = Math.hypot(dx, dz);
+        if (len < 1e-4) continue;
+        const nx = -dz / len, nz = dx / len;
+        if (!inward) quad([p.x, yb, p.y], [q.x, yb, q.y], [q.x, yt, q.y], [p.x, yt, p.y], [nx, 0, nz], top);
+        else quad([q.x, yb, q.y], [p.x, yb, p.y], [p.x, yt, p.y], [q.x, yt, q.y], [-nx, 0, -nz], top);
+      }
+    };
+    const fpRing = ring(b.footprint.ring_first);
+    const house = b.style === "house" && b.parts.length === 1;
+    const rect = house ? minRect(fpRing) : null;
+    if (house && rect && ringArea(fpRing) / (4 * rect.hu * rect.hv) >= GABLE_MIN_FILL) {
+      // gabled roof along the long axis; lidar part height is roughly mid-roof, so ridge sits above it
+      const h = b.parts[0].h;
+      const rise = Math.min(0.55 * rect.hv, 3.2, Math.max(h - 2.6, 0.8));
+      const eave = b.ground_y + Math.max(h - rise * 0.5, 2.6);
+      const ridge = eave + rise;
+      wall(fpRing, y0, eave, eave - b.ground_y + 1);
+      const { cx, cz, ux, uz, hu, hv } = rect;
+      const P = (su: number, sv: number, y: number) => [cx + ux * su * hu - uz * sv * hv, y, cz + uz * su * hu + ux * sv * hv];
+      const top = ridge - b.ground_y;
+      // the two roof planes, each wound so its normal points up (and away from the ridge)
+      for (const q of [[P(-1, -1, eave), P(1, -1, eave), P(1, 0, ridge), P(-1, 0, ridge)],
+        [P(1, 1, eave), P(-1, 1, eave), P(-1, 0, ridge), P(1, 0, ridge)]]) {
+        const e1 = new THREE.Vector3(q[1][0] - q[0][0], q[1][1] - q[0][1], q[1][2] - q[0][2]);
+        const e2 = new THREE.Vector3(q[2][0] - q[0][0], q[2][1] - q[0][1], q[2][2] - q[0][2]);
+        const nrm = e1.clone().cross(e2).normalize();
+        const w = nrm.y >= 0 ? q : [q[3], q[2], q[1], q[0]];
+        if (nrm.y < 0) nrm.negate();
+        quad(w[0], w[1], w[2], w[3], nrm.toArray(), top + 10);
+      }
+      // gable ends: triangles from the eave line to the ridge
+      for (const su of [-1, 1]) {
+        const g = [P(su, -1, eave), P(su, 1, eave), P(su, 0, ridge)];
+        const n = new THREE.Vector3(ux * su, 0, uz * su);
+        const e1 = new THREE.Vector3(...(g[1].map((x, i) => x - g[0][i]) as [number, number, number]));
+        const e2 = new THREE.Vector3(...(g[2].map((x, i) => x - g[0][i]) as [number, number, number]));
+        const ord = e1.cross(e2).dot(n) >= 0 ? g : [g[0], g[2], g[1]];
+        tri(ord, [n.toArray(), n.toArray(), n.toArray()], top + 10);
+      }
+      continue;
+    }
     for (const part of b.parts) {
       const y1 = b.ground_y + part.h;
       const rings = [];
       for (let k = part.ring_first; k < part.ring_first + part.ring_n; k++) rings.push(ring(k));
+      const top = part.h + PARAPET_M;
       for (const pts of rings) {
-        for (let v = 0; v < pts.length; v++) {
-          const p = pts[v], q = pts[(v + 1) % pts.length];
-          const dx = q.x - p.x, dz = q.y - p.y;
-          const len = Math.hypot(dx, dz);
-          if (len < 1e-4) continue;
-          const nx = -dz / len, nz = dx / len;
-          const quad = [[p.x, y0, p.y], [q.x, y0, q.y], [q.x, y1, q.y], [p.x, y0, p.y], [q.x, y1, q.y], [p.x, y1, p.y]];
-          for (const [x, y, z] of quad) {
-            a.pos.push(x, y, z); a.nrm.push(nx, 0, nz); a.seed.push(b.id); a.ha.push(y - b.ground_y);
-          }
-        }
+        wall(pts, y0, y1 + PARAPET_M, top);
+        wall(pts, y1, y1 + PARAPET_M, top, true);
       }
       const tris = THREE.ShapeUtils.triangulateShape(rings[0], rings.slice(1));
       const flat = rings.flat();
@@ -147,7 +228,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
         const [p0, p1, p2] = [flat[t[0]], flat[t[1]], flat[t[2]]];
         const ny = (p1.y - p0.y) * (p2.x - p0.x) - (p1.x - p0.x) * (p2.y - p0.y);
         const order = ny >= 0 ? [p0, p1, p2] : [p0, p2, p1];
-        for (const p of order) { a.pos.push(p.x, y1, p.y); a.nrm.push(0, 1, 0); a.seed.push(b.id); a.ha.push(part.h); }
+        tri(order.map((p) => [p.x, y1, p.y]), [[0, 1, 0], [0, 1, 0], [0, 1, 0]], top + 10);
       }
     }
   }
@@ -157,6 +238,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
     g.setAttribute("normal", new THREE.Float32BufferAttribute(a.nrm, 3));
     g.setAttribute("seed", new THREE.Float32BufferAttribute(a.seed, 1));
     g.setAttribute("hAbove", new THREE.Float32BufferAttribute(a.ha, 1));
+    g.setAttribute("hTop", new THREE.Float32BufferAttribute(a.ht, 1));
     out.set(style, g);
   }
   return out;

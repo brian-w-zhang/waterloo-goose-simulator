@@ -176,7 +176,7 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
     }),
     heightAt: (x, z) => stream.heightAt(x, z),
     debugView: (mode) => {
-      applyDebugView([stream.root, goose.rig.root], mode, stream.index.ground_classes);
+      applyDebugView([stream.root, far.root, goose.rig.root], mode, stream.index.ground_classes);
       far.root.visible = mode !== "id";
     },
     holeBackground: (on) => { scene.background = on ? swatch("clear_hole", "debug") : swatch("sky"); },

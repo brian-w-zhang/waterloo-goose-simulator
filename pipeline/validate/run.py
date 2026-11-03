@@ -21,8 +21,10 @@ def passes(value, spec):
     op, g = spec["op"], spec.get("gate")
     if op == "record" or value is None:
         return None
-    return {"<": value < g, "<=": value <= g, ">": value > g, ">=": value >= g, "==": value == g,
-            "between": g[0] <= value <= g[1] if isinstance(g, list) else False}[op]
+    if op == "between":
+        return g[0] <= value <= g[1]
+    return {"<": lambda: value < g, "<=": lambda: value <= g, ">": lambda: value > g,
+            ">=": lambda: value >= g, "==": lambda: value == g}[op]()
 
 
 def evaluate(group, metrics):

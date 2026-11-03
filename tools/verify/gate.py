@@ -40,8 +40,18 @@ def exceptions():
     return {e["metric"] for e in (data or [])}
 
 
+def spec_of(name, group):
+    """Threshold spec by metric name; files like palette.json carry metrics of the style group."""
+    if name in THRESHOLDS.get(group, {}):
+        return THRESHOLDS[group][name], group
+    for g, specs in THRESHOLDS.items():
+        if isinstance(specs, dict) and name in specs:
+            return specs[name], g
+    return {}, group
+
+
 def worse(name, group, new, old):
-    spec = THRESHOLDS.get(group, {}).get(name, {})
+    spec, group = spec_of(name, group)
     better, band = spec.get("better", "none"), spec.get("band", 0)
     if not isinstance(new, (int, float)) or not isinstance(old, (int, float)) or better == "none":
         return False
@@ -55,7 +65,7 @@ def main():
     backend, kind = sys.argv[2], sys.argv[3]
     metrics = {}
     for f in sorted(run.glob("*.json")):
-        if f.name in ("summary.json", "looks.json"):
+        if f.name in ("summary.json", "looks.json", "looks_check.json", "visual_info.json"):
             continue
         group = f.stem
         for k, r in json.loads(f.read_text()).get("metrics", {}).items():
@@ -83,10 +93,11 @@ def main():
     }
     (run / "summary.json").write_text(json.dumps(summary, indent=1))
     v = lambda k, f="{:.3f}": f.format(metrics[k]["value"]) if k in metrics and isinstance(metrics[k]["value"], (int, float)) else "n/a"
-    looks = run / "looks.json"
+    looks = run / "looks_check.json"
     looks_mean = "n/a"
-    if looks.exists():
-        looks_mean = f"{json.loads(looks.read_text()).get('mean', float('nan')):.2f}"
+    if looks.exists() and json.loads(looks.read_text()).get("mean") is not None:
+        lc = json.loads(looks.read_text())
+        looks_mean = f"{lc['mean']:.2f} (dis {lc['mean_disagreement']:.2f})"
     line = (f"| {summary['time'][:16].replace('T', ' ')} | {sha} | {backend} | {kind} | {passed}/{len(gated)} | "
             f"{v('geometry.iou_city_median')} | {v('heights.height_rmse_dev_m', '{:.2f}')} / "
             f"{v('heights.height_rmse_holdout_m', '{:.2f}')} | {v('geometry.distance_median_err_m', '{:.2f}')} | "
