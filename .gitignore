@@ -17,6 +17,7 @@ data/raw/
 data/jev/
 data/build/
 public/world/
+public/models/
 verify/cache/
 review/**/*.jpg
 review/**/*.png

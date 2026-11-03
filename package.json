@@ -14,7 +14,8 @@
     "verify": ".venv/bin/python -m tools.verify.verify full",
     "verify:geometry": ".venv/bin/python -m pipeline.validate.run /tmp/wgs-geometry",
     "test:py": ".venv/bin/python -m pytest -q pipeline",
-    "verify:render": ".venv/bin/python -m tools.verify.verify render"
+    "verify:render": ".venv/bin/python -m tools.verify.verify render",
+    "art": "blender -b --python-exit-code 1 -P art/build.py --"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.21.0",

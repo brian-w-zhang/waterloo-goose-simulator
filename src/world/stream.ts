@@ -5,6 +5,13 @@ import { buildChunk, type BuiltChunk, SURFACE_CELL_M } from "./chunkMesh";
 import type { Materials } from "./materials";
 import { pavingClass } from "@/render/materials";
 import { disposeSigns } from "./signs";
+import { applyMaterial, loadModel } from "@/render/models";
+
+export interface ArtIndex {
+  /** City OBJECTID of a building -> the art model that replaces its procedural walls and roofs */
+  buildings: Record<string, string>;
+  models: { name: string; chunk: string }[];
+}
 
 export interface WorldIndex {
   chunk_size: number; cols: number; rows: number; grid_origin_e: number; grid_origin_n: number;
@@ -54,8 +61,19 @@ export class WorldStream {
     this.root.name = "world";
   }
 
+  /** Blender art models (public/models/index.json): procedural buildings they replace, and models per chunk. */
+  art: ArtIndex = { buildings: {}, models: [] };
+  private artSkip = new Set<number>();
+
   async init() {
     this.index = await fetchJson<WorldIndex>("/world/index.json");
+    try {
+      this.art = await fetchJson<ArtIndex>("/models/index.json");
+    } catch (e) {
+      // no art built yet (npm run art): the procedural world stands alone
+      console.warn("[world] no art models:", (e as Error).message);
+    }
+    this.artSkip = new Set(Object.keys(this.art.buildings).map(Number));
     pavingClass.value = this.index.ground_classes.indexOf("paving");
     if (pavingClass.value < 0) console.warn("[world] index.json has no paving ground class");
   }
@@ -149,12 +167,28 @@ export class WorldStream {
     if (!entry) throw new Error(`chunk ${key} is not in index.json`);
     const buf = await fetchChunk(`/world/${entry.file}`);
     const chunk = decodeChunk(buf, `chunk ${key} (${entry.file})`);
-    const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds, this.index.barrier_kinds);
+    const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds, this.index.barrier_kinds, this.artSkip);
     this.loaded.set(key, built);
+    this.attachArt(key, built.group);
     this.root.add(built.group);
     this.onLoad?.(key, built);
     this.loadsTotal++;
     this.everLoaded.add(key);
+  }
+
+  /** Art models whose anchor lies in this chunk; they are authored in world coordinates. */
+  private attachArt(key: string, group: THREE.Group) {
+    for (const m of this.art.models) {
+      if (m.chunk !== key) continue;
+      loadModel(m.name).then((gltf) => {
+        if (this.loaded.get(key)?.group !== group) return;   // evicted while loading
+        const o = applyMaterial(gltf.scene.clone(), this.mats.vertexColor);
+        o.name = `art_${m.name}`;
+        o.position.set(-group.position.x, 0, -group.position.z);
+        o.traverse((c) => { const g = (c as THREE.Mesh).geometry; if (g) g.userData.art = true; });
+        group.add(o);
+      }, (e: Error) => console.error(`[world] art ${m.name} failed`, e));
+    }
   }
 
   /** Load the square of chunks around (x, z) and evict the rest; resolves when all are loaded. */
@@ -190,7 +224,8 @@ export class WorldStream {
       // shared geometries (props, tufts) stay; per-chunk meshes and the per-chunk tree copies are disposed
       c.group.traverse((o) => {
         const g = (o as THREE.Mesh).geometry;
-        if ((o as THREE.Mesh).isMesh && (!(o as THREE.InstancedMesh).isInstancedMesh || g.userData.perChunk)) g.dispose();
+        // art geometry is cached and shared across loads (src/render/models.ts)
+        if ((o as THREE.Mesh).isMesh && !g.userData.art && (!(o as THREE.InstancedMesh).isInstancedMesh || g.userData.perChunk)) g.dispose();
       });
       const signs = c.group.getObjectByName("signs");
       if (signs) disposeSigns(signs);

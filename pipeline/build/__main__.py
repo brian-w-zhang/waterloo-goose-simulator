@@ -17,7 +17,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import doors, far, ground, landmarks, minimap, network, osm, props, signs, structures, terrain, tufts, vegetation
+from . import artdata, doors, far, ground, landmarks, minimap, network, osm, props, signs, structures, terrain, tufts, vegetation
 
 C = CAMPUS["chunk"]
 BARRIER_KINDS = ["fence", "hedge", "wall", "retaining_wall"]
@@ -150,6 +150,7 @@ def main():
     print(f"trees {len(trees)}, props {len(pr)} ({time.time() - t0:.0f}s)")
     with open(BUILD / "buildings.pkl", "wb") as f:
         pickle.dump(bl, f)
+    print(f"art inputs {artdata.build(bl)} buildings")
 
     cents = np.array([[b["footprint"].centroid.x, b["footprint"].centroid.y] for b in bl])
     # buildings that straddle the grid edge with their centroid outside belong to the edge chunk

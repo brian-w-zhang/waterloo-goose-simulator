@@ -228,7 +228,7 @@ function ringArea(pts: THREE.Vector2[]) {
 }
 
 /** Extrude every building part: flat-shaded walls with parapets, roof caps, gabled roofs on houses. */
-function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
+function buildingGeometries(c: Chunk, artSkip: Set<number>): Map<string, THREE.BufferGeometry> {
   const rx = c.arrays.ring_xz as Float32Array | undefined;
   const out = new Map<string, THREE.BufferGeometry>();
   if (!rx) return out;
@@ -249,6 +249,7 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
     return pts;
   };
   for (const b of c.header.buildings) {
+    if (artSkip.has(b.objectid)) continue;   // a Blender art model stands here (src/world/stream.ts attachArt)
     let a = acc.get(b.style);
     if (!a) { a = { pos: [], nrm: [], seed: [], ha: [], ht: [], wf: [], fr: [] }; acc.set(b.style, a); }
     const A = a;
@@ -735,7 +736,8 @@ function propMeshes(c: Chunk, mats: Materials, kinds: string[]): THREE.Object3D[
   return out;
 }
 
-export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKinds: string[], barrierKinds: string[]): BuiltChunk {
+export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKinds: string[], barrierKinds: string[],
+  artSkip: Set<number> = new Set()): BuiltChunk {
   const g = new THREE.Group();
   const { x0, z0 } = c.header.chunk;
   g.position.set(x0, 0, z0);
@@ -761,7 +763,7 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
     g.add(lake);
   }
   const buildingMeshes: THREE.Mesh[] = [];
-  for (const [style, geom] of buildingGeometries(c)) {
+  for (const [style, geom] of buildingGeometries(c, artSkip)) {
     const mesh = new THREE.Mesh(geom, style === PLANT_KEY ? mats.vertexColor : mats.facade(style));
     mesh.castShadow = true;
     mesh.receiveShadow = true;
