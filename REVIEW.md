@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-1019-bb00982/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-1022-bb00982-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-1037-5f6a637/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-1040-5f6a637-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 11.9 | record only | - | - | new | 16.6 |
+| flythrough.frame_ms_p95 | 10.3 | record only | - | - | new | 16.8 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
