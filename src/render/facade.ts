@@ -66,6 +66,18 @@ export function facadeColor(name: string, sharp: boolean) {
     default: win = float(0);
   }
   win = win.mul(upper).mul(below);
+  // window frames and a glint (UGG windows have light frames and a paler top to the pane):
+  // a ring just outside each punched or ribbon window, and the top quarter of the pane lifted
+  let frame: N = float(0);
+  let glint: N = float(0);
+  if (s.pattern === "punched" || s.pattern === "ribbon") {
+    const lo = s.w_lo ?? (s.pattern === "punched" ? 0.3 : 0.4), hi = s.w_hi ?? 0.75;
+    const outer = s.pattern === "punched"
+      ? band(st, lo - 0.035, hi + 0.035).mul(band(su, (s.b_lo ?? 0.3) - 0.03, (s.b_hi ?? 0.7) + 0.03))
+      : band(st, lo - 0.035, hi + 0.035);
+    frame = outer.mul(upper).mul(below).sub(win).max(0) as N;
+    glint = win.mul(step(float(hi - (hi - lo) * 0.25), st)) as N;
+  }
   let wallBase = uniform(swatch(s.wall)) as N;
   if (s.variants) {
     const k = hash(seed.add(7.3));
@@ -74,6 +86,8 @@ export function facadeColor(name: string, sharp: boolean) {
   }
   const windowColor = s.pattern === "diamond" ? uniform(swatch("metal_shade")) : uniform(swatch(s.window));
   let wall = mix(wallBase, windowColor, win) as N;
+  wall = mix(wall, uniform(swatch("mullion")), frame.mul(0.85)) as N;
+  wall = mix(wall, uniform(swatch("window_glass")), glint.mul(0.45)) as N;
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove).mul(float(1).sub(vault))) as N;
   if (s.base) wall = mix(wall, uniform(swatch(s.base)), step(hAbove, float(s.base_m ?? 4))) as N;
