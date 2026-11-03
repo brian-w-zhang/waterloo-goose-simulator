@@ -182,7 +182,18 @@ def tiers(poly, nd, t, base_h):
             for q in ([p] if p.geom_type == "Polygon" else list(getattr(p, "geoms", []))):
                 if q.geom_type == "Polygon" and q.area >= 15.0:
                     out.append((orient(q), h))
-    return out or [(poly, base_h)]
+    if not out:
+        return [(poly, base_h)]
+    # footprint area no tier covers (dropped small regions, simplification slivers) joins the largest tier
+    from shapely import union_all
+    rest = poly.difference(union_all([q for q, _ in out]))
+    if rest.area > 0.01:
+        k = max(range(len(out)), key=lambda i: out[i][0].area)
+        merged = out[k][0].union(rest)
+        pieces = [merged] if merged.geom_type == "Polygon" else [g for g in getattr(merged, "geoms", []) if g.geom_type == "Polygon"]
+        out[k] = (orient(pieces[0]), out[k][1])
+        out += [(orient(g), out[k][1]) for g in pieces[1:] if g.area > 0.01]
+    return out
 
 
 def build():

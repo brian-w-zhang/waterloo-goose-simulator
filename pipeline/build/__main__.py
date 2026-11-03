@@ -16,7 +16,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import ground, network, props, terrain, vegetation
+from . import far, ground, network, props, terrain, vegetation
 
 C = CAMPUS["chunk"]
 SIZE = C["size_m"]
@@ -118,8 +118,9 @@ def main():
         pickle.dump(bl, f)
 
     cents = np.array([[b["footprint"].centroid.x, b["footprint"].centroid.y] for b in bl])
-    bci = np.floor((cents[:, 0] - C["grid_origin_e"]) / SIZE).astype(int)
-    bcj = np.floor((cents[:, 1] - C["grid_origin_n"]) / SIZE).astype(int)
+    # buildings that straddle the grid edge with their centroid outside belong to the edge chunk
+    bci = np.clip(np.floor((cents[:, 0] - C["grid_origin_e"]) / SIZE).astype(int), 0, C["cols"] - 1)
+    bcj = np.clip(np.floor((cents[:, 1] - C["grid_origin_n"]) / SIZE).astype(int), 0, C["rows"] - 1)
     tci = np.floor((trees[:, 0] - C["grid_origin_e"]) / SIZE).astype(int)
     tcj = np.floor((trees[:, 1] - C["grid_origin_n"]) / SIZE).astype(int)
     pci = np.floor((pr[:, 0] - C["grid_origin_e"]) / SIZE).astype(int)
@@ -227,7 +228,9 @@ def main():
             index["chunks"].append({"i": i, "j": j, "file": name, "buildings": len(binfo),
                                     "trees": int(len(ts)), "props": int(len(ps)),
                                     "bytes": (WORLD / name).stat().st_size})
-    net = network.build()
+    far_bytes = far.build(hf, gcls, bl, bci, bcj, chunk_frame)
+    print(f"far LOD {far_bytes / 1e6:.1f} MB")
+    net = network.build(bl)
     (WORLD / "network.json").write_text(json.dumps(net, separators=(",", ":")))
     index["stations"] = net["stations"]
     (WORLD / "index.json").write_text(json.dumps(index, indent=1))

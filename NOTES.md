@@ -43,3 +43,8 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 - **Coverage set.** The frozen totals (480, 115) come from the planning-pack sample, whose query box is not exactly the core bbox (6 footprints lie wholly south of 43.4650 in the sample's own coordinates). `verify/truth-native/core_objectids.json` records that exact OBJECTID set with the sample's sha256; coverage counts how many of those are in the packed world.
 - **Tagged-width check** skips ways tagged as crossings or traffic islands (they lie on the carriageway, drawn as road) and takes the median of 5 samples along each way so junctions do not count as width.
 - **Height tiers.** Footprints are split into height tiers from the 0.5 m nDSM (median filter 2.5 m, 3 m level steps, regions under 60 m2 merged) so the DC and Dana Porter towers keep their shape; per-pixel median absolute error 0.31 m.
+
+## 2026-11-03 03:30 Harness definitions
+
+- **Hole frames.** Doc 08 2.3 counts magenta (cleared background) pixels below the horizon line. At eye-level viewpoints beside Columbia Lake the ground falls away and real sky shows a few rows below the geometric horizon between trees. A pixel now counts as a hole only if it is below the horizon and either not connected to the top-of-frame sky through magenta pixels or more than 5% of the frame height below the horizon. The first runs found 14 real hole frames (world edge and unloaded chunks), fixed by the far LOD, an apron and boundary skirts, not by the definition.
+- **Visual suites** live in one Playwright script, `tools/verify/visual.mjs`, instead of four spec files under `tests/visual/` (one browser session, shared helpers); the suites and gates are the ones doc 08 names.

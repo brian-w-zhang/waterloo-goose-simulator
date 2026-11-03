@@ -1,9 +1,13 @@
 import * as THREE from "three/webgpu";
 import { campus } from "@/config";
 import { Goose, type GooseInput } from "@/goose/goose";
+import { type Network, WalkGraph } from "@/nav/graph";
 import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, occlusion } from "@/render/materials";
+import { applyDebugView, type DebugMode } from "@/render/debug";
 import { createScene } from "@/render/scene";
+import { swatch } from "@/config";
+import { FarWorld } from "@/world/far";
 import { makeMaterials } from "@/world/materials";
 import { WorldStream } from "@/world/stream";
 
@@ -23,13 +27,28 @@ export interface GameHandle {
   render(): void;
   info(): { backend: string; calls: number; triangles: number; loaded: string[]; loads: number; evictions: number };
   heightAt(x: number, z: number): number;
+  /** Debug material views and the magenta hole background (doc 08 sections 2.2, 2.3, 3.2). */
+  debugView(mode: DebugMode): void;
+  holeBackground(on: boolean): void;
+  /** Orthographic straight-down render of chunk (i, j) at `px` pixels per side. */
+  topDown(i: number, j: number): void;
+  /** Decoded-geometry audit: NaN or out-of-world vertices and building counts per loaded chunk. */
+  audit(): { badVertices: number; buildingMismatch: string[]; loaded: string[] };
   goose: {
     place(x: number, z: number): Promise<void>;
     /** Run the simulation for `seconds` with a fixed input; returns the goose position afterwards. */
     simulate(seconds: number, input: Partial<GooseInput> & { mx?: number; my?: number }): Promise<{ x: number; y: number; z: number; ground: number }>;
     state(): { x: number; y: number; z: number; yaw: number; speed: number; grounded: boolean };
     show(v: boolean): void;
+    /** Walk along the outdoor path graph to (x, z) using ordinary goose inputs; for the M1 walk gate. */
+    walkTo(x: number, z: number, maxSeconds?: number): Promise<WalkResult>;
+    nearestPathPoint(x: number, z: number): [number, number];
   };
+}
+
+export interface WalkResult {
+  arrived: boolean; falls: number; stuck: boolean; seconds: number; routeLength: number; minClearance: number;
+  end: { x: number; y: number; z: number };
 }
 
 declare global { interface Window { __wgs?: GameHandle } }
@@ -46,10 +65,15 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
   stream.onLoad = (key, c) => {
     const n = Math.round(Math.sqrt(c.heights.length));
     physics.addChunk(key, c.heights, n, stream.index.chunk_size, c.group.position.x, c.group.position.z, c.walls);
+    far.setNear(key, true);
   };
-  stream.onEvict = (key) => physics.removeChunk(key);
+  const far = new FarWorld(mats.vertexColor);
+  stream.onEvict = (key) => { physics.removeChunk(key); far.setNear(key, false); };
   await stream.init();
-  scene.add(stream.root);
+  await far.load();
+  scene.add(stream.root, far.root);
+  const net: Network = await (await fetch("/world/network.json")).json();
+  const graph = new WalkGraph(net);
 
   const goose = new Goose(makeGooseMaterial());
   scene.add(goose.rig.root);
@@ -151,6 +175,43 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
       loaded: stream.loadedKeys(), loads: stream.loadsTotal, evictions: stream.evictionsTotal,
     }),
     heightAt: (x, z) => stream.heightAt(x, z),
+    debugView: (mode) => {
+      applyDebugView([stream.root, goose.rig.root], mode, stream.index.ground_classes);
+      far.root.visible = mode !== "id";
+    },
+    holeBackground: (on) => { scene.background = on ? swatch("clear_hole", "debug") : swatch("sky"); },
+    topDown: (i, j) => {
+      const size = stream.index.chunk_size;
+      const e0 = stream.index.grid_origin_e + i * size, n1 = stream.index.grid_origin_n + (j + 1) * size;
+      const cx = e0 - campus.origin.e + size / 2, cz = -(n1 - campus.origin.n) + size / 2;
+      const ortho = new THREE.OrthographicCamera(-size / 2, size / 2, size / 2, -size / 2, 1, 2000);
+      ortho.position.set(cx, 900, cz);
+      ortho.up.set(0, 0, -1);
+      ortho.lookAt(cx, 0, cz);
+      ortho.updateProjectionMatrix();
+      renderer.render(scene, ortho);
+    },
+    audit: () => {
+      let bad = 0;
+      const mismatch: string[] = [];
+      const lim = 6000;
+      stream.root.traverse((o) => {
+        const m = o as THREE.Mesh;
+        if (!m.isMesh || (m as THREE.InstancedMesh).isInstancedMesh) return;
+        const a = m.geometry.getAttribute("position").array as Float32Array;
+        const ox = m.parent?.position.x ?? 0, oz = m.parent?.position.z ?? 0;
+        for (let k = 0; k < a.length; k += 3) {
+          const x = a[k] + ox, y = a[k + 1], z = a[k + 2] + oz;
+          if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(z) || Math.abs(x) > lim || Math.abs(z) > lim || y < -200 || y > 400) bad++;
+        }
+      });
+      for (const key of stream.loadedKeys()) {
+        const [i, j] = key.split("_").map(Number);
+        const want = stream.index.chunks.find((c) => c.i === i && c.j === j)?.buildings ?? -1;
+        if (stream.buildingCount(key) !== want) mismatch.push(key);
+      }
+      return { badVertices: bad, buildingMismatch: mismatch, loaded: stream.loadedKeys() };
+    },
     goose: {
       place: async (x, z) => { await spawn(x, z); followGoose = true; follow.x = x; follow.z = z; },
       simulate: async (seconds, inp) => {
@@ -167,6 +228,38 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
       state: () => ({ x: goose.position.x, y: goose.position.y, z: goose.position.z, yaw: goose.yaw,
         speed: goose.speed, grounded: goose.grounded }),
       show: (v) => { goose.rig.root.visible = v; },
+      nearestPathPoint: (x, z) => graph.pos.get(graph.nearest(x, z)) ?? [x, z],
+      walkTo: async (x, z, maxSeconds = 900) => {
+        const route = graph.route(graph.nearest(goose.position.x, goose.position.z), graph.nearest(x, z)) ?? [];
+        let len = 0;
+        for (let k = 1; k < route.length; k++) len += Math.hypot(route[k][0] - route[k - 1][0], route[k][1] - route[k - 1][1]);
+        let wp = 0, t = 0, falls = 0, lastProgress = 0, bestDist = Infinity, minClear = Infinity;
+        let falling = false;
+        while (wp < route.length && t < maxSeconds) {
+          const [tx, tz] = route[wp];
+          const dx = tx - goose.position.x, dz = tz - goose.position.z;
+          const d = Math.hypot(dx, dz);
+          if (d < (wp === route.length - 1 ? 2.0 : 1.5)) { wp++; bestDist = Infinity; continue; }
+          if (d < bestDist - 0.5) { bestDist = d; lastProgress = t; }
+          if (t - lastProgress > 12) break;
+          const heading = Math.atan2(dx, -dz);
+          const rel = heading - D2R(follow.yaw);
+          step(FIXED_DT, { move: new THREE.Vector2(Math.sin(rel), Math.cos(rel)), run: true, crouch: false, honk: false, flap: false });
+          t += FIXED_DT;
+          if (Math.round(t / FIXED_DT) % 30 === 0) await stream.update(goose.position.x, goose.position.z);
+          const ground = stream.heightAt(goose.position.x, goose.position.z);
+          if (Number.isFinite(ground)) {
+            const clear = goose.position.y - ground;
+            minClear = Math.min(minClear, clear);
+            const below = clear < -0.5;
+            if (below && !falling) falls++;
+            falling = below;
+          }
+        }
+        const p = goose.position;
+        return { arrived: wp >= route.length, falls, stuck: wp < route.length, seconds: Math.round(t),
+          routeLength: Math.round(len), minClearance: minClear, end: { x: p.x, y: p.y, z: p.z } };
+      },
     },
   };
   window.__wgs = handle;

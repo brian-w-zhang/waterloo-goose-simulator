@@ -18,6 +18,7 @@ export interface BuiltChunk {
   buildingMeshes: THREE.Mesh[];
   /** Building triangles in chunk-local coordinates for the physics trimesh. */
   walls: Float32Array | null;
+  buildingCount: number;
 }
 
 function terrainGeometry(h: Float32Array, n: number, cell: number): THREE.BufferGeometry {
@@ -63,18 +64,21 @@ function pieceGeometry(c: Chunk, h: Float32Array, classes: string[]): THREE.Buff
   const nv = cls.length;
   const pos = new Float32Array(nv * 3);
   const col = new Float32Array(nv * 3);
+  const clsAttr = new Float32Array(nv);
   const colors = classes.map((k) => swatch(CLASS_SWATCH[k] ?? "path"));
   for (let v = 0; v < nv; v++) {
     const x = xz[v * 2] * Q, z = xz[v * 2 + 1] * Q;
     pos[v * 3] = x;
     pos[v * 3 + 1] = sampleHeight(h, n, cell, x, z) + PIECE_LIFT_M;
     pos[v * 3 + 2] = z;
+    clsAttr[v] = cls[v];
     const cc = colors[cls[v]];
     col[v * 3] = cc.r; col[v * 3 + 1] = cc.g; col[v * 3 + 2] = cc.b;
   }
   const g = new THREE.BufferGeometry();
   g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
   g.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  g.setAttribute("cls", new THREE.BufferAttribute(clsAttr, 1));
   g.setIndex(new THREE.BufferAttribute(c.arrays.ground_idx as Uint32Array, 1));
   g.computeVertexNormals();
   return g;
@@ -271,5 +275,5 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   const walls = total ? new Float32Array(total) : null;
   let off = 0;
   for (const p of parts) { walls!.set(p, off); off += p.length; }
-  return { group: g, heights: h, buildingMeshes, walls };
+  return { group: g, heights: h, buildingMeshes, walls, buildingCount: c.header.buildings.length };
 }

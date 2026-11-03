@@ -1,7 +1,8 @@
 """Line network shipped to the client (NPC routing, signage) and read by the validators."""
 import json
 
-from shapely.geometry import shape
+from shapely import STRtree
+from shapely.geometry import Point, shape
 
 from ..config import RAW
 from ..coords import ORIGIN_E, ORIGIN_N
@@ -16,14 +17,23 @@ def _xz(e, n):
     return [round(e - ORIGIN_E, 2), round(-(n - ORIGIN_N), 2)]
 
 
-def build():
+def build(buildings):
+    """buildings: pipeline building dicts; path nodes inside a footprint are listed in `inside`."""
     d = osm.load()
+    shrunk = [b["footprint"].buffer(-0.5) for b in buildings]
+    shrunk = [g for g in shrunk if not g.is_empty]
+    tree = STRtree(shrunk)
+    inside = set()
     ways = []
     for wid, tags in osm.ways_where(lambda t: t.get("highway") in WALKABLE or t.get("railway") in ("light_rail",)):
         refs = d["ways"][wid][0]
         if any(r not in d["utm"] for r in refs):
             continue
         hw = tags.get("highway")
+        for r in refs:
+            pt = Point(*osm_to_city(*d["utm"][r]))
+            if any(shrunk[i].contains(pt) for i in tree.query(pt)):
+                inside.add(r)
         ways.append({
             "id": wid, "kind": hw or tags.get("railway"), "name": tags.get("name", ""),
             "width": _width(tags) if hw else 0,
@@ -45,4 +55,5 @@ def build():
                 lines.append({"source": key, "label": f["properties"].get(label) or "",
                               "name": f["properties"].get("TRAIL_NAME") or f["properties"].get("NAME") or "",
                               "pts": [_xz(x, y) for x, y in part.coords]})
-    return {"ways": ways, "entrances": entrances, "stations": stations, "city_lines": lines}
+    return {"ways": ways, "entrances": entrances, "stations": stations, "city_lines": lines,
+            "inside": sorted(inside)}

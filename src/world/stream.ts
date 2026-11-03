@@ -57,6 +57,8 @@ export class WorldStream {
 
   isLoaded(i: number, j: number) { return this.loaded.has(`${i}_${j}`); }
 
+  buildingCount(key: string): number { return this.loaded.get(key)?.buildingCount ?? -1; }
+
   private async load(i: number, j: number) {
     const key = `${i}_${j}`;
     const entry = this.index.chunks.find((c) => c.i === i && c.j === j);
