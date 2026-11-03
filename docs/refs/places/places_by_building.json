@@ -1,0 +1,1456 @@
+{
+ "buildings": {
+  "oid15635": [
+   {
+    "name": "Souper Hot Pot (Waterloo)",
+    "card": "Souper Hot Pot (Waterloo) | 4.8(511) | Hot pot restaurant \u00b7 \ue934 \u00b7 160 University Ave W #22-23",
+    "lat": 43.4724993,
+    "lng": -80.5371158
+   },
+   {
+    "name": "XIANG HOTPOT \u9999\u6ee1\u697c",
+    "card": "XIANG HOTPOT \u9999\u6ee1\u697c | 4.1(149) | Wok restaurant \u00b7 160 University Ave W Unit 19",
+    "lat": 43.4723273,
+    "lng": -80.5373902
+   },
+   {
+    "name": "Shinwa Asian cuisine Waterloo",
+    "card": "Shinwa Asian cuisine Waterloo | 4.2(1,174) | Restaurant \u00b7 \ue934 \u00b7 160 University Ave W",
+    "lat": 43.472209,
+    "lng": -80.5379676
+   },
+   {
+    "name": "\u9752\u852c\u9ebb\u8fa3\u70eb Qing Shu Hot Pot (Malatang)",
+    "card": "\u9752\u852c\u9ebb\u8fa3\u70eb Qing Shu Hot Pot (Malatang) | 4.3(175) | Restaurant \u00b7 160 University Ave W Unit 21",
+    "lat": 43.4725702,
+    "lng": -80.5371458
+   },
+   {
+    "name": "Yummy Chongqing",
+    "card": "Yummy Chongqing | 4.0(200) | Restaurant \u00b7 160 University Ave W",
+    "lat": 43.4722881,
+    "lng": -80.5376726
+   },
+   {
+    "name": "Kismet Restaurant",
+    "card": "Kismet Restaurant | 4.4(805) | Modern Indian restaurant \u00b7 \ue934 \u00b7 160 University Ave W Unit 20",
+    "lat": 43.472623,
+    "lng": -80.5371762
+   },
+   {
+    "name": "Nuri Village",
+    "card": "Nuri Village | 3.9(440) | Korean restaurant \u00b7 \ue934 \u00b7 160 University Ave W",
+    "lat": 43.4722743,
+    "lng": -80.5377782
+   },
+   {
+    "name": "Home Garden Taste of Taiwan",
+    "card": "Home Garden Taste of Taiwan | 4.4(204) | Taiwanese restaurant \u00b7 \ue934 \u00b7 160 University Ave W",
+    "lat": 43.4723124,
+    "lng": -80.5375912
+   },
+   {
+    "name": "Chungchun Rice Hotdog Waterloo(Korean Style Hotdog)",
+    "card": "Chungchun Rice Hotdog Waterloo(Korean Style Hotdog) | 4.5(426) | Fast food restaurant \u00b7 \ue934 \u00b7 160 University Ave W #1",
+    "lat": 43.4721353,
+    "lng": -80.5380578
+   },
+   {
+    "name": "160 University Ave W University Shops Plaza",
+    "card": "160 University Ave W University Shops Plaza | No reviews | University Shops Plaza",
+    "lat": 43.4722566,
+    "lng": -80.5378935
+   },
+   {
+    "name": "University Shops Plaza",
+    "card": "University Shops Plaza | No reviews | University Ave W",
+    "lat": 43.4723966,
+    "lng": -80.5376107
+   },
+   {
+    "name": "D Spot Desserts Waterloo",
+    "card": "D Spot Desserts Waterloo | 4.4(817) | Dessert restaurant \u00b7 \ue934 \u00b7 160 University Ave W Unit 14",
+    "lat": 43.4723631,
+    "lng": -80.5374536
+   },
+   {
+    "name": "160 University Ave W Unit 14",
+    "card": "160 University Ave W Unit 14 | No reviews | University Shops Plaza",
+    "lat": 43.4723544,
+    "lng": -80.5374801
+   },
+   {
+    "name": "160 University Ave W Unit 19",
+    "card": "160 University Ave W Unit 19 | No reviews | University Shops Plaza",
+    "lat": 43.4723273,
+    "lng": -80.5373902
+   },
+   {
+    "name": "160 University Ave W #7-8",
+    "card": "160 University Ave W #7-8 | No reviews | University Shops Plaza",
+    "lat": 43.4723573,
+    "lng": -80.5376675
+   },
+   {
+    "name": "160 University Ave W #5-6",
+    "card": "160 University Ave W #5-6 | No reviews | University Shops Plaza",
+    "lat": 43.4723,
+    "lng": -80.53788
+   },
+   {
+    "name": "160 University Ave W Unit 166",
+    "card": "160 University Ave W Unit 166 | No reviews | University Shops Plaza",
+    "lat": 43.4723458,
+    "lng": -80.5373772
+   },
+   {
+    "name": "160 University Ave W Unit 20",
+    "card": "160 University Ave W Unit 20 | No reviews | University Shops Plaza",
+    "lat": 43.472623,
+    "lng": -80.5371762
+   },
+   {
+    "name": "160 University Ave W #22",
+    "card": "160 University Ave W #22 | No reviews | University Shops Plaza",
+    "lat": 43.472505,
+    "lng": -80.5370873
+   },
+   {
+    "name": "160 University Ave W #9-10",
+    "card": "160 University Ave W #9-10 | No reviews | University Shops Plaza",
+    "lat": 43.4724363,
+    "lng": -80.5375557
+   },
+   {
+    "name": "160 University Ave W #12",
+    "card": "160 University Ave W #12 | No reviews | University Shops Plaza",
+    "lat": 43.4724367,
+    "lng": -80.5371648
+   },
+   {
+    "name": "160 University Ave W Unit22-23",
+    "card": "160 University Ave W Unit22-23 | No reviews | University Shops Plaza",
+    "lat": 43.472478,
+    "lng": -80.5370603
+   },
+   {
+    "name": "160 University Ave W #1",
+    "card": "160 University Ave W #1 | No reviews | University Shops Plaza",
+    "lat": 43.472217,
+    "lng": -80.5381044
+   },
+   {
+    "name": "160 University Ave W #6",
+    "card": "160 University Ave W #6 | No reviews | University Shops Plaza",
+    "lat": 43.4722933,
+    "lng": -80.5377897
+   },
+   {
+    "name": "160 University Ave W Unit 21",
+    "card": "160 University Ave W Unit 21 | No reviews | University Shops Plaza",
+    "lat": 43.4725702,
+    "lng": -80.5371458
+   },
+   {
+    "name": "160 University Ave W #3",
+    "card": "160 University Ave W #3 | No reviews | University Shops Plaza",
+    "lat": 43.4722968,
+    "lng": -80.5378971
+   },
+   {
+    "name": "160 University Ave W #16",
+    "card": "160 University Ave W #16 | No reviews | University Shops Plaza",
+    "lat": 43.4726024,
+    "lng": -80.5372427
+   },
+   {
+    "name": "106 University Ave W #1",
+    "card": "106 University Ave W #1 | No reviews | University Shops Plaza",
+    "lat": 43.4721463,
+    "lng": -80.538088
+   }
+  ],
+  "oid34262": [
+   {
+    "name": "Tandoori Zaika Waterloo | Fine Indian & Hakka Cuisine",
+    "card": "Fine Indian & Hakka Cuisine | Tandoori Zaika Waterloo | Fine Indian & Hakka Cuisine",
+    "lat": 43.4721826,
+    "lng": -80.5366828
+   },
+   {
+    "name": "University Shops Plaza",
+    "card": "University Shops Plaza | No reviews | University Ave W",
+    "lat": 43.4721826,
+    "lng": -80.5366828
+   },
+   {
+    "name": "Popeye's Supplements",
+    "card": "Popeye's Supplements | 4.9(793) | Vitamin & supplements store \u00b7 \ue934 \u00b7 158 University Ave W #3",
+    "lat": 43.4721537,
+    "lng": -80.5366384
+   },
+   {
+    "name": "Best Value Optical KW Inc",
+    "card": "Best Value Optical KW Inc | 4.4(231) | Optometrist \u00b7 \ue934 \u00b7 158 University Ave W",
+    "lat": 43.4721125,
+    "lng": -80.5366932
+   },
+   {
+    "name": "158 University Ave W Unit 2",
+    "card": "158 University Ave W Unit 2 | No reviews | University Shops Plaza",
+    "lat": 43.4721826,
+    "lng": -80.5366828
+   },
+   {
+    "name": "University Vision Centre",
+    "card": "Sponsored | \ue5d4 | University Vision Centre",
+    "lat": 43.4721826,
+    "lng": -80.5366828
+   }
+  ],
+  "oid10769": [
+   {
+    "name": "Mom\u2019s Pan Fried Bun",
+    "card": "Mom\u2019s Pan Fried Bun | 4.8(269) | Restaurant \u00b7 170 University Ave W #26A",
+    "lat": 43.47265,
+    "lng": -80.53829
+   },
+   {
+    "name": "Dine Stination",
+    "card": "Dine Stination | 4.7(537) | Chinese restaurant \u00b7 170 University Ave W",
+    "lat": 43.472817,
+    "lng": -80.53769
+   },
+   {
+    "name": "Yunshang Rice Noodle (Waterloo) \u4e91\u5c1a\u7c73\u7ebf",
+    "card": "Yunshang Rice Noodle (Waterloo) \u4e91\u5c1a\u7c73\u7ebf | 4.5(474) | Chinese restaurant \u00b7 \ue934 \u00b7 170 University Ave W #35",
+    "lat": 43.4728003,
+    "lng": -80.5376038
+   },
+   {
+    "name": "Yang's Braised Chicken Rice(Waterloo)\u6768\u94ed\u5b87\u9ec4\u7116\u9e21\u7c73\u996d",
+    "card": "Yang's Braised Chicken Rice(Waterloo)\u6768\u94ed\u5b87\u9ec4\u7116\u9e21\u7c73\u996d | 4.0(63) | Chinese restaurant \u00b7 170 University Ave W",
+    "lat": 43.4728237,
+    "lng": -80.5375689
+   },
+   {
+    "name": "Slap Burgers",
+    "card": "Sponsored | \ue5d4 | Slap Burgers",
+    "lat": 43.4725938,
+    "lng": -80.5381573
+   },
+   {
+    "name": "\u597d\u8bb0\u9686\u6c5f\u732a\u811a\u996d(Waterloo)Hou Kee Chinese Bistro",
+    "card": "\u597d\u8bb0\u9686\u6c5f\u732a\u811a\u996d(Waterloo)Hou Kee Chinese Bistro | 4.3(75) | Rice restaurant \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4728391,
+    "lng": -80.5375183
+   },
+   {
+    "name": "University Convenience",
+    "card": "University Convenience | 2.5(21) | Convenience store \u00b7 University Shops Plaza, 170 University Ave W",
+    "lat": 43.4727002,
+    "lng": -80.5379337
+   },
+   {
+    "name": "University Shops Plaza",
+    "card": "University Shops Plaza | No reviews | 170 University Ave W",
+    "lat": 43.4727688,
+    "lng": -80.5378922
+   },
+   {
+    "name": "Hero Tea Waterloo",
+    "card": "Hero Tea Waterloo | 4.1(38) | Bubble tea store \u00b7 170 University Ave W Unit 27",
+    "lat": 43.4727143,
+    "lng": -80.5379589
+   },
+   {
+    "name": "University Ave W #32",
+    "card": "University Ave W #32 | No reviews | University Shops Plaza",
+    "lat": 43.4728145,
+    "lng": -80.5377094
+   },
+   {
+    "name": "170 University Ave W #35",
+    "card": "170 University Ave W #35 | No reviews | University Shops Plaza",
+    "lat": 43.47287,
+    "lng": -80.53775
+   },
+   {
+    "name": "170 University Ave W #39",
+    "card": "170 University Ave W #39 | No reviews | University Shops Plaza",
+    "lat": 43.47295,
+    "lng": -80.53752
+   },
+   {
+    "name": "170 University Ave W #26A",
+    "card": "170 University Ave W #26A | No reviews | University Shops Plaza",
+    "lat": 43.47265,
+    "lng": -80.53829
+   },
+   {
+    "name": "170 University Ave W Unit 27",
+    "card": "170 University Ave W Unit 27 | No reviews | University Shops Plaza",
+    "lat": 43.4727143,
+    "lng": -80.5379589
+   },
+   {
+    "name": "Fantastic Wok",
+    "card": "Fantastic Wok | 3.5(250) | Chinese restaurant \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4728608,
+    "lng": -80.5374417
+   },
+   {
+    "name": "170 University Ave W #26",
+    "card": "170 University Ave W #26 | No reviews | University Shops Plaza",
+    "lat": 43.47265,
+    "lng": -80.53829
+   },
+   {
+    "name": "170 University Ave W #28",
+    "card": "170 University Ave W #28 | No reviews | University Shops Plaza",
+    "lat": 43.4726578,
+    "lng": -80.538137
+   },
+   {
+    "name": "170 University Ave W #37",
+    "card": "170 University Ave W #37 | No reviews | University Shops Plaza",
+    "lat": 43.47292,
+    "lng": -80.53762
+   },
+   {
+    "name": "170 University Ave W #29",
+    "card": "170 University Ave W #29 | No reviews | University Shops Plaza",
+    "lat": 43.47273,
+    "lng": -80.53809
+   },
+   {
+    "name": "170 University Ave W #31",
+    "card": "170 University Ave W #31 | No reviews | University Shops Plaza",
+    "lat": 43.4727597,
+    "lng": -80.537832
+   },
+   {
+    "name": "170 University Ave W #34",
+    "card": "170 University Ave W #34 | No reviews | University Shops Plaza",
+    "lat": 43.47285,
+    "lng": -80.53779
+   }
+  ],
+  "oid31641": [
+   {
+    "name": "Brown Donkatsu Waterloo",
+    "card": "Brown Donkatsu Waterloo | 4.8(1,077) | Asian restaurant \u00b7 \ue934 \u00b7 150 University Ave W #3",
+    "lat": 43.4723758,
+    "lng": -80.5359767
+   },
+   {
+    "name": "Gol's Lanzhou Noodle",
+    "card": "Gol's Lanzhou Noodle | 4.6(1,724) | Chinese restaurant \u00b7 \ue934 \u00b7 150 University Ave W #6b",
+    "lat": 43.4726363,
+    "lng": -80.5362525
+   },
+   {
+    "name": "Asakusa",
+    "card": "Asakusa | 4.5(1,024) | Restaurant \u00b7 150 University Ave W",
+    "lat": 43.4727157,
+    "lng": -80.536099
+   },
+   {
+    "name": "\u9047\u89c1\u7f8e\u98df\u00b7\u5ddd\u6e58\u83dc\u9986 Mizu Restaurant",
+    "card": "\u9047\u89c1\u7f8e\u98df\u00b7\u5ddd\u6e58\u83dc\u9986 Mizu Restaurant | 4.3(371) | Restaurant \u00b7 150 University Ave W #8B",
+    "lat": 43.4727738,
+    "lng": -80.5362962
+   },
+   {
+    "name": "Kabob Shack",
+    "card": "Kabob Shack | 4.7(1,511) | Restaurant \u00b7 \ue934 \u00b7 150 University Ave W #5b",
+    "lat": 43.4725836,
+    "lng": -80.5362513
+   },
+   {
+    "name": "IPHO VIETNAMESE CUISINE",
+    "card": "IPHO VIETNAMESE CUISINE | 4.2(300) | Vietnamese restaurant \u00b7 150 University Ave W",
+    "lat": 43.4726734,
+    "lng": -80.5360243
+   },
+   {
+    "name": "The Bingsu Cafe",
+    "card": "The Bingsu Cafe | 4.2(77) | Cafe \u00b7 150 University Ave W #2",
+    "lat": 43.4724191,
+    "lng": -80.5358922
+   },
+   {
+    "name": "Live Switchboard Driving School",
+    "card": "Live Switchboard Driving School | 4.7(50) | Driving school \u00b7 \ue934 \u00b7 150 University Ave W Units 5A",
+    "lat": 43.4725458,
+    "lng": -80.5361185
+   },
+   {
+    "name": "Campus Convenience",
+    "card": "Campus Convenience | 4.0(171) | Convenience store \u00b7 \ue934 \u00b7 150 University Ave W",
+    "lat": 43.4726032,
+    "lng": -80.5357843
+   },
+   {
+    "name": "Live Switchboard / Printing / DHL / FedEx / Purolator / Driving School",
+    "card": "Live Switchboard / Printing / DHL / FedEx / Purolator / Driving School | 3.7(203) | Driving school \u00b7 \ue934 \u00b7 150 University ",
+    "lat": 43.4726371,
+    "lng": -80.5360146
+   }
+  ],
+  "waterloo-central-supermarket": [
+   {
+    "name": "Momoya",
+    "card": "Momoya | 4.5(155) | Japanese restaurant \u00b7 140 University Ave W",
+    "lat": 43.4729452,
+    "lng": -80.535372
+   },
+   {
+    "name": "Onnuri",
+    "card": "Onnuri | 4.3(306) | Korean restaurant \u00b7 140 University Ave W #6B",
+    "lat": 43.4729106,
+    "lng": -80.5354332
+   },
+   {
+    "name": "Mel's Diner",
+    "card": "Mel's Diner | 4.2(2,354) | Diner \u00b7 \uf54a \u00b7 140 University Ave W",
+    "lat": 43.4728911,
+    "lng": -80.5355579
+   },
+   {
+    "name": "Waterloo Central Supermarket",
+    "card": "Waterloo Central Supermarket | 3.9(993) | Asian grocery store \u00b7 \ue934 \u00b7 Campus Court Plaza, 140 University Ave W",
+    "lat": 43.4728057,
+    "lng": -80.5351261
+   }
+  ],
+  "170-university-avenue-west": [
+   {
+    "name": "Pho Anh Vu Waterloo",
+    "card": "Pho Anh Vu Waterloo | 4.4(476) | Vietnamese restaurant \u00b7 \ue934 \u00b7 170 University Ave W Unit 15-17",
+    "lat": 43.4721201,
+    "lng": -80.5392161
+   },
+   {
+    "name": "Banh Mi Saigon Waterloo",
+    "card": "Banh Mi Saigon Waterloo | 4.2(84) | Sandwich shop \u00b7 170 University Ave W Unit 16",
+    "lat": 43.4722131,
+    "lng": -80.5392294
+   }
+  ],
+  "oid388": [
+   {
+    "name": "Izna Poke Plus",
+    "card": "Izna Poke Plus | 4.9(1,580) | Korean restaurant \u00b7 \ue934 \u00b7 170 University Ave W Unit #6B",
+    "lat": 43.4717593,
+    "lng": -80.5387664
+   },
+   {
+    "name": "Hakka Nation",
+    "card": "Hakka Nation | 4.4(1,462) | Restaurant \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4715473,
+    "lng": -80.5383109
+   },
+   {
+    "name": "Waterloo BBQ House",
+    "card": "Waterloo BBQ House | 2.4(52) | Asian restaurant \u00b7 170 University Ave W",
+    "lat": 43.471805,
+    "lng": -80.5387323
+   },
+   {
+    "name": "Sowon Korea Dining",
+    "card": "Sowon Korea Dining | 4.0(254) | Restaurant \u00b7 \ue934 \u00b7 University Shops Plaza, 170 University Ave W",
+    "lat": 43.4718817,
+    "lng": -80.5389261
+   },
+   {
+    "name": "Sweet Dreams Teashop",
+    "card": "Sweet Dreams Teashop | 4.5(1,288) | Bubble tea store \u00b7 \ue934 \u00b7 University Shops Plaza, 170 University Ave W #14",
+    "lat": 43.4720055,
+    "lng": -80.5390874
+   },
+   {
+    "name": "Farah Foods",
+    "card": "Farah Foods | 4.4(292) | Grocery store \u00b7 \ue934 \u00b7 University Shops Plaza, 170 University Avenue West Unit 4,5,6A, 170 Univers",
+    "lat": 43.4717179,
+    "lng": -80.5386616
+   },
+   {
+    "name": "University Shops Plaza",
+    "card": "University Shops Plaza | No reviews | 170 University Ave W",
+    "lat": 43.4716948,
+    "lng": -80.5387314
+   },
+   {
+    "name": "The 6ix vape",
+    "card": "The 6ix vape | 4.9(155) | Vaporizer store \u00b7 170 University Ave W",
+    "lat": 43.4717471,
+    "lng": -80.5387035
+   },
+   {
+    "name": "The Alley",
+    "card": "The Alley | 4.1(470) | Bubble tea store \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4717531,
+    "lng": -80.5386733
+   },
+   {
+    "name": "Campus Pharmasave",
+    "card": "Campus Pharmasave | 4.1(107) | Pharmacy \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4719304,
+    "lng": -80.5389784
+   },
+   {
+    "name": "170 University Ave W Unit 7-8",
+    "card": "170 University Ave W Unit 7-8 | No reviews | University Shops Plaza",
+    "lat": 43.4716665,
+    "lng": -80.5385237
+   },
+   {
+    "name": "170 University Ave W #4",
+    "card": "170 University Ave W #4 | No reviews | University Shops Plaza",
+    "lat": 43.47158,
+    "lng": -80.53856
+   },
+   {
+    "name": "170 University Ave W #13",
+    "card": "170 University Ave W #13 | No reviews | University Shops Plaza",
+    "lat": 43.47185,
+    "lng": -80.53899
+   },
+   {
+    "name": "170 University Ave W Unit 33 34",
+    "card": "170 University Ave W Unit 33 34 | No reviews | University Shops Plaza",
+    "lat": 43.4717471,
+    "lng": -80.5387035
+   },
+   {
+    "name": "Waterloo Walk-In Clinic",
+    "card": "Waterloo Walk-In Clinic | 3.4(1,529) | Walk-in clinic \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4719522,
+    "lng": -80.5390279
+   },
+   {
+    "name": "170 University Ave W #15",
+    "card": "Sponsored | \ue5d4 | 170 University Ave W #15",
+    "lat": 43.47191,
+    "lng": -80.53908
+   },
+   {
+    "name": "170 University Ave W #14",
+    "card": "170 University Ave W #14 | No reviews | University Shops Plaza",
+    "lat": 43.4719444,
+    "lng": -80.5391667
+   }
+  ],
+  "203-lester-street": [
+   {
+    "name": "Yang Yum: Secret Korean Recipe",
+    "card": "Yang Yum: Secret Korean Recipe | 4.8(336) | Korean restaurant \u00b7 203 Lester St Unit 6",
+    "lat": 43.4724566,
+    "lng": -80.5337783
+   },
+   {
+    "name": "Lily Turkish Cuisine",
+    "card": "Lily Turkish Cuisine | 5.0(153) | Fast food restaurant \u00b7 203 Lester St",
+    "lat": 43.4723091,
+    "lng": -80.5336308
+   },
+   {
+    "name": "Foodie Fruitie",
+    "card": "Foodie Fruitie | 4.0(637) | Asian fusion restaurant \u00b7 203 Lester St #7",
+    "lat": 43.4725219,
+    "lng": -80.5340151
+   },
+   {
+    "name": "Song\u2019s Lamian Chinese Cuisine",
+    "card": "Song\u2019s Lamian Chinese Cuisine | 4.2(266) | Restaurant \u00b7 \ue934 \u00b7 203 Lester St Unit 1",
+    "lat": 43.472659,
+    "lng": -80.5340111
+   },
+   {
+    "name": "Linden Square",
+    "card": "Linden Square | 4.2(78) | Food court \u00b7 \ue934 \u00b7 203 Lester St",
+    "lat": 43.47231,
+    "lng": -80.53375
+   },
+   {
+    "name": "Nate's asian",
+    "card": "Nate's asian | 5.0(1) | Asian restaurant \u00b7 203 Lester St",
+    "lat": 43.4723091,
+    "lng": -80.5336308
+   }
+  ],
+  "gh": [
+   {
+    "name": "Graduate House",
+    "card": "Graduate House | 4.5(365) | Pub \u00b7 \ue934 \u00b7 South Campus Hall, 200 University Ave W",
+    "lat": 43.4697279,
+    "lng": -80.5409094
+   }
+  ],
+  "elora-house": [
+   {
+    "name": "Tahini's Shawarma",
+    "card": "Tahini's Shawarma | 4.7(1,011) | Middle Eastern restaurant \u00b7 \ue934 \u00b7 250 Phillip St Unit A & B",
+    "lat": 43.4731458,
+    "lng": -80.5366834
+   },
+   {
+    "name": "Hooland Cafe & Bistro\u597d\u6765\u51b0\u5ba4",
+    "card": "Hooland Cafe & Bistro\u597d\u6765\u51b0\u5ba4 | 4.3(294) | Restaurant \u00b7 250 Phillip St Unit E",
+    "lat": 43.4730632,
+    "lng": -80.5367601
+   },
+   {
+    "name": "Rez-One Elora House",
+    "card": "Rez-One Elora House | 2.8(27) | Student housing center \u00b7 \ue934 \u00b7 250 Phillip St",
+    "lat": 43.4731183,
+    "lng": -80.5365342
+   }
+  ],
+  "rooster-s-fried-chicken": [
+   {
+    "name": "Aunty's Kitchen | Restaurant & Catering",
+    "card": "Restaurant & Catering | Aunty's Kitchen | Restaurant & Catering",
+    "lat": 43.4722018,
+    "lng": -80.5373263
+   },
+   {
+    "name": "Shawerma Plus (Shawarma) | We Deliver!",
+    "card": "We Deliver! | Shawerma Plus (Shawarma) | We Deliver!",
+    "lat": 43.4721275,
+    "lng": -80.537248
+   },
+   {
+    "name": "Cluck Clucks - Chicken & Waffles",
+    "card": "Cluck Clucks - Chicken & Waffles | 4.3(242) | Chicken restaurant \u00b7 \ue934 \u00b7 160 University Ave W",
+    "lat": 43.4721889,
+    "lng": -80.53732
+   },
+   {
+    "name": "Roosters Fried Chicken & More",
+    "card": "Roosters Fried Chicken & More | 3.9(538) | Fried chicken takeaway \u00b7 \ue934 \u00b7 160 University Ave W Unit# 17",
+    "lat": 43.4719376,
+    "lng": -80.5371646
+   },
+   {
+    "name": "University Shops Plaza",
+    "card": "University Shops Plaza | No reviews | University Ave W",
+    "lat": 43.4721157,
+    "lng": -80.5371458
+   },
+   {
+    "name": "160 University Ave W #22-23",
+    "card": "160 University Ave W #22-23 | No reviews | University Shops Plaza",
+    "lat": 43.4720107,
+    "lng": -80.5369924
+   },
+   {
+    "name": "160 University Ave W Unit# 17",
+    "card": "160 University Ave W Unit# 17 | No reviews | University Shops Plaza",
+    "lat": 43.4720424,
+    "lng": -80.5371821
+   },
+   {
+    "name": "160 University Ave W Unit 20",
+    "card": "160 University Ave W Unit 20 | No reviews | University Shops Plaza",
+    "lat": 43.4720424,
+    "lng": -80.5371821
+   },
+   {
+    "name": "160 University Ave W Unit22-23",
+    "card": "160 University Ave W Unit22-23 | No reviews | University Shops Plaza",
+    "lat": 43.4720424,
+    "lng": -80.5371821
+   },
+   {
+    "name": "160 University Ave W #19",
+    "card": "160 University Ave W #19 | No reviews | University Shops Plaza",
+    "lat": 43.4720424,
+    "lng": -80.5371821
+   },
+   {
+    "name": "160 University Ave W #17",
+    "card": "160 University Ave W #17 | No reviews | University Shops Plaza",
+    "lat": 43.4721856,
+    "lng": -80.5372316
+   },
+   {
+    "name": "160 University Ave W Unit 21",
+    "card": "160 University Ave W Unit 21 | No reviews | University Shops Plaza",
+    "lat": 43.4720424,
+    "lng": -80.5371821
+   }
+  ],
+  "130-1-columbia-street-west-29890-0": [
+   {
+    "name": "Chef On Call",
+    "card": "Chef On Call | 4.6(1,848) | Restaurant \u00b7 \ue934 \u00b7 130 Columbia St W #812",
+    "lat": 43.478115,
+    "lng": -80.537481
+   },
+   {
+    "name": "Social Hub Cafe",
+    "card": "Social Hub Cafe | 4.2(22) | Cafe \u00b7 \ue934 \u00b7 130 Columbia St W Unit 213",
+    "lat": 43.4781393,
+    "lng": -80.5374641
+   }
+  ],
+  "blair-house": [
+   {
+    "name": "KEN Sushi House Phillip Square",
+    "card": "KEN Sushi House Phillip Square | 4.5(2,760) | Sushi restaurant \u00b7 \ue934 \u00b7 256 Phillip St",
+    "lat": 43.4735319,
+    "lng": -80.5371266
+   },
+   {
+    "name": "MyungGA Korean Restaurant",
+    "card": "MyungGA Korean Restaurant | 4.5(443) | Korean restaurant \u00b7 \ue934 \u00b7 256 Phillip St",
+    "lat": 43.4737247,
+    "lng": -80.5372501
+   },
+   {
+    "name": "Rez-One Blair House",
+    "card": "Rez-One Blair House | 3.1(119) | Condominium complex \u00b7 \ue934 \u00b7 256 Phillip St",
+    "lat": 43.473577,
+    "lng": -80.5370748
+   },
+   {
+    "name": "The UPS Store",
+    "card": "The UPS Store | 3.0(191) | Shipping and mailing service \u00b7 \ue934 \u00b7 University Location, 256 Phillip St",
+    "lat": 43.4736155,
+    "lng": -80.5371609
+   }
+  ],
+  "slc": [
+   {
+    "name": "Brubakers Kitchen",
+    "card": "Brubakers Kitchen | 3.6(62) | Food court \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.472013,
+    "lng": -80.5454025
+   },
+   {
+    "name": "Flock Stop",
+    "card": "Flock Stop | 4.4(33) | Convenience store \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4713737,
+    "lng": -80.5454184
+   }
+  ],
+  "molly-bloom-s-irish-pub": [
+   {
+    "name": "Molly Bloom's Irish Pub",
+    "card": "Molly Bloom's Irish Pub | 4.2(1,000) | Irish pub \u00b7 \ue934 \u00b7 University Shops Plaza, 170 University Ave W",
+    "lat": 43.4730278,
+    "lng": -80.5373302
+   },
+   {
+    "name": "University Shops Plaza",
+    "card": "University Shops Plaza | No reviews | 170 University Ave W",
+    "lat": 43.4729997,
+    "lng": -80.5373194
+   }
+  ],
+  "sage-5": [
+   {
+    "name": "Naija Jollof Waterloo",
+    "card": "Naija Jollof Waterloo | 4.1(390) | West African restaurant \u00b7 \ue934 \u00b7 280 Lester St #102",
+    "lat": 43.4751974,
+    "lng": -80.5354687
+   },
+   {
+    "name": "LooBapBap",
+    "card": "LooBapBap | 4.8(334) | Korean restaurant \u00b7 \ue934 \u00b7 280 Lester St Unit 104",
+    "lat": 43.4752663,
+    "lng": -80.5355222
+   },
+   {
+    "name": "Kabob Place",
+    "card": "Kabob Place | 4.8(915) | Persian restaurant \u00b7 \ue934 \u00b7 280 Lester St #108",
+    "lat": 43.47544,
+    "lng": -80.53559
+   },
+   {
+    "name": "Manna's Food Express",
+    "card": "Manna's Food Express | 4.7(2,301) | Indian restaurant \u00b7 \ue934 \u00b7 280 Lester St #112",
+    "lat": 43.4755876,
+    "lng": -80.5357725
+   },
+   {
+    "name": "TOP CHICKEN",
+    "card": "TOP CHICKEN | 4.7(1,004) | Korean restaurant \u00b7 \ue934 \u00b7 280 Lester St #105",
+    "lat": 43.4753116,
+    "lng": -80.5355701
+   },
+   {
+    "name": "Naija Jollof Waterloo",
+    "card": "Sponsored | \ue5d4 | Naija Jollof Waterloo",
+    "lat": 43.475197,
+    "lng": -80.535469
+   },
+   {
+    "name": "Charminar House Truly South Indian",
+    "card": "Charminar House Truly South Indian | 4.7(892) | Indian restaurant \u00b7 280 Lester St #112, Waterloo, ON N2L 3W5",
+    "lat": 43.4755876,
+    "lng": -80.5357725
+   },
+   {
+    "name": "The RedBox",
+    "card": "The RedBox | 4.6(639) | Chinese restaurant \u00b7 280 Lester St Unit 116",
+    "lat": 43.4758422,
+    "lng": -80.5354862
+   },
+   {
+    "name": "Temi's Afro Mart",
+    "card": "Temi's Afro Mart | 4.9(66) | Grocery store \u00b7 \ue934 \u00b7 280 Lester St #115",
+    "lat": 43.4758013,
+    "lng": -80.535511
+   },
+   {
+    "name": "Sage 5",
+    "card": "Sage 5 | 2.8(9) | Apartment building \u00b7 \ue934 \u00b7 280 Lester St",
+    "lat": 43.4755876,
+    "lng": -80.5357725
+   }
+  ],
+  "slc-19801-0": [
+   {
+    "name": "Chaska Indian Street Food",
+    "card": "Chaska Indian Street Food | 3.6(12) | Indian restaurant \u00b7 \ue934 \u00b7 Food Court, Student Life Centre, 200 University Ave W Loca",
+    "lat": 43.4720205,
+    "lng": -80.5450527
+   }
+  ],
+  "131-university-avenue-west": [
+   {
+    "name": "Pizza Depot",
+    "card": "Pizza Depot | 4.9(530) | Pizza restaurant \u00b7 \ue934 \u00b7 131 University Ave W",
+    "lat": 43.4724824,
+    "lng": -80.5344541
+   },
+   {
+    "name": "131 university avenue",
+    "card": "131 university avenue | 4.0(1) | Apartment building \u00b7 \ue934 \u00b7 131 University Ave W",
+    "lat": 43.4724257,
+    "lng": -80.5345406
+   }
+  ],
+  "oid17445": [
+   {
+    "name": "iPotato",
+    "card": "iPotato | 3.8(231) | Restaurant \u00b7 \ue934 \u00b7 170 University Ave W #21",
+    "lat": 43.4723315,
+    "lng": -80.5387907
+   },
+   {
+    "name": "Williams Fresh Cafe",
+    "card": "Williams Fresh Cafe | 4.1(1,291) | Cafe \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.4724064,
+    "lng": -80.53862
+   },
+   {
+    "name": "Lazeez Shawarma",
+    "card": "Lazeez Shawarma | 3.8(1,344) | Mediterranean restaurant \u00b7 \ue934 \u00b7 170 University Ave W",
+    "lat": 43.472395,
+    "lng": -80.5387903
+   }
+  ],
+  "v1": [
+   {
+    "name": "Mudies",
+    "card": "Mudies | 3.0(101) | Restaurant \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4716372,
+    "lng": -80.5500518
+   }
+  ],
+  "icon": [
+   {
+    "name": "Tsujiri Waterloo",
+    "card": "Tsujiri Waterloo | 4.7(364) | Japanese restaurant \u00b7 \ue934 \u00b7 330 Phillip St Unit 3",
+    "lat": 43.4760169,
+    "lng": -80.5388336
+   },
+   {
+    "name": "Kuroki Shabu Shabu \u9ed1\u6728\u706b\u9505",
+    "card": "Kuroki Shabu Shabu \u9ed1\u6728\u706b\u9505 | 4.7(81) | Hot pot restaurant \u00b7 330 Phillip St Unit 7",
+    "lat": 43.4762584,
+    "lng": -80.5390126
+   },
+   {
+    "name": "POKETOPIA",
+    "card": "POKETOPIA | 4.7(30) | Asian restaurant \u00b7 330 Phillip St Unit 5",
+    "lat": 43.4760384,
+    "lng": -80.5389558
+   }
+  ],
+  "130-8-columbia-street-west": [
+   {
+    "name": "HomeTaste Waterloo - Vegetarian Indian Restaurant",
+    "card": "HomeTaste Waterloo - Vegetarian Indian Restaurant | 4.3(753) | Indian restaurant \u00b7 \ue934 \u00b7 130 Columbia St W Unit 912",
+    "lat": 43.478777,
+    "lng": -80.5375301
+   }
+  ],
+  "mc": [
+   {
+    "name": "Math C&D",
+    "card": "Math C&D | 4.6(168) | Cafe \u00b7 \ue934",
+    "lat": 43.4718062,
+    "lng": -80.5436807
+   },
+   {
+    "name": "W Store Essentials | MC UWaterloo",
+    "card": "MC UWaterloo | W Store Essentials | MC UWaterloo",
+    "lat": 43.4722387,
+    "lng": -80.5442078
+   }
+  ],
+  "lib": [
+   {
+    "name": "Browsers Cafe",
+    "card": "Browsers Cafe | 3.4(24) | Cafe \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.469692,
+    "lng": -80.5419986
+   }
+  ],
+  "hh-34223-0": [
+   {
+    "name": "Liquid Assets Cafe",
+    "card": "Liquid Assets Cafe | 4.4(12) | Cafe \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.468332,
+    "lng": -80.5415411
+   }
+  ],
+  "ev1": [
+   {
+    "name": "Environmental Studies Coffee Shop",
+    "card": "Environmental Studies Coffee Shop | 4.7(76) | Cafe \u00b7 EV1, 200 University Ave W #138",
+    "lat": 43.4682597,
+    "lng": -80.542858
+   }
+  ],
+  "st-jerome-s-university-34893-0": [
+   {
+    "name": "The Funcken Caf\u00e9",
+    "card": "The Funcken Caf\u00e9 | 4.0(63) | Cafe \u00b7 290 Westmount Rd N",
+    "lat": 43.4690079,
+    "lng": -80.545715
+   },
+   {
+    "name": "St. Jerome's University - The Funcken Cafe",
+    "card": "St. Jerome's University - The Funcken Cafe | 4.3(7) | Coffee shop \u00b7 \ue934 \u00b7 290 Westmount Rd N",
+    "lat": 43.468975,
+    "lng": -80.5457799
+   }
+  ],
+  "b1": [
+   {
+    "name": "Science C&D",
+    "card": "Science C&D | 4.3(47) | Coffee shop \u00b7 \ue934 \u00b7 B1 160 - University of Waterloo, 200",
+    "lat": 43.4710345,
+    "lng": -80.543061
+   }
+  ],
+  "ml": [
+   {
+    "name": "ML\u2019s Diner",
+    "card": "ML\u2019s Diner | 4.3(77) | Cafe \u00b7 \ue934 \u00b7 Modern Languages, 200 University Ave W Room 110",
+    "lat": 43.4690445,
+    "lng": -80.5428496
+   }
+  ],
+  "cph": [
+   {
+    "name": "University of Waterloo Engineering Society Coffee and Donuts",
+    "card": "University of Waterloo Engineering Society Coffee and Donuts | 4.2(98) | Coffee shop \u00b7 \ue934 \u00b7 CPH Atrium, University of Wat",
+    "lat": 43.4706613,
+    "lng": -80.5391391
+   }
+  ],
+  "eit": [
+   {
+    "name": "CEIT Cafe",
+    "card": "CEIT Cafe | 4.0(5) | Cafe \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4718219,
+    "lng": -80.5421715
+   }
+  ],
+  "pse-e7": [
+   {
+    "name": "University of Waterloo Engineering Society E7 Coffee and Donuts",
+    "card": "University of Waterloo Engineering Society E7 Coffee and Donuts | 4.2(21) | Convenience store \u00b7 \ue934",
+    "lat": 43.4728814,
+    "lng": -80.5396855
+   }
+  ],
+  "ev3": [
+   {
+    "name": "Ev3rgreen Cafe",
+    "card": "Ev3rgreen Cafe | 3.3(18) | Cafe \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4682323,
+    "lng": -80.5435026
+   }
+  ],
+  "cmh": [
+   {
+    "name": "The Market at CMH",
+    "card": "The Market at CMH | 4.1(34) | Food court \u00b7 \ue934 \u00b7 Claudette Millar Hall, University of Waterloo Place",
+    "lat": 43.4702164,
+    "lng": -80.5358074
+   },
+   {
+    "name": "Claudette Millar Hall (CMH)",
+    "card": "Claudette Millar Hall (CMH) | 4.5(88) | Student dormitory \u00b7 \ue934 \u00b7 165 University Ave W",
+    "lat": 43.4703443,
+    "lng": -80.5362798
+   }
+  ],
+  "ahs-exp": [
+   {
+    "name": "Starbucks Coffee Company",
+    "card": "Starbucks Coffee Company | 3.5(132) | Coffee shop \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4734,
+    "lng": -80.5461
+   }
+  ],
+  "181-lester-street": [
+   {
+    "name": "myREZ On Lester",
+    "card": "myREZ On Lester | 3.9(180) | Furnished apartment building \u00b7 \ue934 \u00b7 181 Lester St",
+    "lat": 43.4712303,
+    "lng": -80.5324129
+   }
+  ],
+  "333-lester-street": [
+   {
+    "name": "BK RENTS",
+    "card": "BK RENTS | 4.5(18) | Student housing center \u00b7 333 Lester St",
+    "lat": 43.477009,
+    "lng": -80.5372987
+   }
+  ],
+  "v-i-p-student-housing": [
+   {
+    "name": "110 University Student Housing",
+    "card": "110 University Student Housing | 4.2(65) | Student housing center \u00b7 \ue934 \u00b7 110 University Ave W",
+    "lat": 43.4733364,
+    "lng": -80.5333493
+   }
+  ],
+  "hespeler-house": [
+   {
+    "name": "Hespeler House",
+    "card": "Hespeler House | 3.5(121) | Student dormitory \u00b7 \ue934 \u00b7 252 Phillip St",
+    "lat": 43.4735235,
+    "lng": -80.5356243
+   },
+   {
+    "name": "Hespeler House",
+    "card": "Sponsored | \ue5d4 | Hespeler House",
+    "lat": 43.473524,
+    "lng": -80.535624
+   }
+  ],
+  "oid22270": [
+   {
+    "name": "Waterloo Off-Campus Housing",
+    "card": "Waterloo Off-Campus Housing | 3.5(35) | Student housing center \u00b7 \ue934 \u00b7 134 Columbia St W #18",
+    "lat": 43.4780174,
+    "lng": -80.5385396
+   }
+  ],
+  "usc": [
+   {
+    "name": "UW Place",
+    "card": "UW Place | 4.0(163) | Student housing center \u00b7 \ue934 \u00b7 106 Seagram Dr",
+    "lat": 43.4699226,
+    "lng": -80.5343572
+   },
+   {
+    "name": "Waterloo Court South",
+    "card": "Waterloo Court South | 4.5(8) | Student housing center \u00b7 \ue934 \u00b7 104 Seagram Dr",
+    "lat": 43.4699612,
+    "lng": -80.5343166
+   }
+  ],
+  "ve3": [
+   {
+    "name": "Village 1 University of Waterloo",
+    "card": "Village 1 University of Waterloo | 4.1(82) | Student dormitory \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4719033,
+    "lng": -80.5486709
+   }
+  ],
+  "wcri-clayfield": [
+   {
+    "name": "WCRI",
+    "card": "WCRI | 3.9(277) | Student housing center \u00b7 268 Phillip St",
+    "lat": 43.4746468,
+    "lng": -80.5363539
+   }
+  ],
+  "fergus-house": [
+   {
+    "name": "Fergus House",
+    "card": "Fergus House | 3.6(161) | Furnished apartment building \u00b7 \ue934 \u00b7 254 Phillip St",
+    "lat": 43.4738399,
+    "lng": -80.5363855
+   }
+  ],
+  "united-college-graduate-apartments": [
+   {
+    "name": "United College Graduate Apartments",
+    "card": "United College Graduate Apartments | 4.2(43) | Lodging \u00b7 \ue934",
+    "lat": 43.468155,
+    "lng": -80.5459806
+   }
+  ],
+  "343-lester-street": [
+   {
+    "name": "Suite Life Rentals",
+    "card": "Suite Life Rentals | No reviews | Apartment rental agency \u00b7 343 Lester St",
+    "lat": 43.4773264,
+    "lng": -80.5377195
+   }
+  ],
+  "icon-29885-0": [
+   {
+    "name": "ICON",
+    "card": "ICON | 3.4(665) | Furnished apartment building \u00b7 \ue934 \u00b7 330 Phillip St",
+    "lat": 43.4757198,
+    "lng": -80.5385097
+   }
+  ],
+  "vn5": [
+   {
+    "name": "North 5",
+    "card": "North 5 | 4.7(3) | Student dormitory \u00b7 \ue934 \u00b7 University of Waterloo, 200 University Ave W",
+    "lat": 43.4723013,
+    "lng": -80.5493733
+   }
+  ],
+  "a3": [
+   {
+    "name": "WCRI A-Dorms",
+    "card": "WCRI A-Dorms | 4.2(5) | Apartment building \u00b7 280 Phillip St",
+    "lat": 43.4754341,
+    "lng": -80.5381134
+   }
+  ],
+  "vs7": [
+   {
+    "name": "South 7",
+    "card": "South 7 | 4.8(4) | Student housing center \u00b7 \ue934 \u00b7 University Of Waterloo, 200 University Ave W",
+    "lat": 43.4707792,
+    "lng": -80.5513662
+   }
+  ],
+  "308-lester-street": [
+   {
+    "name": "1-bedroom Condo Near University of Waterloo",
+    "card": "1-bedroom Condo Near University of Waterloo | No reviews | Holiday apartment \u00b7 308 Lester St",
+    "lat": 43.4763056,
+    "lng": -80.53625
+   },
+   {
+    "name": "1-bedroom condo near University of Waterloo - One-Bedroom Apartment",
+    "card": "1-bedroom condo near University of Waterloo - One-Bedroom Apartment | Apartment | Sleeps 3 \u2022 1 bedroom \u2022 1 bed",
+    "lat": 43.4763107,
+    "lng": -80.5362473
+   },
+   {
+    "name": "Platinum 2 Condos",
+    "card": "Platinum 2 Condos | 2.6(9) | Apartment building \u00b7 \ue934 \u00b7 308 Lester St",
+    "lat": 43.476287,
+    "lng": -80.5362529
+   }
+  ],
+  "295b-lester-street": [
+   {
+    "name": "RENTmySPACE",
+    "card": "RENTmySPACE | 2.8(24) | Property management company \u00b7 295A Lester St",
+    "lat": 43.4759608,
+    "lng": -80.5365362
+   }
+  ],
+  "uwt": [
+   {
+    "name": "UWP - Eby Hall home",
+    "card": "UWP - Eby Hall home | 3.8(17) | Student housing center \u00b7 \ue934 \u00b7 159 University Ave W",
+    "lat": 43.4706008,
+    "lng": -80.5355603
+   }
+  ],
+  "waterloo-college-hall": [
+   {
+    "name": "Waterloo College Hall",
+    "card": "Waterloo College Hall | 3.6(9) | Student dormitory \u00b7 \ue934 \u00b7 88 Seagram Dr",
+    "lat": 43.4714241,
+    "lng": -80.5316037
+   }
+  ],
+  "unc": [
+   {
+    "name": "Wellesley Court North",
+    "card": "Wellesley Court North | 3.3(8) | Student housing center \u00b7 \ue934",
+    "lat": 43.4715909,
+    "lng": -80.5361725
+   }
+  ],
+  "rev": [
+   {
+    "name": "University of Waterloo Summer Accommodation",
+    "card": "University of Waterloo Summer Accommodation | 3.7(67) | Group accommodation",
+    "lat": 43.4702515,
+    "lng": -80.5539937
+   }
+  ],
+  "137-university-avenue-west": [
+   {
+    "name": "Avenue Apartments",
+    "card": "Avenue Apartments | 4.2(56) | Apartment building \u00b7 \ue934 \u00b7 137 University Ave W",
+    "lat": 43.4717908,
+    "lng": -80.5343535
+   }
+  ],
+  "130-1-columbia-street-west": [
+   {
+    "name": "The HUB",
+    "card": "The HUB | 2.3(266) | Apartment complex \u00b7 \ue934 \u00b7 130 Columbia St W",
+    "lat": 43.4780805,
+    "lng": -80.5375421
+   }
+  ],
+  "uwc": [
+   {
+    "name": "Wilmot Court",
+    "card": "Wilmot Court | 4.1(15) | Student dormitory \u00b7 \ue934 \u00b7 163 University Ave W",
+    "lat": 43.4709477,
+    "lng": -80.536832
+   }
+  ],
+  "society-145": [
+   {
+    "name": "Society 145 Condos",
+    "card": "Society 145 Condos | 4.2(264) | Apartment building \u00b7 \ue934 \u00b7 145 Columbia St W",
+    "lat": 43.4767761,
+    "lng": -80.5383969
+   }
+  ],
+  "wcri-fenwick-34687-0": [
+   {
+    "name": "WCRI Fenwick",
+    "card": "WCRI Fenwick | 4.6(14) | Apartment building \u00b7 \ue934 \u00b7 280 Phillip St",
+    "lat": 43.4752642,
+    "lng": -80.5370262
+   }
+  ],
+  "ve5": [
+   {
+    "name": "East 5",
+    "card": "East 5 | 4.8(13) | Student dormitory \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4715048,
+    "lng": -80.5489578
+   }
+  ],
+  "uet": [
+   {
+    "name": "UW Place Beck Hall (UET)",
+    "card": "UW Place Beck Hall (UET) | 4.3(12) | Student dormitory \u00b7 \ue934 \u00b7 108 Seagram Dr",
+    "lat": 43.4707866,
+    "lng": -80.5347486
+   }
+  ],
+  "vs1": [
+   {
+    "name": "South 1",
+    "card": "South 1 | 5.0(1) | Student dormitory \u00b7 University of Waterloo, Columbia St W",
+    "lat": 43.4712035,
+    "lng": -80.5499795
+   }
+  ],
+  "vn3": [
+   {
+    "name": "North 3",
+    "card": "North 3 | 5.0(1) | Student dormitory \u00b7 \ue934 \u00b7 200 University Avenue West",
+    "lat": 43.4724824,
+    "lng": -80.5499849
+   }
+  ],
+  "vs2": [
+   {
+    "name": "South 2",
+    "card": "South 2 | 4.3(3) | Student dormitory \u00b7 University of Waterloo, 200 University Ave W",
+    "lat": 43.4709641,
+    "lng": -80.5499098
+   }
+  ],
+  "vn6": [
+   {
+    "name": "North 6",
+    "card": "North 6 | 4.8(4) | Student dormitory \u00b7 \ue934 \u00b7 University of Waterloo, Columbia St W",
+    "lat": 43.4720902,
+    "lng": -80.5495898
+   }
+  ],
+  "vw1": [
+   {
+    "name": "West 1",
+    "card": "West 1 | 5.0(1) | Student dormitory \u00b7 University Of Waterloo, Columbia St W",
+    "lat": 43.4715382,
+    "lng": -80.5507009
+   }
+  ],
+  "ve1": [
+   {
+    "name": "East 1",
+    "card": "East 1 | 2.5(2) | Student housing center \u00b7 \ue934 \u00b7 Village 1 University of Waterloo, 200 University Ave W",
+    "lat": 43.4717758,
+    "lng": -80.5493744
+   }
+  ],
+  "uec": [
+   {
+    "name": "UW Place Woolwich Court (UEC)",
+    "card": "UW Place Woolwich Court (UEC) | 3.3(12) | Student dormitory \u00b7 \ue934 \u00b7 Woolwich Court North, 100 Seagram Dr",
+    "lat": 43.470847,
+    "lng": -80.5332887
+   }
+  ],
+  "vs4": [
+   {
+    "name": "South 4",
+    "card": "South 4 | 4.8(4) | Student dormitory",
+    "lat": 43.4706847,
+    "lng": -80.550532
+   }
+  ],
+  "vs8": [
+   {
+    "name": "South 8",
+    "card": "South 8 | 5.0(1) | Student dormitory \u00b7 \ue934 \u00b7 University Of Waterloo, 200 University Ave W",
+    "lat": 43.4709445,
+    "lng": -80.5515589
+   }
+  ],
+  "vw3": [
+   {
+    "name": "West 3",
+    "card": "West 3 | 4.7(3) | Student dormitory \u00b7 \ue934 \u00b7 \u2022 University of Waterloo, 200 Columbia St W",
+    "lat": 43.4717894,
+    "lng": -80.5515084
+   }
+  ],
+  "vw2": [
+   {
+    "name": "West 2",
+    "card": "West 2 | 3.7(3) | Student dormitory \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4715149,
+    "lng": -80.551106
+   }
+  ],
+  "vw4": [
+   {
+    "name": "West 4",
+    "card": "West 4 | 4.0(1) | Student dormitory \u00b7 200 University Ave W",
+    "lat": 43.4719389,
+    "lng": -80.5512172
+   }
+  ],
+  "vs3": [
+   {
+    "name": "South 3",
+    "card": "South 3 | 2.0(1) | Student dormitory \u00b7 200 University Ave W",
+    "lat": 43.4707762,
+    "lng": -80.5501897
+   }
+  ],
+  "st-jerome-s-university-residence-buildings": [
+   {
+    "name": "Siegfried Hall",
+    "card": "Siegfried Hall | 5.0(1) | Student dormitory \u00b7 \ue934 \u00b7 290 Westmount Rd",
+    "lat": 43.46941,
+    "lng": -80.5467374
+   }
+  ],
+  "vw6": [
+   {
+    "name": "West 6",
+    "card": "West 6 | 3.7(6) | Student dormitory \u00b7 University of Waterloo, Village 1, 200 University Ave W",
+    "lat": 43.4718797,
+    "lng": -80.5506561
+   }
+  ],
+  "vs5": [
+   {
+    "name": "South 5",
+    "card": "South 5 | 3.0(2) | Student dormitory \u00b7 \ue934 \u00b7 University of Waterloo, Student Village 1, Columbia St W",
+    "lat": 43.4709311,
+    "lng": -80.5507483
+   }
+  ],
+  "st-jerome-s-university-33627-0": [
+   {
+    "name": "J.R. Finn Hall Residence",
+    "card": "J.R. Finn Hall Residence | No reviews | Student housing center \u00b7 \ue934",
+    "lat": 43.4692433,
+    "lng": -80.5452159
+   }
+  ],
+  "sch": [
+   {
+    "name": "University of Waterloo Store",
+    "card": "University of Waterloo Store | 5.0(3) | Souvenir store \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4692183,
+    "lng": -80.5402634
+   },
+   {
+    "name": "W Store | South Campus Hall",
+    "card": "South Campus Hall | W Store | South Campus Hall",
+    "lat": 43.4692035,
+    "lng": -80.5401298
+   }
+  ],
+  "ech": [
+   {
+    "name": "University Of Waterloo Central Stores",
+    "card": "University Of Waterloo Central Stores | 3.8(4) | Academic department \u00b7 \ue934 \u00b7 263 Phillip St",
+    "lat": 43.4741097,
+    "lng": -80.5382358
+   }
+  ],
+  "dc": [
+   {
+    "name": "Tim Hortons",
+    "card": "Tim Hortons | 3.5(407) | Coffee shop \u00b7 \ue934 \u00b7 200 University Ave W",
+    "lat": 43.4725583,
+    "lng": -80.5423158
+   }
+  ]
+ },
+ "unmatched": [
+  {
+   "name": "Hey Chefz (\u563f-\u9435\u677f\u5802)",
+   "card": "Hey Chefz (\u563f-\u9435\u677f\u5802) | 4.5(90) | Restaurant \u00b7 203 Lester St #2",
+   "lat": 43.472409,
+   "lng": -80.5341055
+  },
+  {
+   "name": "V1 Green",
+   "card": "V1 Green | 4.4(27) | Student housing center",
+   "lat": 43.4710449,
+   "lng": -80.5476646
+  },
+  {
+   "name": "Mackenzie King Village (MKV)",
+   "card": "Mackenzie King Village (MKV) | 4.6(11) | Student dormitory \u00b7 \ue934 \u00b7 Campus map, 200 University Ave W",
+   "lat": 43.4711305,
+   "lng": -80.5533876
+  },
+  {
+   "name": "University Shops Plaza",
+   "card": "University Shops Plaza | 4.2(3,501) | Shopping mall \u00b7 \ue934 \u00b7 170 University Ave W",
+   "lat": 43.4716896,
+   "lng": -80.5380285
+  }
+ ]
+}
