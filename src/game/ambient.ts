@@ -20,6 +20,7 @@ const LOOKS: PersonLook[] = [
 ];
 const SPAWN_R = 110;
 const STARTLE_R = 6;
+const SEPARATION_M = 0.55;
 const SIDESTEP_R = 2;
 
 interface Walker { route: [number, number][]; idx: number; x: number; z: number; speed: number; look: number;
@@ -28,6 +29,7 @@ interface Walker { route: [number, number][]; idx: number; x: number; z: number;
 export class AmbientCrowd {
   readonly root = new THREE.Group();
   private meshes: THREE.InstancedMesh[];
+  private grid = new Map<number, Walker[]>();
   private frames = 0;
   private walkers: Walker[] = [];
   private rng: () => number;
@@ -126,6 +128,7 @@ export class AmbientCrowd {
       if (sp > 0.05) w.facing = Math.atan2(vx, vz);
       w.phase += dt * sp * 3.5;
     }
+    this.separate();
     const counts = new Array(LOOKS.length).fill(0);
     for (const w of this.walkers) {
       if (counts[w.look] >= this.cap) continue;
@@ -145,5 +148,30 @@ export class AmbientCrowd {
       if (this.frames > 3) im.count = counts[k];
       im.instanceMatrix.needsUpdate = true;
     });
+  }
+
+  /** Keep walkers at least SEPARATION_M apart (a 1 m spatial hash, so it stays linear in the crowd). */
+  private separate() {
+    const g = this.grid;
+    g.clear();
+    const key = (cx: number, cz: number) => cx * 73856093 ^ cz * 19349663;
+    for (const w of this.walkers) {
+      const k = key(Math.floor(w.x), Math.floor(w.z));
+      const cell = g.get(k);
+      if (cell) cell.push(w); else g.set(k, [w]);
+    }
+    for (const w of this.walkers) {
+      const cx = Math.floor(w.x), cz = Math.floor(w.z);
+      for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) {
+        for (const o of g.get(key(cx + i, cz + j)) ?? []) {
+          if (o === w) continue;
+          const dx = w.x - o.x, dz = w.z - o.z, d = Math.hypot(dx, dz);
+          if (d >= SEPARATION_M || d < 1e-4) continue;
+          const push = (SEPARATION_M - d) / 2;
+          w.x += (dx / d) * push; w.z += (dz / d) * push;
+          o.x -= (dx / d) * push; o.z -= (dz / d) * push;
+        }
+      }
+    }
   }
 }
