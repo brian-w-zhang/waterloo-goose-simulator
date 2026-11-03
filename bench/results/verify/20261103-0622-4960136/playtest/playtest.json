@@ -1,0 +1,97 @@
+{
+ "tasks_done": [
+  "Steal the professor's coffee",
+  "Honk someone into dropping what they carry",
+  "Get chased across the green",
+  "Make someone give up and scratch their head"
+ ],
+ "steps": [
+  {
+   "what": "walk to the professor",
+   "ms": 7374,
+   "goose": {
+    "x": 929.2939133513719,
+    "y": 13.094113170579076,
+    "z": -382.35704717971385,
+    "yaw": -2.530436466581401,
+    "speed": 1.5999999999999992,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": []
+  },
+  {
+   "what": "honk at the professor",
+   "ms": 904,
+   "goose": {
+    "x": 929.0881862745155,
+    "y": 13.071971930594882,
+    "z": -382.4588304455974,
+    "yaw": -2.530436466581401,
+    "speed": 0.00048566262092618654,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "grab the dropped coffee",
+   "ms": 1307,
+   "goose": {
+    "x": 928.5813260948053,
+    "y": 13.13224001333816,
+    "z": -383.8450741604902,
+    "yaw": -2.8797914209494877,
+    "speed": 0.10743079655461729,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "run away with it",
+   "ms": 11760,
+   "goose": {
+    "x": 967.4168185995077,
+    "y": 13.657491350898054,
+    "z": -408.01380260672886,
+    "yaw": -4.044661401906098,
+    "speed": 0.04665778546061759,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  },
+  {
+   "what": "drop it and wander",
+   "ms": 3003,
+   "goose": {
+    "x": 967.4208378590565,
+    "y": 13.65748994583788,
+    "z": -408.0146163737696,
+    "yaw": -4.044661401906098,
+    "speed": 8.769465228912908e-14,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  }
+ ],
+ "errors": [],
+ "video": "playtest-2026-11-03T11-24-04.webm"
+}

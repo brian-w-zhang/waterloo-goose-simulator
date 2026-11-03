@@ -13,7 +13,7 @@ const ctx = await browser.newContext({ viewport: { width: 1280, height: 720 }, r
 const page = await ctx.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
-await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?yaw=30`);
+await page.goto(`http://localhost:${process.env.PORT ?? 3100}/?yaw=30${process.env.WGS_WEBGL === "1" ? "&webgl" : ""}`);
 await page.waitForFunction(() => window.__wgs?.ready, null, { timeout: 90000 });
 await page.keyboard.press("Enter"); // dismiss the title card
 const state = () => page.evaluate(() => ({ g: window.__wgs.goose.state(), npcs: window.__wgs.hotspot.npcs(), tasks: window.__wgs.hotspot.tasks(), music: window.__wgs.hotspot.music() }));

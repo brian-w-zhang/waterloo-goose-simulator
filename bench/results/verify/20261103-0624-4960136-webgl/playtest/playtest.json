@@ -1,0 +1,93 @@
+{
+ "tasks_done": [
+  "Honk someone into dropping what they carry",
+  "Get chased across the green",
+  "Make someone give up and scratch their head"
+ ],
+ "steps": [
+  {
+   "what": "walk to the professor",
+   "ms": 7420,
+   "goose": {
+    "x": 929.2497082231566,
+    "y": 13.091104196619709,
+    "z": -382.4255205038935,
+    "yaw": -2.6895086450954206,
+    "speed": 1.5999999999999992,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": []
+  },
+  {
+   "what": "honk at the professor",
+   "ms": 903,
+   "goose": {
+    "x": 929.066214957973,
+    "y": 13.07226047507953,
+    "z": -382.5404351791367,
+    "yaw": -2.6895086450954206,
+    "speed": 0.00048566262092618654,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "grab the dropped coffee",
+   "ms": 1244,
+   "goose": {
+    "x": 928.6962704653852,
+    "y": 13.138891404526076,
+    "z": -383.8332326085074,
+    "yaw": -3.3158323709896793,
+    "speed": 0.10737249813681317,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Honk someone into dropping what they carry"
+   ]
+  },
+  {
+   "what": "run away with it",
+   "ms": 11762,
+   "goose": {
+    "x": 967.6507232145523,
+    "y": 13.656324438316515,
+    "z": -407.9947238744062,
+    "yaw": -4.144146795951374,
+    "speed": 0.04665778546061759,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  },
+  {
+   "what": "drop it and wander",
+   "ms": 3003,
+   "goose": {
+    "x": 967.6657861526546,
+    "y": 13.656258667057555,
+    "z": -407.99141394695107,
+    "yaw": -4.144146795951374,
+    "speed": 8.769465228912908e-14,
+    "grounded": true
+   },
+   "music": "silent",
+   "done": [
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head"
+   ]
+  }
+ ],
+ "errors": [],
+ "video": "playtest-2026-11-03T11-25-47.webm"
+}

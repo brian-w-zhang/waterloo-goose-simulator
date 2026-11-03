@@ -12,6 +12,8 @@ const EYE_M = 1.6;
 const ARCHETYPE_WORDS = { normal: "calm", chaser: "territorial, easily annoyed", scaredy: "nervous, easily startled", tidy: "fussy, tidy" };
 // props are drawn larger than life so they read from the diorama camera (the map itself stays to scale)
 const ITEM_SCALE = 1.5;
+/** item kinds that roll */
+const ROUND = new Set(["apple", "ball"]);
 
 export interface Task { id: string; hotspot: string; text: string; gate?: number; done: boolean; test: (e: SimEvent, sim: Sim) => boolean }
 
@@ -158,22 +160,24 @@ export class HotspotRuntime {
       if (it.heldBy) { this.itemVel.delete(it.id); continue; }
       const v = this.itemVel.get(it.id) ?? { x: 0, z: 0 };
       const kind = it.id.split("_")[0];
-      // the goose body (radius 0.35 m) shoves what it walks into, along its own motion
+      // the goose body (radius 0.35 m) shoves what it walks into, along its own motion; only round
+      // things roll away at a walk, so walking up to an item to grab it never pushes it out of reach
+      const round = ROUND.has(kind);
       const dx = it.pos.x - g.x, dz = it.pos.z - g.z, d = Math.hypot(dx, dz);
-      if (d < 0.45 && gooseSpeed > 0.3 && it.weight === "carry") {
-        const k = kind === "apple" ? 1.4 : 0.8;
+      if (d < 0.45 && gooseSpeed > (round ? 0.3 : 3) && it.weight === "carry") {
+        const k = round ? 1.4 : 0.8;
         v.x += (gv.x * k + (dx / (d || 1)) * 0.6 - v.x) * 0.5;
         v.z += (gv.z * k + (dz / (d || 1)) * 0.6 - v.z) * 0.5;
       }
       const wet = this.isWater(it.pos.x, it.pos.z);
-      if (kind === "apple" && !wet) {
+      if (round && !wet) {
         // rolls down the local slope
         const h = 0.5, sx = (this.heightAt(it.pos.x + h, it.pos.z) - this.heightAt(it.pos.x - h, it.pos.z)) / (2 * h);
         const sz = (this.heightAt(it.pos.x, it.pos.z + h) - this.heightAt(it.pos.x, it.pos.z - h)) / (2 * h);
         if (Number.isFinite(sx) && Number.isFinite(sz)) { v.x -= sx * 6 * dt; v.z -= sz * 6 * dt; }
       }
       if (wet) { v.x += (0.18 - v.x) * dt * 0.5; v.z += (0.08 - v.z) * dt * 0.5; }   // a slow drift on the water
-      const friction = wet ? 0.4 : kind === "apple" ? 1.2 : 5;
+      const friction = wet ? 0.4 : round ? 1.2 : 5;
       const f = Math.exp(-friction * dt);
       v.x *= f; v.z *= f;
       const sp = Math.hypot(v.x, v.z);
@@ -233,7 +237,7 @@ export class HotspotRuntime {
         m.position.copy(hand);
       } else {
         const v = this.itemVel.get(it.id);
-        if (v && it.id.startsWith("apple")) m.rotation.x += Math.hypot(v.x, v.z) * dt / 0.05;   // rolling
+        if (v && ROUND.has(it.id.split("_")[0])) m.rotation.x += Math.hypot(v.x, v.z) * dt / 0.05;   // rolling
         else m.rotation.set(0, m.rotation.y, 0);
         const y = this.ground(it.pos.x, it.pos.z);
         const bob = this.isWater(it.pos.x, it.pos.z) ? Math.sin(t * 2 + it.pos.x) * 0.03 : 0;
