@@ -28,7 +28,8 @@ describe("hotspot tasks", () => {
     expect(n("green")).toBeGreaterThanOrEqual(30);
     expect(n("plaza")).toBeGreaterThanOrEqual(20);
     expect(n("village")).toBeGreaterThanOrEqual(20);
-    expect([...s.items.values()].every((i) => i.owner && s.npcs.has(i.owner))).toBe(true);
+    // every item has an owner, except spare wearables left lying around for someone to dress the goose in
+    expect([...s.items.values()].every((i) => (i.owner && s.npcs.has(i.owner)) || (i.owner === null && i.flags.wearable))).toBe(true);
   });
 
   it("honk-drop-grab steals the professor's coffee and gets the goose chased", () => {
