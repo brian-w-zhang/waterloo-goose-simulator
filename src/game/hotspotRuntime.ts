@@ -99,6 +99,7 @@ export class HotspotRuntime {
   /** One fixed step; gooseHead is the bill position used to carry items. */
   step(dt: number, goosePos: THREE.Vector3, gooseSpeed: number, crouched: boolean) {
     this.sim.goose.pos = { x: goosePos.x, z: goosePos.z };
+    this.sim.goose.bill = { x: this.gooseHead.x, z: this.gooseHead.z };
     this.sim.goose.speed = gooseSpeed;
     this.sim.goose.crouched = crouched;
     for (const n of this.sim.npcs.values()) this.lastPos.set(n.id, { ...n.pos });

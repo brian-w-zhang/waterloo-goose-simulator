@@ -100,6 +100,28 @@ await step("carry the thesis laptop away", async () => {
   await page.waitForTimeout(1500);
 });
 
+// third hotspot: the Village 1 ring (teleport, then real keys)
+await step("teleport to Village 1", async () => {
+  const sock = await itemAt("a stray sock");
+  await page.evaluate(({ x, z }) => window.__wgs.goose.place(x + 4, z - 3), sock);
+  await page.waitForTimeout(800);
+});
+await step("honk Riley into dropping the laundry basket", async () => {
+  await goTo(0, 0, 1.6, 10, false, "village:laundry");
+  await page.keyboard.press("Space");
+  await page.waitForTimeout(900);
+});
+await step("run off with a stray sock", async () => {
+  const sock = await itemAt("a stray sock");
+  if (!sock.heldBy) await goTo(sock.x, sock.z, 0.5, 8);
+  await page.keyboard.press("KeyG");
+  await page.waitForTimeout(300);
+  const { g } = await state();
+  await goTo(g.x + 12, g.z - 10, 2, 8, true);
+  await page.keyboard.press("KeyG");
+  await page.waitForTimeout(1000);
+});
+
 const final = await state();
 const videoPath = await page.video()?.path();
 await page.close();

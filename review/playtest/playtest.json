@@ -6,17 +6,19 @@
   "Make someone give up and scratch their head",
   "Carry the thesis laptop 15 m away",
   "Pinch the busker's tip hat",
-  "Get shooed off the plaza"
+  "Get shooed off the plaza",
+  "Make Riley drop the laundry basket",
+  "Run off with a stray sock"
  ],
  "steps": [
   {
    "what": "walk to the professor",
-   "ms": 7398,
+   "ms": 7402,
    "goose": {
-    "x": 929.2529589831829,
-    "y": 13.09223718632944,
-    "z": -382.44481584988534,
-    "yaw": -2.530436466581401,
+    "x": 929.242415484041,
+    "y": 13.089777268180624,
+    "z": -382.4145675562322,
+    "yaw": -2.452009430024224,
     "speed": 1.5999999999999992,
     "grounded": true
    },
@@ -25,13 +27,13 @@
   },
   {
    "what": "honk at the professor",
-   "ms": 903,
+   "ms": 906,
    "goose": {
-    "x": 929.0474148164503,
-    "y": 13.070118105565198,
-    "z": -382.5465989832883,
-    "yaw": -2.530436466581401,
-    "speed": 0.00048566262092618654,
+    "x": 929.024343689438,
+    "y": 13.065676673317794,
+    "z": -382.50802352267783,
+    "yaw": -2.452009430024224,
+    "speed": 0.00041801369168266797,
     "grounded": true
    },
    "music": "calm",
@@ -41,13 +43,13 @@
   },
   {
    "what": "grab the dropped coffee",
-   "ms": 1244,
+   "ms": 688,
    "goose": {
-    "x": 928.6439539000276,
-    "y": 13.135726646653493,
-    "z": -383.83644625809393,
-    "yaw": -3.2374034459859886,
-    "speed": 0.0924163712852857,
+    "x": 928.8111959478119,
+    "y": 13.067990020953003,
+    "z": -383.0022177119972,
+    "yaw": -2.8757357945322215,
+    "speed": 0.10018275915586103,
     "grounded": true
    },
    "music": "calm",
@@ -58,12 +60,12 @@
   },
   {
    "what": "run away with it",
-   "ms": 11760,
+   "ms": 11798,
    "goose": {
-    "x": 967.4345979564241,
-    "y": 13.657819637048815,
-    "z": -408.0306565357605,
-    "yaw": -3.864966006181693,
+    "x": 967.6672181427712,
+    "y": 13.652539251767449,
+    "z": -407.2791304292041,
+    "yaw": -3.8327137676531486,
     "speed": 0.04665778546061759,
     "grounded": true
    },
@@ -77,13 +79,13 @@
   },
   {
    "what": "drop it and wander",
-   "ms": 3006,
+   "ms": 3002,
    "goose": {
-    "x": 967.4382327952552,
-    "y": 13.65782203755458,
-    "z": -408.03149239312586,
-    "yaw": -3.864966006181693,
-    "speed": 7.547948671507535e-14,
+    "x": 967.6710213910073,
+    "y": 13.652625925019093,
+    "z": -407.28213425388634,
+    "yaw": -3.8327137676531486,
+    "speed": 8.769465228912908e-14,
     "grounded": true
    },
    "music": "silent",
@@ -96,16 +98,16 @@
   },
   {
    "what": "teleport to the plaza",
-   "ms": 870,
+   "ms": 866,
    "goose": {
     "x": 720.9999982517367,
     "y": 11.058353237380798,
     "z": -278.4999978750702,
-    "yaw": -3.864966006181693,
-    "speed": 3.0926585902606497e-17,
+    "yaw": -3.8327137676531486,
+    "speed": 3.593156651232601e-17,
     "grounded": true
    },
-   "music": "calm",
+   "music": "silent",
    "done": [
     "Steal the professor's coffee",
     "Honk someone into dropping what they carry",
@@ -115,13 +117,13 @@
   },
   {
    "what": "pinch the busker's tip hat",
-   "ms": 9184,
+   "ms": 9168,
    "goose": {
-    "x": 714.8386912991218,
-    "y": 10.994224022304989,
-    "z": -272.22659108016114,
-    "yaw": -7.242964165193508,
-    "speed": 0.000005758028106481383,
+    "x": 715.0376048615763,
+    "y": 10.977124005602091,
+    "z": -272.0778483966237,
+    "yaw": -7.132297892172517,
+    "speed": 0.0000057580281015859214,
     "grounded": true
    },
    "music": "silent",
@@ -135,13 +137,13 @@
   },
   {
    "what": "carry the thesis laptop away",
-   "ms": 24936,
+   "ms": 24962,
    "goose": {
-    "x": 741.369323661751,
-    "y": 13.035587314173027,
-    "z": -282.3057254897428,
-    "yaw": -11.84209482124417,
-    "speed": 0.000005758027589590448,
+    "x": 741.2739866472544,
+    "y": 13.035192431607866,
+    "z": -282.3778690991926,
+    "yaw": -12.137055689570138,
+    "speed": 0.000005758027484581661,
     "grounded": true
    },
    "music": "calm",
@@ -154,8 +156,77 @@
     "Pinch the busker's tip hat",
     "Get shooed off the plaza"
    ]
+  },
+  {
+   "what": "teleport to Village 1",
+   "ms": 909,
+   "goose": {
+    "x": 453.0320482533425,
+    "y": 17.83634670888074,
+    "z": -231.94716002000496,
+    "yaw": -12.137055689570138,
+    "speed": 4.298861604231537e-9,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
+    "Pinch the busker's tip hat",
+    "Get shooed off the plaza"
+   ]
+  },
+  {
+   "what": "honk Riley into dropping the laundry basket",
+   "ms": 4772,
+   "goose": {
+    "x": 448.841181992776,
+    "y": 17.717364488899477,
+    "z": -228.06131592363909,
+    "yaw": -14.01935721618758,
+    "speed": 0.0004856626209253329,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
+    "Pinch the busker's tip hat",
+    "Get shooed off the plaza",
+    "Make Riley drop the laundry basket"
+   ]
+  },
+  {
+   "what": "run off with a stray sock",
+   "ms": 5394,
+   "goose": {
+    "x": 459.8376759320381,
+    "y": 17.94923604715092,
+    "z": -237.89405529218493,
+    "yaw": -16.65835221939053,
+    "speed": 0.0005183211680376665,
+    "grounded": true
+   },
+   "music": "calm",
+   "done": [
+    "Steal the professor's coffee",
+    "Honk someone into dropping what they carry",
+    "Get chased across the green",
+    "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
+    "Pinch the busker's tip hat",
+    "Get shooed off the plaza",
+    "Make Riley drop the laundry basket",
+    "Run off with a stray sock"
+   ]
   }
  ],
  "errors": [],
- "video": "playtest-2026-11-03T12-12-26.webm"
+ "video": "playtest-2026-11-03T12-29-19.webm"
 }

@@ -78,6 +78,8 @@ export interface GooseState {
   pos: V2; speed: number; holding: string | null; crouched: boolean; hidden: boolean;
   /** a wearable someone put on the goose (spec I-17) */
   wearing: string | null;
+  /** where the bill is (ground plane); grabs reach from here, so the goose takes what it points at */
+  bill?: V2;
 }
 
 export type SimEvent =
@@ -202,9 +204,10 @@ export class Sim {
       }
     }
     let best: Item | null = null, bd = PERCEPTION.grabReach;
+    const from = this.goose.bill ?? this.goose.pos;
     for (const it of this.items.values()) {
       if (it.kind !== "take" || it.heldBy) continue;
-      const d = dist(it.pos, this.goose.pos);
+      const d = dist(it.pos, from);
       if (d < bd) { bd = d; best = it; }
     }
     if (!best) {
@@ -261,7 +264,10 @@ export class Sim {
   private npcDrop(n: Npc) {
     const it = this.items.get(n.holding!)!;
     it.heldBy = null;
-    it.pos = { x: n.pos.x + Math.cos(n.facing) * 0.5, z: n.pos.z + Math.sin(n.facing) * 0.5 };
+    // dropped in front of them toward the goose they flinch from, never under their own feet
+    const to = sub(this.goose.pos, n.pos), tl = Math.hypot(to.x, to.z) || 1;
+    const dx = tl > 0.01 ? to.x / tl : Math.cos(n.facing), dz = tl > 0.01 ? to.z / tl : Math.sin(n.facing);
+    it.pos = { x: n.pos.x + dx * 0.7, z: n.pos.z + dz * 0.7 };
     this.emit({ t: this.t, type: "drop", npc: n.id, item: it.id });
     n.holding = null;
   }
