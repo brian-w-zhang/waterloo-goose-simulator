@@ -1,8 +1,10 @@
-"""WGC1 chunk format: magic, u32 header length, JSON header, 8-byte aligned typed arrays.
+"""WGC1 chunk format: magic, u32 header length, JSON header, 8-byte aligned typed arrays; the
+file on disk is gzip-compressed (the static server does not compress unknown types).
 
 The browser decoder (src/world/decode.ts) and every validator read the same bytes.
 Local frame: x = E - e0 (chunk west edge), z = n1 - N (chunk north edge), y = elevation - base.
 """
+import gzip
 import json
 import struct
 from pathlib import Path
@@ -26,11 +28,14 @@ def write_chunk(path: Path, header: dict, arrays: dict):
     header = {**header, "arrays": table}
     hb = json.dumps(header, separators=(",", ":")).encode()
     hb += b" " * ((-(len(hb) + 8)) % 8)
-    path.write_bytes(MAGIC + struct.pack("<I", len(hb)) + hb + b"".join(blobs))
+    raw = MAGIC + struct.pack("<I", len(hb)) + hb + b"".join(blobs)
+    path.write_bytes(gzip.compress(raw, compresslevel=6, mtime=0))
 
 
 def read_chunk(path: Path):
     data = Path(path).read_bytes()
+    if data[:2] == b"\x1f\x8b":
+        data = gzip.decompress(data)
     if data[:4] != MAGIC:
         raise ValueError(f"{path}: bad magic")
     (hl,) = struct.unpack("<I", data[4:8])

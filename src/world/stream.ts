@@ -13,6 +13,16 @@ export interface WorldIndex {
 
 const ORIGIN = campus.origin;
 
+/** Fetch a chunk file and gunzip it in the browser when it is gzip-compressed (pipeline/chunkio.py). */
+export async function fetchChunk(url: string): Promise<ArrayBuffer> {
+  const res = await fetch(url);
+  const buf = await res.arrayBuffer();
+  const head = new Uint8Array(buf, 0, 2);
+  if (head[0] !== 0x1f || head[1] !== 0x8b) return buf;
+  const stream = new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"));
+  return new Response(stream).arrayBuffer();
+}
+
 /** Streams 256 m chunks around a focus point: full detail within `radius` chunks. */
 export class WorldStream {
   readonly root = new THREE.Group();
@@ -65,7 +75,7 @@ export class WorldStream {
     const key = `${i}_${j}`;
     const entry = this.index.chunks.find((c) => c.i === i && c.j === j);
     if (!entry) return;
-    const buf = await (await fetch(`/world/${entry.file}`)).arrayBuffer();
+    const buf = await fetchChunk(`/world/${entry.file}`);
     const chunk = decodeChunk(buf);
     const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds, this.index.barrier_kinds);
     this.loaded.set(key, built);

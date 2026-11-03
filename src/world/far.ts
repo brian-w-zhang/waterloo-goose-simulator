@@ -2,6 +2,7 @@ import * as THREE from "three/webgpu";
 import { campus, swatch } from "@/config";
 import { facadeStyle } from "@/render/facade";
 import { decodeChunk } from "./decode";
+import { fetchChunk } from "./stream";
 
 const CLASS_SWATCH: Record<string, string> = {
   water: "water", rail: "rail", road: "asphalt", paving: "paving", path: "path",
@@ -21,7 +22,7 @@ export class FarWorld {
   }
 
   async load() {
-    const c = decodeChunk(await (await fetch("/world/far.wgc")).arrayBuffer());
+    const c = decodeChunk(await fetchChunk("/world/far.wgc"));
     const h = c.header as unknown as { n: number; size: number; classes: string[];
       chunks: { i: number; j: number; e0: number; n1: number; buildings: [number, number, number, string][] }[] };
     const fh = c.arrays.far_h as Float32Array, fc = c.arrays.far_cls as Uint8Array;
