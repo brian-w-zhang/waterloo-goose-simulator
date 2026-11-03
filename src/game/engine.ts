@@ -80,7 +80,8 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
 
   const camera = new THREE.PerspectiveCamera(CAM.play_vfov_deg, 1, 0.3, 4000);
   const follow: Follow = {
-    x: Number(params.get("x") ?? 905), z: Number(params.get("z") ?? -385),
+    // default spawn: the open green between MC and DC (23 m from the nearest wall or path)
+    x: Number(params.get("x") ?? 940), z: Number(params.get("z") ?? -382),
     yaw: Number(params.get("yaw") ?? 30), pitch: CAM.play_pitch_deg, dist: CAM.play_distance_m, fov: CAM.play_vfov_deg,
   };
   let pose: Pose | null = null;
@@ -118,8 +119,12 @@ export async function startGame(canvas: HTMLCanvasElement): Promise<() => void> 
       occlusion.enabled.value = followGoose ? 1 : 0;
     }
     camera.updateProjectionMatrix();
-    occlusion.camera.value.copy(camera.position);
-    occlusion.focus.value.copy(goose.position).setY(goose.position.y + 0.5);
+    const focus = goose.position.clone().setY(goose.position.y + 0.45);
+    occlusion.depth.value = camera.position.distanceTo(focus);
+    const ndc = focus.clone().project(camera);
+    const size = renderer.getDrawingBufferSize(new THREE.Vector2());
+    occlusion.screen.value.set((ndc.x * 0.5 + 0.5) * size.x, (0.5 - ndc.y * 0.5) * size.y);
+    occlusion.radius.value = size.y * 0.13 * Math.min(1.6, CAM.play_distance_m / Math.max(occlusion.depth.value, 1));
     rig.followShadow(target);
   };
 

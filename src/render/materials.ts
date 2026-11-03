@@ -1,34 +1,31 @@
 import * as THREE from "three/webgpu";
 import {
-  abs, attribute, clamp, dot, float, floor, fract, fwidth, hash, length, mix, mx_noise_float, positionWorld,
-  normalWorld, screenCoordinate, smoothstep, step, uniform, vec2, vec3,
+  dot, float, floor, fract, hash, length, mix, mx_noise_float, positionView, positionWorld,
+  screenCoordinate, smoothstep, step, uniform, vec2, vec3,
 } from "three/tsl";
 import { swatch } from "@/config";
 import { facadeColor } from "./facade";
 
 /**
- * Occlusion fade (doc 02 section 8): fragments near the segment from the camera to the goose, in front
- * of the goose, are dithered away in screen space so the goose stays visible behind buildings and trees.
+ * Occlusion see-through (doc 02 section 8): fragments closer to the camera than the goose, inside a
+ * screen-space circle around it, are removed with a dithered rim, so the goose stays visible behind
+ * buildings and trees without fading whole walls.
  */
 export const occlusion = {
-  camera: uniform(new THREE.Vector3()),
-  focus: uniform(new THREE.Vector3()),
-  radius: uniform(3.2),
+  screen: uniform(new THREE.Vector2(-1e4, -1e4)),
+  depth: uniform(0),
+  radius: uniform(120),
   enabled: uniform(1),
 };
 
 function occlusionMask() {
-  const seg = occlusion.focus.sub(occlusion.camera);
-  const len = length(seg);
-  const dir = seg.div(len);
-  const rel = positionWorld.sub(occlusion.camera);
-  const t = dot(rel, dir);
-  const dist = length(rel.sub(dir.mul(t)));
-  const inFront = step(float(0), t).mul(step(t, len.sub(1.2)));
-  const fade = float(1).sub(smoothstep(occlusion.radius, occlusion.radius.add(2.5), dist)).mul(inFront).mul(occlusion.enabled);
+  const d = length(screenCoordinate.xy.sub(occlusion.screen));
+  const nearer = step(positionView.z.negate(), occlusion.depth.sub(1.5));
+  const inside = float(1).sub(smoothstep(occlusion.radius.mul(0.75), occlusion.radius, d));
+  const fade = inside.mul(nearer).mul(occlusion.enabled);
   const p = floor(screenCoordinate.xy);
   const ign = fract(float(52.9829189).mul(fract(dot(p, vec2(0.06711056, 0.00583715)))));
-  return ign.greaterThan(clamp(fade.mul(0.85), 0, 1));
+  return ign.greaterThanEqual(fade);
 }
 
 /** Lawn: flat grass with soft two-tone patches from world-space noise (no textures). */

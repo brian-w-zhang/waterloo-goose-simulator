@@ -16,7 +16,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import far, ground, network, props, terrain, vegetation
+from . import far, ground, network, props, structures, terrain, tufts, vegetation
 
 C = CAMPUS["chunk"]
 SIZE = C["size_m"]
@@ -118,6 +118,10 @@ def main():
     gcls = ground.classes(lk, bl)
     print(f"ground classes ({time.time() - t0:.0f}s)")
     trees = vegetation.build(bl, lk)
+    plats = structures.build()
+    tuft_map = tufts.build(gcls, bl, chunk_frame)
+    print(f"tufts {sum(len(v) for v in tuft_map.values())} ({time.time() - t0:.0f}s)")
+    pcent = np.array([[p.centroid.x, p.centroid.y] for p, *_ in plats]) if plats else np.zeros((0, 2))
     path_lines = ground.highway_lines(ground.PATHS)
     pr = props.build(path_lines)
     print(f"trees {len(trees)}, props {len(pr)} ({time.time() - t0:.0f}s)")
@@ -216,6 +220,27 @@ def main():
                 arrays["ring_xz"] = np.vstack(rings_xz).astype(np.float32).ravel()
                 arrays["ring_count"] = np.array(ring_counts, dtype=np.uint32)
             header["buildings"] = binfo
+            # transit platforms
+            pinfo, pxz, pcount = [], [], []
+            for k, (poly, deck, canopy, kind) in enumerate(plats):
+                if int((pcent[k, 0] - C["grid_origin_e"]) // SIZE) != i or int((pcent[k, 1] - C["grid_origin_n"]) // SIZE) != j:
+                    continue
+                v, cnt = ring_arrays(poly, e0, n1)
+                g = float(np.median(terrain.sample(hf, np.asarray(poly.exterior.coords)[:, 0],
+                                                   np.asarray(poly.exterior.coords)[:, 1]))) - BASE_ELEV
+                pinfo.append({"ring_first": len(pcount), "ring_n": len(cnt), "ground_y": round(g, 3),
+                              "deck": deck, "canopy": canopy, "kind": kind})
+                pxz.append(v)
+                pcount += cnt
+            if pxz:
+                arrays["plat_xz"] = np.vstack(pxz).astype(np.float32).ravel()
+                arrays["plat_count"] = np.array(pcount, dtype=np.uint32)
+            header["platforms"] = pinfo
+            # grass tufts and flowers
+            tf = tuft_map[(i, j)]
+            if len(tf):
+                arrays["tuft_xz"] = np.round(np.clip(np.c_[tf[:, 0] - e0, n1 - tf[:, 1]], 0, SIZE) * Q).astype(np.uint16).ravel()
+                arrays["tuft_kind"] = tf[:, 2].astype(np.uint8)
             # trees
             ts = trees[(tci == i) & (tcj == j)]
             if len(ts):

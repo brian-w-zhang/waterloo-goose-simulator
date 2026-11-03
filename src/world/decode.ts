@@ -10,12 +10,15 @@ export interface BuildingInfo {
 }
 export interface LakePiece { name: string; objectid: number; y: number; first: number; count: number }
 
+export interface PlatformInfo { ring_first: number; ring_n: number; ground_y: number; deck: number; canopy: boolean; kind: string }
+
 export interface ChunkHeader {
   version: number;
   chunk: { i: number; j: number; e0: number; n1: number; size: number; x0: number; z0: number };
   terrain: { n: number; cell: number; hmin: number; hscale: number };
   lakes: LakePiece[];
   buildings: BuildingInfo[];
+  platforms?: PlatformInfo[];
   arrays: Record<string, ArrayEntry>;
 }
 

@@ -14,7 +14,8 @@ export interface Materials {
   trunk: THREE.Material;
   vertexColor: THREE.Material;
   facade: (style: string) => THREE.Material;
-  geo: { blob: THREE.BufferGeometry; cone: THREE.BufferGeometry; trunk: THREE.BufferGeometry };
+  geo: { blob: THREE.BufferGeometry; cone: THREE.BufferGeometry; trunk: THREE.BufferGeometry;
+    tufts: [THREE.BufferGeometry, THREE.BufferGeometry, THREE.BufferGeometry] };
   props: Record<string, THREE.BufferGeometry>;
 }
 
@@ -104,6 +105,36 @@ function treeGeometries() {
   return { blob, cone, trunk };
 }
 
+/** Grass tuft (four leaning blades) and two flower clusters, about 0.3 m tall, vertex-coloured. */
+function tuftGeometries(): [THREE.BufferGeometry, THREE.BufferGeometry, THREE.BufferGeometry] {
+  const blades = (color: string, tip: string) => {
+    const pos: number[] = [], col: number[] = [], nrm: number[] = [];
+    const base = swatch(color), top = swatch(tip);
+    for (let k = 0; k < 4; k++) {
+      const a = (k / 4) * Math.PI * 2 + 0.4 * k;
+      const ox = Math.cos(a) * 0.06, oz = Math.sin(a) * 0.06;
+      const lean = 0.08 + 0.04 * (k % 2);
+      const h = 0.32 + 0.1 * ((k * 7) % 3) / 2;
+      const sx = -Math.sin(a) * 0.05, sz = Math.cos(a) * 0.05;
+      pos.push(ox - sx, 0, oz - sz, ox + sx, 0, oz + sz, ox + Math.cos(a) * lean, h, oz + Math.sin(a) * lean);
+      for (let v = 0; v < 3; v++) nrm.push(Math.cos(a) * 0.3, 0.9, Math.sin(a) * 0.3);
+      col.push(base.r, base.g, base.b, base.r, base.g, base.b, top.r, top.g, top.b);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute("normal", new THREE.Float32BufferAttribute(nrm, 3));
+    g.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+    return g;
+  };
+  const flower = (petal: string) => mergeGeometries([
+    blades("grass_dark", "grass"),
+    part(new THREE.CylinderGeometry(0.05, 0.05, 0.02, 7), petal, 0.02, 0.27, 0.01),
+    part(new THREE.CylinderGeometry(0.045, 0.045, 0.02, 7), petal, -0.06, 0.22, 0.05),
+    part(new THREE.CylinderGeometry(0.02, 0.02, 0.025, 6), "flower_yellow", 0.02, 0.28, 0.01),
+  ].map((g) => (g.index ? g.toNonIndexed() : g)));
+  return [blades("grass_shadow", "grass"), flower("stucco_white"), flower("flower_pink")];
+}
+
 export function makeMaterials(): Materials {
   const facades = new Map<string, THREE.Material>();
   return {
@@ -119,7 +150,7 @@ export function makeMaterials(): Materials {
       if (!m) { m = makeFacadeMaterial(style); facades.set(style, m); }
       return m;
     },
-    geo: treeGeometries(),
+    geo: { ...treeGeometries(), tufts: tuftGeometries() },
     props: propGeometries(),
   };
 }

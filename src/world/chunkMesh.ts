@@ -244,6 +244,67 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
   return out;
 }
 
+const CANOPY_UNDERSIDE_M = 3.0;
+const CANOPY_THICK_M = 0.25;
+const POST_SPACING_M = 6;
+
+/** Transit platform decks with canopies on posts where OSM says the platform is sheltered. */
+function platformGeometry(c: Chunk): THREE.BufferGeometry | null {
+  const plats = c.header.platforms ?? [];
+  const px = c.arrays.plat_xz as Float32Array | undefined;
+  if (!plats.length || !px) return null;
+  const pc = c.arrays.plat_count as Uint32Array;
+  const starts = new Uint32Array(pc.length + 1);
+  for (let k = 0; k < pc.length; k++) starts[k + 1] = starts[k] + pc[k];
+  const pos: number[] = [], nrm: number[] = [], col: number[] = [];
+  const emit = (p: number[][], n: number[], cname: string) => {
+    const cc = swatch(cname);
+    for (const v of p) { pos.push(...v); nrm.push(...n); col.push(cc.r, cc.g, cc.b); }
+  };
+  const prism = (pts: THREE.Vector2[], y0: number, y1: number, side: string, top: string, bottom: string | null) => {
+    for (let v = 0; v < pts.length; v++) {
+      const a = pts[v], b = pts[(v + 1) % pts.length];
+      const dx = b.x - a.x, dz = b.y - a.y, len = Math.hypot(dx, dz) || 1;
+      const n = [-dz / len, 0, dx / len];
+      emit([[a.x, y0, a.y], [b.x, y0, b.y], [b.x, y1, b.y]], n, side);
+      emit([[a.x, y0, a.y], [b.x, y1, b.y], [a.x, y1, a.y]], n, side);
+    }
+    for (const t of THREE.ShapeUtils.triangulateShape(pts, [])) {
+      const [p0, p1, p2] = t.map((k) => pts[k]);
+      const up = (p1.y - p0.y) * (p2.x - p0.x) - (p1.x - p0.x) * (p2.y - p0.y) >= 0;
+      const tri = up ? [p0, p1, p2] : [p0, p2, p1];
+      emit(tri.map((p) => [p.x, y1, p.y]), [0, 1, 0], top);
+      if (bottom) emit([...tri].reverse().map((p) => [p.x, y0, p.y]), [0, -1, 0], bottom);
+    }
+  };
+  for (const pl of plats) {
+    const pts: THREE.Vector2[] = [];
+    for (let v = starts[pl.ring_first]; v < starts[pl.ring_first + 1]; v++) pts.push(new THREE.Vector2(px[v * 2], px[v * 2 + 1]));
+    const deck = pl.ground_y + pl.deck;
+    prism(pts, pl.ground_y - 0.3, deck, "paving", "path", null);
+    if (!pl.canopy) continue;
+    const r = minRect(pts);
+    const hu = Math.max(r.hu - 0.3, 0.5), hv = Math.max(r.hv - 0.2, 0.6);
+    const corner = (su: number, sv: number) => new THREE.Vector2(r.cx + r.ux * su * hu - r.uz * sv * hv, r.cz + r.uz * su * hu + r.ux * sv * hv);
+    const roof = [corner(-1, -1), corner(1, -1), corner(1, 1), corner(-1, 1)];
+    const y0 = deck + CANOPY_UNDERSIDE_M;
+    prism(roof, y0, y0 + CANOPY_THICK_M, "roof_light", "roof_light", "flower_yellow");
+    const n = Math.max(1, Math.round((2 * hu) / POST_SPACING_M));
+    for (let k = 0; k <= n; k++) {
+      const su = -1 + (2 * k) / n;
+      const p = corner(su * 0.95, 0);
+      const s = 0.09;
+      prism([new THREE.Vector2(p.x - s, p.y - s), new THREE.Vector2(p.x + s, p.y - s), new THREE.Vector2(p.x + s, p.y + s),
+        new THREE.Vector2(p.x - s, p.y + s)], deck, y0, "prop_metal", "prop_metal", null);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute("normal", new THREE.Float32BufferAttribute(nrm, 3));
+  g.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+  return g;
+}
+
 function treeMeshes(c: Chunk, mats: Materials, geo: Materials["geo"]): THREE.Object3D[] {
   const xyz = c.arrays.tree_xyz as Float32Array | undefined;
   if (!xyz) return [];
@@ -285,6 +346,35 @@ function treeMeshes(c: Chunk, mats: Materials, geo: Materials["geo"]): THREE.Obj
     im.receiveShadow = true;
     out.push(im);
   }
+  return out;
+}
+
+function tuftMeshes(c: Chunk, h: Float32Array, mats: Materials): THREE.Object3D[] {
+  const xz = c.arrays.tuft_xz as Uint16Array | undefined;
+  if (!xz) return [];
+  const kind = c.arrays.tuft_kind as Uint8Array;
+  const { n, cell } = c.header.terrain;
+  const out: THREE.Object3D[] = [];
+  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(), p = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
+  mats.geo.tufts.forEach((geom, k) => {
+    const ids: number[] = [];
+    for (let v = 0; v < kind.length; v++) if (kind[v] === k) ids.push(v);
+    if (!ids.length) return;
+    const im = new THREE.InstancedMesh(geom, mats.vertexColor, ids.length);
+    ids.forEach((v, t) => {
+      const x = xz[v * 2] * Q, z = xz[v * 2 + 1] * Q;
+      const r = Math.abs(Math.sin(v * 12.9898 + x * 78.233) * 43758.5453) % 1;
+      q.setFromAxisAngle(up, r * Math.PI * 2);
+      const sc = 0.8 + 0.6 * r;
+      s.set(sc, sc * (0.85 + 0.3 * ((r * 7) % 1)), sc);
+      p.set(x, sampleHeight(h, n, cell, x, z), z);
+      m.compose(p, q, s);
+      im.setMatrixAt(t, m);
+    });
+    im.receiveShadow = true;
+    im.name = k === 0 ? "tufts" : "flowers";
+    out.push(im);
+  });
   return out;
 }
 
@@ -350,7 +440,16 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
     buildingMeshes.push(mesh);
     g.add(mesh);
   }
+  const plat = platformGeometry(c);
+  if (plat) {
+    const m = new THREE.Mesh(plat, mats.vertexColor);
+    m.castShadow = true;
+    m.receiveShadow = true;
+    m.name = "platforms";
+    g.add(m);
+  }
   for (const o of treeMeshes(c, mats, mats.geo)) g.add(o);
+  for (const o of tuftMeshes(c, h, mats)) g.add(o);
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
   const parts = buildingMeshes.map((m) => m.geometry.getAttribute("position").array as Float32Array);
   const total = parts.reduce((a, p) => a + p.length, 0);
