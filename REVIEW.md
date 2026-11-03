@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-1037-5f6a637/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-1040-5f6a637-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-1046-491eb99+dirty/summary.json` (rendered just before commit ee696c5, from the same files; the ledger line names ee696c5) (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-1048-ee696c5-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 10.3 | record only | - | - | new | 16.8 |
+| flythrough.frame_ms_p95 | 11.7 | record only | - | - | new | 17.5 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -84,12 +84,12 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 | 1 |
 | style.sat_mean | 0.2323 | between [0.18, 0.35] | pass | - | new | 0.2323 |
-| style.val_mean | 0.5785 | between [0.45, 0.65] | pass | - | new | 0.5785 |
+| style.val_mean | 0.5784 | between [0.45, 0.65] | pass | - | new | 0.5784 |
 | style.val_std | 0.08145 | between [0.08, 0.18] | pass | - | new | 0.08145 |
 | style.dark_share | 0 | <= 0.002 | pass | - | new | 0 |
-| style.edge_share | 0.005155 | <= 0.045 | pass | - | new | 0.00515 |
+| style.edge_share | 0.005105 | <= 0.045 | pass | - | new | 0.005115 |
 | style.colourfulness | 0.1132 | between [0.1, 0.25] | pass | - | new | 0.1132 |
-| style.kmeans12_residual_de | 0.91 | <= 6.0 | pass | - | new | 0.914 |
+| style.kmeans12_residual_de | 0.916 | <= 6.0 | pass | - | new | 0.915 |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new | 0.951 |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new | 5.704 |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 | 0.0365 |
@@ -222,7 +222,8 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 19. **Windows:** light frames and a paler top quarter on punched and ribbon windows (UGG windows), in full palette swatches (a first version blended them and failed the palette lock, caught by the gate). Windows are drawn only where the whole window fits under the cornice. Hagey Hall's fly tower is blank brick with a clerestory strip, from research row 32, which cites the V10 photo (`NOTES.md`, 09:55).
 20. **DC and E5 details from research:** red steel portal frames at DC's two OSM main entrances (row 25); glass ribbon bands and a charcoal base on E5 (row 34).
 21. **No more roofline spikes:** leftover tier slivers used to join the tallest tier and stood as thin full-height spikes along rooflines (E5's jagged top in V13, V14 and V20). They now join the tier they share an edge with. Parts went from 3,956 to 2,329, E5's roofline is clean, and V13 and V14 silhouettes rose from 3 to 4.
-22. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
+22. **Meadows and reeds:** OSM `natural=grassland` (130,600 m² around Columbia Lake) and two reedbeds get taller grass and wildflowers instead of mown lawn.
+23. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 
