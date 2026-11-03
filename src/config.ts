@@ -8,7 +8,7 @@ export { campus, palette, styleRules };
 export type PaletteGroup = keyof typeof palette;
 
 /** A palette swatch as a three.js Color (converted to the linear working space). */
-export function swatch(name: string, group: "world" | "goose" | "light" | "debug" = "world"): Color {
+export function swatch(name: string, group: "world" | "goose" | "light" | "debug" | "people" | "items" = "world"): Color {
   const hex = (palette[group] as Record<string, string>)[name];
   if (!hex) throw new Error(`palette has no ${group}.${name}`);
   return new Color(hex);

@@ -16,7 +16,7 @@ from scipy.spatial import cKDTree
 
 from pipeline.config import PALETTE
 
-GROUPS = ("world", "goose", "light")
+GROUPS = ("world", "goose", "light", "people", "items")
 
 
 def srgb_to_lin(c):
