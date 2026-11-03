@@ -567,6 +567,32 @@ function barrierGeometry(c: Chunk, kinds: string[]): THREE.BufferGeometry | null
   return parts.length ? mergeGeometries(parts) : null;
 }
 
+/** Landmark decals: the MC pink tie, a flat knot-and-blade shape on the wall (config/overrides). */
+function decalMesh(d: NonNullable<Chunk["header"]["decals"]>[number], mats: Materials): THREE.Object3D {
+  const H = d.top - d.bottom, W = H * 0.32;
+  const blade = new THREE.Shape();
+  blade.moveTo(0, -H * 0.5);
+  blade.lineTo(W * 0.5, -H * 0.33); blade.lineTo(W * 0.32, H * 0.34); blade.lineTo(-W * 0.32, H * 0.34); blade.lineTo(-W * 0.5, -H * 0.33);
+  blade.lineTo(0, -H * 0.5);
+  const knot = new THREE.Shape();
+  knot.moveTo(-W * 0.34, H * 0.36); knot.lineTo(W * 0.34, H * 0.36); knot.lineTo(W * 0.42, H * 0.5); knot.lineTo(-W * 0.42, H * 0.5);
+  knot.lineTo(-W * 0.34, H * 0.36);
+  const paintShape = (s: THREE.Shape, color: string) => {
+    const geo = new THREE.ExtrudeGeometry(s, { depth: 0.12, bevelEnabled: false });
+    const c = swatch(color), n = geo.getAttribute("position").count, a = new Float32Array(n * 3);
+    for (let k = 0; k < n; k++) a.set([c.r, c.g, c.b], k * 3);
+    geo.setAttribute("color", new THREE.BufferAttribute(a, 3));
+    geo.deleteAttribute("uv");
+    return geo;
+  };
+  const m = new THREE.Mesh(mergeGeometries([paintShape(blade, "tie_pink"), paintShape(knot, "tie_knot")]), mats.vertexColor);
+  m.position.set(d.x, d.y + d.bottom + H / 2, d.z);
+  m.rotation.y = d.rot + Math.PI / 2;
+  m.castShadow = true;
+  m.name = `decal_${d.kind}`;
+  return m;
+}
+
 function propMeshes(c: Chunk, mats: Materials, kinds: string[]): THREE.Object3D[] {
   const xyz = c.arrays.prop_xyz as Float32Array | undefined;
   if (!xyz) return [];
@@ -641,6 +667,7 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   for (const o of tuftMeshes(c, h, mats)) g.add(o);
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
   if (c.header.signs?.length) g.add(buildSigns(c.header.signs));
+  for (const d of c.header.decals ?? []) g.add(decalMesh(d, mats));
   const doors = doorMesh(c, mats);
   if (doors) g.add(doors);
   const bars = barrierGeometry(c, barrierKinds);

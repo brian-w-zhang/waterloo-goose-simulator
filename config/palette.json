@@ -67,7 +67,9 @@
     "siding_blue": "#a9b5ba",
     "siding_cream": "#e0d6bf",
     "metal_shade": "#a9afb3",
-    "duct_teal": "#5d8b8a"
+    "duct_teal": "#5d8b8a",
+    "tie_pink": "#e58aa0",
+    "tie_knot": "#d26f89"
   },
   "goose": {
     "neck": "#2b2b2b",

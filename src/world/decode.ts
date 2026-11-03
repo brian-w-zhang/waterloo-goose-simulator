@@ -22,6 +22,7 @@ export interface ChunkHeader {
   buildings: BuildingInfo[];
   platforms?: PlatformInfo[];
   signs?: import("./signs").SignInfo[];
+  decals?: { x: number; y: number; z: number; rot: number; kind: string; bottom: number; top: number }[];
   arrays: Record<string, ArrayEntry>;
 }
 

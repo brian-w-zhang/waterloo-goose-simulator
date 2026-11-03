@@ -17,7 +17,7 @@ from ..chunkio import write_chunk
 from ..config import BUILD, CAMPUS, ROOT, WORLD
 from ..coords import BASE_ELEV, ORIGIN_E, ORIGIN_N
 from . import buildings as bmod
-from . import doors, far, ground, network, osm, props, signs, structures, terrain, tufts, vegetation
+from . import doors, far, ground, landmarks, network, osm, props, signs, structures, terrain, tufts, vegetation
 
 C = CAMPUS["chunk"]
 BARRIER_KINDS = ["fence", "hedge", "wall", "retaining_wall"]
@@ -123,6 +123,8 @@ def main():
     plats = structures.build()
     door_list = doors.build(bl)
     path_lines = ground.highway_lines(ground.PATHS)
+    decals = landmarks.build(bl)
+    print(f"landmark decals {len(decals)}")
     plines = [ln for _, _, ln in path_lines]
     sign_list = signs.build(bl, door_list, STRtree(plines), plines)
     print(f"signs {len(sign_list)} ({sum(1 for s in sign_list if s[5] == 'shop')} businesses)")
@@ -276,6 +278,9 @@ def main():
                     y2 = terrain.sample(hf, bs[:, 3], bs[:, 4]) - BASE_ELEV
                     arrays["bar_seg"] = np.c_[bs[:, 1] - e0, y1, n1 - bs[:, 2], bs[:, 3] - e0, y2, n1 - bs[:, 4]].astype(np.float32).ravel()
                     arrays["bar_kind"] = bs[:, 0].astype(np.uint8)
+            header["decals"] = [{"x": round(d[0] - e0, 2), "z": round(n1 - d[1], 2), "y": round(bl[d[3]]["ground"] - BASE_ELEV, 2),
+                                 "rot": round(d[2], 4), "kind": d[4]["kind"], "bottom": d[4]["bottom_m"], "top": d[4]["top_m"]}
+                                for d in decals if int((d[0] - C["grid_origin_e"]) // SIZE) == i and int((d[1] - C["grid_origin_n"]) // SIZE) == j]
             # signs (assigned by their own position)
             sl = [s for s in sign_list if int((s[0] - C["grid_origin_e"]) // SIZE) == i and int((s[1] - C["grid_origin_n"]) // SIZE) == j]
             header["signs"] = [{"x": round(s[0] - e0, 2), "z": round(n1 - s[1], 2),

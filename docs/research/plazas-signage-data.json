@@ -1,0 +1,522 @@
+{
+  "generated": "2026-11-03",
+  "plazas": [
+    {
+      "name": "University Shops Plaza (160-170 University Ave W)",
+      "center": {
+        "lat": 43.4716,
+        "lon": -80.5386
+      },
+      "tenants_verified": [
+        "Hakka Nation",
+        "Indian Sweet Master",
+        "Farah Foods",
+        "BMO ATM",
+        "Williams Fresh Cafe",
+        "D Spot",
+        "Pho Anh Vu"
+      ],
+      "wall_hex": "#CDBFA6",
+      "wall_material": "beige horizontal vinyl siding; tan stucco piers #C8A57E; red brick pilasters #9A4E3A; rear salmon brick/block #B06A5A, ochre stucco end unit #E0A94E",
+      "roof_hex": "#5E5048",
+      "roof": "dark brown asphalt-shingle mansard/hip over whole strip; corner pavilion red metal roof #B5524A",
+      "storefront": "full-height glass, dark bronze/black aluminium frames, continuous covered walkway under roof overhang (no separate awning)",
+      "sign_band_hex": "#CDBFA6",
+      "sign_colours": [
+        "#C8202A",
+        "#0079C1",
+        "#2E2E30"
+      ],
+      "sign_style": "individual tenant panels/channel letters on siding band; white lettering on red/blue/charcoal",
+      "pylon": "dark grey pylon with red/black tenant panels at University Ave entrance",
+      "parking": "surface lot between building and University Ave; perpendicular stalls, yellow lines; row along walkway curb + aisle + double rows; shrub islands; access University Ave and Phillip St",
+      "storeys": 1,
+      "confidence": "high",
+      "sources": [
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=xuL_Wj17IJecsbqI9hEE_A",
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=UePLtkO7wS3tbWGxBjubkw",
+        "Google Maps place: Hakka Nation (170 University Ave W, 'University Shops Plaza')"
+      ]
+    },
+    {
+      "name": "280 Lester St retail (LooBapBap, Top Chicken, Now Tea, Charminar House)",
+      "center": {
+        "lat": 43.4753,
+        "lon": -80.5356
+      },
+      "wall_hex": "#433B38",
+      "wall_material": "charcoal-brown brick end volumes; cream panel centre bay #D8CDB4; red-orange vertical fins #C4492C; glass balconies",
+      "roof_hex": null,
+      "roof": "flat (not observed)",
+      "storefront": "full-height glazing, black mullions, no awnings, sidewalk frontage with grass boulevard and street trees",
+      "sign_band_hex": "#6E7076",
+      "sign_colours": [
+        "#111111",
+        "#F2C230",
+        "#FFFFFF"
+      ],
+      "sign_style": "continuous grey metal fascia; per-tenant black panels with white/yellow lettering",
+      "parking": "none on site; on-street on Lester St",
+      "storeys": 8,
+      "confidence": "high (storey count medium)",
+      "sources": [
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=JJAAQUmqRrloUhyshvAG8w",
+        "Google Maps places: LooBapBap (280 Lester #104), TOP CHICKEN (#105), Charminar House (#112)"
+      ]
+    },
+    {
+      "name": "University Ave W & Albert/Hemlock podiums (Gladiator Burger 222 Albert; Oka Sushi & Toma's Pizza 251 Hemlock 'Sage 6')",
+      "center": {
+        "lat": 43.4741,
+        "lon": -80.5315
+      },
+      "wall_hex": "#6F9DB5",
+      "wall_material": "2-storey blue-green glass curtain wall podium, terracotta-orange panel pier #C8875A, white fascia #EDEDEA; towers blue glass with white perforated balcony screens #E8ECEE",
+      "roof_hex": null,
+      "roof": "flat podium roofs; towers flat",
+      "storefront": "glass curtain wall at grade, entries flush to sidewalk, no awnings",
+      "sign_band_hex": "#EDEDEA",
+      "sign_colours": [
+        "#C62630",
+        "#FFFFFF"
+      ],
+      "sign_style": "box signs on glass/fascia (Gladiator red with white)",
+      "parking": "none; wide concrete sidewalk, planters",
+      "storeys": 2,
+      "tower_storeys_approx": "12-16+",
+      "confidence": "medium-high",
+      "sources": [
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=mQVpsrn54q8McJUL1Znitg",
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=6ezvFOyeA5ZSNFCaI2kjUw",
+        "Google Maps places: Gladiator Burger - Waterloo, Oka Sushi, Toma's Pizza"
+      ]
+    },
+    {
+      "name": "Linden Square, 203 Lester St at University Ave (Foodie Fruitie, Song's Lamian, CoCo)",
+      "center": {
+        "lat": 43.4725,
+        "lon": -80.534
+      },
+      "wall_hex": "#B9BEC2",
+      "wall_material": "2-storey silver-grey metal panel + dark tinted glass podium; tower buff brick #C9A882 with red-brown stripes #8E4A3A; rear base rough-faced white stone block #DEDAD2",
+      "roof_hex": null,
+      "roof": "flat",
+      "storefront": "dark tinted glass #2E3A46 in silver panels, logos on glass, corner entry canopy, concrete paver forecourt",
+      "sign_band_hex": "#B9BEC2",
+      "sign_colours": [
+        "#3BAA35",
+        "#FFFFFF",
+        "#C8202A"
+      ],
+      "sign_style": "logo decals/panels on glazing",
+      "parking": "none in front; rear driveway lane",
+      "storeys": 2,
+      "tower_storeys_approx": "~20",
+      "confidence": "medium-high",
+      "sources": [
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=xO_4dgIGPDfeaEHTB44dHA",
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=8zhf4LLvtMU_zvV2zuoIMw",
+        "Google Maps places: Foodie Fruitie (203 Lester #7, Linden Square), Song's Lamian (203 Lester Unit 1)"
+      ]
+    },
+    {
+      "name": "Phillip Square, 250-256 Phillip St (KEN Sushi House, Tahini's; Blair House / Elora House towers)",
+      "center": {
+        "lat": 43.4734,
+        "lon": -80.5372
+      },
+      "wall_hex": "#D6CDB8",
+      "wall_material": "towers cream panel + mid-grey panel #8A8C94 + blue glass; podium glass with white round columns",
+      "roof_hex": null,
+      "roof": "flat",
+      "storefront": "2-storey glazed podium; two wood-look copper-orange horizontal fascia bands #A0532E; charcoal band #4A4A52 with white building-name letters",
+      "sign_band_hex": "#A0532E",
+      "sign_colours": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "sign_style": "small tenant panels on glass",
+      "parking": "none; plaza with steps between towers",
+      "storeys": 2,
+      "tower_storeys_approx": "~20+",
+      "confidence": "high",
+      "sources": [
+        "https://www.google.com/maps/@?api=1&map_action=pano&pano=jxhU6_7ZojJc9m5mF7tkTA",
+        "Google Maps places: KEN Sushi House Phillip Square (256 Phillip St), Tahini's (250 Phillip St Unit A&B)"
+      ]
+    }
+  ],
+  "uw_signs": {
+    "description": "Campus Wayfinding Project sign family (Entro Communications), installed 2020-2023. Charcoal/black slim monoliths with sloped top edge, gold perforated-metal band along the slope (and a large diagonal gold band on lower third of entrance pillars), gold building code letters, white names, UW wordmark+crest on site IDs.",
+    "colours": {
+      "body": "#222222",
+      "body_drawing": "#343434",
+      "gold_text": "#FED34C",
+      "gold_deep": "#EAAB00",
+      "gold_perforated_apparent": "#B8954A",
+      "text": "#FFFFFF",
+      "brand_palette": [
+        "#FED34C",
+        "#EAAB00",
+        "#FAE100",
+        "#000000"
+      ]
+    },
+    "dims_mm": {
+      "primary_site_id_large": [
+        2222,
+        5613
+      ],
+      "primary_site_id_medium": [
+        1778,
+        4800
+      ],
+      "primary_site_id_small": [
+        1421,
+        4100
+      ],
+      "secondary_site_id": [
+        1421,
+        2282
+      ],
+      "pedestrian_directional": [
+        684,
+        3170
+      ],
+      "main_directory_map": [
+        684,
+        3170
+      ],
+      "location_id": [
+        684,
+        3170
+      ],
+      "secondary_directional": [
+        320,
+        1814
+      ],
+      "path_marker": [
+        320,
+        1814
+      ],
+      "main_path_id": [
+        416,
+        2535
+      ],
+      "building_entrance_freestanding": [
+        589,
+        2438
+      ],
+      "building_entrance_wall": [
+        589,
+        1665
+      ],
+      "building_entrance_horizontal_over_door": [
+        1955,
+        397
+      ],
+      "building_entrance_east_campus_residence": [
+        684,
+        2438
+      ],
+      "vehicular_directional_approx": [
+        2300,
+        1800
+      ],
+      "visitor_parking_id_approx": [
+        600,
+        3100
+      ],
+      "depth_estimate": [
+        120,
+        200
+      ]
+    },
+    "placement": "Freestanding building entrance signs stand on the paving beside the main door, offset to one side; wall-mounted beside door; horizontal over door head. Main entrance: staggered trio (large/medium/small) of primary site ID pillars on landscaping at the NW corner of University Ave W & Ring Rd/Seagram Dr (~43.4690,-80.5395), facing University Ave.",
+    "letter_sign": {
+      "description": "Dimensional 'UNIVERSITY OF / WATERLOO' letters, dark charcoal on light grey concrete plinth; relocated 2020 to between Arts Quad and Grad House",
+      "colours": {
+        "letters": "#2A2A2A",
+        "plinth": "#C8C8C4"
+      },
+      "dims_estimate_m": {
+        "waterloo_letter_height": 1.0,
+        "length": 6.5
+      },
+      "confidence": "medium (dims low)",
+      "sources": [
+        "https://kitchener.citynews.ca/2020/08/20/iconic-uw-sign-moving-to-new-location-2651508/",
+        "https://uwaterloo.ca/wayfinding/questions-and-answers"
+      ]
+    },
+    "ion_station_sign": {
+      "description": "University of Waterloo ION station ID tower: rectangular box clad in checkerboard glass panels; top band black glass with brushed-silver 3D 'University of Waterloo' letters, ION logo left and GRT logo right in blue",
+      "location": {
+        "lat": 43.47312,
+        "lon": -80.54107
+      },
+      "colours": {
+        "checker": [
+          "#1E2A44",
+          "#3A5A8C",
+          "#5A5E66",
+          "#E6E8EA"
+        ],
+        "top_band": "#141414",
+        "letters": "#C8CACC",
+        "logo_blue": "#2A55B0"
+      },
+      "dims_estimate_m": {
+        "width": 2.5,
+        "height": 5.0
+      },
+      "confidence": "medium (dims low)",
+      "sources": [
+        "https://commons.wikimedia.org/wiki/File:University_of_Waterloo_Station_(46593200905).jpg",
+        "https://commons.wikimedia.org/wiki/File:University_of_Waterloo_Station_(33631992418).jpg"
+      ]
+    },
+    "confidence": "high for dimensions/system (official drawings); medium for installed colours",
+    "sources": [
+      "https://uwaterloo.ca/wayfinding/exterior-design-system",
+      "https://uwaterloo.ca/wayfinding/project-updates",
+      "https://uwaterloo.ca/daily-bulletin/2023-04-04",
+      "https://uwaterloo.ca/brand/how-express-our-brand/colour",
+      "https://www.google.com/maps/@?api=1&map_action=pano&pano=lMTiNYE60DVXQ9Y6Ek20Bg"
+    ]
+  },
+  "data_sources": [
+    {
+      "name": "UW campus map buildings (points: code, name)",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/BuildingsV3/FeatureServer/0",
+      "licence": "none stated (public ArcGIS item)",
+      "needs_key": false,
+      "works": true,
+      "adds": "273 building codes/names for labels and signs; no outlines or floor counts"
+    },
+    {
+      "name": "UW accessible entrances",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/v2_UWaterloo_Open_Data/FeatureServer/1",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "66 entrance points to place doors and entrance signs"
+    },
+    {
+      "name": "UW open data points (atms, firepits, libraries, meters, stops, photospheres...)",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/v2_UWaterloo_Open_Data/FeatureServer",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "props and POIs, 23 layers"
+    },
+    {
+      "name": "UW parking stalls 2025",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/2025MasterParking_Stalls/FeatureServer/0",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "7,231 individual stall polygons with StallType for line painting"
+    },
+    {
+      "name": "UW parking lots",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/SvcLotType_SnowRouteMapping/FeatureServer/2",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "95 lot outline polygons"
+    },
+    {
+      "name": "UW snow-route path polygons",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/SnowRemoval_SnowRouteMapping/FeatureServer/1",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "1,992 paved path/sidewalk surface polygons with route class"
+    },
+    {
+      "name": "UW bike racks",
+      "url": "https://services5.arcgis.com/z87D0RdgTttiUQbV/arcgis/rest/services/Bike_RackDatav2/FeatureServer/0",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "229 racks with type, capacity, shelter"
+    },
+    {
+      "name": "UW campus vector basemap",
+      "url": "https://tiles.arcgis.com/tiles/z87D0RdgTttiUQbV/arcgis/rest/services/campus_basemap/VectorTileServer/tile/{z}/{y}/{x}.pbf",
+      "licence": "none stated",
+      "needs_key": false,
+      "works": true,
+      "adds": "dev_BUILDINGS, dev_SIDEWALK, dev_DRIVE, dev_RINGROAD, dev_TUNNELS, dev_PARCELS outlines (gzipped MVT, z<=23)"
+    },
+    {
+      "name": "UW Open Data API v3",
+      "url": "https://openapi.data.uwaterloo.ca/v3/Locations",
+      "licence": "UW Open Data licence",
+      "needs_key": true,
+      "works": false,
+      "adds": "401 without X-API-KEY; free key via github.com/uWaterloo/OpenData"
+    },
+    {
+      "name": "City of Waterloo 10cm orthoimagery 2026 spring",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Imagery_Current/MapServer/export?layers=show:9",
+      "licence": "not stated on service; not listed on open-data portal; treat as reference only",
+      "needs_key": false,
+      "works": true,
+      "adds": "roof/paving colour sampling and roof equipment layout"
+    },
+    {
+      "name": "City of Waterloo sidewalks",
+      "url": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/Sidewalks/FeatureServer/0",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "108 segments near campus with surface/boulevard type"
+    },
+    {
+      "name": "City of Waterloo street tree inventory",
+      "url": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/Street_Tree_Inventory/FeatureServer/0",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "702 trees near campus with species and DBH"
+    },
+    {
+      "name": "City of Waterloo trails & walkability network",
+      "url": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/WalkabilityNetwork/FeatureServer/0",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "338 path segments"
+    },
+    {
+      "name": "City of Waterloo address points",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Operations/MapServer/5",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "5,019 civic addresses; contains owner-name fields, do not ingest those"
+    },
+    {
+      "name": "City of Waterloo property fabric",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Operations/MapServer/6",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "377 parcel polygons"
+    },
+    {
+      "name": "City of Waterloo contours",
+      "url": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/Contours/FeatureServer/0",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "475 contour lines for terrain checks"
+    },
+    {
+      "name": "City of Waterloo building outlines (hosted)",
+      "url": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/Buildings/FeatureServer/0",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "footprints with AREA_M only, no heights"
+    },
+    {
+      "name": "City of Waterloo bike lanes / bike parking / parks / public art / heritage",
+      "url": "https://gis.waterloo.ca/maps/rest/services/Public/Public_Operations/MapServer",
+      "licence": "City of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "layers 30, 29, 24, 13, 20; small counts near campus"
+    },
+    {
+      "name": "City of Waterloo street lights",
+      "url": null,
+      "licence": null,
+      "needs_key": null,
+      "works": false,
+      "adds": "no Waterloo street-light layer found; hub street-light/hydro-pole layers are City of Kitchener's"
+    },
+    {
+      "name": "Region of Waterloo ION stops",
+      "url": "https://utility.arcgis.com/usrsvcs/servers/f063d1fb147847f796ce8c024e117419/rest/services/OpenData/OpenData/MapServer/5",
+      "licence": "Region of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "station points (UW, Laurier-Waterloo Park)"
+    },
+    {
+      "name": "Region of Waterloo ION routes",
+      "url": "https://utility.arcgis.com/usrsvcs/servers/1aea43272d854f59a4d5d710fc8e2c17/rest/services/OpenData/OpenData/MapServer/6",
+      "licence": "Region of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "track centrelines"
+    },
+    {
+      "name": "Region of Waterloo GRT stops",
+      "url": "https://utility.arcgis.com/usrsvcs/servers/52c4134809a94f85b31a2e9553de1358/rest/services/OpenData/OpenData/MapServer/3",
+      "licence": "Region of Waterloo Open Data Licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "40 stops near campus for shelter props"
+    },
+    {
+      "name": "GRT GTFS static feed",
+      "url": "https://webapps.regionofwaterloo.ca/api/grt-routes/api/staticfeeds/1",
+      "licence": "GRT/Region open data licence",
+      "needs_key": false,
+      "works": true,
+      "adds": "stops, route shapes; old grt.ca/GTFS URL is 404"
+    },
+    {
+      "name": "OSM Overpass (building:part etc.)",
+      "url": "https://overpass-api.de/api/interpreter",
+      "licence": "ODbL",
+      "needs_key": false,
+      "works": true,
+      "adds": "campus bbox: 480 buildings, 220 building:part (204 with height/levels), 41 building:colour, 38 roof:colour, 31 roof:shape; requires User-Agent header"
+    },
+    {
+      "name": "Overture Maps buildings",
+      "url": "s3://overturemaps-us-west-2/release/2026-10-21.0/",
+      "licence": "ODbL / CDLA-Permissive",
+      "needs_key": false,
+      "works": true,
+      "adds": "conflated footprints, some heights"
+    },
+    {
+      "name": "Sketchfab search",
+      "url": "https://api.sketchfab.com/v3/search?type=models&q=university%20of%20waterloo",
+      "licence": "per model (CC BY-NC-SA, CC BY-SA seen)",
+      "needs_key": false,
+      "works": true,
+      "adds": "only 'Tower at uWaterloo' and 'Porcellino UW Modern Languages building'; download needs account; low value"
+    },
+    {
+      "name": "Google Photorealistic 3D Tiles",
+      "url": "https://tile.googleapis.com/v1/3dtiles/root.json",
+      "licence": "Google Maps Platform ToS (no extraction/caching)",
+      "needs_key": true,
+      "works": false,
+      "adds": "visual reference only; 403 without key"
+    },
+    {
+      "name": "Mapillary",
+      "url": "https://graph.mapillary.com/images",
+      "licence": "CC BY-SA 4.0",
+      "needs_key": true,
+      "works": false,
+      "adds": "needs OAuth token; web map shows dense coverage on University Ave, Columbia, Ring Rd, Phillip, King, ION corridor and some campus paths; newer than Google's 2014 campus Street View"
+    },
+    {
+      "name": "SketchUp 3D Warehouse",
+      "url": "https://3dwarehouse.sketchup.com/",
+      "licence": "3D Warehouse terms",
+      "needs_key": null,
+      "works": null,
+      "adds": "not tested"
+    }
+  ]
+}

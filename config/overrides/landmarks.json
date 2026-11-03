@@ -1,0 +1,7 @@
+{
+  "note": "Authored landmark details keyed by City BLDG_ABBREV (doc 02 option E). Each decal is placed where a ray from a reference photo's camera along its heading first meets that building's wall; nothing moves the footprint or heights.",
+  "decals": [
+    { "abbrev": "MC", "kind": "pink_tie", "ray_from": { "lon": -80.544484, "lat": 43.471731 }, "heading_true_deg": 51.5,
+      "bottom_m": 6.0, "top_m": 22.0, "source": "V04 UW-MathFaculty-PinkTie.jpg (Wikimedia Commons, CC BY-SA 3.0)" }
+  ]
+}
