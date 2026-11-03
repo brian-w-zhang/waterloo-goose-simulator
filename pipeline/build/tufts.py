@@ -11,10 +11,13 @@ EDGE_STEP_M = 0.8
 EDGE_INSET_M = 0.35
 SCATTER_PER_M2 = 1 / 8
 FLOWER_SHARE = 0.06
+SHRUB_STEP_M = 3.2         # foundation planting along walls that face lawn (procedural decoration)
+SHRUB_OFFSET_M = 1.4
+SHRUB_KEEP = 0.8
 
 
 def chunk_tufts(cbox, gcls, footprints, rng):
-    """[(e, n, kind)] with kind 0 tuft, 1 yellow flower, 2 pink flower."""
+    """[(e, n, kind)] with kind 0 tuft, 1 white flower, 2 pink flower, 3 shrub, 4 flowering shrub."""
     hard = [gcls[k].intersection(cbox) for k in gcls if k != "wood"]
     hard += [f for f in footprints if f.intersects(cbox)]
     lawn = cbox.difference(union_all([g for g in hard if not g.is_empty])) if hard else cbox
@@ -38,7 +41,21 @@ def chunk_tufts(cbox, gcls, footprints, rng):
     kind = np.zeros(len(allp))
     fl = rng.random(len(allp)) < FLOWER_SHARE
     kind[fl] = 1 + (rng.random(fl.sum()) < 0.4)
-    return np.c_[allp, kind]
+    out = np.c_[allp, kind]
+    shrubs = []
+    for f in footprints:
+        if not f.intersects(cbox) or f.area < 150:
+            continue
+        ring = f.exterior.buffer(SHRUB_OFFSET_M).exterior
+        d = np.arange(rng.uniform(0, SHRUB_STEP_M), ring.length, SHRUB_STEP_M)
+        if not len(d):
+            continue
+        p = shapely.line_interpolate_point(ring, d)
+        xy = np.c_[shapely.get_x(p), shapely.get_y(p)]
+        keep = (rng.random(len(xy)) < SHRUB_KEEP) & shapely.contains_xy(lawn, xy[:, 0], xy[:, 1])
+        xy = xy[keep]
+        shrubs.append(np.c_[xy, 3 + (rng.random(len(xy)) < 0.3)])
+    return np.vstack([out] + shrubs) if shrubs else out
 
 
 def build(gcls, bl, chunk_frame):

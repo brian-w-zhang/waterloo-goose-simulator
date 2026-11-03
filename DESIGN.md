@@ -54,3 +54,7 @@ Every task has at least two ways to complete it; the first path of each is check
 | Make Riley drop the laundry basket | Close honk at Riley | Get Riley to chase you, then honk once Riley is close |
 | Run off with a stray sock | Grab any stray sock while Riley is busy | Make Riley drop the basket first, then take one of the spilled socks |
 | Steal the team frisbee and drop it far away | Honk Jordan (scaredy) away, grab and run | Grab it during the routine while Jordan walks the far end |
+
+## Procedural decoration (not map data)
+
+Grass tufts, flowers and foundation shrubs along walls that face lawn are seeded decoration placed by the pipeline from the real lawn and footprint geometry (`pipeline/build/tufts.py`, seed in `config/campus.json`). They are not surveyed features and no geometry gate depends on them; they exist for the dense, hand-made look of the reference style.

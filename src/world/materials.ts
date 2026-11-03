@@ -15,7 +15,7 @@ export interface Materials {
   vertexColor: THREE.Material;
   facade: (style: string) => THREE.Material;
   geo: { blob: THREE.BufferGeometry; cone: THREE.BufferGeometry; trunk: THREE.BufferGeometry;
-    tufts: [THREE.BufferGeometry, THREE.BufferGeometry, THREE.BufferGeometry] };
+    tufts: THREE.BufferGeometry[] };
   props: Record<string, THREE.BufferGeometry>;
   door: THREE.BufferGeometry;
 }
@@ -107,7 +107,7 @@ function treeGeometries() {
 }
 
 /** Grass tuft (four leaning blades) and two flower clusters, about 0.3 m tall, vertex-coloured. */
-function tuftGeometries(): [THREE.BufferGeometry, THREE.BufferGeometry, THREE.BufferGeometry] {
+function tuftGeometries(): THREE.BufferGeometry[] {
   const blades = (color: string, tip: string) => {
     const pos: number[] = [], col: number[] = [], nrm: number[] = [];
     const base = swatch(color), top = swatch(tip);
@@ -135,7 +135,19 @@ function tuftGeometries(): [THREE.BufferGeometry, THREE.BufferGeometry, THREE.Bu
     disc(0.06, petal, 0.02, 0.3, 0.01), disc(0.025, "flower_yellow", 0.02, 0.305, 0.01),
     disc(0.05, petal, -0.06, 0.24, 0.05),
   ].map((g) => (g.index ? g.toNonIndexed() : g)));
-  return [blades("grass_shadow", "grass"), flower("stucco_white"), flower("flower_pink")];
+  // foundation shrubs: three low clumped spheres, a plain and a flowering variant
+  const clump = (r: number, x: number, z: number, h: number) => {
+    const g = new THREE.SphereGeometry(r, 8, 6).toNonIndexed();
+    g.scale(1, 0.75, 1);
+    g.deleteAttribute("uv");
+    return part(g, "hedge", x, h, z);
+  };
+  const shrubBase = [clump(0.6, 0, 0, 0.45), clump(0.45, 0.5, 0.2, 0.35), clump(0.42, -0.45, -0.15, 0.33)];
+  const dots = [[0.2, 0.9, 0.3], [-0.3, 0.75, 0.25], [0.55, 0.62, -0.1], [-0.1, 0.85, -0.35], [0.0, 0.95, 0.0]]
+    .map(([x, y, z]) => part(new THREE.SphereGeometry(0.08, 6, 4).toNonIndexed(), "flower_pink", x, y, z));
+  dots.forEach((d) => d.deleteAttribute("uv"));
+  return [blades("grass_shadow", "grass"), flower("stucco_white"), flower("flower_pink"),
+    mergeGeometries(shrubBase), mergeGeometries([...shrubBase.map((g) => g.clone()), ...dots])];
 }
 
 export function makeMaterials(): Materials {

@@ -450,7 +450,8 @@ function tuftMeshes(c: Chunk, h: Float32Array, mats: Materials): THREE.Object3D[
       im.setMatrixAt(t, m);
     });
     im.receiveShadow = true;
-    im.name = k === 0 ? "tufts" : "flowers";
+    if (k >= 3) im.castShadow = true;
+    im.name = k === 0 ? "tufts" : k < 3 ? "flowers" : "shrubs";
     out.push(im);
   });
   return out;
