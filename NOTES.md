@@ -100,3 +100,8 @@ and one of the two is the scored viewpoint photo (V05 "University_of_Waterloo_Ma
 features. The cameras were not moved, and the features apply to every building with the style.
 The bus canopies come from OSM building=roof ways, not from the V19 photo. Future research rows
 should cite photos outside the 20 viewpoints where possible.
+
+## 2026-11-03 07:00 Ledger SHAs
+Fast verifies ran before each commit, so their ledger lines name the parent commit while the run
+tested the working tree on top of it. From 07:00 on, verify.py appends "+dirty" to the SHA when
+tracked files have uncommitted changes. Earlier lines are left as written (never edit old lines).

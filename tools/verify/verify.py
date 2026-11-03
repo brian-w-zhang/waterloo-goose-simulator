@@ -63,6 +63,9 @@ def main():
     agent can score looks.json against those exact renders; full RUN_DIR then finishes that run."""
     kind = sys.argv[1] if len(sys.argv) > 1 else "fast"
     sha = sh("git", "rev-parse", "--short", "HEAD").stdout.strip()
+    # uncommitted source changes: the run tested HEAD plus a working-tree diff, so say so
+    if sh("git", "status", "--porcelain", "--untracked-files=no").stdout.strip():
+        sha += "+dirty"
     stamp = datetime.now(ZoneInfo("America/Toronto")).strftime("%Y%m%d-%H%M")
     reuse = Path(sys.argv[2]) if len(sys.argv) > 2 else None
     run = reuse or RESULTS / f"{stamp}-{sha}{'-webgl' if os.environ.get('WGS_WEBGL') == '1' else ''}"
