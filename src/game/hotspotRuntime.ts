@@ -72,8 +72,11 @@ export class HotspotRuntime {
   /** NPC eye to goose: blocked if a building or the terrain is hit before reaching the goose. */
   lineOfSight(a: V2, b: V2): boolean {
     const R = this.physics.R;
-    const o = new THREE.Vector3(a.x, this.ground(a.x, a.z) + EYE_M, a.z);
-    const t = new THREE.Vector3(b.x, this.ground(b.x, b.z) + 0.5, b.z);
+    const ga = this.heightAt(a.x, a.z), gb = this.heightAt(b.x, b.z);
+    // no loaded ground (and so no colliders) at either end: nobody sees through a missing chunk
+    if (!Number.isFinite(ga) || !Number.isFinite(gb)) return false;
+    const o = new THREE.Vector3(a.x, ga + EYE_M, a.z);
+    const t = new THREE.Vector3(b.x, gb + 0.5, b.z);
     const d = t.clone().sub(o);
     const L = d.length();
     if (L < 0.5) return true;
@@ -136,7 +139,8 @@ export class HotspotRuntime {
           labels: { routine: "Gives up and goes back to what they were doing", search_again: "Goes back to look for the missing thing",
             shoo: "Turns on the goose, waving and shouting to drive it away" },
           situation: `${n.name}, a ${ARCHETYPE_WORDS[n.archetype]} person on the University of Waterloo campus, just gave up chasing a Canada goose that ran off with ${what}.` })
-          .then((a) => { if (a && this.sim.applyDecision(n.id, a.choice, item)) this.decisions!.stats.applied++; });
+          .then((a) => { if (a && this.sim.applyDecision(n.id, a.choice, item)) this.decisions!.stats.applied++; })
+          .catch((e) => console.error("[jev] applying a decision failed", e));
       }
       for (const t of this.tasks) {
         if (!t.done && this.unlocked(t) && t.test(e, this.sim)) {
@@ -172,7 +176,9 @@ export class HotspotRuntime {
       let d = this.drag.get(it.id);
       const [hx, hy, hz] = DRAG_BOX[it.id.split("_")[0]] ?? [0.25, 0.25, 0.25];
       if (!d) {
-        const y = this.ground(it.pos.x, it.pos.z) + hy + 0.02;
+        const g = this.heightAt(it.pos.x, it.pos.z);
+        if (!Number.isFinite(g)) return;   // no collider under it yet: drag it once the chunk is in
+        const y = g + hy + 0.02;
         const body = w.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(it.pos.x, y, it.pos.z)
           .setLinearDamping(1.2).setAngularDamping(1.5).setCanSleep(true));
         w.createCollider(R.ColliderDesc.cuboid(hx, hy, hz).setDensity(25).setFriction(0.8).setCollisionGroups(GROUP_ITEM), body);
@@ -279,6 +285,8 @@ export class HotspotRuntime {
       const r = this.people.get(n.id)!;
       const prev = this.lastPos.get(n.id) ?? n.pos;
       const speed = Math.hypot(n.pos.x - prev.x, n.pos.z - prev.z) / (1 / 60);
+      // where the chunk is not loaded there is no ground to stand on: hide the person rather than sink them to y = 0
+      r.root.visible = Number.isFinite(this.heightAt(n.pos.x, n.pos.z));
       r.root.position.set(n.pos.x, this.ground(n.pos.x, n.pos.z), n.pos.z);
       // sim facing is counter-clockwise from +x toward +z; people face +z locally
       r.root.rotation.y = Math.PI / 2 - n.facing;
@@ -327,6 +335,7 @@ export class HotspotRuntime {
         const v = this.itemVel.get(it.id);
         if (v && ROUND.has(it.id.split("_")[0])) m.rotation.x += Math.hypot(v.x, v.z) * dt / 0.05;   // rolling
         else m.rotation.set(0, m.rotation.y, 0);
+        m.visible = Number.isFinite(this.heightAt(it.pos.x, it.pos.z));
         const y = this.ground(it.pos.x, it.pos.z);
         const bob = this.isWater(it.pos.x, it.pos.z) ? Math.sin(t * 2 + it.pos.x) * 0.03 : 0;
         m.position.set(it.pos.x, y + bob, it.pos.z);

@@ -32,15 +32,30 @@ export interface Chunk { header: ChunkHeader; arrays: Record<string, Typed> }
 
 const CTOR = { f4: Float32Array, u1: Uint8Array, u2: Uint16Array, u4: Uint32Array, i1: Int8Array, i4: Int32Array };
 
-export function decodeChunk(buf: ArrayBuffer): Chunk {
+/** Decode a WGC1 chunk; throws a message naming the chunk and the array when the file is malformed. */
+export function decodeChunk(buf: ArrayBuffer, name = "chunk"): Chunk {
   const magic = new TextDecoder().decode(new Uint8Array(buf, 0, 4));
-  if (magic !== "WGC1") throw new Error(`bad chunk magic ${magic}`);
+  if (magic !== "WGC1") throw new Error(`${name}: bad magic ${JSON.stringify(magic)}`);
   const headerLen = new DataView(buf).getUint32(4, true);
+  if (8 + headerLen > buf.byteLength) throw new Error(`${name}: header runs past the end of the file`);
   const header = JSON.parse(new TextDecoder().decode(new Uint8Array(buf, 8, headerLen))) as ChunkHeader;
   const base = 8 + headerLen;
   const arrays: Record<string, Typed> = {};
-  for (const [name, e] of Object.entries(header.arrays)) {
-    arrays[name] = new CTOR[e.dtype](buf, base + e.offset, e.count);
+  for (const [key, e] of Object.entries(header.arrays)) {
+    const C = CTOR[e.dtype];
+    if (!C) throw new Error(`${name}: array ${key} has unknown dtype ${e.dtype}`);
+    const start = base + e.offset;
+    if (start % C.BYTES_PER_ELEMENT) throw new Error(`${name}: array ${key} is misaligned`);
+    if (start + e.count * C.BYTES_PER_ELEMENT > buf.byteLength) throw new Error(`${name}: array ${key} runs past the end of the file`);
+    arrays[key] = new C(buf, start, e.count);
+  }
+  // streamed chunks carry a terrain grid (the far-LOD file has its own layout and none)
+  if (!header.chunk) return { header, arrays };
+  const t = header.terrain, th = arrays.terrain_h;
+  if (!th || !t) throw new Error(`${name}: no terrain grid`);
+  // heightAt derives the grid from the array length: it must be n x n with cell = size / (n - 1)
+  if (th.length !== t.n * t.n || Math.abs(t.cell - header.chunk.size / (t.n - 1)) > 1e-6) {
+    throw new Error(`${name}: terrain grid ${th.length} values, n ${t.n}, cell ${t.cell} do not match a ${header.chunk.size} m chunk`);
   }
   return { header, arrays };
 }

@@ -4,6 +4,7 @@ import { Goose, type GooseInput } from "@/goose/goose";
 import { type Network, WalkGraph } from "@/nav/graph";
 import { bakeNavMesh, type NavBake, planner as navPlanner } from "@/nav/navmesh";
 import { HOTSPOTS } from "./hotspot";
+import type { V2 } from "@/sim/sim";
 import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
 import { AmbientCrowd } from "./ambient";
@@ -17,7 +18,7 @@ import { createScene } from "@/render/scene";
 import { swatch } from "@/config";
 import { FarWorld } from "@/world/far";
 import { makeMaterials } from "@/world/materials";
-import { WorldStream } from "@/world/stream";
+import { fetchJson, WorldStream } from "@/world/stream";
 
 const D2R = THREE.MathUtils.degToRad;
 const CAM = campus.camera;
@@ -42,7 +43,8 @@ export interface GameHandle {
   follow(): Follow;
   load(x: number, z: number, radius?: number): Promise<void>;
   render(): void;
-  info(): { backend: string; calls: number; triangles: number; loaded: string[]; loads: number; evictions: number };
+  info(): { backend: string; calls: number; triangles: number; loaded: string[]; loads: number; evictions: number;
+    failedChunks: Record<string, string>; frameErrors: number };
   heightAt(x: number, z: number): number;
   /** Triangles per mesh name across the loaded world (instances counted). */
   census(): Record<string, number>;
@@ -107,13 +109,14 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   await stream.init();
   await far.load();
   scene.add(stream.root, far.root);
-  const net: Network = await (await fetch("/world/network.json")).json();
+  const net = await fetchJson<Network>("/world/network.json");
   const graph = new WalkGraph(net);
 
   const goose = new Goose(makeGooseMaterial());
   scene.add(goose.rig.root);
 
   const camera = new THREE.PerspectiveCamera(CAM.play_vfov_deg, 1, 0.3, 4000);
+  let frameErrors = 0;   // exceptions caught by the frame loop (see frame())
   const follow: Follow = {
     // default spawn: the open green between MC and DC (23 m from the nearest wall or path)
     x: Number(params.get("x") ?? 940), z: Number(params.get("z") ?? -382),
@@ -311,6 +314,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     info: () => ({
       backend: rig.backend, calls: renderer.info.render.drawCalls, triangles: renderer.info.render.triangles,
       loaded: stream.loadedKeys(), loads: stream.loadsTotal, evictions: stream.evictionsTotal,
+      failedChunks: Object.fromEntries([...stream.failed].map(([k, f]) => [k, f.error])), frameErrors,
     }),
     heightAt: (x, z) => stream.heightAt(x, z),
     census: () => {
@@ -435,28 +439,48 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   scene.add(hotspot.root);
   if (params.get("jev") === "1") hotspot.decisions = new DecisionClient();
   // navmeshes per hotspot, baked when the goose first comes near (the chunks there are then loaded)
-  const bakes = new Map<string, { bake: NavBake; at: { x: number; z: number } }>();
+  const bakes = new Map<string, { bake: NavBake; at: { x: number; z: number }; plan: (a: V2, b: V2) => V2[] }>();
   const NAV_R = 70;
+  const bakeFails = new Map<string, number>();
+  // every chunk under the hotspot's square must be loaded, or the bake would miss walls and ground
+  const covered = (x: number, z: number) => {
+    const [i0, j1] = stream.chunkOf(x - NAV_R, z - NAV_R), [i1, j0] = stream.chunkOf(x + NAV_R, z + NAV_R);
+    for (let i = i0; i <= i1; i++) for (let j = j0; j <= j1; j++) if (!stream.isLoaded(i, j)) return false;
+    return true;
+  };
   const maybeBake = async () => {
     for (const h of HOTSPOTS) {
-      if (bakes.has(h.id) || Math.hypot(h.anchor.x - goose.position.x, h.anchor.z - goose.position.z) > 120) continue;
+      if (bakes.has(h.id) || (bakeFails.get(h.id) ?? 0) >= 3) continue;
+      if (Math.hypot(h.anchor.x - goose.position.x, h.anchor.z - goose.position.z) > 120 || !covered(h.anchor.x, h.anchor.z)) continue;
       bakes.set(h.id, null as never);
-      const g = stream.geometryNear(h.anchor.x, h.anchor.z, NAV_R);
-      const bake = await bakeNavMesh(g.positions, g.indices);
-      if (bake) { bakes.set(h.id, { bake, at: h.anchor }); console.log(`[wgs] navmesh ${h.id} ${bake.ms.toFixed(0)} ms, ${bake.triangles} tris`); }
-      else bakes.delete(h.id);
+      let bake: NavBake | null = null, why = "the Recast bake returned no navmesh";
+      try {
+        const g = stream.geometryNear(h.anchor.x, h.anchor.z, NAV_R);
+        bake = await bakeNavMesh(g.positions, g.indices);
+      } catch (e) { why = (e as Error).message; }
+      if (bake) { bakes.set(h.id, { bake, at: h.anchor, plan: navPlanner(bake, (x, z) => stream.heightAt(x, z)) }); console.log(`[wgs] navmesh ${h.id} ${bake.ms.toFixed(0)} ms, ${bake.triangles} tris`); }
+      else {
+        bakes.delete(h.id);
+        const n = (bakeFails.get(h.id) ?? 0) + 1;
+        bakeFails.set(h.id, n);
+        console.warn(`[wgs] navmesh ${h.id} failed (${why}), attempt ${n} of 3; characters there walk straight lines`);
+      }
     }
   };
   hotspot.sim.planner = (a, b) => {
     for (const v of bakes.values()) {
       if (v && Math.abs(a.x - v.at.x) < NAV_R - 2 && Math.abs(a.z - v.at.z) < NAV_R - 2) {
-        return navPlanner(v.bake, (x, z) => stream.heightAt(x, z))(a, b);
+        return v.plan(a, b);
       }
     }
     return [b];
   };
   void maybeBake();
-  setInterval(() => void maybeBake(), 3000);
+  // every 3 s: bake navmeshes that became possible, and retry chunks that failed to load
+  const poll = setInterval(() => {
+    void maybeBake();
+    if (stream.failed.size) void stream.update(goose.position.x, goose.position.z);
+  }, 3000);
   handle.ready = true;
   const crowd = new AmbientCrowd(graph, (x, z) => stream.heightAt(x, z), mats.vertexColor, AMBIENT_COUNT, HOTSPOT_SEED + 1);
   scene.add(crowd.root);
@@ -532,6 +556,15 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   let acc = 0;
   const frame = () => {
     if (!running) return;
+    // the next frame is queued first: one exception must not freeze the game for good
+    requestAnimationFrame(frame);
+    try {
+      tick();
+    } catch (e) {
+      if (frameErrors++ % 300 === 0) console.error(`[wgs] frame failed (${frameErrors} so far)`, e);
+    }
+  };
+  const tick = () => {
     const now = performance.now();
     acc += Math.min((now - last) / 1000, 0.1);
     last = now;
@@ -575,12 +608,12 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       drawSpeech();
       renderer.render(scene, camera);
     }
-    requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
 
   return () => {
     running = false;
+    clearInterval(poll);
     window.removeEventListener("resize", resize);
     window.removeEventListener("keydown", onKey);
     window.removeEventListener("keyup", onKey);

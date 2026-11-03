@@ -32,10 +32,15 @@ export async function bakeNavMesh(positions: Float32Array, indices: Uint32Array)
 
 /** A planner for the simulation: ground path from a to b on the navmesh, or a straight line. */
 export function planner(bake: NavBake, heightAt: (x: number, z: number) => number) {
+  let warned = false;
   return (a: V2, b: V2): V2[] => {
     const ya = heightAt(a.x, a.z), yb = heightAt(b.x, b.z);
-    const res = bake.query.computePath({ x: a.x, y: Number.isFinite(ya) ? ya : 0, z: a.z },
-      { x: b.x, y: Number.isFinite(yb) ? yb : 0, z: b.z }, { halfExtents: { x: 3, y: 4, z: 3 } });
+    if (!Number.isFinite(ya) || !Number.isFinite(yb)) {
+      // querying at a made-up height finds no polygon; say so once and walk straight
+      if (!warned) { warned = true; console.warn("[nav] no ground height under a path end; walking a straight line"); }
+      return [b];
+    }
+    const res = bake.query.computePath({ x: a.x, y: ya, z: a.z }, { x: b.x, y: yb, z: b.z }, { halfExtents: { x: 3, y: 4, z: 3 } });
     if (!res.success || res.path.length < 2) return [b];
     return res.path.slice(1).map((p) => ({ x: p.x, z: p.z }));
   };

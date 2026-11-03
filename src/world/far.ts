@@ -22,7 +22,7 @@ export class FarWorld {
   }
 
   async load() {
-    const c = decodeChunk(await fetchChunk("/world/far.wgc"));
+    const c = decodeChunk(await fetchChunk("/world/far.wgc"), "far.wgc");
     const h = c.header as unknown as { n: number; size: number; classes: string[];
       chunks: { i: number; j: number; e0: number; n1: number; buildings: [number, number, number, string][] }[] };
     const fh = c.arrays.far_h as Float32Array, fc = c.arrays.far_cls as Uint8Array;

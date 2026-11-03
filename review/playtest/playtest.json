@@ -4,6 +4,7 @@
   "Honk someone into dropping what they carry",
   "Get chased across the green",
   "Make someone give up and scratch their head",
+  "Carry the thesis laptop 15 m away",
   "Pinch the busker's tip hat",
   "Get shooed off the plaza",
   "Make Riley drop the laundry basket",
@@ -12,12 +13,12 @@
  "steps": [
   {
    "what": "walk to the professor",
-   "ms": 7389,
+   "ms": 7375,
    "goose": {
-    "x": 929.2778000198305,
-    "y": 13.094892203635537,
-    "z": -382.4319983739406,
-    "yaw": -2.530436466581401,
+    "x": 929.286255158484,
+    "y": 13.0928310970217,
+    "z": -382.3485870119184,
+    "yaw": -2.452009430024224,
     "speed": 1.5999999999999992,
     "grounded": true
    },
@@ -28,11 +29,11 @@
    "what": "honk at the professor",
    "ms": 902,
    "goose": {
-    "x": 929.0721340088639,
-    "y": 13.072756160809659,
-    "z": -382.53381211700616,
-    "yaw": -2.530436466581401,
-    "speed": 0.00048566262092618654,
+    "x": 929.0680599077605,
+    "y": 13.068752028661548,
+    "z": -382.4419875345775,
+    "yaw": -2.452009430024224,
+    "speed": 0.00041801369168266797,
     "grounded": true
    },
    "music": "calm",
@@ -42,13 +43,13 @@
   },
   {
    "what": "grab the dropped coffee",
-   "ms": 682,
+   "ms": 749,
    "goose": {
-    "x": 928.8646059521707,
-    "y": 13.074417133512325,
-    "z": -383.03121393267065,
-    "yaw": -2.8764796642629324,
-    "speed": 0.10018306983276322,
+    "x": 928.8324760171818,
+    "y": 13.07033033773274,
+    "z": -383.0114493656438,
+    "yaw": -2.877583277660634,
+    "speed": 0.10235213853006779,
     "grounded": true
    },
    "music": "calm",
@@ -59,12 +60,12 @@
   },
   {
    "what": "run away with it",
-   "ms": 11761,
+   "ms": 11768,
    "goose": {
-    "x": 967.7948496469762,
-    "y": 13.649735439454671,
-    "z": -407.0574411062553,
-    "yaw": -4.2504917846928585,
+    "x": 967.7272864911938,
+    "y": 13.65008419601014,
+    "z": -407.0161275321152,
+    "yaw": -4.10145298741205,
     "speed": 0.04665778546061759,
     "grounded": true
    },
@@ -78,12 +79,12 @@
   },
   {
    "what": "drop it and wander",
-   "ms": 3003,
+   "ms": 3002,
    "goose": {
-    "x": 967.8228400853841,
-    "y": 13.64933228134265,
-    "z": -407.0371054797288,
-    "yaw": -4.2504917846928585,
+    "x": 967.7548469299218,
+    "y": 13.64962835213606,
+    "z": -406.9966091176757,
+    "yaw": -4.10145298741205,
     "speed": 8.769465228912908e-14,
     "grounded": true
    },
@@ -97,16 +98,16 @@
   },
   {
    "what": "teleport to the plaza",
-   "ms": 852,
+   "ms": 858,
    "goose": {
     "x": 720.9999982517367,
     "y": 11.058353237380798,
     "z": -278.4999978750702,
-    "yaw": -4.2504917846928585,
-    "speed": 4.174652436888923e-17,
+    "yaw": -4.10145298741205,
+    "speed": 3.593156651232601e-17,
     "grounded": true
    },
-   "music": "calm",
+   "music": "silent",
    "done": [
     "Steal the professor's coffee",
     "Honk someone into dropping what they carry",
@@ -116,16 +117,16 @@
   },
   {
    "what": "pinch the busker's tip hat",
-   "ms": 9179,
+   "ms": 9131,
    "goose": {
-    "x": 714.7813182421164,
-    "y": 10.997841611012118,
-    "z": -272.19250294354674,
-    "yaw": -7.235325694912565,
-    "speed": 0.00000575802811079574,
+    "x": 714.9455638532886,
+    "y": 10.98768881667871,
+    "z": -272.29110526020077,
+    "yaw": -7.445969641811462,
+    "speed": 0.0000049559807109348976,
     "grounded": true
    },
-   "music": "silent",
+   "music": "calm",
    "done": [
     "Steal the professor's coffee",
     "Honk someone into dropping what they carry",
@@ -136,13 +137,13 @@
   },
   {
    "what": "carry the thesis laptop away",
-   "ms": 25006,
+   "ms": 24807,
    "goose": {
-    "x": 741.4562377219604,
-    "y": 13.035416299683275,
-    "z": -282.3805851323692,
-    "yaw": -11.756183216153229,
-    "speed": 0.000005758027596706424,
+    "x": 741.2723997941822,
+    "y": 13.034672383112193,
+    "z": -282.54229774625003,
+    "yaw": -12.016093798088102,
+    "speed": 0.000005758027382581057,
     "grounded": true
    },
    "music": "calm",
@@ -151,19 +152,20 @@
     "Honk someone into dropping what they carry",
     "Get chased across the green",
     "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
     "Pinch the busker's tip hat",
     "Get shooed off the plaza"
    ]
   },
   {
    "what": "teleport to Village 1",
-   "ms": 952,
+   "ms": 881,
    "goose": {
-    "x": 453.0335740657756,
-    "y": 17.836009159642856,
-    "z": -231.9441695160931,
-    "yaw": -11.756183216153229,
-    "speed": 3.1846750666182184e-9,
+    "x": 453.0312853920623,
+    "y": 17.836516504265603,
+    "z": -231.94865537039004,
+    "yaw": -12.016093798088102,
+    "speed": 6.74195691822171e-9,
     "grounded": true
    },
    "music": "calm",
@@ -172,19 +174,20 @@
     "Honk someone into dropping what they carry",
     "Get chased across the green",
     "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
     "Pinch the busker's tip hat",
     "Get shooed off the plaza"
    ]
   },
   {
    "what": "honk Riley into dropping the laundry basket",
-   "ms": 4783,
+   "ms": 4851,
    "goose": {
-    "x": 448.8623619954765,
-    "y": 17.71504903636611,
-    "z": -228.0326144707633,
+    "x": 448.7853955518367,
+    "y": 17.709826623441188,
+    "z": -227.91831021913003,
     "yaw": -13.875367552898046,
-    "speed": 0.0004180136916819332,
+    "speed": 0.00048566262092571036,
     "grounded": true
    },
    "music": "calm",
@@ -193,6 +196,7 @@
     "Honk someone into dropping what they carry",
     "Get chased across the green",
     "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
     "Pinch the busker's tip hat",
     "Get shooed off the plaza",
     "Make Riley drop the laundry basket"
@@ -200,13 +204,13 @@
   },
   {
    "what": "run off with a stray sock",
-   "ms": 5369,
+   "ms": 5433,
    "goose": {
-    "x": 459.89767375960946,
-    "y": 17.9380571937823,
-    "z": -237.75259103497956,
-    "yaw": -16.618518854071404,
-    "speed": 0.0005183211680699192,
+    "x": 459.9680467764847,
+    "y": 17.931846974157963,
+    "z": -237.73214484972414,
+    "yaw": -16.54935726912454,
+    "speed": 0.0005183211680726073,
     "grounded": true
    },
    "music": "calm",
@@ -215,6 +219,7 @@
     "Honk someone into dropping what they carry",
     "Get chased across the green",
     "Make someone give up and scratch their head",
+    "Carry the thesis laptop 15 m away",
     "Pinch the busker's tip hat",
     "Get shooed off the plaza",
     "Make Riley drop the laundry basket",
@@ -223,5 +228,5 @@
   }
  ],
  "errors": [],
- "video": "playtest-2026-11-03T12-40-10.webm"
+ "video": "playtest-2026-11-03T12-48-40.webm"
 }

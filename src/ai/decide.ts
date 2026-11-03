@@ -24,7 +24,14 @@ export function situationKey(r: DecisionRequest) {
 export class DecisionClient {
   private cache = new Map<string, DecisionAnswer>();
   private inFlight = 0;
-  stats = { requests: 0, cacheHits: 0, late: 0, applied: 0 };
+  stats = { requests: 0, cacheHits: 0, late: 0, errors: 0, rejected: 0, applied: 0 };
+  private warned = new Set<string>();
+
+  private warnOnce(what: string, detail?: unknown) {
+    if (this.warned.has(what)) return;
+    this.warned.add(what);
+    console.warn(`[jev] ${what}; the deterministic choice stands`, detail ?? "");
+  }
 
   constructor(private endpoint = "/api/decide", private fetchFn: typeof fetch = (...a) => fetch(...a)) {}
 
@@ -41,13 +48,15 @@ export class DecisionClient {
     try {
       const res = await this.fetchFn(this.endpoint, { method: "POST", body: JSON.stringify(r), signal: ctl.signal,
         headers: { "content-type": "application/json" } });
-      if (!res.ok) return null;
-      const a = (await res.json()) as DecisionAnswer;
-      if (!r.options.includes(a.choice) || a.confidence < MIN_CONFIDENCE) return null;
+      if (!res.ok) { this.stats.errors++; this.warnOnce(`decide returned HTTP ${res.status}`); return null; }
+      const a = (await res.json()) as DecisionAnswer | null;
+      // NaN confidence fails ">=", so a malformed answer is rejected, not accepted
+      if (!a || !r.options.includes(a.choice) || !(a.confidence >= MIN_CONFIDENCE)) { this.stats.rejected++; return null; }
       this.cache.set(key, a);
       return a;
-    } catch {
-      this.stats.late++;
+    } catch (e) {
+      if ((e as Error).name === "AbortError") this.stats.late++;
+      else { this.stats.errors++; this.warnOnce("decide call failed", e); }
       return null;
     } finally {
       clearTimeout(timer);

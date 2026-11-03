@@ -1,10 +1,19 @@
 /** Synthesised Canada goose honk (Web Audio, no recordings): a nasal two-oscillator glide through a formant filter. */
 let ctx: AudioContext | null = null;
 
+let unavailable = false;
+
+/** The shared AudioContext, or null where audio is unavailable (logged once; the game plays on silently). */
 function audio(): AudioContext | null {
-  if (typeof window === "undefined") return null;
-  ctx ??= new AudioContext();
-  if (ctx.state === "suspended") void ctx.resume();
+  if (typeof window === "undefined" || unavailable) return null;
+  try {
+    ctx ??= new AudioContext();
+  } catch (e) {
+    unavailable = true;
+    console.warn("[audio] unavailable, playing silently", e);
+    return null;
+  }
+  if (ctx.state === "suspended") ctx.resume().catch(() => { /* needs a user gesture; the next sound retries */ });
   return ctx;
 }
 

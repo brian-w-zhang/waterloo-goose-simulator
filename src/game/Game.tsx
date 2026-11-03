@@ -22,6 +22,7 @@ const panel: React.CSSProperties = {
 export default function Game() {
   const ref = useRef<HTMLCanvasElement>(null);
   const [hud, setHud] = useState<HudState | null>(null);
+  const [fatal, setFatal] = useState<string | null>(null);
   const [credits, setCredits] = useState(false);
   const [title, setTitle] = useState(true);
   const isStyle = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("scene") === "style";
@@ -40,9 +41,10 @@ export default function Game() {
     let stop: (() => void) | undefined;
     let cancelled = false;
     if (isStyle) {
-      void startStyleScene(ref.current!);
+      startStyleScene(ref.current!).catch((e: Error) => { console.error("[wgs] style scene failed", e); setFatal(e.message); });
     } else {
-      startGame(ref.current!, setHud).then((s) => { if (cancelled) s(); else stop = s; });
+      startGame(ref.current!, setHud).then((s) => { if (cancelled) s(); else stop = s; },
+        (e: Error) => { console.error("[wgs] the game failed to start", e); setFatal(e.message); });
     }
     return () => { cancelled = true; stop?.(); };
   }, [isStyle]);
@@ -50,6 +52,13 @@ export default function Game() {
   return (
     <>
       <canvas ref={ref} style={{ width: "100vw", height: "100vh" }} />
+      {fatal && (
+        <div role="alert" style={{ ...panel, top: "40%", left: "50%", transform: "translate(-50%, -50%)", maxWidth: 520 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>The campus could not load</div>
+          <div style={{ fontSize: 13, opacity: 0.8 }}>{fatal}</div>
+          <div style={{ fontSize: 13, marginTop: 8 }}>Check that <code>npm run pipeline</code> has built <code>public/world</code>, then reload.</div>
+        </div>
+      )}
       {hud && !isTest && (
         <>
           <div style={{ ...panel, top: 16, left: 16, minWidth: 280 }}>

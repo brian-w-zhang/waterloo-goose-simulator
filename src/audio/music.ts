@@ -26,7 +26,12 @@ export class Music {
 
   start() {
     if (typeof window === "undefined" || this.timer) return;
-    this.ctx = new AudioContext();
+    try {
+      this.ctx = new AudioContext();
+    } catch (e) {
+      console.warn("[music] audio unavailable, no music", e);
+      return;
+    }
     this.master = this.ctx.createGain();
     this.master.gain.value = this.volume * 0.35;
     const comp = this.ctx.createDynamicsCompressor();
@@ -73,7 +78,7 @@ export class Music {
   private schedule() {
     const a = this.ctx;
     if (!a) return;
-    if (a.state === "suspended") void a.resume();
+    if (a.state === "suspended") a.resume().catch(() => { /* needs a user gesture; retried every 50 ms */ });
     while (this.next < a.currentTime + 0.25) {
       if (this.want !== this.state && this.beat % 2 === 0) this.state = this.want;
       const t = this.next;

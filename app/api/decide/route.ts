@@ -20,13 +20,22 @@ let recorded: Map<string, Answer> | null = null;
 function replay(key: string) {
   if (!recorded) {
     recorded = new Map();
+    let text = "";
     try {
-      for (const line of readFileSync(REC, "utf8").split("\n")) {
-        if (!line.trim()) continue;
+      text = readFileSync(REC, "utf8");
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code !== "ENOENT") console.error("[jev] cannot read the recording", e);
+    }
+    // one bad line (a torn append) is skipped with a warning, never the rest of the file
+    text.split("\n").forEach((line, k) => {
+      if (!line.trim()) return;
+      try {
         const r = JSON.parse(line) as { key: string; choice: string; confidence: number };
-        recorded.set(r.key, { choice: r.choice, confidence: r.confidence, source: "replay" });
+        recorded!.set(r.key, { choice: r.choice, confidence: r.confidence, source: "replay" });
+      } catch {
+        console.warn(`[jev] recording line ${k + 1} is not valid JSON; skipped`);
       }
-    } catch { /* no recording yet */ }
+    });
   }
   return recorded.get(key);
 }
@@ -51,11 +60,18 @@ async function live(body: DecisionRequest, key: string): Promise<Answer | null> 
     const j = await r.json();
     const a = j?.answers?.action;
     if (!a?.choice || !body.options.includes(a.choice)) { console.warn("[jev] answer had no allowed choice; using the mock"); return null; }
-    const ans: Answer = { choice: a.choice, confidence: Number(a.confidence ?? 0), source: "live", ms: Date.now() - t0 };
+    const conf = Number(a.confidence);
+    if (!Number.isFinite(conf)) { console.warn("[jev] answer had no numeric confidence; using the mock"); return null; }
+    const ans: Answer = { choice: a.choice, confidence: conf, source: "live", ms: Date.now() - t0 };
     if (process.env.JEV_RECORD === "1") {
-      mkdirSync(join(process.cwd(), "data", "jev"), { recursive: true });
-      appendFileSync(REC, JSON.stringify({ key, choice: ans.choice, confidence: ans.confidence, order: opts,
-        ms: ans.ms, generationId: j?.providerMetadata?.gateway?.generationId, model: j?.model }) + "\n");
+      // a failed write (read-only file system) keeps the good answer; only the recording is lost
+      try {
+        mkdirSync(join(process.cwd(), "data", "jev"), { recursive: true });
+        appendFileSync(REC, JSON.stringify({ key, choice: ans.choice, confidence: ans.confidence, order: opts,
+          ms: ans.ms, generationId: j?.providerMetadata?.gateway?.generationId, model: j?.model }) + "\n");
+      } catch (e) {
+        console.error("[jev] could not record the answer", e);
+      }
     }
     return ans;
   } catch (e) {
@@ -68,7 +84,12 @@ async function live(body: DecisionRequest, key: string): Promise<Answer | null> 
 }
 
 export async function POST(req: Request) {
-  const body = (await req.json()) as DecisionRequest;
+  let body: DecisionRequest;
+  try {
+    body = (await req.json()) as DecisionRequest;
+  } catch {
+    return Response.json({ error: "body is not JSON" }, { status: 400 });
+  }
   if (!body || typeof body.situation !== "string" || !Array.isArray(body.options) || body.options.length === 0
       || body.options.length > 8 || body.situation.length > 600) {
     return Response.json({ error: "bad request" }, { status: 400 });
@@ -77,6 +98,7 @@ export async function POST(req: Request) {
   const hit = cache.get(key) ?? replay(key);
   if (hit) return Response.json(hit);
   const ans = (await live(body, key)) ?? mockDecide(body);
-  cache.set(key, ans);
+  // only live answers are cached: a fallback after a timeout must not pin the mock for this situation
+  if (ans.source === "live") cache.set(key, ans);
   return Response.json(ans);
 }

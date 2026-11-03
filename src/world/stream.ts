@@ -17,12 +17,24 @@ const ORIGIN = campus.origin;
 /** Fetch a chunk file and gunzip it in the browser when it is gzip-compressed (pipeline/chunkio.py). */
 export async function fetchChunk(url: string): Promise<ArrayBuffer> {
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   const buf = await res.arrayBuffer();
+  if (buf.byteLength < 8) throw new Error(`${url}: only ${buf.byteLength} bytes`);
   const head = new Uint8Array(buf, 0, 2);
   if (head[0] !== 0x1f || head[1] !== 0x8b) return buf;
   const stream = new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"));
   return new Response(stream).arrayBuffer();
 }
+
+/** Fetch JSON, naming the file and status when it fails (a 404 page is not JSON). */
+export async function fetchJson<T>(url: string): Promise<T> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  return (await res.json()) as T;
+}
+
+/** A chunk that failed to load is retried after this long (doubling per failure, up to 30 s). */
+const RETRY_MS = 2000;
 
 /** Streams 256 m chunks around a focus point: full detail within `radius` chunks. */
 export class WorldStream {
@@ -30,6 +42,8 @@ export class WorldStream {
   index!: WorldIndex;
   private loaded = new Map<string, BuiltChunk>();
   private pending = new Map<string, Promise<void>>();
+  /** failed chunk keys: when to retry and how many times it has failed */
+  readonly failed = new Map<string, { at: number; n: number; error: string }>();
   loadsTotal = 0;
   evictionsTotal = 0;
   everLoaded = new Set<string>();
@@ -41,8 +55,9 @@ export class WorldStream {
   }
 
   async init() {
-    this.index = await (await fetch("/world/index.json")).json();
+    this.index = await fetchJson<WorldIndex>("/world/index.json");
     pavingClass.value = this.index.ground_classes.indexOf("paving");
+    if (pavingClass.value < 0) console.warn("[world] index.json has no paving ground class");
   }
 
   /** Chunk (i, j) containing world (x, z); j counts northward from the grid origin. */
@@ -119,9 +134,9 @@ export class WorldStream {
   private async load(i: number, j: number) {
     const key = `${i}_${j}`;
     const entry = this.index.chunks.find((c) => c.i === i && c.j === j);
-    if (!entry) return;
+    if (!entry) throw new Error(`chunk ${key} is not in index.json`);
     const buf = await fetchChunk(`/world/${entry.file}`);
-    const chunk = decodeChunk(buf);
+    const chunk = decodeChunk(buf, `chunk ${key} (${entry.file})`);
     const built = buildChunk(chunk, this.mats, this.index.ground_classes, this.index.prop_kinds, this.index.barrier_kinds);
     this.loaded.set(key, built);
     this.root.add(built.group);
@@ -143,8 +158,15 @@ export class WorldStream {
         want.add(key);
         if (this.loaded.has(key)) continue;
         let p = this.pending.get(key);
+        const f = this.failed.get(key);
+        if (!p && f && performance.now() < f.at) continue;   // backing off after a failure
         if (!p) {
-          p = this.load(i, j).finally(() => this.pending.delete(key));
+          // a failed chunk is logged and retried with backoff; it never rejects the whole update
+          p = this.load(i, j).then(() => { this.failed.delete(key); }, (e: Error) => {
+            const n = (f?.n ?? 0) + 1;
+            this.failed.set(key, { at: performance.now() + Math.min(RETRY_MS * 2 ** (n - 1), 30000), n, error: e.message });
+            console.error(`[world] chunk ${key} failed (attempt ${n}): ${e.message}`);
+          }).finally(() => this.pending.delete(key));
           this.pending.set(key, p);
         }
         jobs.push(p);

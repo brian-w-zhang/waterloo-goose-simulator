@@ -60,3 +60,4 @@ One line per run, appended by `tools/verify/gate.py`; old lines are never edited
 | 2026-11-03 07:29 | 3086e1a | none | fast | 40/42 | 1.000 | 0.53 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0729-3086e1a |
 | 2026-11-03 07:32 | 63b8199 | none | fast | 40/42 | 1.000 | 0.53 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0732-63b8199 |
 | 2026-11-03 07:34 | 63b8199 | none | fast | 40/42 | 1.000 | 0.53 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0734-63b8199+dirty |
+| 2026-11-03 07:46 | f6151ae | none | fast | 40/42 | 1.000 | 0.53 / 0.61 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-0746-f6151ae+dirty |
