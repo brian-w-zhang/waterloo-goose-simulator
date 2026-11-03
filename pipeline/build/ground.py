@@ -1,9 +1,11 @@
 """Ground classes: disjoint polygons for water, roads, paths, parking, pitches, rail and woods."""
 import json
+import math
 
 from shapely import union_all
-from shapely.geometry import LineString, MultiPolygon, Polygon, shape
-from shapely.ops import polygonize
+from shapely.affinity import rotate
+from shapely.geometry import LineString, MultiPolygon, Polygon, box, shape
+from shapely.ops import polygonize, substring
 
 from ..config import CAMPUS, RAW
 from . import osm
@@ -14,7 +16,10 @@ ROADS = {"service", "residential", "tertiary", "secondary", "primary", "unclassi
          "living_street", "secondary_link", "tertiary_link", "primary_link"}
 PATHS = {"footway", "path", "cycleway", "pedestrian", "steps", "platform", "track"}
 # Draw order: earlier classes win where polygons overlap.
-CLASSES = ["water", "rail", "road", "paving", "path", "parking", "pitch", "wood"]
+CLASSES = ["water", "rail", "road", "paving", "path", "parking", "pitch", "wood", "marking"]
+MARKED_ROADS = {"secondary", "tertiary", "primary", "unclassified", "residential", "secondary_link", "tertiary_link"}
+DASH_M, GAP_M, LINE_W_M = 3.0, 4.0, 0.18
+ZEBRA_W_M, ZEBRA_GAP_M = 0.5, 0.55
 CREEK_HALF_WIDTH_M = 2.0
 RAIL_HALF_WIDTH_M = 1.8
 
@@ -76,6 +81,28 @@ def highway_lines(kind_set):
     return out
 
 
+def dashes(line):
+    """Centre-line dashes along a road line as thin polygons."""
+    out, d = [], GAP_M / 2
+    while d + DASH_M < line.length:
+        out.append(substring(line, d, d + DASH_M).buffer(LINE_W_M / 2, cap_style="flat"))
+        d += DASH_M + GAP_M
+    return out
+
+
+def zebra(line):
+    """Crosswalk stripes: bars parallel to the road (across the crossing line), spaced along it."""
+    out = []
+    n = int(line.length // (ZEBRA_W_M + ZEBRA_GAP_M))
+    for k in range(n):
+        p = line.interpolate((k + 0.5) * (ZEBRA_W_M + ZEBRA_GAP_M))
+        q = line.interpolate(min((k + 0.5) * (ZEBRA_W_M + ZEBRA_GAP_M) + 0.1, line.length))
+        ang = math.degrees(math.atan2(q.y - p.y, q.x - p.x))
+        bar = box(p.x - ZEBRA_W_M / 2, p.y - 1.4, p.x + ZEBRA_W_M / 2, p.y + 1.4)
+        out.append(rotate(bar, ang, origin=(p.x, p.y)))
+    return out
+
+
 def classes(lakes, buildings):
     """Dict of class name to a (Multi)Polygon in the City frame, made disjoint by CLASSES order."""
     creeks = json.loads((RAW / "city" / "city_creeks.geojson").read_text())["features"]
@@ -95,6 +122,13 @@ def classes(lakes, buildings):
         "pitch": union_all(_area_polys(lambda t: t.get("leisure") == "pitch")),
         "wood": union_all(_area_polys(lambda t: t.get("natural") == "wood" or t.get("landuse") == "forest")),
     }
+    # painted markings sit on the road surface: dashed centre lines on public roads, zebras on crossings
+    marks = [d for _, t, ln in highway_lines(ROADS) if t.get("highway") in MARKED_ROADS or t.get("name") == "Ring Road"
+             for d in dashes(ln)]
+    marks += [z for _, t, ln in highway_lines(PATHS) if t.get("footway") == "crossing" or t.get("crossing") in ("zebra", "marked", "traffic_signals")
+              for z in zebra(ln)]
+    raw["marking"] = union_all(marks).intersection(raw["road"]) if marks else Polygon()
+    raw["road"] = raw["road"].difference(raw["marking"])
     # paths with an explicit width tag (not crossings) are surveyed data: they cut into road surfaces
     tagged = union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(PATHS)
                         if t.get("width") and "crossing" not in t and t.get("footway") not in ("crossing", "traffic_island")
@@ -103,7 +137,8 @@ def classes(lakes, buildings):
         raw["road"] = raw["road"].difference(tagged)
     taken = union_all([b["footprint"] for b in buildings])
     out = {}
-    for name in CLASSES:
+    order = ["marking"] + [c for c in CLASSES if c != "marking"]
+    for name in order:
         g = raw[name]
         if g.is_empty:
             continue

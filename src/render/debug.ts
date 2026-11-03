@@ -26,8 +26,8 @@ export function debugMaterial(mesh: THREE.Mesh, mode: Exclude<DebugMode, null>, 
     if (name === "terrain") return basic(dc("id_ground"));
     if (name === "ground_pieces") {
       const cls = attribute("cls", "float");
-      const [r, pv, pa] = ["road", "paving", "path"].map((k) => equal(cls, float(classes.indexOf(k))).select(float(1), float(0)));
-      const isPath = r.add(pv).add(pa);
+      const [r, pv, pa, mk] = ["road", "paving", "path", "marking"].map((k) => equal(cls, float(classes.indexOf(k))).select(float(1), float(0)));
+      const isPath = r.add(pv).add(pa).add(mk);
       const isWater = equal(cls, float(classes.indexOf("water"))).select(float(1), float(0));
       return basic(select(isWater.greaterThan(0.5), dc("id_water"), select(isPath.greaterThan(0.5), dc("id_path"), dc("id_ground"))) as never);
     }

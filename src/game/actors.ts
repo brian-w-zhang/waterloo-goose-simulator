@@ -183,7 +183,7 @@ export function personGeometry(look: PersonLook): THREE.BufferGeometry {
   const parts: THREE.BufferGeometry[] = [];
   rig.root.traverse((o) => {
     const m = o as THREE.Mesh;
-    if (!m.isMesh || rig.mark.children.includes(m)) return;
+    if (!m.isMesh || rig.mark.children.includes(m) || rig.bubble.children.includes(m)) return;
     parts.push(m.geometry.clone().applyMatrix4(m.matrixWorld));
   });
   return mergeGeometries(parts);

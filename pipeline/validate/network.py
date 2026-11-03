@@ -77,7 +77,7 @@ def run(world):
         if w is None:
             wfails.append(s["id"])
             continue
-        cls = ["road"] if w["kind"] not in ("footway", "path", "cycleway", "pedestrian", "steps") else ["path", "paving"]
+        cls = ["road", "marking"] if w["kind"] not in ("footway", "path", "cycleway", "pedestrian", "steps") else ["path", "paving"]
         got = measure_width(world, cls, w["line"], Point(*s["utm"]))
         ok = abs(got - truth) <= s["tol_m"]
         wrows.append({"site": s["id"], "got": round(got, 2), "truth": truth, "ok": ok})
@@ -105,7 +105,7 @@ def run(world):
             want = float(tag.replace("m", "").strip())
         except ValueError:
             continue
-        cls = ["road"] if w["kind"] not in ("footway", "path", "cycleway", "pedestrian", "steps", "platform", "track") \
+        cls = ["road", "marking"] if w["kind"] not in ("footway", "path", "cycleway", "pedestrian", "steps", "platform", "track") \
             else ["path", "paving"]
         # sample only inside the packed world (long trails run past the chunk grid)
         pts = [w["line"].interpolate(f, normalized=True) for f in (0.2, 0.35, 0.5, 0.65, 0.8)]

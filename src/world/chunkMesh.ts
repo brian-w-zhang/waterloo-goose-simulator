@@ -9,7 +9,7 @@ const Q = 256 / 65535;
 // Ground class -> palette swatch (classes listed in public/world/index.json, pipeline/build/ground.py).
 const CLASS_SWATCH: Record<string, string> = {
   water: "water_edge", rail: "rail", road: "asphalt", paving: "paving", path: "path",
-  parking: "parking", pitch: "pitch", wood: "grass_shadow",
+  parking: "parking", pitch: "pitch", wood: "grass_shadow", marking: "asphalt_line",
 };
 
 export interface BuiltChunk {
