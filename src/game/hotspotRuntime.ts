@@ -77,7 +77,8 @@ export class HotspotRuntime {
   }
 
   honk() {
-    honkSound(0.95 + this.sim.rng() * 0.1);
+    const held = this.sim.goose.holding?.split("_")[0];
+    honkSound(0.95 + this.sim.rng() * 0.1, held === "cone" ? "cone" : held === "coffee" ? "muffled" : "none");
     this.sim.honk();
   }
 
@@ -111,6 +112,7 @@ export class HotspotRuntime {
       this.dragLast = { ...p };
       if (this.dragM >= 30) { this.dragM -= 10; this.menace.add("drag_10m", this.sim.t); }
     } else { this.dragM = 0; this.dragLast = null; }
+    this.itemPhysics(dt, goosePos, gooseSpeed);
     this.menace.tick(this.sim.t);
     for (; this.seen < this.sim.events.length; this.seen++) {
       const e = this.sim.events[this.seen];
@@ -139,6 +141,46 @@ export class HotspotRuntime {
           }
         }
       }
+    }
+  }
+
+  // loose-item velocities (spec I-7 pushable physics objects, I-8 items float)
+  private itemVel = new Map<string, V2>();
+  private lastGoose: V2 | null = null;
+
+  private itemPhysics(dt: number, goosePos: THREE.Vector3, gooseSpeed: number) {
+    const g = { x: goosePos.x, z: goosePos.z };
+    const gv = this.lastGoose ? { x: (g.x - this.lastGoose.x) / dt, z: (g.z - this.lastGoose.z) / dt } : { x: 0, z: 0 };
+    this.lastGoose = g;
+    for (const it of this.sim.items.values()) {
+      if (it.heldBy) { this.itemVel.delete(it.id); continue; }
+      const v = this.itemVel.get(it.id) ?? { x: 0, z: 0 };
+      const kind = it.id.split("_")[0];
+      // the goose body (radius 0.35 m) shoves what it walks into, along its own motion
+      const dx = it.pos.x - g.x, dz = it.pos.z - g.z, d = Math.hypot(dx, dz);
+      if (d < 0.45 && gooseSpeed > 0.3 && it.weight === "carry") {
+        const k = kind === "apple" ? 1.4 : 0.8;
+        v.x += (gv.x * k + (dx / (d || 1)) * 0.6 - v.x) * 0.5;
+        v.z += (gv.z * k + (dz / (d || 1)) * 0.6 - v.z) * 0.5;
+      }
+      const wet = this.isWater(it.pos.x, it.pos.z);
+      if (kind === "apple" && !wet) {
+        // rolls down the local slope
+        const h = 0.5, sx = (this.heightAt(it.pos.x + h, it.pos.z) - this.heightAt(it.pos.x - h, it.pos.z)) / (2 * h);
+        const sz = (this.heightAt(it.pos.x, it.pos.z + h) - this.heightAt(it.pos.x, it.pos.z - h)) / (2 * h);
+        if (Number.isFinite(sx) && Number.isFinite(sz)) { v.x -= sx * 6 * dt; v.z -= sz * 6 * dt; }
+      }
+      if (wet) { v.x += (0.18 - v.x) * dt * 0.5; v.z += (0.08 - v.z) * dt * 0.5; }   // a slow drift on the water
+      const friction = wet ? 0.4 : kind === "apple" ? 1.2 : 5;
+      const f = Math.exp(-friction * dt);
+      v.x *= f; v.z *= f;
+      const sp = Math.hypot(v.x, v.z);
+      if (sp < 0.02 && !wet) { this.itemVel.delete(it.id); continue; }
+      const nx = it.pos.x + v.x * dt, nz = it.pos.z + v.z * dt;
+      // stop against walls
+      if (this.lineOfSight(it.pos, { x: nx + Math.sign(v.x) * 0.2, z: nz + Math.sign(v.z) * 0.2 })) { it.pos.x = nx; it.pos.z = nz; }
+      else { v.x *= -0.3; v.z *= -0.3; }
+      this.itemVel.set(it.id, v);
     }
   }
 
@@ -178,8 +220,12 @@ export class HotspotRuntime {
         this.people.get(it.heldBy)!.hand.getWorldPosition(hand);
         m.position.copy(hand);
       } else {
-        m.rotation.set(0, m.rotation.y, 0);
-        m.position.set(it.pos.x, this.ground(it.pos.x, it.pos.z), it.pos.z);
+        const v = this.itemVel.get(it.id);
+        if (v && it.id.startsWith("apple")) m.rotation.x += Math.hypot(v.x, v.z) * dt / 0.05;   // rolling
+        else m.rotation.set(0, m.rotation.y, 0);
+        const y = this.ground(it.pos.x, it.pos.z);
+        const bob = this.isWater(it.pos.x, it.pos.z) ? Math.sin(t * 2 + it.pos.x) * 0.03 : 0;
+        m.position.set(it.pos.x, y + bob, it.pos.z);
       }
     }
   }
