@@ -4,6 +4,7 @@ import { swatch } from "@/config";
 import { type Chunk, sampleHeight, terrainHeights } from "./decode";
 import type { Materials } from "./materials";
 import { buildSigns } from "./signs";
+import { facadeStyle } from "@/render/facade";
 
 const PIECE_LIFT_M = 0.04;
 const Q = 256 / 65535;
@@ -319,10 +320,38 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
       }
       continue;
     }
+    const hipStyle = facadeStyle(b.style).mansard && b.parts.length <= 3;
     for (const part of b.parts) {
       const y1 = b.ground_y + part.h;
       const rings: THREE.Vector2[][] = [];
       for (let k = part.ring_first; k < part.ring_first + part.ring_n; k++) rings.push(ring(k));
+      if (hipStyle && rings.length === 1) {
+        // hipped (mansard-style) shingle roof over the part's bounding rectangle
+        const r = minRect(rings[0]);
+        if (ringArea(rings[0]) / (4 * r.hu * r.hv) > 0.75) {
+          wall(rings[0], y0, y1, part.h + 1);
+          const rise = Math.min(0.45 * r.hv, 2.6);
+          const P = (su: number, sv: number, y: number) => [r.cx + r.ux * su - r.uz * sv, y, r.cz + r.uz * su + r.ux * sv];
+          const ridge = Math.max(r.hu - r.hv, 0.1);
+          const faces = [
+            [P(-r.hu, -r.hv, y1), P(r.hu, -r.hv, y1), P(ridge, 0, y1 + rise), P(-ridge, 0, y1 + rise)],
+            [P(r.hu, r.hv, y1), P(-r.hu, r.hv, y1), P(-ridge, 0, y1 + rise), P(ridge, 0, y1 + rise)],
+          ];
+          for (let q of faces) {
+            const n = new THREE.Vector3(q[1][0] - q[0][0], q[1][1] - q[0][1], q[1][2] - q[0][2])
+              .cross(new THREE.Vector3(q[2][0] - q[0][0], q[2][1] - q[0][1], q[2][2] - q[0][2])).normalize();
+            if (n.y < 0) { q = [q[3], q[2], q[1], q[0]]; n.negate(); }
+            quad(q[0], q[1], q[2], q[3], n.toArray(), part.h + rise + 10);
+          }
+          for (const [a, bb, c] of [[P(-r.hu, r.hv, y1), P(-r.hu, -r.hv, y1), P(-ridge, 0, y1 + rise)], [P(r.hu, -r.hv, y1), P(r.hu, r.hv, y1), P(ridge, 0, y1 + rise)]]) {
+            let tr = [a, bb, c];
+            const n = new THREE.Vector3(bb[0] - a[0], bb[1] - a[1], bb[2] - a[2]).cross(new THREE.Vector3(c[0] - a[0], c[1] - a[1], c[2] - a[2])).normalize();
+            if (n.y < 0) { tr = [a, c, bb]; n.negate(); }
+            tri(tr, [n.toArray(), n.toArray(), n.toArray()], part.h + rise + 10);
+          }
+          continue;
+        }
+      }
       const top = part.h + PARAPET_M;
       for (const pts of rings) {
         wall(pts, y0, y1 + PARAPET_M, top);

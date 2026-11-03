@@ -5,6 +5,9 @@ export interface FacadeStyle {
   wall: string; accent: string; window: string; roof: string; pattern: "ribbon" | "punched" | "curtain" | "slot" | "diamond" | "none";
   storey_m: number; bay_m: number; w_lo?: number; w_hi?: number; b_lo?: number; b_hi?: number; stripe?: string; variants?: string[];
   roof_alt?: string;
+  /** a glazed ground storey with mullions and a fascia band above it (retail frontage) */
+  storefront?: boolean;
+  mansard?: boolean;
 }
 
 export function facadeStyle(name: string): FacadeStyle {
@@ -67,6 +70,12 @@ export function facadeColor(name: string, sharp: boolean) {
   let wall = mix(wallBase, windowColor, win) as N;
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove).mul(float(1).sub(vault))) as N;
+  if (s.storefront) {
+    const ground = step(hAbove, float(3.0)).mul(step(float(0.25), hAbove));
+    const mull = band(fract(u.div(2.2)) as N, 0.04, 0.96);
+    wall = mix(wall, mix(uniform(swatch("mullion")), uniform(swatch("window_glass")), mull), ground) as N;
+    wall = mix(wall, uniform(swatch(s.accent)), step(float(3.0), hAbove).mul(step(hAbove, float(3.9)))) as N;
+  }
   const isRoof = step(0.7, abs(n.y)).mul(float(1).sub(vault));
   // per-building roof swatch: a hard pick between two palette colours (no blend, palette-exact)
   const roof = s.roof_alt ? mix(uniform(swatch(s.roof)), uniform(swatch(s.roof_alt)), step(0.5, hash(seed.add(3.1)))) : uniform(swatch(s.roof));

@@ -91,6 +91,7 @@ def build(buildings, doors, path_tree, path_lines):
             if pts and len(pts) >= 4:
                 c = Polygon(pts).centroid
                 pois.append((osm_to_city(c.x, c.y), t))
+    shops = []
     for (e, n), t in pois:
         if t.get("amenity") in SKIP_AMENITY or kind_of(t) in SKIP_KIND or (t["name"], round(e), round(n)) in seen:
             continue
@@ -109,5 +110,25 @@ def build(buildings, doors, path_tree, path_lines):
         near = path_lines[path_tree.nearest(p)]
         target = near.interpolate(near.project(p)) if fps[i].contains(p) else p
         q, ang = wall_frame(fps[i], target)
-        out.append((q.x + math.cos(ang) * 0.12, q.y + math.sin(ang) * 0.12, ang, t["name"], kind_of(t).replace("_", " "), "shop", i))
+        shops.append([fps[i].exterior.project(q), i, t["name"], kind_of(t).replace("_", " ")])
+    # spread fascias that share a wall so they do not overlap (widths match src/world/signs.ts)
+    by_b = {}
+    for s_ in shops:
+        by_b.setdefault(s_[1], []).append(s_)
+    for i, group in by_b.items():
+        ring = fps[i].exterior
+        group.sort(key=lambda g: g[0])
+        for k in range(1, len(group)):
+            need = (fascia_width(group[k - 1][2]) + fascia_width(group[k][2])) / 2 + 0.4
+            group[k][0] = max(group[k][0], group[k - 1][0] + need)
+        for s_pos, _, name, kind in group:
+            s_pos = s_pos % ring.length
+            q = ring.interpolate(s_pos)
+            a, b = ring.interpolate(max(s_pos - 0.6, 0)), ring.interpolate(min(s_pos + 0.6, ring.length))
+            ang = math.atan2(-(b.x - a.x), b.y - a.y)
+            out.append((q.x + math.cos(ang) * 0.12, q.y + math.sin(ang) * 0.12, ang, name, kind, "shop", i))
     return out
+
+
+def fascia_width(name):
+    return min(max(0.42 * len(name) + 1.2, 3.0), 10.0)

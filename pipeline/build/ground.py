@@ -103,6 +103,39 @@ def zebra(line):
     return out
 
 
+STALL_W_M, STALL_D_M, AISLE_M, LINE_M = 2.7, 5.5, 7.0, 0.14
+
+
+def stall_lines(lot):
+    """Painted stall separators for a parking lot polygon: rows of 5.5 m stalls along the lot's long
+    axis with 7 m aisles between double rows (procedural from the OSM outline, not surveyed)."""
+    r = lot.minimum_rotated_rectangle
+    c = list(r.exterior.coords)[:4]
+    e1 = (c[1][0] - c[0][0], c[1][1] - c[0][1])
+    e2 = (c[2][0] - c[1][0], c[2][1] - c[1][1])
+    L1, L2 = math.hypot(*e1), math.hypot(*e2)
+    (ux, uy), Lu, (vx, vy), Lv = ((e1[0] / L1, e1[1] / L1), L1, (e2[0] / L2, e2[1] / L2), L2) if L1 >= L2 \
+        else ((e2[0] / L2, e2[1] / L2), L2, (e1[0] / L1, e1[1] / L1), L1)
+    o = c[0] if L1 >= L2 else c[1]
+    lines = []
+    module = 2 * STALL_D_M + AISLE_M
+    v = 0.6
+    while v + STALL_D_M <= Lv:
+        for row_start in (v, v + STALL_D_M + AISLE_M):
+            if row_start + STALL_D_M > Lv:
+                break
+            u = 1.0
+            while u <= Lu - 1.0:
+                a = (o[0] + ux * u + vx * row_start, o[1] + uy * u + vy * row_start)
+                b = (a[0] + vx * STALL_D_M, a[1] + vy * STALL_D_M)
+                lines.append(LineString([a, b]).buffer(LINE_M / 2, cap_style="flat"))
+                u += STALL_W_M
+        v += module
+    if not lines:
+        return Polygon()
+    return union_all(lines).intersection(lot.buffer(-0.8))
+
+
 def classes(lakes, buildings):
     """Dict of class name to a (Multi)Polygon in the City frame, made disjoint by CLASSES order."""
     creeks = json.loads((RAW / "city" / "city_creeks.geojson").read_text())["features"]
@@ -129,6 +162,11 @@ def classes(lakes, buildings):
               for z in zebra(ln)]
     raw["marking"] = union_all(marks).intersection(raw["road"]) if marks else Polygon()
     raw["road"] = raw["road"].difference(raw["marking"])
+    lots = [p for p in _area_polys(lambda t: t.get("amenity") == "parking" and t.get("parking", "surface") == "surface")
+            for p in polygons(p) if p.area > 300]
+    stalls = union_all([stall_lines(p) for p in lots]) if lots else Polygon()
+    raw["marking"] = union_all([raw["marking"], stalls])
+    raw["parking"] = raw["parking"].difference(stalls)
     # paths with an explicit width tag (not crossings) are surveyed data: they cut into road surfaces
     tagged = union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(PATHS)
                         if t.get("width") and "crossing" not in t and t.get("footway") not in ("crossing", "traffic_island")

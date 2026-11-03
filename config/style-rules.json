@@ -459,6 +459,67 @@
         "stucco_white",
         "brick_buff"
       ]
+    },
+    "plaza_siding": {
+      "wall": "siding_beige",
+      "accent": "fin_orange",
+      "window": "window_glass",
+      "roof": "roof_mansard",
+      "pattern": "none",
+      "storey_m": 4.0,
+      "bay_m": 4.0,
+      "storefront": true,
+      "mansard": true
+    },
+    "tower_charcoal": {
+      "wall": "brick_charcoal_tower",
+      "accent": "cream_panel",
+      "window": "window_dark",
+      "roof": "roof_gravel",
+      "pattern": "punched",
+      "storey_m": 3.0,
+      "bay_m": 2.4,
+      "w_lo": 0.3,
+      "w_hi": 0.8,
+      "b_lo": 0.2,
+      "b_hi": 0.75,
+      "storefront": true
+    },
+    "tower_metal": {
+      "wall": "brick_buff",
+      "accent": "metal_panel",
+      "window": "window_glass",
+      "roof": "roof_gravel",
+      "pattern": "punched",
+      "storey_m": 3.0,
+      "bay_m": 2.6,
+      "w_lo": 0.3,
+      "w_hi": 0.8,
+      "b_lo": 0.25,
+      "b_hi": 0.75,
+      "storefront": true
+    },
+    "tower_cream": {
+      "wall": "cream_panel",
+      "accent": "fascia_copper",
+      "window": "glass_blue",
+      "roof": "roof_gravel",
+      "pattern": "ribbon",
+      "storey_m": 3.0,
+      "bay_m": 2.0,
+      "w_lo": 0.35,
+      "w_hi": 0.85,
+      "storefront": true
+    },
+    "tower_glass": {
+      "wall": "glass_podium",
+      "accent": "panel_white",
+      "window": "mullion",
+      "roof": "roof_gravel",
+      "pattern": "curtain",
+      "storey_m": 3.0,
+      "bay_m": 1.8,
+      "storefront": true
     }
   },
   "default_variants": [
@@ -467,5 +528,14 @@
     "brick_red",
     "glass_blue",
     "brick_brown"
-  ]
+  ],
+  "objectids": {
+    "388": "plaza_siding",
+    "31063": "tower_charcoal",
+    "29883": "tower_metal",
+    "31059": "tower_cream",
+    "31313": "tower_cream",
+    "30859": "tower_glass"
+  },
+  "objectids_note": "Off-campus retail buildings identified from Street View in docs/research/plazas-signage-data.json (City OBJECTIDs)."
 }

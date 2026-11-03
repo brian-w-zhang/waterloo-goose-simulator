@@ -41,39 +41,54 @@ function solid(color: string) {
 
 const hash = (s: string) => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return h >>> 0; };
 
+/**
+ * UW freestanding building-entrance sign (Campus Wayfinding sign family, docs/research/plazas-signage-data.md):
+ * a 589 x 2438 mm charcoal monolith with a sloped top and a gold perforated band along the slope,
+ * the building code in gold and the name in white. Wall plaques use the 589 x 1665 mm wall version.
+ */
 function monument(s: SignInfo): THREE.Group {
   const g = new THREE.Group();
-  // plaque: the same panel mounted flat on the wall at eye height, for doors with no free ground
   const plaque = s.style === "uw_plaque";
-  const W = 2.6, H = 1.25, D = plaque ? 0.1 : 0.28, lift = plaque ? 1.2 : 0;
-  g.position.y = lift;
-  const base = new THREE.Mesh(new THREE.BoxGeometry(W + 0.2, 0.35, D + 0.15).translate(0, 0.175, 0), solid("uw_base"));
-  base.visible = !plaque;
-  const panel = new THREE.Mesh(new THREE.BoxGeometry(W, H, D).translate(0, 0.35 + H / 2, plaque ? D / 2 : 0), solid("uw_panel"));
-  const gold = new THREE.Mesh(new THREE.BoxGeometry(W + 0.02, 0.12, D + 0.02).translate(0, 0.35 + H - 0.06, plaque ? D / 2 : 0), solid("uw_gold"));
-  const tex = textTexture(512, 240, (ctx) => {
+  const W = 0.589, H = plaque ? 1.665 : 2.438, D = plaque ? 0.06 : 0.16, SLOPE = 0.16;
+  g.position.y = plaque ? 0.9 : 0;
+  const shape = new THREE.Shape();
+  shape.moveTo(-W / 2, 0); shape.lineTo(W / 2, 0); shape.lineTo(W / 2, H); shape.lineTo(-W / 2, H - SLOPE); shape.lineTo(-W / 2, 0);
+  const body = new THREE.ExtrudeGeometry(shape, { depth: D, bevelEnabled: false }).translate(0, 0, -D / 2 + (plaque ? D / 2 : 0));
+  const band = new THREE.Shape();
+  band.moveTo(-W / 2, H - SLOPE - 0.09); band.lineTo(W / 2, H - 0.09); band.lineTo(W / 2, H); band.lineTo(-W / 2, H - SLOPE);
+  band.lineTo(-W / 2, H - SLOPE - 0.09);
+  const bandGeo = new THREE.ExtrudeGeometry(band, { depth: D + 0.01, bevelEnabled: false }).translate(0, 0, -D / 2 - 0.005 + (plaque ? D / 2 : 0));
+  g.add(new THREE.Mesh(body, solid("uw_panel")), new THREE.Mesh(bandGeo, solid("uw_gold_band")));
+  const tex = textTexture(256, 900, (ctx) => {
     ctx.fillStyle = swatchHex("uw_panel", "signs");
-    ctx.fillRect(0, 0, 512, 240);
-    ctx.fillStyle = swatchHex("uw_text", "signs");
+    ctx.fillRect(0, 0, 256, 900);
     ctx.textAlign = "left";
-    ctx.textBaseline = "alphabetic";
+    ctx.textBaseline = "top";
     const code = s.text, name = s.sub;
+    ctx.fillStyle = swatchHex(name ? "uw_gold" : "uw_text", "signs");
+    const sz = fit(ctx, code, "800", name ? 110 : 54, 220);
+    let y = 70;
+    ctx.fillText(code, 20, y);
+    y += sz + 28;
     if (name) {
-      const a = fit(ctx, code, "800", 120, 470);
-      ctx.fillText(code, 22, 32 + a * 0.8);
-      ctx.fillStyle = swatchHex("uw_gold", "signs");
-      fit(ctx, name, "600", 34, 470);
-      ctx.fillText(name, 22, 210);
-    } else {
-      const a = fit(ctx, code, "800", 64, 470);
-      ctx.fillText(code, 22, 120 + a * 0.35);
+      ctx.fillStyle = swatchHex("uw_text", "signs");
+      ctx.font = `600 32px ui-rounded, "SF Pro Rounded", "Helvetica Neue", Arial, sans-serif`;
+      // wrap the building name onto lines that fit the panel
+      let line = "";
+      for (const word of name.split(/\s+/)) {
+        const test = line ? `${line} ${word}` : word;
+        if (ctx.measureText(test).width > 216 && line) { ctx.fillText(line, 20, y); y += 40; line = word; }
+        else line = test;
+      }
+      if (line) ctx.fillText(line, 20, y);
     }
   });
   const faceMat = new THREE.MeshToonNodeMaterial();
   faceMat.map = tex;
-  const face = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.12, H - 0.24).translate(0, 0.35 + (H - 0.12) / 2, (plaque ? D : D / 2) + 0.005), faceMat);
+  const fh = H - SLOPE - 0.2;
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.06, fh).translate(0, fh / 2 + 0.06, (plaque ? D : D / 2) + 0.003), faceMat);
   face.name = "sign_face";
-  g.add(base, panel, gold, face);
+  g.add(face);
   return g;
 }
 

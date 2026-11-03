@@ -80,3 +80,9 @@ Repo hygiene: the first public push contained the UGG screenshots, the orthophot
 
 Brian asked for at least five more full passes (data and signs, goose feel, NPCs and Jev, tooling, building fidelity), then re-audits. He added `AI_GATEWAY_API_KEY` to `.env` (gitignored; the value is never printed or read by the agent, only passed to `fetch` by the server).
 - Live Jev verified: `POST https://ai-gateway.vercel.sh/v1/evaluate` with `typesafe-ai/jev-1.14.0` returns `answers.action.{choice, probabilities, confidence}`; first call 856 ms, then about 280 ms; cost about $0.000017 per call. The route tries cache, then recording, then live (1.4 s timeout), then mock.
+
+## 2026-11-03 05:55 Plazas, signs and data research (pass 1 of the second goal)
+
+- `docs/research/plazas-signage-data.{md,json}`: Street View and business photos for the plazas next to campus; the UW Campus Wayfinding sign family drawings (charcoal monolith 589 x 2438 mm, sloped top, gold band, gold code, white name); 29 extra data sources tested.
+- UW's public ArcGIS layers (campus building points, 7,231 parking stalls, 229 bike racks, path polygons) answer without a key but state no licence, so like the City orthophoto they are reference and QA only and nothing derived from them ships. Parking stall lines are generated procedurally from OSM lot outlines instead.
+- Off-campus retail buildings get styles keyed by City OBJECTID from the Street View notes (University Shops Plaza beige siding and brown roof with glazed storefronts; the Lester, Linden, Phillip Square and Sage podium towers).

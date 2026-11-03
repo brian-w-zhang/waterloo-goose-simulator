@@ -130,6 +130,9 @@ def match_osm(poly, tree, items):
 
 def style_class(props, tags, area):
     ab = (props.get("BLDG_ABBREV") or "").strip()
+    by_oid = STYLE_RULES.get("objectids", {}).get(str(props["OBJECTID"]))
+    if by_oid:
+        return by_oid
     for rule in STYLE_RULES["rules"]:
         if ab and ab in rule.get("abbrev", []):
             return rule["style"]
