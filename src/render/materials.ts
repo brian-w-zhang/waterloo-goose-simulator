@@ -18,10 +18,11 @@ export const occlusion = {
   enabled: uniform(1),
 };
 
-function occlusionMask() {
+function occlusionMask(scale = 1) {
   const d = length(screenCoordinate.xy.sub(occlusion.screen));
   const nearer = step(positionView.z.negate(), occlusion.depth.sub(1.5));
-  const inside = float(1).sub(smoothstep(occlusion.radius.mul(0.75), occlusion.radius, d));
+  const r = occlusion.radius.mul(scale);
+  const inside = float(1).sub(smoothstep(r.mul(0.75), r, d));
   const fade = inside.mul(nearer).mul(occlusion.enabled);
   const p = floor(screenCoordinate.xy);
   const ign = fract(float(52.9829189).mul(fract(dot(p, vec2(0.06711056, 0.00583715)))));
@@ -82,7 +83,8 @@ export function makeFacadeMaterial(styleName: string): THREE.MeshToonNodeMateria
 export function makeCanopyMaterial(colorName: string): THREE.MeshToonNodeMaterial {
   const m = new THREE.MeshToonNodeMaterial();
   m.colorNode = uniform(swatch(colorName));
-  m.maskNode = occlusionMask();
+  // crowns open wider than walls: a big canopy right in front of the goose hides everything else
+  m.maskNode = occlusionMask(2.2);
   return m;
 }
 

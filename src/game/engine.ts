@@ -113,6 +113,15 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   window.addEventListener("resize", resize);
 
   const target = new THREE.Vector3();
+  // smart follow: when a building blocks the view of the goose, lift the camera toward top-down
+  let lift = 0;
+  const occluded = (from: THREE.Vector3, to: THREE.Vector3) => {
+    const d = to.clone().sub(from);
+    const L = d.length();
+    const hit = physics.world.castRay(new R.Ray(from, d.divideScalar(L)), L, true, undefined, undefined, undefined, undefined,
+      (c) => c.parent() === null);
+    return !!hit && hit.timeOfImpact < L - 0.5;
+  };
   const placeCamera = () => {
     if (pose) {
       camera.fov = pose.fov;
@@ -128,9 +137,16 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       target.set(follow.x, (Number.isFinite(gy) ? gy : 15) + 0.4, follow.z);
       camera.fov = follow.fov;
       const back = new THREE.Vector3(-Math.sin(D2R(follow.yaw)), 0, Math.cos(D2R(follow.yaw)));
+      const pitch = follow.pitch + (72 - follow.pitch) * lift;
+      const dist = follow.dist * (1 - 0.3 * lift);
       camera.position.copy(target)
-        .addScaledVector(back, follow.dist * Math.cos(D2R(follow.pitch)))
-        .add(new THREE.Vector3(0, follow.dist * Math.sin(D2R(follow.pitch)), 0));
+        .addScaledVector(back, dist * Math.cos(D2R(pitch)))
+        .add(new THREE.Vector3(0, dist * Math.sin(D2R(pitch)), 0));
+      if (followGoose && !testMode) {
+        const head = goose.position.clone().setY(goose.position.y + 0.6);
+        const blocked = occluded(head, camera.position);
+        lift = THREE.MathUtils.clamp(lift + (blocked ? 0.04 : -0.02), 0, 1);
+      }
       camera.lookAt(target);
       occlusion.enabled.value = followGoose ? 1 : 0;
     }
