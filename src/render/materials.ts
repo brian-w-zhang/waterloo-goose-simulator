@@ -1,6 +1,6 @@
 import * as THREE from "three/webgpu";
 import {
-  dot, float, floor, fract, hash, length, mix, mx_noise_float, positionView, positionWorld,
+  abs, attribute, dot, float, floor, fract, hash, length, mix, mx_noise_float, positionView, positionWorld,
   screenCoordinate, smoothstep, step, uniform, vec2, vec3,
 } from "three/tsl";
 import { swatch } from "@/config";
@@ -39,11 +39,18 @@ export function makeGroundMaterial(): THREE.MeshToonNodeMaterial {
 }
 
 /** Draped ground pieces (paths, roads, water, parking...) coloured per vertex by class. */
+/** Index of the "paving" ground class; set from public/world/index.json once the world loads. */
+export const pavingClass = uniform(-1);
+
 export function makePieceMaterial(): THREE.MeshToonNodeMaterial {
   const m = new THREE.MeshToonNodeMaterial();
   m.vertexColors = true;
+  // paving slabs: thin darker joints on a 1.2 m world grid, only on the paving class
+  const g = fract(positionWorld.xz.div(1.2));
+  const joint = float(1).sub(step(0.05, g.x).mul(step(0.05, g.y)));
+  const isPaving = step(abs(attribute("cls", "float").sub(pavingClass)), float(0.5));
   // vertexColors = true makes the material multiply by the vertex colour itself
-  m.colorNode = vec3(mx_noise_float(positionWorld.xz.mul(0.25)).mul(0.02).add(1));
+  m.colorNode = vec3(mx_noise_float(positionWorld.xz.mul(0.25)).mul(0.02).add(1).sub(joint.mul(isPaving).mul(0.07)));
   m.polygonOffset = true;
   m.polygonOffsetFactor = -1;
   m.polygonOffsetUnits = -4;

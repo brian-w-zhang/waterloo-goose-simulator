@@ -3,6 +3,7 @@ import { campus } from "@/config";
 import { decodeChunk, sampleHeight } from "./decode";
 import { buildChunk, type BuiltChunk } from "./chunkMesh";
 import type { Materials } from "./materials";
+import { pavingClass } from "@/render/materials";
 
 export interface WorldIndex {
   chunk_size: number; cols: number; rows: number; grid_origin_e: number; grid_origin_n: number;
@@ -30,6 +31,7 @@ export class WorldStream {
 
   async init() {
     this.index = await (await fetch("/world/index.json")).json();
+    pavingClass.value = this.index.ground_classes.indexOf("paving");
   }
 
   /** Chunk (i, j) containing world (x, z); j counts northward from the grid origin. */
