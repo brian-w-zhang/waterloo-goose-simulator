@@ -97,6 +97,18 @@
       "gate": 1.0,
       "better": "lower",
       "band": 0
+    },
+    "uw_buildings_signed_share": {
+      "op": ">=",
+      "gate": 0.95,
+      "better": "higher",
+      "band": 0
+    },
+    "signs_inside_footprints": {
+      "op": "<=",
+      "gate": 0,
+      "better": "lower",
+      "band": 0
     }
   },
   "heights": {

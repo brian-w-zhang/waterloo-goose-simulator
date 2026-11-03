@@ -19,6 +19,7 @@ export interface ChunkHeader {
   lakes: LakePiece[];
   buildings: BuildingInfo[];
   platforms?: PlatformInfo[];
+  signs?: import("./signs").SignInfo[];
   arrays: Record<string, ArrayEntry>;
 }
 

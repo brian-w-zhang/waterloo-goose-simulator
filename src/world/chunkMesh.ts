@@ -3,6 +3,7 @@ import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { swatch } from "@/config";
 import { type Chunk, sampleHeight, terrainHeights } from "./decode";
 import type { Materials } from "./materials";
+import { buildSigns } from "./signs";
 
 const PIECE_LIFT_M = 0.04;
 const Q = 256 / 65535;
@@ -587,6 +588,7 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
   for (const o of treeMeshes(c, mats, mats.geo)) g.add(o);
   for (const o of tuftMeshes(c, h, mats)) g.add(o);
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
+  if (c.header.signs?.length) g.add(buildSigns(c.header.signs));
   const doors = doorMesh(c, mats);
   if (doors) g.add(doors);
   const bars = barrierGeometry(c, barrierKinds);

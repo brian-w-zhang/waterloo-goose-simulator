@@ -149,5 +149,17 @@
     "basket": "#9fb3b8",
     "laundry": "#ece5d6",
     "sock": "#d9a3a0"
+  },
+  "signs": {
+    "uw_panel": "#2e3033",
+    "uw_gold": "#d8b24c",
+    "uw_text": "#f4f1ea",
+    "uw_base": "#8e8a82",
+    "shop_a": "#b9544c",
+    "shop_b": "#3f6f8a",
+    "shop_c": "#4f7a52",
+    "shop_d": "#c99a3e",
+    "shop_e": "#5b4a6e",
+    "shop_text": "#f7f3ea"
   }
 }

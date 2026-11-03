@@ -143,6 +143,17 @@ def run(world):
             pos_native.append(d)
             pos_gt.append(d)
             key[sid] = {"pos_err_m": round(d, 3)}
+    # signs: every coded UW building has one; no sign stands inside a footprint
+    signs = [(h["chunk"]["e0"] + s["x"], h["chunk"]["n1"] - s["z"], s) for h, _ in world.chunks for s in h.get("signs", [])]
+    texts = {s["text"] for _, _, s in signs if s["style"] in ("uw", "uw_plaque")}
+    codes = {b.abbrev for b in bl if b.owner == UW and b.abbrev and len(b.abbrev) <= 12}
+    m["uw_buildings_signed_share"] = len(codes & texts) / max(len(codes), 1)
+    ftree = STRtree([b.footprint for b in bl])
+    from shapely.geometry import Point as _P
+    inside = sum(1 for e, n, s in signs if s["style"] == "uw"
+                 and any(bl[i].footprint.contains(_P(e, n)) for i in ftree.query(_P(e, n))))
+    m["signs_inside_footprints"] = inside
+    detail["signs"] = {"total": len(signs), "uw_codes_unsigned": sorted(codes - texts)}
     m["landmark_pos_median_m"] = float(np.median(pos_native))
     m["landmark_pos_max_m"] = float(max(pos_native))
     detail["landmark_pos_vs_frozen_truth"] = {"median_m": round(float(np.median(pos_gt)), 3),

@@ -4,6 +4,7 @@ import { decodeChunk, sampleHeight } from "./decode";
 import { buildChunk, type BuiltChunk } from "./chunkMesh";
 import type { Materials } from "./materials";
 import { pavingClass } from "@/render/materials";
+import { disposeSigns } from "./signs";
 
 export interface WorldIndex {
   chunk_size: number; cols: number; rows: number; grid_origin_e: number; grid_origin_n: number;
@@ -110,6 +111,8 @@ export class WorldStream {
       this.root.remove(c.group);
       // instanced tree and prop geometries are shared between chunks, so only per-chunk meshes are disposed
       c.group.traverse((o) => { if ((o as THREE.Mesh).isMesh && !(o as THREE.InstancedMesh).isInstancedMesh) (o as THREE.Mesh).geometry.dispose(); });
+      const signs = c.group.getObjectByName("signs");
+      if (signs) disposeSigns(signs);
       this.loaded.delete(key);
       this.onEvict?.(key);
       this.evictionsTotal++;

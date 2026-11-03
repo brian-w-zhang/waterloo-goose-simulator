@@ -19,6 +19,9 @@ function basic(colorNode: ReturnType<typeof vec3> | ReturnType<typeof uniform>):
 
 export function debugMaterial(mesh: THREE.Mesh, mode: Exclude<DebugMode, null>, classes: string[]): THREE.Material | null {
   const name = mesh.name;
+  // signs carry text textures (anti-aliased glyphs are not palette swatches); hidden in debug views
+  let p: THREE.Object3D | null = mesh;
+  while (p) { if (p.name === "signs") return null; p = p.parent; }
   const dc = (k: string) => uniform(swatch(k, "debug"));
   if (mode === "id") {
     if (name.startsWith("buildings_")) return basic(dc("id_building"));
