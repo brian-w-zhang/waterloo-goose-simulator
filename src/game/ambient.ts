@@ -9,12 +9,14 @@ import { type PersonLook, personGeometry } from "./actors";
  * goose within 2 m makes them sidestep. Drawn as instanced static figures with a walking bob.
  */
 const LOOKS: PersonLook[] = [
-  { skin: "skin_a", hair: "hair_brown", top: "cloth_gold", bottom: "denim" },
+  { skin: "skin_a", hair: "hair_brown", top: "cloth_gold", bottom: "denim", style: "long" },
   { skin: "skin_b", hair: "hair_dark", top: "cloth_navy", bottom: "cloth_black" },
-  { skin: "skin_c", hair: "hair_dark", top: "cloth_red", bottom: "cloth_grey" },
-  { skin: "skin_d", hair: "hair_blond", top: "cloth_green", bottom: "denim" },
-  { skin: "skin_a", hair: "hair_dark", top: "cloth_cream", bottom: "cloth_navy" },
-  { skin: "skin_b", hair: "hair_brown", top: "cloth_grey", bottom: "denim" },
+  { skin: "skin_c", hair: "hair_dark", top: "cloth_red", bottom: "cloth_grey", style: "bun", build: "slim" },
+  { skin: "skin_d", hair: "hair_blond", top: "cloth_green", bottom: "denim", over: "cloth_cream" },
+  { skin: "skin_a", hair: "hair_dark", top: "cloth_cream", bottom: "cloth_navy", style: "long", build: "slim" },
+  { skin: "skin_b", hair: "hair_brown", top: "cloth_grey", bottom: "denim", over: "cloth_gold", build: "stout" },
+  { skin: "skin_c", hair: "hair_grey", top: "cloth_navy", bottom: "cloth_grey", style: "bald", over: "cloth_cream" },
+  { skin: "skin_d", hair: "hair_brown", top: "cloth_red", bottom: "denim", style: "short" },
 ];
 const SPAWN_R = 110;
 const STARTLE_R = 6;

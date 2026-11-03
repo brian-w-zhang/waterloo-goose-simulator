@@ -25,7 +25,14 @@ const capsule = (r: number, l: number) => new THREE.CapsuleGeometry(r, l, detail
 const sphere = (r: number, w: number, h: number, ...rest: number[]) =>
   new THREE.SphereGeometry(r, Math.max(5, Math.round(w * detail)), Math.max(4, Math.round(h * detail)), ...rest);
 
-export interface PersonLook { skin: string; hair: string; top: string; bottom: string; hat?: string }
+export interface PersonLook {
+  skin: string; hair: string; top: string; bottom: string; hat?: string;
+  /** hairstyle: short crop, long hair down the back, a bun, or bald with a fringe */
+  style?: "short" | "long" | "bun" | "bald";
+  /** an open jacket or apron in a second colour over the top */
+  over?: string;
+  build?: "slim" | "stout";
+}
 
 export interface PersonRig {
   root: THREE.Group;
@@ -46,31 +53,58 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
   const root = new THREE.Group();
   const body = new THREE.Group();
   root.add(body);
-  const torso = new THREE.Mesh(mergeGeometries([
-    paint(capsule(0.2, 0.42), look.top, "people", 0, 1.18, 0),
-    paint(sphere(0.06, 8, 6), look.skin, "people", 0, 1.5, 0),
-  ]), material);
+  // chunky, rounded figure in the reference style: big head with a nose and no eyes, a wide
+  // tapered torso, short sturdy legs, round hands; clothes are layered flat colours
+  const wide = look.build === "stout" ? 1.18 : look.build === "slim" ? 0.9 : 1;
+  const torsoGeo = new THREE.CylinderGeometry(0.2 * wide, 0.25 * wide, 0.62, 12).toNonIndexed();
+  const shoulders = new THREE.SphereGeometry(0.2 * wide, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2).toNonIndexed();
+  shoulders.scale(1, 0.55, 0.9);
+  torsoGeo.scale(1, 1, 0.82);
+  const parts = [
+    paint(torsoGeo, look.top, "people", 0, 1.13, 0),
+    paint(shoulders, look.top, "people", 0, 1.43, 0),
+    paint(new THREE.CylinderGeometry(0.255 * wide, 0.255 * wide, 0.1, 12).scale(1, 1, 0.82), look.bottom, "people", 0, 0.84, 0),
+    paint(new THREE.CylinderGeometry(0.075, 0.085, 0.12, 8), look.skin, "people", 0, 1.53, 0),
+    // collar
+    paint(new THREE.TorusGeometry(0.085, 0.025, 4, 12).rotateX(Math.PI / 2), look.over ?? look.top, "people", 0, 1.49, 0),
+  ];
+  if (look.over) {
+    // open jacket or apron panels down the front and over the shoulders
+    for (const sx of [-1, 1]) parts.push(paint(new THREE.BoxGeometry(0.15 * wide, 0.6, 0.05), look.over, "people", sx * 0.12 * wide, 1.14, 0.19 * wide));
+    parts.push(paint(shoulders.clone().scale(1.04, 1.04, 1.04), look.over, "people", 0, 1.43, 0));
+  }
+  const torso = new THREE.Mesh(mergeGeometries(parts), material);
   body.add(torso);
   const head = new THREE.Group();
   head.position.set(0, 1.6, 0);
-  head.add(new THREE.Mesh(mergeGeometries([
-    paint(sphere(0.15, 14, 10), look.skin, "people", 0, 0.05, 0),
-    paint(sphere(0.158, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.5), look.hair, "people", 0, 0.07, -0.015),
-    ...(look.hat ? [paint(new THREE.CylinderGeometry(0.17, 0.19, 0.12, 12), look.hat, "people", 0, 0.2, 0),
-      paint(new THREE.CylinderGeometry(0.24, 0.24, 0.02, 14), look.hat, "people", 0, 0.15, 0.04)] : []),
-  ]), material));
+  const hp = [
+    paint(sphere(0.19, 14, 10).scale(0.95, 1.02, 1), look.skin, "people", 0, 0.12, 0),
+    // the nose is the only facial feature, as in the reference style
+    paint(sphere(0.05, 8, 6).scale(0.9, 1.1, 1.2), look.skin, "people", 0, 0.1, 0.19),
+    paint(sphere(0.04, 6, 4), look.skin, "people", -0.18, 0.11, 0), paint(sphere(0.04, 6, 4), look.skin, "people", 0.18, 0.11, 0),
+  ];
+  const st = look.style ?? "short";
+  if (st !== "bald") hp.push(paint(sphere(0.2, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.55).scale(1, 0.95, 1.02), look.hair, "people", 0, 0.14, -0.02));
+  else hp.push(paint(new THREE.TorusGeometry(0.17, 0.04, 5, 14, Math.PI).rotateX(Math.PI / 2).rotateY(Math.PI), look.hair, "people", 0, 0.1, -0.02));
+  if (st === "long") hp.push(paint(new THREE.BoxGeometry(0.34, 0.34, 0.12), look.hair, "people", 0, -0.02, -0.13));
+  if (st === "bun") hp.push(paint(sphere(0.09, 8, 6), look.hair, "people", 0, 0.24, -0.16));
+  if (look.hat) {
+    hp.push(paint(new THREE.CylinderGeometry(0.2, 0.21, 0.12, 14), look.hat, "people", 0, 0.29, 0),
+      paint(new THREE.CylinderGeometry(0.27, 0.27, 0.02, 16).scale(1, 1, 1.1), look.hat, "people", 0, 0.24, 0.05));
+  }
+  head.add(new THREE.Mesh(mergeGeometries(hp), material));
   body.add(head);
   const legs: [THREE.Group, THREE.Group] = [new THREE.Group(), new THREE.Group()];
   const arms: [THREE.Group, THREE.Group] = [new THREE.Group(), new THREE.Group()];
-  const legGeo = mergeGeometries([paint(capsule(0.085, 0.62), look.bottom, "people", 0, -0.4, 0),
-    paint(new THREE.BoxGeometry(0.15, 0.08, 0.26), "shoes", "people", 0, -0.82, 0.05)]);
-  const armGeo = mergeGeometries([paint(capsule(0.065, 0.42), look.top, "people", 0, -0.27, 0),
-    paint(sphere(0.07, 8, 6), look.skin, "people", 0, -0.56, 0)]);
+  const legGeo = mergeGeometries([paint(capsule(0.1, 0.48), look.bottom, "people", 0, -0.36, 0),
+    paint(sphere(0.11, 8, 6).scale(1, 0.6, 1.5), "shoes", "people", 0, -0.75, 0.05)]);
+  const armGeo = mergeGeometries([paint(capsule(0.075, 0.4), look.over ?? look.top, "people", 0, -0.26, 0),
+    paint(sphere(0.08, 8, 6), look.skin, "people", 0, -0.55, 0)]);
   [-1, 1].forEach((s, k) => {
-    legs[k].position.set(s * 0.1, 0.86, 0);
+    legs[k].position.set(s * 0.11 * wide, 0.8, 0);
     legs[k].add(new THREE.Mesh(legGeo, material));
     body.add(legs[k]);
-    arms[k].position.set(s * 0.27, 1.42, 0);
+    arms[k].position.set(s * 0.27 * wide, 1.42, 0);
     arms[k].add(new THREE.Mesh(armGeo, material));
     body.add(arms[k]);
   });

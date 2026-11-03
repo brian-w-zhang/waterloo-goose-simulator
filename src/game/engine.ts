@@ -143,7 +143,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       target.copy(camera.position).addScaledVector(dir, 60);
       occlusion.enabled.value = 0;
     } else {
-      const gy = followGoose ? goose.rig.root.position.y : stream.heightAt(follow.x, follow.z);
+      // aim at the visible body: afloat it sits at the water surface, above the physics body on the lake bed
+      const gy = followGoose ? (goose.swimming ? goose.rig.root.position.y : goose.position.y) : stream.heightAt(follow.x, follow.z);
       target.set(follow.x, (Number.isFinite(gy) ? gy : 15) + 0.4, follow.z);
       camera.fov = follow.fov;
       const back = new THREE.Vector3(-Math.sin(D2R(follow.yaw)), 0, Math.cos(D2R(follow.yaw)));
