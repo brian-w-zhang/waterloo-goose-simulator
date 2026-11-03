@@ -37,3 +37,11 @@
     so a narrow wing with no neighbour keeps its own height instead of taking a distant level's.
     Correctness over a 3.8 mm average; still below the 0.569 m before tier smoothing, gate 1.5 m.
   recovery: none needed
+- metric: topdown.topdown_building_iou_min
+  old: 0.97820
+  new: 0.97817
+  reason: >-
+    Tier leftovers now join the tier they share an edge with instead of the tallest tier (removes
+    full-height sliver spikes; holdout height RMSE improved 0.608 to 0.566 m). The worst chunk's
+    rendered building outline moves by 0.00003 IoU; gate 0.95.
+  recovery: none needed

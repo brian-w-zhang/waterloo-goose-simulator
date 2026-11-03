@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-1010-6d1cea8/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-1013-6d1cea8+dirty-webgl/summary.json` (the "+dirty" was a false positive, see `NOTES.md` 10:17), 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-1019-bb00982/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-1022-bb00982-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 10.4 | record only | - | - | new | 16.7 |
+| flythrough.frame_ms_p95 | 11.9 | record only | - | - | new | 16.6 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -61,7 +61,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | geometry.azimuth_max_err_deg | 0.1295 | <= 1.0 | pass | 0.1295 | +0 | 0.1295 |
 | heights.height_key_max_err_m | 1.3 | <= 2.0 | pass | 1.3 | +0 | 1.3 |
 | heights.height_rmse_dev_m | 0.5317 | < 1.5 | pass | 0.6102 | -0.0785 | 0.5317 |
-| heights.height_rmse_holdout_m | 0.608 | < 2.0 | pass | 0.609 | -0.001064 | 0.608 |
+| heights.height_rmse_holdout_m | 0.5655 | < 2.0 | pass | 0.609 | -0.04351 | 0.5655 |
 | heights.height_random20_rmse_m | 0.5502 | < 2.0 | pass | 0.5745 | -0.02423 | 0.5502 |
 | heights.height_pixel_median_abs_m | 0.34 | < 1.5 | pass | 0.31 | +0.02996 | 0.34 |
 | network.ring_road_osm_rel_err | 7.137e-06 | <= 0.01 | pass | 7.137e-06 | +0 | 7.137e-06 |
@@ -84,19 +84,19 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | static.static_banned_violations | 0 | <= 0 | pass | 0 | +0 | 0 |
 | static.camera_config_ok | 1 | == 1 | pass | 1 | +0 | 1 |
 | style.sat_mean | 0.2323 | between [0.18, 0.35] | pass | - | new | 0.2323 |
-| style.val_mean | 0.5784 | between [0.45, 0.65] | pass | - | new | 0.5784 |
-| style.val_std | 0.0814 | between [0.08, 0.18] | pass | - | new | 0.0814 |
+| style.val_mean | 0.5785 | between [0.45, 0.65] | pass | - | new | 0.5785 |
+| style.val_std | 0.08145 | between [0.08, 0.18] | pass | - | new | 0.08145 |
 | style.dark_share | 0 | <= 0.002 | pass | - | new | 0 |
-| style.edge_share | 0.00514 | <= 0.045 | pass | - | new | 0.00514 |
+| style.edge_share | 0.005155 | <= 0.045 | pass | - | new | 0.00515 |
 | style.colourfulness | 0.1132 | between [0.1, 0.25] | pass | - | new | 0.1132 |
-| style.kmeans12_residual_de | 0.917 | <= 6.0 | pass | - | new | 0.9265 |
+| style.kmeans12_residual_de | 0.91 | <= 6.0 | pass | - | new | 0.914 |
 | style.shadow_ratio | 0.951 | >= 0.75 | pass | - | new | 0.951 |
 | style.penumbra_px | 5.706 | >= 4 | pass | - | new | 5.704 |
 | terrain.terrain_rmse_m | 0.0365 | < 0.25 | pass | 0.0365 | +2.886e-08 | 0.0365 |
 | terrain.terrain_max_m | 0.3871 | < 1.5 | pass | 0.3871 | +0 | 0.3871 |
 | terrain.seam_max_m | 0.0003152 | < 0.01 | pass | 0.0003152 | +0 | 0.0003152 |
 | topdown.topdown_building_iou_min | 0.9782 | >= 0.95 | pass | - | new | 0.9782 |
-| topdown.topdown_chamfer_mean_m | 0.05336 | <= 0.5 | pass | - | new | 0.05335 |
+| topdown.topdown_chamfer_mean_m | 0.05397 | <= 0.5 | pass | - | new | 0.05396 |
 | topdown.topdown_chamfer_p95_m | 0 | <= 1.5 | pass | - | new | 0 |
 | topdown.topdown_path_iou_min | 0.9867 | >= 0.85 | pass | - | new | 0.9867 |
 | walk.goose_walk_falls | 0 | <= 0 | pass | - | new | 0 |
@@ -112,11 +112,11 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 **Heights baseline** (`bench/results/heights-baseline-2026-11-03-8cd9ca7.json`, doc 06 section 5): against lidar p90 on 118 UW footprints, the packed lidar tiers have an RMSE of 0.59 m. OSM levels x 3.5 m gives 6.63 m (61 footprints with a tag), and City FIRE_STOREYS x 3.5 m gives 5.10 m.
 
-**Looks** (advisory, agent vision, shuffled): mean 2.86 of 5.
+**Looks** (advisory, agent vision, shuffled): mean 2.89 of 5.
 
 | Criterion | Mean |
 |---|---|
-| Silhouette | 2.5 |
+| Silhouette | 2.6 |
 | Proportions | 2.95 |
 | Pattern | 3 |
 | Colour | 3.3 |
@@ -146,6 +146,7 @@ The scores have plateaued for a structural reason. The 20 viewpoints are frozen 
   - Top-down chamfer mean went from 0.05854 to 0.05865 m (the DC vault overhangs its footprint by centimetres).
   - Random-20 height RMSE went from 0.5477 to 0.5502 m when the lidar tiers were smoothed (dev RMSE improved from 0.569 to 0.528 m).
   - Dev height RMSE went from 0.5279 to 0.5317 m when tier teeth stopped moving to levels they don't touch (a correctness fix).
+  - Minimum top-down building IoU went from 0.97820 to 0.97817 when tier leftovers stopped joining the tallest tier (which also removed roofline spikes and improved holdout RMSE from 0.608 to 0.566 m).
 - **Viewpoints with recognisability 1 or 2** (scores from both passes):
   - V02 (2 / 3): DC is guessable from the teal glass but lacks its vault and ducts
   - V03 (2 / 2): with a conifer in front and a buff wall it does not read as MC's concrete bands
@@ -220,7 +221,8 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 18. **No outlines:** the glass styles' charcoal cornice read as ink lines from the play camera, so it became grey metal. V11's photo has a darker top band, so this is slightly less faithful there.
 19. **Windows:** light frames and a paler top quarter on punched and ribbon windows (UGG windows), in full palette swatches (a first version blended them and failed the palette lock, caught by the gate). Windows are drawn only where the whole window fits under the cornice. Hagey Hall's fly tower is blank brick with a clerestory strip, from research row 32, which cites the V10 photo (`NOTES.md`, 09:55).
 20. **DC and E5 details from research:** red steel portal frames at DC's two OSM main entrances (row 25); glass ribbon bands and a charcoal base on E5 (row 34).
-21. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
+21. **No more roofline spikes:** leftover tier slivers used to join the tallest tier and stood as thin full-height spikes along rooflines (E5's jagged top in V13, V14 and V20). They now join the tier they share an edge with. Parts went from 3,956 to 2,329, E5's roofline is clean, and V13 and V14 silhouettes rose from 3 to 4.
+22. **Tools:** `tools/gallery.mjs` renders two game-camera angles of every key building; scenario scripts cover the tug-of-war and the hard hat.
 
 ## Next steps
 

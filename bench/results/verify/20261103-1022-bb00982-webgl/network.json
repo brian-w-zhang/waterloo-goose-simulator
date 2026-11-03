@@ -1,0 +1,190 @@
+{
+ "metrics": {
+  "ring_road_osm_rel_err": {
+   "value": 7.136601653604772e-06,
+   "gate": 0.01,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "ring_road_city_rel_err": {
+   "value": 0.012114596728261784,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "laurel_creek_rel_err": {
+   "value": 0.0012797166528525977,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "laurel_trail_rel_err": {
+   "value": 0.0009100927410837643,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "columbia_lake_area_rel_err": {
+   "value": 3.189161621747412e-06,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "laurel_lake_area_rel_err": {
+   "value": 4.183426708454226e-05,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "width_ortho_fail_count": {
+   "value": 1,
+   "gate": 0,
+   "op": "<=",
+   "pass": false,
+   "report_only": false
+  },
+  "width_tag_fail_count": {
+   "value": 1,
+   "gate": 0,
+   "op": "<=",
+   "pass": false,
+   "report_only": false
+  },
+  "largest_component_share": {
+   "value": 0.9866611087953314,
+   "gate": 0.98,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "entrance_reach_15m": {
+   "value": 0.9877049180327869,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "network_length_rel_err": {
+   "value": 1.1981768555668785e-06,
+   "gate": 0.01,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  }
+ },
+ "detail": {
+  "lengths_m": {
+   "ring_road": 2754.6,
+   "laurel_creek": 2289.5,
+   "laurel_trail": 2083.3
+  },
+  "lake_areas_m2": {
+   "Clair Lake": 3785,
+   "Laurel Lake": 6610,
+   "": 2449,
+   "Columbia Lake": 114754,
+   " ": 7563,
+   "R&T Park West Facility": 9276
+  },
+  "widths": {
+   "ortho": [
+    {
+     "site": "ring_road_site_a",
+     "got": 11.0,
+     "truth": 11.0,
+     "ok": true
+    },
+    {
+     "site": "ring_road_site_b",
+     "got": 11.0,
+     "truth": 11.0,
+     "ok": true
+    },
+    {
+     "site": "laurel_trail",
+     "got": 2.5,
+     "truth": 3.0,
+     "ok": false
+    },
+    {
+     "site": "alumni_lane_footway",
+     "got": 2.5,
+     "truth": 2.8,
+     "ok": true
+    }
+   ],
+   "tagged_fail": 1,
+   "tagged_n": 38,
+   "tagged_worst": [
+    {
+     "way": 952173528,
+     "kind": "path",
+     "tag": 4.0,
+     "got": 9.15,
+     "ok": false
+    },
+    {
+     "way": 1205368861,
+     "kind": "cycleway",
+     "tag": 2.5,
+     "got": 2.52,
+     "ok": true
+    },
+    {
+     "way": 143175295,
+     "kind": "cycleway",
+     "tag": 2.0,
+     "got": 2.0,
+     "ok": true
+    },
+    {
+     "way": 193422719,
+     "kind": "path",
+     "tag": 2.0,
+     "got": 2.0,
+     "ok": true
+    },
+    {
+     "way": 688072834,
+     "kind": "cycleway",
+     "tag": 2.0,
+     "got": 2.0,
+     "ok": true
+    },
+    {
+     "way": 827762442,
+     "kind": "path",
+     "tag": 2.0,
+     "got": 2.0,
+     "ok": true
+    },
+    {
+     "way": 1091654608,
+     "kind": "path",
+     "tag": 2.0,
+     "got": 2.0,
+     "ok": true
+    },
+    {
+     "way": 55988421,
+     "kind": "steps",
+     "tag": 2.0,
+     "got": 2.0,
+     "ok": true
+    }
+   ]
+  },
+  "network": {
+   "nodes": 11995,
+   "components": 30,
+   "entrances": 244
+  }
+ },
+ "seconds": 3.7
+}
