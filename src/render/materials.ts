@@ -18,12 +18,17 @@ export const occlusion = {
   enabled: uniform(1),
 };
 
-function occlusionMask(scale = 1) {
+function occlusionMask(scale = 1, foreground = false) {
   const d = length(screenCoordinate.xy.sub(occlusion.screen));
-  const nearer = step(positionView.z.negate(), occlusion.depth.sub(1.5));
+  const depth = positionView.z.negate();
+  const nearer = step(depth, occlusion.depth.sub(1.5));
   const r = occlusion.radius.mul(scale);
   const inside = float(1).sub(smoothstep(r.mul(0.75), r, d));
-  const fade = inside.mul(nearer).mul(occlusion.enabled);
+  let fade = inside.mul(nearer);
+  // foreground trees (UGG fades whole occluders): anything much closer than the goose dithers out
+  // across the screen: gone within 60% of the goose's depth, back by 68% (a short dithered edge)
+  if (foreground) fade = fade.max(float(1).sub(smoothstep(occlusion.depth.mul(0.6), occlusion.depth.mul(0.68), depth)));
+  fade = fade.mul(occlusion.enabled);
   const p = floor(screenCoordinate.xy);
   const ign = fract(float(52.9829189).mul(fract(dot(p, vec2(0.06711056, 0.00583715)))));
   return ign.greaterThanEqual(fade);
@@ -84,7 +89,7 @@ export function makeCanopyMaterial(colorName: string): THREE.MeshToonNodeMateria
   const m = new THREE.MeshToonNodeMaterial();
   m.colorNode = uniform(swatch(colorName));
   // crowns open wider than walls: a big canopy right in front of the goose hides everything else
-  m.maskNode = occlusionMask(2.2);
+  m.maskNode = occlusionMask(2.2, true);
   return m;
 }
 

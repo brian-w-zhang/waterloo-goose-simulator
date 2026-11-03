@@ -78,7 +78,11 @@
     "panel_white": "#e6e6e2",
     "metal_panel": "#b9bec2",
     "cream_panel": "#d6cdb8",
-    "fascia_copper": "#a7623c"
+    "fascia_copper": "#a7623c",
+    "prop_stop": "#b55c50",
+    "prop_phone": "#5c79a0",
+    "prop_phone_light": "#dde3e6",
+    "prop_recycle": "#5f8a72"
   },
   "goose": {
     "neck": "#2b2b2b",

@@ -80,9 +80,32 @@ function propGeometries(): Record<string, THREE.BufferGeometry> {
     part(new THREE.SphereGeometry(0.15, 10, 6), "prop_hydrant", 0, 0.62, 0),
     part(cyl(0.06, 0.38).rotateZ(Math.PI / 2), "prop_hydrant", 0, 0.42, 0),
   ]);
+  // a red octagon on a post, facing along the road (local x is the road direction)
+  const stop = mergeGeometries([
+    part(cyl(0.035, 2.1, 6), "prop_metal", 0, 1.05, 0),
+    part(new THREE.CylinderGeometry(0.33, 0.33, 0.04, 8).rotateZ(Math.PI / 2).rotateX(Math.PI / 8), "prop_stop", 0, 2.25, 0),
+  ]);
+  // UW blue-light emergency phone: a tall blue column with a lamp on top
+  const phone = mergeGeometries([
+    part(box(0.32, 2.6, 0.32), "prop_phone", 0, 1.3, 0),
+    part(box(0.34, 0.3, 0.34), "prop_phone_light", 0, 2.75, 0),
+    part(box(0.2, 0.3, 0.04), "prop_metal", 0, 1.45, 0.17),
+  ]);
+  const recycling = mergeGeometries([-0.32, 0.32].map((x) => part(box(0.55, 1.0, 0.55), "prop_recycle", x, 0.5, 0)));
+  const post = mergeGeometries([
+    part(box(0.5, 1.05, 0.45), "prop_stop", 0, 0.525, 0),
+    part(new THREE.CylinderGeometry(0.25, 0.25, 0.45, 12, 1, false, 0, Math.PI).rotateZ(Math.PI / 2).rotateY(Math.PI / 2), "prop_stop", 0, 1.05, 0),
+  ]);
+  const information = mergeGeometries([
+    part(box(0.08, 1.9, 0.08), "prop_wood", -0.55, 0.95, 0),
+    part(box(0.08, 1.9, 0.08), "prop_wood", 0.55, 0.95, 0),
+    part(box(1.2, 0.8, 0.06), "stucco_white", 0, 1.35, 0),
+  ]);
+  const bollard = part(cyl(0.11, 0.9, 8), "prop_metal", 0, 0.45, 0);
   return {
     bench, waste_basket: bin, bicycle_parking: rack, street_lamp: lamp,
     picnic_table: picnic, bus_stop: shelter, fire_hydrant: hydrant,
+    stop, phone, recycling, post_box: post, information, bollard,
   };
 }
 
