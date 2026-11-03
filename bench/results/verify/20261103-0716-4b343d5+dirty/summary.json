@@ -1,0 +1,317 @@
+{
+ "run": "20261103-0716-4b343d5+dirty",
+ "kind": "fast",
+ "sha": "4b343d5",
+ "backend": "none",
+ "time": "2026-11-03T07:16-05:00",
+ "ground_truth_hash": "feae3534dbc59276",
+ "manifest_hash": "22943603a49d4ec0",
+ "gates_passed": 40,
+ "gates_total": 42,
+ "regressions": [],
+ "all_pass": false,
+ "compared_with": "20261103-0715-4b343d5+dirty",
+ "metrics": {
+  "code.typecheck_errors": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "code.unit_test_failures": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "code.python_test_failures": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.coverage_uw_core": {
+   "value": 115,
+   "gate": 115,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.coverage_all_core": {
+   "value": 480,
+   "gate": 475,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.built_area_uw_rel_err": {
+   "value": 1.4116654912379942e-05,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.built_area_all_rel_err": {
+   "value": 8.443967158596981e-05,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.iou_city_median": {
+   "value": 0.9999993056106672,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.iou_city_p10": {
+   "value": 0.999142130573171,
+   "gate": 0.88,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.iou_osm_median_report": {
+   "value": 0.8125329759776132,
+   "gate": 0.75,
+   "op": ">=",
+   "pass": true,
+   "report_only": true
+  },
+  "geometry.iou_city_key_min": {
+   "value": 0.9989,
+   "gate": 0.9,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.key_area_max_rel_err": {
+   "value": 0.0010490482052805672,
+   "gate": 0.03,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.key_obb_side_fail_count": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.key_bearing_max_err_deg": {
+   "value": 0.07074961972223548,
+   "gate": 2.0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.uw_buildings_signed_share": {
+   "value": 0.9900990099009901,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.signs_inside_footprints": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.landmark_pos_median_m": {
+   "value": 0.000603443868309605,
+   "gate": 0.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.landmark_pos_max_m": {
+   "value": 0.5831688575697664,
+   "gate": 2.0,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.distance_fail_count": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.distance_median_err_m": {
+   "value": 0.03261366178440994,
+   "gate": 0.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "geometry.azimuth_max_err_deg": {
+   "value": 0.12945379398425416,
+   "gate": 1.0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "heights.height_key_max_err_m": {
+   "value": 1.3000000000000007,
+   "gate": 2.0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "heights.height_rmse_dev_m": {
+   "value": 0.5278918575866766,
+   "gate": 1.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "heights.height_rmse_holdout_m": {
+   "value": 0.6079545608251593,
+   "gate": 2.0,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "heights.height_random20_rmse_m": {
+   "value": 0.5502343900386254,
+   "gate": 2.0,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "heights.height_pixel_median_abs_m": {
+   "value": 0.3399925231933594,
+   "gate": 1.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "network.ring_road_osm_rel_err": {
+   "value": 7.136601653604772e-06,
+   "gate": 0.01,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.ring_road_city_rel_err": {
+   "value": 0.012114596728261784,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.laurel_creek_rel_err": {
+   "value": 0.0012797166528525977,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.laurel_trail_rel_err": {
+   "value": 0.0009100927410837643,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.columbia_lake_area_rel_err": {
+   "value": 3.189161621747412e-06,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.laurel_lake_area_rel_err": {
+   "value": 4.183426708454226e-05,
+   "gate": 0.02,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.width_ortho_fail_count": {
+   "value": 1,
+   "gate": 0,
+   "op": "<=",
+   "pass": false,
+   "report_only": false
+  },
+  "network.width_tag_fail_count": {
+   "value": 1,
+   "gate": 0,
+   "op": "<=",
+   "pass": false,
+   "report_only": false
+  },
+  "network.largest_component_share": {
+   "value": 0.9866611087953314,
+   "gate": 0.98,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.entrance_reach_15m": {
+   "value": 0.9877049180327869,
+   "gate": 0.95,
+   "op": ">=",
+   "pass": true,
+   "report_only": false
+  },
+  "network.network_length_rel_err": {
+   "value": 1.1981768555668785e-06,
+   "gate": 0.01,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "static.static_colour_violations": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "static.static_banned_violations": {
+   "value": 0,
+   "gate": 0,
+   "op": "<=",
+   "pass": true,
+   "report_only": false
+  },
+  "static.camera_config_ok": {
+   "value": 1,
+   "gate": 1,
+   "op": "==",
+   "pass": true,
+   "report_only": false
+  },
+  "terrain.terrain_rmse_m": {
+   "value": 0.03650371801226563,
+   "gate": 0.25,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "terrain.terrain_max_m": {
+   "value": 0.3870644931564584,
+   "gate": 1.5,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  },
+  "terrain.seam_max_m": {
+   "value": 0.0003151937053758047,
+   "gate": 0.01,
+   "op": "<",
+   "pass": true,
+   "report_only": false
+  }
+ }
+}

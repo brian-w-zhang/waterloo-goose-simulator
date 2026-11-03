@@ -21,3 +21,11 @@
     The Davis Centre vault is built over the OSM part's bounding rectangle, which overhangs the City
     footprint by a few centimetres in places; 0.1 mm mean change, gate 0.5 m.
   recovery: clip vault edges to the footprint polygon
+- metric: heights.height_random20_rmse_m
+  old: 0.5477
+  new: 0.5502
+  reason: >-
+    Tier outlines are simplified at 1.2 m and opened by 2 px to remove lidar pixel stair-steps
+    (ring vertices 54,700 to 40,392, parts 4,619 to 3,956). Dev RMSE improved 0.569 to 0.528 m and
+    holdout is unchanged (0.609 to 0.608 m); the random-20 sample moved 2.5 mm, gate 2.0 m.
+  recovery: none needed; revisit if the random-20 sample worsens by more than 0.05 m

@@ -18,6 +18,8 @@ TIER_STEP_M = 3.0          # height quantisation for tier segmentation
 TIER_MIN_AREA_M2 = 60.0    # smaller tier regions merge into their neighbours
 SPIKE_MAX_AREA_M2 = 150.0  # small tiers far above all neighbours are cranes, masts or canopy, not mass
 SPIKE_RISE_M = 8.0
+TIER_SIMPLIFY_M = 1.2      # tier outlines: removes lidar pixel stair-steps on walls off the raster grid
+TIER_OPEN_PX = 2           # morphological opening per level: shaves one-pixel teeth before polygonising
 STYLE_RULES = json.loads((ROOT / "config" / "style-rules.json").read_text())
 
 
@@ -191,12 +193,21 @@ def tiers(poly, nd, t, base_h):
     if len(levels) <= 1:
         return [(poly, base_h)]
     out = []
+    # smooth each level's region: an opening removes teeth, the removed pixels go to a neighbour level
+    for L in levels:
+        reg = lev == L
+        opened = ndimage.binary_opening(reg, iterations=TIER_OPEN_PX)
+        teeth = reg & ~opened
+        if teeth.any() and opened.any():
+            near = ndimage.distance_transform_edt(~((lev >= 0) & ~teeth & (lev != L)), return_distances=False, return_indices=True)
+            lev[teeth] = lev[near[0][teeth], near[1][teeth]]
+    levels = np.unique(lev[lev >= 0])
     for L in levels:
         reg = (lev == L).astype(np.uint8)
         hvals = nd[(lev == L)]
         h = float(np.median(hvals))
         for geom, val in rasterio.features.shapes(reg, mask=reg.astype(bool), transform=t):
-            p = shape(geom).simplify(0.6, preserve_topology=True).intersection(poly)
+            p = shape(geom).simplify(TIER_SIMPLIFY_M, preserve_topology=True).intersection(poly)
             for q in ([p] if p.geom_type == "Polygon" else list(getattr(p, "geoms", []))):
                 if q.geom_type == "Polygon" and q.area >= 15.0:
                     out.append((orient(q), h))

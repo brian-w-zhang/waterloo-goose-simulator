@@ -105,3 +105,10 @@ should cite photos outside the 20 viewpoints where possible.
 Fast verifies ran before each commit, so their ledger lines name the parent commit while the run
 tested the working tree on top of it. From 07:00 on, verify.py appends "+dirty" to the SHA when
 tracked files have uncommitted changes. Earlier lines are left as written (never edit old lines).
+
+## 2026-11-03 07:15 Audit cycle 3: Notion page re-checked
+Re-fetched the SE 390 MP2 Notion page through the MCP and diffed it against
+docs/plan/research/se390-mp2-notion-page.md. The 61 differing lines are fetch formatting (XML
+wrapper, mention tags) and course logistics (MP2 slides and private video due Wed Nov 4, the MS
+Teams review on Thu Nov 5, MP3 starting Nov 5). No build requirement changed. The build stays
+the MP2 demo; the slides and video are the team's to make.
