@@ -59,3 +59,28 @@ def lidar_massing(abbrev, exclude=None, **opts):
     spec.write_text(json.dumps({"abbrev": abbrev, "exclude": exclude or [], **opts}))
     subprocess.run([str(ROOT / ".venv" / "bin" / "python"), "-m", "tools.art.massing", str(spec), str(out)], cwd=ROOT, check=True)
     return json.loads(out.read_text())
+
+
+def facades(building_dir):
+    """The building's photo-read facade spec (docs/refs/buildings/<id>/facades.json) and walls."""
+    d = ROOT / building_dir
+    spec = json.loads((d / "facades.json").read_text()) if (d / "facades.json").exists() else None
+    walls = json.loads((d / "walls.json").read_text())["walls"] if (d / "walls.json").exists() else []
+    return spec, walls
+
+
+def wall_for(a, b, walls, tol=1.5):
+    """The documented wall (walls.json, art coordinates) a tier edge a-b lies on, with the edge's
+    start position along it: (wall, s_off) or (None, 0) for inner walls (setbacks, courts)."""
+    import math
+    for w in walls:
+        (ax, ay), (bx, by) = w["art"]
+        L = math.hypot(bx - ax, by - ay)
+        tx, ty = (bx - ax) / L, (by - ay) / L
+        def proj(p):
+            return (p[0] - ax) * tx + (p[1] - ay) * ty, abs(-(p[0] - ax) * ty + (p[1] - ay) * tx)
+        s0, d0 = proj(a)
+        s1, d1 = proj(b)
+        if d0 < tol and d1 < tol and s1 > s0 and s0 > -tol and s1 < L + tol:
+            return w, max(0.0, s0)
+    return None, 0.0

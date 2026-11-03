@@ -405,3 +405,142 @@ def dome(kit, centre, r, z, colour, segs=12, rings=5):
                 kit.face([a, b, c], colour)
             else:
                 kit.quad(a, b, c, d, colour)
+
+
+# -- authored facades ------------------------------------------------------------------------------
+
+def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
+    """One wall drawn from an authored spec (read off that wall's Street View and Earth photos).
+
+    spec = {
+      "rows": [(height, "row kind"), ...]            bottom to top; kinds are keys of "cells"
+      "bays": "PWWWDWWWP" or [(width, "bay kind"), ...] (a string uses "bay_w" for every bay and
+                                                       stretches the wall evenly)
+      "bay_w": 3.0,
+      "cells": {("row kind", "bay kind"): cell, ...,  cell = None (plain wall), or a dict:
+                 "*": default per row kind}            {"type": "window"|"door"|"glass"|"panel"|"louvre"|"blank",
+                                                        "w": frac or m, "h", "sill", "depth", "colour", "frame",
+                                                        "mullions": n vertical, "transoms": n horizontal}
+      "wall": colour, "bands": [(z_from, z_to, colour, projection)], "piers": [(s, width, colour, projection)],
+      "coping": (height, colour, projection)
+    }
+    Coordinates along the wall run from a to b (outside on the right, as in Kit.wall); z0 is the
+    building's ground. Returns the top height.
+    full, s_off: draw only part of a documented wall: the spec's bays are laid out over the wall's
+    full length `full`, and this segment a-b covers [s_off, s_off + |ab|] of it (a lidar tier edge
+    that is part of a longer facade). z_top clips the rows (a lower tier on the same facade).
+    """
+    p3, q3 = Vector((a[0], a[1], 0)), Vector((b[0], b[1], 0))
+    L = (q3 - p3).length
+    if L < 0.3:
+        return z0
+    t = (q3 - p3) / L
+    n = Vector((t.y, -t.x, 0))
+    P = lambda s, z: p3 + t * s + Vector((0, 0, z))
+    wall = spec.get("wall", "concrete")
+    # bays
+    FL = full or L
+    bays = spec["bays"]
+    if isinstance(bays, str):
+        bw = spec.get("bay_w", 3.0)
+        n_rep = max(1, round(FL / (bw * len(bays)))) if spec.get("repeat") else 1
+        seq = bays * n_rep
+        w = FL / len(seq)
+        bays = [(w, ch) for ch in seq]
+    else:
+        tot = sum(w for w, _ in bays)
+        bays = [(w * FL / tot, k) for w, k in bays]
+    rows, z = [], z0
+    for hgt, kind in spec["rows"]:
+        if z_top is not None and z >= z_top - 1e-3:
+            break
+        zb = z + hgt if z_top is None else min(z + hgt, z_top)
+        rows.append((z, zb, kind))
+        z = zb
+    top = z
+    cells = spec.get("cells", {})
+    s = 0.0
+    for bw, bk in bays:
+        # the part of this bay on the segment, in segment coordinates
+        a0, a1 = max(s, s_off) - s_off, min(s + bw, s_off + L) - s_off
+        if a1 - a0 > 1e-3:
+            whole = abs((a1 - a0) - bw) < 1e-3
+            for za, zb, rk in rows:
+                cell = cells.get((rk, bk), cells.get((rk, "*"), cells.get(("*", bk))))
+                # a bay cut by the segment end keeps its wall colour only (no half windows)
+                _cell(kit, P, n, a0, a1, za, zb, cell if whole else ({"type": "blank", "colour": cell.get("colour", wall)} if cell else None), wall)
+        s += bw
+    for zf, zt, col, proj in spec.get("bands", []):
+        if z_top is None or z0 + zf < z_top:
+            _band(kit, P, n, 0, L, z0 + zf, min(z0 + zt, z_top or 1e9), col, proj)
+    for sp, pw, col, proj in spec.get("piers", []):
+        sp = sp * L if 0 <= sp <= 1 and isinstance(sp, float) and spec.get("pier_frac") else sp
+        _band(kit, P, n, sp - pw / 2, sp + pw / 2, z0, top, col, proj)
+    if spec.get("coping"):
+        ch, col, proj = spec["coping"]
+        _band(kit, P, n, 0, L, top, top + ch, col, proj)
+        top += ch
+    return top
+
+
+def _band(kit, P, n, s0, s1, z0, z1, col, proj):
+    """A strip on the wall face from s0 to s1, z0 to z1, standing `proj` proud (0: flush colour)."""
+    o = n * (proj or 0.005)
+    a, b, c, d = P(s0, z0), P(s1, z0), P(s1, z1), P(s0, z1)
+    kit.quad(a + o, b + o, c + o, d + o, col)
+    if proj and proj > 0.01:
+        kit.quad(d, c, c + o, d + o, col)        # top
+        kit.quad(a, a + o, b + o, b, col)        # underside
+        kit.quad(a, d, d + o, a + o, col)
+        kit.quad(b, b + o, c + o, c, col)
+
+
+def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
+    if not cell or cell.get("type") == "blank":
+        kit.quad(P(s0, z0), P(s1, z0), P(s1, z1), P(s0, z1), (cell or {}).get("colour", wall))
+        return
+    W, H = s1 - s0, z1 - z0
+    frac = lambda v, full: v * full if v <= 1.0 else v
+    ww = min(W - 0.05, frac(cell.get("w", 0.6), W))
+    hh = min(H - 0.05, frac(cell.get("h", 0.55), H))
+    sill = cell.get("sill", 0.0 if cell["type"] in ("door", "glass") else (H - hh) * 0.55)
+    sill = min(sill, H - hh)
+    x0 = s0 + (W - ww) / 2 + cell.get("offset", 0.0)
+    x1 = x0 + ww
+    y0, y1 = z0 + sill, z0 + sill + hh
+    col = cell.get("colour", wall)
+    # wall around the opening
+    for (sa, sb, za, zb) in ((s0, x0, z0, z1), (x1, s1, z0, z1), (x0, x1, z0, y0), (x0, x1, y1, z1)):
+        if sb - sa > 1e-4 and zb - za > 1e-4:
+            kit.quad(P(sa, za), P(sb, za), P(sb, zb), P(sa, zb), col)
+    d = cell.get("depth", 0.15 if cell["type"] != "panel" else 0.0)
+    off = -n * d
+    glass = cell.get("glass", {"door": "window_dark", "glass": "window_glass", "panel": "metal_shade", "louvre": "metal_shade"}.get(cell["type"], "window_dark"))
+    frame = cell.get("frame", col)
+    a0, a1, a2, a3 = P(x0, y0), P(x1, y0), P(x1, y1), P(x0, y1)
+    if d > 0:
+        kit.quad(a0, a1, a1 + off, a0 + off, cell.get("sill_colour", frame))
+        kit.quad(a3 + off, a2 + off, a2, a3, frame)
+        kit.quad(a0, a0 + off, a3 + off, a3, frame)
+        kit.quad(a1 + off, a1, a2, a2 + off, frame)
+    # the pane, split by mullions and transoms (flush strips in the frame colour)
+    nm, nt = cell.get("mullions", 0), cell.get("transoms", 0)
+    strip = cell.get("strip", 0.07)
+    xs = [x0 + (x1 - x0) * i / (nm + 1) for i in range(nm + 2)]
+    ys = [y0 + (y1 - y0) * j / (nt + 1) for j in range(nt + 2)]
+    for i in range(len(xs) - 1):
+        for j in range(len(ys) - 1):
+            xa, xb, ya, yb = xs[i], xs[i + 1], ys[j], ys[j + 1]
+            kit.quad(P(xa, ya) + off, P(xb, ya) + off, P(xb, yb) + off, P(xa, yb) + off, glass)
+    mc = cell.get("mullion_colour", frame)
+    for xm in xs[1:-1]:
+        kit.quad(P(xm - strip / 2, y0) + off * 0.6, P(xm + strip / 2, y0) + off * 0.6, P(xm + strip / 2, y1) + off * 0.6, P(xm - strip / 2, y1) + off * 0.6, mc)
+    for ym in ys[1:-1]:
+        kit.quad(P(x0, ym - strip / 2) + off * 0.6, P(x1, ym - strip / 2) + off * 0.6, P(x1, ym + strip / 2) + off * 0.6, P(x0, ym + strip / 2) + off * 0.6, mc)
+    if cell["type"] == "louvre":
+        for j in range(1, int((y1 - y0) / 0.25)):
+            yy = y0 + j * 0.25
+            kit.quad(P(x0, yy) + off * 0.3, P(x1, yy) + off * 0.3, P(x1, yy + 0.06) + off * 0.3, P(x0, yy + 0.06) + off * 0.3, frame)
+    if cell["type"] == "door" and cell.get("canopy"):
+        cd, cc = cell["canopy"]
+        _band(kit, P, n, x0 - 0.4, x1 + 0.4, y1 + 0.15, y1 + 0.35, cc, cd)
