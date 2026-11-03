@@ -143,6 +143,10 @@ def style_class(props, tags, area):
             return rule["style"]
     if props.get("OWNER") is None and props.get("BUILDING_USE") is None and area < STYLE_RULES["house_max_area_m2"]:
         return STYLE_RULES["house"]
+    v = STYLE_RULES.get("default_variants")
+    if v:
+        h = (int(props["OBJECTID"]) * 2654435761) % 2**32
+        return v[h % len(v)]
     return STYLE_RULES["default"]
 
 
