@@ -21,11 +21,13 @@ const done = (s: Sim, hotspot: string, id: string) => {
 const at = (s: Sim, npc: string) => ({ ...s.npcs.get(npc)!.pos });
 
 describe("hotspot tasks", () => {
-  it("has 30 or more interactables on the green and owned items everywhere", () => {
+  it("has 30 or more interactables on the green, 20 or more elsewhere, all owned", () => {
     const s = new Sim();
     populate(s);
-    const green = [...s.items.values()].filter((i) => i.zone === "green");
-    expect(green.length).toBeGreaterThanOrEqual(30);
+    const n = (zone: string) => [...s.items.values()].filter((i) => i.zone === zone).length;
+    expect(n("green")).toBeGreaterThanOrEqual(30);
+    expect(n("plaza")).toBeGreaterThanOrEqual(20);
+    expect(n("village")).toBeGreaterThanOrEqual(20);
     expect([...s.items.values()].every((i) => i.owner && s.npcs.has(i.owner))).toBe(true);
   });
 
