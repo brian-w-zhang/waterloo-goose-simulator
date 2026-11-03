@@ -33,14 +33,20 @@ def chunk_of(objs):
     return f"{i}_{j}"
 
 
-def run(name):
+def load(name):
     spec = importlib.util.spec_from_file_location(name, ART / "models" / f"{name}.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    return mod
+
+
+def run(name, mod=None, model=None):
+    """Build one model: a module with build(), or one entry of a family module (MODELS + build(model))."""
+    mod = mod or load(name)
     lib.clear()
     t0 = time.time()
-    objs = mod.build()
-    meta = getattr(mod, "META", {})
+    objs = mod.build(model) if model else mod.build()
+    meta = getattr(mod, "META", {}) if not model else {"world": True, **mod.META.get(model, {})}
     entry = {"name": name, "chunk": chunk_of(objs), "replaces": meta.get("replaces", [])} if meta.get("world") else None
     out = lib.export(OUT / f"{name}.glb", objs)
     raw = out.stat().st_size
@@ -71,4 +77,17 @@ def write_index(entries):
 
 args = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
 names = args or sorted(p.stem for p in (ART / "models").glob("*.py") if not p.stem.startswith("_"))
-write_index({n: run(n) for n in names})
+entries = {}
+for n in names:
+    # "family:model" builds one model of a family module; a family name alone builds all of them
+    fam, _, one = n.partition(":")
+    mod = load(fam)
+    if hasattr(mod, "MODELS"):
+        for m in ([one] if one else list(mod.MODELS)):
+            try:
+                entries[m] = run(m, mod, m)
+            except Exception as e:
+                print(f"[art] {m} FAILED: {e}")
+    else:
+        entries[fam] = run(fam, mod)
+write_index(entries)

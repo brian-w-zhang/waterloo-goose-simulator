@@ -387,3 +387,21 @@ def fins(kit, p, q, z0, z1, glass, fin, pitch=1.2, depth=0.6, thick=0.12, spandr
     for k in range(nf + 1):
         s = min(L, k * L / nf)
         _strip(kit, P, n, (s, z0), (s, z1), thick, depth, fin)
+
+
+def dome(kit, centre, r, z, colour, segs=12, rings=5):
+    """A hemisphere (observatory domes, skylight domes)."""
+    cx, cy = centre
+    pts = [(r * math.cos((math.pi / 2) * i / rings), z + r * math.sin((math.pi / 2) * i / rings)) for i in range(rings + 1)]
+    for i in range(rings):
+        (r0, z0), (r1, z1) = pts[i], pts[i + 1]
+        for j in range(segs):
+            t0, t1 = 2 * math.pi * j / segs, 2 * math.pi * (j + 1) / segs
+            a = Vector((cx + r0 * math.cos(t0), cy + r0 * math.sin(t0), z0))
+            b = Vector((cx + r0 * math.cos(t1), cy + r0 * math.sin(t1), z0))
+            c = Vector((cx + r1 * math.cos(t1), cy + r1 * math.sin(t1), z1))
+            d = Vector((cx + r1 * math.cos(t0), cy + r1 * math.sin(t0), z1))
+            if i == rings - 1:
+                kit.face([a, b, c], colour)
+            else:
+                kit.quad(a, b, c, d, colour)
