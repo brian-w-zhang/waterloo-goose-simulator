@@ -57,7 +57,8 @@ class Kit:
         windows: dict with storey (m), bay (m), w, h (window size), sill (above storey floor),
         depth (recess), first (lowest storey floor above z0, default 0), top_margin (no windows
         within this of z1), glass (colour), frame (colour of reveals), skip(storey, bay) -> bool,
-        lintel (colour band over each window, optional).
+        lintel (colour band over each window, optional), ledge = (height, projection, colour): a
+        hood projecting along the wall over each window row.
         """
         p, q = Vector((p[0], p[1], 0)), Vector((q[0], q[1], 0))
         L = (q - p).length
@@ -82,6 +83,17 @@ class Kit:
         zs = sorted({z0, z1, *[s + W["sill"] for s in tops], *[s + W["sill"] + W["h"] for s in tops]})
         ss = sorted({0.0, L, *[b * bw + (bw - W["w"]) / 2 for b in range(bays)], *[b * bw + (bw + W["w"]) / 2 for b in range(bays)]})
         d = W.get("depth", 0.15)
+        if W.get("ledge"):
+            # a projecting hood along the whole wall over every window row (MC-style bands)
+            lh, pr, lc = W["ledge"]
+            for s_ in tops:
+                za, zb = s_ + W["sill"] + W["h"], s_ + W["sill"] + W["h"] + lh
+                o = n * pr
+                self.quad(P(0, za) + o, P(L, za) + o, P(L, zb) + o, P(0, zb) + o, lc)        # front
+                self.quad(P(0, zb), P(0, zb) + o, P(L, zb) + o, P(L, zb), lc)                # top
+                self.quad(P(0, za), P(L, za), P(L, za) + o, P(0, za) + o, W.get("frame", lc))  # soffit
+                self.quad(P(0, za), P(0, za) + o, P(0, zb) + o, P(0, zb), lc)
+                self.quad(P(L, za), P(L, zb), P(L, zb) + o, P(L, za) + o, lc)
         for i in range(len(ss) - 1):
             for j in range(len(zs) - 1):
                 sa, sb, za, zb = ss[i], ss[i + 1], zs[j], zs[j + 1]
@@ -139,6 +151,17 @@ class Kit:
         for tf in tris:
             self.face([v.co.copy() for v in tf.verts], colour)
         bm.free()
+
+    def tier(self, tier, z0, z1, wall_colour, roof_colour, windows=None):
+        """A lidar tier from data.lidar_massing: outer and hole walls, roof from its triangles."""
+        for ring in [tier["rings"][0]] + tier.get("holes", []):
+            for k in range(len(ring)):
+                self.wall(ring[k], ring[(k + 1) % len(ring)], z0, z1, wall_colour, windows)
+        for t in tier["tris"]:
+            a, b, c = (Vector((x, y, z1)) for x, y in t)
+            if (b - a).cross(c - a).z < 0:
+                b, c = c, b
+            self.face([a, b, c], roof_colour)
 
     def prism(self, ring, z0, z1, wall_colour, roof_colour, windows=None, parapet=None, coping=None):
         """Extruded footprint: walls (with windows) and a flat roof; optional parapet with coping."""

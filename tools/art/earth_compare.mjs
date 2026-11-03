@@ -37,15 +37,16 @@ for (let k = 0; k < parsed.length; k++) {
   const tx = e - campus.origin.e, tz = -(n - campus.origin.n), ty = p.alt - base;
   const hz = Math.sin(p.t * D2R) * p.d;
   const cam = { x: tx - Math.sin(p.h * D2R) * hz, z: tz + Math.cos(p.h * D2R) * hz, y: ty + Math.cos(p.t * D2R) * p.d };
-  await page.evaluate(async ({ cam, p, tx, tz }) => {
+  await page.evaluate(async ({ cam, p, tx, tz, vf }) => {
     const g = window.__wgs;
     await g.load(tx, tz, 1);
-    // Earth's "y" field of view is horizontal across the 1600 px window; the game's is vertical (1000 px)
-    const vfov = 2 * Math.atan(Math.tan((p.fov * Math.PI) / 360) * 1000 / 1600) * 180 / Math.PI;
+    // Earth's "y" is the vertical field of view (checked on DC: the building spans the same width at 35);
+    // VFOV=... overrides for calibration
+    const vfov = Number(vf ?? 0) || p.fov;
     g.setPose({ x: cam.x, y: cam.y, z: cam.z, yaw: p.h, pitch: -(90 - p.t), fov: vfov });
     await new Promise((r) => setTimeout(r, 2500));
     g.render(); g.render();
-  }, { cam, p, tx, tz });
+  }, { cam, p, tx, tz, vf: process.env.VFOV });
   const name = p.file.match(/earth_(.+)\.jpg$/)[1];
   const game = `${out}/${item}_${name}_game.jpg`;
   await page.screenshot({ path: game, type: "jpeg", quality: 85, clip: { x: 0, y: 86, width: 1600, height: 800 } });

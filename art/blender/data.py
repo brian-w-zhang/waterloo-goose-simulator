@@ -47,3 +47,15 @@ def height_at(x, y):
     v = (h[r0, c0] * (1 - fc) * (1 - fr) + h[r0, c0 + 1] * fc * (1 - fr)
          + h[r0 + 1, c0] * (1 - fc) * fr + h[r0 + 1, c0 + 1] * fc * fr)
     return v - t["base_elevation"]
+
+
+def lidar_massing(abbrev, exclude=None, **opts):
+    """Lidar tiers of a building outside `exclude` polygons, merged and simplified
+    (tools/art/massing.py runs in the project's Python: shapely is not in Blender).
+    opts: simplify, merge_dh, min_area, min_width, axis (square outlines to it), grid."""
+    import subprocess
+    tag = abbrev.lower().replace(" ", "_")
+    spec, out = ART / f"{tag}_massing_spec.json", ART / f"{tag}_massing.json"
+    spec.write_text(json.dumps({"abbrev": abbrev, "exclude": exclude or [], **opts}))
+    subprocess.run([str(ROOT / ".venv" / "bin" / "python"), "-m", "tools.art.massing", str(spec), str(out)], cwd=ROOT, check=True)
+    return json.loads(out.read_text())
