@@ -211,6 +211,36 @@ def tiers(poly, nd, t, base_h):
     return out
 
 
+def min_rect(poly):
+    """Minimum rotated rectangle as centre, unit long axis and half sizes (long, short)."""
+    c = list(poly.minimum_rotated_rectangle.exterior.coords)[:4]
+    e1 = np.subtract(c[1], c[0]); e2 = np.subtract(c[2], c[1])
+    L1, L2 = np.hypot(*e1), np.hypot(*e2)
+    u = e1 / L1 if L1 >= L2 else e2 / L2
+    cx, cy = np.mean(c, axis=0)
+    return float(cx), float(cy), float(u[0]), float(u[1]), max(L1, L2) / 2, min(L1, L2) / 2
+
+
+def round_roof(p, z):
+    """Vaulted roof height at x, y for a rect roof record (also used by the validator)."""
+    v = abs(-(p[0] - z["cx"]) * z["uy"] + (p[1] - z["cy"]) * z["ux"]) / z["hv"]
+    return z["eave"] + z["rise"] * np.sqrt(np.clip(1 - v * v, 0, 1))
+
+
+@lru_cache(maxsize=1)
+def osm_round_roofs():
+    """OSM building parts tagged roof:shape=round, registered to the City frame (rectangles only)."""
+    out = []
+    for wid, tags in osm.ways_where(lambda t: t.get("roof:shape") == "round"):
+        pts = osm.way_coords(wid)
+        if not pts or len(pts) < 4:
+            continue
+        p = Polygon([osm_to_city(e, n) for e, n in pts])
+        if p.is_valid and p.area / p.minimum_rotated_rectangle.area > 0.9:
+            out.append((wid, p))
+    return out
+
+
 def build():
     """All buildings with heights and parts, in UTM. Returns list of dicts."""
     nd = lidar.ndsm()
@@ -243,6 +273,29 @@ def build():
             # tiers at ground level inside a built footprint are newer than the lidar
             fill = tag_height(props, tags)[0] if any(h < 1.5 for _, h in parts) else None
             parts = [(q, h if h >= 1.5 else fill) for q, h in parts]
+        # vaulted roofs from OSM roof:shape=round parts: eave and crest from the lidar inside the part;
+        # tiers under the vault are capped at the eave so the vault surface is what shows
+        roofs = []
+        for wid, rp in osm_round_roofs():
+            if source != "lidar_p90" or rp.intersection(poly).area < 0.5 * rp.area:
+                continue
+            rsl, rt = _window(rp)
+            rm = _mask(rp, nd[rsl].shape, rt)
+            vals_r = nd[rsl][rm]
+            eave, crest = float(np.percentile(vals_r, 15)), float(np.percentile(vals_r, 95))
+            if crest - eave < 1.0:
+                continue
+            cx, cy, ux, uy, hu, hv = min_rect(rp)
+            roofs.append({"osm_way": wid, "cx": cx, "cy": cy, "ux": ux, "uy": uy, "hu": hu, "hv": hv,
+                          "eave": eave, "rise": crest - eave})
+            capped = []
+            for q, h in parts:
+                inside, outside = q.intersection(rp), q.difference(rp)
+                for g, hh in ((inside, min(h, eave)), (outside, h)):
+                    for gg in ([g] if g.geom_type == "Polygon" else list(getattr(g, "geoms", []))):
+                        if gg.geom_type == "Polygon" and gg.area > 0.5:
+                            capped.append((orient(gg), hh))
+            parts = capped
         simple = orient(poly.simplify(B["simplify_tolerance_m"], preserve_topology=True))
         out.append({
             "id": idx,
@@ -259,6 +312,7 @@ def build():
             "height_source": source,
             "post2018": post2018,
             "parts": parts,
+            "roofs": roofs,
             "osm_iou": iou,
             "osm_tags": tags or {},
             "style": style_class(props, tags, poly.area),

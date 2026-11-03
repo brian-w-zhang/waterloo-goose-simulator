@@ -115,6 +115,7 @@ function lakeGeometry(c: Chunk): THREE.BufferGeometry | null {
 }
 
 const PARAPET_M = 0.45;
+const VAULT_GLASS = 1000;
 const PLANT_M2_PER_UNIT = 220;   // one rooftop plant box per this much flat roof (doc 02 section 3 step 6)
 const PLANT_MIN_ROOF_M2 = 250;
 const GABLE_MIN_FILL = 0.9;
@@ -234,6 +235,56 @@ function buildingGeometries(c: Chunk): Map<string, THREE.BufferGeometry> {
         else quad([q.x, yb, q.y], [p.x, yb, p.y], [p.x, yt, p.y], [q.x, yt, q.y], [-nx, 0, -nz], top);
       }
     };
+    for (const rf of b.roofs ?? []) {
+      // barrel vault: half-ellipse cross-section across the short axis, glass on the slopes
+      const vx = -rf.uz, vz = rf.ux;
+      const nu = Math.max(2, Math.ceil((2 * rf.hu) / 3)), nv = 14;
+      const P = (s: number, t: number) => {
+        const y = b.ground_y + rf.eave + rf.rise * Math.sqrt(Math.max(0, 1 - t * t));
+        return [rf.cx + rf.ux * s * rf.hu + vx * t * rf.hv, y, rf.cz + rf.uz * s * rf.hu + vz * t * rf.hv];
+      };
+      const top = VAULT_GLASS;   // sentinel: the facade shader paints this surface as glass, not roof
+      const nrm = (a: number[], bb: number[], c: number[]) => {
+        const n = new THREE.Vector3(bb[0] - a[0], bb[1] - a[1], bb[2] - a[2]).cross(new THREE.Vector3(c[0] - a[0], c[1] - a[1], c[2] - a[2])).normalize();
+        return n;
+      };
+      for (let i = 0; i < nu; i++) {
+        for (let k = 0; k < nv; k++) {
+          const s0 = -1 + (2 * i) / nu, s1 = -1 + (2 * (i + 1)) / nu, t0 = -1 + (2 * k) / nv, t1 = -1 + (2 * (k + 1)) / nv;
+          let q = [P(s0, t0), P(s1, t0), P(s1, t1), P(s0, t1)];
+          let n = nrm(q[0], q[1], q[2]);
+          if (n.y < 0) { q = [q[0], q[3], q[2], q[1]]; n.negate(); }
+          quad(q[0], q[1], q[2], q[3], n.toArray(), top);
+        }
+      }
+      // gable ends: fans from the eave line up to the arch
+      for (const s of [-1, 1]) {
+        const n = [rf.ux * s, 0, rf.uz * s];
+        for (let k = 0; k < nv; k++) {
+          const t0 = -1 + (2 * k) / nv, t1 = -1 + (2 * (k + 1)) / nv;
+          const a = P(s, t0), c = P(s, t1);
+          const a0 = [a[0], b.ground_y + rf.eave, a[2]], c0 = [c[0], b.ground_y + rf.eave, c[2]];
+          const tri1 = [a0, c0, c], tri2 = [a0, c, a];
+          for (const tr of [tri1, tri2]) {
+            const nn = nrm(tr[0], tr[1], tr[2]);
+            const ord = nn.x * n[0] + nn.z * n[2] >= 0 ? tr : [tr[0], tr[2], tr[1]];
+            tri(ord, [n, n, n], top);
+          }
+        }
+      }
+      // teal ducts looping over the vault near each end (the DC landmark detail)
+      for (const s of [-0.82, 0.82]) {
+        for (let k = 0; k < nv; k++) {
+          const t0 = -1 + (2 * k) / nv, t1 = -1 + (2 * (k + 1)) / nv;
+          const lift = (p: number[]) => [p[0], p[1] + 0.55, p[2]];
+          const a = lift(P(s, t0)), c = lift(P(s, t1));
+          const du = [rf.ux * 0.6, 0, rf.uz * 0.6];
+          const w = (p: number[], d: number) => [p[0] + du[0] * d, p[1], p[2] + du[2] * d];
+          plantBox(plant, [[w(a, -1)[0], w(a, -1)[2]], [w(a, 1)[0], w(a, 1)[2]], [w(c, 1)[0], w(c, 1)[2]], [w(c, -1)[0], w(c, -1)[2]]],
+            Math.min(a[1], c[1]) - 0.45, Math.max(a[1], c[1]) + 0.05, "duct_teal");
+        }
+      }
+    }
     const fpRing = ring(b.footprint.ring_first);
     const house = b.style === "house" && b.parts.length === 1;
     const rect = house ? minRect(fpRing) : null;

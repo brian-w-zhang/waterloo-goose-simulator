@@ -236,7 +236,10 @@ def main():
                               "ground_y": round(b["ground"] - BASE_ELEV, 3),
                               "base_y": round(b["base"] - BASE_ELEV, 3), "p90": round(b["p90"], 3),
                               "post2018": bool(b["post2018"]), "height_source": b["height_source"],
-                              "footprint": fp, "parts": parts})
+                              "footprint": fp, "parts": parts,
+                              "roofs": [{"cx": round(r["cx"] - e0, 3), "cz": round(n1 - r["cy"], 3), "ux": round(r["ux"], 5),
+                                         "uz": round(-r["uy"], 5), "hu": round(r["hu"], 3), "hv": round(r["hv"], 3),
+                                         "eave": round(r["eave"], 3), "rise": round(r["rise"], 3)} for r in b.get("roofs", [])]})
             if rings_xz:
                 arrays["ring_xz"] = np.vstack(rings_xz).astype(np.float32).ravel()
                 arrays["ring_count"] = np.array(ring_counts, dtype=np.uint32)

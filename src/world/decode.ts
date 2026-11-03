@@ -7,6 +7,8 @@ export interface BuildingInfo {
   id: number; objectid: number; abbrev: string; name: string; owner: string | null; style: string;
   ground_y: number; base_y: number; p90: number; post2018: boolean; height_source: string;
   footprint: { ring_first: number; ring_n: number }; parts: BuildingPart[];
+  /** vaulted roofs (OSM roof:shape=round): rectangle centre, long axis, half sizes, eave and rise above ground */
+  roofs?: { cx: number; cz: number; ux: number; uz: number; hu: number; hv: number; eave: number; rise: number }[];
 }
 export interface LakePiece { name: string; objectid: number; y: number; first: number; count: number }
 

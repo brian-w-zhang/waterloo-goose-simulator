@@ -31,6 +31,7 @@ class Building:
     post2018: bool
     height_source: str
     style: str
+    roofs: list           # vault records in UTM: cx, cy, ux, uy, hu, hv, eave, rise
 
 
 @dataclass
@@ -68,8 +69,10 @@ class World:
             for b in h["buildings"]:
                 fp = poly(b["footprint"]["ring_first"], b["footprint"]["ring_n"])
                 parts = [(poly(p["ring_first"], p["ring_n"]), p["h"]) for p in b["parts"]]
+                roofs = [{"cx": e0 + r["cx"], "cy": n1 - r["cz"], "ux": r["ux"], "uy": -r["uz"], "hu": r["hu"],
+                          "hv": r["hv"], "eave": r["eave"], "rise": r["rise"]} for r in b.get("roofs", [])]
                 out.append(Building(b["id"], b["objectid"], b["abbrev"], b["owner"], fp, parts,
-                                    b["ground_y"] + BASE_ELEV, b["post2018"], b["height_source"], b["style"]))
+                                    b["ground_y"] + BASE_ELEV, b["post2018"], b["height_source"], b["style"], roofs))
         return out
 
     @cached_property

@@ -24,7 +24,20 @@ def _window(poly, pad=3.0):
 def packed_raster(b, sl, t, shape_):
     """Height above the building's ground for every 0.5 m pixel covered by its packed parts."""
     shapes = [(p, h) for p, h in b.parts if h is not None and not p.is_empty]
-    return rasterio.features.rasterize(shapes, out_shape=shape_, transform=t, fill=np.nan, dtype="float32")
+    r = rasterio.features.rasterize(shapes, out_shape=shape_, transform=t, fill=np.nan, dtype="float32")
+    if b.roofs:
+        # vaulted roofs are part of the rendered surface: raise pixels under each vault to its profile
+        from ..build.buildings import round_roof
+        rows, cols = np.indices(shape_)
+        xs, ys = rasterio.transform.xy(t, rows.ravel(), cols.ravel())
+        xs, ys = np.asarray(xs), np.asarray(ys)
+        for z in b.roofs:
+            du = (xs - z["cx"]) * z["ux"] + (ys - z["cy"]) * z["uy"]
+            dv = -(xs - z["cx"]) * z["uy"] + (ys - z["cy"]) * z["ux"]
+            inside = (np.abs(du) <= z["hu"]) & (np.abs(dv) <= z["hv"])
+            vh = np.where(inside, round_roof((xs, ys), z), np.nan).reshape(shape_)
+            r = np.where(np.isfinite(vh) & (~np.isfinite(r) | (vh > r)), vh, r)
+    return r.astype("float32")
 
 
 def eroded_mask(poly, shape_, t):

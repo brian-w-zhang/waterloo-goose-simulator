@@ -37,6 +37,8 @@ export function facadeColor(name: string, sharp: boolean) {
   const su = fract(u.div(s.bay_m)) as N;
   const hTop = attribute("hTop", "float");
   const seed = attribute("seed", "float");
+  // vaulted glass roofs carry hTop >= 1000 (chunkMesh VAULT_GLASS): glass with mullions, not roof colour
+  const vault = step(999, hTop);
   const upper = step(float(0.9), hAbove);                      // no windows below sill height
   const below = step(hAbove, hTop.sub(0.7));                   // nor in the cornice band
   let win: N;
@@ -64,8 +66,8 @@ export function facadeColor(name: string, sharp: boolean) {
   const windowColor = s.pattern === "diamond" ? uniform(swatch("metal_shade")) : uniform(swatch(s.window));
   let wall = mix(wallBase, windowColor, win) as N;
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
-  wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove)) as N;
-  const isRoof = step(0.7, abs(n.y));
+  wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove).mul(float(1).sub(vault))) as N;
+  const isRoof = step(0.7, abs(n.y)).mul(float(1).sub(vault));
   // per-building roof swatch: a hard pick between two palette colours (no blend, palette-exact)
   const roof = s.roof_alt ? mix(uniform(swatch(s.roof)), uniform(swatch(s.roof_alt)), step(0.5, hash(seed.add(3.1)))) : uniform(swatch(s.roof));
   return { color: mix(wall, roof, isRoof), isRoof, hAbove, seed };
