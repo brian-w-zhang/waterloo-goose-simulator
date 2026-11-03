@@ -27,8 +27,8 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 
 ## Metrics
 
-- **Latest full run:** `bench/results/verify/20261103-0951-efbaecd/summary.json` (WebGPU, headless Chromium 156 on the build machine).
-- **WebGL2 run:** `bench/results/verify/20261103-0952-efbaecd-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
+- **Latest full run:** `bench/results/verify/20261103-1003-29eaea7/summary.json` (WebGPU, headless Chromium 156 on the build machine).
+- **WebGL2 run:** `bench/results/verify/20261103-1004-29eaea7-webgl/summary.json`, 62/64 with the same reds (the WebGL2 column below). An earlier WebGL2 run (0624) finished only 3 of 4 playtest tasks because walking up to the coffee shoved it out of reach. That was fixed in 666acfb.
 - **Change column:** compared against the first run of the night, `bench/results/verify/20261103-0235-77975de` (geometry only).
 - **Ledger:** `VERIFY-LEDGER.md`.
 
@@ -40,7 +40,7 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 | flythrough.hole_frames | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.chunks_never_loaded | 0 | <= 0 | pass | - | new | 0 |
 | flythrough.bad_vertices | 0 | <= 0 | pass | - | new | 0 |
-| flythrough.frame_ms_p95 | 10.3 | record only | - | - | new | 43 |
+| flythrough.frame_ms_p95 | 11.1 | record only | - | - | new | 15.4 |
 | geometry.coverage_uw_core | 115 | >= 115 | pass | 115 | +0 | 115 |
 | geometry.coverage_all_core | 480 | >= 475 | pass | 480 | +0 | 480 |
 | geometry.built_area_uw_rel_err | 1.412e-05 | <= 0.02 | pass | 1.412e-05 | +0 | 1.412e-05 |
@@ -118,9 +118,9 @@ How to run: see `README.md` (`npm run pipeline`, then `npm run build && npm star
 |---|---|
 | Silhouette | 2.5 |
 | Proportions | 2.95 |
-| Pattern | 3.0 |
+| Pattern | 3 |
 | Colour | 3.3 |
-| Recognisability | 2.53 |
+| Recognisability | 2.58 |
 
 The 0.03 disagreement between passes understates real noise. One agent scored both passes, and in the latest runs both came from one shuffled viewing (`looks.json` says so).
 
@@ -158,7 +158,7 @@ The scores have plateaued for a structural reason. The 20 viewpoints are frozen 
   - V19 (2 / 1): a canopy hints at a transit stop, not specifically these platforms
   - V20 (3 / 2): the platform canopy beside the rail bed and E5 behind make it guessable as the ION stop
 - **Landmark gaps:**
-  - DC now has its OSM round-roof vault with teal ducts, but no red portal frames.
+  - DC has its OSM round-roof vault with teal ducts and red portal frames at its two main entrances, but not the full cluster of red columns in the photos.
   - MC has the pink tie (placed by a ray from the V04 photo pose), but no blank stair towers: the lidar has no taller tier there, so placing them would be guesswork.
   - QNC has blue glass over a charcoal brick base, but no honeycomb cube.
   - M3 is all brick, with no glass centre bay.
@@ -226,7 +226,6 @@ There are no blockers (`BLOCKERS.md`). The gateway key is read only by the Next.
 1. Replace the Laurel Trail ortho-width gate with the tag value or a surveyed reading (see gates to discuss).
 2. Add per-way ribbon geometry to the chunks, so tagged widths can be measured per way.
 3. Add landmark overrides as authored geometry, checked by the geometry gates:
-   - DC: the red portal frames;
    - QNC: the cube;
    - SLC: the crescent and brick ends;
    - M3: the glass bay.
