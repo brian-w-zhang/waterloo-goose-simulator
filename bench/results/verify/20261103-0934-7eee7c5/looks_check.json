@@ -1,0 +1,16 @@
+{
+ "valid": true,
+ "errors": [],
+ "mean_per_criterion": {
+  "silhouette": 2.5,
+  "proportions": 2.95,
+  "pattern": 3.0,
+  "colour": 3.3,
+  "recognisability": 2.525
+ },
+ "mean": 2.855,
+ "mean_disagreement": 0.03,
+ "key_views_scored_1": [
+  "V19"
+ ]
+}
