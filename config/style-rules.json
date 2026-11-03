@@ -254,7 +254,9 @@
       "pattern": "curtain",
       "storey_m": 3.8,
       "bay_m": 1.6,
-      "roof_alt": "roof_gravel"
+      "roof_alt": "roof_gravel",
+      "base": "brick_charcoal",
+      "base_m": 4.2
     },
     "glass_teal": {
       "wall": "glass_teal",

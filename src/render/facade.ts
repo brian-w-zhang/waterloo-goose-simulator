@@ -7,6 +7,9 @@ export interface FacadeStyle {
   roof_alt?: string;
   /** a glazed ground storey with mullions and a fascia band above it (retail frontage) */
   storefront?: boolean;
+  /** a differently clad base storey (e.g. QNC's charcoal brick plinth under the glass) */
+  base?: string;
+  base_m?: number;
   mansard?: boolean;
 }
 
@@ -70,6 +73,7 @@ export function facadeColor(name: string, sharp: boolean) {
   let wall = mix(wallBase, windowColor, win) as N;
   if (s.stripe) wall = mix(wall, uniform(swatch(s.stripe)), band(st, 0.84, 0.96).mul(upper)) as N;
   wall = mix(wall, uniform(swatch(s.accent)), step(hTop.sub(0.7), hAbove).mul(float(1).sub(vault))) as N;
+  if (s.base) wall = mix(wall, uniform(swatch(s.base)), step(hAbove, float(s.base_m ?? 4))) as N;
   if (s.storefront) {
     const ground = step(hAbove, float(3.0)).mul(step(float(0.25), hAbove));
     const mull = band(fract(u.div(2.2)) as N, 0.04, 0.96);
