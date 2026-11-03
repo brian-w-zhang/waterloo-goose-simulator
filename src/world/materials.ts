@@ -160,7 +160,7 @@ function tuftGeometries(): THREE.BufferGeometry[] {
   ].map((g) => (g.index ? g.toNonIndexed() : g)));
   // foundation shrubs: three low clumped spheres, a plain and a flowering variant
   const clump = (r: number, x: number, z: number, h: number) => {
-    const g = new THREE.SphereGeometry(r, 6, 4).toNonIndexed();
+    const g = new THREE.SphereGeometry(r, 6, 3).toNonIndexed();   // 24 triangles a clump
     g.scale(1, 0.75, 1);
     g.deleteAttribute("uv");
     return part(g, "hedge", x, h, z);

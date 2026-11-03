@@ -119,6 +119,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
 
   const camera = new THREE.PerspectiveCamera(CAM.play_vfov_deg, 1, 0.3, 4000);
   let frameErrors = 0;   // exceptions caught by the frame loop (see frame())
+  let lastDraw: { calls: number; triangles: number } | null = null;   // counters of the last live frame
   const follow: Follow = {
     // default spawn: the open green between MC and DC (23 m from the nearest wall or path)
     x: Number(params.get("x") ?? 940), z: Number(params.get("z") ?? -382),
@@ -314,7 +315,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       renderer.render(scene, camera);
     },
     info: () => ({
-      backend: rig.backend, calls: renderer.info.render.drawCalls, triangles: renderer.info.render.triangles,
+      backend: rig.backend, calls: lastDraw?.calls ?? renderer.info.render.drawCalls,
+      triangles: lastDraw?.triangles ?? renderer.info.render.triangles,
       loaded: stream.loadedKeys(), loads: stream.loadsTotal, evictions: stream.evictionsTotal,
       failedChunks: Object.fromEntries([...stream.failed].map(([k, f]) => [k, f.error])), frameErrors,
     }),
@@ -615,6 +617,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       }
       drawSpeech();
       renderer.render(scene, camera);
+      // snapshot the counters now: the renderer resets them at the start of its next frame
+      lastDraw = { calls: renderer.info.render.drawCalls, triangles: renderer.info.render.triangles };
     }
   };
   requestAnimationFrame(frame);
