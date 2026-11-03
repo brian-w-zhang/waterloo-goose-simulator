@@ -38,6 +38,13 @@ def measure_width(world, cls_names, line, at_point, span=40.0):
     return 0.0
 
 
+def inside_world(world, p, margin=5.0):
+    ix = world.index
+    e0, n0 = ix["grid_origin_e"], ix["grid_origin_n"]
+    e1, n1 = e0 + ix["cols"] * ix["chunk_size"], n0 + ix["rows"] * ix["chunk_size"]
+    return e0 + margin < p.x < e1 - margin and n0 + margin < p.y < n1 - margin
+
+
 def run(world):
     gt = load()
     m, detail = {}, {}
@@ -77,6 +84,13 @@ def run(world):
         if not ok:
             wfails.append(s["id"])
     m["width_ortho_fail_count"] = len(wfails)
+    fp_polys = [b.footprint for b in world.buildings]
+    fps = STRtree(fp_polys)
+
+    def in_building(p):
+        """Samples inside a footprint are building passages, not outdoor widths."""
+        return any(fp_polys[i].contains(p) for i in fps.query(p))
+
     tfails, trows = [], []
     for w in net["ways"]:
         if w["indoor"] or w["line"] is None or w["kind"] in ("light_rail",):
@@ -93,8 +107,12 @@ def run(world):
             continue
         cls = ["road"] if w["kind"] not in ("footway", "path", "cycleway", "pedestrian", "steps", "platform", "track") \
             else ["path", "paving"]
-        got = float(np.median([measure_width(world, cls, w["line"], w["line"].interpolate(f, normalized=True))
-                               for f in (0.2, 0.35, 0.5, 0.65, 0.8)]))
+        # sample only inside the packed world (long trails run past the chunk grid)
+        pts = [w["line"].interpolate(f, normalized=True) for f in (0.2, 0.35, 0.5, 0.65, 0.8)]
+        pts = [p for p in pts if inside_world(world, p) and not in_building(p)]
+        if not pts:
+            continue
+        got = float(np.median([measure_width(world, cls, w["line"], p) for p in pts]))
         ok = abs(got - want) <= 0.25
         trows.append({"way": w["id"], "kind": w["kind"], "tag": want, "got": round(got, 2), "ok": ok})
         if not ok:

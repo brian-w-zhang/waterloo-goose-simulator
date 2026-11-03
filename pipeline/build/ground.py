@@ -95,6 +95,12 @@ def classes(lakes, buildings):
         "pitch": union_all(_area_polys(lambda t: t.get("leisure") == "pitch")),
         "wood": union_all(_area_polys(lambda t: t.get("natural") == "wood" or t.get("landuse") == "forest")),
     }
+    # paths with an explicit width tag (not crossings) are surveyed data: they cut into road surfaces
+    tagged = union_all([ln.buffer(_width(t) / 2) for _, t, ln in highway_lines(PATHS)
+                        if t.get("width") and "crossing" not in t and t.get("footway") not in ("crossing", "traffic_island")
+                        and t.get("cycleway") != "crossing"])
+    if not tagged.is_empty:
+        raw["road"] = raw["road"].difference(tagged)
     taken = union_all([b["footprint"] for b in buildings])
     out = {}
     for name in CLASSES:
