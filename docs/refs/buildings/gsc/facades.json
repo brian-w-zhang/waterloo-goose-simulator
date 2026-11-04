@@ -1,0 +1,2390 @@
+{
+ "building": "GSC",
+ "sources_checked": [
+  "around/sv_*_70 and _100 (all 59 poses): courtyard W1-W4 Jul 2019 (W4 frames carry 2025 watermarks), W17 May 2025, south face W9-W13/W15 Aug 2015, W0 2014+2019, W8/W14/W16 Sep 2014",
+  "around/earth_W*_whole (contact sheet read before a concurrent --earth-only re-capture deleted them at ~19:50; to be re-shot), earth_corner_0-27 (2024)",
+  "private/earth_top.jpg, earth_orbit (via review/art/gsc_study.jpg), lidar nDSM sampled per wall (inside/outside profiles)",
+  "commons/ and private/web/: none exist (NOTES.md: 0 web images)"
+ ],
+ "dating": "Most current: W17 (May 2025) and the service yard W1-W4 (2019/2025). The south face (W9-W15) is Aug 2015 and W8/W14/W16 Sep 2014; Earth 2024 thumbnails agree on massing, window bands and colours, so nothing major seems to have changed, but W8's boarded openings and the 2014 ground signs may be different now. Earth over-pinks the brick.",
+ "colours": {
+  "brick": {
+   "hex": "#987257",
+   "palette": "brick_brown",
+   "where": "main walls W2 upper, W7-W17, W0 s 0-17.6. Sunlit SV #987257 (W13 2015) / #b4967f (W16 2014); overcast #68523c-#876752. Medium warm brown, stretcher bond, light mortar"
+  },
+  "concrete_block": {
+   "hex": "#9c9892",
+   "palette": "concrete_cool",
+   "where": "service-yard walls W0 s 17.6-39.1, W1, W3 (behind the canopy), W4, and (guess) W5/W6. Plain grey 400x200 concrete block with control joints every ~6.8 m; #818281 (W0 2019 overcast), #9c9892 (W4 2025 overcast)"
+  },
+  "fascia": {
+   "hex": "#4e4a46",
+   "palette": "brick_charcoal_tower",
+   "where": "metal fascias and copings everywhere: deep (1.05 m) fascia of the east block W0/W16/W17 (#4e4a46 2025 overcast; sunlit 2014 #745b4f reads browner), thin copings on the 1-storey wings (#585348), the dock canopy fascia (#4b4c4b), overhead doors and steel man doors (#4c4846)"
+  },
+  "upper_metal_panels": {
+   "hex": "#594b47",
+   "palette": "roof_mansard",
+   "where": "second-floor metal panel band of W13's two-storey block (sunlit side reads coppery #825e41)"
+  },
+  "spandrel": {
+   "hex": "#6a4e34",
+   "palette": "brick_slc",
+   "where": "dark brown spandrel panels under W11's ribbon window (measured #553e28 under-exposed, corrected #6a4e34; Lab 11 to brick_slc)"
+  },
+  "buff_brick": {
+   "hex": "#baa790",
+   "palette": "brick_buff",
+   "where": "entrance stair tower and vestibule wall at W14 (sunlit #b5a38c-#baa790), clearly paler/yellower than the main brick"
+  },
+  "entrance_canopy": {
+   "hex": "#c8bead",
+   "palette": "panel_white",
+   "where": "white metal-panel canopy fascia at the W14 entrance"
+  },
+  "precast_slab": {
+   "hex": "#bcb6ae",
+   "palette": "concrete",
+   "where": "two free-standing rough concrete screen slabs in front of the south face"
+  },
+  "glass": {
+   "palette": "window_dark",
+   "where": "clerestory and small windows; windows with white curtains/blinds (W11, W13, W15) read pale: window_glass"
+  },
+  "frames": {
+   "palette": "metal_silver",
+   "where": "W17/W0 clerestory and W11 ribbon frames silver; W15/W16 frames white (panel_white); W8/W13 frames dark bronze (brick_charcoal_tower)"
+  },
+  "plywood": {
+   "hex": "#c19a6b",
+   "palette": "prop_wood",
+   "where": "two boarded-up openings on W8 (2014), weathered plywood"
+  },
+  "dark_door": {
+   "hex": "#2f312d",
+   "palette": "penthouse_metal",
+   "where": "tall dark green-black sectional door 3 on W1, W17 recessed black door"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 39.1,
+   "confidence": "medium",
+   "summary": "north end: two volumes. s 0-17.6 is the brick east block (6.9 m) wrapping round from W17 with the same deep dark fascia and clerestory strip, a steel door near the NE corner with ONE WAY / YIELD signs; s 17.6-39.1 is a windowless grey concrete-block wall, 7.3-7.7 m, with LED wall packs",
+   "height_m": 7.5,
+   "rows": [
+    [
+     2.6,
+     "ground"
+    ],
+    [
+     2.0,
+     "mid"
+    ],
+    [
+     1.05,
+     "clere"
+    ],
+    [
+     0.2,
+     "lintel"
+    ],
+    [
+     1.05,
+     "fascia"
+    ],
+    [
+     0.6,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "corner"
+    ],
+    [
+     1.6,
+     "sign"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     2.0,
+     "brick"
+    ],
+    [
+     11.2,
+     "clere"
+    ],
+    [
+     0.8,
+     "brick"
+    ],
+    [
+     21.5,
+     "block"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 0.85,
+     "h": 2.2,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "clere/clere": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.13,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "top/*": {
+     "type": "void"
+    },
+    "*/block": {
+     "type": "panel",
+     "colour": "concrete_cool"
+    },
+    "fascia/block": {
+     "type": "panel",
+     "colour": "concrete_cool"
+    },
+    "top/block": {
+     "type": "panel",
+     "colour": "concrete_cool"
+    },
+    "clere/block": {
+     "type": "panel",
+     "colour": "concrete_cool"
+    },
+    "lintel/block": {
+     "type": "panel",
+     "colour": "concrete_cool"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 1.6,
+     "z": 2.9,
+     "w": 0.6,
+     "h": 0.2,
+     "text": "ONE WAY (arrow)",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 1.6,
+     "z": 2.2,
+     "w": 0.5,
+     "h": 0.6,
+     "text": "YIELD to pedestrians",
+     "colour": "flower_yellow",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "block part: LED wall packs at about s 28 and 38, z 4.3; control joints every ~6.8 m"
+   ],
+   "notes": "Brick/block boundary at s ~17.6 from sv_W0_Nlip (2019, 4 m away, clerestory windows visible at the top of the brick part); s 25-39 all block in sv_c20 and sv_W0_tFyc. The door and signs are on the NE return in sv_W0_kgy5 (2014). The clerestory strip extent on the brick part (s 6-17) is a guess from the cut-off windows in Nlip and the 2014 view. Earth (W0 whole, c19) shows a sloping slab-like thing in front of s ~10-20 that the lidar does not have (0 m out to 5 m) - probably a mesh artefact or a thin canopy; not modelled."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 30.1,
+   "confidence": "high",
+   "summary": "east side of the service yard: 7.8 m windowless grey block with numbered doors 1-5: a brown overhead door and a steel man door at dock height (1.2 m, steel stair), a tall dark-green sectional door, a dock door with bumpers and a drive-in door under a short dark steel canopy",
+   "height_m": 7.8,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     2.4,
+     "upper"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "e"
+    ],
+    [
+     2.6,
+     "d1"
+    ],
+    [
+     0.7,
+     "e"
+    ],
+    [
+     1.2,
+     "d2"
+    ],
+    [
+     5.6,
+     "e"
+    ],
+    [
+     2.6,
+     "d3"
+    ],
+    [
+     2.6,
+     "e"
+    ],
+    [
+     3.0,
+     "d4"
+    ],
+    [
+     2.4,
+     "e"
+    ],
+    [
+     3.4,
+     "d5"
+    ],
+    [
+     5.4,
+     "e"
+    ]
+   ],
+   "cells": {
+    "ground/d1": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.1,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "sill": 1.2,
+     "transoms": 3
+    },
+    "ground/d2": {
+     "type": "door",
+     "w": 0.8,
+     "h": 2.1,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "sill": 1.2
+    },
+    "ground/d3": {
+     "type": "door",
+     "w": 0.95,
+     "h": 4.8,
+     "glass": "penthouse_metal",
+     "frame": "penthouse_metal",
+     "sill": 0.3,
+     "transoms": 7
+    },
+    "ground/d4": {
+     "type": "door",
+     "w": 0.8,
+     "h": 2.8,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "sill": 1.2,
+     "depth": 0.4,
+     "canopy": [
+      1.5,
+      "brick_charcoal_tower"
+     ]
+    },
+    "ground/d5": {
+     "type": "door",
+     "w": 0.88,
+     "h": 4.2,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "transoms": 6,
+     "canopy": [
+      1.5,
+      "brick_charcoal_tower"
+     ]
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "concrete_cool",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 1.9,
+     "z": 3.6,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "1",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 4.5,
+     "z": 3.6,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "2",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 12.0,
+     "z": 3.6,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "3",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 17.4,
+     "z": 4.6,
+     "w": 0.6,
+     "h": 0.3,
+     "text": "14'-0 (clearance)",
+     "colour": "panel_white",
+     "on": "canopy"
+    },
+    {
+     "s": 23.0,
+     "z": 4.6,
+     "w": 0.6,
+     "h": 0.3,
+     "text": "14'-0 (clearance)",
+     "colour": "panel_white",
+     "on": "canopy"
+    }
+   ],
+   "attached": [
+    "steel stair with pipe railing up to door 2's dock-height landing, s 3.2-6.0, 1.8 m out",
+    "black rubber dock bumpers under doors 1 and 4",
+    "single dark steel canopy over doors 4 and 5, s 16.1-25.9, z 4.4-5.0, ~1.5 m deep (two door canopies approximate it)",
+    "wall packs at s 5.5 and 20 (z 3.5)",
+    "black 'Do Not Enter' sign at the a corner"
+   ],
+   "notes": "Positions from sv_W1_v3zs (whole wall, 2019) and sv_W1_ExAo close-up. Doors 1-2 sit at dock height 1.2 m; door 3 starts ~0.3 m. The 'brick part with door 6' seen at the right of v3zs belongs to W2."
+  },
+  "W2": {
+   "faces": "NW",
+   "length_m": 15.3,
+   "confidence": "medium",
+   "summary": "two-storey brick block at the yard's SE inner corner (8.2 m): three windows upstairs, a grey metal duct riser running up the face and over the roof, the PLANT OPERATIONS door 6 and a white-framed window at ground; the west 2/3 of the ground floor is grey block under the dark loading canopy",
+   "height_m": 8.2,
+   "rows": [
+    [
+     4.2,
+     "ground"
+    ],
+    [
+     0.6,
+     "canopy"
+    ],
+    [
+     0.6,
+     "sill"
+    ],
+    [
+     1.1,
+     "win"
+    ],
+    [
+     1.5,
+     "top"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "g0"
+    ],
+    [
+     2.0,
+     "A"
+    ],
+    [
+     0.3,
+     "g0"
+    ],
+    [
+     1.5,
+     "D"
+    ],
+    [
+     0.5,
+     "g1"
+    ],
+    [
+     1.5,
+     "L"
+    ],
+    [
+     1.5,
+     "g1"
+    ],
+    [
+     2.0,
+     "B"
+    ],
+    [
+     3.9,
+     "g1"
+    ],
+    [
+     0.9,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "ground/A": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.3,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "mullions": 2,
+     "sill": 1.0
+    },
+    "ground/D": {
+     "type": "door",
+     "w": 0.65,
+     "h": 2.3,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "ground/g1": {
+     "type": "panel",
+     "colour": "concrete_cool"
+    },
+    "ground/L": {
+     "type": "louvre",
+     "w": 0.65,
+     "h": 0.5,
+     "sill": 2.4,
+     "colour": "concrete_cool",
+     "glass": "brick_charcoal_tower"
+    },
+    "ground/B": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.9,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "sill": 1.7,
+     "colour": "concrete_cool"
+    },
+    "win/A": {
+     "type": "window",
+     "w": 0.7,
+     "h": 0.95,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower",
+     "mullions": 2
+    },
+    "win/L": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.95,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower",
+     "mullions": 2
+    },
+    "win/B": {
+     "type": "window",
+     "w": 0.7,
+     "h": 0.95,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower",
+     "mullions": 2
+    },
+    "sill/D": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "win/D": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "top/D": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "coping/D": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "*/corner": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     4.2,
+     4.8,
+     "brick_charcoal_tower",
+     2.7
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 4.0,
+     "z": 2.6,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "6",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 4.0,
+     "z": 2.0,
+     "w": 0.6,
+     "h": 0.3,
+     "text": "PLANT OPERATIONS",
+     "colour": "panel_white",
+     "on": "door"
+    }
+   ],
+   "attached": [
+    "loading canopy (projecting band) 2.7 m deep at z 4.2-4.8 along the whole wall, continuing west as W3; dark steel posts with yellow-painted bases at its edge ~2.5 m apart, s 5-15",
+    "grey metal duct riser s 3.5-5.0 from z 5.6 to 9.6 (1.4 m above the roof)",
+    "dark metal corner panel s 14.4-15.3 full height",
+    "small wall-mounted exhaust fan cowl at s ~1, z 3.5"
+   ],
+   "notes": "From sv_W2_ExAo and sv_c23 (2019). Lidar has the 4.8 m canopy 0-2.5 m in front of the whole wall. Window/door positions scaled from the 14.4 m brick width; +-0.5 m."
+  },
+  "W3": {
+   "faces": "NW",
+   "length_m": 33.5,
+   "confidence": "medium",
+   "summary": "the long loading dock on the yard's south side: this line is the edge of a dark steel canopy (fascia z 4.2-4.9); the grey block wall stands 2.9 m behind it with numbered doors 7-12: glazed staff door, steel doors, two open dock openings with man doors, a brown overhead door",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.2,
+     "ground"
+    ],
+    [
+     0.7,
+     "fascia"
+    ]
+   ],
+   "undercut": [
+    4.2,
+    2.9
+   ],
+   "bays": [
+    [
+     0.4,
+     "b"
+    ],
+    [
+     1.2,
+     "d7"
+    ],
+    [
+     0.6,
+     "b"
+    ],
+    [
+     1.0,
+     "d8"
+    ],
+    [
+     0.8,
+     "b"
+    ],
+    [
+     1.6,
+     "w"
+    ],
+    [
+     4.3,
+     "b"
+    ],
+    [
+     2.7,
+     "dock"
+    ],
+    [
+     1.0,
+     "man"
+    ],
+    [
+     0.8,
+     "b"
+    ],
+    [
+     2.6,
+     "ohd"
+    ],
+    [
+     4.4,
+     "b"
+    ],
+    [
+     1.0,
+     "man"
+    ],
+    [
+     3.0,
+     "b"
+    ],
+    [
+     2.6,
+     "dock"
+    ],
+    [
+     1.0,
+     "man"
+    ],
+    [
+     4.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/d7": {
+     "type": "door",
+     "w": 0.85,
+     "h": 2.4,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "mullions": 1
+    },
+    "ground/d8": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.1,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "ground/w": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.8,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "mullions": 1,
+     "sill": 1.4
+    },
+    "ground/dock": {
+     "type": "door",
+     "w": 0.95,
+     "h": 3.0,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.4
+    },
+    "ground/man": {
+     "type": "door",
+     "w": 0.85,
+     "h": 2.2,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "ground/ohd": {
+     "type": "door",
+     "w": 0.95,
+     "h": 3.0,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "transoms": 4
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "concrete_cool",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 1.0,
+     "z": 2.7,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "7",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 2.7,
+     "z": 2.7,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "8",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 11.2,
+     "z": 3.3,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "9",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 15.7,
+     "z": 3.3,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "10",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 21.9,
+     "z": 3.3,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "11",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 26.7,
+     "z": 3.3,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "12",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "canopy soffit: exposed dark steel beams ~2.2 m apart; posts only at the east end (s 0-3, continuing along W2), cantilevered over the truck docks further west",
+    "wall packs over doors 7, 9, 12",
+    "small white instruction plates beside doors"
+   ],
+   "notes": "Lidar: roof 4.9 m right up to this line and 0 m 1 m outside, while photos show the doors well behind the fascia; W3 starts 2.9 m in front of W2's line, so the wall is on W2's line and the canopy is ~2.9 m deep. Door positions merged from sv_W3_v3zs, sv_W3_XcRP, sv_c23 (2019), perspective error +-2 m. Doors 9 and 12 were open (dark interior) in every photo."
+  },
+  "W4": {
+   "faces": "NE",
+   "length_m": 27.4,
+   "confidence": "medium",
+   "summary": "vehicle-maintenance garage on the yard's west side: grey block with six numbered drive-in bays 15-20 (2.9 m wide, 3.6 m high), dark brown metal infill panels over bays 18 and 20, a closed brown sectional door with a window strip at 19, thin dark fascia",
+   "height_m": 4.9,
+   "rows": [
+    [
+     3.7,
+     "door"
+    ],
+    [
+     0.9,
+     "head"
+    ],
+    [
+     0.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "end"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.1,
+     "open"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.1,
+     "open"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.1,
+     "open"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.1,
+     "open_p"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.1,
+     "closed"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.1,
+     "open_p"
+    ],
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     3.3,
+     "end"
+    ]
+   ],
+   "cells": {
+    "door/open": {
+     "type": "door",
+     "w": 0.94,
+     "h": 3.6,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.3
+    },
+    "door/open_p": {
+     "type": "door",
+     "w": 0.94,
+     "h": 3.6,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.3
+    },
+    "door/closed": {
+     "type": "door",
+     "w": 0.94,
+     "h": 3.6,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "transoms": 5
+    },
+    "head/open_p": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "concrete_cool",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 3.75,
+     "z": 4.0,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "15",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 7.35,
+     "z": 4.0,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "16",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 10.95,
+     "z": 4.0,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "17",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 14.55,
+     "z": 4.0,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "18",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 18.15,
+     "z": 4.0,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "19",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 21.75,
+     "z": 4.0,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "20",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "wall pack between 16 and 17 (z 3.9)",
+    "door 19 has a 3-light window strip at z ~1.4"
+   ],
+   "notes": "sv_W4_K_8T and sv_W5 (2019/2025): bay pitch ~3.6 m, door 15 next to the W3 canopy end, a block pier after 20 then the stair/fence to the CSB. 6 bays x 3.6 m = 21.6 m of the 27.4 m wall: end widths are a guess. Bays were open with lifts and vehicles inside in all photos."
+  },
+  "W5": {
+   "faces": "NW",
+   "length_m": 15.0,
+   "confidence": "low",
+   "summary": "north end of the west wing, facing the Central Services Building (heating plant) 1-4 m away; not visible in any photo; plain wall with thin dark coping",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     15.0,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "concrete_cool",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Guess: W5/W6 continue W4's grey block (they meet at the W4/W5 corner), W7 continues W8's brick. Lidar outside these walls hits the CSB and the stack base (5-27 m), so they are effectively hidden party walls."
+  },
+  "W6": {
+   "faces": "NE",
+   "length_m": 4.2,
+   "confidence": "low",
+   "summary": "north end of the west wing, facing the Central Services Building (heating plant) 1-4 m away; not visible in any photo; plain wall with thin dark coping",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     4.2,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "concrete_cool",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Guess: W5/W6 continue W4's grey block (they meet at the W4/W5 corner), W7 continues W8's brick. Lidar outside these walls hits the CSB and the stack base (5-27 m), so they are effectively hidden party walls."
+  },
+  "W7": {
+   "faces": "NW",
+   "length_m": 12.4,
+   "confidence": "low",
+   "summary": "north end of the west wing, facing the Central Services Building (heating plant) 1-4 m away; not visible in any photo; plain wall with thin dark coping",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     12.4,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Guess: W5/W6 continue W4's grey block (they meet at the W4/W5 corner), W7 continues W8's brick. Lidar outside these walls hits the CSB and the stack base (5-27 m), so they are effectively hidden party walls."
+  },
+  "W8": {
+   "faces": "SW",
+   "length_m": 59.6,
+   "confidence": "medium",
+   "summary": "long single-storey brown brick west wall on the lawn (4.9 m): a railed basement areaway at the north end, two boarded (plywood) openings, small high 3-light windows, a glazed door, steel doors and a brown double door, thin dark coping",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     7.5,
+     "b"
+    ],
+    [
+     2.3,
+     "ply"
+    ],
+    [
+     0.8,
+     "b"
+    ],
+    [
+     2.0,
+     "ply"
+    ],
+    [
+     1.9,
+     "b"
+    ],
+    [
+     1.9,
+     "win"
+    ],
+    [
+     5.6,
+     "b"
+    ],
+    [
+     1.0,
+     "gdoor"
+    ],
+    [
+     2.2,
+     "b"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     2.2,
+     "win"
+    ],
+    [
+     4.3,
+     "b"
+    ],
+    [
+     1.4,
+     "win"
+    ],
+    [
+     1.1,
+     "b"
+    ],
+    [
+     2.0,
+     "dbl"
+    ],
+    [
+     4.5,
+     "b"
+    ],
+    [
+     1.5,
+     "win"
+    ],
+    [
+     7.0,
+     "b"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     2.2,
+     "b"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     2.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "wall/ply": {
+     "type": "window",
+     "w": 0.95,
+     "h": 2.8,
+     "glass": "prop_wood",
+     "frame": "prop_wood",
+     "mullions": 0,
+     "sill": 0.1,
+     "depth": 0.03
+    },
+    "wall/win": {
+     "type": "window",
+     "w": 0.95,
+     "h": 0.7,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower",
+     "mullions": 2,
+     "sill": 2.6
+    },
+    "wall/gdoor": {
+     "type": "door",
+     "w": 0.85,
+     "h": 2.9,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower",
+     "transoms": 1
+    },
+    "wall/door": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "wall/dbl": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.4,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "mullions": 1
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "galvanised pipe guardrail round a sunken basement stair/areaway, s 1-6, 0-1.5 m out",
+    "wall packs above most doors (z 3.6)",
+    "slight roof-line step near s 26"
+   ],
+   "notes": "All five SV frames are Sep 2014 from ~22 m; positions intersect each frame's heading with the wall but disagree by up to 3 m (perspective), averaged. Plywood panels may have been replaced since. Pilaster-free plain stretcher-bond brick."
+  },
+  "W9": {
+   "faces": "SE",
+   "length_m": 27.4,
+   "confidence": "medium",
+   "summary": "long blank brown brick wall along William Tutte Way, climbing vines over the west half, FIRE ROUTE sign near the east end",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     27.4,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 22.0,
+     "z": 1.8,
+     "w": 0.3,
+     "h": 0.45,
+     "text": "FIRE ROUTE / no parking",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "Virginia-creeper vines up to ~4 m over s 0-12 (2015)"
+   ],
+   "notes": "sv_W9/W10/W12, sv_c2-c13 (Aug 2015)."
+  },
+  "W10": {
+   "faces": "SE",
+   "length_m": 7.6,
+   "confidence": "high",
+   "summary": "blank projecting brick block (the slab with the KEYS sign stands in the recess just west of it)",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     7.6,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W9/W10/W12, sv_c2-c13 (Aug 2015)."
+  },
+  "W11": {
+   "faces": "SE",
+   "length_m": 4.1,
+   "confidence": "medium",
+   "summary": "recessed bay (1.9 m back) with a six-light ribbon window - white curtains over dark brown spandrels, silver frames - and a steel door at its east end",
+   "height_m": 4.8,
+   "rows": [
+    [
+     1.0,
+     "low"
+    ],
+    [
+     1.1,
+     "high"
+    ],
+    [
+     2.4,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.25,
+     "band"
+    ],
+    [
+     0.85,
+     "door"
+    ]
+   ],
+   "cells": {
+    "low/band": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 0.54,
+     "glass": "brick_slc",
+     "frame": "metal_silver"
+    },
+    "high/band": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 0.54,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "low/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": "full",
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "high/door": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "low concrete curb under the window band"
+   ],
+   "notes": "sv_W10 (centre aimed at W10's end: the band is on the set-back W11). The band is ~4.2 m in the photo, so it is squeezed slightly to fit 4.1 m with the door; the door may really be on the short return to W12."
+  },
+  "W12": {
+   "faces": "SE",
+   "length_m": 7.4,
+   "confidence": "high",
+   "summary": "blank projecting brick block with a FIRE ROUTE sign; a second concrete screen slab stands in the recess east of it",
+   "height_m": 4.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     7.4,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 0.8,
+     "z": 1.7,
+     "w": 0.3,
+     "h": 0.45,
+     "text": "FIRE ROUTE / no parking",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [],
+   "notes": "sv_W9/W10/W12, sv_c2-c13 (Aug 2015)."
+  },
+  "W13": {
+   "faces": "SE",
+   "length_m": 23.3,
+   "confidence": "medium",
+   "summary": "west 5.8 m single-storey brick (4.7 m); then the two-storey office block (8.2 m): ground floor of brick pilasters framing wide and narrow windows with white curtains set high (z 2.4-3.7), a brick string course, plain brick, then a second-floor band of brown metal panels with six 4-light windows, dark fascia",
+   "height_m": 8.2,
+   "rows": [
+    [
+     2.4,
+     "base"
+    ],
+    [
+     1.3,
+     "win"
+    ],
+    [
+     0.2,
+     "head"
+    ],
+    [
+     0.2,
+     "string"
+    ],
+    [
+     0.3,
+     "brick_a"
+    ],
+    [
+     0.3,
+     "brick_lo"
+    ],
+    [
+     1.6,
+     "brick_hi"
+    ],
+    [
+     1.2,
+     "upper"
+    ],
+    [
+     0.7,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     5.8,
+     "low"
+    ],
+    [
+     0.6,
+     "pil"
+    ],
+    [
+     1.5,
+     "wide"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     0.35,
+     "narrow"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     1.5,
+     "wide"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     0.35,
+     "narrow"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     1.5,
+     "wide"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     0.35,
+     "narrow"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     1.5,
+     "wide"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     0.35,
+     "narrow"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     1.5,
+     "wide"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     0.35,
+     "narrow"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     1.5,
+     "wide"
+    ],
+    [
+     0.45,
+     "pil"
+    ],
+    [
+     1.2,
+     "end"
+    ]
+   ],
+   "cells": {
+    "win/wide": {
+     "type": "window",
+     "w": 0.95,
+     "h": 0.95,
+     "glass": "window_glass",
+     "frame": "brick_charcoal_tower",
+     "mullions": 2
+    },
+    "win/narrow": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.95,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower",
+     "mullions": 0
+    },
+    "upper/*": {
+     "type": "panel",
+     "colour": "roof_mansard"
+    },
+    "upper/wide": {
+     "type": "window",
+     "w": 0.95,
+     "h": 0.9,
+     "glass": "window_glass",
+     "frame": "brick_charcoal_tower",
+     "mullions": 3,
+     "colour": "roof_mansard"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "brick_lo/low": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "brick_hi/low": {
+     "type": "void"
+    },
+    "upper/low": {
+     "type": "void"
+    },
+    "fascia/low": {
+     "type": "void"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     3.9,
+     4.1,
+     "brick_brown",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 10.4,
+     "z": 2.6,
+     "w": 0.3,
+     "h": 0.45,
+     "text": "FIRE ROUTE / no parking",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "brick pilasters project ~0.1 m from the base to the string course (not modelled as piers because piers run full height)"
+   ],
+   "notes": "sv_W13_mhLr and _55ls (Aug 2015), sv_W15_-EAq. Lidar: 4.7 m to s ~6, 8.2 m beyond. Window rhythm: wide (alternately 4- and 3-light), pilaster, narrow single light, pilaster; the upper windows sit over the wide ones. Total stretched slightly to the wall length."
+  },
+  "W14": {
+   "faces": "NE",
+   "length_m": 10.3,
+   "confidence": "medium",
+   "summary": "main entrance in the inner corner: the return of W13's two-storey block, a buff-brick stair tower rising to ~9.2 m, and a glazed vestibule (aluminium double door, sidelights) with a two-storey glazed stair bay above, under a white metal canopy at z 3.0-3.6",
+   "height_m": 7.6,
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     0.6,
+     "canopy"
+    ],
+    [
+     3.0,
+     "upper"
+    ],
+    [
+     1.0,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     3.8,
+     "brick"
+    ],
+    [
+     3.7,
+     "tower"
+    ],
+    [
+     2.8,
+     "entry"
+    ]
+   ],
+   "cells": {
+    "*/tower": {
+     "type": "panel",
+     "colour": "brick_buff"
+    },
+    "upper/brick": {
+     "type": "panel",
+     "colour": "roof_mansard"
+    },
+    "top/brick": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "ground/entry": {
+     "type": "glass",
+     "w": 1.0,
+     "h": "full",
+     "mullion_pitch": 0.9,
+     "transom_pitch": 1.0,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "upper/entry": {
+     "type": "glass",
+     "w": 1.0,
+     "h": "full",
+     "mullion_pitch": 0.9,
+     "transom_pitch": 1.0,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "top/entry": {
+     "type": "glass",
+     "w": 1.0,
+     "h": "full",
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "canopy/*": {
+     "type": "panel",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     3.0,
+     3.6,
+     "panel_white",
+     2.5
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "white canopy with downlights, ~2.5 m deep (lidar ~4 m high block 2-3 m out)",
+    "entrance doors: single aluminium door with sidelight and transom (sv_c22)"
+   ],
+   "notes": "sv_W14 and sv_c22 (Sep 2014), sv_W15_-EAq (2015). The lidar line sits ~2 m in front of the glass. The tower (s ~4-7.5) reaches 9.1-9.3 m in the lidar, above this wall's 7.6 m."
+  },
+  "W15": {
+   "faces": "SE",
+   "length_m": 29.2,
+   "confidence": "medium",
+   "summary": "two-storey brown brick front east of the entrance: nine white-framed punched windows per floor at 2 m pitch, then a recessed steel door with a small canopy and a tall grey louvre above it, then the start of the east block: deep dark fascia, louvre band and a low ribbon window",
+   "height_m": 7.0,
+   "rows": [
+    [
+     2.4,
+     "g"
+    ],
+    [
+     1.8,
+     "mid"
+    ],
+    [
+     1.4,
+     "u"
+    ],
+    [
+     1.2,
+     "fascia"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "b"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     2.0,
+     "pw"
+    ],
+    [
+     0.6,
+     "b"
+    ],
+    [
+     2.8,
+     "entry"
+    ],
+    [
+     0.9,
+     "fb"
+    ],
+    [
+     3.0,
+     "rib"
+    ],
+    [
+     2.7,
+     "fb"
+    ]
+   ],
+   "cells": {
+    "g/pw": {
+     "type": "window",
+     "w": 0.5,
+     "h": 1.3,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "mullions": 1,
+     "sill": 1.0
+    },
+    "u/pw": {
+     "type": "window",
+     "w": 0.45,
+     "h": 0.85,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "mullions": 1,
+     "sill": 0.2
+    },
+    "g/entry": {
+     "type": "door",
+     "w": 0.4,
+     "h": 2.3,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "depth": 1.0,
+     "canopy": [
+      0.8,
+      "brick_charcoal_tower"
+     ]
+    },
+    "mid/entry": {
+     "type": "louvre",
+     "w": 0.4,
+     "h": 1.0,
+     "sill": 0.0,
+     "glass": "metal_shade"
+    },
+    "u/entry": {
+     "type": "louvre",
+     "w": 0.4,
+     "h": 0.9,
+     "sill": 0.0,
+     "glass": "metal_shade"
+    },
+    "g/rib": {
+     "type": "window",
+     "w": 0.95,
+     "h": 0.6,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "mullions": 4,
+     "sill": 1.6
+    },
+    "u/rib": {
+     "type": "louvre",
+     "w": 0.95,
+     "h": 0.45,
+     "sill": 0.8,
+     "glass": "brick_charcoal_tower"
+    },
+    "fascia/fb": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "fascia/rib": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "picnic tables on pavers in front of s 26-29 and along W16"
+   ],
+   "notes": "sv_W15_-EAq / _IQ (Aug 2015, partly behind a big pine and spruce), sv_W14 and sv_c22 (2014). Window count and pitch read on s 6-15 and extended across: count +-2. Fascia/louvre/ribbon of the east block start at s ~22.6 (IQ)."
+  },
+  "W16": {
+   "faces": "SE",
+   "length_m": 9.1,
+   "confidence": "high",
+   "summary": "south end of the east block: brown brick under a deep projecting dark-brown metal fascia, a louvre band right under the fascia and a six-light white-framed ribbon window at sill height 1.65 m",
+   "height_m": 7.0,
+   "rows": [
+    [
+     2.4,
+     "g"
+    ],
+    [
+     2.4,
+     "mid"
+    ],
+    [
+     0.7,
+     "louv"
+    ],
+    [
+     0.4,
+     "gap"
+    ],
+    [
+     1.1,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.4,
+     "b"
+    ],
+    [
+     1.0,
+     "win"
+    ],
+    [
+     0.8,
+     "b"
+    ],
+    [
+     5.3,
+     "rib"
+    ],
+    [
+     0.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "g/win": {
+     "type": "window",
+     "w": 0.6,
+     "h": 0.7,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "mullions": 0,
+     "sill": 1.7
+    },
+    "g/rib": {
+     "type": "window",
+     "w": 0.97,
+     "h": 0.7,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "mullions": 5,
+     "sill": 1.65
+    },
+    "louv/rib": {
+     "type": "louvre",
+     "w": 0.97,
+     "h": 0.6,
+     "glass": "brick_charcoal_tower"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     5.9,
+     7.0,
+     "brick_charcoal_tower",
+     0.35
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "2 picnic tables on the pavers in front, s 1-6, 3 m out (2014)"
+   ],
+   "notes": "sv_W16 (Sep 2014, sunlit: fascia reads coppery brown #745b4f there; 2025 W17 overcast reads #4e4a46)."
+  },
+  "W17": {
+   "faces": "NE",
+   "length_m": 47.4,
+   "confidence": "high",
+   "summary": "street face of the east block: one tall storey (6.9 m) of plain brown brick under a deep projecting dark metal fascia; six silver-framed clerestory strips of six lights directly under the fascia, between control joints every 7.7 m; one recessed black door at s ~14.7 with a red fire bell above-left",
+   "height_m": 6.9,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     1.05,
+     "clere"
+    ],
+    [
+     0.2,
+     "lintel"
+    ],
+    [
+     1.05,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "b"
+    ],
+    [
+     6.8,
+     "clere"
+    ],
+    [
+     0.9,
+     "b"
+    ],
+    [
+     5.6,
+     "clere"
+    ],
+    [
+     1.2,
+     "clere_d"
+    ],
+    [
+     0.9,
+     "b"
+    ],
+    [
+     6.8,
+     "clere"
+    ],
+    [
+     0.9,
+     "b"
+    ],
+    [
+     6.8,
+     "clere"
+    ],
+    [
+     0.9,
+     "b"
+    ],
+    [
+     6.8,
+     "clere"
+    ],
+    [
+     0.9,
+     "b"
+    ],
+    [
+     6.8,
+     "clere"
+    ],
+    [
+     1.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "clere/clere": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.13,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "clere/clere_d": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.13,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "wall/clere_d": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.4,
+     "glass": "penthouse_metal",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.6
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     5.85,
+     6.9,
+     "brick_charcoal_tower",
+     0.35
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 13.7,
+     "z": 3.2,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "fire alarm bell",
+     "colour": "accent_red",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "vertical control joints (light sealant lines) at s ~8.1, 15.8, 23.5, 31.2, 38.9",
+    "small wall-pack lamps at those joints, z ~3.0",
+    "grey utility box low on the wall right of the door"
+   ],
+   "notes": "sv_W17 p4oV/m6Dm/OgSf (May 2025), whole wall in Earth W17 whole (2024). Scale 38 px/m from the 6.9 m lidar height. Door recess is a dark brick-lined opening ~0.6 m deep with a black steel door."
+  }
+ },
+ "roof": [
+  {
+   "what": "flat grey membrane roofs on all parts",
+   "colour": "roof",
+   "where": "east block 6.9-7.8 m, two-storey W2/W13 blocks 8.2 m, west and south wings 4.7-5.0 m"
+  },
+  {
+   "what": "small exhaust hoods / curbs, grey",
+   "where": "~8 on the east block, ~12 scattered over the west/south wings (Earth)",
+   "size_m": [
+    1.0,
+    1.0,
+    0.7
+   ]
+  },
+  {
+   "what": "two larger rooftop units",
+   "where": "east block, middle of the roof",
+   "size_m": [
+    2.0,
+    1.2,
+    0.8
+   ]
+  },
+  {
+   "what": "grey metal duct riser",
+   "where": "W2 s 3.5-5.0, rising 1.4 m above the 8.2 m roof",
+   "size_m": [
+    1.5,
+    0.6,
+    1.4
+   ]
+  },
+  {
+   "what": "round dark metal flue stack",
+   "where": "south wing roof ~5 m behind W10 (sv_W10, sv_c6)",
+   "size_m": [
+    1.0,
+    1.0,
+    1.5
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [],
+  "neighbours": [
+   "Central Services Building (heating plant, brick + white block, ~60 m brick stack) abuts the NW: W5-W7 face it at 1-4 m and W8's north end meets its white block wall (black steel stair)",
+   "brick building across a ~6 m one-way driveway north of W0",
+   "Davis Centre across William Tutte Way to the south-east",
+   "ERC and M3 across the lawn to the west/south-west"
+  ],
+  "ground": [
+   "service yard W0-W4: cracked asphalt with a big circular concrete pad (~20 m diameter) in its north half, yellow lines along W3",
+   "W17: interlocking concrete-paver sidewalk ~2.5 m wide against the wall, 4 m grass strip, curb, road",
+   "W0: asphalt one-way driveway to the yard",
+   "W8: open lawn with a long low concrete walk/edging ~9 m out",
+   "south face W9-W13: paver walk ~2 m wide against the wall with mulch beds of junipers, then William Tutte Way",
+   "W14/W15 entrance court: pavers, mulch beds with hydrangeas and hostas, paver path out to William Tutte Way",
+   "W16: paver patio and path to the east road"
+  ],
+  "entities": [
+   {
+    "type": "dumpster",
+    "kind": "black steel front-load bins ('Waste Connections of Canada')",
+    "where": "along W1, s 4-14, 1-3 m out",
+    "count": 5,
+    "photo": "sv_W1_ExAo (2019)"
+   },
+   {
+    "type": "stair",
+    "kind": "steel stair with pipe railing to dock-height door 2",
+    "where": "W1 s 3.2-6.0, 0-1.8 m out",
+    "count": 1,
+    "photo": "sv_W1_ExAo"
+   },
+   {
+    "type": "bollard",
+    "kind": "dark steel canopy posts with yellow-painted bases",
+    "where": "canopy edge W2 s 5-15 and W3 s 0-3, ~2.7 m out",
+    "count": 5,
+    "photo": "sv_c23"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised pipe guardrail round a basement areaway",
+    "where": "W8 s 1-6, 0-1.5 m out",
+    "count": 1,
+    "photo": "sv_W8_BEci (2014)"
+   },
+   {
+    "type": "screen_wall",
+    "kind": "free-standing rough concrete slab ~3.0 x 2.6 m, 0.3 m thick, black 'KEYS' arrow sign",
+    "where": "art (959.0, 470.4), in front of the recess between W9 and W10, parallel to the wall",
+    "count": 1,
+    "photo": "sv_W10, sv_c6"
+   },
+   {
+    "type": "screen_wall",
+    "kind": "free-standing rough concrete slab ~3.0 x 2.4 m",
+    "where": "art (979.5, 481.1), in front of the recess between W12 and W13",
+    "count": 1,
+    "photo": "sv_W12"
+   },
+   {
+    "type": "bench",
+    "kind": "green steel mesh bench",
+    "where": "entrance court: one against W15 s 0.5-2.5, 0.5 m out; one facing the door ~4 m out from W14",
+    "count": 2,
+    "photo": "sv_W14, sv_c22 (2014)"
+   },
+   {
+    "type": "bin",
+    "kind": "concrete ash/litter urn",
+    "where": "W14 s ~6, 1.5 m out",
+    "count": 1,
+    "photo": "sv_c22"
+   },
+   {
+    "type": "picnic_table",
+    "kind": "steel patio table with chairs",
+    "where": "entrance court, W15 s 2-6, ~4 m out",
+    "count": 1,
+    "photo": "sv_W13_55ls, sv_c15"
+   },
+   {
+    "type": "picnic_table",
+    "kind": "steel-frame picnic table",
+    "where": "in front of W16 s 1-6 / W15 s 26-29, 3-5 m out",
+    "count": 2,
+    "photo": "sv_W16 (2014), sv_W15_IQ (2015)"
+   },
+   {
+    "type": "picnic_table",
+    "kind": "wooden picnic table",
+    "where": "W8 s ~55, 6 m out",
+    "count": 1,
+    "photo": "sv_W8__KEH (2014)"
+   },
+   {
+    "type": "sign",
+    "kind": "white ground sign on two black posts: 'GENERAL SERVICES COMPLEX', UW logo, 'Human Resources / Plant Operations'",
+    "where": "art (1007.6, 497.4), beside the paver path from William Tutte Way to the entrance",
+    "count": 1,
+    "photo": "sv_W15_-EAq (2015)"
+   },
+   {
+    "type": "sign",
+    "kind": "white 'GENERAL SERVICES COMPLEX' ground sign (2014); in 2025 a black wayfinding totem reading 'COM / GSC' stands at the same corner",
+    "where": "art ~(1037, 513), by the east road SE of the W16/W17 corner",
+    "count": 1,
+    "photo": "sv_W16 (2014), sv_W17_OgSf (2025)"
+   },
+   {
+    "type": "art",
+    "kind": "bright orange hashtag-shaped sculpture/seat (2025, purpose unclear)",
+    "where": "plaza south of the W16/W17 corner near the totem, ~art (1034, 505)",
+    "count": 1,
+    "photo": "sv_W17_OgSf (2025) - low confidence"
+   },
+   {
+    "type": "hydrant",
+    "kind": "red fire hydrant",
+    "where": "W15 s ~22, 9 m out, by the paver path",
+    "count": 1,
+    "photo": "sv_W15_IQ"
+   },
+   {
+    "type": "tree",
+    "kind": "large red pine and a spruce in a mulch bed",
+    "where": "W15 s 3-14, 5-10 m out",
+    "count": 2,
+    "photo": "sv_W15_-EAq, sv_c15"
+   },
+   {
+    "type": "tree",
+    "kind": "maple",
+    "where": "W8 s ~44, 8 m out",
+    "count": 1,
+    "photo": "sv_W8_rZNp (2014)"
+   },
+   {
+    "type": "tree",
+    "kind": "spruce",
+    "where": "W8 s ~57, 10 m out (next to the south-west corner)",
+    "count": 1,
+    "photo": "sv_W8_HyzW"
+   },
+   {
+    "type": "hedge",
+    "kind": "spreading junipers and shrubs in mulch beds",
+    "where": "along W10-W13, 0.5-3 m out",
+    "count": 6,
+    "photo": "sv_W10, sv_W12, sv_W13"
+   },
+   {
+    "type": "barrier",
+    "kind": "yellow-and-white sawhorse barricades on a gravel patch (temporary, 2025)",
+    "where": "W17 s 12-17, 0.5-3 m out",
+    "count": 2,
+    "photo": "sv_W17_p4oV"
+   }
+  ]
+ },
+ "geometry_notes": [
+  "W3 is the edge of the loading canopy, not a wall: the block wall with doors 7-12 stands 2.9 m behind on W2's line (use the undercut). W2 also has the canopy 2.5-2.7 m in front of it at 4.8 m (lidar).",
+  "W0 is two volumes: s 0-17.6 brick at 6.9 m (east block), s 17.6-39.1 grey block rising 7.3-7.7 m; W1 (all block) is 7.8 m.",
+  "The south face has small recesses the outline skips: between W9 b and W10 a (3.7 m, ~1.5 m deep, contains a grated window and the KEY CONTROL steel door) and between W12 b and W13 a (3.3 m); W11 is set back ~1.9 m from W10/W12. Concrete screen slabs stand in front of the two gaps.",
+  "W13: only s ~6-23 is the 8.2 m two-storey block; s 0-6 is 4.7 m (handled with void cells).",
+  "W14: the lidar line runs ~2 m in front of the glazing (it includes the canopy); the buff stair tower at s ~4-7.5 rises to 9.1-9.3 m, above the 7.6 m wall.",
+  "W5-W7 abut the Central Services Building and its stack; lidar samples near W7's east end (11-27 m) belong to the CSB/stack, not GSC.",
+  "East block roof is 6.9-7.0 m along W15-W17 and ~7.7 m at its north end (block part of W0/W1)."
+ ]
+}

@@ -1,0 +1,2480 @@
+{
+ "building": "STC",
+ "sources_checked": [
+  "around/earth_W0_whole, earth_W0_l/m/r, earth_W1..W18_whole, earth_W18_l/m/r (Google Earth 2024): the only current imagery",
+  "around/earth_corner_0..25 (2024)",
+  "around/sv_* (all Street View is Sep 2014: STC under construction behind Bondfield hoardings, or black interior shots); used only for the site context",
+  "private/ortho_2023aug.jpg (roof plan), lidar via tools.art.study / ndsm samples along every wall",
+  "../b2/facades.json (W3 party wall, W2 canopy), ../b1/facades.json (W1/W2/W3 party walls), ../nh/facades.json (bridge landing)"
+ ],
+ "colours": {
+  "white_panel": {
+   "hex": "#e3e3e3",
+   "palette": "panel_white",
+   "where": "smooth white metal/composite panels: the tooth boxes, the upper NW/NE faces, top storey frames, podium fins and bands (sunlit earth_W3_whole)"
+  },
+  "slate_panel": {
+   "hex": "#4a5058",
+   "palette": "brick_slate",
+   "where": "dark charcoal blue-grey panels on the west end (W1/W2) and every SW-facing return of the teeth; Earth reads #3e5876-#4c6b8e through its blue cast, corrected by eye against the neutral whites (guess on exact value)"
+  },
+  "tower_brick": {
+   "hex": "#dbb8a3",
+   "palette": "brick_buff",
+   "where": "the two stair towers (west W1/U0 end, east W14/U2), the east service block and the east glazed block's ends (earth_corner_17, Lab 6.7 from brick_buff)"
+  },
+  "podium_glass": {
+   "palette": "glass_blue",
+   "where": "upper podium storey and box ribbons (reflective pale blue)"
+  },
+  "ground_glass": {
+   "palette": "window_dark",
+   "where": "ground storey curtain wall"
+  },
+  "east_block_glass": {
+   "palette": "glass_teal",
+   "where": "teal-green glazing of the two-storey east block (W15) and the bridge band"
+  },
+  "skylight": {
+   "palette": "glass_vault",
+   "where": "sloped skylight along the NW and NE feet on B2/B1 roofs"
+  },
+  "slots": {
+   "palette": "window_glass",
+   "where": "light reflective slot windows in the slate"
+  },
+  "roof": {
+   "palette": "roof_light",
+   "where": "grey membrane roofs (ortho 2023)"
+  }
+ },
+ "geometry_notes": [
+  "The SE footprint (W3-W14) traces the upper saw-tooth, but the two-storey podium (lidar ~10 m) fills the notches: it continues ~3 m in front of the SW returns W4, W7, W9 and W11, and its roof shows 1.5-3 m in front of the tooth faces W8, W10 and W12. In the drawing the podium storeys are put on the footprint walls; a podium polygon running roughly (903.6,159.2) -> (941,152.5) along the front would be truer.",
+  "Heights: short teeth W3-W10 ~19.2 m, full-height boxes W11-W14 and the main body ~23.9 m, podium ~10 m, east service block ~5.3 m (x 944-963, y 150-157), east glazed block ~9.6 m, bridge roof ~14.5 m.",
+  "The upper NW and NE faces (U0, U1) stand ~2.8 m inside the B2/B1 party lines W0/W18; the strip between is a sloped skylight at ~13.6 m over B2/B1's ~12.5 m roofs.",
+  "The east stair tower (24 m) has no footprint wall of its own on the SE: added as U2 (z0 5.3) behind the service block; its SW side is W14.",
+  "A taller (~27 m, lidar clipped at 26.9) blank block occupies the north corner (U0 s 0-8.5, U1 s 36.9-41.9), and a long white screen bar (~26.5 m) sits ~3-4 m behind U0 over s ~20-45."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 66.6,
+   "confidence": "high",
+   "summary": "party wall with B2 (B2 W3 s 7.4-74.6, coincident within 0.5 m) up to B2's roof (~12.5 m lidar, 13.1 in B2's spec); nothing of STC shows at this line. STC's upper NW face stands 2.8 m back from it: see U0",
+   "height_m": 12.5,
+   "shared": "B2 W3",
+   "rows": [
+    [
+     12.5,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     66.6,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/shared": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [],
+   "notes": "Lidar: 12.4-12.8 m 3 m outside (B2 roof), 13.4-14.0 m at 1.5 m inside (the sloped skylight), 23.6-26.7 m from 4 m inside. Wall colour follows B2's brick in case anything shows."
+  },
+  "U0": {
+   "upper": true,
+   "a": [
+    941.72,
+    198.24
+   ],
+   "b": [
+    884.89,
+    169.17
+   ],
+   "z0": 12.5,
+   "faces": "NW",
+   "length_m": 63.8,
+   "confidence": "medium",
+   "summary": "STC's NW face above B2's roof: smooth white panel wall with four broad projecting white pilasters (~4.4 m wide, ~10 m apart) and pairs of small dark windows low between them; a taller blank block at the north corner (s 0-8.5) and the buff-brick west stair tower at the SW end (s 54.6-63.8); a sloped glass skylight runs along its foot on B2's roof",
+   "height_m": 23.9,
+   "rows": [
+    [
+     1.6,
+     "sky"
+    ],
+    [
+     3.6,
+     "win"
+    ],
+    [
+     6.2,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     8.5,
+     "block"
+    ],
+    [
+     2.2,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     1.0,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     4.4,
+     "pil"
+    ],
+    [
+     1.2,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     0.8,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     4.0,
+     "pil"
+    ],
+    [
+     1.2,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     0.8,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     4.3,
+     "pil"
+    ],
+    [
+     1.2,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     0.9,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     4.6,
+     "pil"
+    ],
+    [
+     0.7,
+     "w0"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     2.6,
+     "w0"
+    ],
+    [
+     9.2,
+     "tower"
+    ]
+   ],
+   "cells": {
+    "win/win": {
+     "type": "window",
+     "w": 1.7,
+     "h": 1.1,
+     "sill": 1.35,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.25
+    },
+    "win/block": {
+     "type": "window",
+     "w": 0.2,
+     "h": 1.0,
+     "sill": 1.4,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.2
+    },
+    "upper/block": {
+     "type": "window",
+     "w": 0.2,
+     "h": 1.0,
+     "sill": 2.2,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.2
+    },
+    "*/tower": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "*/pil": null,
+    "*/w0": null,
+    "*/win": null,
+    "*/block": null
+   },
+   "wall": "panel_white",
+   "bands": [],
+   "piers": [
+    [
+     17.5,
+     4.4,
+     "panel_white",
+     0.8
+    ],
+    [
+     27.3,
+     4.0,
+     "panel_white",
+     0.8
+    ],
+    [
+     37.05,
+     4.3,
+     "panel_white",
+     0.8
+    ],
+    [
+     47.2,
+     4.6,
+     "panel_white",
+     0.8
+    ]
+   ],
+   "signs": [],
+   "attached": [
+    "sloped glass skylight along the foot, s 8.5-54.6, on B2's roof: ~2.8 m deep, rising from ~12.6 m at its outer edge to ~14 m against this wall, dark blue-teal glass (glass_vault) in white mullions at ~1 m (earth_W0_m/r, earth_corner_25); it turns the north corner and continues along U1"
+   ],
+   "notes": "earth_W0_whole/_l/_m/_r (2024); positions measured on earth_W0_whole scaled to the 63.8 m face. The pilasters flare slightly at the top and stop at ~24.6 m under a long white screen/fascia bar set back on the roof (top ~26.5 m, lidar 26.4-26.7 at 4 m inside for s 20-45): listed under roof. The north-corner block (s 0-8.5) rises to ~27 m (lidar clip 26.9); its windows are a guess from earth_corner_25 (two small windows, one per upper row). Window sill heights from earth_W0_m: centre ~16 m. Setback 2.8 m from W0 is from lidar (13.6 at 1.5 m in, 24 at 4 m in)."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 10.0,
+   "confidence": "medium",
+   "summary": "west end, north half: the buff-brick west stair tower (s 0-4.8, full height, a tall glazed slot near its south edge) beside the dark slate block; glazed ground storey under B2's flat concrete canopy",
+   "height_m": 23.9,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     4.3,
+     "l5"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.2,
+     "tower"
+    ],
+    [
+     1.0,
+     "tslot"
+    ],
+    [
+     0.6,
+     "tower"
+    ],
+    [
+     1.73,
+     "a"
+    ],
+    [
+     1.73,
+     "b"
+    ],
+    [
+     1.73,
+     "c"
+    ]
+   ],
+   "cells": {
+    "*/tower": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "*/tslot": {
+     "type": "glass",
+     "w": 0.9,
+     "h": "full",
+     "transom_pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "mullion"
+    },
+    "ground/a": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "ground/b": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "ground/c": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": null,
+    "l5/a": {
+     "type": "panel",
+     "w": 0.95,
+     "h": 0.8,
+     "sill": 0.4,
+     "glass": "window_glass",
+     "depth": 0.5,
+     "colour": "panel_white"
+    },
+    "l5/b": {
+     "type": "panel",
+     "w": 0.95,
+     "h": 0.8,
+     "sill": 0.4,
+     "glass": "window_glass",
+     "depth": 0.5,
+     "colour": "panel_white"
+    },
+    "l5/c": {
+     "type": "panel",
+     "w": 0.95,
+     "h": 0.8,
+     "sill": 0.4,
+     "glass": "window_glass",
+     "depth": 0.5,
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.0,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l3/b": null,
+    "l3/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.2,
+     "offset": 0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.0,
+     "offset": -0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/c": null,
+    "l2/tower": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "l2/tslot": {
+     "type": "glass",
+     "w": 0.9,
+     "h": "full",
+     "transom_pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "mullion"
+    },
+    "parapet/tower": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "parapet/tslot": {
+     "type": "glass",
+     "w": 0.9,
+     "h": "full",
+     "transom_pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "mullion"
+    }
+   },
+   "wall": "brick_slate",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     19.2,
+     23.9,
+     "panel_white",
+     0.0
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "B2's flat light-grey concrete canopy (B2 W2/W3) reaches the corner at ~4 m and continues ~3 m out along s 0-6 (lidar 4.1-4.3 m 3 m outside)"
+   ],
+   "notes": "earth_W1_whole, earth_corner_0/1/2 (2024). The tower's brick reads #dbb8a3 sunlit (brick_buff, Lab 6.7). The slate block is topped by a white storey whose face is a white frame round a large recessed light panel (glass or pale infill, uncertain) from ~19.2 m (earth_W1_whole, earth_W2_whole). Slot windows are scattered, about two per storey per 5 m, and drawn from three staggered patterns; exact positions not countable on the mesh. Ground storey glazing is not visible (canopy shadow): guess."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 9.7,
+   "confidence": "medium",
+   "summary": "west end, south half: dark slate panel block with scattered vertical slot windows (and a few small square ones), white top storey framing a recessed panel, glazed ground storey with the west entrance (guess) under the B2 canopy's end",
+   "height_m": 23.9,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     4.3,
+     "l5"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.62,
+     "a"
+    ],
+    [
+     1.62,
+     "b"
+    ],
+    [
+     1.62,
+     "c"
+    ],
+    [
+     1.62,
+     "a"
+    ],
+    [
+     1.62,
+     "door"
+    ],
+    [
+     1.62,
+     "c"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.2,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l2/b": null,
+    "l2/c": {
+     "type": "window",
+     "w": 0.6,
+     "h": 0.6,
+     "sill": 2.4,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l5/*": {
+     "type": "panel",
+     "w": 0.95,
+     "h": 0.8,
+     "sill": 0.4,
+     "glass": "window_glass",
+     "depth": 0.5,
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.0,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l3/b": null,
+    "l3/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.2,
+     "offset": 0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.0,
+     "offset": -0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/c": null,
+    "ground/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/door": null,
+    "l3/door": null,
+    "l4/door": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    }
+   },
+   "wall": "brick_slate",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     19.2,
+     23.9,
+     "panel_white",
+     0.0
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W2_whole, earth_corner_2/3 (2024). Slate panels read #3e5876 in Earth's blue cast; judged against the neutral white boxes they are a dark charcoal blue-grey (brick_slate, guess). Pairs of small square windows around mid-height (earth_W2_whole) are approximated by the l2/c cell. Entrance doors in the ground storey are a guess (no current street-level photo; Street View is Sep 2014, building under construction). One glazed double door (bay at s ~6.5-8.1) is a placeholder."
+  },
+  "W3": {
+   "faces": "SE",
+   "length_m": 9.4,
+   "confidence": "medium",
+   "summary": "westmost tooth: white panel box (to ~19.5 m) with two ribbon-window storeys over the glazed two-storey podium; the main body's white top storey rises behind",
+   "height_m": 19.2,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     0.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     9.4,
+     "box"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l4/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "parapet/*": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W3_whole, earth_corner_3/4. Lidar 19.4-19.8 at 1.5 m inside, 24 at 4 m. The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W4": {
+   "faces": "SW",
+   "length_m": 4.2,
+   "confidence": "medium",
+   "summary": "short slate return of the W3 tooth over the podium",
+   "height_m": 19.2,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     0.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.4,
+     "a"
+    ],
+    [
+     1.4,
+     "b"
+    ],
+    [
+     1.4,
+     "c"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.0,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l3/b": null,
+    "l3/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.2,
+     "offset": 0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.0,
+     "offset": -0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/c": null,
+    "l5/a": null,
+    "l5/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.4,
+     "offset": 0.2,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l5/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.8,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "*/parapet": null
+   },
+   "wall": "brick_slate",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ],
+    [
+     18.9,
+     19.2,
+     "panel_white",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W4_whole, earth_corner_4/5. The podium (~10 m) actually continues ~3 m out in front of this return (lidar 10.9 m 3 m outside at s 0.5); the slate return sits on the podium roof. The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W5": {
+   "faces": "W",
+   "length_m": 16.6,
+   "confidence": "medium",
+   "summary": "enclosed bridge to Needles Hall, west side: white metal-clad box carried over the service road, a continuous glazed band with diagonal bracing behind it; open beneath",
+   "height_m": 14.6,
+   "rows": [
+    [
+     9.6,
+     "under"
+    ],
+    [
+     1.0,
+     "sill"
+    ],
+    [
+     2.8,
+     "glass"
+    ],
+    [
+     1.2,
+     "head"
+    ]
+   ],
+   "bays": [
+    [
+     16.6,
+     "span"
+    ]
+   ],
+   "cells": {
+    "under/*": {
+     "type": "void"
+    },
+    "glass/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "sill/*": null,
+    "head/*": null
+   },
+   "wall": "panel_white",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "joins NH's north wall (NH W16) at its south end; NH's own spec puts it at s ~6.4-11.5 of its east addition, z ~9-13"
+   ],
+   "notes": "earth_W5_whole (bridge side, 2024): white/silver cladding top and bottom, glazed band in the middle with X bracing visible through the glass, underside white. Lidar roof 14.1-15.0. Underside height ~9.6 from earth_W5 proportions (guess, NH says ~9)."
+  },
+  "W6": {
+   "faces": "E",
+   "length_m": 19.1,
+   "confidence": "medium",
+   "summary": "enclosed bridge to Needles Hall, east side (same as W5)",
+   "height_m": 14.6,
+   "rows": [
+    [
+     9.6,
+     "under"
+    ],
+    [
+     1.0,
+     "sill"
+    ],
+    [
+     2.8,
+     "glass"
+    ],
+    [
+     1.2,
+     "head"
+    ]
+   ],
+   "bays": [
+    [
+     19.1,
+     "span"
+    ]
+   ],
+   "cells": {
+    "under/*": {
+     "type": "void"
+    },
+    "glass/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "sill/*": null,
+    "head/*": null
+   },
+   "wall": "panel_white",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "joins NH's north wall (NH W16) at its south end; NH's own spec puts it at s ~6.4-11.5 of its east addition, z ~9-13"
+   ],
+   "notes": "earth_corner_14/16/17 (2024) show this side over the road: white top and bottom bands, glazed band with white mullions. Lidar roof 14.4-15.3."
+  },
+  "W7": {
+   "faces": "SW",
+   "length_m": 6.5,
+   "confidence": "medium",
+   "summary": "slate return of the second tooth over the podium",
+   "height_m": 19.2,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     0.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.62,
+     "a"
+    ],
+    [
+     1.62,
+     "b"
+    ],
+    [
+     1.62,
+     "c"
+    ],
+    [
+     1.62,
+     "a"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.0,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l3/b": null,
+    "l3/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.2,
+     "offset": 0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.0,
+     "offset": -0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/c": null,
+    "l5/a": null,
+    "l5/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.4,
+     "offset": 0.2,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l5/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.8,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "*/parapet": null
+   },
+   "wall": "brick_slate",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ],
+    [
+     18.9,
+     19.2,
+     "panel_white",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W7_whole (2024): dark slate faces with scattered light vertical slots, white roof edges. Podium (~10 m) continues ~3 m in front (lidar 10.4-10.7 3 m outside). The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W8": {
+   "faces": "SE",
+   "length_m": 9.2,
+   "confidence": "medium",
+   "summary": "second tooth: white panel box with two ribbon-window storeys over the glazed podium",
+   "height_m": 19.2,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     0.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     9.2,
+     "box"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l4/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "parapet/*": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W8_whole, earth_corner_11/12. Lidar puts the tooth face ~1.5-3 m behind the podium front (10.2 at 1.5 m in, 19.2 at 4 m in); Earth shows it nearly flush, drawn flush. The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W9": {
+   "faces": "SW",
+   "length_m": 6.5,
+   "confidence": "medium",
+   "summary": "slate return of the third tooth over the podium",
+   "height_m": 19.2,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     0.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.62,
+     "a"
+    ],
+    [
+     1.62,
+     "b"
+    ],
+    [
+     1.62,
+     "c"
+    ],
+    [
+     1.62,
+     "a"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.0,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l3/b": null,
+    "l3/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.2,
+     "offset": 0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.0,
+     "offset": -0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/c": null,
+    "l5/a": null,
+    "l5/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.4,
+     "offset": 0.2,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l5/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.8,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "*/parapet": null
+   },
+   "wall": "brick_slate",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ],
+    [
+     18.9,
+     19.2,
+     "panel_white",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W9_whole. Podium continues ~3 m in front (lidar 10.2 3 m outside). The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W10": {
+   "faces": "SE",
+   "length_m": 8.4,
+   "confidence": "medium",
+   "summary": "third tooth: white panel box with two ribbon-window storeys over the glazed podium; planted bed with trees in front",
+   "height_m": 19.2,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     0.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     8.4,
+     "box"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l4/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "parapet/*": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W10_whole, earth_corner_13/14. Tooth face 1.5-3 m behind the podium front in lidar; drawn flush. The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W11": {
+   "faces": "SW",
+   "length_m": 7.7,
+   "confidence": "medium",
+   "summary": "tall slate return of the first full-height box (to ~23.9 m) over the podium",
+   "height_m": 23.9,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     4.3,
+     "l5"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.54,
+     "a"
+    ],
+    [
+     1.54,
+     "b"
+    ],
+    [
+     1.54,
+     "c"
+    ],
+    [
+     1.54,
+     "a"
+    ],
+    [
+     1.54,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.0,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l3/b": null,
+    "l3/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.2,
+     "offset": 0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/a": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 2.0,
+     "offset": -0.3,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.9,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l4/c": null,
+    "l5/a": null,
+    "l5/b": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 1.4,
+     "offset": 0.2,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "l5/c": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.8,
+     "sill": 0.8,
+     "offset": 0.0,
+     "glass": "window_glass",
+     "frame": "brick_slate",
+     "depth": 0.1
+    },
+    "*/parapet": null
+   },
+   "wall": "brick_slate",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ],
+    [
+     23.599999999999998,
+     23.9,
+     "panel_white",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W11_whole (2024): dark slate with slots full height above the podium. Lidar 23.6-24.0. The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W12": {
+   "faces": "SE",
+   "length_m": 6.0,
+   "confidence": "medium",
+   "summary": "first full-height box: white panels with three ribbon-window storeys over the glazed podium",
+   "height_m": 23.9,
+   "rows": [
+    [
+     5.2,
+     "ground"
+    ],
+    [
+     4.8,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     4.3,
+     "l5"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     6.0,
+     "box"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l4/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l5/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "parapet/*": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     5.0,
+     5.4,
+     "panel_white",
+     0.15
+    ],
+    [
+     9.6,
+     10.0,
+     "panel_white",
+     0.25
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_corner_14/15 (2024): four window bands counting the podium's upper storey. Lidar: podium 10 m at the wall line, box face ~3 m in. The SE front is a saw-tooth: white panel boxes with ribbon windows stand on a two-storey glass podium with white mullions/fins and white floor bands; the boxes' SW-facing returns are dark slate with slot windows. Lidar: podium roof ~10 m, short teeth ~19.2 m, tall teeth ~23.9 m. Earth 2024 (earth_corner_10-17) is the only current source."
+  },
+  "W13": {
+   "faces": "SE",
+   "length_m": 7.9,
+   "confidence": "medium",
+   "summary": "one-storey buff-brick service block (~5.3 m) with a dark overhead door and a white louvre box; behind it the full-height white box (three ribbon storeys) and a narrow glazed slot next to the east tower",
+   "height_m": 23.9,
+   "rows": [
+    [
+     5.3,
+     "ground"
+    ],
+    [
+     4.7,
+     "l2"
+    ],
+    [
+     4.5,
+     "l3"
+    ],
+    [
+     4.5,
+     "l4"
+    ],
+    [
+     4.3,
+     "l5"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "edge"
+    ],
+    [
+     3.2,
+     "door"
+    ],
+    [
+     0.6,
+     "edge"
+    ],
+    [
+     1.3,
+     "louvre"
+    ],
+    [
+     2.0,
+     "edge"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 3.0,
+     "h": 3.6,
+     "transoms": 4,
+     "glass": "penthouse_metal",
+     "frame": "metal_silver",
+     "depth": 0.15
+    },
+    "ground/louvre": {
+     "type": "louvre",
+     "w": 1.1,
+     "h": 0.8,
+     "sill": 2.6,
+     "glass": "panel_white",
+     "frame": "panel_white",
+     "depth": 0.0
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "l3/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l4/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l5/*": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "l3/louvre": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 0.6,
+     "glass": "window_glass",
+     "frame": "panel_white"
+    },
+    "l4/louvre": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 0.6,
+     "glass": "window_glass",
+     "frame": "panel_white"
+    },
+    "l5/louvre": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 0.6,
+     "glass": "window_glass",
+     "frame": "panel_white"
+    },
+    "l3/edge": {
+     "type": "glass",
+     "w": 0.94,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullion_pitch": 0.9,
+     "glass": "glass_blue",
+     "frame": "mullion",
+     "depth": 0.1
+    },
+    "parapet/*": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     5.1,
+     5.5,
+     "brick_buff",
+     0.3
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "the 5.3 m service block is ~3-4 m deep in front of the tall box (lidar 5.3 at 1.5 m in, 10 / 24 at 4-8 m in)"
+   ],
+   "notes": "earth_corner_17/20, earth_W13_whole, earth_W15_whole (2024): low brick block with a large dark door (loading/service, overhead type guessed) and a small white louvre box; a white trailer and van parked in front in 2024. The narrow white-mullioned slot between box and tower (earth_W13_whole) is approximated by the louvre-bay column above the ground storey (guess on width)."
+  },
+  "W14": {
+   "faces": "SW",
+   "length_m": 5.0,
+   "confidence": "medium",
+   "summary": "SW side of the buff-brick east stair tower, blank, full height; the service block's brick at its foot",
+   "height_m": 23.9,
+   "rows": [
+    [
+     23.9,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "tower"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     5.1,
+     5.5,
+     "brick_buff",
+     0.3
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W14_whole (shaded brick), earth_corner_18/19. Lidar 24 for s 0-3, 5.5 at s 4.5 (service block)."
+  },
+  "U2": {
+   "upper": true,
+   "a": [
+    955.0,
+    153.0
+   ],
+   "b": [
+    961.2,
+    156.2
+   ],
+   "z0": 5.3,
+   "faces": "SE",
+   "length_m": 7.0,
+   "confidence": "medium",
+   "summary": "SE face of the east stair tower above the service block: tall blank buff-brick shaft to ~24 m, a shallow projecting brick step at its foot",
+   "height_m": 23.9,
+   "rows": [
+    [
+     18.6,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     7.0,
+     "tower"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.4,
+     "concrete_shadow",
+     0.3
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_corner_17/20/21, earth_W15_whole (2024): the most conspicuous element of the south front. Ends from lidar (24 m cells x 954-962, y 153-158); it stands ~3 m behind W15 s 0-6 with the 5 m service block in front."
+  },
+  "W15": {
+   "faces": "SE",
+   "length_m": 13.7,
+   "confidence": "medium",
+   "summary": "east end: the brick service block front (s 0-6.3, ~5.3 m) under the east tower, then the two-storey block with a teal-green glazed front between buff-brick ends and a white fascia (s 6.3-13.7, ~9.6 m)",
+   "height_m": 9.6,
+   "rows": [
+    [
+     4.2,
+     "base"
+    ],
+    [
+     0.8,
+     "spandrel"
+    ],
+    [
+     4.0,
+     "glaz"
+    ],
+    [
+     0.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     6.3,
+     "service"
+    ],
+    [
+     0.8,
+     "brick"
+    ],
+    [
+     4.4,
+     "glass"
+    ],
+    [
+     2.2,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/service": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "*/brick": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "base/glass": {
+     "type": "blank",
+     "colour": "concrete"
+    },
+    "spandrel/glass": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "glaz/glass": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.1,
+     "transom_pitch": 2.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "fascia/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "fascia/service": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "fascia/brick": {
+     "type": "blank",
+     "colour": "brick_buff"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W15_whole, earth_corner_20-22 (2024). Lidar: 5.1 at s 0-4 (service block, tower behind), 9.4-9.6 behind s 7-13 with a ~4 m enclosure in front of the glazed block (x 963-969, y 154-158): a low brick/concrete wall or areaway, guessed as the pale base row. The upper rows end at 5.3 m over s 0-6.3 in reality (only the service block is on this line there)."
+  },
+  "W16": {
+   "faces": "NE",
+   "length_m": 8.3,
+   "confidence": "high",
+   "shared": "B1 W3",
+   "summary": "party wall with B1 W3 (coincident within 0.2 m): the STC/B1 junction block",
+   "height_m": 9.6,
+   "rows": [
+    [
+     9.6,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     8.3,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/shared": null
+   },
+   "wall": "brick_buff",
+   "bands": [],
+   "notes": "B1 spec agrees (B1 W3 = STC W16)."
+  },
+  "W17": {
+   "faces": "N",
+   "length_m": 5.2,
+   "confidence": "high",
+   "shared": "B1 W2",
+   "summary": "party wall with B1 W2 (coincident within 0.2 m): the STC/B1 junction block",
+   "height_m": 9.6,
+   "rows": [
+    [
+     9.6,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     5.2,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/shared": null
+   },
+   "wall": "brick_buff",
+   "bands": [],
+   "notes": "B1 spec agrees (B1 W2 = STC W17)."
+  },
+  "W18": {
+   "faces": "NE",
+   "length_m": 44.7,
+   "confidence": "high",
+   "shared": "B1 W1",
+   "summary": "party wall with B1 (B1 W1 s 30.0-75.0) up to B1's roof (~12.4 m); STC's upper NE face stands 2.8 m back: see U1",
+   "height_m": 12.4,
+   "rows": [
+    [
+     12.4,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     44.7,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/shared": null
+   },
+   "wall": "brick_buff",
+   "bands": [],
+   "notes": "Lidar 12.3-12.5 3 m outside (B1 roof), 13.6 at 1.5 m inside (skylight), 23.6-24.0 from 4 m inside."
+  },
+  "U1": {
+   "upper": true,
+   "a": [
+    960.61,
+    160.87
+   ],
+   "b": [
+    941.72,
+    198.24
+   ],
+   "z0": 12.4,
+   "faces": "NE",
+   "length_m": 41.9,
+   "confidence": "medium",
+   "summary": "STC's NE face above B1's roof: plain white panel wall with a few small dark punched windows in two loose rows, a buff-brick strip at the south end (the east tower's flank) and a taller blank block at the north corner; the sloped skylight runs along its foot",
+   "height_m": 23.9,
+   "rows": [
+    [
+     1.7,
+     "sky"
+    ],
+    [
+     3.6,
+     "low"
+    ],
+    [
+     4.2,
+     "high"
+    ],
+    [
+     2.0,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     3.1,
+     "brick"
+    ],
+    [
+     2.2,
+     "x"
+    ],
+    [
+     1.5,
+     "both"
+    ],
+    [
+     1.5,
+     "x"
+    ],
+    [
+     1.5,
+     "top"
+    ],
+    [
+     2.55,
+     "x"
+    ],
+    [
+     1.5,
+     "low"
+    ],
+    [
+     0.1,
+     "x"
+    ],
+    [
+     1.5,
+     "top"
+    ],
+    [
+     1.3,
+     "x"
+    ],
+    [
+     1.5,
+     "low"
+    ],
+    [
+     3.2,
+     "x"
+    ],
+    [
+     1.5,
+     "top"
+    ],
+    [
+     2.1,
+     "x"
+    ],
+    [
+     1.5,
+     "low"
+    ],
+    [
+     10.35,
+     "x"
+    ],
+    [
+     5.0,
+     "block"
+    ]
+   ],
+   "cells": {
+    "low/low": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.0,
+     "sill": 1.6,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.25
+    },
+    "low/both": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.0,
+     "sill": 1.6,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.25
+    },
+    "high/top": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.0,
+     "sill": 2.2,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.25
+    },
+    "high/both": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.0,
+     "sill": 2.2,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.25
+    },
+    "*/brick": {
+     "type": "blank",
+     "colour": "brick_buff"
+    },
+    "*/x": null,
+    "*/block": null,
+    "*/low": null,
+    "*/top": null,
+    "*/both": null
+   },
+   "wall": "panel_white",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "sloped glass skylight (glass_vault in white mullions) along the foot, s ~10-36, continuing round the north corner onto U0 (earth_W18_whole, earth_corner_25)"
+   ],
+   "notes": "earth_W18_whole/_l/_m/_r, earth_corner_20/23/25 (2024). Window positions measured on earth_W18_whole (row centres ~16.2 and ~20.4 m, ~1.5 x 1.0 m). earth_corner_20 suggests a few more windows near the south end; not counted. The north-corner block (s 36.9-41.9) rises to ~27 m (lidar 26.9 clip)."
+  }
+ },
+ "roof": [
+  {
+   "what": "grey membrane main roof at ~23.9 m with a white parapet; a recessed L-shaped mechanical well in the north half with a light-tan perimeter strip (ortho)",
+   "where": "main body",
+   "size_m": [
+    60,
+    35,
+    0
+   ]
+  },
+  {
+   "what": "long white screen/fascia bar parallel to U0, top ~26.5 m",
+   "where": "3-4 m behind U0, s ~15-50 (ortho long white bar, lidar 26.4-26.7)",
+   "size_m": [
+    34,
+    3,
+    2.6
+   ]
+  },
+  {
+   "what": "taller blank white corner block",
+   "where": "north corner (U0 s 0-8.5 x U1 s 37-42)",
+   "size_m": [
+    8.5,
+    5,
+    3
+   ]
+  },
+  {
+   "what": "twin round exhaust stacks on a dark housing",
+   "where": "centre of the roof, about (924, 175) art",
+   "size_m": [
+    5,
+    2.5,
+    2.5
+   ]
+  },
+  {
+   "what": "two small grey louvred boxes and scattered roof vents",
+   "where": "SW half of the roof around (915,170) and (928,178)",
+   "size_m": [
+    1.5,
+    1.2,
+    1
+   ]
+  },
+  {
+   "what": "sloped glass skylight strip along the NW and NE feet",
+   "where": "on B2/B1 roofs between W0/W18 and U0/U1, wrapping the north corner",
+   "size_m": [
+    80,
+    2.8,
+    1.4
+   ]
+  },
+  {
+   "what": "lower podium roofs (~10 m) with white edges in the tooth notches; a few roof drains",
+   "where": "SE front",
+   "size_m": [
+    45,
+    3,
+    0
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "NH",
+    "from_wall": "W5/W6",
+    "s": [
+     0,
+     16.6
+    ],
+    "levels": [
+     3
+    ],
+    "look": "white metal-clad enclosed bridge, glazed band with X bracing, z ~9.6-14.6, over the service road (x 904.5-911, y 139-158)"
+   }
+  ],
+  "neighbours": [
+   "B2 against the whole NW side (party wall W0), its flat concrete canopy reaching STC's west corner",
+   "B1 against the NE side (W18) and the junction block (W16/W17)",
+   "NH ~16 m south across the service road, joined by the bridge",
+   "new glass greenhouse just east of W15"
+  ],
+  "ground": [
+   "asphalt service road curving along the whole SE front (between STC and NH), concrete curb, a planted strip with shrubs along the podium base",
+   "paved service/loading apron in front of W13-W15 with dumpsters",
+   "paved forecourt under B2's canopy at the west corner"
+  ],
+  "entities": [
+   {
+    "type": "tree",
+    "kind": "deciduous, medium",
+    "where": "planted bed in front of W10-W12, 2-5 m out",
+    "count": 3,
+    "photo": "earth_corner_14/17"
+   },
+   {
+    "type": "hedge",
+    "kind": "low shrub strip",
+    "where": "along the podium base from W3 to W12, ~1 m out",
+    "count": 1,
+    "photo": "earth_corner_14"
+   },
+   {
+    "type": "bin",
+    "kind": "dark dumpsters / waste containers",
+    "where": "apron in front of W14/W15, about (953-957, 141-148) art",
+    "count": 4,
+    "photo": "ortho_2023aug, earth_corner_20"
+   },
+   {
+    "type": "trailer",
+    "kind": "white site/office trailer and white van (2024, may be temporary)",
+    "where": "in front of W13, 3-8 m out",
+    "count": 2,
+    "photo": "earth_corner_17/20"
+   }
+  ]
+ }
+}

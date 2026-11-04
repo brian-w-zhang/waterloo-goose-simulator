@@ -1,0 +1,1436 @@
+{
+ "building": "B1",
+ "sources_checked": [
+  "around/sv_W0_m9EfJT0s3QF0DnWgBy06fQ_70/_100",
+  "around/sv_W0_3Ts4_xBIqdYemxhsniLCog_70/_100",
+  "around/sv_c0_V8kp1oy7QNMZJ1f-_9knfA_70/_100",
+  "around/sv_W1_HlvBmNr3eJ57n4qJUiweEQ_100 (B2 entrance, B1 W1 stub at left)",
+  "around/sv_W1_CIHM (black, ignored)",
+  "around/sv_W14_Jlgu, sv_W14_7QFW, sv_W14_IUGd, sv_W14_-1wco, sv_W14_9uN9, sv_W14_Y50T (all Sep 2014)",
+  "around/sv_c18_XfEh (NE corner)",
+  "around/sv_W11, sv_W12, sv_W13, sv_W10 (2014: south end, old greenhouse)",
+  "around/sv_W2-W9, sv_c1-c17 (2014 STC construction site, Bondfield trailers; no current facade info)",
+  "around/earth_W*_whole, earth_W1_l/m/r, earth_W14_l/m/r (recaptured 2026-11-03; W0/W14 tree-blocked, useful for roof and greenhouse)",
+  "around/earth_corner_0-18",
+  "private/ortho_2023aug.jpg",
+  "private/web/b1_cm067_commons.jpg (is ESC's annex, 'BIO connection', not B1's own facade)",
+  "lidar nDSM profiles (tools.art.study ndsm)",
+  "../b2/facades.json, ../esc/facades.json, ../stc/walls.json (shared walls)"
+ ],
+ "colours": {
+  "brick": {
+   "hex": "#bfa88e",
+   "palette": "brick_buff_sun",
+   "where": "buff/tan brick, all brick walls. Sunlit SV sample #bfa88e (sv_W14_-1wco) is 4.6 Lab from brick_buff and 7.6 from brick_buff_sun; brick_buff_sun chosen to match B2 (same continuous brick across the B1/B2 party wall)"
+  },
+  "precast": {
+   "hex": "#c9c3b6",
+   "palette": "concrete",
+   "where": "light grey-beige exposed-aggregate precast window strips, spandrels and the entrance bay (shaded #6e635f-#7e766b in SV; same as B2)"
+  },
+  "window_frame": {
+   "palette": "mullion",
+   "where": "white aluminium window frames"
+  },
+  "door_frame": {
+   "palette": "metal_silver",
+   "where": "undercroft entrance doors"
+  },
+  "glass": {
+   "palette": "window_dark",
+   "where": "all windows"
+  },
+  "louvre": {
+   "hex": "#292f32",
+   "palette": "penthouse_metal",
+   "where": "tall louvres in the W14 north slot"
+  },
+  "canopy": {
+   "hex": "#2e3736",
+   "palette": "brick_charcoal_tower",
+   "where": "flat dark canopy over the W14 north door (B2 W0 uses the same)"
+  },
+  "breeze_screen": {
+   "palette": "brick_buff_sun",
+   "where": "perforated brick screen in the undercroft, dark voids brick_charcoal_tower"
+  },
+  "coping": {
+   "palette": "concrete_raw",
+   "where": "precast parapet cap"
+  },
+  "greenhouse": {
+   "palette": "panel_white",
+   "where": "greenhouse glazing bars; glass glass_teal (pale), base concrete"
+  },
+  "roof": {
+   "palette": "roof_light",
+   "where": "grey-brown membrane, same as B2"
+  }
+ },
+ "geometry_notes": [
+  "Main block parapet is ~11.7-12.0 m (lidar 11.7 along W14, 11.8-12 along W0, 12.3-12.6 near W1); the walls.json height 14.7 m is roof plant. Rows sum to 12.0 m (4.0 / 3.7 / 3.7 / 0.6), within 0.1 m of B2's floor lines across the shared wall.",
+  "Lidar roof extends ~3-3.5 m beyond the W0 line (all of W0) and ~3 m beyond the W14 line at s 62-73, while at W1 s 0-3 the ground reaches ~1-2 m inside the line. Either the footprint sits ~2-3 m SW of the lidar here or the lidar is shifted; the photos show flat walls with no overhang. ESC's analyst found a similar ~2-3.5 m mismatch on the shared annex (ESC W4/W6). Not corrected here.",
+  "W1 is shared for s 7.2-30.0 (B2 W4) and s 30.0-75.0 (STC W18); W2/W3 coincide with STC W17/W16. Only W1 s 0-7.2 is visible.",
+  "W14 s 39.2-57.6 is shared at levels 2-3 with ESC's annex (ESC W5); at ground it is the back of the open undercroft and must be drawn (brick, screen, entrance).",
+  "W4-W10 enclose the greenhouse (built ~2016). Lidar shows 0 m along W5/W6 and only 4.4-5 m elsewhere: the lidar predates the new greenhouse or missed the glass. The 2023 ortho matches the footprint. The south side is a zig-zag; the gaps W6.b-W7.a and W8.a-W7.b are unlisted short jogs.",
+  "The tall buff-brick tower and the block with the blue curtain-wall band seen behind the greenhouse in Earth views belong to STC (lidar 24 m at x<958; STC W15), not B1.",
+  "Low brick service block W11-W13 is ~7.5 m (lidar 6.6-9.2), two storeys."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 25.3,
+   "confidence": "medium",
+   "summary": "north end on the Peter Russell rock garden: buff brick with four pairs of full-height precast window strips (one white-framed two-light window per floor), a 0.6 m brick pier inside each pair and 2.1 m brick between pairs; blank brick at the NE corner, narrow brick at the NW corner where the blank west end (W1 s 0-7) turns",
+   "height_m": 12.0,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.7,
+     "upper"
+    ],
+    [
+     3.7,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.4,
+     "c"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     0.8,
+     "c"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.8,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "note": "precast window strip: light grey-beige exposed-aggregate precast spandrels round a white-framed two-light window with a top light; blinds/curtains behind (sv_W14_IUGd, sv_W14_-1wco, sv_c0)"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.7,
+     "sill": 1.0,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "note": "same strip, one window per floor"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null,
+    "*/c": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     11.7,
+     12.0,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Seen obliquely from the west end (sv_c0, sv_W0_m9Ef, 2014: the pair nearest the NW corner, then a wide pier, then the next pair) and through trees from the rock garden (sv_W0_3Ts4: pair / ~2-2.5 m pier / pair / pier). Earth W0 view is blocked by trees. Same strip system as B2 W1 and ESC W3; module (3.7 m pair + 2.1 m brick) taken from ESC W3, which matches the pixel estimates here (pair ~2.8-3.7 m, pier ~2-2.5 m). Count of 4 pairs is fitted to the length (medium confidence). sv_W0_3Ts4 hints that one ground-floor opening near s ~11-12 may be a door rather than a window (behind a boulder, unconfirmed). Ground: lawn with rock-garden boulders right up to the wall, no path along it."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 75.0,
+   "confidence": "high",
+   "summary": "west side: party wall with B2 (B2 W4, s 7.2-30.0) and STC (STC W18, s 30.0-75.0); only s 0-7.2 is open: the blank buff-brick 3-storey end that projects past B2's recessed entrance (B2 W0)",
+   "height_m": 12.0,
+   "rows": [
+    [
+     12.0,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     7.2,
+     "open"
+    ],
+    [
+     22.8,
+     "b2"
+    ],
+    [
+     45.0,
+     "stc"
+    ]
+   ],
+   "cells": {
+    "*/open": null,
+    "*/b2": {
+     "type": "void",
+     "note": "party wall with B2 W4 (hidden)"
+    },
+    "*/stc": {
+     "type": "void",
+     "note": "party wall with STC W18 (hidden)"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     11.7,
+     12.0,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "shared_spans": [
+    {
+     "s": [
+      7.2,
+      30.0
+     ],
+     "with": "B2 W4"
+    },
+    {
+     "s": [
+      30.0,
+      75.0
+     ],
+     "with": "STC W18"
+    }
+   ],
+   "notes": "Spans from walls.json: B2 W4 ends project to s 7.23 and 30.04 on this line (within 0.5 m), STC W18 (963.1,162.1)->(942.95,202.0) covers s 30.0-75.0. The open stub is plain brick with no openings in sv_c0, sv_W0_m9Ef and sv_W1_Hlv (2014); it is exactly B2's 'blank brick SW wall continuing ~8 m north past W0'. If the drawing code cannot hide part of a wall, draw s 7.2-75 as plain brick: it is never seen."
+  },
+  "W2": {
+   "faces": "S",
+   "length_m": 5.2,
+   "confidence": "high",
+   "hidden": true,
+   "shared": "STC W17",
+   "summary": "party wall with STC W17 (coincident within 0.2 m); the ~9.5 m STC/B1 junction block",
+   "rows": [
+    [
+     9.5,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     5.2,
+     "shared"
+    ]
+   ],
+   "cells": {},
+   "wall": "brick_buff_sun",
+   "notes": "walls.json of both buildings; lidar 9.5-10 m on both sides of the line."
+  },
+  "W3": {
+   "faces": "SW",
+   "length_m": 7.9,
+   "confidence": "high",
+   "hidden": true,
+   "shared": "STC W16",
+   "summary": "party wall with STC W16 (coincident within 0.2 m); the ~9.5 m STC/B1 junction block",
+   "rows": [
+    [
+     9.5,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     7.9,
+     "shared"
+    ]
+   ],
+   "cells": {},
+   "wall": "brick_buff_sun",
+   "notes": "walls.json of both buildings; lidar 9.5-10 m on both sides of the line."
+  },
+  "W4": {
+   "faces": "NW",
+   "length_m": 7.9,
+   "confidence": "low",
+   "summary": "greenhouse NW end facing the small wedge court in front of STC's curtain-wall block (STC W15): concrete base, white-framed glass, one gable end",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     7.9,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. Mostly hidden in the narrow wedge between STC W15 and the greenhouse; seen only edge-on in earth_W3/W4/corner_3. The wedge itself is a dark paved/sunken service slot."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 12.2,
+   "confidence": "medium",
+   "summary": "greenhouse west face toward the STC service road: ~1.6 m light concrete base (taller, ~2.4 m, at the south end where the grade drops) under white-framed glass walls, the two gable ends of the west range of houses",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     12.2,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. earth_W5/W6/W7 (2024). Lidar shows 0 m on this line (lidar predates the new greenhouse); the footprint matches the 2023 ortho."
+  },
+  "W6": {
+   "faces": "S",
+   "length_m": 4.5,
+   "confidence": "medium",
+   "summary": "greenhouse SW corner piece: concrete base and glass (zig-zag plan)",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     4.5,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. "
+  },
+  "W7": {
+   "faces": "S",
+   "length_m": 4.3,
+   "confidence": "medium",
+   "summary": "greenhouse south face, one sawtooth face: concrete base, glass gable end of a house",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     4.3,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. The south side steps in a zig-zag (W6, W7, W8 plus short unlisted jogs). Earth W7/W8 show the base as tall pale concrete (up to ~2.5 m) because the lawn falls away to the south."
+  },
+  "W8": {
+   "faces": "S",
+   "length_m": 4.2,
+   "confidence": "medium",
+   "summary": "greenhouse south face, sawtooth piece: concrete base, glass gable end",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     4.2,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. "
+  },
+  "W9": {
+   "faces": "SE",
+   "length_m": 4.3,
+   "confidence": "medium",
+   "summary": "greenhouse SE corner piece: concrete base and glass",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     4.3,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. "
+  },
+  "W10": {
+   "faces": "NE",
+   "length_m": 11.6,
+   "confidence": "medium",
+   "summary": "greenhouse east face toward the lawn and the ring path: concrete base, long glass side walls of the east range with pitched glass roofs above",
+   "height_m": 4.4,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     2.8,
+     "glass"
+    ]
+   ],
+   "bays": [
+    [
+     11.6,
+     "g"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "glass_teal",
+     "frame": "panel_white",
+     "colour": "panel_white",
+     "note": "greenhouse glazing: white aluminium glazing bars on a ~1.2 m grid, pale (whitewashed/fogged) glass"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     1.5,
+     1.65,
+     "concrete_raw",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Greenhouse (built ~2016 with STC; the 2014 Street View shows the older timber-framed houses and a construction site). Pitched glass roofs are listed under roof. earth_W10 (2024): base reads ~1.5 m, glass walls ~2.5 m, ridges ~4.5-5 m (lidar 4.4 at the eaves). A white portable office/site trailer and a van stood on the lawn off W7-W10 in 2024 (earth_W7/W10); not modelled as permanent."
+  },
+  "W11": {
+   "faces": "N",
+   "length_m": 8.0,
+   "confidence": "low",
+   "summary": "north face of the low two-storey brick service block between the greenhouse and the main block: blank buff brick behind the greenhouse's north end",
+   "height_m": 7.6,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     3.4,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     8.0,
+     "blank"
+    ]
+   ],
+   "cells": {
+    "*/blank": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     7.3,
+     7.6,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Lidar 6.6-8.6 m. Earth W10/W12 show plain brick; the greenhouse's back range nearly touches it. Trees in front in 2014 SV."
+  },
+  "W12": {
+   "faces": "NE",
+   "length_m": 7.9,
+   "confidence": "medium",
+   "summary": "low brick block facing the east path: buff brick upper storey over a recessed, white-painted concrete ground floor with a glazed single door at the end of the path (s ~6-7.5); dark service opening near s 1-3",
+   "height_m": 7.6,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     3.4,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     2.2,
+     "svc"
+    ],
+    [
+     2.6,
+     "b"
+    ],
+    [
+     1.4,
+     "door"
+    ],
+    [
+     0.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/svc": {
+     "type": "door",
+     "w": 2.0,
+     "h": 2.6,
+     "mullions": 0,
+     "glass": "brick_charcoal_tower",
+     "frame": "metal_shade",
+     "note": "dark opening/roll-up service door (earth_W10, 2024; guess on type)"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.3,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "glazed door at the end of the path, light concrete surround (sv_W12, sv_W14_Y50T, 2014)"
+    },
+    "ground/b": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "*/b": null,
+    "upper/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     7.3,
+     7.6,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "short concrete retaining wall and steps where the path meets the higher greenhouse lawn (sv_W12, sv_W14_Y50T)"
+   ],
+   "notes": "sv_W12_96l3 (2014) looks down the east path into this nook: white/light concrete lower wall with a glass door, buff brick above. Positions along the wall are estimates."
+  },
+  "W13": {
+   "faces": "SE",
+   "length_m": 7.0,
+   "confidence": "low",
+   "summary": "short SE return of the low block into the main block's south corner: buff brick, light concrete ground storey",
+   "height_m": 7.6,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     3.4,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     7.0,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/b": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "*/b": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     7.3,
+     7.6,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Lidar 7.2 m for s 0-4 then 0 (the last 3 m may be open/recessed). Hidden behind conifers in 2014 SV."
+  },
+  "W14": {
+   "faces": "NE",
+   "length_m": 75.4,
+   "confidence": "medium",
+   "summary": "long east side on the brick-paved walk to ESC: buff brick with six pairs of precast window strips (s 5.7-38.4) and a BIOLOGY 1 sign; s 39.2-57.6 sits under ESC's white precast annex, where B1's ground storey is the back wall of an open undercroft with a breeze-block screen and the glazed east entrance; north part plain brick with a louvre slot and a precast four-light entrance bay with a flat dark canopy",
+   "height_m": 12.0,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.7,
+     "upper"
+    ],
+    [
+     3.7,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     5.7,
+     "c"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     0.8,
+     "c"
+    ],
+    [
+     3.3,
+     "ub"
+    ],
+    [
+     1.2,
+     "scr"
+    ],
+    [
+     1.3,
+     "ub"
+    ],
+    [
+     0.65,
+     "dk"
+    ],
+    [
+     3.4,
+     "ent"
+    ],
+    [
+     8.55,
+     "ub"
+    ],
+    [
+     4.2,
+     "c"
+    ],
+    [
+     0.9,
+     "louv"
+    ],
+    [
+     3.8,
+     "c"
+    ],
+    [
+     2.1,
+     "bay"
+    ],
+    [
+     6.8,
+     "c"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.8,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "note": "precast window strip: light grey-beige exposed-aggregate precast spandrels round a white-framed two-light window with a top light; blinds/curtains behind (sv_W14_IUGd, sv_W14_-1wco, sv_c0)"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.7,
+     "sill": 1.0,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "note": "same strip, one window per floor"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null,
+    "*/c": null,
+    "ground/ub": null,
+    "upper/*": null,
+    "upper/ub": null,
+    "parapet/ub": null,
+    "upper/scr": null,
+    "parapet/scr": null,
+    "upper/dk": null,
+    "parapet/dk": null,
+    "upper/ent": null,
+    "parapet/ent": null,
+    "ground/scr": {
+     "type": "louvre",
+     "w": 1.2,
+     "h": 2.4,
+     "sill": 0.5,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_buff_sun",
+     "colour": "brick_buff_sun",
+     "note": "perforated brick (breeze-block) screen: buff brick laid with open joints in a dark chequer, back wall of the undercroft (sv_W14_IUGd, sv_W14_7QFW)"
+    },
+    "ground/dk": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower",
+     "note": "dark brown brick/panel strip beside the doors"
+    },
+    "ground/ent": {
+     "type": "door",
+     "w": 3.4,
+     "h": 2.7,
+     "mullions": 5,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "B1 east entrance inside the undercroft: two pairs of glazed doors plus glazed side screens, silver aluminium frames, transom at ~2.2 m (sv_W14_7QFW, sv_W14_IUGd)"
+    },
+    "upper/louv": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 2.8,
+     "sill": 0.4,
+     "glass": "penthouse_metal",
+     "frame": "concrete",
+     "colour": "concrete",
+     "note": "tall dark horizontal-blade louvre, one per upper floor, in a narrow precast slot (sv_W14_Jlgu)"
+    },
+    "parapet/louv": {
+     "type": "blank",
+     "colour": "concrete"
+    },
+    "ground/louv": null,
+    "ground/bay": {
+     "type": "door",
+     "w": 1.9,
+     "h": 2.5,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "canopy": [
+      1.0,
+      "brick_charcoal_tower"
+     ],
+     "note": "glazed double door under a thin flat dark canopy with a pale soffit edge (sv_W14_Jlgu)"
+    },
+    "upper/bay": {
+     "type": "window",
+     "w": 1.9,
+     "h": 1.9,
+     "sill": 0.9,
+     "mullions": 3,
+     "transoms": 0,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "note": "precast bay with four tall narrow white-framed lights per floor, like B2 W0 (sv_W14_Jlgu)"
+    },
+    "parapet/bay": {
+     "type": "blank",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     11.7,
+     12.0,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 33.6,
+     "z": 3.3,
+     "w": 1.0,
+     "h": 0.22,
+     "text": "BIOLOGY 1",
+     "colour": "penthouse_metal",
+     "on": "brushed silver plate (metal_silver) on the brick pier; black sans-serif capitals (sv_W14_IUGd, sv_W14_-1wco)"
+    }
+   ],
+   "attached": [
+    "ESC's two-storey white precast annex bridges from ESC to this wall at s 39.2-57.6 over a 3.6 m open undercroft (ESC W4/W5/W6, already specified by ESC)",
+    "long low concrete planter (~0.45 m high) with clipped yew hedge along the wall at s ~22-39, ~1-3 m out (sv_W14_IUGd, sv_W14_-1wco)",
+    "concrete planter with shrubs at s ~60-66, 1-3 m out; ivy bed with low concrete curb at s ~68-75 (sv_W14_Jlgu)",
+    "ivy and Virginia creeper climbing the strips at s ~30-39"
+   ],
+   "notes": "All facade photos are Street View Sep 2014 (no newer imagery; Earth W14 views are tree-blocked). Strip system identical to ESC W3 across the walk (same 1.3 m strips, 0.6 m pier inside the pair, 2.1 m brick between pairs); 6 pairs fitted so that pairs fall at s ~11.5-15.2 and ~23-27 as measured in sv_W14_9uN9 and the last pair ends ~0.8 m before the annex as in sv_W14_IUGd/-1wco. South 5.7 m (s 0-5.7) is behind conifers in every photo: assumed blank brick. Undercroft positions (screen s ~42.5, doors s ~45.7-49.1) differ by up to 4 m between sv_W14_IUGd and sv_W14_7QFW (pano positions); order and widths are reliable. North part from sv_W14_Jlgu: louvre slot s ~61.8-62.7, entrance bay s ~66.5-68.6, 6.8 m blank brick to the NE corner. Mechanical penthouse lidar 15.8 m sits ~3 m inside this wall at s 48-68 (see roof). Upper rows of s 39.2-57.6 are left as plain brick: ESC's annex abuts and covers them."
+  }
+ },
+ "roof": [
+  {
+   "what": "large open-topped mechanical enclosure: grey metal panel screen walls around three big cooling-tower fans (seen from above in the ortho)",
+   "where": "north end, centred ~10 m in from W0 and ~6 m in from W14 (ortho art ~x 948-958, y 212-232)",
+   "size_m": [
+    9,
+    18,
+    3.5
+   ],
+   "colour": "metal_panel",
+   "photo": "ortho_2023aug, earth_W0_whole, earth_corner_0/18"
+  },
+  {
+   "what": "long pipe rack: silver insulated pipes and ducts on steel stands with a yellow-railed platform midway",
+   "where": "roof centreline from the fan enclosure south to ~10 m short of the south end",
+   "size_m": [
+    4,
+    40,
+    2.0
+   ],
+   "colour": "metal_silver",
+   "photo": "ortho_2023aug, earth_W14_m, earth_W1_l"
+  },
+  {
+   "what": "white air-handler boxes",
+   "where": "two beside the pipe rack in the south third (ortho ~x 967, y 180 and x 960, y 170), one near the north enclosure",
+   "size_m": [
+    3,
+    6,
+    2.2
+   ],
+   "colour": "panel_white",
+   "count": 3
+  },
+  {
+   "what": "short silver exhaust stacks/goosenecks",
+   "where": "along the pipe rack and on the W0 parapet side of the enclosure (two goosenecks)",
+   "size_m": [
+    0.8,
+    0.8,
+    1.8
+   ],
+   "colour": "metal_silver",
+   "count": 6
+  },
+  {
+   "what": "mechanical penthouse/screen raising the lidar to 15.8 m",
+   "where": "~3-6 m inside W14 at s 48-68",
+   "size_m": [
+    4,
+    20,
+    3.8
+   ],
+   "colour": "metal_panel",
+   "photo": "lidar; earth_W14_r"
+  },
+  {
+   "what": "greenhouse roofs: two ranges of three glass houses with pitched (gable/hip) roofs, ridges ~4.5-5 m, back (north) range slightly higher",
+   "where": "over W4-W10",
+   "size_m": [
+    24,
+    22,
+    1.5
+   ],
+   "colour": "panel_white",
+   "photo": "earth_W5-W10, earth_corner_6/11, ortho_2023aug"
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "ESC",
+    "from_wall": "W14",
+    "s": [
+     39.2,
+     57.6
+    ],
+    "levels": [
+     2,
+     3
+    ],
+    "look": "ESC's white precast annex with projecting window boxes over a 3.6 m open undercroft on square white columns; already specified in ESC (W4-W6, site.bridges)"
+   }
+  ],
+  "neighbours": [
+   "B2 against W1 s 7.2-30 (same brick and strip system); B2's recessed north entrance (B2 W0) is beside W1's blank stub",
+   "STC (white panel, ~22-24 m) against W1 s 30-75 and W2/W3; its brick stair tower and curtain-wall block rise just west of the greenhouse",
+   "ESC across a ~10 m brick-paved walk east of W14, joined by its annex",
+   "QNC ~8 m north-west of the W0/W1 corner across the B2 entrance lane"
+  ],
+  "ground": [
+   "W0: Peter Russell rock garden lawn with large boulders and mature deciduous trees right up to the wall; interlocking grey brick pavers on the walk past the NE corner (sv_W0_3Ts4, sv_c18)",
+   "W14: grey interlocking concrete pavers (#8e9094) on the walk to ESC, continuing under the annex; raised concrete planters with hedges and ivy along the wall; conifers and a large copper beech at s 0-25 (sv_W14_*)",
+   "south end: path climbs past the W12 nook to the greenhouse lawn (~1 m higher), gravel track, concrete steps with black handrails (sv_W11, sv_W12)",
+   "around the greenhouse: lawn and bare earth inside a curved path; STC service road/loading area with paving to the west (earth_W7, ortho_2023aug)"
+  ],
+  "entities": [
+   {
+    "type": "boulder",
+    "kind": "large granite/limestone rock-garden boulders, some with small plaques",
+    "where": "off W0, s 0-20, 3-20 m out",
+    "count": 10,
+    "photo": "sv_W0_3Ts4 (2014)"
+   },
+   {
+    "type": "tree",
+    "kind": "large deciduous shade trees in the rock garden",
+    "where": "off W0, s 2-22, 8-18 m out",
+    "count": 3,
+    "photo": "sv_W0_3Ts4"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised wave/grid racks",
+    "where": "W14 s 39-44, 1-3 m out (under and just south of the annex)",
+    "count": 2,
+    "photo": "sv_W14_IUGd, sv_W14_7QFW"
+   },
+   {
+    "type": "bin",
+    "kind": "square precast concrete waste bin",
+    "where": "W14 s ~45, 3 m out, beside an annex column",
+    "count": 1,
+    "photo": "sv_W14_IUGd, sv_W14_7QFW"
+   },
+   {
+    "type": "planter",
+    "kind": "long low concrete planter with clipped yew hedge",
+    "where": "W14 s 22-39, 1-3 m out",
+    "count": 1,
+    "photo": "sv_W14_IUGd, sv_W14_-1wco"
+   },
+   {
+    "type": "planter",
+    "kind": "concrete planter with shrubs",
+    "where": "W14 s 60-66, 1-3.5 m out",
+    "count": 1,
+    "photo": "sv_W14_Jlgu"
+   },
+   {
+    "type": "tree",
+    "kind": "conifers (pines/spruce) with ivy-covered trunks in a raised concrete bed",
+    "where": "off W14 s 0-10, 2-8 m out",
+    "count": 3,
+    "photo": "sv_W14_Y50T, sv_W12"
+   },
+   {
+    "type": "tree",
+    "kind": "large copper beech / deciduous tree",
+    "where": "off W14 s 12-28, 3-8 m out",
+    "count": 2,
+    "photo": "sv_W14_-1wco, sv_W14_9uN9"
+   },
+   {
+    "type": "sign",
+    "kind": "tall white-framed campus wayfinding sign post",
+    "where": "off W14 s ~74, 8 m out (NE corner)",
+    "count": 1,
+    "photo": "sv_W14_Jlgu (right edge)"
+   },
+   {
+    "type": "railing",
+    "kind": "black steel handrail on concrete steps up to the greenhouse lawn",
+    "where": "off W12/W11, ~8-12 m NE of W11",
+    "count": 1,
+    "photo": "sv_W11, sv_W12 (2014)"
+   }
+  ]
+ }
+}

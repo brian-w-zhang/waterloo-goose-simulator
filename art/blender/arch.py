@@ -42,8 +42,14 @@ class Kit:
         for i, c in faces:
             by.setdefault(c, []).append(i)
         for c, idx in by.items():
-            group = "world"
-            lib.paint(ob, lib.swatch(c, group), idx)
+            name = c.split("+")[0].strip() if isinstance(c, str) else c
+            try:
+                col = lib.swatch(name, "world")
+            except KeyError:
+                # a spec colour the palette does not have yet: neutral, and say so
+                print(f"[art] {self.name}: unknown colour {c!r}, drawn as concrete")
+                col = lib.swatch("concrete", "world")
+            lib.paint(ob, col, idx)
         if not smooth:
             for p in ob.data.polygons:
                 p.use_smooth = False

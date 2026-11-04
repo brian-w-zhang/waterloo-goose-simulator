@@ -1,0 +1,2043 @@
+{
+ "building": "M3",
+ "sources_checked": [
+  "private/web/m3_cm037_commons.jpg (2012-04, W face square-on, sunlit: main source for the curtain wall)",
+  "private/web/m3_cm035_commons.jpg (2013-02, W face, snow)",
+  "private/web/m3_cm020_commons.jpg (2012-04, along the W face from the SW pier: recessed ground floor, pier stair slot)",
+  "private/web/m3_uw004_uwaterloo.jpg (2012-06, NW corner: N face brick block + green bay, NW pier, W face; MC behind)",
+  "private/around/sv_W0_1mV7qKoqyttQXSwqSIGUjA_100.jpg, sv_W0_s04-..., sv_W1_hyYL6sETMZ3SsZAZJduBxQ_100.jpg (Sep 2014, N face ground)",
+  "private/around/sv_c10_b9msZ_WQNJnLsCZMyPgPrw_100.jpg (Aug 2015, S main entrance under the bridge)",
+  "private/around/sv_c15_da-nIDEMjUd4UqrrSDOsjw_100.jpg, sv_c18_8Tn0UR88x2Nj76a2G6XJXQ_100.jpg (S face brick block, SE pier, E podium)",
+  "private/around/sv_c21/c22 (Sep 2014, NE corner: podium end, door + steps on W9, NE pier slot)",
+  "private/around/sv_W8_* (plain podium brick close-ups), sv_W4_pI1Bg5gwSYqCahO0c4oB6Q_100.jpg (SW corner)",
+  "private/earth_facade_0..3.jpg, earth_detail_0b/1b.jpg, earth_orbit_315.jpg (Google Earth 2024)",
+  "private/ortho_2023aug.jpg (via review/art/m3_study.jpg), ortho_2025summer.jpg, ortho_2026spring.jpg (M4 construction)",
+  "review/art/m3_study.jpg (lidar heights)"
+ ],
+ "dates_note": "Street View around M3 is only Sep 2014 / Aug 2015 and the web photos are 2012-2013; Earth is 2024. The building itself is unchanged in all of them (M3 actually opened 2011, not 2018: the 2012 photos show it finished). Only the surroundings to the S changed (M4, see site.m4).",
+ "colours": {
+  "brick": {
+   "hex": "#b37362",
+   "palette": "brick_red",
+   "where": "all brick: corner piers, N and S brick blocks, E podium. Standard red-orange modular brick with scattered darker headers; sunlit SV c15/c22 sample #b37362-#a17366, Earth sunlit reads lighter/oranger (#da8979)"
+  },
+  "mint_glass": {
+   "hex": "#8ab7ab",
+   "palette": "glass_teal",
+   "where": "the three 'green bays' (W1, W3, W5): mint-green spandrel glass panels in a white grid, the building's signature colour"
+  },
+  "spandrel_sky": {
+   "hex": "#86c2dc",
+   "palette": "#86c2dc (new: spandrel_sky)",
+   "where": "the bright sky-blue spandrel blocks in one strip per storey of the W and E curtain walls (cm037 #91cfe8, cm035 #74b9d4); nearest swatch glass_podium is 11.6-16.7 Lab away"
+  },
+  "navy_glass": {
+   "hex": "#1d3a55",
+   "palette": "#1d3a55 (new: glass_navy)",
+   "where": "dark navy vision glass of the curtain walls, the stair slots in the piers and the recessed reveal strips (cm035 #142a40, cm037 #243d5a, slot c22 #184b67); penthouse_metal/panel_black are 12-16 Lab away and grey, not blue"
+  },
+  "teal_glass": {
+   "hex": "#3b7c8c",
+   "palette": "glass_vault",
+   "where": "mid teal panes mixed into the curtain walls (operable windows, thin bands) (cm035 #3b7c8c)"
+  },
+  "frames": {
+   "hex": "#e6e6e2",
+   "palette": "mullion",
+   "where": "white/silver aluminium mullions and caps everywhere"
+  },
+  "white": {
+   "hex": "#fbfaf8",
+   "palette": "panel_white",
+   "where": "metal copings, white soffit over the recessed ground floors, mechanical penthouse cladding, bridge spandrel/soffit"
+  },
+  "plinth": {
+   "hex": "#c9c3b6",
+   "palette": "concrete",
+   "where": "exposed concrete foundation under the brick, 0.3-0.8 m (deepest on the N side, sv_W0)"
+  },
+  "roof": {
+   "hex": "#a9a8a2",
+   "palette": "roof_light",
+   "where": "grey membrane main roof"
+  }
+ },
+ "geometry_notes": [
+  "Massing reads as a 47 x 31 m four-storey box (long axis NNW-SSE) with a 5-6 m brick tower at each corner. Main roof parapet ~18.2 m; the N corner piers (NE, NW) and the mechanical penthouse along the N edge rise to ~21-22 m (lidar 21.0-22.5; cm037 left pier is ~3 m taller than the right one); the S corner piers stop at ~18.5 m.",
+  "Each long face (W: W2-W4, E: W7-W9) is pier | curtain wall | (W only: protruding mint green bay) | curtain wall | pier. Each short face (N: W0-W1, S: W5-W6) is pier | reveal | brick block | reveal | mint green bay | reveal | pier (S face: green bay on the W side, N face: green bay on the W side too).",
+  "The 6 m gaps in walls.json between W4/W5, W6/W7, W9/W0 and W1/W2 are the corner piers' end faces (stepped corners in the ortho): they should be brick, height as above, each with the narrow stair slot where noted below.",
+  "W8 is NOT the curtain wall: it is the face of a one-storey windowless brick podium (top ~4.5 m, lidar 3-4.5 m, ortho dark strip) that stands ~2.7 m proud of the W7/W9 pier line. The E curtain wall stands on the podium roof, about 0.5 m behind the W7/W9 pier faces, from 4.5 m up to ~18.2 m, spanning the 35 m between the piers. walls.json has no wall for it; its spec is given below as 'W8_upper' (line: W8 shifted ~3.2 m inward, i.e. art (899.0,454.6)->(883.0,485.5) approx). If the lidar massing extrudes the podium strip at 18 m or leaves the upper face undrawn, fix it.",
+  "W3 (W green bay) is ~1.0-1.5 m proud of W2/W4 (walls.json offsets agree; cm020 shows its return) and ~0.4 m taller (its top at ~18.6).",
+  "The W face ground storey under the two curtain-wall sections is recessed ~1.2 m under a white soffit at ~3.5 m (cm020, cm037); the piers and the green bay are not. Modelled per cell as recessed glass panels because an 'undercut' would also cut back the piers. W5's (S entrance) ground storey is wholly recessed: undercut used there.",
+  "Roof: lidar shows the E half of the roof lower (~16.5 m) inside the parapet, with a long N-S raised monitor (19.5 m) in it; ortho shows the outline. See 'roof'."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 18.8,
+   "confidence": "high",
+   "summary": "N face brick block: full-width ground ribbon window over a tall concrete plinth, three 2-storey 4-lite window groups, pairs of small square windows on the top floor, recessed navy reveal at the E (a) end; white penthouse wall above the parapet",
+   "height_m": 18.2,
+   "rows": [
+    [
+     0.6,
+     "plinth"
+    ],
+    [
+     2.0,
+     "ground"
+    ],
+    [
+     1.5,
+     "ground_up"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     5.0,
+     "l4"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "reveal"
+    ],
+    [
+     1.2,
+     "b"
+    ],
+    [
+     2.1,
+     "ga"
+    ],
+    [
+     2.1,
+     "gb"
+    ],
+    [
+     0.85,
+     "b2"
+    ],
+    [
+     2.1,
+     "ga"
+    ],
+    [
+     2.1,
+     "gb"
+    ],
+    [
+     0.85,
+     "b2"
+    ],
+    [
+     2.1,
+     "ga"
+    ],
+    [
+     2.1,
+     "gb"
+    ],
+    [
+     2.25,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/reveal": {
+     "type": "panel",
+     "glass": "glass_navy",
+     "depth": 0.8
+    },
+    "parapet/reveal": null,
+    "ground/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "h": 1.6,
+     "mullion_pitch": 1.25,
+     "transom_pitch": 0.8,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill": 0.3
+    },
+    "ground/b": null,
+    "ground/reveal": {
+     "type": "panel",
+     "glass": "glass_navy",
+     "depth": 0.8
+    },
+    "l2/ga": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/gb": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/ga": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/gb": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l4/ga": {
+     "type": "window",
+     "w": 1.05,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill_colour": "panel_white"
+    },
+    "l4/gb": {
+     "type": "window",
+     "w": 1.05,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill_colour": "panel_white"
+    },
+    "*/b": null,
+    "*/b2": null,
+    "plinth/*": null,
+    "ground_up/*": null,
+    "parapet/*": null,
+    "ground_up/reveal": {
+     "type": "panel",
+     "glass": "glass_navy",
+     "depth": 0.8
+    }
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.6,
+     "concrete",
+     0
+    ],
+    [
+     18.0,
+     18.2,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "white metal mechanical penthouse wall rises ~3.5 m above the parapet, set back ~0.5 m, with two long horizontal louvre panels (earth_facade_3, uw004)"
+   ],
+   "notes": "Groups at s ~3.2-7.4, 8.2-12.4, 13.3-17.5 (sv_W0 + earth_facade_3). The 2-storey groups are 4 lites wide with a white sill; here drawn as two 2.1 m halves per group with a transom at the l2/l3 line. Ribbon runs s ~1.9-17.7 at ~0.9-2.5 m, white-framed, 2 tiers; the ground falls toward the N so ~0.6 m of concrete foundation shows (sv_W0). Top-floor pairs ~1.05 m square, c-c ~2 m, one pair centred over each group (earth_facade_3 shows them, uw004 too). Wall lamps: none seen on this face."
+  },
+  "W1": {
+   "faces": "NW",
+   "length_m": 9.9,
+   "confidence": "medium",
+   "summary": "N green bay: mint glass_teal panel grid, 3 punched windows per upper storey, 4 big dark panes at ground over a concrete areaway grating; reveal with a glass side door + down-stair at the W (b) end",
+   "height_m": 18.5,
+   "rows": [
+    [
+     0.5,
+     "plinth"
+    ],
+    [
+     3.8,
+     "ground"
+    ],
+    [
+     0.45,
+     "g_low"
+    ],
+    [
+     4.05,
+     "l2"
+    ],
+    [
+     4.05,
+     "l3"
+    ],
+    [
+     4.05,
+     "l4"
+    ],
+    [
+     1.6,
+     "g_top"
+    ]
+   ],
+   "bays": [
+    [
+     1.45,
+     "e"
+    ],
+    [
+     1.75,
+     "w"
+    ],
+    [
+     0.8,
+     "m"
+    ],
+    [
+     1.75,
+     "w"
+    ],
+    [
+     0.8,
+     "m"
+    ],
+    [
+     1.75,
+     "w"
+    ],
+    [
+     1.6,
+     "e"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "glass",
+     "glass": "glass_teal",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 0.9,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "plinth/*": null,
+    "ground/w": {
+     "type": "window",
+     "w": 1.75,
+     "h": 2.4,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "ground/m": {
+     "type": "window",
+     "w": 1.0,
+     "h": 2.4,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/w": {
+     "type": "window",
+     "w": 1.75,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 1.75,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l4/w": {
+     "type": "window",
+     "w": 1.75,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    }
+   },
+   "wall": "glass_teal",
+   "bands": [
+    [
+     0.0,
+     0.5,
+     "concrete",
+     0
+    ],
+    [
+     18.3,
+     18.5,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "recessed navy reveal (~1.5 m) between W1's b end and the NW pier, holding a single glazed aluminium door at grade ~-1 m, reached by a concrete stair with galvanised pipe railings descending along the pier (sv_W1)",
+    "concrete-curbed areaway with a steel grating, ~3.5 x 2 m, in front of the ground windows at s ~5-9 (sv_W1)",
+    "the 2.1 m gap W0 b -> W1 a is a recessed navy reveal strip (panel glass_navy, depth 0.8)"
+   ],
+   "notes": "Panel colour and grid from sv_W1 and uw004 (green bay to the right of the brick block). Window rhythm assumed equal to the W and S green bays (3 per storey); uw004 shows 3 per storey on this face, but the Earth view is blurred. In sv_W1 the upper panes reflect, so some upper green panels read as clear glass: medium confidence on how many panes are clear vs mint."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 21.6,
+   "confidence": "high",
+   "summary": "W face north part: NW corner pier with a full-height navy stair slot at the corner, then 14 m of 'pixelated' curtain wall (navy vision glass, teal panes, one sky-blue spandrel strip per storey) over a recessed glazed ground floor with a double door by the pier",
+   "height_m": 18.2,
+   "rows": [
+    [
+     3.5,
+     "ground"
+    ],
+    [
+     1.25,
+     "cw_low"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.0,
+     "cw_top"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "slot"
+    ],
+    [
+     5.6,
+     "pier"
+    ],
+    [
+     0.6,
+     "cw"
+    ],
+    [
+     2.0,
+     "cw_door"
+    ],
+    [
+     11.8,
+     "cw"
+    ]
+   ],
+   "cells": {
+    "*/slot": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.4,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_top/slot": null,
+    "coping/slot": null,
+    "*/pier": null,
+    "ground/cw": {
+     "type": "panel",
+     "glass": "glass_navy",
+     "depth": 1.2,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.6
+    },
+    "ground/cw_door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "cw_low/cw": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_low/cw_door": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "blue/cw": {
+     "type": "stripes",
+     "module": 2.8,
+     "light": [
+      2.05,
+      "spandrel_sky"
+     ],
+     "dark": [
+      0.75,
+      "glass_navy"
+     ]
+    },
+    "blue/cw_door": {
+     "type": "stripes",
+     "module": 2.8,
+     "light": [
+      2.05,
+      "spandrel_sky"
+     ],
+     "dark": [
+      0.75,
+      "glass_navy"
+     ]
+    },
+    "vision/cw": {
+     "type": "stripes",
+     "module": 3.0,
+     "light": [
+      1.8,
+      "glass_vault"
+     ],
+     "dark": [
+      1.2,
+      "glass_navy"
+     ]
+    },
+    "vision/cw_door": {
+     "type": "stripes",
+     "module": 3.0,
+     "light": [
+      1.8,
+      "glass_vault"
+     ],
+     "dark": [
+      1.2,
+      "glass_navy"
+     ]
+    },
+    "thin/cw": {
+     "type": "glass",
+     "glass": "glass_vault",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.75,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "thin/cw_door": {
+     "type": "glass",
+     "glass": "glass_vault",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.75,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_top/cw": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.0,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_top/cw_door": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.0,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "coping/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     3.45,
+     3.6,
+     "panel_white",
+     0.05
+    ],
+    [
+     17.9,
+     18.2,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "white-framed glazed double door at s ~7.7-9.5 in the recessed ground storey, with a ramp and galvanised railing running S along the face (cm037, cm035)",
+    "wall lamp (dark box) on the pier at s ~5, z ~3.2 (cm037)"
+   ],
+   "notes": "Rhythm read from cm037 (square-on, 41.7 px/m): per upper storey (4.05 m) one sky-blue strip of ~2 m blocks separated by short navy blocks, one vision row mixing navy panes with lighter teal operable windows, then two thin teal rows; the vertical mullions are white at ~1.5 m with irregular extra verticals (the 'pixel' effect). The NW pier is ~21 m tall (penthouse level) and its slot stops ~15.8 m; the pier slot sits in a stepped corner and wraps onto the N face (uw004, sv_W1). Ground glazing recessed ~1.2 m under a white soffit (cm020): drawn as recessed panel cells."
+  },
+  "W3": {
+   "faces": "SW",
+   "length_m": 9.7,
+   "confidence": "high",
+   "summary": "W green bay: mint glass_teal panel grid standing ~1.2 m proud and ~0.4 m taller than the curtain walls, 3 punched windows per upper storey, 4 big dark panes on the ground storey",
+   "height_m": 18.6,
+   "rows": [
+    [
+     3.5,
+     "ground"
+    ],
+    [
+     1.25,
+     "g_low"
+    ],
+    [
+     4.05,
+     "l2"
+    ],
+    [
+     4.05,
+     "l3"
+    ],
+    [
+     4.05,
+     "l4"
+    ],
+    [
+     1.7,
+     "g_top"
+    ]
+   ],
+   "bays": [
+    [
+     1.3,
+     "e"
+    ],
+    [
+     1.85,
+     "w"
+    ],
+    [
+     0.75,
+     "m"
+    ],
+    [
+     1.85,
+     "w"
+    ],
+    [
+     0.75,
+     "m"
+    ],
+    [
+     1.85,
+     "w"
+    ],
+    [
+     1.35,
+     "e"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "glass",
+     "glass": "glass_teal",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 0.85,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "ground/w": {
+     "type": "window",
+     "w": 1.85,
+     "h": 2.5,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "ground/m": {
+     "type": "window",
+     "w": 1.0,
+     "h": 2.5,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/w": {
+     "type": "window",
+     "w": 1.85,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 1.85,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l4/w": {
+     "type": "window",
+     "w": 1.85,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    }
+   },
+   "wall": "glass_teal",
+   "bands": [
+    [
+     18.4,
+     18.6,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "galvanised railing of the W-face ramp passes in front at ~1 m (cm037)"
+   ],
+   "notes": "cm037 and cm035 agree: three ~1.85 x 1.3 m windows per storey at s ~1.3-3.15, 3.9-5.75, 6.5-8.35, the rest mint panels (~1.2 m wide, ~0.85 m tall, white frames). Windows sit about 1.7 m above each floor line; the top 1.7 m has no windows. Ground storey: four large dark panes with a mint surround; no door in this bay."
+  },
+  "W4": {
+   "faces": "SW",
+   "length_m": 14.9,
+   "confidence": "high",
+   "summary": "W face south part: 7.6 m of the same pixelated curtain wall with a glazed double door at its S end, then the SW corner pier (grey steel service door, wall lamp) with a navy stair slot at the corner",
+   "height_m": 18.2,
+   "rows": [
+    [
+     3.5,
+     "ground"
+    ],
+    [
+     1.25,
+     "cw_low"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.0,
+     "cw_top"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     5.8,
+     "cw"
+    ],
+    [
+     1.8,
+     "cw_door"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     0.9,
+     "pier_door"
+    ],
+    [
+     3.6,
+     "pier"
+    ],
+    [
+     1.4,
+     "slot"
+    ]
+   ],
+   "cells": {
+    "ground/cw": {
+     "type": "panel",
+     "glass": "glass_navy",
+     "depth": 1.2,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.6
+    },
+    "ground/cw_door": {
+     "type": "door",
+     "w": 1.7,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "cw_low/cw": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_low/cw_door": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "blue/cw": {
+     "type": "stripes",
+     "module": 2.8,
+     "light": [
+      2.05,
+      "spandrel_sky"
+     ],
+     "dark": [
+      0.75,
+      "glass_navy"
+     ]
+    },
+    "blue/cw_door": {
+     "type": "stripes",
+     "module": 2.8,
+     "light": [
+      2.05,
+      "spandrel_sky"
+     ],
+     "dark": [
+      0.75,
+      "glass_navy"
+     ]
+    },
+    "vision/cw": {
+     "type": "stripes",
+     "module": 3.0,
+     "light": [
+      1.8,
+      "glass_vault"
+     ],
+     "dark": [
+      1.2,
+      "glass_navy"
+     ]
+    },
+    "vision/cw_door": {
+     "type": "stripes",
+     "module": 3.0,
+     "light": [
+      1.8,
+      "glass_vault"
+     ],
+     "dark": [
+      1.2,
+      "glass_navy"
+     ]
+    },
+    "thin/cw": {
+     "type": "glass",
+     "glass": "glass_vault",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.75,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "thin/cw_door": {
+     "type": "glass",
+     "glass": "glass_vault",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.75,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_top/cw": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.0,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_top/cw_door": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.0,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "ground/pier_door": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "mullions": 0,
+     "glass": "panel_grey"
+    },
+    "*/pier": null,
+    "*/pier_door": null,
+    "*/slot": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.4,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "ground/slot": null,
+    "cw_top/slot": null,
+    "coping/slot": null,
+    "coping/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     3.45,
+     3.6,
+     "panel_white",
+     0.05
+    ],
+    [
+     17.9,
+     18.2,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "wall lamp on the pier at s ~8.2, z ~3.2 (cm037)",
+    "dark-bronze pole lamp ~4.5 m tall at s ~9, 1.5 m out (cm037, cm035)"
+   ],
+   "notes": "Door at s ~5.9-7.5 (cm037 1575-1640 px). Grey steel door in the pier at s ~9.0-9.9 (cm037 1710-1745 px, cm035). The SW pier is ~18.5 m (same as the parapet, +0.3); its slot starts ~1.5 m up (cm037: slot bottom ~1.0 m) and stops ~3 m below the pier top. This pier and its slot wrap onto the S face (earth_facade_1 left pier)."
+  },
+  "W5": {
+   "faces": "SE",
+   "length_m": 9.9,
+   "confidence": "high",
+   "summary": "S green bay = MAIN ENTRANCE: mint glass_teal grid above, ground storey recessed ~1.5 m under a white soffit as a glazed vestibule with two pairs of glazed double doors; concrete steps and a ramp with galvanised railings; glazed bridge to MC leaves just E of it",
+   "height_m": 18.5,
+   "undercut": [
+    4.3,
+    1.5
+   ],
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     0.45,
+     "g_low"
+    ],
+    [
+     4.05,
+     "l2"
+    ],
+    [
+     4.05,
+     "l3"
+    ],
+    [
+     4.05,
+     "l4"
+    ],
+    [
+     1.6,
+     "g_top"
+    ]
+   ],
+   "bays": [
+    [
+     1.4,
+     "e"
+    ],
+    [
+     1.6,
+     "w"
+    ],
+    [
+     0.5,
+     "m"
+    ],
+    [
+     2.9,
+     "wc"
+    ],
+    [
+     0.5,
+     "m"
+    ],
+    [
+     1.6,
+     "w"
+    ],
+    [
+     1.4,
+     "e"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "glass",
+     "glass": "glass_teal",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 0.9,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "ground/*": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 2.4,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "ground/wc": {
+     "type": "door",
+     "w": 2.8,
+     "h": 2.4,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/w": {
+     "type": "window",
+     "w": 1.6,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/wc": {
+     "type": "window",
+     "w": 1.7,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 1.6,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/wc": {
+     "type": "window",
+     "w": 1.7,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l4/w": {
+     "type": "window",
+     "w": 1.6,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l4/wc": {
+     "type": "window",
+     "w": 1.7,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    }
+   },
+   "wall": "glass_teal",
+   "bands": [
+    [
+     4.2,
+     4.45,
+     "panel_white",
+     0.1
+    ],
+    [
+     18.3,
+     18.5,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "white soffit/canopy edge at ~4.3 m across the recessed vestibule, white-clad end posts at s 0-0.6 and 9.3-9.9 (sv_c10)",
+    "3-4 concrete steps the width of the doors plus a ramp rising from the E along the face, both with galvanised pipe railings (sv_c10)",
+    "glazed bridge to MC attaches in the 1.9 m reveal between W5 b and W6 a (see site.bridges)"
+   ],
+   "notes": "Doors: two pairs of glazed double doors side by side at s ~2.9-4.8 and 5.5-7.4 (sv_c10); drawn as one 2.8 m 4-leaf door centred, which is a compromise forced by the shared bay grid with the 3 windows above. Three windows per storey from earth_detail_1b; some panes in sv_c10 reflect so the clear/mint split is approximate. The ground glazing reads very dark (teal-navy) in sv_c10."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 18.8,
+   "confidence": "high",
+   "summary": "S face brick block: ground ribbon window under the W two thirds, white overhead service door under the E group, three 2-storey 4-lite window groups, pairs of small square top-floor windows, navy reveal at the E end before the SE pier",
+   "height_m": 18.2,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     2.8,
+     "ground"
+    ],
+    [
+     1.0,
+     "ground_up"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     5.0,
+     "l4"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.9,
+     "b"
+    ],
+    [
+     2.1,
+     "ga"
+    ],
+    [
+     2.1,
+     "gb"
+    ],
+    [
+     1.1,
+     "b2"
+    ],
+    [
+     2.1,
+     "ga"
+    ],
+    [
+     2.1,
+     "gb"
+    ],
+    [
+     1.1,
+     "b"
+    ],
+    [
+     1.6,
+     "g3a"
+    ],
+    [
+     2.6,
+     "g3b"
+    ],
+    [
+     1.1,
+     "b"
+    ],
+    [
+     2.1,
+     "reveal"
+    ]
+   ],
+   "cells": {
+    "ground/ga": {
+     "type": "glass",
+     "kind": "ribbon",
+     "h": 2.2,
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "ground/gb": {
+     "type": "glass",
+     "kind": "ribbon",
+     "h": 2.2,
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "ground/b2": {
+     "type": "glass",
+     "kind": "ribbon",
+     "h": 2.2,
+     "mullion_pitch": 1.1,
+     "transom_pitch": 1.1,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "ground/g3b": {
+     "type": "door",
+     "w": 2.4,
+     "h": 2.8,
+     "mullions": 0,
+     "transoms": 3,
+     "glass": "panel_white",
+     "frame": "panel_white"
+    },
+    "ground_up/g3a": {
+     "type": "louvre",
+     "w": 0.2,
+     "h": 0.4,
+     "colour": "panel_white"
+    },
+    "l2/ga": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/gb": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/ga": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/gb": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 1,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/g3a": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 0,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l2/g3b": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 2,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/g3a": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 0,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l3/g3b": {
+     "type": "window",
+     "w": 1.0,
+     "h": 3.9,
+     "mullions": 2,
+     "transoms": 2,
+     "glass": "glass_navy",
+     "frame": "mullion"
+    },
+    "l4/ga": {
+     "type": "window",
+     "w": 1.05,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill_colour": "panel_white"
+    },
+    "l4/gb": {
+     "type": "window",
+     "w": 1.05,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill_colour": "panel_white"
+    },
+    "l4/g3a": {
+     "type": "window",
+     "w": 1.05,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill_colour": "panel_white"
+    },
+    "l4/g3b": {
+     "type": "window",
+     "w": 1.05,
+     "h": 1.3,
+     "mullions": 0,
+     "glass": "glass_navy",
+     "frame": "mullion",
+     "sill_colour": "panel_white"
+    },
+    "*/reveal": {
+     "type": "panel",
+     "glass": "glass_navy",
+     "depth": 0.8
+    },
+    "plinth/reveal": null,
+    "parapet/reveal": null,
+    "*/b": null,
+    "*/b2": null,
+    "plinth/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0
+    ],
+    [
+     18.0,
+     18.2,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "white overhead (roll-up, 3 horizontal joints) service door ~2.4 x 2.8 m at s ~12.6-15.0 with a small white louvre above-left; drawn centred in bay g3b (s ~14.4), real centre ~13.8 (sv_c15, earth_detail_1b)",
+    "concrete pad in front of the door and ribbon with a row of galvanised bike racks (sv_c15, sv_c18)",
+    "glazed bridge to MC attaches at s 0 (W end), see site.bridges"
+   ],
+   "notes": "Groups at s ~0.9-5.1, 6.2-10.4, 11.5-15.7 (earth_facade_1/detail_1b square-on; sv_c15 agrees in count). Ribbon s ~0.9-10.4 at ~0.4-2.6 m, two tiers, blue-green glass in white frames (sv_c15). The pairs of small windows sit ~13.8-15.1 m with white sills. Mirror of W0 except the ribbon is shorter, the door, and the lower plinth (ground is level here). The E group is split 1.6/2.6 m (not 2.1/2.1) so the door can sit under its right part; its two top windows therefore sit ~0.3 m E of their true places."
+  },
+  "W7": {
+   "faces": "NE",
+   "length_m": 5.9,
+   "confidence": "medium",
+   "summary": "E face of the SE corner pier: plain brick to ~18.5 m, its lower part hidden by the end of the E podium; a pipe-railed stair/areaway at the podium's S end",
+   "height_m": 18.5,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     17.9,
+     "brick"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     5.9,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0
+    ],
+    [
+     18.2,
+     18.5,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "galvanised pipe railing on a low concrete wall at the S end of the podium, ~3 m long (sv_c18): probably a stair down to a service door, not seen directly"
+   ],
+   "notes": "The SE pier's tall navy stair slot (1.4 m, from ~1 m to ~17 m) is on its S end face (in the 6 m gap W6 b -> W7 a, ~2 m from the corner; sv_c18, sv_c15), not on W7."
+  },
+  "W8": {
+   "faces": "NE",
+   "length_m": 34.6,
+   "confidence": "high",
+   "summary": "E podium: one-storey windowless brick wall ~4.5 m tall on a concrete plinth with a white metal coping and a few wall lamps; the curtain wall rises behind it (see W8_upper)",
+   "height_m": 4.5,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     3.95,
+     "brick"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     34.6,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0
+    ],
+    [
+     4.25,
+     4.5,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "3 dark wall-pack lamps just under the coping, at s ~6, 17, 29 (sv_W8_jGqV..., sv_c22 shows two near the N end) (positions guessed)",
+    "podium roof dark grey membrane (ortho)"
+   ],
+   "notes": "sv_W8_* (3 panos) are all plain brick close-ups: no windows or doors on this face. The podium's N and S returns (~2.7 m) are brick too; the N return is plain (sv_c22). Brick here is the same red as the rest."
+  },
+  "W8_upper": {
+   "faces": "NE",
+   "length_m": 35.0,
+   "confidence": "medium",
+   "summary": "E curtain wall on top of the podium, between the NE and SE piers: same pixelated navy/teal/sky-blue curtain wall as the W face, no green bay; 3 narrow lighter-teal vertical strips divide it into 4 sections",
+   "height_m": 18.2,
+   "rows": [
+    [
+     4.5,
+     "hidden"
+    ],
+    [
+     0.25,
+     "cw_low"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.05,
+     "blue"
+    ],
+    [
+     1.45,
+     "vision"
+    ],
+    [
+     1.55,
+     "thin"
+    ],
+    [
+     1.0,
+     "cw_top"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     8.0,
+     "cw"
+    ],
+    [
+     1.0,
+     "vstrip"
+    ],
+    [
+     8.0,
+     "cw"
+    ],
+    [
+     1.0,
+     "vstrip"
+    ],
+    [
+     8.0,
+     "cw"
+    ],
+    [
+     1.0,
+     "vstrip"
+    ],
+    [
+     8.0,
+     "cw"
+    ]
+   ],
+   "cells": {
+    "hidden/*": null,
+    "cw_low/*": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.25,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "blue/cw": {
+     "type": "stripes",
+     "module": 3.0,
+     "light": [
+      2.0,
+      "spandrel_sky"
+     ],
+     "dark": [
+      1.0,
+      "glass_navy"
+     ]
+    },
+    "vision/cw": {
+     "type": "stripes",
+     "module": 3.0,
+     "light": [
+      1.8,
+      "glass_vault"
+     ],
+     "dark": [
+      1.2,
+      "glass_navy"
+     ]
+    },
+    "thin/cw": {
+     "type": "glass",
+     "glass": "glass_vault",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.75,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "cw_top/cw": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.0,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "*/vstrip": {
+     "type": "glass",
+     "glass": "glass_teal",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 0.9,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "hidden/vstrip": null,
+    "coping/*": null
+   },
+   "wall": "glass_navy",
+   "bands": [
+    [
+     17.9,
+     18.2,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Not in walls.json (see geometry_notes): ~3.2 m behind the W8 line, from the podium roof (4.5 m) to 18.2 m. Read from earth_detail_0b / earth_facade_0 (2024, blurred) and sv_c18/c21 (oblique): ~11 sky-blue blocks per strip (2 m light, 1 m dark); the lowest blue strip sits at or just below the podium top and is hidden. Vertical lighter strips at roughly 1/4, 1/2, 3/4 (earth_facade_0 x 620-640, 830-850, 1020-1040): positions approximate.",
+   "upper": true,
+   "z0": 4.5,
+   "a": [
+    901.44,
+    458.13
+   ],
+   "b": [
+    885.52,
+    488.84
+   ],
+   "placement_note": "W8 moved 3.2 m inward (spec geometry_notes), added by the model script author"
+  },
+  "W9": {
+   "faces": "NE",
+   "length_m": 5.9,
+   "confidence": "high",
+   "summary": "E face of the NE corner pier: brick to ~21 m, grey steel door up 4 concrete steps with pipe railings next to the podium end, and a 1.4 m navy stair slot at the N corner that wraps onto the N face",
+   "height_m": 21.2,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     0.9,
+     "base"
+    ],
+    [
+     2.3,
+     "ground"
+    ],
+    [
+     13.5,
+     "slot_rows"
+    ],
+    [
+     3.9,
+     "top"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "pier"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     3.1,
+     "pier"
+    ],
+    [
+     1.4,
+     "slot"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.2,
+     "mullions": 0,
+     "glass": "panel_grey"
+    },
+    "base/slot": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.3,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "ground/slot": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.3,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "slot_rows/slot": {
+     "type": "glass",
+     "glass": "glass_navy",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.3,
+     "frame": "mullion",
+     "h": "full"
+    },
+    "*/pier": null,
+    "*/door": null,
+    "top/slot": null,
+    "plinth/slot": null,
+    "coping/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0
+    ],
+    [
+     20.9,
+     21.2,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "concrete stair of 4 steps with a landing and galvanised pipe railings rising S->N to the door at s ~0.4-1.4, door sill ~1.2 m above grade (sv_c22, sv_W9)",
+    "wall lamp above the door (sv_c22)"
+   ],
+   "notes": "sv_c22 (Sep 2014) is clear: the door is in the pier face immediately N of the podium's N return; the slot is at the N corner, white-framed, panes ~1.3 m tall, from ~0.5 m up. Pier height ~21 m from earth_facade_0 (right pier visibly taller than left) and lidar."
+  }
+ },
+ "corner_piers": {
+  "note": "The four 6 m gaps in walls.json are the corner piers' end faces (stepped corners). Spec for them:",
+  "NE_pier_N_face (gap W9 b -> W0 a)": "brick, ~21.2 m, the corner stair slot wraps round from W9 (navy, 1.4 m at the E corner, sv_W0 left); a navy reveal ~1 m between pier and W0's brick block",
+  "NW_pier_N_face (gap W1 b -> W2 a)": "brick, ~21.2 m, navy stair slot ~1.3 m at the W corner, wrapping from W2 (sv_W1, uw004); the recessed side door + down-stair is in the reveal between this pier and W1",
+  "SW_pier_S_face (gap W4 b -> W5 a)": "brick, ~18.5 m, navy slot at the W corner continuing W4's (earth_facade_1 left pier), then a ~1 m navy reveal to W5 (sv_c10 530-590 px)",
+  "SE_pier_S_face (gap W6 b -> W7 a)": "brick, ~18.5 m, full-height navy stair slot 1.4 m wide set ~2 m from the E corner, from ~1 m to ~17 m, white frames (sv_c18 910-965 px, sv_c15); wall lamp at ~3 m"
+ },
+ "roof": [
+  {
+   "what": "main roof, grey membrane inside a white metal parapet coping",
+   "where": "whole footprint at ~18.2 m",
+   "size_m": [
+    47,
+    31,
+    0
+   ]
+  },
+  {
+   "what": "mechanical penthouse, white metal panel (panel_white) with two dark grey horizontal louvre bands ~5 m long on its S-facing side",
+   "where": "L-shaped, along the whole N edge (its N wall nearly flush with W0/W1) and down the W half of the roof; lidar white/pink 21.0-22.5 m",
+   "size_m": [
+    30,
+    14,
+    3.5
+   ]
+  },
+  {
+   "what": "lower roof well with a long raised N-S monitor/skylight (white sides, lidar 19.5 m) and four round exhaust fans (2 x 2, silver) at its N end",
+   "where": "E half of the roof, inside the parapet (lidar ~16.5 m); monitor ~2 x 20 m parallel to W8",
+   "size_m": [
+    2,
+    20,
+    1.5
+   ]
+  },
+  {
+   "what": "small square white roof hatch/box",
+   "where": "W half of the roof, ~10 m from the W parapet (ortho)",
+   "size_m": [
+    2.5,
+    2.5,
+    1.2
+   ]
+  },
+  {
+   "what": "two long white box penthouses (louvred) seen from the E",
+   "where": "middle of the roof, set back from the E parapet (earth_facade_0)",
+   "size_m": [
+    12,
+    3,
+    3
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "MC",
+    "from_wall": "W5/W6 reveal (between W5 b and W6 a)",
+    "s": [
+     0,
+     3.5
+    ],
+    "levels": [
+     3
+    ],
+    "look": "glazed enclosed bridge ~3.5 m wide: two tiers of teal-navy glass in white frames over a white/silver spandrel, white soffit; carried on round grey concrete columns (~1.0 m dia, first ~10 m S of the face, prop_lamp grey #5e6669 in sv_c10); lidar top ~12 m, so floor ~8 m, glazing ~8.3-11.7 m (level guessed). Runs SSE to MC. In ortho_2026spring the new M4 building's N edge reaches the bridge line ~19 m S of W5/W6, so the bridge now probably lands in M4 (uncertain)."
+   }
+  ],
+  "neighbours": [
+   "ERC (Energy Research Centre) directly N, ~6-10 m from the N face, lower (flat roof with skylight grid in the foreground of earth_facade_3)",
+   "CSB to the NE across the E lawn",
+   "MC to the S across William Tutte Dr / the old parking lot, reached by the bridge",
+   "large open lawn to the W (the slope toward the Arts/BMH side), with a dirt desire path"
+  ],
+  "m4": {
+   "what": "Mathematics 4 (M4) under construction, 2024-2026, on the former parking lot S/SE of M3 between M3 and MC",
+   "evidence": [
+    "earth_facade_1 / earth_detail_1b (Earth 2024): the area S of the road is still a parking lot with accessible stalls; no M4 yet",
+    "ortho_2025summer.jpg: construction site S of the road: concrete core/frame with orange-brown formwork decks, a curved shoring/retaining edge, a crawler-crane boom lying diagonally, rebar cages; the road S of M3 is fenced",
+    "ortho_2026spring.jpg: M4 roofed: light grey membrane roof with a black steel mechanical-screen frame and white rooftop units, its N edge running parallel to M3's S face ~19 m away (from W5/W6) and crossing the line of the MC bridge; its shadow covers the whole gap up to M3's wall, so it is clearly taller than the bridge (several storeys). A mobile crane boom still stands at its NW corner."
+   ],
+   "not_visible": "No street-level photo of M4 exists in this folder (Street View is 2014-2015). Facade materials, height and how the bridge meets it are unknown."
+  },
+  "ground": [
+   "S: concrete entrance plaza at W5 with steps and ramp, lawn panels either side of the bridge, a concrete pad with bike racks in front of W6's door, then an interlocking-paver sidewalk and William Tutte Dr (asphalt) (sv_c10, sv_c15)",
+   "W: paved walkway/terrace along the W face ground floor with galvanised ramp railings and patio tables, shrub beds with mulch, then the big open lawn (cm037, cm035, ortho_2026spring)",
+   "E: asphalt path along the podium ~3 m out, lawn beyond with a long white low utility cover/curb parallel to the face ~25 m out (ortho, earth_facade_0)",
+   "N: lawn falling toward ERC, concrete stair with railings down to the NW side door, areaway grating at W1 (sv_W1)"
+  ],
+  "entities": [
+   {
+    "type": "sign",
+    "kind": "MATHEMATICS 3 monument sign: low grey stone/precast block ~1.5 x 0.4 x 0.9 m with a light grey sign face",
+    "where": "S lawn, in front of W6 s ~2, ~8 m out, just E of the first bridge column",
+    "count": 1,
+    "photo": "sv_c10, sv_c15, sv_c18"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised inverted-U loops",
+    "where": "along W6 on the concrete pad, s 9-16, 2-3 m out",
+    "count": 7,
+    "photo": "sv_c15, sv_c18"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised inverted-U / wave",
+    "where": "S entrance at W5, s ~3, 5 m out on the plaza",
+    "count": 1,
+    "photo": "sv_c10"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised loops by the stair",
+    "where": "NW corner, at the N stair beside the NW pier, ~3 m out",
+    "count": 2,
+    "photo": "sv_W1, sv_c32"
+   },
+   {
+    "type": "lamp",
+    "kind": "dark bronze pole light ~4.5 m",
+    "where": "W face: in front of W2 s ~12, 2 m out and in front of W4 s ~9, 1.5 m out",
+    "count": 2,
+    "photo": "cm037"
+   },
+   {
+    "type": "lamp",
+    "kind": "dark pole light",
+    "where": "W of the SW corner by the path, ~8 m out from W4 b",
+    "count": 1,
+    "photo": "sv_c10"
+   },
+   {
+    "type": "utility_box",
+    "kind": "two grey electrical cabinets ~1.2 x 0.8 x 1.4 m",
+    "where": "near the SW corner, W4 s ~13, 3 m out",
+    "count": 2,
+    "photo": "sv_c10, sv_W4"
+   },
+   {
+    "type": "column",
+    "kind": "round grey concrete bridge column ~1.0 m dia, ~7.5 m tall",
+    "where": "under the MC bridge, ~10 m S of the W5/W6 junction (more further S)",
+    "count": 1,
+    "photo": "sv_c10, sv_c15"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised pipe railings on steps and ramp",
+    "where": "S entrance W5 s 2-10, 0-4 m out",
+    "count": 1,
+    "photo": "sv_c10"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised ramp railing",
+    "where": "along the W face, W2 s 2 to W3, ~1-2 m out",
+    "count": 1,
+    "photo": "cm037, cm035"
+   },
+   {
+    "type": "stair",
+    "kind": "concrete stair with landing, galvanised railings",
+    "where": "N side, descending along the NW pier to the side door (between W1 b and the NW pier)",
+    "count": 1,
+    "photo": "sv_W1"
+   },
+   {
+    "type": "stair",
+    "kind": "4 concrete steps with railings",
+    "where": "W9 s 0.4-1.4, against the wall",
+    "count": 1,
+    "photo": "sv_c22"
+   },
+   {
+    "type": "grating",
+    "kind": "areaway with concrete curb and steel grate ~3.5 x 2 m",
+    "where": "in front of W1 s ~5-9, 0-2 m out",
+    "count": 1,
+    "photo": "sv_W1"
+   },
+   {
+    "type": "picnic_table",
+    "kind": "metal patio tables and chairs",
+    "where": "W face terrace in front of W4/W3, 2-4 m out",
+    "count": 5,
+    "photo": "cm035, ortho_2026spring"
+   },
+   {
+    "type": "bench",
+    "kind": "long concrete slab bench",
+    "where": "E path near the NE corner, ~12 m out from W9",
+    "count": 1,
+    "photo": "sv_c22"
+   },
+   {
+    "type": "tree",
+    "kind": "small deciduous street trees",
+    "where": "S lawn W of the entrance (W4 b / W5 a, 6 m out) and along the W face beds",
+    "count": 3,
+    "photo": "sv_c10, earth_facade_2"
+   }
+  ]
+ }
+}

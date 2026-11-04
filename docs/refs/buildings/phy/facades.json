@@ -1,0 +1,4038 @@
+{
+ "building": "PHY",
+ "sources_checked": [
+  "around/sv_W1_dJgp, _RY7T, _hcJb, _KW2F, _SvII (Sep 2014, W1 square-on and lawn)",
+  "around/sv_W10_u_6M (zoomed), _oPBR, _XTvN, _5nS3 (Sep 2014, wing south front)",
+  "around/sv_W9_1Ck7, sv_W8_0Hp9 / _LoaI, sv_W5_hcJb, sv_W6_ulOv, sv_W7_B1iW (Sep 2014, wing end, wing north, pavilion)",
+  "around/sv_W11_110s / _MGMF, sv_W12_yIio / _deDy, sv_W13_bbGK, sv_W14_TcGD, sv_W15_zN7Z, sv_W16_gEWY, sv_W17_GhCV (Sep 2014, south end, east block, bridge)",
+  "around/sv_W18_np0x / _T379, sv_W19_VCKN, sv_W20_FBMO, sv_W21_np0x (Sep 2014), sv_W22_Pux and sv_W24_v5x (Jul 2019)",
+  "around/sv_W23_YnPP, sv_W25_MLG3 / _YFtN, sv_W26, sv_W27_v4FQ, sv_W28_dS73, sv_W29_I0Be, sv_W0_sZ3h / _zcl (Sep 2014); sv_W0_CIHM black, ignored",
+  "around/earth_corner_0-39 (2024), private/earth_facade_0-3, earth_detail_0a-3c, earth_orbit_000-315 (2024)",
+  "private/ortho_2023aug (with walls overlaid), lidar nDSM sampled along the spine (tools.art.study PHY)",
+  "private/web/phy_cm051-053 (Commons 2012); cm052 fountain colonnade not matched to anything present (see notes)",
+  "earth_W*_whole/_l/_m/_r were deleted by a concurrent around.mjs re-run during this session and could not be used"
+ ],
+ "colours": {
+  "brick": {
+   "hex": "#c39a7c",
+   "palette": "brick_buff_sun",
+   "where": "1960s spine, wing and annexes: orange-tan buff brick. SV sunlit #a37051 (W1, under-exposed), Earth #deb7a4 (warm cast); blend ~7 Lab from brick_buff_sun. Noticeably more orange than EIT/B2 buff"
+  },
+  "pavilion_brick": {
+   "hex": "#cbb497",
+   "palette": "brick_buff",
+   "where": "the one-storey pavilion W4-W6, reads yellower/lighter (guess: same brick in sun)"
+  },
+  "spandrel": {
+   "hex": "#2b3040",
+   "palette": "panel_black",
+   "where": "opaque panel under every window of the spine (SV #1b1f2e-#222426)"
+  },
+  "window_frame": {
+   "palette": "metal_silver",
+   "where": "spine window frames"
+  },
+  "string_course": {
+   "hex": "#d7cabc",
+   "palette": "precast_cream",
+   "where": "thin precast bands at each floor line on the spine"
+  },
+  "coping": {
+   "hex": "#434752",
+   "palette": "brick_slate",
+   "where": "dark metal parapet flashing, spine and wing; annexes have a black coping (penthouse_metal)"
+  },
+  "fins": {
+   "hex": "#e0dcd0",
+   "palette": "precast_cream",
+   "where": "wing's vertical precast fins (SV sunlit #e4cdb8-#e8d5c3 over-exposed)"
+  },
+  "wing_canopy": {
+   "hex": "#e7e4e5",
+   "palette": "panel_white",
+   "where": "wing canopy fascia, columns, ground-floor window frames"
+  },
+  "east_block_brick": {
+   "hex": "#b8afa2",
+   "palette": "paving",
+   "where": "newer east block (W14/W15/W18/W19 ground floor): pale grey-buff brick flecked with dark brown bricks (sunlit #c9c1b3, overcast #968b80)"
+  },
+  "east_block_siding": {
+   "hex": "#a59b91",
+   "palette": "concrete_shadow",
+   "where": "horizontal corrugated warm-grey metal siding on floors 2-3 of the east block (overcast #8a898a)"
+  },
+  "white_annex": {
+   "palette": "panel_white",
+   "where": "painted service block W22/W23"
+  },
+  "dome": {
+   "hex": "#e7e4e5",
+   "palette": "panel_white",
+   "where": "both observatory domes"
+  },
+  "roof": {
+   "hex": "#8f9087",
+   "palette": "roof_gravel",
+   "where": "grey gravel/membrane roof, all levels (Earth #8f9087; ortho grey-brown)"
+  },
+  "roof_deck": {
+   "palette": "roof_membrane",
+   "where": "paver deck around the south dome"
+  }
+ },
+ "geometry_notes": [
+  "Building height in walls.json (14.8 m) is the clerestory penthouse; the main roof of spine and wing is 11.6-11.8 m (lidar), the pavilion 5.0 m, the link 3.3 m, the east annexes 2.8-4.3 m, the east block 11.9-12.8 m with a 15.3 m box at W18 s 0-10.",
+  "Clerestory penthouse on the spine roof: ~31 m x 8 m, top 14.8 m, along the spine centre from about art (1073.9,200.5)/(1081.5,204.4) at its north end to (1089.3,170.2)/(1096.9,174.1) at its south end (lidar s 60-91 along W1, 6.5-15 m in from W1). Long sides are continuous clerestory ribbons of white-framed windows (~1.3 m tall, ~1.2 m mullion pitch); the short ends are brick (brick_buff_sun). A grey steel stair with railings climbs from the main roof to the penthouse roof along its east side near the south end.",
+  "Observatory dome 1 (the big one) sits on the penthouse roof near its south end: centre art (1090.8,177.2), white hemisphere ~4 m diameter on a short white drum, top 19.8 m (lidar), with the shutter slot.",
+  "Observatory dome 2 (small) sits on the main roof near the south end: centre art (1101.9,159.8), white, ~3 m diameter, top ~14-14.5 m, in the middle of a ~10 x 10 m square paver deck (roof_membrane) with a perimeter railing; the deck is drawn as a lighter square in ortho_2023aug.",
+  "The spine's NE face continues straight behind the one-storey annexes (W26-W29) and north of them; it is not a documented wall. It has the same column system as W25 (stair slot at the north end too, sv_W27 right) - use W25/W1.",
+  "Gap W13.b (1111.3,161.0) -> W14.a (1115.1,161.5), 3.8 m facing SE, is the glazed stair link between spine and east block: blue-tinted glass in a dark grid of ~3 x 7 panes from ~4 m to roof, brick below (sv_W14_TcGD, earth_corner_7). Draw it as curtain glass, window_glass with penthouse_metal mullions.",
+  "W16/W17 are the two sides of the bridge to E2 over the service lane (open at grade, lane passes under at ~4.3 m clear). The gap W16.b -> W17.a (2.8 m) is where it lands on E2 (E2 W3). The lidar footprint counts it as building; the ground under it must stay open.",
+  "W0 stands 1-2 m south of EIT W8: treat as a party wall; only the annex end (s 0-14) is visible from the lane.",
+  "The pavilion (W4-W6) is joined to the wing by the 3.3 m link (W3/W7); its roof is a separate flat roof at 5.0 m with a parapet.",
+  "The east block (W14-W19) is a later addition in a different brick and metal siding; it is in PHY's footprint but looks unlike the 1960s parts."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 36.1,
+   "confidence": "low",
+   "summary": "north end, almost entirely hidden: s 0-14 is the north face of the one-storey service annex (2.8 m, brick, black coping); s 14-36 is the spine's 11.6 m north end standing 1-2 m from EIT's south wall (EIT W8), effectively a party wall",
+   "height_m": 11.6,
+   "rows": [
+    [
+     2.8,
+     "annex"
+    ],
+    [
+     8.8,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     14.0,
+     "annex"
+    ],
+    [
+     22.1,
+     "spine"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     2.75,
+     2.95,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "EIT (W8) 1-2 m north along s 14-36; the lane passes the annex end at s 0-14"
+   ],
+   "notes": "Only seen edge-on: sv_W0_sZ3h/zcl (Sep 2014) look south down the lane past it; EIT facades.json notes 'a low 1-storey buff-brown brick link building with louvres and a black coping' in front of its W8 = this annex. Lidar: s 0-14 2.8-3.0 m, s 14-36 11.5 m. Nothing to draw beyond blank brick."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 78.5,
+   "confidence": "high",
+   "summary": "the long 1960s spine front on the west lawn: 3 storeys of orange-tan buff brick, 22 tall window columns (each storey: navy-black spandrel panel under a two-pane window with a transom, silver frames), thin light precast string courses at each floor, dark metal coping",
+   "height_m": 11.6,
+   "rows": [
+    [
+     0.35,
+     "g_sill"
+    ],
+    [
+     0.85,
+     "g_sp"
+    ],
+    [
+     2.2,
+     "g_gl"
+    ],
+    [
+     0.5,
+     "g_hd"
+    ],
+    [
+     0.25,
+     "m_sill"
+    ],
+    [
+     0.85,
+     "m_sp"
+    ],
+    [
+     2.3,
+     "m_gl"
+    ],
+    [
+     0.5,
+     "m_hd"
+    ],
+    [
+     0.25,
+     "t_sill"
+    ],
+    [
+     0.85,
+     "t_sp"
+    ],
+    [
+     2.0,
+     "t_gl"
+    ],
+    [
+     0.3,
+     "t_hd"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.95,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     0.95,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "m_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "t_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "g_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "m_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "t_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "g_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "m_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.82,
+     3.98,
+     "precast_cream",
+     0.03
+    ],
+    [
+     7.72,
+     7.88,
+     "precast_cream",
+     0.03
+    ]
+   ],
+   "coping": [
+    0.25,
+    "brick_slate",
+    0.05
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "wing W2/W10 leaves the spine at s 78.5 (south end of this wall)",
+    "low handrail/ramp at grade near s 6-10 (sv_W1_dJgp left edge) - probably a ground-floor door there (guess, not seen)"
+   ],
+   "notes": "Window module from sv_W1_dJgp (Sep 2014, square-on): floor 3.9 m, column pitch 0.88 of a floor = ~3.5 m, opening 1.6 m wide; spandrel panel ~0.85 m (#222426 shaded, reads near-black navy); window glass with one mullion and a transom, silver frames; dark head strip at the top of ground and middle floor openings. Count: SV module gives 22 columns over 78.5 m; earth_orbit_045 counts ~19-20 visible (ends hidden), so 21-22, I used 22. Brick: SV sunlit reads #a37051 (orange), Earth #deb7a4 (warm cast); palette brick_buff_sun is ~7 Lab from the blend #c39a7c; the brick is noticeably more orange than B2/EIT buff. String courses #d7cabc (precast_cream). Coping: dark flashing #434752 (brick_slate)."
+  },
+  "W2": {
+   "faces": "NW",
+   "length_m": 10.3,
+   "confidence": "medium",
+   "summary": "east end of the wing's north face, between the spine and the one-storey link: same as W10/W8 - white precast fins over two floors of windows and buff brick spandrels, recessed glazed ground floor under a white fascia",
+   "height_m": 11.8,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     0.5,
+     "fascia"
+    ],
+    [
+     0.8,
+     "l2_sp"
+    ],
+    [
+     1.9,
+     "l2"
+    ],
+    [
+     2.0,
+     "sp"
+    ],
+    [
+     2.0,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     10.3,
+     "fins"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.85,
+     "transom_pitch": 1.4,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.05
+    },
+    "ground/entrance": {
+     "type": "door",
+     "w": 3.4,
+     "h": 2.4,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "canopy": [
+      1.2,
+      "penthouse_metal"
+     ]
+    },
+    "ground/end": null,
+    "fascia/*": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 0.95,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l3/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 1.0,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l2/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "l3/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "sp/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "l2/end": null,
+    "l3/end": null
+   },
+   "wall": "brick_buff_sun",
+   "undercut": [
+    3.6,
+    1.5
+   ],
+   "bands": [],
+   "piers": [
+    [
+     0.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     1.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     2.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     3.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     4.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     5.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     6.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     7.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     8.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     9.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ]
+   ],
+   "coping": [
+    0.2,
+    "brick_slate",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "one-storey link to the pavilion meets at s 10.3 (W3)"
+   ],
+   "notes": "Not seen square-on (courtyard behind the pavilion, trees). Earth orbit_135 shows the wing's NW face finned like the SE face; treated identically. Ground glazing under the canopy guessed from sv_W8_0Hp9 (glazed ground with white columns on the north side).",
+   "fins": {
+    "s": [
+     0.6,
+     9.8
+    ],
+    "pitch": 1.0,
+    "width": 0.3,
+    "depth": 0.6,
+    "z": [
+     4.1,
+     11.3
+    ],
+    "colour": "precast_cream"
+   }
+  },
+  "W3": {
+   "faces": "NE",
+   "length_m": 6.3,
+   "confidence": "low",
+   "summary": "east side of the one-storey link (3.3 m) joining the pavilion to the wing; s 0-1.5 is the wing corner",
+   "height_m": 3.3,
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "corner"
+    ],
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     2.4,
+     "door"
+    ],
+    [
+     1.1,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.3,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.0,
+     3.3,
+     "brick_slate",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Hidden by trees in every photo. Lidar 3.3 m. Door is a guess (a link usually has one); brick and black coping match the pavilion."
+  },
+  "W4": {
+   "faces": "NE",
+   "length_m": 16.4,
+   "confidence": "low",
+   "summary": "pavilion east face toward the spine courtyard: one storey (5 m) of warm buff brick with vertical control joints, one tall narrow glazed slot (guess by symmetry with W5)",
+   "height_m": 5.0,
+   "rows": [
+    [
+     4.7,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     7.6,
+     "brick"
+    ],
+    [
+     1.2,
+     "slot"
+    ],
+    [
+     7.6,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/slot": {
+     "type": "window",
+     "w": 1.0,
+     "h": 4.2,
+     "sill": 0.2,
+     "transoms": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.7,
+     5.0,
+     "brick_slate",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Faces a tree-filled gap 8 m from W1; no photo shows it. Copied from W5."
+  },
+  "W5": {
+   "faces": "NW",
+   "length_m": 15.1,
+   "confidence": "medium",
+   "summary": "pavilion north face on the lawn: plain warm buff brick box 5 m tall with close vertical joints, a full-height narrow dark glazed slot at s ~3 and a single dark door at s ~11.5, dark coping",
+   "height_m": 5.0,
+   "rows": [
+    [
+     4.7,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.6,
+     "brick"
+    ],
+    [
+     1.2,
+     "slot"
+    ],
+    [
+     7.1,
+     "brick"
+    ],
+    [
+     1.1,
+     "door"
+    ],
+    [
+     3.1,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/slot": {
+     "type": "window",
+     "w": 1.0,
+     "h": 4.2,
+     "sill": 0.2,
+     "transoms": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.3,
+     "glass": "penthouse_metal",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.7,
+     5.0,
+     "brick_slate",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W5_hcJb (Sep 2014): brick box behind trees, vertical joints every ~1.1 m read as faint pilaster lines; slot at s ~3.2 and door at s ~11.5 from the east (a) end. Brick looks yellower/lighter than the spine (sunlit), so brick_buff."
+  },
+  "W6": {
+   "faces": "SW",
+   "length_m": 16.3,
+   "confidence": "low",
+   "summary": "pavilion west face: plain buff brick 5 m with two narrow full-height glazed slots (seen through trees)",
+   "height_m": 5.0,
+   "rows": [
+    [
+     4.7,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.5,
+     "brick"
+    ],
+    [
+     1.2,
+     "slot"
+    ],
+    [
+     6.9,
+     "brick"
+    ],
+    [
+     1.2,
+     "slot"
+    ],
+    [
+     3.5,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/slot": {
+     "type": "window",
+     "w": 1.0,
+     "h": 4.2,
+     "sill": 0.2,
+     "transoms": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.7,
+     5.0,
+     "brick_slate",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W6_ulOv (Sep 2014) shows the face at 30 m behind a big maple: brick with vertical lines; slot count is a guess."
+  },
+  "W7": {
+   "faces": "SW",
+   "length_m": 6.5,
+   "confidence": "low",
+   "summary": "west side of the one-storey link between pavilion and wing (3.3 m), brick; s 5-6.5 is the wing corner",
+   "height_m": 3.3,
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     2.4,
+     "door"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     1.5,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.3,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.0,
+     3.3,
+     "brick_slate",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Lidar 3.3 m; not visible in any photo. Door guessed."
+  },
+  "W8": {
+   "faces": "NW",
+   "length_m": 23.5,
+   "confidence": "medium",
+   "summary": "west part of the wing's north face, toward the pine lawn: white precast fins at ~1 m over two floors of windows with buff brick spandrels; ground floor glazed and set back under the white fascia with round white columns",
+   "height_m": 11.8,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     0.5,
+     "fascia"
+    ],
+    [
+     0.8,
+     "l2_sp"
+    ],
+    [
+     1.9,
+     "l2"
+    ],
+    [
+     2.0,
+     "sp"
+    ],
+    [
+     2.0,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     23.5,
+     "fins"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.85,
+     "transom_pitch": 1.4,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.05
+    },
+    "ground/entrance": {
+     "type": "door",
+     "w": 3.4,
+     "h": 2.4,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "canopy": [
+      1.2,
+      "penthouse_metal"
+     ]
+    },
+    "ground/end": null,
+    "fascia/*": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 0.95,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l3/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 1.0,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l2/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "l3/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "sp/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "l2/end": null,
+    "l3/end": null
+   },
+   "wall": "brick_buff_sun",
+   "undercut": [
+    3.6,
+    1.5
+   ],
+   "bands": [],
+   "piers": [
+    [
+     0.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     1.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     2.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     3.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     4.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     5.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     6.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     7.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     8.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     9.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     10.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     11.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     12.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     13.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     14.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     15.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     16.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     17.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     18.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     19.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     20.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     21.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     22.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ]
+   ],
+   "coping": [
+    0.2,
+    "brick_slate",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "the link to the pavilion meets at s 0 (W7)"
+   ],
+   "notes": "sv_W8_0Hp9 (Sep 2014): through pines, glazed ground floor with white columns and the white fascia, windows above; earth_orbit_135 shows the fins on this side. Details copied from W10.",
+   "fins": {
+    "s": [
+     0.6,
+     23.0
+    ],
+    "pitch": 1.0,
+    "width": 0.3,
+    "depth": 0.6,
+    "z": [
+     4.1,
+     11.3
+    ],
+    "colour": "precast_cream"
+   }
+  },
+  "W9": {
+   "faces": "SW",
+   "length_m": 12.8,
+   "confidence": "high",
+   "summary": "wing's west end: blank orange-tan brick end wall, a narrow stacked window slot on floors 2-3 at s ~4, the white fascia/canopy of the colonnade wraps the south corner; glazed door at s ~10 under it",
+   "height_m": 11.8,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     0.5,
+     "fascia"
+    ],
+    [
+     6.7,
+     "upper"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.6,
+     "brick"
+    ],
+    [
+     0.9,
+     "slot"
+    ],
+    [
+     4.4,
+     "brick"
+    ],
+    [
+     1.4,
+     "door"
+    ],
+    [
+     2.5,
+     "open"
+    ]
+   ],
+   "cells": {
+    "upper/slot": {
+     "type": "window",
+     "w": 0.8,
+     "h": 5.8,
+     "sill": 0.5,
+     "transoms": 3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.1,
+     "h": 2.4,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "ground/open": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [],
+   "piers": [],
+   "coping": [
+    0.2,
+    "brick_slate",
+    0.05
+   ],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W9_1Ck7 (Sep 2014) square-on: brick end, small window slot (two stacked windows), white fascia band at ~3.8 m running into the colonnade on W10, glazed door with white frame and a white round column at the corner. Lamp post in front (see site)."
+  },
+  "W10": {
+   "faces": "SE",
+   "length_m": 44.6,
+   "confidence": "high",
+   "summary": "the wing's south front on the main walkway: ~40 white precast vertical fins (1 m pitch, ~0.6 m deep) over floors 2-3 (narrow white-framed windows between fins, buff brick spandrel and parapet), a white scalloped concrete canopy/fascia at ~3.8 m on round white columns, and a recessed white-framed curtain-glazed ground floor with the main south entrance at s ~35; glazed stair bay at the spine junction s 41-44.6",
+   "height_m": 11.8,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     0.5,
+     "fascia"
+    ],
+    [
+     0.8,
+     "l2_sp"
+    ],
+    [
+     1.9,
+     "l2"
+    ],
+    [
+     2.0,
+     "sp"
+    ],
+    [
+     2.0,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "end"
+    ],
+    [
+     16.8,
+     "fins"
+    ],
+    [
+     17.2,
+     "fins"
+    ],
+    [
+     3.4,
+     "entrance"
+    ],
+    [
+     3.2,
+     "fins"
+    ],
+    [
+     3.5,
+     "stair"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.85,
+     "transom_pitch": 1.4,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.05
+    },
+    "ground/entrance": {
+     "type": "door",
+     "w": 3.4,
+     "h": 2.4,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "canopy": [
+      1.2,
+      "penthouse_metal"
+     ]
+    },
+    "ground/end": null,
+    "fascia/*": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "l2/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 0.95,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l3/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 1.0,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l2/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "l3/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "sp/stair": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass"
+    },
+    "l2/end": null,
+    "l3/end": null
+   },
+   "wall": "brick_buff_sun",
+   "undercut": [
+    3.6,
+    1.5
+   ],
+   "bands": [],
+   "piers": [
+    [
+     0.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     1.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     2.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     3.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     4.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     5.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     6.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     7.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     8.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     9.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     10.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     11.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     12.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     13.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     14.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     15.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     16.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     17.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     18.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     19.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     20.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     21.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     22.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     23.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     24.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     25.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     26.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     27.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     28.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     29.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     30.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     31.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     32.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     33.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     34.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     35.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     36.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     37.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     38.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     39.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ],
+    [
+     40.6,
+     0.3,
+     "precast_cream",
+     0.6
+    ]
+   ],
+   "coping": [
+    0.2,
+    "brick_slate",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "round white columns (~0.35 m) at ~3.7 m pitch (s 3.7, 7.4 ... 40.7) on the face line under the canopy, holding the fascia; ground glazing set 1.5 m back",
+    "entrance doors with a small dark flat canopy at s ~35, bench and bike racks either side"
+   ],
+   "notes": "Zoomed sv_W10_u_6M (Sep 2014): fin pitch measured 0.95-1.0 m against the 11.8 m height, fins ~0.3 m wide; rows from the same photo: canopy fascia 3.6-4.1 m (its soffit is a row of shallow scallops/folded vaults between the columns - draw as a flat white band if needed), floor-2 windows 4.9-6.8, brick spandrel 6.8-8.8, floor-3 windows 8.8-10.8, brick parapet to 11.8. Fins are listed as piers (s every 1.0 m, 0.3 wide, 0.6 proud, precast_cream) so the current code draws them; piers run full height, but the real fins stop at the canopy (z 4.1-11.3, see the 'fins' entry) - below 4.1 only the round columns every 3.7 m stand on the face line. Entrance location from earth_facade_1 (2024). Column pitch 3.7 m (same photo). The stair bay at the east end (earth_detail_1b grid of glass) is a guess at s 41-44.6.",
+   "fins": {
+    "s": [
+     0.6,
+     40.6
+    ],
+    "pitch": 1.0,
+    "width": 0.3,
+    "depth": 0.6,
+    "z": [
+     4.1,
+     11.3
+    ],
+    "colour": "precast_cream"
+   }
+  },
+  "W11": {
+   "faces": "SW",
+   "length_m": 28.9,
+   "confidence": "high",
+   "summary": "spine's west face south of the wing: same 3-storey brick and window-column system as W1, 8 columns",
+   "height_m": 11.6,
+   "rows": [
+    [
+     0.35,
+     "g_sill"
+    ],
+    [
+     0.85,
+     "g_sp"
+    ],
+    [
+     2.2,
+     "g_gl"
+    ],
+    [
+     0.5,
+     "g_hd"
+    ],
+    [
+     0.25,
+     "m_sill"
+    ],
+    [
+     0.85,
+     "m_sp"
+    ],
+    [
+     2.3,
+     "m_gl"
+    ],
+    [
+     0.5,
+     "m_hd"
+    ],
+    [
+     0.25,
+     "t_sill"
+    ],
+    [
+     0.85,
+     "t_sp"
+    ],
+    [
+     2.0,
+     "t_gl"
+    ],
+    [
+     0.3,
+     "t_hd"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.2,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "m_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "t_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "g_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "m_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "t_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "g_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "m_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.82,
+     3.98,
+     "precast_cream",
+     0.03
+    ],
+    [
+     7.72,
+     7.88,
+     "precast_cream",
+     0.03
+    ]
+   ],
+   "coping": [
+    0.25,
+    "brick_slate",
+    0.05
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bike racks along the wall (site)",
+    "ivy on the south corner (2014)"
+   ],
+   "notes": "sv_W11_110s (Sep 2014) and earth_orbit_045 crop: 8 columns, first one tight against the wing junction."
+  },
+  "W12": {
+   "faces": "SE",
+   "length_m": 21.7,
+   "confidence": "high",
+   "summary": "spine's south end on the plaza: windowless orange-tan brick with faint vertical control joints every ~2.7 m, string courses at 3.9 and 7.8 m, three big banners (black with white UW crest, white with a dark line-drawing portrait, black with white text), planting bed of tall ornamental grasses at its foot",
+   "height_m": 11.6,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     3.9,
+     "mid"
+    ],
+    [
+     3.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     21.7,
+     "blank"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.82,
+     3.98,
+     "precast_cream",
+     0.03
+    ],
+    [
+     7.72,
+     7.88,
+     "precast_cream",
+     0.03
+    ]
+   ],
+   "coping": [
+    0.25,
+    "brick_slate",
+    0.05
+   ],
+   "piers": [
+    [
+     2.7,
+     0.06,
+     "brick_dark",
+     0.0
+    ],
+    [
+     5.4,
+     0.06,
+     "brick_dark",
+     0.0
+    ],
+    [
+     8.1,
+     0.06,
+     "brick_dark",
+     0.0
+    ],
+    [
+     10.8,
+     0.06,
+     "brick_dark",
+     0.0
+    ],
+    [
+     13.5,
+     0.06,
+     "brick_dark",
+     0.0
+    ],
+    [
+     16.2,
+     0.06,
+     "brick_dark",
+     0.0
+    ],
+    [
+     18.9,
+     0.06,
+     "brick_dark",
+     0.0
+    ]
+   ],
+   "signs": [
+    {
+     "s": 6.8,
+     "z": 5.0,
+     "w": 3.2,
+     "h": 4.0,
+     "text": "[UW shield/crest logo] + 2 lines of white text (unreadable)",
+     "colour": "panel_black",
+     "on": "banner"
+    },
+    {
+     "s": 11.1,
+     "z": 5.0,
+     "w": 3.2,
+     "h": 4.0,
+     "text": "(image) white banner with a dark line-drawing portrait",
+     "colour": "panel_white",
+     "on": "banner"
+    },
+    {
+     "s": 15.3,
+     "z": 5.0,
+     "w": 3.1,
+     "h": 4.0,
+     "text": "white text block, several lines (unreadable)",
+     "colour": "panel_black",
+     "on": "banner"
+    }
+   ],
+   "attached": [],
+   "notes": "Banners and grass bed from Earth 2024 (earth_facade_1, earth_detail_1a/1b, earth_corner_5-9); in Sep 2014 (sv_W12_yIio) the wall was instead covered in ivy with bike racks along it, no banners. Banner centres s 6.8/11.1/15.3 from the west (a) corner, z 5.0-9.0 (Earth oblique, +-0.5 m). Black banners have a thin white border. Sunlit brick reads #ddccb6 in SV (over-exposed) - same brick as W1."
+  },
+  "W13": {
+   "faces": "NE",
+   "length_m": 7.9,
+   "confidence": "medium",
+   "summary": "spine's east face at the south end: two window columns of the spine system; the glazed stair link to the east block stands in the re-entrant corner at its north end",
+   "height_m": 11.6,
+   "rows": [
+    [
+     0.35,
+     "g_sill"
+    ],
+    [
+     0.85,
+     "g_sp"
+    ],
+    [
+     2.2,
+     "g_gl"
+    ],
+    [
+     0.5,
+     "g_hd"
+    ],
+    [
+     0.25,
+     "m_sill"
+    ],
+    [
+     0.85,
+     "m_sp"
+    ],
+    [
+     2.3,
+     "m_gl"
+    ],
+    [
+     0.5,
+     "m_hd"
+    ],
+    [
+     0.25,
+     "t_sill"
+    ],
+    [
+     0.85,
+     "t_sp"
+    ],
+    [
+     2.0,
+     "t_gl"
+    ],
+    [
+     0.3,
+     "t_hd"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.5,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "m_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "t_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "g_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "m_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "t_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "g_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "m_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.82,
+     3.98,
+     "precast_cream",
+     0.03
+    ],
+    [
+     7.72,
+     7.88,
+     "precast_cream",
+     0.03
+    ]
+   ],
+   "coping": [
+    0.25,
+    "brick_slate",
+    0.05
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "glazed stair link (see geometry_notes) between s 7.9 and the east block (W14)"
+   ],
+   "notes": "sv_W14_TcGD left edge (Sep 2014, ivy) and earth_corner_7 (2024, no ivy)."
+  },
+  "W14": {
+   "faces": "SE",
+   "length_m": 11.1,
+   "confidence": "high",
+   "summary": "south face of the newer east block (c.2000s): pale grey-buff brick with darker flecked bricks, ground floor an arcade of 4 deep square openings (bike parking), two floors of 3 white-framed windows each, plain parapet",
+   "height_m": 11.9,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.7,
+     "l2"
+    ],
+    [
+     3.7,
+     "l3"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "pier"
+    ],
+    [
+     2.0,
+     "arch"
+    ],
+    [
+     0.6,
+     "pier"
+    ],
+    [
+     1.7,
+     "archw"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     1.0,
+     "arch1"
+    ],
+    [
+     1.6,
+     "pier"
+    ],
+    [
+     1.9,
+     "arch"
+    ],
+    [
+     0.5,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/arch": {
+     "type": "panel",
+     "glass": "brick_charcoal",
+     "depth": 2.5,
+     "w": 0.92,
+     "h": 3.0,
+     "sill": 0.0
+    },
+    "ground/archw": {
+     "type": "panel",
+     "glass": "brick_charcoal",
+     "depth": 2.5,
+     "w": 0.92,
+     "h": 3.0,
+     "sill": 0.0
+    },
+    "ground/arch1": {
+     "type": "panel",
+     "glass": "brick_charcoal",
+     "depth": 2.5,
+     "w": 0.9,
+     "h": 3.0,
+     "sill": 0.0
+    },
+    "l2/archw": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l3/archw": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l2/arch1": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l3/arch1": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l2/arch": null,
+    "l3/arch": null,
+    "*/pier": null
+   },
+   "wall": "paving",
+   "bands": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.04
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bike racks in and in front of the arcade (site)"
+   ],
+   "notes": "sv_W14_TcGD (Sep 2014, 6 m away) and earth_corner_7 (2024): windows over the 2nd, 3rd and 4th openings (s ~3.8-4.8, 6.0-7.1, 8.4-9.5); openings s 0.4-2.4, 3.0-4.7, 6.1-7.0, 8.7-10.6, ~3 m high, ~2-3 m deep with brick backs. The third window sits over the narrow opening - cells keyed accordingly; the window over the first opening is absent (only 3 per floor). Brick sunlit #c9c1b3, overcast #968b80 -> palette paving (#b9b2a8). Thin white metal cap."
+  },
+  "W15": {
+   "faces": "NE",
+   "length_m": 8.9,
+   "confidence": "medium",
+   "summary": "east block's east face on the lane, south of the bridge: same pale flecked brick, two deep arcade openings at grade, two white-framed windows on each upper floor",
+   "height_m": 11.9,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.7,
+     "l2"
+    ],
+    [
+     3.7,
+     "l3"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "arch"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     2.0,
+     "arch"
+    ],
+    [
+     2.9,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/arch": {
+     "type": "panel",
+     "glass": "brick_charcoal",
+     "depth": 2.5,
+     "w": 0.92,
+     "h": 3.0,
+     "sill": 0.0
+    },
+    "l2/arch": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "l3/arch": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "depth": 0.1
+    },
+    "*/pier": null
+   },
+   "wall": "paving",
+   "coping": [
+    0.15,
+    "panel_white",
+    0.04
+   ],
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W16_gEWY / sv_W15_zN7Z (Sep 2014) oblique; counts approximate."
+  },
+  "W16": {
+   "faces": "SE",
+   "length_m": 6.8,
+   "confidence": "medium",
+   "summary": "south side of the bridge over the lane to E2: open below (lane passes under, ~4.3 m clear), a deep beige concrete fascia box with a sloped soffit at level 2 and a band of dark glazing above it",
+   "height_m": 11.9,
+   "rows": [
+    [
+     4.3,
+     "open"
+    ],
+    [
+     2.6,
+     "fascia"
+    ],
+    [
+     2.2,
+     "glass"
+    ],
+    [
+     2.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     6.8,
+     "span"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "cream_panel"
+    },
+    "glass/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.1,
+     "glass": "penthouse_metal",
+     "frame": "metal_silver"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "concrete_shadow"
+    }
+   },
+   "wall": "concrete_shadow",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bridge spans to E2 (E2 W3) at s 6.8"
+   ],
+   "notes": "sv_W16_gEWY (Sep 2014): concrete box ~5-7 m above the lane with dark glass panels above; lidar top 11.9. The top row colour (siding) is a guess - the bridge top is above the photo frame."
+  },
+  "W17": {
+   "faces": "NW",
+   "length_m": 6.6,
+   "confidence": "medium",
+   "summary": "north side of the same bridge: two storeys of clear glazing with silver mullions on a concrete soffit, open below for the lane",
+   "height_m": 11.9,
+   "rows": [
+    [
+     4.3,
+     "open"
+    ],
+    [
+     0.9,
+     "soffit"
+    ],
+    [
+     6.2,
+     "glass"
+    ],
+    [
+     0.5,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     6.6,
+     "span"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void"
+    },
+    "soffit/*": {
+     "type": "panel",
+     "colour": "cream_panel"
+    },
+    "glass/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.3,
+     "transom_pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "cream_panel",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W17_GhCV and sv_W19_VCKN (Sep 2014) looking down the lane: glass box two levels high, darker lower panes, light upper."
+  },
+  "W18": {
+   "faces": "NE",
+   "length_m": 25.0,
+   "confidence": "medium",
+   "summary": "east block's lane face: ground floor of pale flecked brick with large white-framed windows, floors 2-3 clad in horizontal corrugated warm-grey metal siding with white-framed windows; the south 10 m rises to 15.3 m as a siding-clad mechanical box",
+   "height_m": 12.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.4,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": 1.5,
+     "sill": 1.2,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/win": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.0,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l3/win": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.0,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/pier": null
+   },
+   "wall": "concrete_shadow",
+   "bands": [
+    [
+     0.0,
+     4.0,
+     "paving",
+     0
+    ]
+   ],
+   "ribbed": {
+    "rows": [
+     "l2",
+     "l3",
+     "parapet"
+    ],
+    "pitch": 0.15,
+    "colour": "roof_dark"
+   },
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.04
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bridge to E2 leaves the south end (W16/W17)"
+   ],
+   "notes": "sv_W18_np0x / T379 (Sep 2014, 4.5 m away): brick ground with 4 visible windows (pitch ~3.5 m), siding begins right above them at ~4 m; sv_W19_VCKN and sv_W22_Pux (Jul 2019) show the siding (sunlit #a59b91, overcast #8a898a) and ~1.4 m windows per floor. Lidar: s 0-10 15.3 m, s 10-25 12.8 m; the taller south part is a blank siding box (earth_corner_15 / corner_12). Window count per floor is approximate."
+  },
+  "W19": {
+   "faces": "NW",
+   "length_m": 14.7,
+   "confidence": "medium",
+   "summary": "east block's north face: flecked brick ground floor with 3 windows, two floors of corrugated siding with 3 white-framed windows each",
+   "height_m": 12.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     1.5,
+     "win"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     1.5,
+     "win"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     1.5,
+     "win"
+    ],
+    [
+     3.8,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 1.5,
+     "h": 1.3,
+     "sill": 1.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/win": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.0,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l3/win": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.2,
+     "sill": 1.0,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/pier": null
+   },
+   "wall": "concrete_shadow",
+   "bands": [
+    [
+     0.0,
+     4.0,
+     "paving",
+     0
+    ]
+   ],
+   "ribbed": {
+    "rows": [
+     "l2",
+     "l3",
+     "parapet"
+    ],
+    "pitch": 0.15,
+    "colour": "roof_dark"
+   },
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.04
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "steel handrail and a convex traffic mirror on the wall near the west end (sv_W22)"
+   ],
+   "notes": "sv_W22_Pux (Jul 2019) left half. Lidar dips to 3.9 m near s ~10 where the one-storey annex (W21) tucks against it."
+  },
+  "W20": {
+   "faces": "NE",
+   "length_m": 8.8,
+   "confidence": "medium",
+   "summary": "spine's east face between the east block and the annexes: two window columns of the spine system",
+   "height_m": 11.6,
+   "rows": [
+    [
+     0.35,
+     "g_sill"
+    ],
+    [
+     0.85,
+     "g_sp"
+    ],
+    [
+     2.2,
+     "g_gl"
+    ],
+    [
+     0.5,
+     "g_hd"
+    ],
+    [
+     0.25,
+     "m_sill"
+    ],
+    [
+     0.85,
+     "m_sp"
+    ],
+    [
+     2.3,
+     "m_gl"
+    ],
+    [
+     0.5,
+     "m_hd"
+    ],
+    [
+     0.25,
+     "t_sill"
+    ],
+    [
+     0.85,
+     "t_sp"
+    ],
+    [
+     2.0,
+     "t_gl"
+    ],
+    [
+     0.3,
+     "t_hd"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.8,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.8,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "m_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "t_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "g_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "m_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "t_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "g_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "m_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.82,
+     3.98,
+     "precast_cream",
+     0.03
+    ],
+    [
+     7.72,
+     7.88,
+     "precast_cream",
+     0.03
+    ]
+   ],
+   "coping": [
+    0.25,
+    "brick_slate",
+    0.05
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W20_FBMO (Sep 2014) only shows the low brick wall in front; columns from earth_orbit_270."
+  },
+  "W21": {
+   "faces": "SE",
+   "length_m": 13.4,
+   "confidence": "low",
+   "summary": "south face of the one-storey brick service annex (3.5 m) in the gap facing the east block; blank brick with a steel door",
+   "height_m": 3.5,
+   "rows": [
+    [
+     3.2,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     5.5,
+     "brick"
+    ],
+    [
+     1.1,
+     "door"
+    ],
+    [
+     6.8,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.2,
+     "glass": "concrete_deep",
+     "frame": "concrete_deep"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.2,
+     3.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Faces a 3-4 m service gap; only the top edge is visible in sv_W20/sv_W21. Door guessed."
+  },
+  "W22": {
+   "faces": "NE",
+   "length_m": 10.1,
+   "confidence": "medium",
+   "summary": "annex east face on the service road: s 0-3 buff brick (3.5 m) with black coping, s 3-10 a white-painted block (4.3 m) with a large overhead door (white, 'UNIVERSITY OF WATERLOO ... STORES' lettering above) and a round exhaust fan",
+   "height_m": 4.3,
+   "rows": [
+    [
+     3.5,
+     "ground"
+    ],
+    [
+     0.8,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "brick"
+    ],
+    [
+     2.4,
+     "white"
+    ],
+    [
+     3.0,
+     "garage"
+    ],
+    [
+     1.7,
+     "white"
+    ]
+   ],
+   "cells": {
+    "ground/garage": {
+     "type": "door",
+     "w": 2.8,
+     "h": 3.0,
+     "glass": "stucco_white",
+     "frame": "panel_grey"
+    },
+    "ground/white": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "upper/white": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "upper/garage": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.5,
+     3.6,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "coping": [
+    0.15,
+    "penthouse_metal",
+    0.04
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 6.9,
+     "z": 3.15,
+     "w": 2.6,
+     "h": 0.35,
+     "text": "UNIVERSITY OF WATERLOO / ... (black lettering, unreadable)",
+     "colour": "panel_black",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "round stainless exhaust fan hood on the wall at s ~8.5, z 3.3",
+    "three black front-load dumpsters in front (site)"
+   ],
+   "notes": "sv_W22_Pux (Jul 2019) centre. The brick part (s 0-3) is really only 3.5 m; the white part 4.3 m."
+  },
+  "W23": {
+   "faces": "NW",
+   "length_m": 5.7,
+   "confidence": "medium",
+   "summary": "north side of the white-painted annex block (4.3 m): plain painted wall with a steel door; chain-link compound with blue barrels beside it",
+   "height_m": 4.3,
+   "rows": [
+    [
+     4.15,
+     "ground"
+    ],
+    [
+     0.15,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "wall"
+    ],
+    [
+     1.1,
+     "door"
+    ],
+    [
+     2.6,
+     "wall"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.2,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    },
+    "*/*": null
+   },
+   "wall": "panel_white",
+   "bands": [],
+   "coping": [
+    0.15,
+    "penthouse_metal",
+    0.04
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W23_YnPP (Sep 2014) and sv_W24_v5x (Jul 2019): white painted block, door guessed."
+  },
+  "W24": {
+   "faces": "NW",
+   "length_m": 7.4,
+   "confidence": "medium",
+   "summary": "north face of the one-storey brick annex (3.5 m) behind the gas compound: blank buff brick with a louvre, black coping",
+   "height_m": 3.5,
+   "rows": [
+    [
+     3.2,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "brick"
+    ],
+    [
+     1.4,
+     "louvre"
+    ],
+    [
+     3.0,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/louvre": {
+     "type": "louvre",
+     "w": 1.2,
+     "h": 0.8,
+     "sill": 1.8,
+     "frame": "panel_grey"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.2,
+     3.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "chain-link gas-cylinder/barrel compound in front (site)"
+   ],
+   "notes": "sv_W24_v5x (Jul 2019): low brick and white boxes with a fenced compound of IBC totes and blue drums. Louvre guessed."
+  },
+  "W25": {
+   "faces": "NE",
+   "length_m": 22.1,
+   "confidence": "high",
+   "summary": "spine's east face on the service yard: the W1 window-column system plus a full-height narrow stair window of small panes at s ~19 with a glazed door and a thin flat canopy at its foot; Praxair liquid-nitrogen tank compound in front",
+   "height_m": 11.6,
+   "rows": [
+    [
+     0.35,
+     "g_sill"
+    ],
+    [
+     0.85,
+     "g_sp"
+    ],
+    [
+     2.2,
+     "g_gl"
+    ],
+    [
+     0.5,
+     "g_hd"
+    ],
+    [
+     0.25,
+     "m_sill"
+    ],
+    [
+     0.85,
+     "m_sp"
+    ],
+    [
+     2.3,
+     "m_gl"
+    ],
+    [
+     0.5,
+     "m_hd"
+    ],
+    [
+     0.25,
+     "t_sill"
+    ],
+    [
+     0.85,
+     "t_sp"
+    ],
+    [
+     2.0,
+     "t_gl"
+    ],
+    [
+     0.3,
+     "t_hd"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.9,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     1.2,
+     "stair"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     0.3,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "m_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "t_sp/win": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "g_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "m_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "t_gl/win": {
+     "type": "window",
+     "w": 1.6,
+     "h": "full",
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.08
+    },
+    "g_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "m_hd/win": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/pier": null,
+    "g_sp/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "g_gl/stair": {
+     "type": "door",
+     "w": 1.1,
+     "h": 2.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "canopy": [
+      0.9,
+      "brick_slate"
+     ]
+    },
+    "g_hd/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "m_sill/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "m_sp/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "m_gl/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "m_hd/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "t_sill/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "t_sp/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "t_gl/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "t_hd/stair": {
+     "type": "glass",
+     "w": 1.1,
+     "h": "full",
+     "transom_pitch": 0.45,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "g_sill/stair": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.82,
+     3.98,
+     "precast_cream",
+     0.03
+    ],
+    [
+     7.72,
+     7.88,
+     "precast_cream",
+     0.03
+    ]
+   ],
+   "coping": [
+    0.25,
+    "brick_slate",
+    0.05
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "wall-pack lights over the ground windows",
+    "one-storey annex (W26/W27) abuts at s 22.1"
+   ],
+   "notes": "sv_W25_MLG3 and sv_W25_YFtN (Sep 2014) nearly square-on: stair slot of ~8 small horizontal panes per floor running ground to roof at s ~19 (pose intersect), door below with a small dark canopy. Same brick, spandrels and string courses as W1."
+  },
+  "W26": {
+   "faces": "SE",
+   "length_m": 6.3,
+   "confidence": "low",
+   "summary": "south end of the middle one-storey annex (3.5 m): blank buff brick, black coping",
+   "height_m": 3.5,
+   "rows": [
+    [
+     3.2,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     6.3,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.2,
+     3.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Edge-on in sv_W25_MLG3 (right side)."
+  },
+  "W27": {
+   "faces": "NE",
+   "length_m": 14.9,
+   "confidence": "high",
+   "summary": "middle one-storey service annex on the yard (3.5 m): buff brick, a black double steel service door at s ~7, two square louvres either side high on the wall, black coping",
+   "height_m": 3.5,
+   "rows": [
+    [
+     3.2,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "brick"
+    ],
+    [
+     1.5,
+     "louvre"
+    ],
+    [
+     0.8,
+     "brick"
+    ],
+    [
+     1.5,
+     "louvre"
+    ],
+    [
+     0.9,
+     "brick"
+    ],
+    [
+     2.5,
+     "door"
+    ],
+    [
+     0.9,
+     "brick"
+    ],
+    [
+     1.5,
+     "louvre"
+    ],
+    [
+     0.8,
+     "brick"
+    ],
+    [
+     1.5,
+     "louvre"
+    ],
+    [
+     1.5,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/louvre": {
+     "type": "louvre",
+     "w": 1.3,
+     "h": 0.7,
+     "sill": 2.0,
+     "frame": "panel_grey"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 2.2,
+     "h": 2.8,
+     "mullions": 1,
+     "glass": "penthouse_metal",
+     "frame": "penthouse_metal"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.2,
+     3.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "blue front-load dumpsters on a concrete apron in front (site)"
+   ],
+   "notes": "sv_W27_v4FQ (Sep 2014) square-on: door x 720-790 of annex 600-1040 -> s ~7; louvres 2 each side (the two nearest the door are larger)."
+  },
+  "W28": {
+   "faces": "SE",
+   "length_m": 7.9,
+   "confidence": "low",
+   "summary": "south end of the north one-storey annex (2.8 m): buff brick, black coping; pipe rack and steel stand against it",
+   "height_m": 2.8,
+   "rows": [
+    [
+     2.5,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     7.9,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     2.5,
+     2.8,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "vertical gas pipes and a small white steel rack at the corner (sv_W27 right)"
+   ],
+   "notes": "sv_W27_v4FQ right edge."
+  },
+  "W29": {
+   "faces": "NE",
+   "length_m": 17.8,
+   "confidence": "medium",
+   "summary": "north one-storey annex on the yard (2.8 m): buff brick with two large horizontal louvres and a small one, black coping; blue recycling carts along it",
+   "height_m": 2.8,
+   "rows": [
+    [
+     2.5,
+     "ground"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "brick"
+    ],
+    [
+     1.0,
+     "louvre_s"
+    ],
+    [
+     6.0,
+     "brick"
+    ],
+    [
+     2.2,
+     "louvre"
+    ],
+    [
+     4.4,
+     "brick"
+    ],
+    [
+     2.2,
+     "louvre"
+    ]
+   ],
+   "cells": {
+    "ground/louvre": {
+     "type": "louvre",
+     "w": 2.0,
+     "h": 0.8,
+     "sill": 1.2,
+     "frame": "panel_grey"
+    },
+    "ground/louvre_s": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 0.6,
+     "sill": 1.4,
+     "frame": "panel_grey"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     2.5,
+     2.8,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W27_v4FQ right part and sv_W29_I0Be (Sep 2014). Louvre positions approximate."
+  }
+ },
+ "roof": [
+  {
+   "what": "clerestory penthouse with ribbon windows both sides",
+   "where": "spine centre, see geometry_notes",
+   "size_m": [
+    31,
+    8,
+    3.2
+   ]
+  },
+  {
+   "what": "observatory dome 1, white, on a short drum",
+   "where": "penthouse roof south end, art (1090.8,177.2)",
+   "size_m": [
+    4.0,
+    4.0,
+    5.0
+   ]
+  },
+  {
+   "what": "observatory dome 2, white",
+   "where": "main roof south end, art (1101.9,159.8), centre of a 10 x 10 m paver deck with railing",
+   "size_m": [
+    3.0,
+    3.0,
+    2.8
+   ]
+  },
+  {
+   "what": "two square cooling towers (grey metal, big round fan on top) with a pipe rack on their west side",
+   "where": "spine roof north part, centres art (1058.0,246.8) and (1062.5,237.9)",
+   "size_m": [
+    5,
+    5,
+    5
+   ]
+  },
+  {
+   "what": "two light-grey air-handling boxes",
+   "where": "spine roof just north of the penthouse, art (1071.4,209.5) and (1082.6,211.0)",
+   "size_m": [
+    6,
+    5,
+    4
+   ]
+  },
+  {
+   "what": "grey steel stair with railings from main roof to penthouse roof",
+   "where": "along the penthouse east side near its south end",
+   "size_m": [
+    1.2,
+    6,
+    3.2
+   ]
+  },
+  {
+   "what": "three/four packaged condenser units with round fans",
+   "where": "east block roof (W18/W19 part, earth_corner_15) and the W14 part (earth_corner_7)",
+   "size_m": [
+    2,
+    4,
+    1.2
+   ]
+  },
+  {
+   "what": "small vents and hatches, roof gravel",
+   "where": "wing roof (two small stacks near the west end)",
+   "size_m": [
+    0.8,
+    0.8,
+    1.0
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "E2",
+    "from_wall": "W16/W17",
+    "s": [
+     0,
+     6.8
+    ],
+    "levels": [
+     2,
+     3
+    ],
+    "look": "glazed two-storey box (clear glass on the north side, concrete fascia + dark glass on the south side) over the service lane, ~4.3 m clear below"
+   }
+  ],
+  "neighbours": [
+   "EIT abuts the north end (1-2 m gap)",
+   "E2 across the 7 m service lane east of the east block (bridge)",
+   "E3 across the service yard to the NE",
+   "RCH south-east across the plaza",
+   "ESC/Biology to the north-west beyond the lawn"
+  ],
+  "ground": [
+   "W1 / W5 / W6: lawn courtyard with mature maples and pines, grey interlocking-paver paths (one diagonal across the lawn to the wing), black lamp posts",
+   "W9 / W10 / W11 / W12: large grey-beige paver plaza and walkways (main campus path), lawn islands with trees, planting beds with mulch in front of the wing",
+   "W12: planting bed of tall ornamental grasses along the wall (2024); in 2014 ivy and a row of bike racks",
+   "W14-W18: asphalt service lane to E2 / E3, concrete curbs, a short concrete stair with yellow nosings on the E2 side",
+   "W21-W29: asphalt service yard and parking, concrete aprons for dumpsters, chain-link compounds"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised inverted-U racks",
+    "where": "along W11, s 2-14, 1.5 m out",
+    "count": 6,
+    "photo": "sv_W11_110s (2014)"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised hoop racks in and in front of the arcade",
+    "where": "W14 s 0-11, 0-3 m out",
+    "count": 8,
+    "photo": "sv_W14_TcGD (2014)"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "wave/rail bike rack",
+    "where": "W10 s 36-44, 2 m out, both sides of the entrance",
+    "count": 2,
+    "photo": "sv_W10_u_6M (2014)"
+   },
+   {
+    "type": "bench",
+    "kind": "wood bench",
+    "where": "W10 s ~33, 2 m out beside the entrance",
+    "count": 1,
+    "photo": "sv_W10_u_6M"
+   },
+   {
+    "type": "table",
+    "kind": "picnic/standing table",
+    "where": "W10 s ~38, 4 m out",
+    "count": 1,
+    "photo": "sv_W10_u_6M"
+   },
+   {
+    "type": "bench",
+    "kind": "wood bench on the lawn",
+    "where": "W1 s ~40, 9 m out",
+    "count": 1,
+    "photo": "sv_W1_KW2F"
+   },
+   {
+    "type": "planter",
+    "kind": "round concrete planters with red/pink flowers",
+    "where": "W1 s 4-10, 3-6 m out, beside the paver path",
+    "count": 2,
+    "photo": "sv_W1_dJgp"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole with a flat round head",
+    "where": "W1 s ~30, 10 m out; W9 s ~11, 5 m out; W11 s ~27, 4 m out",
+    "count": 3,
+    "photo": "sv_W1_hcJb, sv_W9_1Ck7, sv_W11_110s"
+   },
+   {
+    "type": "bin",
+    "kind": "square concrete waste bin",
+    "where": "W10 s ~10, 9 m out by the path",
+    "count": 1,
+    "photo": "sv_W10_oPBR"
+   },
+   {
+    "type": "tank",
+    "kind": "white vertical liquid-nitrogen tank lettered PRAXAIR in green, ~2.4 m dia x 5 m, inside a chain-link compound",
+    "where": "W25 s ~9, 3 m out; fence s 2-12, 6 m out",
+    "count": 1,
+    "photo": "sv_W25_MLG3"
+   },
+   {
+    "type": "barrel",
+    "kind": "blue plastic drums",
+    "where": "W25 s 2-6 inside the compound, and W24 compound",
+    "count": 10,
+    "photo": "sv_W25_MLG3, sv_W24_v5x"
+   },
+   {
+    "type": "dumpster",
+    "kind": "blue front-load dumpsters",
+    "where": "W27 s 5-13, 2 m out",
+    "count": 3,
+    "photo": "sv_W27_v4FQ"
+   },
+   {
+    "type": "recycling",
+    "kind": "blue wheeled carts in a row",
+    "where": "W29 s 10-17, 1 m out",
+    "count": 8,
+    "photo": "sv_W27_v4FQ, sv_W29"
+   },
+   {
+    "type": "dumpster",
+    "kind": "black front-load dumpsters",
+    "where": "W22 s 2-9, 3 m out",
+    "count": 3,
+    "photo": "sv_W22_Pux (2019)"
+   },
+   {
+    "type": "art",
+    "kind": "'Iron Warrior' yellow steel sculpture (E2's; register once)",
+    "where": "lawn on the east side of the lane opposite W18's north end, art ~(1112,202)",
+    "count": 1,
+    "photo": "sv_W19_VCKN"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised pipe handrail",
+    "where": "W19 s 0-3 on the walk; W1 s 6-10 at grade",
+    "count": 2,
+    "photo": "sv_W22_Pux, sv_W1_dJgp"
+   },
+   {
+    "type": "mirror",
+    "kind": "convex traffic mirror on the wall",
+    "where": "W19 near s 12, z 3",
+    "count": 1,
+    "photo": "sv_W22_Pux"
+   }
+  ]
+ },
+ "notes": "Dates: most Street View is Sep 2014, W22/W24 Jul 2019; Earth 2024. Changes since 2014 seen in Earth: W12 ivy removed, three banners and a grass bed added. Commons cm052 (2012, a fountain pool beside a colonnade with a folded concrete canopy and a portable) could not be placed on PHY's present footprint; the wing's scalloped canopy suggests it was in the courtyard north of the wing before the pavilion/link were built or changed - not modelled."
+}

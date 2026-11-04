@@ -44,6 +44,34 @@ def compass(dx, dy):
     return ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][int((a + 22.5) // 45) % 8]
 
 
+def lidar_shift(fp):
+    """Translation (dx, dy) that best lays the footprint on the lidar roof: the City outlines were
+    traced from air photos where tall roofs lean, the lidar is a true vertical view. Only flat roof
+    pixels count (trees are rough); the search is +-4 m in 0.5 m steps."""
+    import rasterio.features
+    from affine import Affine
+    from scipy import ndimage
+    from pipeline.build import lidar
+    dsm = np.load(ROOT / "data/build/dsm_0p5.npy", mmap_mode="r")
+    dtm = np.load(ROOT / "data/build/dtm_0p5.npy", mmap_mode="r")
+    x0, y0, x1, y1 = fp.bounds
+    m = 8
+    c0, r0 = int((x0 - m - lidar.E0) / 0.5), int((lidar.N1 - (y1 + m)) / 0.5)
+    W, H = int((x1 - x0 + 2 * m) / 0.5), int((y1 - y0 + 2 * m) / 0.5)
+    h = np.array(dsm[r0:r0 + H, c0:c0 + W]) - np.array(dtm[r0:r0 + H, c0:c0 + W])
+    rough = ndimage.generic_filter(h, np.std, size=3)
+    roof = (h > 2.5) & (rough < 0.35)
+    best = (-1, 0.0, 0.0)
+    for dx in np.arange(-4, 4.01, 0.5):
+        for dy in np.arange(-4, 4.01, 0.5):
+            T = Affine(0.5, 0, lidar.E0 + c0 * 0.5 - dx, 0, -0.5, lidar.N1 - r0 * 0.5 - dy)
+            mask = rasterio.features.geometry_mask([fp], out_shape=h.shape, transform=T, invert=True)
+            iou = (mask & roof).sum() / max((mask | roof).sum(), 1)
+            if iou > best[0] + 1e-9 or (abs(iou - best[0]) < 1e-9 and abs(dx) + abs(dy) < abs(best[1]) + abs(best[2])):
+                best = (iou, float(dx), float(dy))
+    return best
+
+
 def walls_of(fp, min_len=4.0):
     g = orient(fp.simplify(0.8), 1.0)
     pts = list(g.exterior.coords)[:-1]
@@ -87,6 +115,9 @@ def main(key):
     if fp.geom_type != "Polygon":
         fp = max(fp.geoms, key=lambda g: g.area)
     h = max(b["p90"] for b in parts)
+    iou, dx, dy = lidar_shift(fp)
+    from shapely import affinity
+    fp = affinity.translate(fp, dx, dy)          # walls follow the lidar (where the model is)
     walls = walls_of(fp)
     earth, sv = [], []
     for w in walls:
@@ -116,7 +147,8 @@ def main(key):
         earth.append({"name": f"corner_{k}", "wall": None, "url": earth_url(p[0], p[1], g + h * 0.4, max(45, h * 2.2), math.degrees(math.atan2(-d[0], -d[1])), 72)})
         sv.append({"wall": None, "corner": k, "lat_lng": ll(*q), "aim": ll(*p)})
     d = ROOT / it["dir"]
-    (d / "walls.json").write_text(json.dumps({"building": it["label"], "height_m": round(h, 1), "walls": walls}, indent=1))
+    (d / "walls.json").write_text(json.dumps({"building": it["label"], "height_m": round(h, 1),
+        "lidar_shift_m": [dx, dy], "lidar_roof_iou": round(iou, 3), "walls": walls}, indent=1))
     (d / "private").mkdir(parents=True, exist_ok=True)
     (d / "private/around_poses.json").write_text(json.dumps({"dir": it["dir"], "walls": walls, "earth": earth, "sv": sv}, indent=1))
     print(it["dir"], len(walls), "walls,", len(earth), "earth views,", len(sv), "street view probes")
