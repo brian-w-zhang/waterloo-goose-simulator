@@ -572,6 +572,20 @@ def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
         kit.quad(P(s0, z0), P(s1, z0), P(s1, z1), P(s0, z1), (cell or {}).get("colour", wall))
         return
     cell = dict(cell)
+    # specs sometimes give a list (one value per window) or text: use the first number
+    for key in ("w", "h", "sill", "depth", "offset", "recess", "strip"):
+        v = cell.get(key)
+        if isinstance(v, list):
+            v = next((x for x in v if isinstance(x, (int, float))), None)
+        if isinstance(v, str) and v != "full":
+            try:
+                v = float(v)
+            except ValueError:
+                v = None
+        if v is None:
+            cell.pop(key, None)
+        else:
+            cell[key] = v
     if t == "glass_gable":
         cell["type"] = "glass"
     W, H = s1 - s0, z1 - z0

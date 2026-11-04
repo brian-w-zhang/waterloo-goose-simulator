@@ -1,0 +1,302 @@
+{
+  "building": "LHI",
+  "sources_checked": [
+    "around/sv_W0_sXTz8GyPK1U1bTINxywAgQ_70|100", "around/sv_c16_c4DBl4wVKyjbbkLOYiuSUA_100", "around/sv_c18_sXTz8GyPK1U1bTINxywAgQ_100", "around/sv_c15_Tg5_ncMyrk1l-FaNIy9s3A_100",
+    "around/sv_W1_t0ogrd13-xfnq96XOAREOQ_100", "around/sv_W1_7uwbJjL8Wex61hdMf6qADA_100", "around/sv_W2_HUMmffZ5OOTjn94GxkZLog_100", "around/sv_W3_Jf18VzUQdvpaFe7krHNomg_100",
+    "around/sv_c20_lHcYgE1GnYNmpEB7mIj9aw_100", "around/sv_c21_WIKUBj3vVLK0z91JoUp43Q_100", "around/earth_W4_whole", "around/sv_W5_T0AxnWB5ir32kL-p-GG6kQ_100", "around/sv_c1_JORyC1a8c_SlGmLsQIOj1w_100",
+    "around/earth_W6_whole|l|m|r", "around/sv_W6_iO0tnZVRV7p47Mn1BwIpMw_70", "around/sv_W6_tBEtXBgPBX70N0yxUt2j-A_100", "around/sv_W6_hi5dc60BbsUKKTf__OfX4A_70",
+    "around/sv_W7_NwENjb8OYrungO1nJy_clw_70", "around/earth_W7_whole", "around/sv_W8_OasPmHbypXZowRrdMhEGTQ_70", "around/sv_W9_GBYPPf5LK6C4KfT4iA6vMw_70",
+    "around/sv_c6_lgKu0ix51o6y7pfao9BOfg_70", "around/sv_c7_kH26YVckdiz4xlL7w80OVg_100", "around/sv_c10_XtpC02mkdJtIR5fz7Cd6PA_100", "around/sv_W10_It9tONKcqUAD8FBIeW47Ag_100",
+    "around/sv_W11_It9tONKcqUAD8FBIeW47Ag_100", "around/sv_W11_hd55U7EztOZ_wDPQM-dSNw_100", "around/sv_c4_Ce3-SuQUusK9dI7rfKze1Q_100", "around/earth_corner_*.jpg (contact sheet), earth_corner_12",
+    "private/earth_top", "private/earth_orbit_*.jpg", "private/web/lhi_uw013..016_teeplearch (c2003)", "private/web/lhi_lh001_commons (2005)",
+    "lidar nDSM sampled 1.2 m inside each wall and across W10/W11 (tools.art.study ndsm)"
+  ],
+  "photo_dates": "All Street View is Sep 2014 (one Aug 2015); Earth 3D is 2024 and shows the same cream panels, windows and roof outline, so the 2014 detail is taken as current. Teeple photos c2003 match too (same orange-red brick, projecting cream/glass bay box).",
+  "colours": {
+    "brick": {"hex": "#b06a50 (judged by eye; SV sun faces wash to pink, shade faces go brown)", "palette": "brick_orange", "where": "all brick: one orange-red, slightly mottled, light-mortar stretcher-bond brick everywhere (sv_W9, sv_W8, sv_W11_hd55 close-up). brick_red is the next-closest choice"},
+    "light_panel": {"hex": "#e4ddd3 (Earth W6 sunlit, SV W6 #eae4dc)", "palette": "precast_cream", "where": "smooth off-white panels on W6 (top band s 0-7.3 and the 10 m full-height panel), and the cantilevered bay box on the south face east of W9"},
+    "stucco": {"hex": "#cdb795 judged by eye (sand-beige, darker and warmer than the W6 panels)", "palette": "siding_beige", "where": "the entrance portico columns and slab, the entrance surround on W0, the stucco bay beside the W1 entrance, and all of W2"},
+    "dark_metal": {"hex": "#363637", "palette": "panel_black", "where": "deep stepped canopy fascia along W1, and the sign letters (dark bronze)"},
+    "coping": {"hex": "#30343a", "palette": "penthouse_metal", "where": "thin dark metal coping on every parapet"},
+    "glass": {"palette": "window_dark", "where": "all glazing; frames clear-anodised aluminium = metal_silver"},
+    "fence": {"palette": "prop_wood", "where": "weathered horizontal-slat timber screen at the W0 entrance planter"}
+  },
+  "geometry_notes": [
+    "There is a 7.4 m S-facing face between W9 b (737.5,443.1) and W10 a (745.0,443.2) that walls.json leaves out. It is the most recognisable face of the building (sv_c6, sv_c7, sv_c10, Teeple photo 013): a two-storey brick block whose upper floor has a cream (precast_cream) box with corner glazing. The box is cantilevered about 2 m out to the S/SE at about 3.3-6.8 m. It has a thin flat roof slab, a silver fascia that tilts up at its outer end, a dark steel drop-rod, and angled glass on its outer face. Under it there is brick with a large ground window (about 2.0 x 1.5 m) at the east end. A narrow brick fin rises past the roof at the box's east edge. It needs its own wall.",
+    "A 5 m N-facing jog between W0 b (717.4,472.3) and W1 a (712.5,473.7) is also missing. It is the recessed main-entrance corner, with the brick face carrying 'LYLE S. HALLMAN INSTITUTE FOR HEALTH PROMOTION' (sv_c18, sv_W0).",
+    "The west cube is 7.5-8.5 m tall over W3/W4; the rest is 3.6-5 m. Its SE corner overhangs a recessed glazed entrance (W4 s 6.1-9.3) reached by steps from the south path. The cube's own south face sits above the W4-W5 step, and its upper part reads as a plain brick face from the south (sv_W5).",
+    "W11 does not face open ground. The lidar shows a slit only 1.5-2.5 m wide outside it (0-3 m nDSM), then the 7 m BMH east block. This is an open-air brick walkway/ramp with a black handrail on a low brick wall (sv_c4, sv_W11_hd55, sv_c16) that runs from the portico plaza SE to the N-S passage. A purple-leaf maple and a tall brick chimney stand in it.",
+    "The brick block east of the N-S passage carries the big 'LYLE S. HALLMAN INSTITUTE FOR HEALTH PROMOTION' sign (sv_c7, sv_W10). It reads as part of Teeple's 2003 LHI, but the catalog gives it to BMH's footprint. A glazed level-2 bridge with a brick spandrel and a soffit at about 3 m spans the passage between W10 (s about 0-5) and that block (sv_c6, sv_c10).",
+    "Ground falls about 2 m from N (parking, W1) to SE (W8/W9). The roof is level, so W7 goes from 4.9 m at a to 6.8 m at b, and W11 from 6.7 m at a to 4.2 m at b."
+  ],
+  "walls": {
+    "W0": {
+      "faces": "NW", "length_m": 10.0, "confidence": "medium",
+      "summary": "main-entrance face under the sand-stucco portico: brick wall behind a planting bed, glazed double doors in a stucco surround at the b end",
+      "height_m": 4.5,
+      "rows": [[3.2, "ground"], [1.0, "upper"], [0.3, "coping"]],
+      "bays": [[1.0, "corner"], [5.5, "brick"], [1.3, "surround"], [1.8, "entry"], [0.4, "surround"]],
+      "cells": {
+        "ground/entry": {"type": "door", "w": 1.8, "h": 2.4, "mullions": 1, "transoms": 1, "glass": "window_dark", "frame": "metal_silver", "canopy": [1.5, "siding_beige"]},
+        "ground/surround": {"type": "panel", "colour": "siding_beige"},
+        "upper/surround": {"type": "panel", "colour": "siding_beige"},
+        "upper/entry": {"type": "window", "w": 1.8, "h": 0.7, "mullions": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "upper/brick": {"type": "panel", "colour": "precast_cream", "w": 1.0, "h": 0.6},
+        "*/corner": null, "ground/brick": null
+      },
+      "wall": "brick_orange",
+      "bands": [[4.2, 4.5, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [{"s": 9.8, "z": 2.6, "w": 3.2, "h": 0.9, "text": "LYLE S. HALLMAN INSTITUTE / FOR HEALTH PROMOTION", "colour": "panel_black", "on": "wall", "note": "really on the brick of the 5 m jog face just west of the doors (see geometry_notes); three lines of serif capitals"}],
+      "attached": ["entrance portico in front of s 6-10 (see site.canopies)", "small inner canopy over the doors: stucco slab with a dark fascia and a thin black steel post"],
+      "notes": "sv_W0 and sv_c18 (2014). The cream square at the upper left of the brick (s about 1.5-2.5, z about 3.2) is a vent or panel, about 1.0 x 0.6 m. The bay positions come from intersecting headings; ±1 m."
+    },
+    "W1": {
+      "faces": "NW", "length_m": 22.1, "confidence": "high",
+      "summary": "parking-lot face (Manulife Wellness Centre): low brick wall under a deep, stepped, dark canopy fascia; recessed glazed entrance at the a end; big dark 'MANULIFE WELLNESS CENTRE' letters; taller brick end block at b",
+      "height_m": 4.0,
+      "rows": [[3.0, "ground"], [1.0, "parapet"]],
+      "bays": [[1.2, "pier"], [1.3, "sidedoor"], [2.6, "glazing"], [2.0, "entry"], [1.6, "stucco"], [8.9, "sign"], [1.0, "brick"], [3.5, "endblock"]],
+      "cells": {
+        "ground/sidedoor": {"type": "door", "w": 0.9, "h": 2.2, "mullions": 0, "transoms": 1, "glass": "window_dark", "frame": "metal_silver", "note": "single glazed door with a sidelight to its left"},
+        "ground/glazing": {"type": "glass", "kind": "curtain", "mullion_pitch": 1.3, "transom_pitch": 0.6, "glass": "window_dark", "frame": "metal_silver"},
+        "ground/entry": {"type": "door", "w": 1.8, "h": 2.2, "mullions": 1, "transoms": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "ground/stucco": {"type": "panel", "colour": "siding_beige"},
+        "parapet/*": null, "ground/pier": null, "ground/sign": null, "ground/brick": null, "ground/endblock": null
+      },
+      "wall": "brick_orange",
+      "bands": [[2.95, 3.75, "panel_black", 1.5]],
+      "piers": [{"s": [18.6, 22.1], "z_top": 5.0, "colour": "brick_orange", "note": "the end block rises about 1 m above the canopy line, and the canopy stops against it (sv_W1_7uwb). Lidar does not resolve it (3.7-4.1 m), so it may be a thin parapet. Guess"}],
+      "signs": [{"s": 13.5, "z": 1.9, "w": 9.0, "h": 0.4, "text": "MANULIFE WELLNESS CENTRE", "colour": "panel_black", "on": "wall"}],
+      "attached": ["canopy: the dark fascia band is a canopy about 0.8 m deep in three stepped layers, projecting about 1.5 m along s 0-18.6. Its underside is a sand soffit with small recessed lights. Over the entrance (s 1.2-7.1) the glazing sits about 1 m back from the brick, so the soffit is deeper there"],
+      "notes": "sv_W1_t0og (entrance close-up) and sv_W1_7uwb (sign and end block), Sep 2014. The band covers the canopy for the whole wall, but it really ends at s 18.6."
+    },
+    "W2": {
+      "faces": "NW", "length_m": 5.6, "confidence": "high",
+      "summary": "sand-stucco infill between the W1 end block and the cube, with one big 4x4-light window near the cube",
+      "height_m": 3.6,
+      "rows": [[0.6, "base"], [2.3, "win"], [0.7, "top"]],
+      "bays": [[1.8, "blank"], [3.4, "window"], [0.4, "blank"]],
+      "cells": {
+        "win/window": {"type": "window", "w": 3.3, "h": 2.2, "mullions": 3, "transoms": 3, "glass": "window_dark", "frame": "metal_silver"},
+        "*/blank": null, "base/window": null, "top/window": null
+      },
+      "wall": "siding_beige",
+      "bands": [[3.45, 3.6, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": [],
+      "notes": "sv_W2 (2014): a shallow concrete curb or planter edge runs along the base, with tall grasses in front"
+    },
+    "W3": {
+      "faces": "NW", "length_m": 7.0, "confidence": "medium",
+      "summary": "north face of the west cube: plain brick, about 7.5 m, with one high strip window at the a (east) end",
+      "height_m": 7.5,
+      "rows": [[5.3, "ground"], [1.8, "high"], [0.4, "coping"]],
+      "bays": [[0.6, "edge"], [3.4, "strip"], [3.0, "blank"]],
+      "cells": {
+        "high/strip": {"type": "window", "w": 3.2, "h": 1.3, "mullions": 1, "transoms": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "*/edge": null, "*/blank": null, "ground/strip": null
+      },
+      "wall": "brick_orange",
+      "bands": [[7.3, 7.5, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": [],
+      "notes": "sv_W3 and sv_c21 show the lower 4 m as blank brick behind shrubs. The high window is seen at the NE corner in sv_c21/c20 and as a dark strip in earth_W2_whole. Its width is a guess"
+    },
+    "W4": {
+      "faces": "SW", "length_m": 9.3, "confidence": "medium",
+      "summary": "west face of the cube over the parking lot: blank brick, one large window with dark horizontal louvres high near the S end, and a recessed glazed entrance under the cube's S corner",
+      "height_m": 7.8,
+      "rows": [[3.4, "ground"], [4.0, "upper"], [0.4, "coping"]],
+      "bays": [[5.6, "blank"], [3.2, "bay"], [0.5, "pier"]],
+      "cells": {
+        "upper/bay": {"type": "window", "w": 2.8, "h": 2.2, "mullions": 1, "transoms": 6, "glass": "window_dark", "frame": "penthouse_metal", "note": "reads as dark glass with close horizontal louvre blades (sv_W5, earth_W4)"},
+        "ground/bay": {"type": "panel", "glass": "window_dark", "depth": 2.2, "note": "recessed glazed entrance: aluminium-framed glass door and screen under a sand soffit with recessed lights; brick corner pier (sv_c1)"},
+        "*/blank": null, "*/pier": null
+      },
+      "wall": "brick_orange",
+      "bands": [[7.5, 7.8, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": ["steps up to the recessed entrance from the south path: about 6 concrete steps between grey split-face concrete-block retaining walls, galvanised steel handrails (sv_W5)"],
+      "notes": "earth_W4_whole, earth_corner_0/2/3 and sv_W5. The ground falls from N to S, and lidar gives 7.4 m at a and 8.5 m at b. There is a painted accessible parking bay in the lot right at the a end (earth_W4)"
+    },
+    "W5": {
+      "faces": "SW", "length_m": 5.5, "confidence": "low",
+      "summary": "west end of the low south wing, set 2.3 m back from the cube: brick with one horizontal window",
+      "height_m": 4.9,
+      "rows": [[2.6, "ground"], [0.9, "strip"], [1.4, "top"]],
+      "bays": [[1.0, "blank"], [3.0, "win"], [1.5, "blank"]],
+      "cells": {
+        "strip/win": {"type": "window", "w": 2.6, "h": 0.6, "mullions": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "*/blank": null, "ground/win": null, "top/win": null
+      },
+      "wall": "brick_orange",
+      "bands": [[4.75, 4.9, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": [],
+      "notes": "Only seen obliquely and blurred (earth_W4_whole right side, sv_W5). Its a end is in the shadow of the cube overhang"
+    },
+    "W6": {
+      "faces": "SE", "length_m": 30.8, "confidence": "high",
+      "summary": "long south face over the naturalised meadow: brick with an off-white top band at the west end, one tall two-light slit window, a 10 m full-height off-white panel, and a window with horizontal sunshade blades at the east corner",
+      "height_m": 4.8,
+      "rows": [[0.6, "base"], [1.0, "low"], [1.3, "mid"], [0.8, "hi"], [1.1, "top"]],
+      "bays": [[0.4, "edge"], [2.0, "rib"], [4.9, "banded"], [0.8, "brick"], [0.9, "slit"], [7.8, "brick"], [10.1, "panel"], [3.9, "shade"]],
+      "cells": {
+        "top/edge": {"type": "panel", "colour": "precast_cream"},
+        "top/rib": {"type": "panel", "colour": "precast_cream"},
+        "top/banded": {"type": "panel", "colour": "precast_cream"},
+        "hi/rib": {"type": "window", "w": 2.0, "h": 0.7, "mullions": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "mid/slit": {"type": "window", "w": 0.85, "h": 1.3, "mullions": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "hi/slit": {"type": "window", "w": 0.85, "h": 0.8, "mullions": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "low/panel": {"type": "panel", "colour": "precast_cream"},
+        "mid/panel": {"type": "panel", "colour": "precast_cream"},
+        "hi/panel": {"type": "panel", "colour": "precast_cream"},
+        "top/panel": {"type": "panel", "colour": "precast_cream"},
+        "low/shade": {"type": "window", "w": 3.5, "h": 1.0, "mullions": 2, "transoms": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "mid/shade": {"type": "window", "w": 3.5, "h": 1.3, "mullions": 2, "transoms": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "hi/shade": {"type": "window", "w": 3.5, "h": 0.8, "mullions": 2, "glass": "window_dark", "frame": "metal_silver"},
+        "top/shade": {"type": "window", "w": 3.5, "h": 0.9, "mullions": 2, "glass": "window_dark", "frame": "metal_silver"},
+        "base/*": null, "*/edge": null, "*/brick": null, "low/rib": null, "mid/rib": null, "*/banded": null, "low/slit": null, "top/slit": null
+      },
+      "wall": "brick_orange",
+      "bands": [[4.65, 4.8, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": ["horizontal white sunshade blades, about 4 of them at about 0.8 m pitch and projecting about 0.4 m, across the window at s 26.9-30.8 (earth_W6_r: alternating white and dark stripes)"],
+      "notes": "Positions come from sv_W6_hi5d (whole wall in one frame), earth_W6_whole and earth_W6_l/r, which agree to about 1 m: top band ends at s 7.3, slit at s 8.1-9.0, full panel at s 16.8-26.9, sunshade window at s 26.9-30.8. The ribbon window tucked under the band (s 0.4-2.4) is seen only in sv_W6_iO0t. The base row stays brick under the full panel (earth_W6_r). The lower metre is hidden by goldenrod and grasses in every SV photo"
+    },
+    "W7": {
+      "faces": "SW", "length_m": 17.9, "confidence": "medium",
+      "summary": "inner-corner face: four tall clerestory window bays under an overhanging dark eave (s 0-10.5), then plain brick with a small high square window and a recessed ground window at the b end",
+      "height_m": 4.9,
+      "rows": [[2.0, "low"], [2.6, "glaze"], [0.3, "eave"]],
+      "bays": [[0.3, "edge"], [2.5, "g"], [2.5, "g"], [2.5, "g"], [2.5, "g"], [0.2, "edge"], [3.3, "brick"], [3.1, "corner"], [0.8, "sq"], [0.2, "edge"]],
+      "cells": {
+        "glaze/g": {"type": "window", "w": 2.4, "h": 2.4, "mullions": 1, "transoms": 3, "glass": "window_dark", "frame": "metal_silver"},
+        "glaze/sq": {"type": "window", "w": 0.7, "h": 0.6, "glass": "window_dark", "frame": "metal_silver"},
+        "low/corner": {"type": "panel", "glass": "window_dark", "depth": 0.8, "note": "deep-set ground window, about 3 x 1.5 m, under the brick above (sv_W9 left)"},
+        "low/g": null, "*/edge": null, "*/brick": null, "eave/*": null, "glaze/corner": null, "low/sq": null
+      },
+      "wall": "brick_orange",
+      "bands": [[4.6, 4.9, "penthouse_metal", 0.8]],
+      "piers": [],
+      "signs": [],
+      "attached": ["the eave over the glazed bays projects about 0.8 m with an upward-sloped soffit and thin dark diagonal steel struts (sv_W6_hi5d right edge). The band projection is meant for s 0-10.5 only"],
+      "notes": "sv_W7 (18 m away, meadow in front) and earth_W7_whole. Ground drops about 2 m from a to b, so the plinth deepens toward b (lidar 4.9 m to 6.8 m). Below the glazing, the low row is brick hidden by plants"
+    },
+    "W8": {
+      "faces": "SE", "length_m": 9.1, "confidence": "high",
+      "summary": "two-storey plain brick block facing the south lawn: a ribbon window right under the coping and a deep-set ground window, both at the a end",
+      "height_m": 6.8,
+      "rows": [[2.4, "ground"], [3.0, "mid"], [1.0, "hi"], [0.4, "coping"]],
+      "bays": [[0.3, "edge"], [2.8, "win"], [6.0, "blank"]],
+      "cells": {
+        "hi/win": {"type": "window", "w": 2.7, "h": 0.65, "mullions": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "ground/win": {"type": "window", "w": 2.6, "h": 1.5, "mullions": 0, "glass": "window_dark", "frame": "metal_silver", "note": "set about 0.4 m deep in a brick reveal"},
+        "*/edge": null, "*/blank": null, "mid/win": null
+      },
+      "wall": "brick_orange",
+      "bands": [[6.65, 6.8, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": [],
+      "notes": "sv_W8 (2014), earth_corner_12"
+    },
+    "W9": {
+      "faces": "SW", "length_m": 5.4, "confidence": "medium",
+      "summary": "short brick return: one tall narrow recessed slit at the a end and a small green-glazed ground window at the b end",
+      "height_m": 7.2,
+      "rows": [[0.7, "base"], [1.2, "low"], [2.5, "mid"], [2.4, "upper"], [0.4, "coping"]],
+      "bays": [[0.9, "edge"], [0.5, "slit"], [2.4, "blank"], [1.0, "gwin"], [0.6, "edge"]],
+      "cells": {
+        "mid/slit": {"type": "panel", "colour": "brick_dark", "depth": 0.15, "note": "narrow recessed slot; looks brick-filled or louvred (sv_W9)"},
+        "low/gwin": {"type": "window", "w": 1.0, "h": 1.1, "glass": "glass_teal", "frame": "metal_silver"},
+        "*/edge": null, "*/blank": null, "base/*": null, "upper/*": null, "low/slit": null, "mid/gwin": null
+      },
+      "wall": "brick_orange",
+      "bands": [[7.05, 7.2, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": ["the cantilevered cream/glass box of the missing S face starts at the b end (see geometry_notes)"],
+      "notes": "sv_W9 centre block and sv_W8 (W9 in shadow)"
+    },
+    "W10": {
+      "faces": "NE", "length_m": 10.5, "confidence": "medium",
+      "summary": "two-storey brick face onto the N-S paved passage: a glazed corner window upstairs at the S end over a recessed ground floor, a small square upper window, and a glazed side entrance at the N end",
+      "height_m": 6.4,
+      "rows": [[3.0, "ground"], [3.0, "upper"], [0.4, "coping"]],
+      "bays": [[2.8, "corner"], [2.0, "blank"], [1.2, "sq"], [1.2, "blank"], [2.8, "entry"], [0.5, "edge"]],
+      "cells": {
+        "upper/corner": {"type": "window", "w": 2.4, "h": 1.7, "mullions": 1, "transoms": 3, "glass": "window_dark", "frame": "metal_silver"},
+        "ground/corner": {"type": "panel", "glass": "window_dark", "depth": 1.5, "note": "ground floor set back under the upper floor, with a small window (sv_W11_It9 left)"},
+        "upper/sq": {"type": "window", "w": 1.0, "h": 0.55, "glass": "window_dark", "frame": "metal_silver"},
+        "ground/entry": {"type": "door", "w": 2.6, "h": 2.5, "mullions": 2, "transoms": 1, "glass": "window_dark", "frame": "metal_silver"},
+        "*/blank": null, "*/edge": null, "ground/sq": null, "upper/entry": null
+      },
+      "wall": "brick_orange",
+      "bands": [[6.25, 6.4, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": ["glazed level-2 bridge to the brick block east of the passage at about s 0-5 (sv_c6, sv_c10; see geometry_notes)", "a 2.5 m jog to W11 at the b end holds a two-storey vertical glazed strip above the entrance"],
+      "notes": "sv_W10/sv_W11_It9/sv_c11-c14 from the NE (14 m). The a/b order is taken from the heading: left in the photo is the S (a) end"
+    },
+    "W11": {
+      "faces": "NE", "length_m": 25.3, "confidence": "low",
+      "summary": "long brick side wall along the narrow open walkway/ramp to BMH: mostly blank brick with a few punched windows with stone sills",
+      "height_m": 5.5,
+      "rows": [[2.6, "ground"], [2.5, "upper"], [0.4, "coping"]],
+      "bays": [[6.0, "blank"], [1.6, "win"], [1.4, "blank"], [1.6, "win"], [1.4, "blank"], [1.6, "win"], [11.7, "blank"]],
+      "cells": {
+        "upper/win": {"type": "window", "w": 1.2, "h": 1.0, "mullions": 1, "glass": "window_dark", "frame": "metal_silver", "sill": [0.1, "concrete"]},
+        "*/blank": null, "ground/win": null
+      },
+      "wall": "brick_orange",
+      "bands": [[5.35, 5.5, "penthouse_metal", 0.05]],
+      "piers": [],
+      "signs": [],
+      "attached": ["walkway beside it about 2 m wide, with a low brick wall and black steel handrail on the far side, ramping down from the portico plaza (N) to the passage (S) (sv_c4, sv_c16)"],
+      "notes": "Only seen from inside the slit at 0.3-0.5 m (sv_W11_hd55, sv_c4: brick close-up, punched windows with concrete sills at the right edge). Window count and positions are guesses. Height goes from 6.7 m at a to 4.2 m at b as the ground rises north"
+    }
+  },
+  "roof": [
+    {"what": "flat roofs, light grey-beige membrane/ballast (roof_light) with thin dark copings; separate levels: west cube about 7.5-8.5 m, south/west wing 3.6-4.9 m, east two-storey block 6.3-7.2 m", "where": "whole building", "size_m": null},
+    {"what": "small white box (hatch or skylight curb)", "where": "middle of the cube roof (earth_top, earth_orbit_090)", "size_m": [1.2, 1.0, 0.5]},
+    {"what": "small white box (hatch or exhaust)", "where": "east block roof near W8 (earth_orbit_090)", "size_m": [1.0, 1.0, 0.5]},
+    {"what": "tall brick chimney, twin-flue, with a thin metal flue pipe above (sv_c21, sv_W0, Teeple 016)", "where": "in the walkway/courtyard just NE of W11, about (732,466). May belong to BMH", "size_m": [2.2, 1.2, 10.5]}
+  ],
+  "site": {
+    "canopies": [{"what": "entrance portico", "where": "in front of W0 s 6-10, running about 9 m NW from the doors toward Parking Lot M, about (716-722, 474-485)", "look": "sand-beige stucco (siding_beige): 4 square columns about 0.6 m, in two pairs about 5 m apart and about 4.5 m across, carrying a deep slab about 0.6 m thick whose underside is at about 3.3 m. Thin dark metal coping, with a thin black steel post at the inner corners. Paver walk underneath (sv_c16, sv_c18, sv_W0, sv_c15)"}],
+    "bridges": [{"to": "BMH (east block across the N-S passage)", "from_wall": "W10", "s": [0, 5], "levels": [2], "look": "glazed, aluminium mullions, brick spandrel, soffit about 3 m over the paved passage (sv_c6, sv_c10). Width estimated"}],
+    "neighbours": [
+      "AHS Expansion (ahs-exp) directly N/NE across the portico plaza: 4 storeys, grey slate-tile cladding over an orange-brick base, glazed corners (earth_W6_whole)",
+      "BMH east block across a 2 m walkway from W11 and across the paved passage from W10; it carries the LHI name sign",
+      "PAC about 15-20 m S across the path and meadow (low brick and grey block box)",
+      "Parking Lot M along W1-W4 to the N and W"
+    ],
+    "ground": [
+      "asphalt Parking Lot M against W1-W4, with a strip of tall grasses and shrubs on a concrete curb along W1-W3 and an accessible bay at the W4 a end",
+      "grey interlocking concrete pavers under the W1 canopy, at the portico plaza and along the N-S passage east of W8-W10",
+      "naturalised meadow (goldenrod, tall grasses) sloping down along W6 and W7, about 8-12 m deep",
+      "asphalt footpath curving E-W south of the meadow, about 10 m off W6, joining the paver passage",
+      "mown lawn S and E of W8/W9"
+    ],
+    "entities": [
+      {"type": "fence", "kind": "horizontal-slat timber privacy screen on a low brick planter wall with a black steel cap rail", "where": "W0 s 0-3 and along the walkway edge, 2-3 m out", "count": 1, "photo": "sv_c16, sv_W0, sv_c15"},
+      {"type": "tree", "kind": "small multi-stem ornamental tree in a groundcover bed", "where": "W0 s 4, 2 m out (under the portico edge)", "count": 1, "photo": "sv_W0"},
+      {"type": "tree", "kind": "purple-leaf (Crimson King) maple", "where": "walkway/courtyard NE of W11, about (734,469)", "count": 1, "photo": "earth_top, earth_orbit_090"},
+      {"type": "stairs", "kind": "about 6 concrete steps, grey split-face block retaining walls, galvanised handrails", "where": "W4 b / W5 a corner, rising from the south path to the recessed entrance", "count": 1, "photo": "sv_W5"},
+      {"type": "lamp", "kind": "black pole with flat round disc luminaire, about 5 m", "where": "south path near W7 b, about 10 m out (about 724,437)", "count": 1, "photo": "sv_W7, sv_W8"},
+      {"type": "lamp", "kind": "black pole on concrete base", "where": "meadow off W6 s 24, about 7 m out", "count": 1, "photo": "sv_W6_hi5d"},
+      {"type": "lamp", "kind": "parking-lot light standard, double head", "where": "Parking Lot M about 10 m NW of W0", "count": 1, "photo": "sv_c18"},
+      {"type": "bike_rack", "kind": "galvanised wave/hoop rack", "where": "against the AHS/BMH brick wall at the portico plaza, about (727-731, 486-490)", "count": 1, "photo": "sv_c15"},
+      {"type": "bollard", "kind": "short black post sign", "where": "lawn beside the paver passage, about 12 m S of W10 a", "count": 1, "photo": "sv_c10"},
+      {"type": "tree", "kind": "young deciduous trees", "where": "lawn E of the passage and SE of W8, 2-3 trees about 8-15 m out", "count": 3, "photo": "sv_c10, sv_W10"},
+      {"type": "drain", "kind": "steel trench grate in the pavers", "where": "under the W1 canopy at s 5, 1.5 m out", "count": 1, "photo": "sv_W1_t0og"}
+    ]
+  }
+}
