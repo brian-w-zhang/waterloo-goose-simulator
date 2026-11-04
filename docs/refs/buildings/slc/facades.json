@@ -1,0 +1,2609 @@
+{
+ "building": "SLC",
+ "sources_checked": [
+  "around/earth_W*_whole.jpg (40; W2/W4/W5/W13/W15/W16/W17 failed or melted)",
+  "around/earth_corner_*.jpg (68)",
+  "around/sv_*_70/_100 (all; Sep 2014/Aug 2015 except W18 May 2025)",
+  "private/earth_detail_*.jpg, earth_facade_*.jpg, earth_orbit_*.jpg, earth_top.jpg (2024)",
+  "private/ortho_2023aug.jpg (both catalogue folders) with walls drawn on",
+  "private/web/slc_slcpac001-021 (CS&P/Muraz Jan-Feb 2022; Athletics Sep 2021)",
+  "private/web/slc_slcx002/003/005, f2002, cm027 (2005-2019)",
+  "commons/*.jpg + NOTES.md (2007-2020)"
+ ],
+ "dating": "Street View for almost every wall is Sep 2014 / Aug 2015, before the expansion (built ~2019-21); it is current only for the old SLC (W8-W36). The expansion (W0-W5, W37-W39) is specified from the 2022 architect photos and Earth 2024. W18 (May 2025) is the only recent Street View.",
+ "colours": {
+  "old_brick": {
+   "hex": "#564c47",
+   "palette": "brick_brown",
+   "where": "all 1968-era walls W6-W34. Sampled raw in under-exposed SV (W28 sunlit #56483f, 2025 #574a37); reads mid red-brown, a little grey. Lab-nearest is brick_charcoal_tower only because the photos are dark; keep brick_brown"
+  },
+  "old_coping": {
+   "hex": "#443a33",
+   "palette": "roof_mansard",
+   "where": "dark brown metal coping on brick parapets (sv_W28)"
+  },
+  "old_trim_concrete": {
+   "hex": "#e1d4c6",
+   "palette": "precast_cream",
+   "where": "piers, base course and roof fascia of the cafe pavilion (W25-W27), porch columns W23, fins of the W34 window group, light coping band on the Ring Road walls"
+  },
+  "window_frames_old": {
+   "palette": "panel_white",
+   "where": "white aluminium frames on the old SLC"
+  },
+  "buff_block": {
+   "hex": "#bdb199",
+   "palette": "brick_buff",
+   "where": "split-face block pavilion W35/W36 (and the buff pieces at the ends of the old courtyard crescent seen in slcpac018)"
+  },
+  "exp_glass_band": {
+   "hex": "#93b1b2",
+   "palette": "glass_teal",
+   "where": "upper band of W38, south/north glass boxes, bridge to MC (slcpac012, Lab 2.1)"
+  },
+  "exp_fins": {
+   "palette": "metal_silver",
+   "where": "vertical fins and coping of the W38 band"
+  },
+  "exp_columns": {
+   "hex": "#b0b3b4",
+   "palette": "concrete_cool",
+   "where": "square precast columns of W37/W38 and the bridge piers (Lab-nearest metal_shade 2.5; concrete_cool chosen for material)"
+  },
+  "exp_ground_glazing": {
+   "palette": "window_dark",
+   "where": "recessed full-height glazing behind the colonnades"
+  },
+  "exp_dark_frames": {
+   "palette": "prop_lamp",
+   "where": "dark charcoal mullions, door vestibules, pavilion roof edge"
+  },
+  "exp_charcoal_brick": {
+   "hex": "#484f59",
+   "palette": null,
+   "new_swatch": "brick_slate",
+   "where": "climbing-wall pavilion W39/W0, back walls W1-W5. Nearest prop_lamp at 9.8 / brick_charcoal_tower 11.7 (too warm)"
+  },
+  "exp_penthouse": {
+   "hex": "#373a44",
+   "palette": null,
+   "new_swatch": "panel_black",
+   "where": "black ribbed-metal penthouse box on the expansion roof (slcpac012/019); nearest brick_charcoal_tower at 15"
+  },
+  "exp_soffit_fascia": {
+   "palette": "panel_white",
+   "where": "pavilion roof soffit, W37 fascia, bridge coping"
+  },
+  "green_roof": {
+   "hex": "#60574a",
+   "palette": "grass_dark",
+   "where": "semicircle drum roof: mottled dry meadow planting (ortho sample is brown-olive; use grass_dark with dirt patches)"
+  },
+  "patio_fence": {
+   "palette": "prop_wood",
+   "where": "timber board fence round the Bombshelter patio"
+  },
+  "old_roof": {
+   "hex": "#857467",
+   "palette": "roof_gravel",
+   "where": "old SLC flat roofs (ortho sample warm; current model's roof_gravel is fine)"
+  },
+  "exp_roof": {
+   "palette": "roof_membrane",
+   "where": "white membrane roofs of the expansion and bridge"
+  }
+ },
+ "walls": {
+  "W38": {
+   "faces": "NE",
+   "length_m": 83.3,
+   "confidence": "high",
+   "summary": "2021 SLC/PAC expansion long front on the green toward MC: tall colonnade of light-grey square precast columns in front of recessed dark-framed full-height glazing, cantilevered upper band of pale green glass with silver vertical fins, black metal penthouse behind; glazed bridge to MC leaves the south end at level 2",
+   "height_m": 14.0,
+   "rows": [
+    [
+     6.7,
+     "ground"
+    ],
+    [
+     1.1,
+     "spandrel_low"
+    ],
+    [
+     3.3,
+     "band"
+    ],
+    [
+     1.9,
+     "spandrel_top"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     12.0,
+     "south_box"
+    ],
+    [
+     3.8,
+     "col"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     5.0,
+     "col"
+    ],
+    [
+     3.0,
+     "col"
+    ],
+    [
+     2.2,
+     "col"
+    ],
+    [
+     6.0,
+     "entrance"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     2.2,
+     "col"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     4.0,
+     "col"
+    ],
+    [
+     5.0,
+     "col"
+    ],
+    [
+     3.0,
+     "col"
+    ],
+    [
+     6.0,
+     "entrance_n"
+    ],
+    [
+     3.8,
+     "col"
+    ],
+    [
+     3.3,
+     "north_box"
+    ]
+   ],
+   "cells": {
+    "ground/col": {
+     "type": "curtain",
+     "w": "bay minus 0.7 m column",
+     "h": 6.5,
+     "mullion_pitch": 1.1,
+     "transoms": [
+      2.6,
+      4.4
+     ],
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "recess": 1.5,
+     "column": {
+      "w": 0.7,
+      "d": 0.7,
+      "colour": "concrete_cool",
+      "at": "bay start, standing in front of the glass line under the band"
+     }
+    },
+    "ground/entrance": {
+     "type": "door",
+     "w": 2.0,
+     "h": 2.4,
+     "leaves": 2,
+     "vestibule": {
+      "w": 3.4,
+      "h": 3.0,
+      "proj": 0.6,
+      "colour": "prop_lamp",
+      "flat_canopy": true
+     },
+     "glass": "window_dark",
+     "note": "main door, frontal photo slcpac012; position s ~38-44 is a guess (behind the black penthouse)"
+    },
+    "ground/entrance_n": {
+     "type": "door",
+     "w": 2.0,
+     "h": 2.4,
+     "leaves": 2,
+     "vestibule": {
+      "w": 2.6,
+      "h": 3.2,
+      "colour": "prop_lamp"
+     },
+     "note": "north door near the pavilion; framed in bright blue (#1e6995 sampled) in the Sept 2021 Athletics photo, dark grey in Feb 2022 (slcpac001/005): use dark grey"
+    },
+    "ground/south_box": {
+     "type": "curtain",
+     "h": 6.5,
+     "mullion_pitch": 1.5,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "note": "under the south glass box: doors to the bridge-end lobby (slcpac019), concrete columns at the corners"
+    },
+    "*/north_box": {
+     "type": "curtain",
+     "note": "upper-band corner box at the north end, ~3.3 m wide, projects ~0.8 m past the band face; plain glass grid 3 x 3 panes, no fins (slcpac005, athletics)"
+    },
+    "spandrel_low/*": {
+     "type": "panel",
+     "colour": "glass_teal",
+     "fins": {
+      "pitch": 0.9,
+      "proj": 0.25,
+      "colour": "metal_silver"
+     }
+    },
+    "band/*": {
+     "type": "ribbon",
+     "glass": "glass_teal",
+     "mullion_pitch": 0.9,
+     "fins": {
+      "pitch": 0.9,
+      "proj": 0.25,
+      "colour": "metal_silver"
+     },
+     "note": "vision glass reads the same pale green as the spandrels from outside; interior lights visible at dusk"
+    },
+    "spandrel_top/*": {
+     "type": "panel",
+     "colour": "glass_teal",
+     "fins": {
+      "pitch": 0.9,
+      "proj": 0.25,
+      "colour": "metal_silver"
+     }
+    },
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "glass_teal",
+   "bands": [
+    [
+     6.5,
+     6.7,
+     "panel_white",
+     0.3
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "glazed bridge to MC leaves the south end, s 0-6, level 2 (floor ~5.0 m, top ~9.5 m)",
+    "south glass box s 0-12: the upper band drops to ~4.5 m here and becomes a two-storey glass grid (no fins) cantilevered over the W37 roof (slcpac010/019)",
+    "black ribbed-metal penthouse set ~10 m back, roughly s 22-56, top ~18 m (guess from Earth W38 and slcpac012/019)"
+   ],
+   "notes": "Heights scaled from slcpac005/012 (door vestibule ~3 m): colonnade ~6.7 m, band ~7.3 m, total ~14 m. The band underside slopes down ~1.5-2 m over the southern ~20 m (kink visible in slcpac001/012/019), so the colonnade is shorter at the south. Column spacing is irregular (pairs ~2.2 m apart, wide bays 4-6 m at doors), about 22 columns in all (slcpac001); bay list is read from slcpac012 and repeated, so treat exact positions as approximate. Upper fins ~0.9 m pitch (~45 across the frontal view). Street View here is 2014 (pre-construction, open lawn) and was not used. Earth 2024 W38 agrees (colonnade, finned band, penthouse)."
+  },
+  "W39": {
+   "faces": "NE",
+   "length_m": 14.1,
+   "confidence": "high",
+   "summary": "climbing-wall pavilion at the north end: four-storey-high box of blue-grey charcoal brick with a full-height curtain wall, deep white-soffited flat roof tilted up to the north, round black emblem high on the brick",
+   "height_m": 17.0,
+   "rows": [
+    [
+     4.2,
+     "l1"
+    ],
+    [
+     4.0,
+     "l2"
+    ],
+    [
+     4.0,
+     "l3"
+    ],
+    [
+     4.3,
+     "l4"
+    ],
+    [
+     0.5,
+     "roof_slab"
+    ]
+   ],
+   "bays": [
+    [
+     4.6,
+     "brick"
+    ],
+    [
+     9.0,
+     "curtain"
+    ],
+    [
+     0.5,
+     "frame"
+    ]
+   ],
+   "cells": {
+    "*/brick": null,
+    "*/curtain": {
+     "type": "curtain",
+     "w": 9.0,
+     "mullion_pitch": 1.15,
+     "transoms_at": [
+      4.2,
+      8.2,
+      12.2
+     ],
+     "glass": "glass_blue",
+     "frame": "prop_lamp",
+     "note": "yellow climbing wall visible inside (accent: flower_yellow); curtain wall continues round the north corner onto W0"
+    },
+    "*/frame": {
+     "type": "pier",
+     "colour": "#484f59 (new: brick_slate)",
+     "note": "slim dark frame proud of the glass on the north edge (slcpac005/008)"
+    },
+    "roof_slab/*": {
+     "type": "band",
+     "colour": "prop_lamp",
+     "soffit": "panel_white",
+     "overhang": 1.2,
+     "downlights": true
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "bands": [],
+   "roof_tilt": "top edge ~16 m at the bar end rising to ~18 m at the north corner (athletics 2021 photo, slcpac001/005)",
+   "signs": [
+    {
+     "s": 2.3,
+     "z": 12.0,
+     "w": 3.0,
+     "h": 3.0,
+     "text": "round emblem: black disc, ring of white lettering, white figure in the centre (unreadable; looks like an athletics/Warriors roundel - guess)",
+     "colour": "prop_lamp+panel_white",
+     "on": "brick",
+     "source": "earth_W39_whole (2024); absent in the 2022 photos, so added 2022-24"
+    },
+    {
+     "s": 2.3,
+     "z": 8.5,
+     "w": 1.0,
+     "h": 0.5,
+     "text": "small white T-shaped mark below the emblem (light fitting or logo? uncertain)",
+     "colour": "panel_white",
+     "on": "brick"
+    }
+   ],
+   "attached": [
+    "meets the bar (W38) at s 0: the bar's north glass box butts into the brick face"
+   ],
+   "notes": "Brick sampled #484f59 on slcpac001 (overcast pro photo): cool blue-grey; nearest palette prop_lamp at 9.8, warm brick_charcoal_tower at 11.7, so a new swatch is proposed. Brick laid in stretcher bond with faint horizontal banding (Earth). Planting bed of grasses along the base (athletics photo)."
+  },
+  "W0": {
+   "faces": "NW",
+   "length_m": 4.9,
+   "confidence": "medium",
+   "summary": "NW return of the pavilion: the curtain wall wraps the corner for ~3 m, then charcoal brick",
+   "height_m": 17.0,
+   "rows": [
+    [
+     16.5,
+     "tall"
+    ],
+    [
+     0.5,
+     "roof_slab"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "curtain"
+    ],
+    [
+     1.9,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/curtain": {
+     "type": "curtain",
+     "mullion_pitch": 1.0,
+     "glass": "glass_blue",
+     "frame": "prop_lamp"
+    },
+    "*/brick": null,
+    "roof_slab/*": {
+     "type": "band",
+     "colour": "prop_lamp",
+     "soffit": "panel_white",
+     "overhang": 1.2
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "notes": "athletics 2021 photo shows the glass wrapping the corner; Earth corner_67 (2024) shows the dark brick side with the roundel edge visible. SV here is 2014 (pre-construction)."
+  },
+  "W1": {
+   "faces": "W",
+   "length_m": 38.2,
+   "confidence": "low",
+   "summary": "back of the expansion along the service walk to PAC: tall plain charcoal-brick wall (pavilion side, ~17 m) stepping down to the bar (~14 m); few openings",
+   "height_m": 14.0,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     9.0,
+     "upper"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     14.0,
+     "pavilion_side"
+    ],
+    [
+     18.0,
+     "plain"
+    ],
+    [
+     6.2,
+     "service"
+    ]
+   ],
+   "cells": {
+    "*/pavilion_side": null,
+    "*/plain": null,
+    "ground/service": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.3,
+     "colour": "prop_lamp",
+     "note": "guessed service door"
+    },
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "notes": "Only Earth 2024 (corner_0/1/67, badly melted) shows this side: a dark grey wall facing a ~7 m paved walk with bike racks (ortho dots). Street View is 2014 and shows the old brick wall of the pre-expansion building. Openings unknown: keep it mostly plain."
+  },
+  "W2": {
+   "faces": "S",
+   "length_m": 10.4,
+   "confidence": "low",
+   "summary": "south return of the expansion's west arm toward PAC: charcoal wall, low link to PAC beside it",
+   "height_m": 9.0,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     4.0,
+     "upper"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.4,
+     "band"
+    ]
+   ],
+   "cells": {
+    "upper/band": null,
+    "ground/band": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "notes": "Earth 2024 only, heavily melted; SV is 2014 (pre-construction, PAC brick). Where the arm meets PAC, the ortho shows a low link with a sloped glazed roof to PAC's east wall (the PAC connection)."
+  },
+  "W3": {
+   "faces": "W",
+   "length_m": 14.8,
+   "confidence": "low",
+   "summary": "west face of the expansion's west arm over the PAC/SLC plaza: dark wall with a band of dark-mullioned glazing at the top (Earth W3)",
+   "height_m": 9.0,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     4.0,
+     "upper"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     14.8,
+     "band"
+    ]
+   ],
+   "cells": {
+    "upper/band": {
+     "type": "ribbon",
+     "glass": "window_dark",
+     "mullion_pitch": 1.0,
+     "frame": "prop_lamp"
+    },
+    "ground/band": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "notes": "Earth 2024 only, heavily melted; SV is 2014 (pre-construction, PAC brick). Where the arm meets PAC, the ortho shows a low link with a sloped glazed roof to PAC's east wall (the PAC connection)."
+  },
+  "W4": {
+   "faces": "S",
+   "length_m": 18.3,
+   "confidence": "low",
+   "summary": "south face of the west arm over the stepped plaza: charcoal wall, upper ribbon of glazing with dark vertical mullions",
+   "height_m": 9.5,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     4.5,
+     "upper"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     18.3,
+     "band"
+    ]
+   ],
+   "cells": {
+    "upper/band": {
+     "type": "ribbon",
+     "glass": "window_dark",
+     "mullion_pitch": 1.2,
+     "frame": "prop_lamp",
+     "h": 3.5
+    },
+    "ground/band": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "notes": "earth_detail_1c (left), earth_W6 (left). Ground-floor openings not visible; the plaza's wide steps with a yellow nosing strip end against this wall (ortho)."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 20.4,
+   "confidence": "medium",
+   "summary": "expansion's diagonal SW face over the PAC/SLC plaza: dark wall with a long ribbon of tall glazing in dark mullions (about 14 lights) on the upper half",
+   "height_m": 9.5,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     5.0,
+     "upper"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "plain"
+    ],
+    [
+     15.4,
+     "band"
+    ],
+    [
+     2.0,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "upper/band": {
+     "type": "ribbon",
+     "glass": "window_dark",
+     "mullion_pitch": 1.1,
+     "frame": "prop_lamp",
+     "h": 4.2
+    },
+    "*/plain": null,
+    "ground/band": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "#484f59 (new: brick_slate)",
+   "notes": "earth_detail_1c and earth_W6 (2024). Exact sill height and whether the ground floor has doors onto the plaza are unknown."
+  },
+  "W6": {
+   "faces": "NW",
+   "length_m": 13.2,
+   "confidence": "medium",
+   "summary": "old SLC brick block facing NW onto the PAC/SLC plaza: tall plain red-brown brick with two full-height slit windows",
+   "height_m": 9.0,
+   "rows": [
+    [
+     8.5,
+     "tall"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.5,
+     "plain"
+    ],
+    [
+     1.0,
+     "slit"
+    ],
+    [
+     5.5,
+     "plain"
+    ],
+    [
+     1.0,
+     "slit"
+    ],
+    [
+     2.2,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/slit": {
+     "type": "window",
+     "w": 0.9,
+     "h": 6.5,
+     "sill": 1.0,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "mullions": 0,
+     "transoms": 2
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "earth_W6_whole, earth_detail_1c (2024); SV W6/c5 2014 shows the same brick. The slit windows are recessed in a vertical reveal."
+  },
+  "W8": {
+   "faces": "W",
+   "length_m": 15.3,
+   "confidence": "medium",
+   "summary": "old SLC brick wall on the plaza: plain brick, one tall slit window, low glazed link at its south end",
+   "height_m": 9.0,
+   "rows": [
+    [
+     8.5,
+     "tall"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     6.0,
+     "plain"
+    ],
+    [
+     1.0,
+     "slit"
+    ],
+    [
+     8.3,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/slit": {
+     "type": "window",
+     "w": 0.9,
+     "h": 6.0,
+     "sill": 1.5,
+     "glass": "window_dark",
+     "frame": "prop_lamp"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "earth_detail_1c (2024); window count is a best reading of a melted mesh."
+  },
+  "W9": {
+   "faces": "N",
+   "length_m": 18.5,
+   "confidence": "medium",
+   "summary": "glazed one-storey corridor between SLC and PAC (north face): aluminium curtain wall with white frames under a white fascia",
+   "height_m": 4.2,
+   "rows": [
+    [
+     3.4,
+     "glass"
+    ],
+    [
+     0.8,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     18.5,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "glass/glass": {
+     "type": "curtain",
+     "mullion_pitch": 1.5,
+     "transoms": [
+      2.3
+     ],
+     "glass": "glass",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "band",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "panel_white",
+   "notes": "SV W13 (2015) left, earth_W10 and earth_detail_1b (2024). W9 and W10 are the two faces of the same narrow link."
+  },
+  "W10": {
+   "faces": "S",
+   "length_m": 18.9,
+   "confidence": "medium",
+   "summary": "glazed SLC-PAC corridor, south face, above the stepped west plaza",
+   "height_m": 4.2,
+   "rows": [
+    [
+     3.4,
+     "glass"
+    ],
+    [
+     0.8,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     18.9,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "glass/glass": {
+     "type": "curtain",
+     "mullion_pitch": 1.5,
+     "transoms": [
+      2.3
+     ],
+     "glass": "glass",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "band",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "panel_white",
+   "notes": "same link as W9"
+  },
+  "W12": {
+   "faces": "N",
+   "length_m": 10.0,
+   "confidence": "low",
+   "summary": "short brick wall where the corridor meets the W13 block",
+   "height_m": 5.0,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.0,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "hidden by the corridor in most views"
+  },
+  "W13": {
+   "faces": "W",
+   "length_m": 15.4,
+   "confidence": "high",
+   "summary": "west block on the raised plaza: one storey of red-brown brick with a grid of eight tall white-framed windows and a door, brick parapet above",
+   "height_m": 5.5,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     1.5,
+     "parapet"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "plain"
+    ],
+    [
+     8.0,
+     "winblock"
+    ],
+    [
+     1.2,
+     "plain"
+    ],
+    [
+     1.6,
+     "door"
+    ],
+    [
+     1.2,
+     "plain"
+    ],
+    [
+     1.0,
+     "smallwin"
+    ],
+    [
+     0.9,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/winblock": {
+     "type": "window",
+     "count": 8,
+     "w": 0.85,
+     "h": 3.0,
+     "sill": 0.4,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.3,
+     "sidelight": 0.5,
+     "colour": "panel_white"
+    },
+    "ground/smallwin": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.0,
+     "sill": 1.2,
+     "frame": "panel_white"
+    },
+    "*/plain": null,
+    "parapet/*": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W13/W15 (Aug 2015) and earth_detail_1b (2024): the window grid is the most legible feature. The plaza in front is ~1.8 m above the loading lot to the west, reached by wide concrete steps."
+  },
+  "W16": {
+   "faces": "W",
+   "length_m": 7.8,
+   "confidence": "medium",
+   "summary": "loading court: brick with a glazed aluminium vestibule (white frames) at dock level, concrete retaining walls with pipe railings either side",
+   "height_m": 6.5,
+   "rows": [
+    [
+     3.8,
+     "ground"
+    ],
+    [
+     2.3,
+     "upper"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "plain"
+    ],
+    [
+     5.0,
+     "vestibule"
+    ],
+    [
+     1.3,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/vestibule": {
+     "type": "curtain",
+     "w": 5.0,
+     "h": 3.6,
+     "mullion_pitch": 1.25,
+     "transoms": [
+      2.4
+     ],
+     "glass": "glass",
+     "frame": "panel_white",
+     "door": {
+      "w": 1.8,
+      "h": 2.3,
+      "at": "centre"
+     }
+    },
+    "*/plain": null,
+    "upper/*": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W16/W17/W19 (Aug 2015). Which of W15/W16/W17 carries the vestibule is my best mapping of the views; the vestibule faces west into the sunken service yard."
+  },
+  "W17": {
+   "faces": "W",
+   "length_m": 9.3,
+   "confidence": "medium",
+   "summary": "loading court brick wall beside the vestibule, overhead door/dock behind dumpsters",
+   "height_m": 6.0,
+   "rows": [
+    [
+     4.2,
+     "ground"
+    ],
+    [
+     1.4,
+     "upper"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "plain"
+    ],
+    [
+     3.2,
+     "dock"
+    ],
+    [
+     5.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/dock": {
+     "type": "door",
+     "w": 3.0,
+     "h": 3.2,
+     "colour": "panel_grey",
+     "note": "guessed overhead door hidden behind trucks/dumpsters in all photos"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W17/W19 (2015); dock door is a guess"
+  },
+  "W18": {
+   "faces": "S",
+   "length_m": 5.9,
+   "confidence": "high",
+   "summary": "south end of the loading court toward Ring Road: grey slatted metal screen fence on a concrete retaining wall hides the yard",
+   "height_m": 3.2,
+   "rows": [
+    [
+     1.0,
+     "retaining"
+    ],
+    [
+     2.2,
+     "screen"
+    ]
+   ],
+   "bays": [
+    [
+     5.9,
+     "screen"
+    ]
+   ],
+   "cells": {
+    "retaining/*": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "screen/*": {
+     "type": "panel",
+     "colour": "prop_metal",
+     "slats": "vertical, 0.15 m"
+    }
+   },
+   "wall": "concrete",
+   "notes": "SV W18 May 2025 (most current view): screen fence ~2.2 m on a ~1 m concrete wall, the glazed vestibule visible behind it"
+  },
+  "W19": {
+   "faces": "W",
+   "length_m": 11.6,
+   "confidence": "medium",
+   "summary": "SW brick wing beside the service yard: one storey brick with coping, tall window near the corner",
+   "height_m": 5.0,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "plain"
+    ],
+    [
+     1.2,
+     "win"
+    ],
+    [
+     5.4,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 1.1,
+     "h": 2.4,
+     "sill": 0.8,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W18 (2025), W19 (2015)"
+  },
+  "W20": {
+   "faces": "S",
+   "length_m": 10.4,
+   "confidence": "high",
+   "summary": "SW corner on Ring Road: projecting teal-glazed corner bay with a white panel head, then red-brown brick with tall white-framed windows, light concrete coping",
+   "height_m": 5.5,
+   "rows": [
+    [
+     4.6,
+     "ground"
+    ],
+    [
+     0.5,
+     "parapet"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.6,
+     "baywin"
+    ],
+    [
+     2.4,
+     "plain"
+    ],
+    [
+     1.2,
+     "win"
+    ],
+    [
+     2.0,
+     "plain"
+    ],
+    [
+     1.2,
+     "win"
+    ]
+   ],
+   "cells": {
+    "ground/baywin": {
+     "type": "curtain",
+     "w": 3.4,
+     "h": 4.6,
+     "proj": 0.6,
+     "mullion_pitch": 1.1,
+     "transoms": [
+      1.0,
+      3.3
+     ],
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "head": {
+      "h": 0.8,
+      "colour": "panel_white"
+     },
+     "note": "wraps onto the W19 side"
+    },
+    "ground/win": {
+     "type": "window",
+     "w": 1.1,
+     "h": 2.5,
+     "sill": 0.9,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/plain": null,
+    "parapet/*": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W18 (May 2025) is the current view; SV W20 (2014) shows a small window and a wall-mounted floodlight further east and a dense shrub border."
+  },
+  "W21": {
+   "faces": "S",
+   "length_m": 6.9,
+   "confidence": "high",
+   "summary": "Ring Road front, one storey red-brown brick with a pale concrete coping band, one small window and a wall light; taller brick blocks stepped back behind",
+   "height_m": 4.4,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "plain"
+    ],
+    [
+     1.1,
+     "win"
+    ],
+    [
+     3.8,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 1.0,
+     "h": 1.1,
+     "sill": 1.6,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W20/W21 (Sep 2014). Behind: two-storey brick block ~8 m and a vertical brick shaft with concrete corner fins (W21 SV right)."
+  },
+  "W22": {
+   "faces": "S",
+   "length_m": 4.7,
+   "confidence": "medium",
+   "summary": "short brick wall with a cream concrete pier at the porch corner",
+   "height_m": 4.4,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.2,
+     "plain"
+    ],
+    [
+     1.5,
+     "win"
+    ],
+    [
+     1.0,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.2,
+     "sill": 1.4,
+     "frame": "panel_white"
+    },
+    "*/pier": {
+     "type": "pier",
+     "w": 0.6,
+     "colour": "precast_cream"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W22 (2014)"
+  },
+  "W23": {
+   "faces": "S",
+   "length_m": 6.4,
+   "confidence": "high",
+   "summary": "porch of the Ring Road entrance: three cream concrete columns carrying a brick fascia, glazing recessed behind",
+   "height_m": 4.4,
+   "rows": [
+    [
+     3.2,
+     "porch"
+    ],
+    [
+     0.8,
+     "fascia"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "col"
+    ],
+    [
+     2.2,
+     "open"
+    ],
+    [
+     0.5,
+     "col"
+    ],
+    [
+     2.2,
+     "open"
+    ],
+    [
+     0.5,
+     "col"
+    ]
+   ],
+   "cells": {
+    "porch/col": {
+     "type": "pier",
+     "w": 0.5,
+     "colour": "precast_cream"
+    },
+    "porch/open": {
+     "type": "curtain",
+     "recess": 2.0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "mullion_pitch": 1.1
+    },
+    "fascia/*": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W23/W24 (2014)"
+  },
+  "W24": {
+   "faces": "S",
+   "length_m": 4.4,
+   "confidence": "high",
+   "summary": "main Ring Road entrance: recessed aluminium vestibule with double glass doors and a flat metal canopy, brick parapet above",
+   "height_m": 4.6,
+   "rows": [
+    [
+     3.3,
+     "door"
+    ],
+    [
+     0.9,
+     "parapet"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "plain"
+    ],
+    [
+     3.6,
+     "entrance"
+    ],
+    [
+     0.4,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "door/entrance": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.3,
+     "leaves": 2,
+     "sidelights": 2,
+     "transoms": 1,
+     "glass": "glass",
+     "frame": "metal_silver",
+     "recess": 1.5,
+     "canopy": [
+      1.5,
+      "metal_silver"
+     ]
+    },
+    "*/plain": null,
+    "parapet/*": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "concrete"
+    }
+   },
+   "wall": "brick_brown",
+   "signs": [],
+   "notes": "SV W23/W24 (Sep 2014): the busiest door on the Ring Road side; a wide concrete walk runs straight south to Ring Road (ortho). No building-name sign on the wall; the name is on the directory sign at the SE corner."
+  },
+  "W25": {
+   "faces": "S",
+   "length_m": 19.6,
+   "confidence": "high",
+   "summary": "Ring Road pavilion (the cafe wing): six bays between cream concrete piers, brick sill walls, two-tier white-framed windows and a clerestory band under a thin, deeply overhanging flat roof",
+   "height_m": 4.9,
+   "rows": [
+    [
+     0.3,
+     "base"
+    ],
+    [
+     0.6,
+     "sill"
+    ],
+    [
+     2.5,
+     "window"
+    ],
+    [
+     1.1,
+     "clerestory"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "*/pier": {
+     "type": "pier",
+     "colour": "precast_cream",
+     "proj": 0.15
+    },
+    "base/bay": {
+     "type": "panel",
+     "colour": "precast_cream"
+    },
+    "sill/bay": null,
+    "window/bay": {
+     "type": "window",
+     "w": 2.6,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "transom_at": 1.7,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "note": "upper lights often have pale blinds down"
+    },
+    "clerestory/bay": {
+     "type": "ribbon",
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "mullions": 0
+    },
+    "fascia/*": {
+     "type": "band",
+     "colour": "precast_cream",
+     "overhang": 1.5,
+     "outriggers": {
+      "pitch": 3.25,
+      "colour": "prop_metal"
+     }
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "SV W24/W25 (Sep 2014) and sv_W26; Earth W25 (2024) confirms the pavilion unchanged. The roof slab tilts slightly up at the outer edge (butterfly-ish, reads as a thin cream line); exposed steel outriggers under it. Concrete base course 0.3 m."
+  },
+  "W26": {
+   "faces": "E",
+   "length_m": 10.2,
+   "confidence": "high",
+   "summary": "east end of the cafe pavilion (Tim Hortons inside): three bays like W25, glass entrance door in the north bay",
+   "height_m": 4.9,
+   "rows": [
+    [
+     0.3,
+     "base"
+    ],
+    [
+     0.6,
+     "sill"
+    ],
+    [
+     2.5,
+     "window"
+    ],
+    [
+     1.1,
+     "clerestory"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.85,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.85,
+     "bay"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     2.7,
+     "door"
+    ],
+    [
+     0.45,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "*/pier": {
+     "type": "pier",
+     "colour": "precast_cream"
+    },
+    "base/bay": {
+     "type": "panel",
+     "colour": "precast_cream"
+    },
+    "sill/bay": null,
+    "window/bay": {
+     "type": "window",
+     "w": 2.6,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "panel_white"
+    },
+    "*/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.4,
+     "sidelight": 1.3,
+     "glass": "glass",
+     "frame": "panel_white",
+     "note": "red interior wall visible through it"
+    },
+    "clerestory/*": {
+     "type": "ribbon",
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "band",
+     "colour": "precast_cream",
+     "overhang": 1.5
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "sv_W26 (Sep 2014); the 'Tim Hortons' name is only visible inside the glass"
+  },
+  "W27": {
+   "faces": "E",
+   "length_m": 5.7,
+   "confidence": "high",
+   "summary": "last pavilion bay, then plain brick with a white service door; louvred metal penthouse on the roof behind",
+   "height_m": 5.5,
+   "rows": [
+    [
+     4.9,
+     "ground"
+    ],
+    [
+     0.6,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.9,
+     "pavbay"
+    ],
+    [
+     1.6,
+     "plain"
+    ],
+    [
+     1.2,
+     "door"
+    ]
+   ],
+   "cells": {
+    "*/pavbay": {
+     "type": "window",
+     "w": 2.6,
+     "h": 2.4,
+     "sill": 0.9,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "note": "same as W26 bays incl. clerestory"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "colour": "panel_white"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "sv_W27 (2014)"
+  },
+  "W30": {
+   "faces": "E",
+   "length_m": 6.2,
+   "confidence": "medium",
+   "summary": "Bombshelter patio wall: plain brick with a tall brick shaft rising to ~10 m; black steel frame structure against the wall",
+   "height_m": 7.0,
+   "rows": [
+    [
+     6.5,
+     "wall"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     6.2,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "attached": [
+    "black steel-tube frame enclosure (~3 m high, open grid) on the patio side, roughly W30-W31 (sv_W28/W30); probably a bar/storage cage"
+   ],
+   "notes": "sv_W28/W30/W31 (2014). Patio fence in front hides the base."
+  },
+  "W31": {
+   "faces": "E",
+   "length_m": 5.8,
+   "confidence": "medium",
+   "summary": "patio wall: brick block with a small window, wall light, door to the pub patio",
+   "height_m": 6.0,
+   "rows": [
+    [
+     5.5,
+     "wall"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "plain"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     1.5,
+     "plain"
+    ],
+    [
+     1.0,
+     "win"
+    ],
+    [
+     0.8,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.2,
+     "colour": "prop_metal"
+    },
+    "wall/win": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.0,
+     "sill": 1.6,
+     "glass": "window_dark"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "notes": "sv_W31 (2014): mostly behind the fence and gazebo; door position guessed"
+  },
+  "W34": {
+   "faces": "E",
+   "length_m": 11.2,
+   "confidence": "high",
+   "summary": "Bombshelter pub front on the patio: brick block with a recessed group of four tall windows framed by cream concrete fins and a cream lintel slab, entrance at the south end; ivy on the north part",
+   "height_m": 5.5,
+   "rows": [
+    [
+     3.3,
+     "ground"
+    ],
+    [
+     1.7,
+     "upper"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "door"
+    ],
+    [
+     1.2,
+     "plain"
+    ],
+    [
+     4.6,
+     "finwin"
+    ],
+    [
+     3.8,
+     "ivy"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.2,
+     "colour": "prop_metal",
+     "recess": 0.8
+    },
+    "ground/finwin": {
+     "type": "window",
+     "count": 4,
+     "w": 0.8,
+     "h": 2.6,
+     "glass": "window_dark",
+     "frame": "precast_cream",
+     "fins": {
+      "w": 0.25,
+      "proj": 0.3,
+      "colour": "precast_cream"
+     },
+     "lintel": {
+      "h": 0.3,
+      "colour": "precast_cream"
+     }
+    },
+    "*/plain": null,
+    "*/ivy": {
+     "type": "panel",
+     "colour": "hedge",
+     "note": "ivy covering the brick, up to ~4 m"
+    },
+    "upper/*": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "roof_mansard"
+    }
+   },
+   "wall": "brick_brown",
+   "signs": [
+    {
+     "s": 1.8,
+     "z": 1.8,
+     "w": 1.2,
+     "h": 0.4,
+     "text": "HULA (white letters painted on brick; 2014, may be gone)",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "notes": "sv_W33/W34 (Sep 2014). A light-grey horizontally ribbed metal penthouse with a louvre is visible on the roof behind."
+  },
+  "W35": {
+   "faces": "NE",
+   "length_m": 8.0,
+   "confidence": "high",
+   "summary": "buff split-face block pavilion (c. 2000s addition) at the patio's north corner: large buff blocks, a deep recessed opening with dark frame; faceted curtain-wall corner toward W36",
+   "height_m": 8.5,
+   "rows": [
+    [
+     8.0,
+     "tall"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "curtain"
+    ],
+    [
+     2.0,
+     "plain"
+    ],
+    [
+     1.8,
+     "opening"
+    ],
+    [
+     1.2,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/curtain": {
+     "type": "curtain",
+     "mullion_pitch": 1.0,
+     "transoms": [
+      2.6,
+      4.6,
+      6.2
+     ],
+     "glass": "glass_blue",
+     "frame": "prop_lamp",
+     "note": "three-faceted glass corner"
+    },
+    "tall/opening": {
+     "type": "window",
+     "w": 1.4,
+     "h": 2.4,
+     "sill": 0.4,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.4
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_buff",
+   "coursing": "split-face block ~0.4 x 0.2 m, running bond",
+   "notes": "sv_W34/W35/W36 (2014); buff sampled #bdb199 (sv_W35). Also visible in slcpac018 (2022) next to the W37 colonnade, so it survives."
+  },
+  "W36": {
+   "faces": "SE",
+   "length_m": 7.6,
+   "confidence": "high",
+   "summary": "buff block wall facing SE onto the MC walk, with the glass corner on its west end and a narrow window strip",
+   "height_m": 8.5,
+   "rows": [
+    [
+     8.0,
+     "tall"
+    ],
+    [
+     0.5,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.5,
+     "curtain"
+    ],
+    [
+     3.0,
+     "plain"
+    ],
+    [
+     0.8,
+     "slot"
+    ],
+    [
+     1.3,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/curtain": {
+     "type": "curtain",
+     "mullion_pitch": 1.0,
+     "transoms": [
+      2.6,
+      4.6,
+      6.2
+     ],
+     "glass": "glass_blue",
+     "frame": "prop_lamp"
+    },
+    "*/slot": {
+     "type": "window",
+     "w": 0.6,
+     "h": 5.0,
+     "sill": 1.0,
+     "glass": "window_dark"
+    },
+    "*/plain": null,
+    "coping/*": {
+     "type": "band",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_buff",
+   "notes": "sv_W36 (2014). The timber pergola that ran north from here in 2014-2020 is gone: ortho 2023 shows a plain concrete walk along W37."
+  },
+  "W37": {
+   "faces": "NE",
+   "length_m": 35.4,
+   "confidence": "high",
+   "summary": "2021 expansion, one-storey arm along the MC walk: square light-grey precast columns at ~4.4 m in front of dark-framed full-height glazing, deep white/silver fascia; the green-roof drum rises behind; glazed box of the bar at the north end",
+   "height_m": 5.4,
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     1.0,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.0,
+     "door"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "win"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "win"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "win"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "door"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "win"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "win"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     3.7,
+     "win"
+    ],
+    [
+     0.7,
+     "col"
+    ],
+    [
+     2.8,
+     "win"
+    ]
+   ],
+   "cells": {
+    "ground/col": {
+     "type": "pier",
+     "w": 0.7,
+     "proj": 0.4,
+     "colour": "concrete_cool"
+    },
+    "ground/win": {
+     "type": "curtain",
+     "mullion_pitch": 1.2,
+     "transoms": [
+      2.7
+     ],
+     "glass": "window_dark",
+     "frame": "prop_lamp"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "leaves": 2,
+     "glass": "window_dark",
+     "frame": "prop_lamp"
+    },
+    "fascia/*": {
+     "type": "band",
+     "colour": "panel_white",
+     "coping": "metal_silver"
+    }
+   },
+   "wall": "window_dark",
+   "signs": [
+    {
+     "s": 24,
+     "z": 2.9,
+     "w": 2.0,
+     "h": 0.4,
+     "text": "Quesada (white script on the glass)",
+     "colour": "panel_white",
+     "on": "glass",
+     "source": "slcpac010, 2022; position approximate"
+    }
+   ],
+   "attached": [
+    "north end (s 30-35) is under the bar's south glass box and the bridge to MC"
+   ],
+   "notes": "slcpac010/018/019 (Jan-Feb 2022) and Earth W37 (2024). Column count 8-9 over the length (slcpac018). Fascia is a thick white band with a silver drip edge. Doors at the south end beside the buff block and near mid-length (people at doors in slcpac018). SV here is 2014 and shows the old open courtyard: not current."
+  },
+  "W7": {
+   "faces": "N",
+   "length_m": 5.2,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "brick, part of the W6/W8 block"
+  },
+  "W11": {
+   "faces": "W",
+   "length_m": 4.9,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "brick jog behind the corridor"
+  },
+  "W14": {
+   "faces": "S",
+   "length_m": 6.3,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "brick at the top of the west steps; yellow-capped bollards along the stair edge"
+  },
+  "W15": {
+   "faces": "W",
+   "length_m": 5.7,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "brick; concrete retaining wall and pipe railing of the loading ramp in front"
+  },
+  "W28": {
+   "faces": "N",
+   "length_m": 5.9,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "N face of a 2 m notch between the cafe pavilion and the brick block; louvred penthouse above"
+  },
+  "W29": {
+   "faces": "S",
+   "length_m": 5.7,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "S face of the same notch; blue recycling cart at its base (sv_W29)"
+  },
+  "W32": {
+   "faces": "N",
+   "length_m": 5.4,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "brick, inside the patio"
+  },
+  "W33": {
+   "faces": "E",
+   "length_m": 4.0,
+   "confidence": "low",
+   "summary": "short jog (<7 m); continue the neighbouring wall's material and coping",
+   "height_m": null,
+   "wall": "brick_brown",
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "notes": "brick, inside the patio; storage shed in front"
+  }
+ },
+ "roof": [
+  {
+   "what": "great hall upper storey (not on the footprint outline)",
+   "where": "square block centred ~ (778, 287), ~22 m a side, rising ~3.5 m above the surrounding roofs",
+   "look": "white fascia band ~1.2 m on all four sides over a clerestory of tall narrow windows separated by white precast fins (about 12 per side, earth_detail_0c/earth_W23); current model's tall ground windows and white fascia are on the right block",
+   "size_m": [
+    22,
+    22,
+    3.5
+   ]
+  },
+  {
+   "what": "great hall roof",
+   "where": "on the hall",
+   "look": "shallow pyramid / flat roof with white ridge ribs corner to centre and a 4 x 4 grid of white domed skylights (~1.5 m) in the centre (ortho shows exactly 16)",
+   "size_m": [
+    7,
+    7,
+    0.6
+   ]
+  },
+  {
+   "what": "light grey metal-clad penthouse with a row of small windows",
+   "where": "between the great hall and the drum, roughly art (783-794, 292-303) - guess",
+   "look": "horizontally ribbed light-grey metal (metal_panel), louvre on the east face; seen in sv_W33/W34, earth_W37, slcpac018",
+   "size_m": [
+    11,
+    10,
+    4
+   ]
+  },
+  {
+   "what": "louvred metal penthouse",
+   "where": "behind W27/W28",
+   "look": "light grey horizontal louvres (sv_W27/W28)",
+   "size_m": [
+    8,
+    3,
+    2
+   ]
+  },
+  {
+   "what": "two large round exhaust hoods (mushroom vents)",
+   "where": "old roof south-west of the drum (earth_W37, earth_detail_1c)",
+   "size_m": [
+    1.5,
+    1.5,
+    1.5
+   ]
+  },
+  {
+   "what": "two round domed skylights",
+   "where": "old roof ~ (774, 318) and (773.5, 309) (ortho)",
+   "size_m": [
+    1.4,
+    1.4,
+    0.6
+   ]
+  },
+  {
+   "what": "semicircular drum with green roof and a dark pond",
+   "where": "centre on the old courtyard arc, ~ (799.5, 321), radius ~13 m, flat side along W37",
+   "look": "clerestory ribbon of glass ~1.2 m under a white coping around the curve; mottled meadow planting; pond is a dark curved shape like a goose neck and head (ortho, Earth W37); a ~4 m white membrane strip separates the drum's flat side from the W37 fascia",
+   "size_m": [
+    26,
+    13,
+    1.2
+   ]
+  },
+  {
+   "what": "old courtyard crescent (upper storey)",
+   "where": "arc behind the drum",
+   "look": "the 1990s/2000s curved facade's upper ribbon of glazing with a white metal panel band above still shows over the drum roof (slcpac018/019, Earth W37); buff block and grey corrugated metal pieces at its ends",
+   "size_m": [
+    40,
+    3,
+    3
+   ]
+  },
+  {
+   "what": "black ribbed-metal penthouse on the expansion",
+   "where": "behind W38, ~10 m in from the face, roughly s 22-56; top ~18 m (guess)",
+   "look": "panel_black box with a flue/antenna",
+   "size_m": [
+    34,
+    15,
+    4.5
+   ]
+  },
+  {
+   "what": "four louvred mechanical units in a dark well",
+   "where": "expansion roof ~ art (750-760, 382-393) (ortho, earth_corner_3)",
+   "size_m": [
+    10,
+    8,
+    2.5
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "MC",
+    "from_wall": "W38",
+    "s": [
+     0,
+     6
+    ],
+    "levels": [
+     2
+    ],
+    "look": "one-storey glazed tube, glass_teal with dark mullions at ~1.5 m and one transom, white membrane roof edge, floor ~5 m up; carried on pairs of square grey concrete piers (~0.9 m) about every 18 m; runs ENE ~45 m to MC (ortho, slcpac018/019)"
+   }
+  ],
+  "connections": [
+   "glazed one-storey corridor W9/W10 links SLC to PAC across the west plaza",
+   "the expansion's west arm (W2/W3) meets PAC's east wall through a low link with a sloped glazed roof (ortho)"
+  ],
+  "neighbours": [
+   "PAC directly west/north-west (brown brick, sloped standing-seam roof)",
+   "MC ~45 m east across the green, joined by the bridge",
+   "QNC to the south-east across the MC walk",
+   "Ring Road along the south and south-west"
+  ],
+  "ground": [
+   "lawn (the green, BMH/MC side) right up to a concrete walk along W38; snow photos show a straight path from the main door to the MC walk",
+   "wide concrete walk ~6-8 m along W37 running NNW from the QNC/Ring Road side to the bridge (ortho 2023)",
+   "Bombshelter patio east of W30-W34: concrete pavers, timber fence, picnic tables, gazebo",
+   "south lawn along Ring Road with dense shrub/perennial beds against W20-W22 and specimen trees; concrete walk from Ring Road straight to the W24 door, and a curved interlocking-paver walk along the front",
+   "west: raised plaza in front of W13 with wide concrete steps (yellow-capped bollards on the nosings) down to a sunken asphalt loading yard (W15-W17) with concrete retaining walls and pipe railings",
+   "PAC/SLC plaza north-west (between W5-W9 and PAC): concrete pavers, broad steps with a yellow nosing strip near W4, benches, a planting bed with yellow-flowering shrubs against PAC"
+  ],
+  "entities": [
+   {
+    "type": "sign",
+    "kind": "Student Life Centre directory sign: white panel with black frame and a 'STUDENT LIFE CENTRE' header on a concrete base, ~3 m wide x 1.8 m",
+    "where": "SE corner of W25/W26, ~6 m south of W25 at s 19",
+    "count": 1,
+    "photo": "sv_W26, sv_W25_Bi5m (2014)"
+   },
+   {
+    "type": "sign",
+    "kind": "UW black wayfinding sign 'Visitor Parking' (green P) on two posts",
+    "where": "W18, ~14 m out on the Ring Road lawn",
+    "count": 1,
+    "photo": "sv_W18 (2025)"
+   },
+   {
+    "type": "sign",
+    "kind": "No Stopping sign on a black pole",
+    "where": "W23, ~7 m out by the walk",
+    "count": 1,
+    "photo": "sv_W23 (2014)"
+   },
+   {
+    "type": "sign",
+    "kind": "'No Pedestrian Access' sign on a post at the loading-yard entrance",
+    "where": "west of W18 at the service drive",
+    "count": 1,
+    "photo": "sv_W18 (2025)"
+   },
+   {
+    "type": "lamp",
+    "kind": "black post-top lantern lamp ~4.5 m",
+    "where": "along W38 walk, ~6 m out at s ~30 and ~70; one on the Ring Road lawn by W20",
+    "count": 3,
+    "photo": "slcpac001/005, sv_W18"
+   },
+   {
+    "type": "gazebo",
+    "kind": "square timber gazebo, dark shingled hip roof",
+    "where": "Bombshelter patio, art ~ (815.5, 273.5)",
+    "count": 1,
+    "photo": "sv_W31/W33, ortho"
+   },
+   {
+    "type": "picnic_table",
+    "kind": "grey metal/timber picnic tables",
+    "where": "Bombshelter patio, art x 806-826, y 262-295",
+    "count": 16,
+    "photo": "ortho 2023"
+   },
+   {
+    "type": "fence",
+    "kind": "timber board fence ~1.6 m",
+    "where": "patio perimeter: art (816,295)-(826.7,271.4)-(805,261) and back toward W27",
+    "count": 1,
+    "photo": "sv_W28-W34, ortho"
+   },
+   {
+    "type": "shed",
+    "kind": "small beige-sided storage shed with gable roof",
+    "where": "in the patio by W33/W34, ~3 m out",
+    "count": 1,
+    "photo": "sv_W34 (2014)"
+   },
+   {
+    "type": "bin",
+    "kind": "blue recycling carts",
+    "where": "W27 s 4 (1-2), W29 (1), loading yard W16-W17 (~15, 2015)",
+    "count": 18,
+    "photo": "sv_W27/W29/W16"
+   },
+   {
+    "type": "dumpster",
+    "kind": "navy/blue front-load dumpsters",
+    "where": "loading yard by W16-W17",
+    "count": 3,
+    "photo": "sv_W14-W17 (2015), earth_detail_0c"
+   },
+   {
+    "type": "bollard",
+    "kind": "short black posts with yellow caps on the step nosings",
+    "where": "west stairs in front of W13/W14",
+    "count": 14,
+    "photo": "sv_W13/W14"
+   },
+   {
+    "type": "bench",
+    "kind": "long concrete/timber benches",
+    "where": "along the W37 walk, ~7 m out, near its south end",
+    "count": 2,
+    "photo": "ortho 2023"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised racks",
+    "where": "walk along W1 (several), plaza in front of W13, PAC/SLC plaza near W3/W4",
+    "count": 6,
+    "photo": "ortho, sv_W13, sv_W3 (2014)"
+   },
+   {
+    "type": "steel_frame",
+    "kind": "black steel tube frame enclosure ~3 m high",
+    "where": "against W30/W31 inside the patio",
+    "count": 1,
+    "photo": "sv_W28/W30"
+   },
+   {
+    "type": "planting",
+    "kind": "grasses bed along the pavilion base",
+    "where": "W39 and north end of W38, 0-3 m out",
+    "count": 1,
+    "photo": "athletics 2021"
+   },
+   {
+    "type": "tree",
+    "kind": "deciduous trees on the green",
+    "where": "east of W38, 15-40 m out (several)",
+    "count": 6,
+    "photo": "Earth W38, ortho"
+   },
+   {
+    "type": "tree",
+    "kind": "small ornamental trees in the south shrub border",
+    "where": "W21-W25, 3-8 m out",
+    "count": 5,
+    "photo": "sv_W20-W25"
+   }
+  ],
+  "courtyard": "The old paved semicircular courtyard (Commons 2007-2019: curved two-storey glazing, pergolas, picnic tables, central round planter) no longer exists: the 2021 drum covers it, so it is a roof (green, with the goose-shaped pond), not a garden at ground level."
+ },
+ "current_model_gaps": [
+  "the 2021 expansion is modelled as a small brick+fins crescent/link; it is really an 83 m glass bar (W38) on a tall precast colonnade with a finned green band, a 17 m charcoal-brick climbing pavilion (W39), a black penthouse, and the bridge to MC on paired piers",
+  "W37 colonnade arm (precast columns, white fascia) is missing",
+  "the drum has a clerestory ring and the old crescent's upper ribbon shows above it",
+  "old SLC: the cafe pavilion's floating roof and cream piers (W25-W27), the W23/W24 porch and entrance, the W20 teal bay, the W13 window grid, the buff block corner (W35/W36), the Bombshelter patio with fence and gazebo, the SLC-PAC glazed corridor",
+  "hall: windows are a clerestory above the neighbouring roofs, not ground-floor windows"
+ ]
+}

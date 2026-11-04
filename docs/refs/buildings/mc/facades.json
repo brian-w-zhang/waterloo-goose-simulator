@@ -1,0 +1,2044 @@
+{
+ "building": "MC",
+ "sources_checked": [
+  "around/sv_W0_* (5 panos, Sep 2014), sv_W1, sv_W2, sv_W3_* (4), sv_W4..W7, sv_W8_S9M3 (Sep 2014; sv_W8_CIHM is black), sv_W9..W17, sv_c0..c27 (all Street View for MC is the Sep 2014 campus trekker; no 2023-2025 imagery exists in the folder)",
+  "around/earth_W0, W7, W10-W14, W16, W17 whole (usable); earth_W1-W6, W8, W9, W15 whole are broken renders (sky/globe)",
+  "private/earth_facade_0..3, earth_detail_0a..3c, earth_orbit_*, earth_top (Google 3D, pre-demolition of the DC bridge, so <= 2024)",
+  "private/ortho_2023aug.jpg and ortho_2026spring.jpg with walls overlaid (2026 shows the M4 site and crane)",
+  "commons/* (9, 2002-2013)",
+  "private/web/* (13: M4 construction diary 2024-10..2026-10, Flickr 2006, uwaterloo c2000s)"
+ ],
+ "orientation_key": "W0 = north end (service/loading side, faces the old DC bridge lane, now the M4 site); W1-W7 = west side facing SLC (W1/W2 NW stair tower, W3 long west face, W4-W6 SW tower, W7 = SW main entrance under the QNC bridge); W8 = south face toward QNC/C2 plaza; W9-W11 = SE block and tower; W12 = long east face over the east lawn; W13-W17 = NE tower cluster. Long axis runs NNW-SSE (bearing ~339).",
+ "colours": {
+  "main_wall": {
+   "hex": "#b9b4aa",
+   "palette": "concrete_raw",
+   "where": "board-formed / precast warm light-grey concrete on every wall face, parapet, fascia bands (sunlit W9 pier #d3cfcc, flat c2012 band #a7a2a1, overcast uw003 #837f73; midday average ~#b9b4aa; paving 1.0 and concrete_raw 2.1 Lab away)"
+  },
+  "hood_fins": {
+   "hex": "#c6c1b8",
+   "palette": "concrete",
+   "where": "the projecting window-hood fins, sills and sloped soffits catch the sun and read clearly lighter than the wall (c2012 fins #c3ccdc in blue-sky light, trapezoids #ccd1d7)"
+  },
+  "fluted_towers": {
+   "hex": "#a9a7a2",
+   "palette": "concrete_cool",
+   "where": "vertically fluted stair/service towers; the fine flute shadows darken them vs flat concrete (W9 tower #bfbfbd sunlit, W12 tower #8a7c71 low sun)"
+  },
+  "brick_infill": {
+   "hex": "#735f52",
+   "palette": "roof_mansard",
+   "where": "ground-storey infill between the piers on every side: dark purple-brown brick (W12 sunlit #755e4e, W0 #66585b, W9 shade #574334). roof_mansard is 3.8 away; a semantic alias 'brick_mc' #735f52 would be clearer but is not needed"
+  },
+  "glass": {
+   "hex": "#6f8088",
+   "palette": "window_dark",
+   "where": "all windows; hood windows usually show pale curtains so a slightly lighter blue-grey (#6c7f9c c2012, panel_navy 5.2) also works"
+  },
+  "recessed_frames": {
+   "hex": "#5a6466",
+   "palette": "prop_lamp",
+   "where": "dark bronze/black frames of the recessed level-3 glazing and the entrance storefronts"
+  },
+  "soffit_shadow": {
+   "hex": "#a9a396",
+   "palette": "concrete_shadow",
+   "where": "underside of the overhang above the brick, inside of pier bays"
+  },
+  "stair_guard": {
+   "hex": "#5a4a44",
+   "palette": "brick_charcoal_tower",
+   "where": "solid dark brown metal guard panel on the exterior stair at the NW tower (sv_W0_S1Bw)"
+  },
+  "red_steel": {
+   "hex": "#b7444c",
+   "palette": "steel_red",
+   "where": "portal frames of the MC-DC bridge at the NE corner (2014 SV; demolished 2024-25). Same colour DC's spec measured"
+  },
+  "qnc_bridge_glass": {
+   "hex": "#586b72",
+   "palette": "prop_lamp",
+   "where": "blue-grey glass of the QNC bridge behind its horizontal silver louvres (metal_silver)"
+  },
+  "pink_tie": {
+   "hex": "#e58aa0",
+   "palette": "tie_pink",
+   "where": "giant pink tie banner on the NW stair tower (2002 photo); a recurring display, absent in 2014 SV and Earth"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW (north end)",
+   "length_m": 54.7,
+   "confidence": "medium-high",
+   "summary": "north end: two continuous bands of 33 hooded windows over a plain fascia with a row of small windows, a 7 m ground storey of dark brick between 9 square concrete piers with splayed (stepped-corbel) heads; loading dock with a roller door at the east end, a free-standing low fluted-concrete service annex in front (s 12-32), the NW fluted stair tower at the west end with an exterior concrete stair",
+   "height_m": 21.5,
+   "rows": [
+    [
+     7.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     1.8,
+     "band"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     2.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "end"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "dock"
+    ],
+    [
+     1.5,
+     "dock"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "slot"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     4.0,
+     "tower"
+    ]
+   ],
+   "cells": {
+    "hood/*": {
+     "type": "window",
+     "w": 1.05,
+     "h": 2.0,
+     "sill": 1.1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "hood": {
+      "projection": 0.65,
+      "fin_w": 0.45,
+      "fin_colour": "concrete",
+      "head": 0.2,
+      "soffit": "the window box's underside slopes from 0.65 m out at the sill back to the wall face ~1.1 m lower: reads as a pale trapezoid under every window (sawtooth shadow line in raking light)",
+      "soffit_colour": "concrete"
+     },
+     "note": "tall narrow window, dark glass, often pale curtains/blinds behind (reads mid grey-blue); thin dark frame; the fins between windows are the hood sides and read near-white in sun"
+    },
+    "hood/end": null,
+    "hood/tower": null,
+    "l3/k": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.55,
+     "sill": 2.4,
+     "depth": 0.2,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "eyebrow": [
+      0.3,
+      "concrete"
+     ],
+     "note": "small square-ish window high in the plain fascia, one every second hood module (3.0 m pitch), little projecting eyebrow"
+    },
+    "l3/*": null,
+    "band/*": null,
+    "parapet/*": null,
+    "ground/h": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 0.5,
+     "glass": "roof_mansard",
+     "frame": "concrete_raw",
+     "note": "dark purple-brown brick infill flush to the underside of the overhang; set ~0.5 m behind the pier faces; one bronze wall-pack light per pier bay at ~3.5 m"
+    },
+    "ground/k": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 0.5,
+     "glass": "roof_mansard",
+     "frame": "concrete_raw",
+     "note": "dark purple-brown brick infill flush to the underside of the overhang; set ~0.5 m behind the pier faces; one bronze wall-pack light per pier bay at ~3.5 m"
+    },
+    "ground/dock": {
+     "type": "door",
+     "w": 2.9,
+     "h": 3.6,
+     "depth": 0.5,
+     "glass": "metal_silver",
+     "frame": "concrete_raw",
+     "note": "grey ribbed roller shutter (loading dock), blue dumpsters beside it (sv_W0_3m4f, 2014)"
+    },
+    "ground/slot": {
+     "type": "glass",
+     "w": 0.5,
+     "h": 6.6,
+     "depth": 0.5,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "offset": 0.4,
+     "note": "narrow full-height glazed slot beside a pier (sv_W0__YZB)"
+    },
+    "ground/end": null,
+    "*/tower": {
+     "type": "blank",
+     "colour": "concrete_cool"
+    }
+   },
+   "wall": "concrete_raw",
+   "bands": [
+    [
+     6.9,
+     7.3,
+     "concrete_shadow",
+     1.4
+    ]
+   ],
+   "overhang": {
+    "z": 7.0,
+    "depth_m": 1.4,
+    "note": "everything above the ground storey cantilevers ~1.4 m beyond the brick; pier faces stand ~0.5 m proud of the brick"
+   },
+   "piers": [
+    [
+     0.6,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     4.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     10.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     16.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     22.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     28.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     34.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     40.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     46.2,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     50.7,
+     1.2,
+     "concrete_raw",
+     0.5
+    ]
+   ],
+   "pier_shape": "square ~1.2 m concrete piers with horizontal panel joints every ~1.5 m; at the top they splay out under the overhang in 2-3 stepped corbel blocks (commons piers detail 2013), which Earth smooths into curved haunches that read like a row of shallow arches (earth_W0_whole)",
+   "towers": [
+    {
+     "s": [
+      50.7,
+      54.7
+     ],
+     "height_m": 25.8,
+     "what": "north face of the NW fluted stair tower (continues on W1/W2): blank vertically fluted concrete, flutes ~0.1 m pitch, horizontal joints every ~1.5 m; a door at +1.6 m reached by an exterior concrete stair (8-9 steps, rising west to east along the tower face) with a solid dark brown metal guard panel; a wall-pack light above the door",
+     "photo": "sv_W0_S1Bw"
+    }
+   ],
+   "signs": [
+    {
+     "s": 50.0,
+     "z": 2.2,
+     "w": 0.3,
+     "h": 0.15,
+     "text": "small room/door plates only",
+     "colour": "panel_navy",
+     "on": "pier"
+    }
+   ],
+   "attached": [
+    "2014-2024: the MC-DC bridge left just east of the a end (NE corner) heading east/north-east; demolished Nov 2024-Jan 2025",
+    "2025-2026: the M4 site starts at the a end (2026 ortho); M4 may abut the east part of this wall (unconfirmed)",
+    "SLC-side glazed bridge leaves the b end (NW corner) westward at level 2-3 (see W1)"
+   ],
+   "notes": "33 hood windows per band counted on earth_W0_whole (~1.5 m pitch); 9 piers ~5.9 m apart on the same image. The small-window row (one per 2 hoods) is clear only in sv_W0_3m4f over the loading dock; assumed for the whole wall. The service annex (fluted concrete, ~6 m tall, stepped plan ~16 x 19 m, roof equipment) sits 4-20 m out at s 12-32 and hides the ground storey there; model it as its own small building. Phase of the pier rhythm from earth_W0 (first pier s ~4.1)."
+  },
+  "W1": {
+   "faces": "SW/W (NW tower, toward SLC)",
+   "length_m": 6.8,
+   "confidence": "medium",
+   "summary": "west face of the NW stair tower: blank vertically fluted concrete to 25.8 m; the glazed SLC-side bridge leaves here at level 2-3; site of the pink tie banner",
+   "height_m": 25.8,
+   "rows": [
+    [
+     25.8,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     6.8,
+     "t"
+    ]
+   ],
+   "cells": {
+    "tower/t": null
+   },
+   "wall": "concrete_cool",
+   "flutes": {
+    "pitch_m": 0.1,
+    "depth_m": 0.04,
+    "joints_every_m": 1.5,
+    "render": "fine vertical stripe texture or grooves at 0.25-0.3 m if geometry is needed"
+   },
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 3.4,
+     "z": 10.0,
+     "w": 3.0,
+     "h": 11.0,
+     "text": "giant pink tie banner hung from the tower top (2002 photo; temporary, include only as a seasonal/Easter-egg option)",
+     "colour": "tie_pink",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "glazed bridge westward (toward SLC/PAC; 2023 and 2026 orthos, earth_facade_1) at about 5-9 m, on concrete columns"
+   ],
+   "notes": "The recess between W1 and W2 (~1.6 m deep) holds a vertical slot of small stacked windows (commons pink tie 2002, sv_W1). Earth whole renders for W1/W2 are broken."
+  },
+  "W2": {
+   "faces": "SW (NW tower second shaft)",
+   "length_m": 5.5,
+   "confidence": "medium",
+   "summary": "second, slightly lower fluted shaft of the NW tower pair; slot of small windows in the re-entrant between the shafts; ground: glazed door with steps at its south side (sv_W1)",
+   "height_m": 24.5,
+   "rows": [
+    [
+     24.5,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     5.5,
+     "t"
+    ]
+   ],
+   "cells": {
+    "tower/t": null
+   },
+   "wall": "concrete_cool",
+   "notes": "Height ~1-1.5 m below the W1 shaft (pink tie photo shows two shafts of different heights). The short hood wing between the NW tower and the W3 face carries 2 bands of 2-3 hoods (sv_W1, earth_facade_0)."
+  },
+  "W3": {
+   "faces": "SW (long west face, toward SLC)",
+   "length_m": 44.3,
+   "confidence": "high",
+   "summary": "long west face between the NW and SW fluted towers: two bands of 28 hooded windows, plain band, a recessed ribbon of level-3 glazing behind the pier line, 7 m ground storey of dark brick panels between 8 square piers each flanked by a narrow dark glass slot; bike racks along the whole base, lawn with trees, paver walk",
+   "height_m": 21.5,
+   "rows": [
+    [
+     7.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     1.8,
+     "band"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     2.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "end"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "end"
+    ]
+   ],
+   "cells": {
+    "hood/*": {
+     "type": "window",
+     "w": 1.05,
+     "h": 2.0,
+     "sill": 1.1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "hood": {
+      "projection": 0.65,
+      "fin_w": 0.45,
+      "fin_colour": "concrete",
+      "head": 0.2,
+      "soffit": "the window box's underside slopes from 0.65 m out at the sill back to the wall face ~1.1 m lower: reads as a pale trapezoid under every window (sawtooth shadow line in raking light)",
+      "soffit_colour": "concrete"
+     },
+     "note": "tall narrow window, dark glass, often pale curtains/blinds behind (reads mid grey-blue); thin dark frame; the fins between windows are the hood sides and read near-white in sun"
+    },
+    "hood/end": null,
+    "l3/*": {
+     "type": "glass",
+     "w": 1.0,
+     "h": 2.1,
+     "sill": 1.0,
+     "depth": 1.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "note": "recessed ribbon of storey glazing behind the pier line above a solid concrete spandrel (~1.0 m); pale curtains"
+    },
+    "l3/end": null,
+    "band/*": null,
+    "parapet/*": null,
+    "ground/*": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 0.5,
+     "glass": "roof_mansard",
+     "frame": "concrete_raw",
+     "note": "dark purple-brown brick infill flush to the underside of the overhang; set ~0.5 m behind the pier faces; one bronze wall-pack light per pier bay at ~3.5 m"
+    },
+    "ground/end": null
+   },
+   "wall": "concrete_raw",
+   "bands": [
+    [
+     6.9,
+     7.3,
+     "concrete_shadow",
+     1.4
+    ],
+    [
+     7.0,
+     8.0,
+     "concrete_raw",
+     0.3
+    ]
+   ],
+   "overhang": {
+    "z": 7.0,
+    "depth_m": 1.4
+   },
+   "piers": [
+    [
+     3.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     9.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     15.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     21.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     27.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     33.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ],
+    [
+     39.8,
+     1.2,
+     "concrete_raw",
+     0.5
+    ]
+   ],
+   "slots": [
+    [
+     2.95,
+     0.35,
+     "window_dark"
+    ],
+    [
+     8.95,
+     0.35,
+     "window_dark"
+    ],
+    [
+     14.95,
+     0.35,
+     "window_dark"
+    ],
+    [
+     20.95,
+     0.35,
+     "window_dark"
+    ],
+    [
+     26.95,
+     0.35,
+     "window_dark"
+    ],
+    [
+     32.95,
+     0.35,
+     "window_dark"
+    ],
+    [
+     38.95,
+     0.35,
+     "window_dark"
+    ]
+   ],
+   "pier_shape": "square ~1.2 m piers rising through the ground and level 3 to the band under the hoods (~10.6 m), same stepped heads as W0",
+   "signs": [],
+   "attached": [],
+   "notes": "Rows measured on sv_W3_lNDV (bikes 1 m for scale: brick top ~7 m, recessed glazing 7-10.5, band 10.5-12.5, hoods 12.5-19, parapet 19-21.5). Hood count from earth_facade_0 and the module (~28-29). Pier phase is a guess (s ~3.8 + 6k). The dark glass slots sit on one side of each pier (sv_W3_BG_g1); slots listed as [s, width, colour]."
+  },
+  "W5": {
+   "faces": "SW (SW tower)",
+   "length_m": 6.4,
+   "confidence": "medium",
+   "summary": "SW fluted stair tower face toward the SLC lawn: blank fluted concrete to 25.8 m, a small steel door at grade; Alumni Lane sign and a boulder in front",
+   "height_m": 25.8,
+   "rows": [
+    [
+     25.8,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     6.4,
+     "t"
+    ]
+   ],
+   "cells": {
+    "tower/t": null
+   },
+   "wall": "concrete_cool",
+   "notes": "sv_W5, sv_c10. W4 (4.9 m, faces NW) is the tower's north return: same fluted concrete."
+  },
+  "W6": {
+   "faces": "SE (south face of the SW tower, onto the entrance plaza)",
+   "length_m": 12.2,
+   "confidence": "medium-high",
+   "summary": "fluted tower face (west ~6 m) then the side of the main SW entrance: wide concrete stairs with galvanised rails climbing east toward the doors, under the QNC bridge",
+   "height_m": 25.8,
+   "rows": [
+    [
+     25.8,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     6.0,
+     "t"
+    ],
+    [
+     6.2,
+     "stair"
+    ]
+   ],
+   "cells": {
+    "tower/t": null,
+    "tower/stair": null
+   },
+   "wall": "concrete_cool",
+   "notes": "sv_W6: a tall two-shaft fluted tower with a dark slot between shafts; to the right the stair (about 10 risers, ~1.7 m) and two brown metal doors at the top landing; QNC bridge soffit overhead."
+  },
+  "W7": {
+   "faces": "SW (main SW entrance under the QNC bridge)",
+   "length_m": 15.5,
+   "confidence": "high",
+   "summary": "main south-west entrance: a broad flight of ~10 concrete steps (three galvanised handrails) up to a recessed glazed vestibule (two pairs of glass doors with a glazed transom), set under the building and under the glazed louvred QNC bridge that runs along this face and on south to QNC; above, two bands of 6 hooded windows",
+   "height_m": 21.5,
+   "rows": [
+    [
+     1.7,
+     "plinth"
+    ],
+    [
+     3.3,
+     "entry"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     2.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "end"
+    ],
+    [
+     3.0,
+     "side"
+    ],
+    [
+     5.0,
+     "doors"
+    ],
+    [
+     3.0,
+     "panel"
+    ],
+    [
+     3.0,
+     "side"
+    ]
+   ],
+   "cells": {
+    "plinth/*": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "entry/doors": {
+     "type": "door",
+     "w": 4.6,
+     "h": 3.0,
+     "mullions": 3,
+     "transoms": 1,
+     "depth": 3.0,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "note": "recessed ~3 m under the building; reached by the stair"
+    },
+    "entry/panel": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 3.0,
+     "glass": "prop_wood",
+     "note": "warm brown wall panel beside the doors (sv_W7; wood or brick, uncertain)"
+    },
+    "entry/*": {
+     "type": "blank",
+     "colour": "concrete_shadow"
+    },
+    "l2/*": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "l3/*": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "hood/*": {
+     "type": "window",
+     "w": 1.05,
+     "h": 2.0,
+     "sill": 1.1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "hood": {
+      "projection": 0.65,
+      "fin_w": 0.45,
+      "fin_colour": "concrete",
+      "head": 0.2,
+      "soffit": "the window box's underside slopes from 0.65 m out at the sill back to the wall face ~1.1 m lower: reads as a pale trapezoid under every window (sawtooth shadow line in raking light)",
+      "soffit_colour": "concrete"
+     },
+     "note": "tall narrow window, dark glass, often pale curtains/blinds behind (reads mid grey-blue); thin dark frame; the fins between windows are the hood sides and read near-white in sun"
+    },
+    "hood/end": null,
+    "parapet/*": null
+   },
+   "wall": "concrete_raw",
+   "stairs": {
+    "s": [
+     3.0,
+     12.0
+    ],
+    "rise_m": 1.7,
+    "steps": 10,
+    "depth_m": 4.5,
+    "rails": "3 galvanised pipe handrails",
+    "colour": "concrete_shadow"
+   },
+   "bands": [],
+   "piers": [],
+   "attached": [
+    "QNC bridge (2012): one enclosed storey, floor ~5.5 m, top ~9.5 m, running along this face ~2-3 m out and on SSE to QNC; glazed with horizontal silver louvres over blue-grey glass, steel X-bracing visible inside, flat grey soffit; carried on round concrete columns (~0.9 m, one ~9 m out at s ~13)"
+   ],
+   "notes": "sv_W7_poDO (Sep 2014) is the best view; earth_W7_whole shows 2 x 6 hoods above. The hood count/row heights above the bridge are approximate. The Flickr 2006 night photos (wide steps, glazed doors under a heavy overhang with tall fins) are probably this entrance."
+  },
+  "W8": {
+   "faces": "SE (south face, toward QNC and the C2 plaza)",
+   "length_m": 49.6,
+   "confidence": "medium-high",
+   "summary": "south face: two bands of ~30 hooded windows, a plain fascia with ~15 small eyebrowed windows, a recessed storey behind a long cantilevered balcony parapet at level 2, and a recessed ground storey of dark brick with a glazed entrance at the west end beside the QNC bridge column; bike racks and a service drive along the base",
+   "height_m": 21.5,
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     0.8,
+     "band"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     2.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "end"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "entry"
+    ],
+    [
+     1.5,
+     "entry"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     0.6,
+     "end"
+    ]
+   ],
+   "cells": {
+    "hood/*": {
+     "type": "window",
+     "w": 1.05,
+     "h": 2.0,
+     "sill": 1.1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "hood": {
+      "projection": 0.65,
+      "fin_w": 0.45,
+      "fin_colour": "concrete",
+      "head": 0.2,
+      "soffit": "the window box's underside slopes from 0.65 m out at the sill back to the wall face ~1.1 m lower: reads as a pale trapezoid under every window (sawtooth shadow line in raking light)",
+      "soffit_colour": "concrete"
+     },
+     "note": "tall narrow window, dark glass, often pale curtains/blinds behind (reads mid grey-blue); thin dark frame; the fins between windows are the hood sides and read near-white in sun"
+    },
+    "hood/end": null,
+    "l3/k": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.55,
+     "sill": 2.4,
+     "depth": 0.2,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "eyebrow": [
+      0.3,
+      "concrete"
+     ],
+     "note": "small square-ish window high in the plain fascia, one every second hood module (3.0 m pitch), little projecting eyebrow"
+    },
+    "l3/*": null,
+    "l2/*": {
+     "type": "glass",
+     "w": 1.0,
+     "h": 2.0,
+     "sill": 1.3,
+     "depth": 1.6,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "note": "dark recessed storey seen over the balcony parapet"
+    },
+    "l2/end": null,
+    "ground/*": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 1.6,
+     "glass": "roof_mansard",
+     "frame": "concrete_raw",
+     "note": "brick wall set ~1.6 m back under the balcony"
+    },
+    "ground/entry": {
+     "type": "door",
+     "w": 2.8,
+     "h": 3.0,
+     "mullions": 2,
+     "transoms": 1,
+     "depth": 1.6,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "note": "glazed doors with warm-lit lobby (sv_W8_S9M3)"
+    },
+    "ground/end": null,
+    "band/*": null,
+    "parapet/*": null
+   },
+   "wall": "concrete_raw",
+   "bands": [
+    [
+     4.4,
+     5.6,
+     "concrete_raw",
+     1.6
+    ]
+   ],
+   "balcony": {
+    "z": [
+     4.4,
+     5.6
+    ],
+    "projection_m": 1.6,
+    "s": [
+     1.0,
+     49.0
+    ],
+    "note": "continuous solid concrete balcony parapet ~1.2 m tall, its face 1.6 m in front of the brick; soffit pale (sv_W8_S9M3, sv_c14, earth_facade_3)"
+   },
+   "piers": [
+    [
+     0.6,
+     1.4,
+     "concrete_raw",
+     0.3
+    ]
+   ],
+   "signs": [],
+   "attached": [
+    "QNC bridge column (round concrete) stands ~6 m out near s 1; the bridge itself runs along W7 and south from the SW corner"
+   ],
+   "notes": "Row heights from earth_facade_3 (parapet 2.3, hoods 7.4, band 1.2, small-window fascia 3.4, recess 0.9, balcony 2.3, ground 3.9; sums to 21.4) cross-checked against sv_c14. Hoods counted ~28 visible in earth_facade_3; the 1.5 m module gives 32 (the east tower clips a few). An east-end stair entrance with a red folded-steel sculpture under this face appears in the c2000s uwaterloo photo (and a delivery truck in commons 2004); not visible in 2014 SV, so not modelled. No free-standing pier arcade on this face."
+  },
+  "W9": {
+   "faces": "NE/E (east face of the SE block)",
+   "length_m": 14.0,
+   "confidence": "medium",
+   "summary": "short east-facing piece south of the SE tower: two big square piers with stepped heads and dark brick infill under a deep overhang; ~8 hooded windows per band above (earth_facade_2 left edge); low concrete planter wall, river-stone cobble strip with green wave bike racks",
+   "height_m": 21.5,
+   "rows": [
+    [
+     7.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     1.8,
+     "band"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     2.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "end"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ]
+   ],
+   "cells": {
+    "hood/*": {
+     "type": "window",
+     "w": 1.05,
+     "h": 2.0,
+     "sill": 1.1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "hood": {
+      "projection": 0.65,
+      "fin_w": 0.45,
+      "fin_colour": "concrete",
+      "head": 0.2,
+      "soffit": "the window box's underside slopes from 0.65 m out at the sill back to the wall face ~1.1 m lower: reads as a pale trapezoid under every window (sawtooth shadow line in raking light)",
+      "soffit_colour": "concrete"
+     },
+     "note": "tall narrow window, dark glass, often pale curtains/blinds behind (reads mid grey-blue); thin dark frame; the fins between windows are the hood sides and read near-white in sun"
+    },
+    "hood/end": null,
+    "l3/*": null,
+    "band/*": null,
+    "parapet/*": null,
+    "ground/*": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 0.5,
+     "glass": "roof_mansard",
+     "frame": "concrete_raw",
+     "note": "dark purple-brown brick infill flush to the underside of the overhang; set ~0.5 m behind the pier faces; one bronze wall-pack light per pier bay at ~3.5 m"
+    },
+    "ground/end": null
+   },
+   "wall": "concrete_raw",
+   "piers": [
+    [
+     0.7,
+     1.4,
+     "concrete_raw",
+     0.6
+    ],
+    [
+     6.8,
+     1.4,
+     "concrete_raw",
+     0.6
+    ],
+    [
+     12.8,
+     1.4,
+     "concrete_raw",
+     0.6
+    ]
+   ],
+   "notes": "sv_W9 (2014). Hood count on this short face is uncertain (4-9)."
+  },
+  "W11": {
+   "faces": "NE (SE tower cluster)",
+   "length_m": 6.1,
+   "confidence": "medium",
+   "summary": "SE fluted tower (cluster of 2-3 shafts of different heights with W10): blank fluted concrete with a dark vertical slot window strip in the re-entrant; at its base a galvanised-railed ramp descends to a basement steel door",
+   "height_m": 25.8,
+   "rows": [
+    [
+     25.8,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     6.1,
+     "t"
+    ]
+   ],
+   "cells": {
+    "tower/t": null
+   },
+   "wall": "concrete_cool",
+   "notes": "sv_W11, sv_c19/c20, sv_W9. W10 (5.3 m, faces SE) is the same tower."
+  },
+  "W12": {
+   "faces": "NE (long east face over the east lawn)",
+   "length_m": 45.5,
+   "confidence": "medium",
+   "summary": "long east face between the SE and NE tower clusters: two bands of ~29 hooded windows, plain fascia, a tall ground zone of dark brick between alternating big wedge piers (wider at the top) and slim piers; lawn with a row of horse chestnuts and a blue spruce, planter box at the south end",
+   "height_m": 21.5,
+   "rows": [
+    [
+     7.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     1.8,
+     "band"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     3.3,
+     "hood"
+    ],
+    [
+     2.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "end"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.5,
+     "h"
+    ],
+    [
+     1.5,
+     "k"
+    ],
+    [
+     1.2,
+     "end"
+    ]
+   ],
+   "cells": {
+    "hood/*": {
+     "type": "window",
+     "w": 1.05,
+     "h": 2.0,
+     "sill": 1.1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "concrete",
+     "hood": {
+      "projection": 0.65,
+      "fin_w": 0.45,
+      "fin_colour": "concrete",
+      "head": 0.2,
+      "soffit": "the window box's underside slopes from 0.65 m out at the sill back to the wall face ~1.1 m lower: reads as a pale trapezoid under every window (sawtooth shadow line in raking light)",
+      "soffit_colour": "concrete"
+     },
+     "note": "tall narrow window, dark glass, often pale curtains/blinds behind (reads mid grey-blue); thin dark frame; the fins between windows are the hood sides and read near-white in sun"
+    },
+    "hood/end": null,
+    "l3/*": {
+     "type": "glass",
+     "w": 1.0,
+     "h": 2.1,
+     "sill": 1.0,
+     "depth": 1.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "note": "recessed ribbon of storey glazing behind the pier line above a solid concrete spandrel (~1.0 m); pale curtains"
+    },
+    "l3/end": null,
+    "band/*": null,
+    "parapet/*": null,
+    "ground/*": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "depth": 0.5,
+     "glass": "roof_mansard",
+     "frame": "concrete_raw",
+     "note": "dark purple-brown brick infill flush to the underside of the overhang; set ~0.5 m behind the pier faces; one bronze wall-pack light per pier bay at ~3.5 m"
+    },
+    "ground/end": null
+   },
+   "wall": "concrete_raw",
+   "bands": [
+    [
+     6.9,
+     7.3,
+     "concrete_shadow",
+     1.4
+    ]
+   ],
+   "piers": [
+    [
+     3.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     9.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     15.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     21.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     27.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     33.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     39.8,
+     1.4,
+     "concrete_raw",
+     0.8
+    ],
+    [
+     6.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ],
+    [
+     12.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ],
+    [
+     18.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ],
+    [
+     24.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ],
+    [
+     30.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ],
+    [
+     36.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ],
+    [
+     42.8,
+     0.45,
+     "concrete_raw",
+     0.3
+    ]
+   ],
+   "pier_shape": "main piers are wedges: ~1.0 m wide at the ground widening to ~1.8 m under the overhang, ~1.5-2 m deep, with horizontal joints; slim 0.45 m piers mark the brick panel edges, with dark glass slots beside them (sv_W12_WRz)",
+   "attached": [
+    "the M4 site and its tower crane lie off the north half of this face in 2026 (ortho_2026spring); M4 abuts the NE tower cluster (web m4ctx026, Oct 2026)"
+   ],
+   "notes": "Hoods: ~29 per band on earth_W12_whole. The level-3 storey is hidden by trees in every view; the c2012 commons view (probably this face or W3) shows tall dark recessed glazing at that level, so L3_GLAZING is assumed. Pier phase and the slim/wedge alternation are uncertain (only the south third is clear in sv_W12_WRz)."
+  },
+  "W13": {
+   "faces": "SE/NE/NW (W13-W17: NE tower cluster)",
+   "length_m": 6.8,
+   "confidence": "low-medium",
+   "summary": "NE corner: a projecting fluted stair tower (W13-W15, ~6.5 m square) plus the return faces W16/W17, rising to ~25.8 m; blank fluted concrete with a dark slot strip; until 2024 the two-storey MC-DC bridge on red steel portals left beside it; from 2025 the M4 building abuts here",
+   "height_m": 25.8,
+   "rows": [
+    [
+     25.8,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     6.8,
+     "t"
+    ]
+   ],
+   "cells": {
+    "tower/t": null
+   },
+   "wall": "concrete_cool",
+   "applies_to": [
+    "W13",
+    "W14",
+    "W15",
+    "W16",
+    "W17"
+   ],
+   "notes": "sv_W13..W17, sv_c21..c27 (2014). Earth W14/W17 renders show fluted shafts. Which faces are now covered by M4 is not confirmed; m4ctx026 shows M4's upper box meeting a hooded MC face next to a fluted tower."
+  }
+ },
+ "roof": [
+  {
+   "what": "main roof",
+   "where": "flat membrane at 21.5 m, grey with dark staining; low parapet upstand",
+   "colour": "roof_light"
+  },
+  {
+   "what": "raised square skylight / lantern over the skylit court",
+   "where": "art centre ~(881, 359), north-central",
+   "size_m": [
+    12,
+    12,
+    1.5
+   ],
+   "colour": "roof_membrane (glazed top reads near-white, #e4e2dc in ortho)",
+   "note": "lidar court at 18-19 m; ortho_2023aug"
+  },
+  {
+   "what": "sunken court (open-air, 4 dark roof panels at its floor)",
+   "where": "art centre ~(895, 333), east-central",
+   "size_m": [
+    19,
+    19,
+    -7.5
+   ],
+   "note": "court floor at ~14 m (lidar); walls of the court show hood rows (earth_detail_3c / orbit)"
+  },
+  {
+   "what": "row of 6 slot skylights",
+   "where": "parallel to W8, ~6-10 m inside it, from art (890, 303) to (922, 317)",
+   "size_m": [
+    35,
+    3.5,
+    0.6
+   ],
+   "colour": "window_dark frames in concrete upstands"
+  },
+  {
+   "what": "rooftop penthouses / tower tops (blank concrete boxes to 25.8-26.3 m)",
+   "where": "art centres ~(865, 351) 13x13 m, (854, 358) 8x6, (897, 367) 15x15, (913, 335) 15x15, (881, 318) 15x15, (877, 305) SW tower group",
+   "size_m": [
+    15,
+    15,
+    4.5
+   ],
+   "colour": "concrete_raw with roof_light tops"
+  },
+  {
+   "what": "condenser / chiller pad (3-4 white fan units + grey box, ducts)",
+   "where": "NE, art ~(880-894, 371-380), beside the north parapet",
+   "size_m": [
+    13,
+    7,
+    2.0
+   ],
+   "colour": "panel_white units, metal_silver ducts"
+  },
+  {
+   "what": "small antenna mast pair",
+   "where": "top of a penthouse near the middle of the W8/W12 corner side (commons 2004, uw003)",
+   "size_m": [
+    0.3,
+    0.3,
+    2.0
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "QNC",
+    "from_wall": "W7",
+    "s": [
+     0,
+     15.5
+    ],
+    "levels": [
+     2
+    ],
+    "dates": "built 2012; SV 2014, Earth <=2024, ortho 2023 and 2026 all show it",
+    "look": "enclosed glazed bridge, horizontal silver louvres over blue-grey glass, X-bracing inside, flat grey soffit, round concrete columns; runs along W7 then SSE ~25 m to QNC's north side"
+   },
+   {
+    "to": "SLC/PAC side (west)",
+    "from_wall": "W1 (NW corner, W0 b end)",
+    "s": [
+     0,
+     6.8
+    ],
+    "levels": [
+     2,
+     3
+    ],
+    "dates": "ortho 2023 and 2026, earth_facade_1 (<=2024), web m4ctx005 (2025-06)",
+    "look": "long glazed bridge heading WNW on concrete columns"
+   },
+   {
+    "to": "DC",
+    "from_wall": "NE corner (W15-W17)",
+    "levels": [
+     2,
+     3
+    ],
+    "dates": "present in SV Sep 2014 and Google Earth; demolished Nov 2024-Jan 2025 (web notes); gone in ortho_2026spring",
+    "look": "two storeys: glazing over a beige ribbed metal fascia, black band, pale soffit; on red round-column steel portal frames with red cross beams plus a round concrete column; bins and a service/parking lane under it",
+    "status": "DEMOLISHED - do not model in the current campus"
+   },
+   {
+    "to": "M3 (probable)",
+    "from_wall": "NE corner heading north",
+    "dates": "a narrow link at art x ~897-906 running north in ortho_2023aug; absorbed by the M4 site in 2026",
+    "look": "unknown; low confidence"
+   }
+  ],
+  "neighbours": [
+   "M4 (under construction 2024-2026): abuts MC at the NE corner and spreads north/east over the old DC-bridge lane and the north part of the east lawn (ortho_2026spring roof at art x ~889-930+, y >= 389; tower crane ~(933, 385)). Oct 2026: open ground floor on round concrete columns, a glazed storey, then a 2-storey box with punched windows in blue air-barrier sheathing (final cladding unknown) meeting a hooded MC face beside a fluted tower (web m4ctx013/016/026)",
+   "low fluted-concrete service annex in front of W0 (s 12-32, 4-20 m out), ~6 m, stepped plan, roof equipment",
+   "SLC to the west across the lawn and the paver walk",
+   "QNC to the south (bridge from W7)",
+   "C2 to the east/south-east (stepped brown-brick terraces)",
+   "DC to the north-east (bridge demolished)",
+   "M3 to the north"
+  ],
+  "ground": [
+   "grey concrete square-cut interlocking pavers in a 2-3 m strip along W0, W3, W12 bases (bike parking) and over the whole SW entrance plaza (W6-W7) and along W8",
+   "lawns with trees off W3 (west, to the SLC walk) and W12 (east lawn), and a strip north-west of W0",
+   "asphalt service lane and parking off the east part of W0 (loading dock; 2014 Coca-Cola truck) - M4 site in 2026",
+   "river-stone cobble strip with bike racks at W9",
+   "red-brick paved mini-plaza with a pool and sculpture east of the SE corner",
+   "a sunken areaway with a concrete retaining wall and galvanised railing near the middle of W0 (sv_W0_3BZ4; position approximate)"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised low grid/wave racks on pavers",
+    "where": "along W0, s 28-50, 1 m out",
+    "count": 6,
+    "photo": "sv_W0__YZB, sv_W0_3BZ4"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised low racks between piers",
+    "where": "along W3, s 3-42, 1 m out",
+    "count": 12,
+    "photo": "sv_W3_BG_g1, sv_W3_lNDV"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "green wave racks",
+    "where": "along W12, s 6-20, 1 m out",
+    "count": 4,
+    "photo": "sv_W12_WRz"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised racks",
+    "where": "along W8, s 4-22, 1 m out",
+    "count": 8,
+    "photo": "sv_W8_S9M3, sv_c14"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "green wave racks on river-stone cobbles",
+    "where": "W9, s 0-9, 1-2 m out",
+    "count": 4,
+    "photo": "sv_W9"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised racks",
+    "where": "SW plaza east of the W7 stair, ~6 m out from W7 s 13-15",
+    "count": 3,
+    "photo": "sv_W7"
+   },
+   {
+    "type": "dumpster",
+    "kind": "blue front-load bins",
+    "where": "W0 s 7-10, 1 m out by the loading door",
+    "count": 2,
+    "photo": "sv_W0_3m4f (2014)"
+   },
+   {
+    "type": "planter",
+    "kind": "raised concrete box (~1.6 x 1.0 x 0.8 m) with shrubs",
+    "where": "W12 s ~5, 0.5 m out",
+    "count": 1,
+    "photo": "sv_W12_WRz"
+   },
+   {
+    "type": "shrub",
+    "kind": "dense yew/juniper",
+    "where": "W12 s ~2, 3 m out; junipers in mulch around the W0 annex",
+    "count": 3,
+    "photo": "sv_W12_WRz, sv_W0_3m4f"
+   },
+   {
+    "type": "tree",
+    "kind": "horse chestnut (white candles in May) row",
+    "where": "off W12, s 10-42, 5-10 m out",
+    "count": 6,
+    "photo": "sv_W12_e6/eQ3/jXGP, commons c2012"
+   },
+   {
+    "type": "tree",
+    "kind": "blue spruce",
+    "where": "off W0 s ~38, 6 m out; another off W12 north end",
+    "count": 2,
+    "photo": "sv_W0_3BZ4, sv_W13"
+   },
+   {
+    "type": "tree",
+    "kind": "white pine",
+    "where": "off W0 s ~45, 7 m out",
+    "count": 1,
+    "photo": "sv_W0__YZB"
+   },
+   {
+    "type": "tree",
+    "kind": "deciduous (honey locust, maples) on the west lawn",
+    "where": "off W3, s 5-44, 5-12 m out",
+    "count": 7,
+    "photo": "sv_W3_*"
+   },
+   {
+    "type": "bollard",
+    "kind": "short square timber post",
+    "where": "W3 lawn at the path edge, s ~10 and ~35, ~11 m out",
+    "count": 2,
+    "photo": "sv_W3_lNDV, sv_W3_BG_g1"
+   },
+   {
+    "type": "sign",
+    "kind": "'ALUMNI LANE' routed timber board on two posts",
+    "where": "in front of W5, ~5 m out",
+    "count": 1,
+    "photo": "sv_W5"
+   },
+   {
+    "type": "rock",
+    "kind": "large limestone boulder",
+    "where": "W5 path edge ~3 m out; W8 s ~2, 7 m out",
+    "count": 2,
+    "photo": "sv_W5, sv_W8_S9M3"
+   },
+   {
+    "type": "wayfinding",
+    "kind": "black post with white blade signs",
+    "where": "path junction west of the SW tower (W4/W5), ~12 m out",
+    "count": 1,
+    "photo": "sv_c10, commons pink tie 2002"
+   },
+   {
+    "type": "lamp",
+    "kind": "slim black pole with a flat disc cap",
+    "where": "along the walks off W12 north end and W3; ~25 m spacing",
+    "count": 4,
+    "photo": "sv_W15, commons c2012/2004"
+   },
+   {
+    "type": "art",
+    "kind": "dark bronze ovoid sculpture in a small rectangular pool, red-brick plaza with concrete bench walls and galvanised rails",
+    "where": "east of the SE corner, art ~(940, 306)",
+    "count": 1,
+    "photo": "sv_c14, ortho_2023aug"
+   },
+   {
+    "type": "bin",
+    "kind": "blue recycling carts",
+    "where": "under the (demolished) DC bridge at the NE corner - 2014 only",
+    "count": 0,
+    "photo": "sv_W15, sv_c26"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised ramp railing to a basement door",
+    "where": "along the base of W10/W11 (SE tower)",
+    "count": 1,
+    "photo": "sv_W9, sv_c17"
+   }
+  ]
+ },
+ "notes": "All Street View of MC is Sep 2014 (campus trekker) - nothing from 2023-2025 in the folder; Google 3D predates the DC bridge demolition. The 2026 spring ortho and the 2024-26 M4 construction diary are the only post-2024 sources. Universal section (from sv_W3_lNDV, earth_facade_3, commons c2012): parapet ~2.5 m; two hood storeys ~3.3 m each (window 2.0 m tall between near-white fins at 1.5 m pitch, pale sloped soffit trapezoid under each); plain band; level 3 either recessed glazing (W3, W12) or a fascia with small windows at 3 m pitch (W0, W8); ground zone of dark brick behind square piers at 6.0 m (4 hoods per pier bay), W8 instead has a continuous level-2 balcony parapet and no pier arcade. Fluted towers rise ~4.3 m above the main roof at NW (W1/W2), SW (W4-W6), SE (W10/W11) and NE (W13-W17); flutes are fine (~0.1 m) with horizontal joints every ~1.5 m, and a dark slot window strip sits in each re-entrant. web/mc_m4ctx009 is mislabelled: it shows a tan horizontally banded neighbour behind the M4 frame, not MC."
+}

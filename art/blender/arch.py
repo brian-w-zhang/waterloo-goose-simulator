@@ -519,6 +519,9 @@ def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
     t = (cell or {}).get("type")
     if t == "void":
         return                                   # open: nothing drawn (passages under bridges)
+    if t == "panel" and cell.get("glass") and cell.get("depth"):
+        cell = {**cell, "type": "window", "w": cell.get("w", 1.0), "h": cell.get("h", 1.0), "sill": cell.get("sill", 0.0)}
+        t = "window"                          # a recessed infill panel (MC's brick behind the piers)
     if not cell or t in ("blank", "panel", "solid_to"):
         kit.quad(P(s0, z0), P(s1, z0), P(s1, z1), P(s0, z1), (cell or {}).get("colour", wall))
         return
@@ -580,6 +583,21 @@ def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
         for j in range(1, int((y1 - y0) / 0.25)):
             yy = y0 + j * 0.25
             kit.quad(P(x0, yy) + off * 0.3, P(x1, yy) + off * 0.3, P(x1, yy + 0.06) + off * 0.3, P(x0, yy + 0.06) + off * 0.3, frame)
+    if cell.get("hood"):
+        # a projecting window box (MC): fins either side, a head on top and a soffit sloping back
+        # from the sill line down to the wall face
+        hd = cell["hood"]
+        pr, fw = hd.get("projection", 0.6), hd.get("fin_w", 0.4)
+        fc = hd.get("fin_colour", frame)
+        sc = hd.get("soffit_colour", fc)
+        o = n * pr
+        for xa, xb in ((x0 - fw, x0), (x1, x1 + fw)):
+            xa, xb = max(xa, s0), min(xb, s1)
+            if xb - xa > 0.02:
+                _band(kit, P, n, xa, xb, y0 - 0.1, y1 + hd.get("head", 0.2), fc, pr)
+        _band(kit, P, n, max(x0 - fw, s0), min(x1 + fw, s1), y1, y1 + hd.get("head", 0.2), fc, pr)
+        drop = min(1.1, y0 - z0)
+        kit.quad(P(x0, y0) + o, P(x1, y0) + o, P(x1, y0 - drop), P(x0, y0 - drop), sc)
     if cell["type"] == "door" and cell.get("canopy"):
         cd, cc = cell["canopy"]
         _band(kit, P, n, x0 - 0.4, x1 + 0.4, y1 + 0.15, y1 + 0.35, cc, cd)

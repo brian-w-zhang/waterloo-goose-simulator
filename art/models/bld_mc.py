@@ -10,8 +10,11 @@ ring of square stair and plant towers to 25.8-26.3 m, and a row of slot skylight
 Facades: every office floor is a band of tall narrow windows between deep concrete fins under a
 projecting hood; the towers are blank with vertical flutes.
 """
+from mathutils import Vector
+
 import arch
 import data
+import spec as fspec
 
 META = {"world": True, "replaces": []}
 AXIS = (-0.3503, 0.9366)
@@ -30,16 +33,30 @@ def build():
     parts = data.building_parts("MC")
     META["replaces"] = sorted({p["objectid"] for p in parts})
     k = arch.Kit("bld_mc")
-    for tier in data.lidar_massing("MC", source="ndsm", simplify=0.8, merge_dh=1.2, min_area=10, min_width=2.0, axis=list(AXIS)):
+    # walls from the photo-read spec (docs/refs/buildings/mc/facades.json); courts and setbacks
+    # that no photo shows take the west face's hood rows
+    fac, walls = data.facades("docs/refs/buildings/mc")
+    specs = {wid: fspec.to_facade(w) for wid, w in fac["walls"].items()}
+    # the photos' concrete reads cool grey; concrete_raw renders beige under the game's warm sun
+    for sp in specs.values():
+        if sp and sp["wall"] == "concrete_raw":
+            sp["wall"] = "concrete_cool"
+    default = specs["W3"]
+    tower = {"rows": [(40.0, "t")], "bays": "f", "bay_w": 0.9, "repeat": True, "wall": "concrete_cool",
+             "cells": {("t", "f"): {"type": "window", "w": 0.4, "h": "full", "depth": 0.12, "glass": "concrete_cool", "frame": "concrete_deep"}}}
+    for tier in data.lidar_massing("MC", source="ndsm", simplify=0.8, merge_dh=1.0, min_area=10, min_width=2.0, axis=list(AXIS)):
         gy, h = tier["ground_y"], tier["h"]
-        z0, z1 = gy - 1.5, gy + h
-        if h > 23.5:            # stair and plant towers: blank fluted concrete
-            k.tier(tier, z0, z1, "concrete_cool", "roof_light", windows={**FLUTES, "h": z1 - z0 - 0.6, "storey": z1 - z0})
-        elif h > 12:            # office floors with window hoods; ground floor glazing set back behind piers
-            k.tier(tier, gy + 3.6, z1, "concrete_cool", "roof_light", windows=HOODS)
-            ring = tier["rings"][0]
-            for i in range(len(ring)):
-                k.wall(ring[i], ring[(i + 1) % len(ring)], z0, gy + 3.6, "concrete_cool", windows=GROUND)
-        else:                   # low wings, links and court roofs
-            k.tier(tier, z0, z1, "concrete_cool", "roof_light", windows=GROUND if h > 3 else None)
+        z1 = gy + h
+        for r in [tier["rings"][0]] + tier.get("holes", []):
+            if h > 23.5:
+                fspec.draw_outline(k, r, gy, z1, [], {}, tower)          # fluted stair and plant towers
+            elif h > 12:
+                fspec.draw_outline(k, r, gy, z1, walls, specs, default)
+            else:
+                fspec.draw_outline(k, r, gy, z1, [], {}, {"rows": [(h, "x")], "bays": "x", "wall": "concrete_raw", "cells": {}})
+        for t in tier["tris"]:
+            A, B, C = (Vector((x, y, z1)) for x, y in t)
+            if (B - A).cross(C - A).z < 0:
+                B, C = C, B
+            k.face([A, B, C], "roof_light")
     return [k.finish()]

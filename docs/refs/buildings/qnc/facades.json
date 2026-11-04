@@ -1,0 +1,2171 @@
+{
+ "building": "QNC",
+ "sources_checked": [
+  "around/sv_W0_3-v1Y7dp_fyk8J2rTPZJgw (Sep 2014)",
+  "around/sv_W0_X6wIs-Lsbz-2DHiVbiALng (Sep 2014)",
+  "around/sv_W0_grGheoesd1a-BLajonXilw (Sep 2014)",
+  "around/sv_W0_aHZ_UZ7jxdRoQyJeEQtSNA",
+  "around/sv_W0_sln8qxQeSgrh4dhrhJYadw",
+  "around/sv_W0_gW0j6I0ghc90l7FHhjnNyg",
+  "around/sv_W1_JV7uOtujqHO3x0qZGTlxMA",
+  "around/sv_W2_NZUlUrVFE0nfTEk8JycX1g (Sep 2014)",
+  "around/sv_W3_g-2Uz7D8EUS_8aUyS_4csw (May 2025)",
+  "around/sv_W4_FxJ1Ys0J0ByRQP2eq8o55g (Sep 2014)",
+  "around/sv_W5_EPUUjfG1_w5ogqd-rlpm4w (Sep 2014)",
+  "around/sv_W5_7LcV4o_NT-dNcsqLoR-L2Q",
+  "around/sv_W5_RKdJa6oLrYw54r4KO7FSOw",
+  "around/sv_W6__4CvNYyhlSRypJ_96-8q-g",
+  "around/sv_W7_U5wQemNdkjW36lryzt6o5g",
+  "around/sv_W9_HlvBmNr3eJ57n4qJUiweEQ",
+  "around/sv_W10_DPVvh9QTRwzjlePV7pQfjA",
+  "around/sv_W11_HlvBmNr3eJ57n4qJUiweEQ",
+  "around/sv_W12_Kq8pZPbG-ftXZ6uXn-F4lg",
+  "around/sv_W12_V8kp1oy7QNMZJ1f-_9knfA",
+  "around/sv_W13_DOQzk2y513lUL2NHKH8ORg",
+  "around/sv_W14_rshY_-P9NkcUAx7S4QJrlw",
+  "around/sv_W14_UrIu0MMV5ZY2dJ0osBYVMQ",
+  "around/sv_W15_EMQG9pviIstLKkeSvtr-Gw",
+  "around/sv_W16_mVzSkehRQRMbFuCebXYEDw",
+  "around/sv_c0..c19 (c1, c3 = May 2025 from Ring Road; rest Sep 2014; c7-c9 and sv_W8/W9_CIHM are black/indoor)",
+  "around/earth_W0/W5/W6/W8/W9 whole and thirds (W1-W4, W10-W16 Earth shots failed: inside model or space)",
+  "earth_orbit_000..315, earth_detail_*, earth_facade_*, ortho_2023aug.jpg (with art grid overlay), lidar nDSM profile along the 63 deg axis",
+  "web/qnc_qnc002 (SW dusk), qnc004 (NE cube face), qnc007 (orange band), qnc008 (north face), qnc009 (north elevation, scaled), qnc010 (south-west elevation, scaled), qnc017 (entrance), qnc030 (hex detail), qnc040 (2012 banner), qnc031 (MC bridge)",
+  "commons/NOTES.md"
+ ],
+ "geometry_notes": "Axis frame used below: s_axis along bearing 63 deg (u=(0.889,0.458)) and t_axis across (+t = NW), origin art (865.8,236.2) as in bld_qnc.py. Lidar (unclipped nDSM) gives: BAR = the big 4-5 storey block, s_axis -33..+44, t 10..37 (77 x 27 m), roof 25.5-27 m on most of it, 19.5-21 m along a 3 m strip at its NW edge for s_axis -6..+34 (east half of W0) and over its NE end s_axis 34..44 (the link block over W14/W15); CUBE s_axis +4..+48, t -20..+8 (about 44 x 28 m, not a cube), roof 33-34.5 m, plant to 39 m; PODIUM s_axis -21..+4, t -26..+10, 11.2 m, green roof; LOW SE BLOCK along W9, t -32..-20, 7.5-10.5 m, green roof strip with a deck terrace; WEST WING s_axis -47.5..-38, 5.3 m, green roof + terrace. So the 'striped box' of the ArchDaily photos is not a separate 26 m bar: it is the whole BAR block, whose SW end (above the west wing) and SE face (above the entrance and podium) carry the stripes. Because several important faces are upper faces not on any ground wall, they are given below as pseudo-walls U0-U6 with explicit art ends (same a->b convention, building on the left). Their ends are from lidar/ortho and good to about 2-3 m; lidar looked shifted about +2-3 m in s_axis relative to walls.json.",
+ "colours": {
+  "brick": {
+   "hex": "#4a4d4e",
+   "palette": "brick_charcoal_tower",
+   "where": "all ground walls of the podium, west wing, W0 base, W16: long-format charcoal brick (overcast May 2025 samples #474a49/#494945; dE 7 to brick_charcoal_tower which is a bit warm; the model's brick_charcoal #7d7a76 is far too light)"
+  },
+  "brick_fleck": {
+   "hex": "#7b7f80",
+   "palette": "concrete_deep",
+   "where": "scattered lighter grey bricks in 1-3 unit horizontal dashes, about 10-15 percent of units (qnc007, qnc008, sv_W6, elevation drawings)"
+  },
+  "louvre_band": {
+   "hex": "#a9afb3",
+   "palette": "metal_shade",
+   "where": "3.2 m band of silver horizontal louvres in framed panels on top of the podium brick (W5, W6) and over the W7/W8 service end; reads light silver in sun (qnc002/qnc017), mid grey overcast (#666f70)"
+  },
+  "orange_glass": {
+   "hex": "#c8502c",
+   "palette": null,
+   "where": "back-painted red-orange glass: W5 window band, W3/W4 glazed wing, stair-tower panels on the cube. Lit #dc3604 (qnc017), sunlit through reflection #a05d46 (sv_W4). Nearest fin_orange dE 14 -> new swatch 'glass_orange'"
+  },
+  "stripe_light": {
+   "hex": "#7895b2",
+   "palette": "glass_podium",
+   "where": "wide reflective silver-blue stripes of the BAR curtain wall (qnc008 sunny, dE 8)"
+  },
+  "stripe_dark": {
+   "hex": "#4c5868",
+   "palette": "prop_lamp",
+   "where": "narrow dark grey-blue spandrel stripes of the BAR (qnc008); prop_lamp is dE 10 but greyer; suggest new 'glass_stripe_dark' #4c5868"
+  },
+  "cube_glass": {
+   "hex": "#9eb0c2",
+   "palette": "glass_blue",
+   "where": "cube curtain wall (sunny qnc004 #b6bfcd, overcast sv_c3 #8a99a3; glass_blue sits between)"
+  },
+  "hex_frame": {
+   "hex": "#d0d6de",
+   "palette": "metal_silver",
+   "where": "honeycomb steel lattice on the cube (qnc004 sunlit, dE 5)"
+  },
+  "penthouse_metal": {
+   "hex": "#2f343b",
+   "palette": null,
+   "where": "dark charcoal horizontally ribbed metal of the set-back top storey over the east half of W0 and the bar's NE link block (qnc008 #262b35); nothing within 12 -> new 'metal_charcoal'"
+  },
+  "soffit": {
+   "hex": "#484341",
+   "palette": "brick_charcoal_tower",
+   "where": "dark slatted metal soffit under every cantilever (sv_W14, sv_W9)"
+  },
+  "concrete": {
+   "hex": "#b3b0a8",
+   "palette": "concrete_raw",
+   "where": "board-formed light grey concrete columns, piers, planter walls and bench ledges (all samples were in shade, so value is from the palette, by eye)"
+  },
+  "light_panels": {
+   "hex": "#b9bec2",
+   "palette": "metal_panel",
+   "where": "light grey flat metal panels in square/rectangular grid at the doors on W0 and W4, W13 (slightly sage), W14, W15"
+  },
+  "frames": {
+   "hex": "#e6e6e2",
+   "palette": "panel_white",
+   "where": "white coping on top of brick, frame round the W5 orange band, entrance vestibule frame"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 68.1,
+   "confidence": "high",
+   "summary": "long north face toward SLC/MC lawn: 4-5 storey striped glass BAR cantilevered 2.5 m over a recessed ground floor of charcoal brick, a 24 m two-storey glass curtain wall and a service door; set-back dark ribbed penthouse on the east 38 m",
+   "height_m": 25.5,
+   "rows": [
+    [
+     6.8,
+     "base"
+    ],
+    [
+     1.7,
+     "clere"
+    ],
+    [
+     11.2,
+     "stripes"
+    ],
+    [
+     5.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     19.5,
+     "brick"
+    ],
+    [
+     18.5,
+     "glass"
+    ],
+    [
+     5.9,
+     "glass_t"
+    ],
+    [
+     3.1,
+     "door"
+    ],
+    [
+     11.4,
+     "brick_w"
+    ],
+    [
+     9.7,
+     "wing"
+    ]
+   ],
+   "cells": {
+    "base/brick": null,
+    "clere/brick": {
+     "type": "window",
+     "w": 1.0,
+     "h": 0.95,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white",
+     "note": "continuous dark glazed clerestory strip between brick top (white coping 0.12 m at 6.8 m) and soffit"
+    },
+    "base/glass": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "transoms": [
+      2.4,
+      4.7
+     ],
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "note": "two-storey curtain wall, runs from ground to soffit (8.5 m); rows base+clere merged"
+    },
+    "clere/glass": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    },
+    "base/glass_t": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "transoms": [
+      2.4,
+      4.7
+     ],
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    },
+    "clere/glass_t": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    },
+    "base/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "frame": "metal_silver",
+     "side_panel": [
+      1.2,
+      "metal_panel"
+     ],
+     "note": "double glass door with glass transom to 3.2 m, a 1.2 m light grey panelled leaf beside it; brick above; door sits in a sunken paved bay about 0.8 m below the lawn (sv_W0_X6wIs)"
+    },
+    "clere/door": {
+     "type": "window",
+     "w": 3.0,
+     "h": 1.5,
+     "mullions": 3,
+     "glass": "window_dark"
+    },
+    "base/brick_w": null,
+    "clere/brick_w": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.3,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "base/wing": {
+     "type": "solid",
+     "note": "west wing brick to 5.3 m only, glass balustrade 1.1 m on its roof; from s 63 the bar no longer overhangs, so above 6.4 m is open sky"
+    },
+    "clere/wing": null,
+    "stripes/*": {
+     "type": "stripes",
+     "module": 1.9,
+     "light": [
+      1.05,
+      "glass_podium"
+     ],
+     "dark": [
+      0.85,
+      "stripe_dark"
+     ],
+     "vision_windows": {
+      "in": "dark",
+      "w": 0.75,
+      "h": 2.4,
+      "sills": [
+       10.7,
+       15.4
+      ],
+      "every_module": true,
+      "frame": "metal_silver"
+     },
+     "note": "36 stripe pairs over the wall (counted on qnc008 by intensity profile, period 46 px = 1.9 m). Faces sit 2.5 m out from the ground wall line (cantilever). Shallow fins only (< 0.15 m); the model's 0.55 m deep fins are too deep"
+    },
+    "stripes/wing": null,
+    "top/brick": {
+     "type": "penthouse",
+     "setback": 3.0,
+     "colour": "penthouse_metal",
+     "ribbed": "horizontal, 0.15 m pitch"
+    },
+    "top/glass": {
+     "type": "penthouse",
+     "setback": 3.0,
+     "colour": "penthouse_metal",
+     "window_strip": {
+      "s": [
+       22.2,
+       27.9
+      ],
+      "z": [
+       20.6,
+       23.6
+      ],
+      "mullions": 6,
+      "glass": "window_dark"
+     }
+    },
+    "top/glass_t": {
+     "type": "stripes",
+     "module": 1.9,
+     "light": [
+      1.05,
+      "glass_podium"
+     ],
+     "dark": [
+      0.85,
+      "stripe_dark"
+     ],
+     "vision_windows": null,
+     "note": "west 25 m: the stripes run on up to the 25.5 m roof flush (no windows in the top storey), capped by a 0.8 m dark metal parapet band"
+    },
+    "top/door": "same as top/glass_t",
+    "top/brick_w": "same as top/glass_t",
+    "top/wing": null
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     6.8,
+     6.92,
+     "panel_white",
+     0.05
+    ],
+    [
+     8.5,
+     8.7,
+     "metal_silver",
+     2.5
+    ],
+    [
+     24.7,
+     25.5,
+     "penthouse_metal",
+     2.5
+    ]
+   ],
+   "piers": [
+    {
+     "s": -4.6,
+     "w": 0.9,
+     "d": 0.9,
+     "out": 2.0,
+     "shape": "round",
+     "colour": "concrete_raw",
+     "h": 8.5,
+     "note": "under the NE overhang at the MC-bridge passage"
+    },
+    {
+     "s": 22.7,
+     "w": 0.6,
+     "d": 1.0,
+     "out": 1.5,
+     "colour": "concrete_raw",
+     "h": 8.5
+    },
+    {
+     "s": 30.1,
+     "w": 0.6,
+     "d": 1.0,
+     "out": 1.5,
+     "colour": "concrete_raw",
+     "h": 8.5
+    },
+    {
+     "s": 37.5,
+     "w": 0.6,
+     "d": 1.0,
+     "out": 1.5,
+     "colour": "concrete_raw",
+     "h": 8.5
+    },
+    {
+     "s": 44.9,
+     "w": 1.0,
+     "d": 1.0,
+     "out": 1.5,
+     "colour": "concrete_raw",
+     "h": 8.5
+    },
+    {
+     "s": 52.3,
+     "w": 1.0,
+     "d": 1.0,
+     "out": 1.5,
+     "colour": "concrete_raw",
+     "h": 8.5
+    },
+    {
+     "s": 59.7,
+     "w": 1.0,
+     "d": 1.0,
+     "out": 1.5,
+     "colour": "concrete_raw",
+     "h": 8.5
+    }
+   ],
+   "signs": [],
+   "attached": [
+    "upper BAR face is 2.5 m proud of this wall from s -3.4 to 63.2 (soffit 8.5 m, dark slatted)",
+    "glazed bridge to MC leaves the link block just beyond the a end (see site.bridges)",
+    "sunken paved bike pad with concrete retaining wall/planter at s 44-56"
+   ],
+   "notes": "Segment positions scaled from the ArchDaily north elevation (qnc009, 13.1 px/m, bar 66.6 m) and checked on qnc008 (24.3 px/m): brick s 0-19.5 (bottom edge follows a grade dip), curtain wall 19.5-43.9, door 43.9-47, brick 47-58.4, west wing 58.4-68. Brick height 6.8 m (qnc008 ratio 82 percent of the 8.3 m soffit). Pier spacing 7.4 m measured on qnc008 for the glass part, extrapolated west (guess). Penthouse window strip from qnc008 crop. Tall/low split at s 38 (photo 39.6, drawing 37.3, lidar 36)."
+  },
+  "W1": {
+   "faces": "NW",
+   "length_m": 9.4,
+   "confidence": "medium",
+   "summary": "west wing north end: plain charcoal brick 5.3 m, white coping, glass balustrade of the roof terrace on top",
+   "height_m": 6.4,
+   "rows": [
+    [
+     5.3,
+     "brick"
+    ],
+    [
+     1.1,
+     "balustrade"
+    ]
+   ],
+   "bays": [
+    [
+     9.4,
+     "solid"
+    ]
+   ],
+   "cells": {
+    "brick/*": null,
+    "balustrade/*": {
+     "type": "railing",
+     "glass": "glass",
+     "posts": "metal_silver",
+     "post_pitch": 1.5
+    }
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     5.2,
+     5.35,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Only a far oblique view (sv_W1, shrubs in front) and the north elevation drawing (railing along the wing). No openings seen."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 17.8,
+   "confidence": "high",
+   "summary": "west wing end facing Ring Road: windowless charcoal brick box 5.3 m with a full-height glazed corner at its south end (orange inside); green roof with grasses and red terrace umbrellas behind",
+   "height_m": 5.3,
+   "rows": [
+    [
+     5.3,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     15.6,
+     "solid"
+    ],
+    [
+     2.2,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "ground/solid": null,
+    "ground/corner": {
+     "type": "window",
+     "w": 2.0,
+     "h": 5.0,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "inner": "orange_glass",
+     "wraps": "W3"
+    }
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     5.2,
+     5.35,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "BAR SW end face (U0) rises 8-9 m behind this wall, from 9.2 m to 25.5 m"
+   ],
+   "notes": "sv_W2 (2014) and sv_c1 (May 2025) agree; white river-stone strip 0.6 m wide along the base (sv_c1). Brick top 5.3 m from the SW elevation drawing (qnc010, 15.6 px/m)."
+  },
+  "W3": {
+   "faces": "SE",
+   "length_m": 9.3,
+   "confidence": "medium",
+   "summary": "west wing south face onto the entrance forecourt: glass wall with red-orange back-painted lower panes, clear top row, glass balustrade and red umbrellas on the roof terrace",
+   "height_m": 6.4,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     3.4,
+     "orange"
+    ],
+    [
+     1.6,
+     "clear"
+    ],
+    [
+     1.1,
+     "balustrade"
+    ]
+   ],
+   "bays": [
+    [
+     1.33,
+     "g"
+    ],
+    [
+     1.33,
+     "g"
+    ],
+    [
+     1.33,
+     "g"
+    ],
+    [
+     1.33,
+     "g"
+    ],
+    [
+     1.33,
+     "g"
+    ],
+    [
+     1.33,
+     "g"
+    ],
+    [
+     1.32,
+     "g"
+    ]
+   ],
+   "cells": {
+    "plinth/*": null,
+    "orange/g": {
+     "type": "panel",
+     "colour": "orange_glass",
+     "frame": "prop_lamp"
+    },
+    "clear/g": {
+     "type": "window",
+     "w": 1.25,
+     "h": 1.5,
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    },
+    "balustrade/*": {
+     "type": "railing",
+     "glass": "glass",
+     "posts": "metal_silver",
+     "post_pitch": 1.33
+    }
+   },
+   "wall": "window_dark",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W4 (2014) and sv_c3 (May 2025) show the wing glass wall with orange panels and red umbrellas over the balustrade; qnc017 (2012, lit) shows the same. Split of glass bays between W3 and W4 is by eye (about 13 orange bays in total from the brick corner to the entrance)."
+  },
+  "W4": {
+   "faces": "SE",
+   "length_m": 16.9,
+   "confidence": "high",
+   "summary": "main entrance front under the BAR cantilever: orange-backed glazing continuing from the wing, a double-height clear lobby wall above, one concrete column, and the recessed white-framed entrance vestibule with two pairs of glass doors at the north-east end",
+   "height_m": 25.5,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     4.6,
+     "lobby"
+    ],
+    [
+     16.3,
+     "bar"
+    ]
+   ],
+   "bays": [
+    [
+     11.0,
+     "orange"
+    ],
+    [
+     1.2,
+     "col"
+    ],
+    [
+     4.7,
+     "entrance"
+    ]
+   ],
+   "cells": {
+    "plinth/orange": null,
+    "ground/orange": {
+     "type": "panel",
+     "colour": "orange_glass",
+     "pitch": 1.375,
+     "frame": "prop_lamp",
+     "top_clear": 0.9
+    },
+    "lobby/orange": {
+     "type": "curtain",
+     "pitch": 1.375,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "note": "clear glazing into the atrium, set back ~1 m"
+    },
+    "*/col": {
+     "type": "pier",
+     "colour": "concrete_raw",
+     "w": 1.0,
+     "d": 1.0
+    },
+    "plinth/entrance": null,
+    "ground/entrance": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "count": 2,
+     "mullions": 1,
+     "transoms": 1,
+     "frame": "metal_silver",
+     "recess": 2.0,
+     "canopy": [
+      2.0,
+      "panel_white"
+     ],
+     "note": "vestibule box: white metal fascia 0.6 m at 3.0-3.6 m over two pairs of doors, glass returns"
+    },
+    "lobby/entrance": {
+     "type": "curtain",
+     "pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "recess": 2.0
+    },
+    "bar/*": {
+     "type": "stripes",
+     "module": 1.9,
+     "light": [
+      1.05,
+      "glass_podium"
+     ],
+     "dark": [
+      0.85,
+      "stripe_dark"
+     ],
+     "vision_windows": {
+      "in": "dark",
+      "w": 0.75,
+      "h": 2.4,
+      "sills": [
+       11.4,
+       16.1
+      ],
+      "every_module": true
+     },
+     "note": "BAR SE face, flush with this wall line, soffit at 9.2 m; continues north-east above the podium as U1"
+    }
+   },
+   "wall": "window_dark",
+   "bands": [
+    [
+     9.0,
+     9.2,
+     "metal_silver",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "the entrance vestibule meets the podium W5 at its north corner; the atrium skylight runs NE between BAR and podium"
+   ],
+   "notes": "sv_W4 2014, sv_W5_EPUU 2014 (doors), sv_c3 May 2025 (unchanged, cars parked in front). Door count: 2 pairs of double doors (sv_W5_EPUU, qnc017 shows 3 leaves pairs incl. side light - medium). Soffit 9.2 m from qnc010 elevation."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 37.1,
+   "confidence": "high",
+   "summary": "podium face to the forecourt: 8 m of charcoal brick with lighter dashed bricks, a 3.2 m silver louvre band on top, and a long red-orange window band low at the north end in a white frame over light panels",
+   "height_m": 11.2,
+   "rows": [
+    [
+     0.9,
+     "base"
+    ],
+    [
+     2.3,
+     "band"
+    ],
+    [
+     4.8,
+     "brick"
+    ],
+    [
+     3.2,
+     "louvre"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "edge"
+    ],
+    [
+     16.3,
+     "orange"
+    ],
+    [
+     20.3,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "base/orange": {
+     "type": "panel",
+     "colour": "metal_panel",
+     "pitch": 1.48,
+     "note": "light grey panels under the band"
+    },
+    "band/orange": {
+     "type": "window",
+     "count": 11,
+     "w": 1.48,
+     "h": 2.3,
+     "mullions": 0,
+     "glass": "orange_glass",
+     "frame": "panel_white",
+     "frame_proud": 0.12
+    },
+    "base/*": null,
+    "band/*": null,
+    "brick/*": null,
+    "louvre/*": {
+     "type": "louvre",
+     "colour": "metal_shade",
+     "panel_w": 2.5,
+     "blades": "horizontal, 0.1 m pitch",
+     "frame": "metal_silver"
+    }
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     3.2,
+     3.32,
+     "panel_white",
+     0.12
+    ],
+    [
+     8.0,
+     8.1,
+     "panel_white",
+     0.05
+    ],
+    [
+     11.1,
+     11.25,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 33.0,
+     "z": 0.4,
+     "w": 0.6,
+     "h": 0.4,
+     "text": "",
+     "colour": "metal_silver",
+     "on": "wall",
+     "note": "siamese/standpipe plate (sv_W6, qnc002)"
+    }
+   ],
+   "attached": [
+    "honeycomb cube SW face (U2) rises behind the louvre band from s about 25 to 37+",
+    "BAR SE face (U1) rises behind the north half"
+   ],
+   "notes": "Band of 11 panes counted on sv_W5_EPUU (2014); 2025 sv_c3/sv_c1 show it unchanged. Heights from qnc010 (brick to 8.0, louvre 8.0-11.2, total 11.2 matches lidar). The 2012 'Building for the Future' banner on this wall (qnc040) is gone by 2014 - do not model. Louvre panels about 15 across."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 11.6,
+   "confidence": "low",
+   "summary": "podium south end toward the service drive: brick with the louvre band, two tall white gas tanks against it",
+   "height_m": 11.2,
+   "rows": [
+    [
+     8.0,
+     "brick"
+    ],
+    [
+     3.2,
+     "louvre"
+    ]
+   ],
+   "bays": [
+    [
+     11.6,
+     "solid"
+    ]
+   ],
+   "cells": {
+    "brick/*": null,
+    "louvre/*": {
+     "type": "louvre",
+     "colour": "metal_shade",
+     "panel_w": 2.5
+    }
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     8.0,
+     8.1,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "No square-on photo. Earth renders it pale (likely the louvre/plaster smear). Assumed to continue W5's treatment; tanks from orbit_000 and the ortho."
+  },
+  "W7": {
+   "faces": "SW",
+   "length_m": 8.8,
+   "confidence": "medium",
+   "summary": "loading dock: one roll-up door with yellow dock seals under a dark flat canopy, silver horizontally ribbed metal above",
+   "height_m": 10.0,
+   "rows": [
+    [
+     4.3,
+     "dock"
+    ],
+    [
+     5.7,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     2.6,
+     "side"
+    ],
+    [
+     3.6,
+     "dock"
+    ],
+    [
+     2.6,
+     "side"
+    ]
+   ],
+   "cells": {
+    "dock/side": {
+     "type": "solid",
+     "colour": "prop_lamp"
+    },
+    "dock/dock": {
+     "type": "door",
+     "w": 3.6,
+     "h": 3.6,
+     "colour": "prop_lamp",
+     "seals": "flower_yellow",
+     "canopy": [
+      1.8,
+      "penthouse_metal"
+     ],
+     "note": "dock floor 1.2 m above the drive"
+    },
+    "upper/*": {
+     "type": "ribbed",
+     "colour": "metal_shade",
+     "ribs": "horizontal"
+    }
+   },
+   "wall": "metal_shade",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "concrete drive down to Ring Road with a barrier arm and steel bollards"
+   ],
+   "notes": "sv_W6/sv_c6 (2014, oblique), qnc002 (lit dock at right), qnc040. Canopy height and door size estimated from people/cars."
+  },
+  "W8": {
+   "faces": "SE",
+   "length_m": 15.2,
+   "confidence": "low",
+   "summary": "service-yard face beside the dock: silver ribbed metal over a dark base (guess)",
+   "height_m": 10.0,
+   "rows": [
+    [
+     3.5,
+     "base"
+    ],
+    [
+     6.5,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     15.2,
+     "solid"
+    ]
+   ],
+   "cells": {
+    "base/*": {
+     "type": "solid",
+     "colour": "brick_charcoal_tower"
+    },
+    "upper/*": {
+     "type": "ribbed",
+     "colour": "metal_shade"
+    }
+   },
+   "wall": "metal_shade",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Only seen in qnc002 (2012, dusk) far right and sv_c5; qnc002 shows tan/brown brick near the dock which might be B2. Mark as guess."
+  },
+  "W9": {
+   "faces": "SE",
+   "length_m": 36.8,
+   "confidence": "low",
+   "summary": "long lower SE block along the 7-8 m lane to Biology 2: about 9.5 m high, charcoal brick (guess), glazing and the B2 bridge at the north-east end; the honeycomb cube face (U3) is set back about 11 m above its green roof",
+   "height_m": 9.5,
+   "rows": [
+    [
+     9.5,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     30.0,
+     "solid"
+    ],
+    [
+     6.8,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "ground/solid": null,
+    "ground/glass": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "pier": [
+      1.0,
+      "concrete_raw"
+     ]
+    }
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     9.3,
+     9.5,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "glazed bridge to B2 at s 31-36.8, level 2 (sv_W9_Hlv: V-shaped steel struts, dark slatted soffit)",
+    "green roof strip with a timber deck terrace (tables, ~4 x 8 m) on top around s 20-28"
+   ],
+   "notes": "The SV panos aimed here (sv_W9_CIHM, sv_c7-c9) are black indoor captures. orbit_000 shows a dark wall under the green strip; only the east end is photographed (sv_W9_Hlv, 2014). Treat as provisional."
+  },
+  "W10": {
+   "faces": "NE",
+   "length_m": 8.8,
+   "confidence": "medium",
+   "summary": "east corner: full-height glass between board-formed concrete piers behind a 0.8 m concrete planter with ivy, under the B2 bridge",
+   "height_m": 9.5,
+   "rows": [
+    [
+     9.5,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     6.8,
+     "glass"
+    ],
+    [
+     1.0,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "*/pier": {
+     "type": "pier",
+     "colour": "concrete_raw"
+    },
+    "ground/glass": {
+     "type": "curtain",
+     "pitch": 2.2,
+     "transoms": [],
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    }
+   },
+   "wall": "window_glass",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "planter wall 0.8 m high, 1.0 m deep along the whole face"
+   ],
+   "notes": "sv_W10 (2014)."
+  },
+  "W11": {
+   "faces": "SE",
+   "length_m": 4.2,
+   "confidence": "medium",
+   "summary": "east entrance: a pair of dark-framed glass doors beside a concrete pier, steel gate/railing at the lane",
+   "height_m": 9.5,
+   "rows": [
+    [
+     3.0,
+     "door"
+    ],
+    [
+     6.5,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     2.4,
+     "door"
+    ],
+    [
+     0.8,
+     "side"
+    ]
+   ],
+   "cells": {
+    "*/pier": {
+     "type": "pier",
+     "colour": "concrete_raw"
+    },
+    "door/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.5,
+     "mullions": 1,
+     "frame": "prop_lamp"
+    },
+    "upper/*": {
+     "type": "curtain",
+     "glass": "window_glass"
+    },
+    "door/side": null
+   },
+   "wall": "window_dark",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W9_Hlv / sv_c10-c12 (2014)."
+  },
+  "W12": {
+   "faces": "NE",
+   "length_m": 27.7,
+   "confidence": "high",
+   "summary": "cube NE face over the Peter Russell Rock Garden: two-storey glass ground floor with concrete piers and an ivy planter, then the full honeycomb lattice (5 hex columns) to 34.2 m; glazed stair tower with orange landing panels at the south (a) corner",
+   "height_m": 34.2,
+   "rows": [
+    [
+     10.7,
+     "ground"
+    ],
+    [
+     23.5,
+     "hex"
+    ]
+   ],
+   "bays": [
+    [
+     4.0,
+     "stair"
+    ],
+    [
+     5.9,
+     "g"
+    ],
+    [
+     5.9,
+     "g"
+    ],
+    [
+     5.9,
+     "g"
+    ],
+    [
+     6.0,
+     "g"
+    ]
+   ],
+   "cells": {
+    "ground/stair": {
+     "type": "curtain",
+     "glass": "window_glass",
+     "pitch": 1.0
+    },
+    "hex/stair": {
+     "type": "stair_tower",
+     "proj": 1.5,
+     "glass": "window_glass",
+     "panels": "orange_glass",
+     "panel_every": 4.7,
+     "panel_h": 1.4,
+     "frame": "metal_silver",
+     "note": "white solid panel strip 1 m beside it"
+    },
+    "ground/g": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "transoms": [
+      3.0,
+      5.4
+     ],
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "pier_left": [
+      1.0,
+      "concrete_raw"
+     ]
+    },
+    "hex/g": {
+     "type": "honeycomb",
+     "see": "honeycomb"
+    }
+   },
+   "wall": "glass_blue",
+   "honeycomb": {
+    "frame": "metal_silver",
+    "glass": "glass_blue",
+    "hex_h": 9.4,
+    "col_pitch": 5.1,
+    "edge_w": 4.0,
+    "mid_w": 6.2,
+    "member": 0.35,
+    "node_disc": 0.6,
+    "standoff": 0.8,
+    "rows_A_horizontals_z": [
+     34.2,
+     24.8,
+     15.4
+    ],
+    "rows_B_horizontals_z": [
+     29.5,
+     20.1,
+     10.7
+    ],
+    "columns_from_a": [
+     [
+      "A",
+      3.2
+     ],
+     [
+      "B",
+      8.4
+     ],
+     [
+      "A",
+      13.6
+     ],
+     [
+      "B",
+      18.8
+     ],
+     [
+      "A",
+      23.4
+     ]
+    ],
+    "sunshade": "dark horizontal blade 0.3 m under every horizontal member",
+    "bottom": "lattice stops at a horizontal at 10.7 m; half hexes at both face edges with vertical corner members",
+    "vision_windows": "per hex per storey (4.7 m): a pair of vertical windows 1.0 m and 0.5 m wide, 2.2 m tall, light frames, otherwise spandrel-looking glass; curtain mullions 1.0 m, transoms at each floor"
+   },
+   "bands": [
+    [
+     33.9,
+     34.2,
+     "metal_silver",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "0.8 m concrete planter with ivy along s 4-27.7",
+    "cube overhang about 1-2 m above the ground glazing (uncertain)"
+   ],
+   "notes": "Geometry from qnc004 (2013, straight-on, 26.9 px/m): A pitch 10 m, B offset 5 m, hex 9.4 m tall (qnc010 gives 9.6, qnc030 two storeys). The model's arch.honeycomb should use these (tall cells, rows offset half a cell, ~5 columns per 28 m face)."
+  },
+  "W13": {
+   "faces": "NW",
+   "length_m": 6.5,
+   "confidence": "medium",
+   "summary": "short return under the BAR soffit: large sage-grey metal panels and one tall glass window, concrete bench ledge in front",
+   "height_m": 8.5,
+   "rows": [
+    [
+     8.5,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     2.2,
+     "glass"
+    ],
+    [
+     3.3,
+     "panel"
+    ]
+   ],
+   "cells": {
+    "*/pier": {
+     "type": "pier",
+     "colour": "concrete_raw"
+    },
+    "ground/glass": {
+     "type": "window",
+     "w": 2.0,
+     "h": 4.6,
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    },
+    "ground/panel": {
+     "type": "panel",
+     "colour": "panel_grey",
+     "grid": [
+      2.4,
+      1.0
+     ]
+    }
+   },
+   "wall": "panel_grey",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W13 (2014); panels read pale sage-grey."
+  },
+  "W14": {
+   "faces": "NE",
+   "length_m": 23.4,
+   "confidence": "medium",
+   "summary": "NE end under the BAR: glass wall between concrete piers, then a wall of light grey square metal panels, then the open passage to the MC bridge; long concrete bench ledge; dark slatted soffit at 8.5 m",
+   "height_m": 19.5,
+   "rows": [
+    [
+     5.0,
+     "ground"
+    ],
+    [
+     3.5,
+     "soffit_zone"
+    ],
+    [
+     11.0,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     9.5,
+     "glass"
+    ],
+    [
+     0.9,
+     "pier"
+    ],
+    [
+     9.6,
+     "panels"
+    ],
+    [
+     3.4,
+     "open"
+    ]
+   ],
+   "cells": {
+    "ground/glass": {
+     "type": "curtain",
+     "pitch": 3.0,
+     "glass": "window_glass",
+     "frame": "prop_lamp"
+    },
+    "*/pier": {
+     "type": "pier",
+     "colour": "concrete_raw"
+    },
+    "ground/panels": {
+     "type": "panel",
+     "colour": "metal_panel",
+     "grid": [
+      1.2,
+      0.8
+     ]
+    },
+    "*/open": null,
+    "soffit_zone/*": {
+     "type": "curtain",
+     "glass": "window_dark",
+     "recess": 1.0
+    },
+    "upper/*": {
+     "type": "mixed",
+     "note": "BAR NE end face 8.5-19.5 m: glazed band with a silver horizontally ribbed panel above (sv_c15); no stripes seen here"
+    }
+   },
+   "wall": "metal_panel",
+   "bands": [
+    [
+     8.4,
+     8.6,
+     "penthouse_metal",
+     2.0
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bench ledge s 9-20, 1 m out"
+   ],
+   "notes": "sv_W14_rshY, sv_W14_UrIu, sv_c15 (2014). Upper NE end detail is uncertain."
+  },
+  "W15": {
+   "faces": "NW",
+   "length_m": 10.9,
+   "confidence": "medium",
+   "summary": "link under the MC bridge: light grey square panels and a glazed vestibule, round concrete columns in front, drop-off lane and bikes",
+   "height_m": 8.5,
+   "rows": [
+    [
+     8.5,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     4.0,
+     "glass"
+    ],
+    [
+     6.9,
+     "panels"
+    ]
+   ],
+   "cells": {
+    "ground/glass": {
+     "type": "curtain",
+     "pitch": 1.3,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "doors": 1
+    },
+    "ground/panels": {
+     "type": "panel",
+     "colour": "metal_panel",
+     "grid": [
+      1.2,
+      0.8
+     ]
+    }
+   },
+   "wall": "metal_panel",
+   "bands": [],
+   "piers": [
+    {
+     "s": 3.0,
+     "w": 0.8,
+     "out": 3.0,
+     "shape": "round",
+     "colour": "concrete_raw",
+     "h": 8.5
+    },
+    {
+     "s": 8.0,
+     "w": 0.8,
+     "out": 3.0,
+     "shape": "round",
+     "colour": "concrete_raw",
+     "h": 8.5
+    }
+   ],
+   "signs": [],
+   "attached": [
+    "MC bridge springs from the level-2 glazing above this wall"
+   ],
+   "notes": "sv_W15, sv_c16, sv_c17 (2014)."
+  },
+  "W16": {
+   "faces": "NE",
+   "length_m": 6.1,
+   "confidence": "medium",
+   "summary": "charcoal brick return at the NE end of W0, a small window high up, soffit over",
+   "height_m": 8.5,
+   "rows": [
+    [
+     6.8,
+     "brick"
+    ],
+    [
+     1.7,
+     "clere"
+    ]
+   ],
+   "bays": [
+    [
+     6.1,
+     "solid"
+    ]
+   ],
+   "cells": {
+    "brick/*": null,
+    "clere/*": {
+     "type": "window",
+     "w": 1.5,
+     "h": 1.0,
+     "glass": "window_dark"
+    }
+   },
+   "wall": "brick_charcoal_tower",
+   "bands": [
+    [
+     6.8,
+     6.92,
+     "panel_white",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_c16 (2014): brick with a light-coloured small upper opening; bikes parked along it."
+  },
+  "U0": {
+   "upper": true,
+   "a": [
+    819.4,
+    254.3
+   ],
+   "b": [
+    831.7,
+    230.4
+   ],
+   "z0": 9.2,
+   "faces": "SW",
+   "length_m": 26.9,
+   "confidence": "high",
+   "summary": "BAR SW end, the iconic 'striped box' over the west wing: stripes full height from 9.2 to 25.5 m, cantilevered with a dark soffit",
+   "height_m": 25.5,
+   "rows": [
+    [
+     2.2,
+     "s0"
+    ],
+    [
+     4.7,
+     "w1"
+    ],
+    [
+     4.7,
+     "w2"
+    ],
+    [
+     4.7,
+     "s3"
+    ]
+   ],
+   "bays": [
+    [
+     26.9,
+     "stripes"
+    ]
+   ],
+   "cells": {
+    "*/stripes": {
+     "type": "stripes",
+     "module": 1.9,
+     "light": [
+      1.05,
+      "glass_podium"
+     ],
+     "dark": [
+      0.85,
+      "stripe_dark"
+     ],
+     "vision_windows": {
+      "in": "dark",
+      "w": 0.75,
+      "h": 2.4,
+      "sills": [
+       11.4,
+       16.1,
+       20.8
+      ],
+      "every_module": false,
+      "pattern": "most modules; clusters of 2x2 clear windows near the middle (qnc017 lit)"
+     }
+    }
+   },
+   "wall": "glass_podium",
+   "bands": [
+    [
+     25.0,
+     25.5,
+     "penthouse_metal",
+     0.0
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "12 stripe pairs counted on sv_c1 (May 2025). Ends from lidar (bar s_axis -33, t 10.5-37.3). Soffit 9.2 m (qnc010)."
+  },
+  "U1": {
+   "upper": true,
+   "a": [
+    831.7,
+    230.4
+   ],
+   "b": [
+    864.5,
+    247.4
+   ],
+   "z0": 9.2,
+   "faces": "SE",
+   "length_m": 36.9,
+   "confidence": "medium",
+   "summary": "BAR SE face: stripes over the entrance (from 9.2 m, s 0-12) and above the podium roof (from 11.2 m, s 12-37), with vision windows; meets the cube at b",
+   "height_m": 25.5,
+   "rows": [
+    [
+     16.3,
+     "stripes"
+    ]
+   ],
+   "bays": [
+    [
+     36.9,
+     "stripes"
+    ]
+   ],
+   "cells": {
+    "*/stripes": {
+     "type": "stripes",
+     "module": 1.9,
+     "light": [
+      1.05,
+      "glass_podium"
+     ],
+     "dark": [
+      0.85,
+      "stripe_dark"
+     ],
+     "vision_windows": {
+      "in": "dark",
+      "w": 0.75,
+      "h": 2.4,
+      "sills": [
+       11.4,
+       16.1,
+       20.8
+      ],
+      "every_module": true
+     }
+    }
+   },
+   "wall": "glass_podium",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "sloped glazed atrium skylight along its foot over the podium, s about 17-37, 4 m wide"
+   ],
+   "notes": "orbit_000, qnc002, qnc017."
+  },
+  "U2": {
+   "upper": true,
+   "a": [
+    865.7,
+    245.1
+   ],
+   "b": [
+    878.5,
+    220.3
+   ],
+   "z0": 11.2,
+   "faces": "SW",
+   "length_m": 27.9,
+   "confidence": "high",
+   "summary": "cube SW face above the podium green roof: honeycomb lattice 5 columns (A-B-A-B-A) on reflective glass",
+   "height_m": 34.2,
+   "rows": [
+    [
+     23.0,
+     "hex"
+    ]
+   ],
+   "bays": [
+    [
+     27.9,
+     "hex"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "honeycomb",
+     "see": "W12.honeycomb"
+    }
+   },
+   "wall": "glass_blue",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "qnc010 elevation (3 A columns, A pitch 10.3 m, hex 9.6 m), qnc002, orbit_090."
+  },
+  "U3": {
+   "upper": true,
+   "a": [
+    878.5,
+    220.3
+   ],
+   "b": [
+    917.6,
+    240.4
+   ],
+   "z0": 9.5,
+   "faces": "SE",
+   "length_m": 44.0,
+   "confidence": "medium",
+   "summary": "cube SE face above the lower SE block: honeycomb over s 0-36 (about 7 columns), then a 4 m white solid panel strip and a 4 m glazed stair tower with orange panels at the east corner",
+   "height_m": 34.2,
+   "rows": [
+    [
+     24.7,
+     "hex"
+    ]
+   ],
+   "bays": [
+    [
+     36.0,
+     "hex"
+    ],
+    [
+     4.0,
+     "core"
+    ],
+    [
+     4.0,
+     "stair"
+    ]
+   ],
+   "cells": {
+    "*/hex": {
+     "type": "honeycomb",
+     "see": "W12.honeycomb"
+    },
+    "*/core": {
+     "type": "solid",
+     "colour": "panel_white"
+    },
+    "*/stair": {
+     "type": "stair_tower",
+     "proj": 1.5,
+     "glass": "window_glass",
+     "panels": "orange_glass",
+     "panel_every": 4.7,
+     "panel_h": 1.4
+    }
+   },
+   "wall": "glass_blue",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_detail_2a, earth_W9_m, orbit_000/270, qnc002 right. The white strip and the orange stair are very visible from the south."
+  },
+  "U4": {
+   "upper": true,
+   "a": [
+    904.8,
+    265.3
+   ],
+   "b": [
+    865.7,
+    245.1
+   ],
+   "z0": 25.5,
+   "faces": "NW",
+   "length_m": 44.0,
+   "confidence": "medium",
+   "summary": "cube NW face above the BAR roof: no honeycomb; light grey panels/glass with a horizontal band, 8.7 m high",
+   "height_m": 34.2,
+   "rows": [
+    [
+     8.7,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     44.0,
+     "solid"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "panel",
+     "colour": "metal_panel",
+     "band": [
+      29.5,
+      30.0,
+      "metal_silver"
+     ]
+    }
+   },
+   "wall": "metal_panel",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "orbit_180, earth_facade_0."
+  },
+  "U5": {
+   "upper": true,
+   "a": [
+    880.0,
+    282.1
+   ],
+   "b": [
+    844.8,
+    263.9
+   ],
+   "z0": 19.7,
+   "faces": "NW",
+   "length_m": 39.6,
+   "confidence": "medium",
+   "summary": "set-back penthouse over the east 38 m of the NW face: dark horizontally ribbed metal, one 6 m window strip",
+   "height_m": 24.7,
+   "rows": [
+    [
+     5.0,
+     "pent"
+    ]
+   ],
+   "bays": [
+    [
+     11.7,
+     "solid"
+    ],
+    [
+     5.7,
+     "win"
+    ],
+    [
+     22.2,
+     "solid"
+    ]
+   ],
+   "cells": {
+    "*/solid": null,
+    "*/win": {
+     "type": "window",
+     "w": 5.7,
+     "h": 3.0,
+     "mullions": 6,
+     "glass": "window_dark"
+    }
+   },
+   "wall": "penthouse_metal",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "qnc008, qnc009 (W0 cells top/brick and top/glass describe the same thing; use one or the other)."
+  },
+  "U6": {
+   "upper": true,
+   "a": [
+    878.6,
+    284.7
+   ],
+   "b": [
+    819.4,
+    254.3
+   ],
+   "z0": 8.5,
+   "faces": "NW",
+   "length_m": 66.5,
+   "confidence": "medium",
+   "summary": "the BAR NW face as a line: 2.5 m proud of W0; carries W0's stripes/penthouse rows",
+   "height_m": 25.5,
+   "rows": [],
+   "bays": [],
+   "cells": {},
+   "wall": "glass_podium",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Given only so the builder can place the cantilever: lidar NW edge at t 37.3 vs W0 at t 34.8."
+  }
+ },
+ "roof": [
+  {
+   "what": "cube plant yard: white solid screen parapet about 2 m round a yard set in 6-8 m from the cube edges",
+   "where": "cube roof, about art x 875-910, y 233-258",
+   "size_m": [
+    30,
+    14,
+    2.0
+   ]
+  },
+  {
+   "what": "large white/silver exhaust fan stacks in 4 groups (3+3+3+2), each ~1.4 m dia, tops at ~39 m",
+   "where": "inside the cube plant yard",
+   "size_m": [
+    1.4,
+    1.4,
+    5.0
+   ],
+   "count": 11
+  },
+  {
+   "what": "low white duct housings and a yellow-railed steel platform between the stacks",
+   "where": "cube plant yard",
+   "size_m": [
+    6,
+    3,
+    1.5
+   ]
+  },
+  {
+   "what": "window-cleaning davit arms",
+   "where": "cube roof corners and BAR roof",
+   "size_m": [
+    0.3,
+    2.0,
+    2.5
+   ],
+   "count": 4
+  },
+  {
+   "what": "flat skylight, glazed, 15 x 6 m",
+   "where": "BAR roof just NW of the cube, art x 873-889, y 247-258",
+   "size_m": [
+    15,
+    6,
+    0.6
+   ]
+  },
+  {
+   "what": "sloped glazed atrium skylight between BAR and podium",
+   "where": "art x 848-868, y 236-248, at ~11-13 m",
+   "size_m": [
+    20,
+    4,
+    1.5
+   ]
+  },
+  {
+   "what": "BAR roof: grey membrane, white parapet coping, one roof hatch and a vent stack",
+   "where": "BAR roof, hatch near art (832, 253)",
+   "size_m": [
+    1.5,
+    2.5,
+    1.0
+   ]
+  },
+  {
+   "what": "podium green roof (meadow/sedum, olive-green), white coping",
+   "where": "podium, 24 x 30 m at 11.2 m",
+   "size_m": [
+    24,
+    30,
+    0.3
+   ]
+  },
+  {
+   "what": "lower SE strip green roof with a timber deck terrace, tables and parasols",
+   "where": "over W9, deck near art (895-904, 221-226)",
+   "size_m": [
+    8,
+    4,
+    0.2
+   ]
+  },
+  {
+   "what": "west wing green roof with grasses plus a dark deck terrace with tables and red umbrellas behind a glass balustrade",
+   "where": "west wing roof, terrace at its SE half (art x 817-829, y 229-237)",
+   "size_m": [
+    12,
+    7,
+    0.2
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "MC",
+    "from_wall": "W15",
+    "s": [
+     1,
+     9
+    ],
+    "levels": [
+     2
+    ],
+    "path_art": [
+     [
+      887.5,
+      283.0
+     ],
+     [
+      887.5,
+      299.0
+     ]
+    ],
+    "look": "glazed bridge, silver diagonal steel truss in the glazing, internal horizontal louvres, dark deck fascia, carried on round concrete columns; an external stair with yellow nosings drops to grade at the MC end (qnc031 2019, sv_W0_3-v1, sv_c15)",
+    "confidence": "medium on exact path (ortho px 1290-1390)"
+   },
+   {
+    "to": "B2",
+    "from_wall": "W9",
+    "s": [
+     31,
+     36.8
+    ],
+    "levels": [
+     2
+    ],
+    "path_art": [
+     [
+      921.0,
+      230.0
+     ],
+     [
+      924.0,
+      221.0
+     ]
+    ],
+    "look": "short glazed bridge with V-shaped steel struts below and a dark slatted soffit (sv_W9_Hlv 2014)",
+    "confidence": "medium"
+   }
+  ],
+  "neighbours": [
+   "MC to the north across a lawn and walkway, joined by the glazed bridge",
+   "SLC to the north-west, about 25 m: its patio with picnic tables and a pergola faces QNC's west end",
+   "Biology 2 (buff/tan brick, 3 storeys with tall narrow windows) along the south-east, 7-8 m across the service lane, bridged at the east end",
+   "Peter Russell Rock Garden and ESC to the east beyond W12",
+   "Ring Road curves past the south-west, 15-35 m from W2/W5; the forecourt drive and the service drive (W6/W7) both open onto it"
+  ],
+  "ground": [
+   "entrance forecourt off W4/W5: dark grey concrete unit pavers with a poured-concrete drop-off drive, planted island of shrubs and conifers 10-20 m SW of W5",
+   "lawn west of W2 with sumac shrub beds against the wall and a white river-stone strip at the base; unit-paver path to SLC",
+   "along W0: ivy groundcover bed 3-5 m wide with young birch trees, then a paver walkway and the SLC/MC lawn",
+   "NE: concrete walk along W12/W13 then the rock garden (mulch, lawn, boulders, mature maples and pines)",
+   "SE lane between W9 and B2: concrete walk, planting bed with small trees, raised concrete planters",
+   "service drive at W6/W7: broom-finished concrete with stainless bollards and a barrier arm"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised hoops",
+    "where": "along W5, s 2-12, 3 m out",
+    "count": 6,
+    "photo": "sv_W5_EPUUjfG1_w5ogqd-rlpm4w (2014), sv_c3 (2025)"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised hoops in the open forecourt",
+    "where": "in front of W4, s 3-12, 5 m out",
+    "count": 6,
+    "photo": "sv_W4_FxJ1Ys0J0ByRQP2eq8o55g (2014)"
+   },
+   {
+    "type": "bench",
+    "kind": "long precast concrete slab bench",
+    "where": "along W4 glass, s 4-10, 0.8 m out",
+    "count": 1,
+    "photo": "sv_W5_EPUU (2014), qnc017"
+   },
+   {
+    "type": "bin",
+    "kind": "square precast concrete waste bin",
+    "where": "W4 s 10.5, 1 m out",
+    "count": 1,
+    "photo": "sv_W5_EPUU"
+   },
+   {
+    "type": "wall",
+    "kind": "low concrete seat wall at the forecourt planting edge",
+    "where": "W5 s 5-12, 7 m out",
+    "count": 1,
+    "photo": "sv_c3 (2025)"
+   },
+   {
+    "type": "sign",
+    "kind": "black UW wayfinding pylon, ~3.5 m tall, 0.5 m wide",
+    "where": "W5 s 9, 9 m out, in the planting bed",
+    "count": 1,
+    "photo": "sv_c1, sv_c3 (May 2025)"
+   },
+   {
+    "type": "sign",
+    "kind": "white panel on grey concrete plinth: 'MIKE & OPHELIA LAZARIDIS QUANTUM-NANO CENTRE', 2.2 x 0.6 m panel on a 0.6 m base",
+    "where": "W2 s 13, 5 m out on the lawn",
+    "count": 1,
+    "photo": "sv_W2 (2014); not visible in sv_c1 (2025) - may have been removed, low confidence"
+   },
+   {
+    "type": "bollard",
+    "kind": "stainless steel cylinder 0.9 m",
+    "where": "service drive off W6/W7, 6-12 m out",
+    "count": 3,
+    "photo": "sv_W6, sv_c6"
+   },
+   {
+    "type": "gate",
+    "kind": "red/white barrier arm on a grey post",
+    "where": "W5 s 30, 4 m out (start of service drive)",
+    "count": 1,
+    "photo": "sv_W6, qnc002"
+   },
+   {
+    "type": "tank",
+    "kind": "white vertical gas tank ~1.8 m dia x 6 m in a small fenced pad",
+    "where": "W6 s 4-8, 1.5 m out",
+    "count": 2,
+    "photo": "orbit_000, ortho_2023aug"
+   },
+   {
+    "type": "bin",
+    "kind": "blue recycling carts",
+    "where": "service lane at W8/W9 junction, 6 m out against B2",
+    "count": 4,
+    "photo": "sv_W6, sv_W7"
+   },
+   {
+    "type": "tree",
+    "kind": "young birch",
+    "where": "along W0, s 3-45, 2-3 m out",
+    "count": 10,
+    "photo": "qnc008, sv_W0_*"
+   },
+   {
+    "type": "bench",
+    "kind": "stepped concrete block bench",
+    "where": "W0 s -3 to 1, 3 m out",
+    "count": 1,
+    "photo": "sv_W0_3-v1"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised hoops on a sunken paved pad",
+    "where": "W0 s 46-56, 2-4 m out",
+    "count": 6,
+    "photo": "sv_W0_X6wIs"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised racks, heavily used",
+    "where": "under the BAR along W16/W15 and W0 s -6 to 0, 1-3 m out",
+    "count": 10,
+    "photo": "sv_c16, sv_W15"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised pipe railing round a ramp/stair down",
+    "where": "W15/W14 corner, 4-8 m out",
+    "count": 1,
+    "photo": "sv_c15"
+   },
+   {
+    "type": "bench",
+    "kind": "long concrete bench ledge",
+    "where": "W14 s 9-20 and W13, 1 m out",
+    "count": 2,
+    "photo": "sv_W14_rshY, sv_W13"
+   },
+   {
+    "type": "sign",
+    "kind": "green directory map board on two posts",
+    "where": "6 m NE of W13",
+    "count": 1,
+    "photo": "sv_W13"
+   },
+   {
+    "type": "rock",
+    "kind": "limestone/granite boulders (rock garden)",
+    "where": "5-20 m NE of W12",
+    "count": 8,
+    "photo": "sv_c13, sv_c14, qnc004"
+   },
+   {
+    "type": "pergola",
+    "kind": "timber pergola",
+    "where": "about 15 m E of W13",
+    "count": 1,
+    "photo": "sv_W13, qnc004"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole with flat disc cap",
+    "where": "rock garden, ~15 m NE of W12 mid",
+    "count": 1,
+    "photo": "qnc004 (2013)"
+   },
+   {
+    "type": "kiosk",
+    "kind": "round poster kiosk with conical cap and circular timber bench",
+    "where": "~25 m NE of W12, s 10",
+    "count": 1,
+    "photo": "qnc004 (2013, may be gone)"
+   },
+   {
+    "type": "umbrella",
+    "kind": "red market umbrellas with tables",
+    "where": "west-wing roof terrace (roof, ~6 m up), over W3",
+    "count": 4,
+    "photo": "sv_W4 (2014), sv_c3 (2025), ortho"
+   }
+  ]
+ }
+}
