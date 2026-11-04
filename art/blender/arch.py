@@ -496,6 +496,13 @@ def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
     for sp, pw, col, proj in spec.get("piers", []):
         sp = sp * L if 0 <= sp <= 1 and isinstance(sp, float) and spec.get("pier_frac") else sp
         _band(kit, P, n, sp - pw / 2, sp + pw / 2, z0, top, col, proj)
+    for sg in spec.get("signs", []):
+        ss = float(sg["s"]) - s_off
+        zz = float(sg.get("z", 3.0))
+        if -sg["w"] < ss < L and (z_top is None or z0 + zz < z_top):
+            col = sg.get("colour", "panel_white")
+            col = col if isinstance(col, str) and not col.startswith("#") else "panel_white"
+            _band(kit, P, n, max(0.0, ss - sg["w"] / 2), min(L, ss + sg["w"] / 2), z0 + zz, z0 + zz + sg["h"], col, 0.08)
     if spec.get("coping"):
         ch, col, proj = spec["coping"]
         _band(kit, P, n, 0, L, top, top + ch, col, proj)

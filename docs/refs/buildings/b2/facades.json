@@ -1,0 +1,791 @@
+{
+ "building": "B2",
+ "sources_checked": [
+  "around/sv_W0_DPVvh9QTRwzjlePV7pQfjA_100 (Sep 2014, W0 entrance square-on)",
+  "around/sv_W4_HlvBmNr3eJ57n4qJUiweEQ_100, sv_c3/c4/c5_Hlv (Sep 2014, W0 entrance, QNC bridge, east end of W1 lane)",
+  "around/sv_W1_EcX7x3txdoSy91IGBiD7Vg, sv_W1_m9EfJT0s3QF0DnWgBy06fQ (Sep 2014, W0 down the lane)",
+  "around/sv_W1_PgZG5xta-vPqZkvMQkbDGg (Sep 2014, W1 west end and W1/W2 corner, back-lit)",
+  "around/sv_c0_bX7IwtitK2Af9GzSnfwU_w (Sep 2014, W2 and W1 receding; STC under construction)",
+  "around/sv_W2_* and sv_c1 (Sep 2014, construction fences, only parapet of W2 visible)",
+  "around/sv_W3_CIHM (black, ignored); sv_W4_UkT and sv_c2 (B1 undercroft, not B2)",
+  "private/earth_facade_1, earth_detail_1a/1b/1c, earth_corner_0/1 (2024, W2 with banners and canopy)",
+  "private/earth_detail_2a (2024, W1 west half above the QNC green roof)",
+  "private/earth_orbit_045/090/225 (2024, roof), ortho_2023aug, review/art/b2_study.jpg (lidar)",
+  "../qnc/facades.json (B2 bridge and lane), ../stc and ../b1 walls.json (party walls)"
+ ],
+ "colours": {
+  "brick": {
+   "hex": "#b89e81",
+   "palette": "brick_buff",
+   "where": "buff/tan brick, all piers and blank walls; sunlit sample on the same brick at the W0 forecourt (sv_W0 left, lab 8 from brick_buff). Shaded piers read #665242-#705e4f"
+  },
+  "precast": {
+   "hex": "#c6bcac",
+   "palette": "concrete",
+   "where": "light beige-grey exposed-aggregate precast strips around windows and spandrels (shaded #918878-#948d82 in sv_W0/sv_W4; brightness judged against sunlit W0 parapet #a29281 and Earth); guess on exact value"
+  },
+  "window_frame": {
+   "hex": "#e2e2dc",
+   "palette": "mullion",
+   "where": "white/cream aluminium window and door frames"
+  },
+  "glass": {
+   "palette": "window_dark",
+   "where": "all windows"
+  },
+  "door_canopy": {
+   "hex": "#5f5a54",
+   "palette": "brick_charcoal_tower",
+   "where": "flat dark-grey metal canopy over the W0 doors"
+  },
+  "banners": {
+   "hex": "#2a2c30",
+   "palette": "penthouse_metal",
+   "where": "two tall black banners/sign panels on W2 (Earth reads them navy #273e59 because of its blue cast)"
+  },
+  "coping": {
+   "palette": "concrete_raw",
+   "where": "precast parapet cap, all walls"
+  },
+  "roof": {
+   "hex": "#bdb0ac",
+   "palette": "roof_light",
+   "where": "grey-brown membrane (Earth 2024)"
+  }
+ },
+ "geometry_notes": [
+  "W3 (SE, 74.6 m) is a party wall with STC W0 for s 7.4-74.6 (STC W0 runs 883.7,171.7 -> 942.9,202.0, coincident within 0.5 m). Only s 0-7.4 is open, in the re-entrant corner next to STC's stone stair tower (STC W1), and it is roofed over by the W2 concrete canopy at ground level.",
+  "W4 (NE, 22.8 m) is a party wall with B1: B1 W1 (929.5,229.0 -> 963.3,162.1) passes through both W4 ends within 0.5 m. B1's blank brick SW wall then continues ~8 m north past W0 (seen left in sv_W0).",
+  "W0 is the recessed entrance bay between B1's projecting brick end and the QNC bridge; its 1.9 m jog to W1 (W0.b 925.3,218.8 vs W1.a 924.0,220.7) is real: the vestibule under the bridge sits ~2 m further out than the entrance doors (sv_W0, sv_c4).",
+  "Roof is two levels: a lower strip ~7 m deep along W1 at ~12.8-13 m (lidar 12-13.5) and the central/SE body at ~14 m (lidar 13.5-15), with a parapet step line visible parallel to W1 (orbit_090). The lidar 14.2 m building height is the upper body; the W1 and W2 parapets read about 13 m.",
+  "Ground falls slightly toward W2 / Ring Road; no level change modelled."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 8.5,
+   "confidence": "high",
+   "summary": "recessed main north entrance off the QNC lane: two precast bays of four tall white-framed windows per floor between buff brick piers; double glazed doors with sidelights under a flat dark metal canopy in the west bay",
+   "height_m": 13.1,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.8,
+     "upper"
+    ],
+    [
+     3.8,
+     "upper"
+    ],
+    [
+     1.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "pier"
+    ],
+    [
+     3.3,
+     "win4"
+    ],
+    [
+     0.9,
+     "pier"
+    ],
+    [
+     3.3,
+     "door"
+    ],
+    [
+     0.6,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/win4": {
+     "type": "window",
+     "w": 3.0,
+     "h": 2.7,
+     "sill": 0.4,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 2.9,
+     "h": 2.6,
+     "sill": 0.0,
+     "mullions": 3,
+     "transoms": 0,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "canopy": [
+      1.0,
+      "brick_charcoal_tower"
+     ]
+    },
+    "upper/win4": {
+     "type": "window",
+     "w": 3.0,
+     "h": 1.75,
+     "sill": 0.95,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "upper/door": {
+     "type": "window",
+     "w": 3.0,
+     "h": 1.75,
+     "sill": 0.95,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "parapet/win4": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "parapet/door": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     3.85,
+     4.0,
+     "concrete",
+     0.04
+    ],
+    [
+     7.65,
+     7.8,
+     "concrete",
+     0.04
+    ],
+    [
+     12.8,
+     13.1,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 5.8,
+     "z": 3.5,
+     "w": 0.3,
+     "h": 0.25,
+     "text": "(small lamp/sensor box)",
+     "colour": "panel_white",
+     "on": "wall above door canopy"
+    }
+   ],
+   "attached": [
+    "door canopy 3.3 m wide x 1.0 m deep at 2.7-2.9 m over the double doors (sv_W4_Hlv)",
+    "QNC bridge lands just west of this wall (see W1)"
+   ],
+   "notes": "Counted from sv_W0_DPVv_100 and sv_W4_Hlv_100 (Sep 2014). Ground windows: 4 lights each split by a transom at ~2.0 m, with a precast sill panel below; doors are a pair of glazed aluminium doors plus a glazed sidelight each side, transom glass above to ~3.0 m. Spandrels between floors are precast with a thin projecting ledge. Upper windows: 4 tall lights per bay (each ~0.7 m wide) with a small top transom. Piers are brick full height."
+  },
+  "W1": {
+   "faces": "NW",
+   "length_m": 65.6,
+   "confidence": "medium",
+   "summary": "long north wall along the 7-8 m lane to QNC: buff brick with vertical precast strips holding one white-framed window per floor, strips paired (thin brick pilaster between) and pairs separated by wide brick piers; glazed vestibule under the QNC bridge at the east end, louvre at ground just west of it",
+   "height_m": 13.1,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.8,
+     "upper"
+    ],
+    [
+     3.8,
+     "upper"
+    ],
+    [
+     1.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.4,
+     "vest"
+    ],
+    [
+     2.2,
+     "pier"
+    ],
+    [
+     1.8,
+     "lstrip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     0.5,
+     "pil"
+    ],
+    [
+     1.8,
+     "strip"
+    ],
+    [
+     2.6,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "ground/vest": {
+     "type": "glass",
+     "w": 3.2,
+     "h": 3.4,
+     "sill": 0.0,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "upper/vest": {
+     "type": "window",
+     "w": 3.0,
+     "h": 1.75,
+     "sill": 0.95,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "parapet/vest": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "ground/lstrip": {
+     "type": "louvre",
+     "w": 1.1,
+     "h": 2.6,
+     "sill": 0.4,
+     "glass": "metal_shade",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "ground/strip": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.9,
+     "sill": 1.1,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "upper/lstrip": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.7,
+     "sill": 1.0,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "upper/strip": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.7,
+     "sill": 1.0,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete"
+    },
+    "parapet/strip": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "parapet/lstrip": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "*/pil": null,
+    "*/pier": null,
+    "*/corner": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     12.8,
+     13.1,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "QNC glazed bridge (levels 2-3) lands on s 0-5.5; underside ~4.3 m, dark slatted soffit, one V-shaped pair of silver steel struts at s ~4, 3 m out (sv_c4/c5_Hlv). Drawn from QNC's site.bridges.",
+    "vestibule screen under the bridge, s 0-3.4: 4 glazed leaves with warm wood-lined interior visible (sv_c4)"
+   ],
+   "notes": "Only the two ends are photographed close: east end sv_c4/c5_Hlv (2014), west end sv_W1_PgZG (2014, back-lit) and earth_detail_2a (2024, upper two floors over the QNC green roof). Both ends show the same system: precast strips ~1.8 m wide with one ~1.15 x 1.7 m two-light window per floor, brick between. The 8-module rhythm (pair of strips + ~3 m brick pier) is fitted to the length and to the Earth view (which shows pairs separated by wide brick and at least one wider ~4 m blank brick stretch near mid-length, and a precast strip with 4 narrow lights near the west third - not placed, uncertain). West corner pier ~2.6 m blank brick (sv_W1_PgZG). Ground-floor windows sit slightly lower and taller."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 25.5,
+   "confidence": "medium",
+   "summary": "west end toward Ring Road: almost blank buff brick with a narrow recessed precast stair slot of small windows and two tall black sign banners on the south part; a flat concrete canopy (2024, not in 2014) runs along the base of the south two-thirds into the STC corner",
+   "height_m": 13.1,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.8,
+     "upper"
+    ],
+    [
+     3.8,
+     "upper"
+    ],
+    [
+     1.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     11.7,
+     "blank"
+    ],
+    [
+     1.4,
+     "slot"
+    ],
+    [
+     2.6,
+     "blank"
+    ],
+    [
+     2.9,
+     "banner"
+    ],
+    [
+     1.0,
+     "blank"
+    ],
+    [
+     2.9,
+     "banner"
+    ],
+    [
+     3.0,
+     "blank"
+    ]
+   ],
+   "cells": {
+    "ground/slot": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "sill": 1.4,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "depth": 0.3
+    },
+    "upper/slot": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "sill": 1.6,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "colour": "concrete",
+     "depth": 0.3
+    },
+    "parapet/slot": {
+     "type": "panel",
+     "colour": "concrete"
+    },
+    "upper/banner": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/blank": null,
+    "ground/banner": null,
+    "parapet/banner": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     12.8,
+     13.1,
+     "concrete_raw",
+     0.06
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 17.9,
+     "z": 7.8,
+     "w": 2.9,
+     "h": 7.4,
+     "text": "left banner: white crest/logo near the top and two lines of small white text lower down (illegible in Earth); guess: Faculty of Science / Biology",
+     "colour": "panel_white",
+     "on": "black banner"
+    },
+    {
+     "s": 21.8,
+     "z": 7.8,
+     "w": 2.9,
+     "h": 7.4,
+     "text": "right banner: three short lines of white text at the top and one lower (illegible)",
+     "colour": "panel_white",
+     "on": "black banner"
+    }
+   ],
+   "attached": [
+    "flat concrete canopy/overhang (light grey, ~0.6 m fascia) at about 3.0-3.6 m, ~2.5 m deep, from s ~10 to the wall end and on into the corner with STC (earth_facade_1, earth_corner_0/1, 2024). Dark shaded zone beneath. Absent in sv_c0 (2014), so built with STC (~2016). Height and depth are estimates."
+   ],
+   "notes": "Wall extent and slot from earth_facade_1 (830 px = 25.5 m; slot at s 11.7-13.1, banners at s 16.5-19.4 and 20.4-23.3). Banners measured ~2.9 m wide and roughly z 4-11 (vertical scale less certain); modelled as the two upper rows of the banner bays. sv_c0 (2014) shows the slot as a precast strip with small windows on each floor and the roof slightly higher north of the slot (parapet step, ~0.5 m, uncertain). The low ground area along W2 in 2014 held a fenced transformer/electrical box."
+  },
+  "W3": {
+   "faces": "SE",
+   "length_m": 74.6,
+   "confidence": "high",
+   "summary": "party wall with STC for s 7.4-74.6; only a 7.4 m stub of plain brick in the re-entrant corner next to STC's stair tower, under the W2 canopy",
+   "height_m": 13.1,
+   "shared": "STC W0",
+   "rows": [
+    [
+     13.1,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     7.4,
+     "open"
+    ],
+    [
+     67.2,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/open": null,
+    "*/shared": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [],
+   "notes": "No photo shows the stub square-on (sv_W3_CIHM is black). STC (~22 m) stands against the rest; B2's wall is not visible above it."
+  },
+  "W4": {
+   "faces": "NE",
+   "length_m": 22.8,
+   "confidence": "high",
+   "hidden": true,
+   "shared": "B1 W1",
+   "summary": "party wall with Biology 1 along its whole length",
+   "rows": [
+    [
+     13.1,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     22.8,
+     "shared"
+    ]
+   ],
+   "cells": {},
+   "wall": "brick_buff_sun",
+   "notes": "B1 W1 coincides with this wall within 0.5 m (walls.json of both)."
+  }
+ },
+ "roof": [
+  {
+   "what": "long open-topped mechanical enclosure: light grey metal panel screen walls around a run of silver ducts and pipe racks",
+   "where": "along the roof centreline from ~8 m off W2 to ~10 m short of W0, centred ~10 m in from W1",
+   "size_m": [
+    45,
+    5,
+    2.6
+   ],
+   "colour": "metal_panel",
+   "photo": "earth_orbit_045/090, study ortho"
+  },
+  {
+   "what": "three short silver exhaust stacks in a cluster",
+   "where": "inside the enclosure, mid-length (~s 35 along W1)",
+   "size_m": [
+    1.0,
+    1.0,
+    2.5
+   ],
+   "colour": "metal_silver"
+  },
+  {
+   "what": "white air-handler box",
+   "where": "NW side of the enclosure near the W2 end (~s 45-50 along W1, 9 m in)",
+   "size_m": [
+    5,
+    4,
+    2.5
+   ],
+   "colour": "panel_white"
+  },
+  {
+   "what": "silver duct runs with goosenecks crossing to the SE parapet and into STC",
+   "where": "from the enclosure to the SE edge, several",
+   "size_m": [
+    1,
+    6,
+    1
+   ],
+   "colour": "metal_silver"
+  },
+  {
+   "what": "roof step/parapet line parallel to W1",
+   "where": "~7 m in from W1, full length; NW strip ~1 m lower",
+   "size_m": [
+    65,
+    0.3,
+    1.0
+   ],
+   "colour": "concrete_raw"
+  },
+  {
+   "what": "four small square skylights",
+   "where": "near the W0/B1 end (orbit_090 top), grouped 2x2",
+   "size_m": [
+    1,
+    1,
+    0.3
+   ],
+   "colour": "metal_shade"
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "QNC",
+    "from_wall": "W1",
+    "s": [
+     0,
+     5.5
+    ],
+    "levels": [
+     2,
+     3
+    ],
+    "look": "glazed bridge with dark slatted soffit and V-shaped silver steel struts; already in QNC site.bridges (QNC W9 s 31-36.8)"
+   }
+  ],
+  "neighbours": [
+   "STC (white panel, ~22 m) built against the whole SE side (W3)",
+   "B1 against the NE end (W4); its blank brick end projects ~8 m north beside the W0 entrance",
+   "QNC 7-8 m across the lane to the NW (W1), green roof at level 2-3, bridged at the east end",
+   "Ring Road ~35 m beyond W2 to the SW"
+  ],
+  "ground": [
+   "W0 forecourt and W1 lane: plain light concrete slabs with drains (sv_W0), raised concrete planters with ivy along QNC's side, planting bed with small trees and stepping-stone slabs near the east end (sv_c4)",
+   "W1 west end: concrete service apron with bollard and gate arm (sv_W1_PgZG)",
+   "W2: concrete walk/plaza with irregular lawn patches and a few young trees between W2 and Ring Road (ortho_2023aug, earth_facade_1)"
+  ],
+  "entities": [
+   {
+    "type": "bin",
+    "kind": "blue and black wheeled recycling/garbage carts in a row",
+    "where": "along W1, s 58-63, 1 m out",
+    "count": 6,
+    "photo": "sv_W1_PgZG (2014)"
+   },
+   {
+    "type": "bollard",
+    "kind": "white-capped steel bollard",
+    "where": "W1 west end, s 64, 8 m out",
+    "count": 1,
+    "photo": "sv_W1_PgZG (2014)"
+   },
+   {
+    "type": "lamp",
+    "kind": "small wall-mounted light box above the door canopy",
+    "where": "W0, s 5.8, z 3.6",
+    "count": 1,
+    "photo": "sv_W4_Hlv"
+   },
+   {
+    "type": "tree",
+    "kind": "young deciduous trees in the lane planting bed",
+    "where": "along W1, s 6-25, 4-5 m out",
+    "count": 5,
+    "photo": "sv_c4/c5_Hlv (also in QNC spec; merge)"
+   },
+   {
+    "type": "tree",
+    "kind": "large deciduous tree",
+    "where": "off W1/W2 corner, ~4 m out from W2 s 2",
+    "count": 1,
+    "photo": "sv_W1_PgZG, sv_c0, earth_facade_1"
+   },
+   {
+    "type": "tree",
+    "kind": "small trees in front of the canopy",
+    "where": "along W2, s 12-24, 4-6 m out",
+    "count": 3,
+    "photo": "earth_facade_1 (2024)"
+   },
+   {
+    "type": "utility",
+    "kind": "fenced pad-mounted transformer / electrical cabinets (2014; may be gone)",
+    "where": "W2 s 13-19, 4 m out",
+    "count": 1,
+    "photo": "sv_c0 (2014)"
+   }
+  ]
+ }
+}

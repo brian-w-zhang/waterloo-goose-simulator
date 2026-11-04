@@ -53,6 +53,11 @@ def to_facade(w, **extra):
     for c in cells.values():
         if isinstance(c, dict) and c.get("see"):
             c["_spec"] = (extra.get("shared") or {}).get(c["see"].split(".")[-1], w.get(c["see"].split(".")[-1], {}))
+    # signs and banners: flat panels on the wall (text is not drawn; colour and size are)
+    out["signs"] = [sg for sg in w.get("signs", []) if isinstance(sg, dict) and all(k in sg for k in ("s", "w", "h"))]
+    cp = w.get("coping")
+    if isinstance(cp, (list, tuple)) and len(cp) >= 2:
+        out["coping"] = (float(cp[0]), colour_name(cp[1]), float(cp[2]) if len(cp) > 2 else 0.1)
     out.update({k: v for k, v in extra.items() if k != "shared"})
     return out
 

@@ -79,6 +79,31 @@ def build_generic(k, abbrev, style=None, **o):
         if key in o:
             opts[key] = o[key]
     tiers = data.lidar_massing(abbrev, **opts)
+    # a photo-read facade spec, when the building has one, draws every documented wall
+    import re
+    import spec as fspec
+    bdir = "docs/refs/buildings/" + re.sub(r"[^a-z0-9]+", "-", abbrev.lower()).strip("-")
+    fac, walls = data.facades(bdir)
+    if fac:
+        specs = {wid: fspec.to_facade(w) for wid, w in fac["walls"].items()}
+        for wid, w in fac["walls"].items():
+            if w.get("upper") and w.get("a"):
+                walls.append({"id": wid, "art": [w["a"], w["b"]], "length_m": w["length_m"]})
+        main = max((sp for sp in specs.values() if sp), key=lambda sp: sum(r[0] for r in sp["rows"]))
+        for tier in tiers:
+            gy, h = tier["ground_y"], tier["h"]
+            z1 = gy + h
+            for r in [tier["rings"][0]] + tier.get("holes", []):
+                fspec.draw_outline(k, r, gy, z1, walls, specs, main, tol=2.5)
+            for t in tier["tris"]:
+                from mathutils import Vector
+                A, B, C = (Vector((x, y, z1)) for x, y in t)
+                if (B - A).cross(C - A).z < 0:
+                    B, C = C, B
+                k.face([A, B, C], o.get("roof_high", (1e9, roof))[1] if h >= o.get("roof_high", (1e9,))[0] else roof)
+        if o.get("extra"):
+            o["extra"](k, tiers)
+        return sorted({p["objectid"] for p in parts})
     for tier in tiers:
         gy, h = tier["ground_y"], tier["h"]
         z0, z1 = gy - 1.5, gy + h
