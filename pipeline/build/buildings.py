@@ -367,4 +367,8 @@ def build():
             "osm_tags": tags or {},
             "style": style_class(props, tags, poly.area),
         })
-    return out
+    # the world is the campus and its named neighbours (config/world_extent.json)
+    ext = json.loads((ROOT / "config" / "world_extent.json").read_text())
+    bound = Polygon(ext["boundary_utm"])
+    drop = set(ext["drop_objectids"])
+    return [b for b in out if b["footprint"].intersects(bound) and b["objectid"] not in drop]

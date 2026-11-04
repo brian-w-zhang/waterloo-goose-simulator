@@ -28,7 +28,11 @@ def _rings(geom):
 
 
 def build(gcls, bl, lakes):
-    layers = {k: _rings(gcls[k]) for k in LAYERS if k in gcls}
+    # the map shows the world extent (config/world_extent.json) and a little margin
+    from shapely.geometry import Polygon
+    from ..config import ROOT
+    ext = Polygon(json.loads((ROOT / "config" / "world_extent.json").read_text())["boundary_utm"]).buffer(40)
+    layers = {k: _rings(gcls[k].intersection(ext)) for k in LAYERS if k in gcls}
     blds, places = [], {}
     for b in bl:
         uw = "WATERLOO" in (b.get("owner") or "").upper()

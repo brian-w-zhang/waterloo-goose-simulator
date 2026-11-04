@@ -135,3 +135,7 @@ is the V01 photo). Only main entrances get one: DC has 31 mapped entrances, most
 The 10:16 WebGL ledger line says 6d1cea8+dirty only because the 10:13 WebGPU verify had appended
 to the tracked VERIFY-LEDGER.md. The source was exactly 6d1cea8. verify.py now ignores the ledger
 and bench/ results when deciding whether the tree is dirty.
+
+## 2026-11-03 evening: world cut to the campus (user request)
+
+The user asked to leave out residential streets that are not student housing, restaurants or near campus. `config/world_extent.json` holds the boundary (the user's UW campus map extent, Westmount Rd N to Lester St) and 105 City OBJECTIDs of houses and sheds on side streets (model plan tier 4); `pipeline/build/buildings.py` drops buildings outside the boundary or in that list (1,108 -> 223 buildings). The geometry gates that count every City building in the old core box (coverage_all_core, built_area_all_rel_err, iou_city_*) measure the old extent and will fail by design until they are re-scoped to the new boundary; the UW-building gates are unaffected.
