@@ -139,3 +139,14 @@ and bench/ results when deciding whether the tree is dirty.
 ## 2026-11-03 evening: world cut to the campus (user request)
 
 The user asked to leave out residential streets that are not student housing, restaurants or near campus. `config/world_extent.json` holds the boundary (the user's UW campus map extent, Westmount Rd N to Lester St) and 105 City OBJECTIDs of houses and sheds on side streets (model plan tier 4); `pipeline/build/buildings.py` drops buildings outside the boundary or in that list (1,108 -> 223 buildings). The geometry gates that count every City building in the old core box (coverage_all_core, built_area_all_rel_err, iou_city_*) measure the old extent and will fail by design until they are re-scoped to the new boundary; the UW-building gates are unaffected.
+
+## 2026-11-03 night: paused (handoff)
+
+Stopped on the user's request: capture jobs, Chrome capture windows, game servers (3100, 3001), Blender. To resume:
+- Game: `npm run build && npm start` (http://localhost:3100); art models: `npm run art` (needs `npm run pipeline` first and Blender).
+- Model inspector: http://localhost:3100/inspect (models with their reference photos).
+- Per-building loop: `python -m tools.refs.around <ABBREV>` -> `node tools/refs/around_queue.mjs --jobs 1 docs/refs/buildings/<id> ...` (one Chrome window; resumable) -> analyst agent with docs/refs/ANALYST-BRIEF.md writes facades.json -> add to art/models/bld_campus.py (or its own script) -> `tools/art/publish.sh <model>` -> `node tools/art/sv_compare.mjs <id>`.
+- Done from specs: DC, MC, QNC, SLC, B1, B2, C2, ESC, EIT, PAC, NH, M3, PHY, GSC, STC, E3, ERC, LHI, BMH, CSB, E2, AHS EXP, plaza strips oid388/oid10769/oid17445.
+- Captured, not yet specced: COM, RCH, GH (all-round photos in their private/around folders).
+- Not yet captured (queue was stopped mid-way; images so far are kept): CPH, DWE, SCH, UC, Rooster's strip, Molly Bloom's, oid34262, 170 University Ave W, Campus Court (oid31641), ICON, Rez-One Blair/Elora, Waterloo Central Supermarket strip, 203 Lester (Linden Square), Sage 5. Then tiers 2-3 of docs/refs/MODEL-PLAN.md.
+- Known gaps: plaza front gables and crowded east-end signs; DC red entrance steel and stair tower; QNC bridges; PHY fins stop at the canopy; LHI portico now inside the AHS expansion; camera presses into walls after landing; a few false tree crowns on glass atria; the overnight Street View pass (tools/refs/streetview.mjs) is paused at ~750 panoramas; verify gates coverage_all_core / built_area_all need re-scoping to config/world_extent.json.

@@ -97,3 +97,6 @@ One line per run, appended by `tools/verify/gate.py`; old lines are never edited
 | 2026-11-03 15:11 | 72a1090 | webgl2 | full | 62/64 | 1.000 | 0.53 / 0.57 | 0.03 | 0.081 | n/a | 0 | bench/results/verify/20261103-1508-72a1090+dirty-webgl |
 | 2026-11-03 15:24 | 72a1090 | none | fast | 39/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 1 | bench/results/verify/20261103-1524-72a1090+dirty |
 | 2026-11-03 15:28 | 72a1090 | none | fast | 40/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-1528-72a1090+dirty |
+| 2026-11-03 20:56 | 61c2442 | none | fast | 36/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 6 | bench/results/verify/20261103-2055-61c2442+dirty |
+| 2026-11-03 21:02 | 0bb9366 | none | fast | 38/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-2102-0bb9366+dirty |
+| 2026-11-03 21:03 | 0bb9366 | none | fast | 38/42 | 1.000 | 0.53 / 0.57 | 0.03 | n/a | n/a | 0 | bench/results/verify/20261103-2102-0bb9366+dirty |
