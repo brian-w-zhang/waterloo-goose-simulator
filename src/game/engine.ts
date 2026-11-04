@@ -8,6 +8,7 @@ import type { V2 } from "@/sim/sim";
 import { loadRapier, Physics } from "@/physics/physics";
 import { makeGooseMaterial, makeMarkMaterial, occlusion } from "@/render/materials";
 import { AmbientCrowd } from "./ambient";
+import { preloadPeople } from "./actors";
 import { IonTrain } from "./train";
 import { HOTSPOT_SEED, HotspotRuntime } from "./hotspotRuntime";
 import { chime, step as footstep } from "@/audio/honk";
@@ -516,6 +517,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
 
   await spawn(follow.x, follow.z);
   if (testMode) goose.rig.root.visible = false;
+  await preloadPeople();   // the Blender villagers (art/models/people.py)
   hotspot = new HotspotRuntime(physics, (x, z) => stream.heightAt(x, z), mats.vertexColor, makeMarkMaterial(),
     mats.vertexColor, HOTSPOT_SEED);
   hotspot.gooseHeadGroup = goose.rig.head;

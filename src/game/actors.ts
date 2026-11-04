@@ -1,6 +1,8 @@
 import * as THREE from "three/webgpu";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { clone as cloneSkinned } from "three/addons/utils/SkeletonUtils.js";
 import { swatch } from "@/config";
+import { loadModel } from "@/render/models";
 import type { Npc } from "@/sim/sim";
 
 type Group = "people" | "items";
@@ -20,101 +22,213 @@ function paint(g: THREE.BufferGeometry, color: string, group: Group, x = 0, y = 
   return ng;
 }
 
-let detail = 1;
-const capsule = (r: number, l: number) => new THREE.CapsuleGeometry(r, l, detail > 0.5 ? 4 : 2, detail > 0.5 ? 10 : 6);
-const sphere = (r: number, w: number, h: number, ...rest: number[]) =>
-  new THREE.SphereGeometry(r, Math.max(5, Math.round(w * detail)), Math.max(4, Math.round(h * detail)), ...rest);
+
+/**
+ * People (spec V-ART-1/2): faceless miniature villagers modelled in Blender (art/models/people.py ->
+ * public/models/person_<body>.glb). Every body shares one 17-bone skeleton and one set of clips;
+ * faces carry a clothing slot in uv.x, so a body is recoloured per character (or per crowd
+ * instance, see ambient.ts) from palette swatches.
+ */
+export const BODIES = ["hoodie", "backpack", "dress", "puffer", "tee", "coat", "worker", "apron"] as const;
+export type Body = (typeof BODIES)[number];
+export type HairStyle = "short" | "long" | "bun" | "ponytail" | "curly" | "buzz" | "bald";
+export type HatKind = "hardhat" | "toque" | "cap" | "brim";
 
 export interface PersonLook {
-  skin: string; hair: string; top: string; bottom: string; hat?: string;
-  /** hairstyle: short crop, long hair down the back, a bun, or bald with a fringe */
-  style?: "short" | "long" | "bun" | "bald";
-  /** an open jacket or apron in a second colour over the top */
+  skin: string; hair: string; top: string; bottom: string;
+  /** a hat colour, or "hardhat" */
+  hat?: string;
+  style?: HairStyle;
+  /** a jacket, coat, vest or apron colour over the top */
   over?: string;
   build?: "slim" | "stout";
+  /** body model; chosen from the look when absent */
+  body?: Body;
+  hatKind?: HatKind;
+  /** backpack, bag or scarf colour */
+  acc?: string;
+}
+
+/** Clothing slots in the models (uv.x = (slot + 0.5) / 16); slot 8 keeps its baked colour. */
+export const SLOT = { skin: 0, hair: 1, top: 2, bottom: 3, over: 4, shoes: 5, acc: 6, hat: 7, fixed: 8 } as const;
+
+/** Stride (m per walk or run cycle at clip speed) of the generated cycles in people.py. */
+export const WALK_STRIDE = 0.95;
+export const RUN_STRIDE = 1.6;
+
+export function bodyFor(look: PersonLook): Body {
+  if (look.body) return look.body;
+  if (look.over === "hivis") return "worker";
+  if (look.over && look.build === "stout") return look.style === "bald" ? "coat" : "apron";
+  if (look.style === "long" || look.style === "bun") return "dress";
+  return "hoodie";
+}
+
+/** Palette swatch names for the nine slots of a body. */
+export function slotSwatches(look: PersonLook, body: Body): string[] {
+  const jacket = body === "backpack" || body === "coat";
+  const over = look.over ?? (jacket ? look.top : body === "worker" ? "hivis" : body === "apron" ? "cloth_white" : look.top);
+  const top = jacket && !look.over ? "cloth_cream" : look.top;
+  const hat = look.hat && look.hat !== "hardhat" ? look.hat : "cloth_red";
+  const acc = look.acc ?? (body === "coat" ? "cloth_maroon" : "bag_black");
+  return [look.skin, look.hair, top, look.bottom, over, "shoes", acc, hat];
+}
+
+const LOWER = new Set(["hips", "thighL", "shinL", "footL", "thighR", "shinR", "footR"]);
+/** clips whose time follows the simulation (one-shots), not a loop clock */
+const ONE_SHOT = new Set(["startle", "shrug", "dress", "fall"]);
+
+export interface PersonModel {
+  gltf: { scene: THREE.Object3D; animations: THREE.AnimationClip[] };
+  /** clips split into the legs-and-hips layer and the upper-body layer (scale tracks dropped) */
+  lower: Map<string, THREE.AnimationClip>;
+  upper: Map<string, THREE.AnimationClip>;
+  full: Map<string, THREE.AnimationClip>;
+}
+
+const models = new Map<Body, PersonModel>();
+let loading: Promise<void> | null = null;
+
+/** Load every body model once (call before makePerson). */
+export function preloadPeople(): Promise<void> {
+  loading ??= Promise.all(BODIES.map(async (b) => {
+    let gltf;
+    try { gltf = await loadModel(`person_${b}`); } catch (e) {
+      // a missing model must never stop the game: people of that body fall back to another one
+      console.warn(`[wgs] person model ${b} failed to load (${(e as Error).message}); using another body`);
+      return;
+    }
+    const lower = new Map<string, THREE.AnimationClip>(), upper = new Map<string, THREE.AnimationClip>();
+    const full = new Map<string, THREE.AnimationClip>();
+    for (const c of gltf.animations) {
+      const tracks = c.tracks.filter((t) => !t.name.endsWith(".scale"));
+      const bone = (t: THREE.KeyframeTrack) => t.name.slice(0, t.name.lastIndexOf("."));
+      full.set(c.name, new THREE.AnimationClip(c.name, c.duration, tracks));
+      lower.set(c.name, new THREE.AnimationClip(`${c.name}_lower`, c.duration, tracks.filter((t) => LOWER.has(bone(t)))));
+      upper.set(c.name, new THREE.AnimationClip(`${c.name}_upper`, c.duration, tracks.filter((t) => !LOWER.has(bone(t)))));
+    }
+    models.set(b, { gltf, lower, upper, full });
+  })).then(() => undefined);
+  return loading;
+}
+
+/** The loaded model for a body (or any loaded body standing in for it), or null before loading. */
+export function personModel(b: Body): PersonModel | null {
+  return models.get(b) ?? models.values().next().value ?? null;
+}
+
+/** A copy of a model geometry with its slot faces painted in `swatches` (fixed faces keep theirs). */
+const recoloured = new Map<string, THREE.BufferGeometry>();
+export function recolour(src: THREE.BufferGeometry, swatches: string[], key: string): THREE.BufferGeometry {
+  const hit = recoloured.get(key);
+  if (hit) return hit;
+  const g = src.clone();
+  const uv = g.getAttribute("uv"), col = g.getAttribute("color");
+  const cols = swatches.map((s) => swatch(s, "people"));
+  const out = new Float32Array(uv.count * 4);
+  for (let i = 0; i < uv.count; i++) {
+    const slot = Math.floor(uv.getX(i) * 16);
+    if (slot < SLOT.fixed) { const c = cols[slot]; out.set([c.r, c.g, c.b, 1], i * 4); }
+    else out.set([col.getX(i), col.getY(i), col.getZ(i), 1], i * 4);
+  }
+  g.setAttribute("color", new THREE.BufferAttribute(out, 4));
+  recoloured.set(key, g);
+  return g;
+}
+
+/** The skinned model of a person and its animation state. */
+export interface Figure {
+  /** the skinned model (feet at the origin, facing +z) */
+  model: THREE.Object3D;
+  mixer: THREE.AnimationMixer;
+  lower: Map<string, THREE.AnimationAction>;
+  upper: Map<string, THREE.AnimationAction>;
+  weights: { lower: Map<string, number>; upper: Map<string, number> };
+  clock: Map<string, number>;
+  head: THREE.Object3D;
+  neck: THREE.Object3D;
+  palmR: THREE.Object3D;
+  palmL: THREE.Object3D;
 }
 
 export interface PersonRig {
   root: THREE.Group;
-  body: THREE.Group;
-  legs: [THREE.Group, THREE.Group];
-  arms: [THREE.Group, THREE.Group];
-  head: THREE.Group;
+  /** null until the models have loaded (the person is then invisible but simulated as usual) */
+  fig: Figure | null;
+  /** where a carried item sits (the right palm, or between both palms for a two-handed carry) */
   hand: THREE.Object3D;
   mark: THREE.Group;
   marks: Record<"?" | "!" | "swirl", THREE.Mesh>;
   bubble: THREE.Group;
   bubbleItem: string | null;
+  /** locomotion cycle phase (0..1) and smoothed ground speed */
   phase: number;
+  speed: number;
+  look: { yaw: number; pitch: number };
+  seed: number;
 }
 
-/** A chunky, friendly student or staff member, about 1.7 m, built from capsules and spheres. */
-export function makePerson(look: PersonLook, material: THREE.Material, markMaterial: THREE.Material): PersonRig {
-  const root = new THREE.Group();
-  const body = new THREE.Group();
-  root.add(body);
-  // chunky, rounded figure in the reference style: big head with a nose and no eyes, a wide
-  // tapered torso, short sturdy legs, round hands; clothes are layered flat colours
-  const wide = look.build === "stout" ? 1.18 : look.build === "slim" ? 0.9 : 1;
-  const torsoGeo = new THREE.CylinderGeometry(0.2 * wide, 0.25 * wide, 0.62, 12).toNonIndexed();
-  const shoulders = new THREE.SphereGeometry(0.2 * wide, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2).toNonIndexed();
-  shoulders.scale(1, 0.55, 0.9);
-  torsoGeo.scale(1, 1, 0.82);
-  const parts = [
-    paint(torsoGeo, look.top, "people", 0, 1.13, 0),
-    paint(shoulders, look.top, "people", 0, 1.43, 0),
-    paint(new THREE.CylinderGeometry(0.255 * wide, 0.255 * wide, 0.1, 12).scale(1, 1, 0.82), look.bottom, "people", 0, 0.84, 0),
-    paint(new THREE.CylinderGeometry(0.075, 0.085, 0.12, 8), look.skin, "people", 0, 1.53, 0),
-    // collar
-    paint(new THREE.TorusGeometry(0.085, 0.025, 4, 12).rotateX(Math.PI / 2), look.over ?? look.top, "people", 0, 1.49, 0),
-  ];
-  if (look.over) {
-    // open jacket or apron panels down the front and over the shoulders
-    for (const sx of [-1, 1]) parts.push(paint(new THREE.BoxGeometry(0.15 * wide, 0.6, 0.05), look.over, "people", sx * 0.12 * wide, 1.14, 0.19 * wide));
-    parts.push(paint(shoulders.clone().scale(1.04, 1.04, 1.04), look.over, "people", 0, 1.43, 0));
-  }
-  const torso = new THREE.Mesh(mergeGeometries(parts), material);
-  body.add(torso);
-  const head = new THREE.Group();
-  head.position.set(0, 1.6, 0);
-  const hp = [
-    paint(sphere(0.19, 14, 10).scale(0.95, 1.02, 1), look.skin, "people", 0, 0.12, 0),
-    // the nose is the only facial feature, as in the reference style
-    paint(sphere(0.05, 8, 6).scale(0.9, 1.1, 1.2), look.skin, "people", 0, 0.1, 0.19),
-    paint(sphere(0.04, 6, 4), look.skin, "people", -0.18, 0.11, 0), paint(sphere(0.04, 6, 4), look.skin, "people", 0.18, 0.11, 0),
-  ];
-  const st = look.style ?? "short";
-  if (st !== "bald") hp.push(paint(sphere(0.2, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.55).scale(1, 0.95, 1.02), look.hair, "people", 0, 0.14, -0.02));
-  else hp.push(paint(new THREE.TorusGeometry(0.17, 0.04, 5, 14, Math.PI).rotateX(Math.PI / 2).rotateY(Math.PI), look.hair, "people", 0, 0.1, -0.02));
-  if (st === "long") hp.push(paint(new THREE.BoxGeometry(0.34, 0.34, 0.12), look.hair, "people", 0, -0.02, -0.13));
-  if (st === "bun") hp.push(paint(sphere(0.09, 8, 6), look.hair, "people", 0, 0.24, -0.16));
-  if (look.hat === "hardhat") {
-    // a dome with a peak, the same yellow as the spare one on the grass
-    hp.push(paint(new THREE.SphereGeometry(0.22, 14, 7, 0, Math.PI * 2, 0, Math.PI / 2).scale(1, 0.85, 1.05), "hardhat", "people", 0, 0.2, 0),
-      paint(new THREE.CylinderGeometry(0.25, 0.25, 0.02, 16).scale(1, 1, 1.15), "hardhat", "people", 0, 0.2, 0.04));
-  } else if (look.hat) {
-    hp.push(paint(new THREE.CylinderGeometry(0.2, 0.21, 0.12, 14), look.hat, "people", 0, 0.29, 0),
-      paint(new THREE.CylinderGeometry(0.27, 0.27, 0.02, 16).scale(1, 1, 1.1), look.hat, "people", 0, 0.24, 0.05));
-  }
-  head.add(new THREE.Mesh(mergeGeometries(hp), material));
-  body.add(head);
-  const legs: [THREE.Group, THREE.Group] = [new THREE.Group(), new THREE.Group()];
-  const arms: [THREE.Group, THREE.Group] = [new THREE.Group(), new THREE.Group()];
-  const legGeo = mergeGeometries([paint(capsule(0.1, 0.48), look.bottom, "people", 0, -0.36, 0),
-    paint(sphere(0.11, 8, 6).scale(1, 0.6, 1.5), "shoes", "people", 0, -0.75, 0.05)]);
-  const armGeo = mergeGeometries([paint(capsule(0.075, 0.4), look.over ?? look.top, "people", 0, -0.26, 0),
-    paint(sphere(0.08, 8, 6), look.skin, "people", 0, -0.55, 0)]);
-  [-1, 1].forEach((s, k) => {
-    legs[k].position.set(s * 0.11 * wide, 0.8, 0);
-    legs[k].add(new THREE.Mesh(legGeo, material));
-    body.add(legs[k]);
-    arms[k].position.set(s * 0.27 * wide, 1.42, 0);
-    arms[k].add(new THREE.Mesh(armGeo, material));
-    body.add(arms[k]);
+/** Debug (window.__people): every person made, and their posed size in metres. */
+const debugRigs: PersonRig[] = [];
+(globalThis as { __people?: unknown }).__people = {
+  rigs: debugRigs,
+  size: (i: number) => {
+    const f = debugRigs[i]?.fig;
+    if (!f) return null;
+    const b = new THREE.Box3().setFromObject(f.model, true);
+    return { min: b.min.toArray(), max: b.max.toArray(), root: debugRigs[i].root.position.toArray() };
+  },
+};
+
+/** A villager: the body model for `look`, recoloured, with an animation mixer. */
+function makeFigure(look: PersonLook, material: THREE.Material): Figure | null {
+  const body = bodyFor(look);
+  const pm = personModel(body);
+  if (!pm) return null;
+  const model = cloneSkinned(pm.gltf.scene);
+  const sw = slotSwatches(look, body);
+  const hatKind: HatKind | null = look.hatKind ?? (look.hat === "hardhat" ? "hardhat" : look.hat ? "brim" : null);
+  const keep = new Set(["body", `hair_${look.style ?? "short"}`, ...(hatKind ? [`hat_${hatKind}`] : [])]);
+  const drop: THREE.Object3D[] = [];
+  model.traverse((o) => {
+    const m = o as THREE.SkinnedMesh;
+    if (!m.isMesh) return;
+    if (!keep.has(m.name)) { drop.push(m); return; }
+    m.geometry = recolour(m.geometry, sw, `${body}|${m.name}|${sw.join(",")}`);
+    m.material = material;
+    m.castShadow = true;
+    m.receiveShadow = true;
+    m.frustumCulled = false;   // skinned bounds do not follow the pose
   });
+  for (const m of drop) m.removeFromParent();
+  const head = model.getObjectByName("head"), neck = model.getObjectByName("neck");
+  const handR = model.getObjectByName("handR"), handL = model.getObjectByName("handL");
+  if (!head || !neck || !handR || !handL) {
+    console.warn(`[wgs] person model ${body} is missing bones; person not drawn`);
+    return null;
+  }
+  const palm = (b: THREE.Object3D) => { const o = new THREE.Object3D(); o.position.set(0, 0.07, 0); b.add(o); return o; };
+  const mixer = new THREE.AnimationMixer(model);
+  const actions = (clips: Map<string, THREE.AnimationClip>) => {
+    const out = new Map<string, THREE.AnimationAction>();
+    for (const [name, clip] of clips) {
+      const a = mixer.clipAction(clip);
+      a.timeScale = 0;   // times are set by hand every frame
+      out.set(name, a);
+    }
+    return out;
+  };
+  return { model, mixer, lower: actions(pm.lower), upper: actions(pm.upper), weights: { lower: new Map(), upper: new Map() },
+    clock: new Map(), head, neck, palmR: palm(handR), palmL: palm(handL) };
+}
+
+/** A villager: the body model for `look`, recoloured, with an animation mixer. Never throws: before
+ * the models load (or if they fail) the person is simulated but not drawn. */
+export function makePerson(look: PersonLook, material: THREE.Material, markMaterial: THREE.Material, seed = 0): PersonRig {
+  const root = new THREE.Group();
   const hand = new THREE.Object3D();
-  hand.position.set(0, -0.6, 0.06);
-  arms[1].add(hand);
+  hand.position.set(0, 1.0, 0.3);
+  root.add(hand);
   // reaction marks above the head, drawn in flat ink-free shapes
   const mark = new THREE.Group();
   mark.position.set(0, 2.25, 0);
@@ -142,57 +256,143 @@ export function makePerson(look: PersonLook, material: THREE.Material, markMater
   bubble.children[0].renderOrder = 1;
   bubble.visible = false;
   root.add(bubble);
-  root.traverse((o) => { if ((o as THREE.Mesh).isMesh && o.parent !== mark && o.parent !== bubble) o.castShadow = true; });
-  return { root, body, legs, arms, head, hand, mark, marks, bubble, bubbleItem: null, phase: 0 };
+  const rig: PersonRig = { root, fig: null, hand, mark, marks, bubble, bubbleItem: null,
+    phase: 0, speed: 0, look: { yaw: 0, pitch: 0 }, seed };
+  const attach = () => {
+    rig.fig = makeFigure(look, material);
+    if (rig.fig) root.add(rig.fig.model);
+  };
+  if (models.size) attach();
+  else void preloadPeople().then(attach);
+  debugRigs.push(rig);
+  return rig;
 }
 
-/** Pose the person from the simulation state; speed in m/s drives the walk or run cycle. */
+/** Two-handed carries; everything else is held in the right hand at the chest. */
+const BIG = new Set(["basket", "pizza", "laptop", "textbook", "ball", "backpack", "cone"]);
+
+/** What the upper body (and, for full-body moves, the legs) should play for this simulation state. */
+function chooseClips(r: PersonRig, n: Npc, simT: number): { upper: string | null; lower: string | null; time?: number } {
+  if (n.state === "fallen") return { upper: "fall", lower: "fall", time: n.stateTime };
+  if (n.state === "tug") return { upper: "tug", lower: "tug" };
+  if (n.gesture === "dress") return { upper: "dress", lower: "dress", time: simT - n.gestureTime };
+  if (n.state === "react") return { upper: n.mark === "!" ? "startle" : "shrug", lower: null, time: n.stateTime };
+  if (n.state === "giveup") return { upper: "scratch", lower: null };
+  if (n.gesture === "shake") return { upper: "headshake", lower: null };
+  if (n.gesture === "clap") return { upper: "clap", lower: null };
+  if (n.state === "shoo") return { upper: r.speed > 0.4 ? "shoo" : "fist", lower: null };
+  if (n.holding) return { upper: BIG.has(n.holding.split("_")[0]) ? "carry" : "hold", lower: null };
+  if (r.speed < 0.25 && (n.state === "search" || n.state === "investigate" || n.state === "retrieve")) return { upper: "look", lower: null };
+  if (r.speed < 0.25 && n.state === "routine") {
+    // idle variety while waiting at a waypoint: now and then a chat or a glance about
+    const beat = Math.floor((simT + r.seed * 3.7) / 7);
+    const pick = (beat * 2654435761 + r.seed * 97) % 5;
+    if (pick === 1) return { upper: "talk", lower: null };
+    if (pick === 3) return { upper: "look", lower: null };
+  }
+  return { upper: null, lower: null };
+}
+
+const FADE = 6;   // weight per second: a 0.17 s cross-fade
+const LOCO = new Set(["idle", "walk", "run"]);
+function blendLayer(r: Figure, layer: "lower" | "upper", target: Map<string, number>, dt: number) {
+  const acts = r[layer], w = r.weights[layer];
+  // between idle, walk and run the weights follow the (smoothed) speed directly; anything else fades
+  const direct = [...target.keys()].every((k) => LOCO.has(k)) && [...w].every(([k, x]) => LOCO.has(k) || x < 1e-3);
+  for (const [name, action] of acts) {
+    const goal = target.get(name) ?? 0;
+    let cur = w.get(name) ?? 0;
+    if (direct && LOCO.has(name)) cur = goal;
+    else cur = goal > cur ? Math.min(goal, cur + dt * FADE) : Math.max(goal, cur - dt * FADE);
+    w.set(name, cur);
+    if (cur > 1e-3) {
+      if (!action.isScheduled()) action.play();
+      action.setEffectiveWeight(cur);
+    } else if (action.isScheduled()) action.stop();
+  }
+}
+
+const UP = new THREE.Vector3(0, 1, 0);
+const _q = new THREE.Quaternion(), _q2 = new THREE.Quaternion(), _v = new THREE.Vector3(), _v2 = new THREE.Vector3();
+const _v3 = new THREE.Vector3();
+
+/** Turn a bone by `angle` about a world axis (applied on top of the animated pose). */
+function turnBone(b: THREE.Object3D, axisWorld: THREE.Vector3, angle: number) {
+  if (Math.abs(angle) < 1e-4) return;
+  b.parent!.getWorldQuaternion(_q).invert();
+  _v.copy(axisWorld).applyQuaternion(_q).normalize();
+  b.quaternion.premultiply(_q2.setFromAxisAngle(_v, angle));
+}
+
+/**
+ * Pose the person from the simulation state: legs walk or run at a cycle rate matched to the
+ * ground speed (the clips' feet are planted, so nothing slides), the upper body plays the state's
+ * gesture, and the head turns to the goose.
+ */
 export function animatePerson(r: PersonRig, n: Npc, speed: number, dt: number, t: number, camera: THREE.Camera,
-  goose?: THREE.Vector3) {
-  const run = Math.min(Math.max((speed - 1.5) / 2.5, 0), 1);
-  r.phase += dt * (speed > 0.05 ? 3.2 + 4 * run + speed * 1.2 : 0);
-  const s = Math.sin(r.phase), moving = Math.min(speed / 1.2, 1);
-  r.legs[0].rotation.x = s * 0.6 * moving;
-  r.legs[1].rotation.x = -s * 0.6 * moving;
-  r.body.position.y = Math.abs(Math.cos(r.phase)) * 0.04 * moving;
-  r.body.rotation.x = 0.18 * run;
-  r.body.rotation.z = 0;
-  r.body.position.x = 0;
-  let armL = -s * 0.5 * moving, armR = s * 0.5 * moving, armZ = 0;
-  if (n.state === "react" && n.mark === "!") { armL = -2.6; armR = -2.6; armZ = 0.3; }
-  else if (n.state === "chase" || n.state === "shoo") { armL = -1.2 + Math.sin(t * 14) * 0.4; armR = -1.3 - Math.sin(t * 14) * 0.4; }
-  else if (n.state === "giveup") { armR = -2.7; armL = 0.1; }
-  if (n.holding && n.state === "return") armR = -0.9;
-  if (n.state === "tug") {
-    // tug-of-war: lean back, both arms forward, little jerks
-    r.body.rotation.x = -0.35 + Math.sin(t * 20) * 0.05;
-    armL = armR = -1.4;
-  }
-  if (n.gesture === "dress") { armL = armR = -1.0; armZ = -0.15; }   // reaching down to put a hat on the goose
-  if (n.gesture === "clap") { armL = armR = -1.2 - Math.abs(Math.sin(t * 14)) * 0.3; armZ = -0.35 + Math.abs(Math.sin(t * 14)) * 0.3; }
-  if (n.state === "fallen") {
-    // pratfall: tip over backward onto the grass for a moment, then get up (never hurt)
-    const k = Math.min(n.stateTime / 0.35, 1) * (n.stateTime > 1.8 ? Math.max(0, 1 - (n.stateTime - 1.8) / 0.4) : 1);
-    r.body.rotation.x = -1.45 * k;
-    r.body.position.y = 0.15 * k;
-    armL = -2.4 * k; armR = -2.2 * k;
-  }
-  r.arms[0].rotation.x = armL;
-  r.arms[1].rotation.x = armR;
-  r.arms[0].rotation.z = -armZ;
-  r.arms[1].rotation.z = armZ;
-  // eye contact: within 8 m the head turns to look at the goose (spec: the "a-ha" look)
-  let look = 0, tilt = 0;
-  if (goose && n.state !== "giveup") {
-    const local = r.root.worldToLocal(goose.clone());
-    if (Math.hypot(local.x, local.z) < 8) {
-      look = THREE.MathUtils.clamp(Math.atan2(local.x, local.z), -1.2, 1.2);
-      tilt = THREE.MathUtils.clamp(-Math.atan2(1.6 - local.y, Math.hypot(local.x, local.z)) * 0.6, -0.5, 0.2);
+  goose?: THREE.Vector3, simT = t) {
+  r.speed = THREE.MathUtils.damp(r.speed, speed, 10, dt);
+  const v = r.speed;
+  const run = THREE.MathUtils.smoothstep(v, 1.6, 2.8);
+  const moving = THREE.MathUtils.smoothstep(v, 0.08, 0.35);
+  const stride = THREE.MathUtils.lerp(WALK_STRIDE, RUN_STRIDE, run);
+  r.phase = (r.phase + dt * v / stride) % 1;
+  const f = r.fig;
+  if (f) try {
+    const pick = chooseClips(r, n, simT);
+    const loco = new Map([["idle", 1 - moving], ["walk", moving * (1 - run)], ["run", moving * run]]);
+    blendLayer(f, "lower", pick.lower ? new Map([[pick.lower, 1]]) : loco, dt);
+    blendLayer(f, "upper", pick.upper ? new Map([[pick.upper, 1]]) : loco, dt);
+    for (const layer of [f.lower, f.upper]) {
+      for (const [name, a] of layer) {
+        if (!a.isScheduled()) continue;
+        const dur = a.getClip().duration;
+        if (name === "walk" || name === "run") a.time = r.phase * dur;
+        else if (ONE_SHOT.has(name) && pick.time !== undefined && (name === pick.upper || name === pick.lower)) a.time = Math.min(Math.max(pick.time, 0), dur);
+        else a.time = (f.clock.get(name) ?? 0) % dur;
+      }
     }
+    for (const name of f.upper.keys()) if (!ONE_SHOT.has(name)) f.clock.set(name, (f.clock.get(name) ?? 0) + dt);
+    // every bone is rewritten from the clips here, so the look-at below never accumulates
+    f.mixer.update(0);
+    r.root.updateMatrixWorld(true);
+    // eye contact (spec V-ANIM-9): when the goose is close, or they have noticed it, the head turns
+    // to it, limited to what a neck can do (70 degrees each way, 25 up or down) and never round
+    // behind them
+    let yaw = 0, pitch = 0;
+    const busy = n.state === "giveup" || n.state === "fallen" || n.state === "tug" || n.gesture === "shake" || n.gesture === "dress";
+    if (goose && !busy) {
+      const local = r.root.worldToLocal(_v2.copy(goose));
+      const d = Math.hypot(local.x, local.z);
+      const bearing = Math.atan2(local.x, local.z);
+      const noticed = n.state !== "routine" || !!n.mark || d < 3.5;
+      if (d < 7 && noticed && Math.abs(bearing) < 2.0) {
+        yaw = THREE.MathUtils.clamp(bearing, -1.2, 1.2);
+        pitch = THREE.MathUtils.clamp(Math.atan2(local.y - 1.55, Math.max(d, 0.5)), -0.44, 0.2);
+      }
+    }
+    r.look.yaw = THREE.MathUtils.damp(r.look.yaw, yaw, 5, dt);
+    r.look.pitch = THREE.MathUtils.damp(r.look.pitch, pitch, 5, dt);
+    r.root.getWorldQuaternion(_q2);
+    const left = _v3.set(1, 0, 0).applyQuaternion(_q2);
+    turnBone(f.neck, UP, r.look.yaw * 0.4);
+    f.neck.updateMatrixWorld(true);
+    turnBone(f.head, UP, r.look.yaw * 0.6);
+    // +x is the person's left; a positive turn about it tips the face down
+    turnBone(f.head, left, -r.look.pitch);
+    f.head.updateMatrixWorld(true);
+    // carried item anchor
+    const two = n.holding && BIG.has(n.holding.split("_")[0]);
+    f.palmR.getWorldPosition(_v);
+    if (two) _v.add(f.palmL.getWorldPosition(_v2)).multiplyScalar(0.5);
+    r.hand.position.copy(r.root.worldToLocal(_v));
+    if (two) r.hand.position.y -= 0.12;   // the hands hold it from below
+  } catch (e) {
+    // never break the frame loop: drop the figure (the person stays simulated, just not drawn)
+    console.warn(`[wgs] person ${n.id} animation failed: ${(e as Error).message}`);
+    f.model.removeFromParent();
+    r.fig = null;
   }
-  r.head.rotation.y = n.state === "giveup" ? Math.sin(t * 5) * 0.3
-    : n.gesture === "shake" ? Math.sin(t * 7) * 0.4 : THREE.MathUtils.damp(r.head.rotation.y, look, 6, dt);
-  r.head.rotation.x = THREE.MathUtils.damp(r.head.rotation.x, -tilt, 6, dt);
   for (const [k, m] of Object.entries(r.marks)) m.visible = n.mark === k;
   const wants = n.wantItem && ["search", "chase", "retrieve"].includes(n.state) ? n.wantItem : null;
   if (wants !== r.bubbleItem) {
@@ -243,20 +443,4 @@ export function itemGeometry(kind: string): THREE.BufferGeometry {
     case "sock": return mergeGeometries([P(new THREE.BoxGeometry(0.06, 0.03, 0.2), "sock", 0, 0.015), P(new THREE.BoxGeometry(0.06, 0.03, 0.08), "sock", 0.04, 0.015, -0.08)]);
     default: return P(new THREE.BoxGeometry(0.1, 0.1, 0.1), "paper", 0, 0.05);
   }
-}
-
-/** One merged, static-pose, low-tessellation geometry of a person (for the instanced ambient crowd). */
-export function personGeometry(look: PersonLook): THREE.BufferGeometry {
-  const dummy = new THREE.MeshBasicNodeMaterial();
-  detail = 0.5;
-  const rig = makePerson(look, dummy, dummy);
-  detail = 1;
-  rig.root.updateMatrixWorld(true);
-  const parts: THREE.BufferGeometry[] = [];
-  rig.root.traverse((o) => {
-    const m = o as THREE.Mesh;
-    if (!m.isMesh || rig.mark.children.includes(m) || rig.bubble.children.includes(m)) return;
-    parts.push(m.geometry.clone().applyMatrix4(m.matrixWorld));
-  });
-  return mergeGeometries(parts);
 }

@@ -6,7 +6,7 @@ import { GROUP_ITEM, type Physics } from "@/physics/physics";
 import { DecisionClient } from "@/ai/decide";
 import { Menace } from "@/sim/menace";
 import { BROKEN, Sim, type SimEvent, type V2, WORN } from "@/sim/sim";
-import { animatePerson, itemGeometry, makePerson, type PersonRig } from "./actors";
+import { animatePerson, itemGeometry, makePerson, type PersonLook, type PersonRig } from "./actors";
 import { HOTSPOTS, LOOKS, populate } from "./hotspot";
 
 const EYE_M = 1.6;
@@ -19,6 +19,22 @@ const DRAG_BOX: Record<string, [number, number, number]> = { cone: [0.26, 0.4, 0
 const SHARD = new THREE.TetrahedronGeometry(0.05);
 /** item kinds that roll */
 const ROUND = new Set(["apple", "ball"]);
+
+/** Body model, hair and hat per hotspot character (the colours come from the look in hotspot.ts). */
+const CAST: Record<string, Partial<PersonLook>> = {
+  "green:prof": { body: "coat", style: "bald", acc: "cloth_maroon" },
+  "green:keeper": { body: "worker", style: "short", hatKind: "hardhat" },
+  "green:guide": { body: "dress", style: "bun" },
+  "green:frosh": { body: "hoodie", style: "long" },
+  "green:eng": { body: "puffer", style: "short", hatKind: "toque", hat: "cloth_gold" },
+  "plaza:vendor": { body: "apron", style: "short" },
+  "plaza:coach": { body: "tee", style: "short", hatKind: "cap", hat: "cloth_navy" },
+  "plaza:studier": { body: "backpack", style: "long", acc: "cloth_navy" },
+  "plaza:busker": { body: "hoodie", style: "short", hatKind: "brim" },
+  "village:don": { body: "backpack", style: "short" },
+  "village:laundry": { body: "tee", style: "ponytail" },
+  "village:frisbee": { body: "tee", style: "curly" },
+};
 
 export interface Task { id: string; hotspot: string; text: string; gate?: number; done: boolean; test: (e: SimEvent, sim: Sim) => boolean }
 
@@ -51,8 +67,9 @@ export class HotspotRuntime {
     this.root.name = "hotspot";
     this.sim = new Sim({ seed, lineOfSight: (a, b) => this.lineOfSight(a, b) });
     populate(this.sim);
+    let k = 0;
     for (const [id, look] of LOOKS) {
-      const p = makePerson(look, personMat, markMat);
+      const p = makePerson({ ...look, ...CAST[id] }, personMat, markMat, k++);
       this.people.set(id, p);
       this.root.add(p.root);
     }
@@ -298,7 +315,7 @@ export class HotspotRuntime {
       r.root.position.set(n.pos.x, this.ground(n.pos.x, n.pos.z), n.pos.z);
       // sim facing is counter-clockwise from +x toward +z; people face +z locally
       r.root.rotation.y = Math.PI / 2 - n.facing;
-      animatePerson(r, n, speed, dt, t, camera, this.gooseHead);
+      animatePerson(r, n, speed, dt, t, camera, this.gooseHead, this.sim.t);
     }
     const hand = new THREE.Vector3();
     for (const it of this.sim.items.values()) {
@@ -337,8 +354,11 @@ export class HotspotRuntime {
         m.rotation.set(sw.ax, m.rotation.y, sw.az);
         if (it.weight === "drag") { m.position.y = this.ground(it.pos.x, it.pos.z); m.rotation.set(0, m.rotation.y, 0); }
       } else if (it.heldBy) {
-        this.people.get(it.heldBy)!.hand.getWorldPosition(hand);
+        // in the hands of the person carrying it (an anchor between the hand bones), turned their way
+        const holder = this.people.get(it.heldBy)!;
+        holder.hand.getWorldPosition(hand);
         m.position.copy(hand);
+        m.rotation.set(0, holder.root.rotation.y, 0);
       } else {
         const v = this.itemVel.get(it.id);
         if (v && ROUND.has(it.id.split("_")[0])) m.rotation.x += Math.hypot(v.x, v.z) * dt / 0.05;   // rolling

@@ -190,13 +190,16 @@ def ellipsoid(name, centre, radii, seg=16, rings=10):
 
 
 def rounded_box(name, centre, size, levels=2):
+    """A box with half extents `size`, its edges rounded by a bevel of a third of the smallest side."""
     bm = bmesh.new()
     bmesh.ops.create_cube(bm, size=1.0)
-    for v in bm.verts:   # size: half extents
+    for v in bm.verts:
         v.co = V(v.co.x * size.x * 2, v.co.y * size.y * 2, v.co.z * size.z * 2)
     ob = lib.mesh_object(name, bm)
-    m = ob.modifiers.new("sub", "SUBSURF")
-    m.levels = levels
+    m = ob.modifiers.new("bevel", "BEVEL")
+    m.width = min(size) * 0.7
+    m.segments = 2 + levels
+    m.limit_method = "NONE"
     ob = evaluated_copy(ob, name)
     for v in ob.data.vertices:
         v.co += centre
@@ -210,7 +213,12 @@ def tube(name, rings, seg=16, gap=0.0, thick=0.012):
     an opening at the front (for an open coat). Solidified so it reads from inside too."""
     bm = bmesh.new()
     grid = []
-    for z, rx, ry, yo in rings:
+    # one extra ring between each pair, eased, so the profile curves without a subdivision
+    fine = [rings[0]]
+    for a, b in zip(rings, rings[1:]):
+        fine.append(tuple(a[i] + (b[i] - a[i]) * (0.5 if i == 0 else 0.62) for i in range(4)))
+        fine.append(b)
+    for z, rx, ry, yo in fine:
         row = []
         for i in range(seg + (1 if gap else 0)):
             a = (gap / 2 + (2 * math.pi - gap) * i / seg) if gap else 2 * math.pi * i / seg
@@ -231,8 +239,6 @@ def tube(name, rings, seg=16, gap=0.0, thick=0.012):
     m = ob.modifiers.new("solid", "SOLIDIFY")
     m.thickness = thick
     m.offset = 1.0
-    m2 = ob.modifiers.new("sub", "SUBSURF")
-    m2.levels = 1
     ob = evaluated_copy(ob, name)
     for p in ob.data.polygons:
         p.use_smooth = True
@@ -418,44 +424,65 @@ def arm_axis(d, side):
     return a, ((d.elbow * V(s, 1, 1)) - a).normalized()
 
 
+TORSO = ("hips", "spine", "chest")
+LEGS = ("thigh", "shin", "foot")
+
+
 def cuts(v, d):
-    """Planes (point, normal) along every colour border, cut into the dense body before painting so
-    clothing edges come out straight (the decimation keeps them)."""
+    """Planes (point, normal, which faces) along every colour border, cut into the decimated body
+    before painting so clothing edges come out straight. Each plane only cuts the faces of the parts
+    it borders, near the border, to keep the triangle count down."""
     k = d.k
-    out = [(V(0, 0, d.ankle_z + (0.12 if v.get("boots") else 0.045) * k), V(0, 0, 1))]
+    near = 0.07 * k
+
+    def plane(co, no, parts, extra=None):
+        def pred(c, part):
+            return part in parts and abs((c - co).dot(no)) < near and (extra is None or extra(c))
+        return co, no, pred
+
+    up = V(0, 0, 1)
+    side_x = V(1, 0, 0)
+    front = lambda c: c.y < 0.02 * k   # noqa: E731
+    out = [plane(V(0, 0, d.ankle_z + (0.12 if v.get("boots") else 0.045) * k), up, LEGS)]
     if v["legs"] == "shorts":
-        out.append((V(0, 0, d.knee_z + 0.11 * k), V(0, 0, 1)))
+        out.append(plane(V(0, 0, d.knee_z + 0.11 * k), up, LEGS))
     if v["legs"] != "dress":
-        out.append((V(0, 0, waist_line(v, d)), V(0, 0, 1)))
+        out.append(plane(V(0, 0, waist_line(v, d)), up, TORSO + ("thigh",)))
     for side in ("L", "R"):
         a, ax = arm_axis(d, side)
         if v["sleeves"] == "short":
-            out.append((a + ax * 0.14 * k, ax))
+            out.append(plane(a + ax * 0.14 * k, ax, ("upper_arm",)))
     if v.get("collar"):
-        out.append((V(0, 0, d.neck_z + 0.05 * k), V(0, 0, 1)))
+        out.append(plane(V(0, 0, d.neck_z + 0.05 * k), up, ("neck", "chest")))
     if v.get("scarf"):
-        out.append((V(0, 0, d.neck_z + 0.04 * k), V(0, 0, 1)))
+        out.append(plane(V(0, 0, d.neck_z + 0.04 * k), up, ("neck", "chest")))
     if v.get("vest"):
+        inside = lambda c: abs(c.x) < 0.14 * k * d.w   # noqa: E731
+        out += [plane(V(0.13 * k * d.w, 0, 0), side_x, TORSO), plane(V(-0.13 * k * d.w, 0, 0), side_x, TORSO)]
         for z in (1.04, 1.08, 1.17, 1.21):
-            out.append((V(0, 0, z * k), V(0, 0, 1)))
-        out.append((V(0, 0, d.neck_z - 0.02 * k), V(0, 0, 1)))
+            out.append(plane(V(0, 0, z * k), up, TORSO, inside))
+        out.append(plane(V(0, 0, d.neck_z - 0.02 * k), up, TORSO + ("neck",), inside))
     if v.get("jacket"):
         for s in (1, -1):
-            out.append((V(s * 0.05 * k, 0, 0), V(1, 0, 0)))
+            out.append(plane(V(s * 0.05 * k, 0, 0), side_x, TORSO, front))
     if v.get("coat"):
         for s in (1, -1):   # a V opening from the waist to the collar
-            out.append((V(s * 0.012 * k, 0, 1.0 * k), V(1, 0, -s * 0.28).normalized()))
+            out.append(plane(V(s * 0.012 * k, 0, 1.0 * k), V(1, 0, -s * 0.28).normalized(), TORSO, lambda c: front(c) and c.z > 0.97 * k))
     if v.get("apron"):
         for s in (1, -1):
-            out += [(V(s * 0.1 * k, 0, 0), V(1, 0, 0)), (V(s * 0.06 * k, 0, 0), V(1, 0, 0)), (V(s * 0.09 * k, 0, 0), V(1, 0, 0))]
-        out.append((V(0, 0, 1.28 * k), V(0, 0, 1)))
+            out += [plane(V(s * 0.1 * k, 0, 0), side_x, TORSO, front), plane(V(s * 0.06 * k, 0, 0), side_x, TORSO, front),
+                    plane(V(s * 0.09 * k, 0, 0), side_x, TORSO, front)]
+        out.append(plane(V(0, 0, 1.28 * k), up, TORSO, front))
     if v.get("backpack"):
         for s in (1, -1):
-            out += [(V(s * 0.07 * k, 0, 0), V(1, 0, 0)), (V(s * 0.11 * k, 0, 0), V(1, 0, 0))]
-        out.append((V(0, 0, 1.1 * k), V(0, 0, 1)))
+            out += [plane(V(s * 0.07 * k, 0, 0), side_x, TORSO, lambda c: c.z > 1.05 * k),
+                    plane(V(s * 0.11 * k, 0, 0), side_x, TORSO, lambda c: c.z > 1.05 * k)]
+        out.append(plane(V(0, 0, 1.1 * k), up, TORSO, lambda c: 0.05 * k < abs(c.x) < 0.13 * k))
     if v.get("hood"):
-        out += [(V(0.085 * k, 0, 0), V(1, 0, 0)), (V(-0.085 * k, 0, 0), V(1, 0, 0)),
-                (V(0, 0, 0.98 * k), V(0, 0, 1)), (V(0, 0, 1.08 * k), V(0, 0, 1))]
+        band = lambda c: front(c) and 0.94 * k < c.z < 1.12 * k   # noqa: E731
+        out += [plane(V(0.085 * k, 0, 0), side_x, TORSO, band), plane(V(-0.085 * k, 0, 0), side_x, TORSO, band),
+                plane(V(0, 0, 0.98 * k), up, TORSO, lambda c: front(c) and abs(c.x) < 0.1 * k),
+                plane(V(0, 0, 1.08 * k), up, TORSO, lambda c: front(c) and abs(c.x) < 0.1 * k)]
     return out
 
 
@@ -468,12 +495,16 @@ def waist_line(v, d):
     return d.hip_z + 0.1 * k
 
 
-def cut_mesh(ob, planes):
+def cut_mesh(ob, planes, g):
     bm = bmesh.new()
     bm.from_mesh(ob.data)
-    for co, no in planes:
-        geom = bm.verts[:] + bm.edges[:] + bm.faces[:]
-        bmesh.ops.bisect_plane(bm, geom=geom, plane_co=co, plane_no=no)
+    for co, no, pred in planes:
+        faces = [f for f in bm.faces if pred(f.calc_center_median(), g.region(f.calc_center_median())[0].split(".")[0])]
+        if not faces:
+            continue
+        edges = list({e for f in faces for e in f.edges})
+        verts = list({vv for f in faces for vv in f.verts})
+        bmesh.ops.bisect_plane(bm, geom=verts + edges + faces, plane_co=co, plane_no=no)
     bm.to_mesh(ob.data)
     bm.free()
     for p in ob.data.polygons:
@@ -495,6 +526,8 @@ def body_slot(v, d, g, segs):
             return "skin", None
         if part in ("foot", "shin", "thigh") and c.z < d.ankle_z + (0.12 if v.get("boots") else 0.045) * k:
             return "shoes", None
+        if part == "foot":
+            return "bottom", None
         if part in ("thigh", "shin"):
             if v["legs"] == "shorts" and c.z < d.knee_z + 0.11 * k:
                 return "skin", None
@@ -514,15 +547,15 @@ def body_slot(v, d, g, segs):
             return ("over", None) if (v.get("coat") or v.get("jacket")) else ("top", None)
         # torso
         if v.get("vest"):
-            if c.z < d.neck_z - 0.02 * k:
+            if c.z < d.neck_z - 0.02 * k and abs(c.x) < 0.13 * k * d.w:
                 band = 1.04 * k < c.z < 1.08 * k or 1.17 * k < c.z < 1.21 * k
                 return ("fixed", "reflect") if band else ("over", None)
             return "top", None
         if v.get("jacket"):
             return ("top", None) if front and abs(c.x) < 0.05 * k and abs(c.x) * 3 < -c.y else ("over", None)
         if v.get("coat"):
-            open_w = 0.012 * k + 0.28 * max(c.z - 1.0 * k, 0)
-            return ("top", None) if front and abs(c.x) < open_w and abs(c.x) * 2 < -c.y else ("over", None)
+            open_w = 0.012 * k + 0.28 * (c.z - 1.0 * k)
+            return ("top", None) if front and c.z > 1.0 * k and abs(c.x) < open_w and abs(c.x) * 2 < -c.y else ("over", None)
         if v.get("apron") and front and -c.y > abs(c.x) * 0.6:
             if abs(c.x) < 0.1 * k and c.z < 1.28 * k:
                 return "over", None
@@ -537,7 +570,7 @@ def body_slot(v, d, g, segs):
 
 
 def head(d, lod):
-    seg, rings = (18, 12) if lod == 0 else (10, 7)
+    seg, rings = (14, 9) if lod == 0 else (9, 6)
     hc, hr = d.head_c, d.head_r
     h = ellipsoid("head", hc, hr, seg, rings)
     for vv in h.data.vertices:
@@ -549,59 +582,96 @@ def head(d, lod):
     parts = [h]
     if lod == 0:
         # the nose is the only feature (and shows which way they face); small ears
-        parts.append(ellipsoid("nose", hc + V(0, -hr.y * 0.96, -0.012 * d.k), V(0.019, 0.024, 0.026) * d.k, 8, 6))
+        parts.append(ellipsoid("nose", hc + V(0, -hr.y * 0.96, -0.012 * d.k), V(0.019, 0.024, 0.026) * d.k, 7, 5))
         for s in (1, -1):
-            parts.append(ellipsoid("ear", hc + V(s * hr.x * 0.97, 0.008 * d.k, -0.005 * d.k), V(0.016, 0.026, 0.034) * d.k, 8, 6))
+            parts.append(ellipsoid("ear", hc + V(s * hr.x * 0.97, 0.008 * d.k, -0.005 * d.k), V(0.016, 0.026, 0.034) * d.k, 6, 4))
     return join(parts, "head_part")
 
 
-def hair(style, d, lod):
-    """Hair: a cap a little bigger than the skull, cut along a hairline (high at the forehead, low at
-    the nape), plus a style shape. Rigid on the head bone."""
-    k, hc, hr = d.k, d.head_c, d.head_r
-    seg, rings = (20, 14) if lod == 0 else (10, 8)
-    grow = {"curly": 1.2, "buzz": 1.025, "bald": 1.04}.get(style, 1.07)
-    lift = {"curly": 0.02, "buzz": 0.0}.get(style, 0.008)
-    cap = ellipsoid("hair", hc + V(0, 0.004 * k, lift * k), V(hr.x * grow, hr.y * grow, hr.z * grow * (1.04 if style != "buzz" else 1)), seg, rings)
-    me = cap.data
+def shell(name, hc, radii, phi_a, phi_b, seg, rows, th0=0.0, th1=2 * math.pi, lip=0.0):
+    """A patch of an ellipsoid between polar angles phi_a(theta) and phi_b(theta) (0 = crown),
+    theta from the front (0) round by the person's left. Clean edges along any hairline."""
+    closed = abs(th1 - th0 - 2 * math.pi) < 1e-6
     bm = bmesh.new()
-    bm.from_mesh(me)
+    n = seg if closed else seg + 1
+    grid = []
+    for r in range(rows + 1):
+        row = []
+        for i in range(n):
+            th = th0 + (th1 - th0) * i / seg
+            pa, pb = phi_a(th), phi_b(th)
+            ph = pa + (pb - pa) * r / rows
+            row.append(bm.verts.new(hc + V(math.sin(ph) * math.sin(th) * radii.x, -math.sin(ph) * math.cos(th) * radii.y,
+                                           math.cos(ph) * radii.z)))
+        grid.append(row)
+    for r in range(rows):
+        for i in range(seg):
+            j = (i + 1) % n
+            bm.faces.new((grid[r][i], grid[r][j], grid[r + 1][j], grid[r + 1][i]))
+    bmesh.ops.remove_doubles(bm, verts=bm.verts[:], dist=1e-6)
+    if lip:
+        # a turned-in edge gives the open rim some thickness for a handful of triangles
+        res = bmesh.ops.extrude_edge_only(bm, edges=[e for e in bm.edges if e.is_boundary])
+        for vv in res["geom"]:
+            if isinstance(vv, bmesh.types.BMVert):
+                vv.co -= (vv.co - hc).normalized() * lip
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    ob = lib.mesh_object(name, bm)
+    p = ob.data.polygons[len(ob.data.polygons) // 2]
+    if p.normal.dot(p.center - hc) < 0:
+        ob.data.flip_normals()
+    for p in ob.data.polygons:
+        p.use_smooth = True
+    return ob
 
-    def keep(co):
-        rel = co - hc
-        ang = math.atan2(rel.x, -rel.y)            # 0 = front
-        back = (1 - math.cos(ang)) / 2             # 0 front .. 1 back
-        if style == "bald":
-            # a horseshoe fringe round the back at ear height
-            return -0.04 * k < rel.z < 0.035 * k and back > 0.35
-        line = {"long": 0.045, "curly": 0.03}.get(style, 0.055) * k   # forehead hairline height
-        nape = {"long": -0.12, "bun": -0.05, "ponytail": -0.05, "curly": -0.06, "buzz": -0.04}.get(style, -0.055) * k
-        side = (-0.075 if style == "long" else -0.01) * k
-        z = line + (side - line) * min(back * 2, 1) if back < 0.5 else side + (nape - side) * (back - 0.5) * 2
-        return rel.z > z
 
-    bmesh.ops.delete(bm, geom=[vv for vv in bm.verts if not keep(vv.co)], context="VERTS")
+def hair(style, d, lod):
+    """Hair: a shell a little bigger than the skull from the crown down to a smooth hairline (high at
+    the forehead, low at the nape), plus a style shape. Rigid on the head bone."""
+    k, hc, hr = d.k, d.head_c, d.head_r
+    seg, rows = (16, 6) if lod == 0 else (9, 3)
+    grow = {"curly": 1.2, "buzz": 1.03, "bald": 1.035}.get(style, 1.075)
+    lift = {"curly": 0.02, "buzz": 0.0}.get(style, 0.008) * k
+    rad = V(hr.x * grow, hr.y * grow, hr.z * grow * (1.04 if style != "buzz" else 1))
+    c0 = hc + V(0, 0.004 * k, lift)
+
+    def phi_at(z):
+        return math.acos(max(-0.99, min(0.99, (z - lift) / rad.z)))
+
+    if style == "bald":
+        # a horseshoe fringe round the back at ear height
+        cap = shell("hair", c0, rad, lambda th: phi_at(0.025 * k), lambda th: phi_at(-0.06 * k), seg // 2, 2,
+                    th0=math.radians(115), th1=math.radians(245), lip=0.01 * k)
+    else:
+        line = {"long": 0.045, "curly": 0.035}.get(style, 0.058) * k        # forehead hairline
+        side = {"long": -0.08, "curly": -0.02}.get(style, -0.005) * k        # over the ear
+        nape = {"long": -0.12, "curly": -0.07, "buzz": -0.045}.get(style, -0.06) * k
+
+        def edge(th):
+            b = (1 - math.cos(th)) / 2       # 0 front .. 1 back
+            z = line + (side - line) * smooth(b * 2) if b < 0.5 else side + (nape - side) * smooth(b * 2 - 1)
+            return phi_at(z)
+        cap = shell("hair", c0, rad, lambda th: 0.0, edge, seg, rows, lip=0.012 * k)
+    bm = bmesh.new()
+    bm.from_mesh(cap.data)
     for vv in bm.verts:
         rel = vv.co - hc
         if style == "long" and rel.z < 0.02 * k:
             # falls straight past the cheeks instead of hugging the jaw
-            f = 1 + 0.5 * min((0.02 * k - rel.z) / (0.1 * k), 1)
-            vv.co.x = hc.x + rel.x * f
-            vv.co.y = hc.y + rel.y * (1 + 0.25 * min((0.02 * k - rel.z) / (0.1 * k), 1))
+            f = min((0.02 * k - rel.z) / (0.1 * k), 1)
+            vv.co.x = hc.x + rel.x * (1 + 0.35 * f)
+            vv.co.y = hc.y + rel.y * (1 + 0.2 * f)
         if style == "curly":
-            n = rel.normalized()
-            bump = 0.5 + 0.5 * math.sin(n.x * 17) * math.sin(n.y * 17 + 1) * math.sin(n.z * 15)
-            vv.co += n * bump * 0.02 * k
-    bm.to_mesh(me)
+            nn = rel.normalized()
+            bump = 0.5 + 0.5 * math.sin(nn.x * 17) * math.sin(nn.y * 17 + 1) * math.sin(nn.z * 15)
+            vv.co += nn * bump * 0.02 * k
+    bm.to_mesh(cap.data)
     bm.free()
-    sol = cap.modifiers.new("solid", "SOLIDIFY")
-    sol.thickness = 0.012 * k
-    sol.offset = -1
-    parts = [evaluated_copy(cap, "hair")]
-    s2 = (12, 8) if lod == 0 else (8, 6)
+    parts = [cap]
+    s2 = (10, 6) if lod == 0 else (6, 4)
     if style == "long":
         # hair down the back to the shoulder blades and a lock each side of the face
-        parts.append(rounded_box("hair_back", hc + V(0, 0.075 * k, -0.15 * k), V(0.12, 0.05, 0.11) * k, 2 if lod == 0 else 1))
+        parts.append(rounded_box("hair_back", hc + V(0, 0.075 * k, -0.15 * k), V(0.12, 0.05, 0.11) * k, 1 if lod == 0 else 0))
     elif style == "bun":
         parts.append(ellipsoid("bun", hc + V(0, 0.085 * k, 0.085 * k), V(0.055, 0.05, 0.05) * k, *s2))
     elif style == "ponytail":
@@ -611,45 +681,40 @@ def hair(style, d, lod):
 
 
 def hat(kind, d, lod):
+    """Hats sit on the hair: a dome shell down to just above the brow, plus a brim, bill or cuff."""
     k, hc, hr = d.k, d.head_c, d.head_r
-    s1 = (20, 10) if lod == 0 else (12, 6)
-    top = hc + V(0, 0.002 * k, hr.z * 0.25)
+    seg, rows = (16, 5) if lod == 0 else (9, 3)
+    s1 = (16, 4) if lod == 0 else (9, 3)
+    zb = 0.03 * k          # rim height above the skull centre
+
+    def dome(name, rad, rim, lift=0.0):
+        c = hc + V(0, 0.004 * k, lift)
+        ph = math.acos(max(-0.99, min(0.99, (rim - lift) / rad.z)))
+        return shell(name, c, rad, lambda th: 0.0, lambda th: ph, seg, rows, lip=0.01 * k)
+
     parts = []
     if kind == "hardhat":
-        dome = ellipsoid("dome", top + V(0, 0, -0.005 * k), V(hr.x * 1.16, hr.y * 1.18, hr.z * 1.0), *s1)
-        cut(dome, lambda co: co.z >= top.z - 0.004 * k)
-        parts += [dome, ellipsoid("brim", top + V(0, -0.02 * k, -0.002 * k), V(hr.x * 1.38, hr.y * 1.5, 0.012 * k), *s1),
-                  ellipsoid("ridge", top + V(0, 0, hr.z * 0.95), V(0.022 * k, hr.y * 0.95, 0.02 * k), 8, 6)]
+        parts += [dome("dome", V(hr.x * 1.17, hr.y * 1.2, hr.z * 1.1), zb, 0.01 * k),
+                  ellipsoid("brim", hc + V(0, -0.018 * k, zb), V(hr.x * 1.42, hr.y * 1.55, 0.011 * k), *s1),
+                  ellipsoid("ridge", hc + V(0, 0, hr.z * 1.06), V(0.022 * k, hr.y * 0.55, 0.018 * k), 8, 4)]
         out = join(parts, "hat")
         paint_all(out, "fixed", None, "hardhat")
         return out
     if kind == "toque":
-        dome = ellipsoid("dome", top + V(0, 0.004 * k, -0.01 * k), V(hr.x * 1.1, hr.y * 1.1, hr.z * 1.2), *s1)
-        cut(dome, lambda co: co.z >= top.z - 0.012 * k)
-        band = ellipsoid("band", top + V(0, 0.004 * k, 0.006 * k), V(hr.x * 1.15, hr.y * 1.15, 0.03 * k), *s1)
-        parts += [dome, band, ellipsoid("pom", top + V(0, 0.01 * k, hr.z * 1.3), V(0.04, 0.04, 0.036) * k, 10, 7)]
+        parts += [dome("dome", V(hr.x * 1.12, hr.y * 1.12, hr.z * 1.22), zb - 0.008 * k),
+                  ellipsoid("cuff", hc + V(0, 0.004 * k, zb + 0.012 * k), V(hr.x * 1.16, hr.y * 1.16, 0.03 * k), *s1),
+                  ellipsoid("pom", hc + V(0, 0.01 * k, hr.z * 1.27), V(0.042, 0.042, 0.038) * k, 8, 5)]
     elif kind == "cap":
-        dome = ellipsoid("dome", top + V(0, 0.004 * k, -0.012 * k), V(hr.x * 1.1, hr.y * 1.1, hr.z * 0.95), *s1)
-        cut(dome, lambda co: co.z >= top.z - 0.004 * k)
-        parts += [dome, ellipsoid("bill", top + V(0, -hr.y * 1.2, 0.0), V(hr.x * 0.82, hr.y * 0.65, 0.01 * k), *s1)]
+        parts += [dome("dome", V(hr.x * 1.12, hr.y * 1.12, hr.z * 1.06), zb),
+                  ellipsoid("bill", hc + V(0, -hr.y * 1.02, zb + 0.004 * k), V(hr.x * 0.78, hr.y * 0.62, 0.01 * k), *s1),
+                  ellipsoid("button", hc + V(0, 0.004 * k, hr.z * 1.07), V(0.014, 0.014, 0.01) * k, 6, 3)]
     elif kind == "brim":
-        crown = ellipsoid("crown", top + V(0, 0, 0.02 * k), V(hr.x * 1.05, hr.y * 1.08, hr.z * 0.85), *s1)
-        cut(crown, lambda co: co.z >= top.z - 0.004 * k)
-        parts += [crown, ellipsoid("brim", top + V(0, 0, 0.0), V(hr.x * 1.75, hr.y * 1.8, 0.012 * k), *s1)]
+        parts += [dome("crown", V(hr.x * 1.08, hr.y * 1.1, hr.z * 1.02), zb + 0.012 * k, 0.04 * k),
+                  ellipsoid("band", hc + V(0, 0.004 * k, zb + 0.032 * k), V(hr.x * 1.1, hr.y * 1.12, 0.022 * k), *s1),
+                  ellipsoid("brim", hc + V(0, 0.004 * k, zb + 0.012 * k), V(hr.x * 1.75, hr.y * 1.8, 0.011 * k), *s1)]
     out = join(parts, "hat")
     paint_all(out, "hat", DEFAULT)
     return out
-
-
-def cut(ob, keep):
-    bm = bmesh.new()
-    bm.from_mesh(ob.data)
-    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not keep(v.co)], context="VERTS")
-    bm.to_mesh(ob.data)
-    bm.free()
-    sol = ob.modifiers.new("solid", "SOLIDIFY")
-    sol.thickness = 0.008
-    sol.offset = -1
 
 
 def extras(v, d, lod):
@@ -657,7 +722,7 @@ def extras(v, d, lod):
     Returns [(object, slot, colour, weights)], weights: 'chest' | 'hips' | 'skirt' (hips + thighs)."""
     k, w = d.k, d.w
     out = []
-    seg = 18 if lod == 0 else 10
+    seg = 16 if lod == 0 else 9
     if v["legs"] == "dress":
         sk = tube("skirt", [(d.waist_z - 0.01 * k, 0.138 * w, 0.096 * k, 0.0), (d.hip_z, 0.178 * w * 1.06, 0.13 * k, 0.004 * k),
                             (d.knee_z + 0.03 * k, 0.215 * w * 1.06, 0.175 * k, 0.012 * k)], seg)
@@ -674,19 +739,19 @@ def extras(v, d, lod):
             vv.co.x, vv.co.y = -vv.co.x, -vv.co.y
         out.append((ap, "over", None, "skirt"))
     if v.get("hood"):
-        hd = ellipsoid("hood", V(0, 0.092 * k, d.neck_z - 0.01 * k), V(0.115, 0.055, 0.075) * k, 14 if lod == 0 else 8, 8 if lod == 0 else 5)
+        hd = ellipsoid("hood", V(0, 0.082 * k, d.neck_z - 0.035 * k), V(0.13, 0.05, 0.085) * k, 10 if lod == 0 else 7, 6 if lod == 0 else 4)
         for vv in hd.data.vertices:   # wrap the rim round the neck
             vv.co.y -= 0.9 * (vv.co.x / k) ** 2 * k
         out.append((hd, "top", None, "chest"))
     if v.get("backpack"):
-        bp = rounded_box("pack", V(0, 0.145 * k, 1.20 * k), V(0.135 * w, 0.062 * k, 0.17 * k), 2 if lod == 0 else 1)
+        bp = rounded_box("pack", V(0, 0.135 * k, 1.17 * k), V(0.13 * w, 0.07 * k, 0.165 * k), 1 if lod == 0 else 0)
         parts = [bp]
         if lod == 0:
-            parts.append(rounded_box("pocket", V(0, 0.215 * k, 1.12 * k), V(0.09 * w, 0.025 * k, 0.07 * k), 1))
+            parts.append(rounded_box("pocket", V(0, 0.205 * k, 1.09 * k), V(0.095 * w, 0.03 * k, 0.07 * k), 0))
         out.append((join(parts, "backpack"), "acc", None, "chest"))
     if v.get("scarf"):
-        sc = ellipsoid("scarf", V(0, 0.004 * k, d.neck_z + 0.005 * k), V(0.088 * k, 0.082 * k, 0.04 * k), 16 if lod == 0 else 8, 8 if lod == 0 else 5)
-        tail = rounded_box("scarf_tail", V(0.05 * k, -0.105 * k, d.neck_z - 0.12 * k), V(0.035 * k, 0.014 * k, 0.11 * k), 1)
+        sc = ellipsoid("scarf", V(0, 0.004 * k, d.neck_z + 0.005 * k), V(0.088 * k, 0.082 * k, 0.04 * k), 12 if lod == 0 else 8, 6 if lod == 0 else 4)
+        tail = rounded_box("scarf_tail", V(0.05 * k, -0.105 * k, d.neck_z - 0.12 * k), V(0.035 * k, 0.014 * k, 0.11 * k), 0)
         out.append((join([sc, tail], "scarf"), "acc", None, "chest"))
     return out
 
@@ -864,7 +929,7 @@ def locomotion(d, P_, frames, D, beta, lift, p_strike, p_off, lean, arm_amp, for
         return pos, p
 
     # hip height: as high as the planted feet allow, a little crouched, smoothed
-    R = (d.thigh + d.shin) * 0.975
+    R = (d.thigh + d.shin) * 0.996
     hz = []
     for f in range(frames):
         u = f / frames
@@ -875,6 +940,12 @@ def locomotion(d, P_, frames, D, beta, lift, p_strike, p_off, lean, arm_amp, for
             reach = math.sqrt(max(R * R - (a.y) ** 2 - dx * dx, 0.01))
             h = min(h, a.z + reach)
         hz.append(h)
+    if run:
+        # running bounces the other way round from walking: lowest at mid-stance, up in the flight
+        for f in range(frames):
+            u = f / frames
+            dip = max(math.sin(math.pi * min(((u + off) % 1.0) / beta, 1.0)) for off in (0.0, 0.5))
+            hz[f] = min(hz[f], d.hip_z - 0.018 * d.k - 0.025 * d.k * dip)
     sm = [(hz[(i - 1) % frames] + 2 * hz[i] + hz[(i + 1) % frames]) / 4 for i in range(frames)]
     mean = sum(sm) / frames
     poses = []
@@ -935,9 +1006,9 @@ def clip_poses(name, d):
     k = d.k
     out = []
     if name == "walk":
-        return locomotion(d, None, 24, 1.25, 0.6, 0.075 * k, -0.28, 0.55, 0.04, 0.32, 0.22, 0.85)
+        return locomotion(d, None, 20, 0.95, 0.6, 0.07 * k, -0.28, 0.5, 0.04, 0.3, 0.22, 0.75)
     if name == "run":
-        return locomotion(d, None, 14, 2.2, 0.34, 0.13 * k, -0.2, 0.7, 0.2, 0.75, 1.35, 0.5, kick=0.1 * k, run=True)
+        return locomotion(d, None, 14, 1.6, 0.34, 0.13 * k, -0.2, 0.7, 0.42, 0.85, 1.3, 1.0, kick=0.1 * k, run=True)
     if name == "idle":
         n = 60
         for f in range(n):
@@ -1016,8 +1087,8 @@ def clip_poses(name, d):
             P.q["head"] = Ry(0.18) @ Rx(0.1)
             P.q["spine"] = Ry(0.04)
             jig = math.sin(2 * math.pi * u * 6)
-            arm(P, "R", -2.25, abd=0.6, elbow=2.15 + 0.12 * jig, wrist=-0.4)
-            arm(P, "L", 0.05, abd=0.45, elbow=1.7, twist=0.0, wrist=0.2)   # hand on the hip
+            arm(P, "R", -2.6, abd=0.25, elbow=1.95 + 0.12 * jig, wrist=-0.4)
+            arm(P, "L", 0.15, abd=0.5, elbow=1.5, twist=-1.3, wrist=0.2)   # hand on the hip
             out.append(P)
         return out
     if name == "clap":       # "all done" (spec V-ANIM-4)
@@ -1041,8 +1112,8 @@ def clip_poses(name, d):
             standing(d, P, front=0.12 * k, crouch=0.02 * k)
             P.q["spine"] = Rx(0.1)
             P.q["head"] = Rx(0.05)
-            arm(P, "R", -2.35 + 0.15 * jig, abd=0.15, inward=0.2, elbow=0.9 + 0.25 * jig, wrist=0.2)
-            arm(P, "L", 0.0, abd=0.45, elbow=1.7, wrist=0.2)
+            arm(P, "R", -1.7 + 0.12 * jig, abd=0.1, inward=0.15, elbow=1.25 + 0.3 * jig, wrist=0.2)
+            arm(P, "L", 0.15, abd=0.5, elbow=1.5, twist=-1.3, wrist=0.2)
             out.append(P)
         return out
     if name == "shoo":       # go away! (spec V-ANIM-1): both arms sweep down and out
@@ -1070,7 +1141,7 @@ def clip_poses(name, d):
             P.q["chest"] = Rx(-0.08)
             P.q["head"] = Rx(0.25)
             for side in ("L", "R"):
-                arm(P, side, -1.35, inward=0.55, elbow=0.25 + 0.1 * jerk, wrist=0.2)
+                arm(P, side, -0.95, inward=0.3, elbow=0.2 + 0.1 * jerk, wrist=0.2)
             out.append(P)
         return out
     if name == "carry":      # both hands in front, holding something (upper body only in game)
@@ -1228,10 +1299,10 @@ def build_person(variant, offset=None, lods=(0, 1), with_hair=None, with_hat=Non
     objs = [rig]
     for lod in lods:
         b, g = body(v, d, lod)
-        cut_mesh(b, cuts(v, d))
+        # decimate the bare surface, then cut the clothing borders in, so they stay straight
+        b = decimate(b, 1250 if lod == 0 else 420)
+        cut_mesh(b, cuts(v, d), g)
         paint_slots(b, body_slot(v, d, g, segs), DEFAULT)
-        b = decimate(b, int(__import__("os").environ.get("PEOPLE_TRIS", 1900)) if lod == 0 else 560)
-        recolour(b, DEFAULT)
         weight_body(b, g, segs, d)
         hd = head(d, lod)
         paint_all(hd, "skin", DEFAULT)
@@ -1292,6 +1363,57 @@ PREVIEW_LOOKS = {
 }
 
 
+def preview_clips(out, variant="hoodie"):
+    """One person per clip at a telling frame (front three-quarter view)."""
+    lib.clear()
+    shots = [("idle", 0), ("walk", 5), ("run", 3), ("look", 14), ("talk", 10), ("shrug", 10), ("startle", 8), ("scratch", 5),
+             ("clap", 6), ("fist", 3), ("shoo", 4), ("tug", 3), ("carry", 0), ("hold", 0), ("phone", 0), ("headshake", 7),
+             ("dress", 14), ("fall", 20), ("sit", 0)]
+    for i, (clip, frame) in enumerate(shots):
+        objs = build_person(variant, offset=V((i % 10 - 4.5) * 0.8, 0, -2.2 * (i // 10)), lods=(0,), with_hair=["short"], with_hat=[])
+        look = {**DEFAULT, **PREVIEW_LOOKS[variant]}
+        for o in objs[1:]:
+            recolour(o, look)
+        rig = objs[0]
+        mine = [a for a in bpy.data.actions if a.name.split(".")[0] == clip]
+        act = mine[-1]
+        rig.animation_data.action = act
+        rig.animation_data.action_slot = act.slots[0]
+        rig["frame"] = frame
+    scene = bpy.context.scene
+    # every rig shows its own frame: bake the pose by evaluating each at its frame in turn
+    for o in [o for o in scene.objects if o.type == "ARMATURE"]:
+        o.animation_data.action_extrapolation = "HOLD"
+    cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam"))
+    scene.collection.objects.link(cam)
+    cam.data.type = "ORTHO"
+    cam.data.ortho_scale = 8.4
+    cam.location = V(-4, -9, 1.0)
+    cam.rotation_euler = (math.radians(85), 0, math.radians(-24))
+    scene.camera = cam
+    scene.render.engine = "BLENDER_WORKBENCH"
+    sh = scene.display.shading
+    sh.light = "STUDIO"
+    sh.color_type = "VERTEX"
+    world = bpy.data.worlds.new("w")
+    world.color = (0.55, 0.6, 0.5)
+    scene.world = world
+    scene.render.resolution_x, scene.render.resolution_y = 2000, 1000
+    # NLA-free per-rig frame: offset each rig's action with a strip time offset
+    for o in [o for o in scene.objects if o.type == "ARMATURE"]:
+        act = o.animation_data.action
+        o.animation_data.action = None
+        tr = o.animation_data.nla_tracks.new()
+        st = tr.strips.new("s", -int(o["frame"]), act)
+        st.action_slot = act.slots[0]
+        st.extrapolation = "HOLD"
+        for t in o.animation_data.nla_tracks:
+            t.mute = t != tr
+    scene.frame_set(0)
+    scene.render.filepath = out
+    bpy.ops.render.render(write_still=True)
+
+
 def preview(out, clip=None, frame=0, view="front"):
     lib.clear()
     looks = [("hoodie", "short", None), ("backpack", "curly", None), ("dress", "bun", None), ("puffer", "buzz", "toque"),
@@ -1343,6 +1465,9 @@ def preview(out, clip=None, frame=0, view="front"):
     bpy.ops.render.render(write_still=True)
 
 
+if __name__ == "__main__" and "clips" in sys.argv:
+    a = sys.argv[sys.argv.index("clips") + 1:]
+    preview_clips(a[0], a[1] if len(a) > 1 else "hoodie")
 if __name__ == "__main__" and "preview" in sys.argv:
     a = sys.argv[sys.argv.index("preview") + 1:]
     preview(a[0], a[1] if len(a) > 1 else None, a[2] if len(a) > 2 else 0, a[3] if len(a) > 3 else "front")
