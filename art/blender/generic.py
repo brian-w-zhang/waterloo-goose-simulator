@@ -96,12 +96,15 @@ def build_generic(k, abbrev, style=None, **o):
                 walls.append({"id": wid, "art": [w["a"], w["b"]], "length_m": w["length_m"]})
         # edges no photo documents (setbacks, courts) take the building's typical wall: the spec of
         # its longest documented wall
+        # walls reach down to the lowest wall base the lidar saw (sloping sites: ESC's lane is 3.6 m
+        # below its lawn)
+        plinth = max(1.5, max(p["ground_y"] for p in parts) - min(p["base_y"] for p in parts) + 0.3)
         main = specs[max((wid for wid, sp in specs.items() if sp), key=lambda wid: fac["walls"][wid].get("length_m", 0))]
         for tier in tiers:
             gy, h = tier["ground_y"], tier["h"]
             z1 = gy + h
             for r in [tier["rings"][0]] + tier.get("holes", []):
-                fspec.draw_outline(k, r, gy, z1, walls, specs, main, tol=2.5)
+                fspec.draw_outline(k, r, gy, z1, walls, specs, main, tol=2.5, plinth=plinth + (max(p["ground_y"] for p in parts) - gy))
             for t in tier["tris"]:
                 from mathutils import Vector
                 A, B, C = (Vector((x, y, z1)) for x, y in t)

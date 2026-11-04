@@ -95,11 +95,12 @@ def main(key):
         m = (a + b) / 2
         g = float(terrain.sample(HF, m[0], m[1]))
         hd = math.degrees(math.atan2(-n[0], -n[1]))             # camera outside, looking back at the wall
-        earth.append({"name": f"{w['id']}_whole", "wall": w["id"], "url": earth_url(m[0], m[1], g + h * 0.45, max(30, min(L * 1.05 + 10, 150)), hd, 78)})
+        # tilt 70 and at least 45 m back: lower cameras end up under Google's 3D ground near walls
+        earth.append({"name": f"{w['id']}_whole", "wall": w["id"], "url": earth_url(m[0], m[1], g + h * 0.5, max(45, min(L * 1.05 + 15, 160)), hd, 70)})
         if L > 30:
             for f, tag in ((1 / 6, "l"), (0.5, "m"), (5 / 6, "r")):
                 p = a + (b - a) * f
-                earth.append({"name": f"{w['id']}_{tag}", "wall": w["id"], "url": earth_url(p[0], p[1], g + h * 0.4, max(28, min(L / 3 + 14, 70)), hd, 80)})
+                earth.append({"name": f"{w['id']}_{tag}", "wall": w["id"], "url": earth_url(p[0], p[1], g + h * 0.5, max(40, min(L / 3 + 20, 80)), hd, 70)})
         w["lat_lng"] = [ll(*a), ll(*b)]
         w["art"] = [[round(a[0] - ORIGIN_E, 2), round(a[1] - ORIGIN_N, 2)], [round(b[0] - ORIGIN_E, 2), round(b[1] - ORIGIN_N, 2)]]
         for s in np.arange(min(6.0, L / 2), L, 12.0):

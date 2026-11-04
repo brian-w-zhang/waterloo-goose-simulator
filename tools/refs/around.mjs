@@ -96,6 +96,7 @@ async function svJob() {
   }
 }
 
-await Promise.all([earthJob(), svJob()]);
+// --earth-only re-shoots missing Earth views without re-probing Street View
+await Promise.all(process.argv.includes("--earth-only") ? [earthJob()] : [earthJob(), svJob()]);
 await browser.close();
 console.log("done", dir);

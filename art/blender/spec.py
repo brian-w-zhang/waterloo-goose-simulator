@@ -74,7 +74,28 @@ def draw_outline(k, ring, gy, top, walls, specs, default, plinth=1.5, tol=1.5):
     import data
     for i in range(len(ring)):
         for a, b, w, s_off in data.wall_pieces(ring[i], ring[(i + 1) % len(ring)], walls, tol):
-            _piece(k, a, b, gy, top, w, s_off, specs, default, plinth)
+            dflt = default
+            if w is None:
+                # an edge no wall documents (jogs, projecting boxes, setbacks): the nearest documented
+                # wall within 8 m lends its spec; short jogs take only its wall colour
+                import math
+                mx, my = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
+                best = None
+                for ww in walls:
+                    sp_ = specs.get(ww["id"])
+                    if not sp_:
+                        continue
+                    (ax_, ay_), (bx_, by_) = ww["art"]
+                    L_ = math.hypot(bx_ - ax_, by_ - ay_) or 1.0
+                    t_ = max(0.0, min(1.0, ((mx - ax_) * (bx_ - ax_) + (my - ay_) * (by_ - ay_)) / L_ ** 2))
+                    d_ = math.hypot(mx - (ax_ + (bx_ - ax_) * t_), my - (ay_ + (by_ - ay_) * t_))
+                    if d_ < 8 and (best is None or d_ < best[0]):
+                        best = (d_, sp_)
+                if best:
+                    dflt = best[1]
+                    if math.dist(a, b) < 4:
+                        dflt = {"rows": [(top - gy + 1, "x")], "bays": "x", "wall": best[1].get("wall", "concrete"), "cells": {}}
+            _piece(k, a, b, gy, top, w, s_off, specs, dflt, plinth)
 
 
 def _piece(k, a, b, gy, top, w, s_off, specs, default, plinth):
@@ -83,6 +104,13 @@ def _piece(k, a, b, gy, top, w, s_off, specs, default, plinth):
     if w and w["id"] in specs and sp is None:
         return                                    # a hidden party wall: the neighbour covers it
     sp = sp or default
+    # storeys count from the ground at this wall: on sloping sites a wall can stand metres below the
+    # building's reference ground (ESC's lane side)
+    import data
+    g_here = float(data.height_at((a[0] + b[0]) / 2, (a[1] + b[1]) / 2))
+    if g_here < gy - 0.8 and not sp.get("z0"):
+        plinth = max(plinth - (gy - g_here), 1.5)
+        gy = g_here
     base = gy + sp.get("z0", 0.0)                 # upper faces (QNC's U walls) start above the ground
     if base >= top - 0.05:
         k.wall(a, b, gy - plinth, top, sp.get("wall", "concrete"))

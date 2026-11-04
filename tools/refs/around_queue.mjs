@@ -6,7 +6,8 @@ import { mkdirSync } from "node:fs";
 const args = process.argv.slice(2);
 const j = args.indexOf("--jobs");
 const JOBS = j >= 0 ? Number(args.splice(j, 2)[1]) : 3;
-const queue = [...args];
+const extra = args.includes("--earth-only") ? ["--earth-only"] : [];
+const queue = args.filter((a) => a !== "--earth-only");
 mkdirSync("review/art/logs", { recursive: true });
 let running = 0;
 await new Promise((done) => {
@@ -16,7 +17,7 @@ await new Promise((done) => {
       const dir = queue.shift();
       running++;
       const name = dir.split("/").pop();
-      const p = spawn("node", ["tools/refs/around.mjs", dir], { stdio: ["ignore", "ignore", "ignore"] });
+      const p = spawn("node", ["tools/refs/around.mjs", dir, ...extra], { stdio: ["ignore", "ignore", "ignore"] });
       console.log(`start ${name}`);
       p.on("exit", (code) => { running--; console.log(`${code === 0 ? "done" : "FAILED " + code} ${name}`); next(); });
     }

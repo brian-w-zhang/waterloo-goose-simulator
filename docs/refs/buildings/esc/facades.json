@@ -1,0 +1,2640 @@
+{
+ "building": "ESC",
+ "sources_checked": [
+  "around/sv_*_70 and _100 (all 39 poses; Sep 2014 except W11/W12/c15/c16 Jul 2017-2019)",
+  "around/earth_W*_whole, _l/_m/_r, earth_corner_* (2024; cameras mostly look past the building; used for roof only: earth_W0_whole, earth_corner_16)",
+  "private/ortho_2023aug.jpg with the walls drawn on",
+  "private/earth_orbit_* (blank/failed renders)",
+  "lidar nDSM and DTM sampled along every wall (tools.art.study ESC)",
+  "NOTES.md (no web/Commons photos exist)"
+ ],
+ "dating": "Street View is 2014 for the west/south and 2017-2019 for the east service side. No web photos. Earth 2024 adds a white rooftop box and stack cluster not obvious in the 2023 ortho.",
+ "orientation_key": "main block is a long 3-storey bar running NNW-SSE (~89 m x 25 m): W0 north end, W1/W2/W3/W7 west side, W8 south end, W9-W12 east side. W4/W5/W6 are a 2-storey white precast annex on pilotis bridging from the west side of the south end to B1.",
+ "colours": {
+  "brick": {
+   "hex": "#a08878",
+   "palette": "brick_brown",
+   "where": "all walls of the main block. Raw SV samples #7b6251-#876951 (shade/under-exposed); calibrated against the precast in the overcast 2019 shot (sv_c15, spandrel #999791 -> ~#c0beb8) gives ~#a08878; sunlit it reads warmer tan-orange (sv_c17, sv_W8_KvO). brick_brown is the material match"
+  },
+  "precast_strips": {
+   "hex": "#bab6ac",
+   "palette": "concrete_raw",
+   "where": "light grey exposed-aggregate precast spandrels of the window strips, the entrance bay, the W12 shaft panels, base course"
+  },
+  "window_frames": {
+   "palette": "metal_silver",
+   "where": "clear-anodised aluminium windows and storefront"
+  },
+  "glass": {
+   "palette": "window_dark",
+   "where": "all windows; pale vertical blinds are common behind"
+  },
+  "annex_precast": {
+   "hex": "#e8dcca",
+   "palette": "precast_cream",
+   "where": "white precast annex W4/W6: boxes, fins, shelves, fascia, columns (sunlit sample sv_W6_mtvv)"
+  },
+  "entrance_canopy": {
+   "palette": "panel_white",
+   "where": "thin flat canopy fascia over the W2 entrance"
+  },
+  "louvres_doors": {
+   "palette": "metal_shade",
+   "where": "aluminium louvres and grey metal service doors on W11/W12"
+  },
+  "coping": {
+   "palette": "metal_silver",
+   "where": "thin metal parapet coping"
+  },
+  "roof": {
+   "palette": "roof",
+   "where": "grey-brown membrane with tar patches (ortho)"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW (north end)",
+   "length_m": 25.3,
+   "confidence": "high",
+   "summary": "north end: blank buff-brown brick end wall full height; at s 9-13.5 the 3-storey link block to C2 abuts it, with a covered walk-through at ground and cantilevered exposed-aggregate concrete canopies either side (s 7-15) over a glazed door; bike racks along the foot",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     7.0,
+     "b"
+    ],
+    [
+     2.0,
+     "cl"
+    ],
+    [
+     4.5,
+     "link"
+    ],
+    [
+     1.5,
+     "cr"
+    ],
+    [
+     10.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/b": null,
+    "*/cl": null,
+    "*/cr": null,
+    "ground/link": {
+     "type": "door",
+     "w": 1.1,
+     "h": 2.3,
+     "mullions": 0,
+     "transoms": 1,
+     "depth": 1.5,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "brick_brown",
+     "canopy": [
+      2.0,
+      "concrete_raw"
+     ],
+     "note": "single glazed aluminium door with side light at the back of the brick-lined recess under the link (sv_W0_UMd4 right, sv_W0_08gs left); a wall-pack light and a round push-button beside it"
+    },
+    "upper/link": null,
+    "parapet/link": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "link block to C2 leaves at s 9-13.5 (lidar 11.3 m tall, ~4.5 m wide, ~12 m long N to C2): ground storey is a covered brick-lined walk-through; upper storeys faced in exposed-aggregate precast with a dark ribbon window (sv_c17 right, sv_W0_08gs top-left)",
+    "cantilevered concrete canopy slab, ~0.25 m thick with a pale exposed-aggregate fascia, at z ~3.0, projecting ~2.5 m, along s 7-15 (lidar 2.9 m at s 8 and 14; sv_W0_UMd4, sv_W0_08gs)",
+    "small CCTV camera at s ~23, z ~8 (sv_W0_08gs) and one at the NE corner (sv_c17)"
+   ],
+   "notes": "Both Street Views Sep 2014, wall in shade; c17 (Sep 2014) and c0 show it sunlit as a warm buff-brown brick. No windows at all on this end."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 21.9,
+   "confidence": "medium-high",
+   "summary": "west side, north part: brick with vertical precast window strips (one window per storey) framed by thin projecting brick pilasters, strips single or in pairs split by a wider brick pier; ~5 m blank brick at the NW corner; three storeys, flat brick parapet with a thin metal coping",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.75,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [
+    [
+     5.03,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     6.56,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     8.86,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     10.56,
+     0.59,
+     "brick_brown",
+     0.25
+    ],
+    [
+     12.25,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     14.56,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     16.25,
+     0.59,
+     "brick_brown",
+     0.25
+    ],
+    [
+     17.95,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     20.26,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     21.78,
+     0.25,
+     "brick_brown",
+     0.2
+    ]
+   ],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W1 (Sep 2014) shows s ~12-22 square-on; sv_c1/c2 show the NW corner obliquely (blank brick, then a single strip, brick, pairs). Module reads ~5.8 m (pair 3.7 + brick 2.1) on every long wall. Ground windows a little taller than upper ones (sv_W2_100)."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 5.5,
+   "confidence": "high",
+   "summary": "main west entrance: a 1.3 m recessed precast bay between brick piers; aluminium storefront (glazed screen + double doors) under a thin flat white canopy; on levels 2 and 3 a ribbon of six tall narrow windows over a plain precast spandrel",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "ep"
+    ],
+    [
+     4.3,
+     "ent"
+    ],
+    [
+     0.6,
+     "ep"
+    ]
+   ],
+   "cells": {
+    "*/ep": null,
+    "ground/ent": {
+     "type": "door",
+     "w": 4.1,
+     "h": 2.7,
+     "mullions": 5,
+     "transoms": 1,
+     "depth": 0.15,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "canopy": [
+      1.3,
+      "panel_white"
+     ],
+     "note": "left 2/3 a fixed glazed screen (4 lights), right 1/3 a pair of glazed doors; transom light above; thin white metal canopy fascia at z ~3.0 across the whole bay (sv_W1, sv_W2)"
+    },
+    "upper/ent": {
+     "type": "window",
+     "w": 3.9,
+     "h": 1.7,
+     "sill": 1.1,
+     "mullions": 5,
+     "transoms": 1,
+     "depth": 0.2,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "six tall narrow lights in thin concrete mullions, the upper ~25% a separate transom light"
+    },
+    "parapet/ent": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "thin flat white metal entrance canopy, ~1.3 m deep, z ~3.0, full bay width"
+   ],
+   "notes": "walls.json puts W2 1.3 m behind the W1/W3 line: matches the photos (entrance set back between brick piers). A red-brown timber bench sits under the canopy (sv_W1)."
+  },
+  "W3": {
+   "faces": "SW",
+   "length_m": 39.3,
+   "confidence": "medium-high",
+   "summary": "west side, south of the entrance: same brick + precast window-strip system as W1: a single strip by the entrance then six pairs of strips each split by a brick pier, 2.1 m brick between pairs; three storeys; ends at the white precast annex (W4) at the south",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.75,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [
+    [
+     0.12,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     1.67,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     4.02,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     5.75,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     7.47,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     9.82,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     11.55,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     13.27,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     15.62,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     17.35,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     19.07,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     21.42,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     23.15,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     24.88,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     27.23,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     28.95,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     30.68,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     33.03,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     34.75,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     36.48,
+     0.25,
+     "brick_brown",
+     0.2
+    ]
+   ],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W3_Jlgu (s ~20-40) and sv_W3_ZKbU (s ~12-32) count pairs at ~5.4-5.8 m pitch; positions from the two panos disagree by ~2 m, so the pair phase is +-1.5 m. s 0-15 hidden by a large tree (sv_W3_yVGG). Ground windows at the south end are behind a shrub bed."
+  },
+  "W4": {
+   "faces": "NW",
+   "length_m": 24.2,
+   "confidence": "high",
+   "summary": "white precast annex bridging ESC and B1: open undercroft on square white columns at ground; levels 2 and 3 are five projecting precast window boxes per floor (4-6-6-6-4 narrow lights) with deep shelf soffits; plain white fascia",
+   "height_m": 11.7,
+   "rows": [
+    [
+     3.6,
+     "open"
+    ],
+    [
+     0.7,
+     "soffit"
+    ],
+    [
+     3.4,
+     "box"
+    ],
+    [
+     3.4,
+     "box"
+    ],
+    [
+     0.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.1,
+     "end"
+    ],
+    [
+     3.3,
+     "bx4"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     4.5,
+     "bx6"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     4.5,
+     "bx6"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     4.5,
+     "bx6"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     3.0,
+     "bx4"
+    ],
+    [
+     1.1,
+     "end"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void",
+     "note": "open undercroft: walk-through passage under the annex, 3.6 m clear"
+    },
+    "soffit/*": null,
+    "box/bx6": {
+     "type": "window",
+     "w": 4.2,
+     "h": 2.0,
+     "sill": 0.5,
+     "mullions": 5,
+     "depth": 0.3,
+     "strip": 0.14,
+     "glass": "window_dark",
+     "frame": "precast_cream",
+     "mullion_colour": "precast_cream",
+     "colour": "precast_cream",
+     "hood": {
+      "projection": 0.9,
+      "fin_w": 0.25,
+      "fin_colour": "precast_cream",
+      "head": 0.9,
+      "soffit_colour": "precast_cream"
+     },
+     "note": "a projecting white precast window box: six tall narrow lights between precast fins, a deep shelf/sill slab with chamfered ends under each box (sv_W4_IGE0)"
+    },
+    "box/bx4": {
+     "type": "window",
+     "w": 2.9,
+     "h": 2.0,
+     "sill": 0.5,
+     "mullions": 3,
+     "depth": 0.3,
+     "strip": 0.14,
+     "glass": "window_dark",
+     "frame": "precast_cream",
+     "mullion_colour": "precast_cream",
+     "colour": "precast_cream",
+     "hood": {
+      "projection": 0.9,
+      "fin_w": 0.25,
+      "fin_colour": "precast_cream",
+      "head": 0.9,
+      "soffit_colour": "precast_cream"
+     },
+     "note": "a projecting white precast window box: six tall narrow lights between precast fins, a deep shelf/sill slab with chamfered ends under each box (sv_W4_IGE0)"
+    },
+    "box/fin": null,
+    "box/end": null,
+    "fascia/*": null
+   },
+   "wall": "precast_cream",
+   "bands": [
+    [
+     3.6,
+     4.3,
+     "precast_cream",
+     0.9
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.1,
+    "precast_cream",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "square white precast columns (~0.5 m) at s ~2.6, 6.6, 10.6, 14.6, 18.6, 22.6 under the upper floors, set ~1.5 m back from the box faces (sv_W4_IGE0_100)",
+    "undercroft passage runs right through to W6; its east side is ESC's brick west wall (W3 line continued, s 39.3-57) with a glazed double-door entrance; its west side is B1's brick wall with a glazed entrance and a precast breeze-block screen (sv_W5_UkT, sv_W7)"
+   ],
+   "notes": "sv_W4 Sep 2014. Box widths scaled to the wall; lidar shows the roof reaching ~2 m beyond the W4 line, so the boxes overhang the line. The brick on either side in the photo is ESC (left/east) and B1 (right/west)."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 18.4,
+   "confidence": "high",
+   "summary": "shared wall: the annex abuts B1 here (lidar 11.7 m continuous across the line, ortho shows no gap). No facade of its own.",
+   "shared": "B1",
+   "hidden": true,
+   "height_m": 11.7,
+   "notes": "sv_W5_UkT / sv_W5_Z9oN are taken inside the undercroft: they show B1's brick wall with glazed doors at the back of the passage."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 23.6,
+   "confidence": "medium-high",
+   "summary": "south face of the white precast annex, same as W4: open undercroft on white columns, two floors of five projecting precast window boxes, white fascia; the paved plaza runs in under it",
+   "height_m": 11.7,
+   "rows": [
+    [
+     3.6,
+     "open"
+    ],
+    [
+     0.7,
+     "soffit"
+    ],
+    [
+     3.4,
+     "box"
+    ],
+    [
+     3.4,
+     "box"
+    ],
+    [
+     0.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "end"
+    ],
+    [
+     3.2,
+     "bx4"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     4.4,
+     "bx6"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     4.4,
+     "bx6"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     4.4,
+     "bx6"
+    ],
+    [
+     0.55,
+     "fin"
+    ],
+    [
+     3.0,
+     "bx4"
+    ],
+    [
+     1.0,
+     "end"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void",
+     "note": "open undercroft: walk-through passage under the annex, 3.6 m clear"
+    },
+    "soffit/*": null,
+    "box/bx6": {
+     "type": "window",
+     "w": 4.2,
+     "h": 2.0,
+     "sill": 0.5,
+     "mullions": 5,
+     "depth": 0.3,
+     "strip": 0.14,
+     "glass": "window_dark",
+     "frame": "precast_cream",
+     "mullion_colour": "precast_cream",
+     "colour": "precast_cream",
+     "hood": {
+      "projection": 0.9,
+      "fin_w": 0.25,
+      "fin_colour": "precast_cream",
+      "head": 0.9,
+      "soffit_colour": "precast_cream"
+     },
+     "note": "a projecting white precast window box: six tall narrow lights between precast fins, a deep shelf/sill slab with chamfered ends under each box (sv_W4_IGE0)"
+    },
+    "box/bx4": {
+     "type": "window",
+     "w": 2.9,
+     "h": 2.0,
+     "sill": 0.5,
+     "mullions": 3,
+     "depth": 0.3,
+     "strip": 0.14,
+     "glass": "window_dark",
+     "frame": "precast_cream",
+     "mullion_colour": "precast_cream",
+     "colour": "precast_cream",
+     "hood": {
+      "projection": 0.9,
+      "fin_w": 0.25,
+      "fin_colour": "precast_cream",
+      "head": 0.9,
+      "soffit_colour": "precast_cream"
+     },
+     "note": "a projecting white precast window box: six tall narrow lights between precast fins, a deep shelf/sill slab with chamfered ends under each box (sv_W4_IGE0)"
+    },
+    "box/fin": null,
+    "box/end": null,
+    "fascia/*": null
+   },
+   "wall": "precast_cream",
+   "bands": [
+    [
+     3.6,
+     4.3,
+     "precast_cream",
+     0.9
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.1,
+    "precast_cream",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "square white columns at ~4 m pitch (s ~2, 6, 10, 14, 18, 22), set back under the boxes (sv_W6_x9qr)",
+    "precast breeze-block screen at the west end of the undercroft beside B1 (sv_W6_x9qr left)"
+   ],
+   "notes": "sv_W6_x9qr / mtvv Sep 2014. The lower-floor boxes read 4-7-7-?-4 lights in x9qr (foreshortened); taken as W4's 4-6-6-6-4. Lidar says the real face is ~3.5 m north of the W6 line (see geometry_notes)."
+  },
+  "W7": {
+   "faces": "SW",
+   "length_m": 6.6,
+   "confidence": "medium",
+   "summary": "blank brick return of the main block's west face south of the annex, full height, no windows",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     6.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/b": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "notes": "sv_W7_suKe centre: plain brick wall between the annex and the trees. W7 sits on the W3 line extended."
+  },
+  "W8": {
+   "faces": "SE (south end)",
+   "length_m": 27.2,
+   "confidence": "low-medium",
+   "summary": "south end of the main block: blank brick for ~3 m at the west corner, then the brick + paired precast window strips system (about four pairs); three storeys; seen only through pines",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.75,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [
+    [
+     3.24,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     5.04,
+     0.62,
+     "brick_brown",
+     0.25
+    ],
+    [
+     6.83,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     9.27,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     11.06,
+     0.62,
+     "brick_brown",
+     0.25
+    ],
+    [
+     12.85,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     15.29,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     17.08,
+     0.62,
+     "brick_brown",
+     0.25
+    ],
+    [
+     18.87,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     21.31,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     23.1,
+     0.62,
+     "brick_brown",
+     0.25
+    ],
+    [
+     24.89,
+     0.26,
+     "brick_brown",
+     0.2
+    ]
+   ],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "notes": "sv_W8_KvO, sv_c8, sv_c9 (Sep 2014): pines hide most of it; pair count is a guess (4) from the visible rhythm. Sunlit brick here looks warm buff-orange."
+  },
+  "W9": {
+   "faces": "NE",
+   "length_m": 11.4,
+   "confidence": "low",
+   "summary": "east end of the south part, facing EIT across a narrow gap; ground rises ~2.3 m along it (s 0 to 11) so the lower storey is partly buried; assumed brick with one pair of window strips",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.8,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     3.9,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.75,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [
+    [
+     3.92,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     5.65,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     7.37,
+     0.25,
+     "brick_brown",
+     0.2
+    ]
+   ],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "notes": "No photo shows it (EIT and pines block every Street View; Earth meshes are smeared). Strip layout is a guess."
+  },
+  "W10": {
+   "faces": "NE",
+   "length_m": 6.2,
+   "confidence": "low",
+   "summary": "short jog where a link/low wing joins EIT (lidar ~10.5 m continuous 2-4 m out of the wall); faces the raised lawn court (+4 m); treat as blank brick",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     6.2,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/b": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "notes": "unseen; lidar suggests a connection to EIT here."
+  },
+  "W11": {
+   "faces": "NE",
+   "length_m": 43.9,
+   "confidence": "medium",
+   "summary": "east side on the service lane: brick with seven pairs of precast window strips (5.8 m pitch), brick pilasters; a raised concrete loading dock with a glazed door at s ~19-30, two grey metal service doors up concrete steps at s ~34, ground louvres at s ~41; the south third faces a lawn court raised ~4 m",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.45,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "wd"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "ws"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "ws"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.1,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "wl"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.95,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.75,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null,
+    "ground/wd": {
+     "type": "door",
+     "w": 1.15,
+     "h": 3.0,
+     "sill": 1.0,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "dock door: grey metal kick panel to ~1 m above the dock, glazed above (sv_W11_YF4E, Jul 2017); opens onto the loading dock"
+    },
+    "ground/ws": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.4,
+     "sill": 0.4,
+     "depth": 0.1,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "colour": "concrete_raw",
+     "note": "solid grey metal service door, two side by side, up two concrete steps (sv_W11_ZH2E, Jul 2019)"
+    },
+    "ground/wl": {
+     "type": "louvre",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 0.6,
+     "depth": 0.08,
+     "glass": "metal_shade",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "horizontal-blade aluminium louvre in place of the ground window (sv_W11_ZH2E)"
+    },
+    "upper/wd": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/ws": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/wl": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/wd": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "parapet/ws": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "parapet/wl": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [
+    [
+     3.58,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     5.3,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     7.02,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     9.38,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     11.1,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     12.83,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     15.18,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     16.9,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     18.63,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     20.98,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     22.7,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     24.43,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     26.78,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     28.5,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     30.23,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     32.58,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     34.3,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     36.03,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     38.38,
+     0.25,
+     "brick_brown",
+     0.2
+    ],
+    [
+     40.1,
+     0.6,
+     "brick_brown",
+     0.25
+    ],
+    [
+     41.83,
+     0.25,
+     "brick_brown",
+     0.2
+    ]
+   ],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "loading dock: concrete platform ~1.0 m high, ~1.6 m deep, s ~19-30, steel edge angle with rust streaks (sv_W11_YF4E)",
+    "concrete landing + two steps in front of the service doors, s ~33-38, ~1.5 m deep (sv_W11_ZH2E)",
+    "wall-pack lights on the brick between pairs at z ~5"
+   ],
+   "notes": "pair phase fixed from sv_W11_ZH2E (2019, junction with W12 in frame); sv_W11_YF4E (2017) agrees within ~3 m. s 0-15: ground east of the wall is a lawn court ~4.3 m above the lane (lidar DTM 335.0 vs 330.7), so only ~2 storeys show there."
+  },
+  "W12": {
+   "faces": "NE",
+   "length_m": 27.8,
+   "confidence": "medium-high",
+   "summary": "east side, north part: a windowless precast-panel mechanical shaft with tall vertical louvres at both edges (s ~4-8), then brick with single strip, two pairs and a final single strip to the NE corner; a louvred strip at the south end; lawn strip and trees on the lane",
+   "height_m": 11.8,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     3.6,
+     "upper"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "wl"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.0,
+     "b"
+    ],
+    [
+     0.45,
+     "lv"
+    ],
+    [
+     3.4,
+     "shaft"
+    ],
+    [
+     0.45,
+     "lv"
+    ],
+    [
+     0.6,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     2.9,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.6,
+     "b"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "m"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.25,
+     "p"
+    ],
+    [
+     2.6,
+     "b"
+    ],
+    [
+     1.3,
+     "w"
+    ],
+    [
+     0.6,
+     "p"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.75,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/w": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/p": null,
+    "*/m": null,
+    "*/b": null,
+    "ground/wl": {
+     "type": "louvre",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 0.6,
+     "depth": 0.08,
+     "glass": "metal_shade",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "horizontal-blade aluminium louvre in place of the ground window (sv_W11_ZH2E)"
+    },
+    "upper/wl": {
+     "type": "window",
+     "w": 1.15,
+     "h": 1.6,
+     "sill": 1.05,
+     "mullions": 1,
+     "transoms": 1,
+     "depth": 0.12,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "colour": "concrete_raw",
+     "note": "window strip: light grey exposed-aggregate precast spandrels (joint at mid-height) round a two-light aluminium window with a top-hung upper light (transom ~1/3 down); pale vertical blinds behind"
+    },
+    "parapet/wl": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    },
+    "*/shaft": {
+     "type": "blank",
+     "colour": "concrete_raw",
+     "note": "plain storey-high precast panels with horizontal joints at the floor lines, no windows (mechanical shaft)"
+    },
+    "ground/lv": {
+     "type": "louvre",
+     "w": 0.4,
+     "h": 2.6,
+     "sill": 0.6,
+     "depth": 0.06,
+     "glass": "metal_shade",
+     "frame": "metal_silver",
+     "colour": "concrete_raw"
+    },
+    "upper/lv": {
+     "type": "louvre",
+     "w": 0.4,
+     "h": 2.6,
+     "sill": 0.5,
+     "depth": 0.06,
+     "glass": "metal_shade",
+     "frame": "metal_silver",
+     "colour": "concrete_raw"
+    },
+    "parapet/lv": {
+     "type": "blank",
+     "colour": "concrete_raw"
+    }
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete_raw",
+     0.03
+    ]
+   ],
+   "piers": [
+    [
+     0.95,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     2.53,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     8.38,
+     0.61,
+     "brick_brown",
+     0.2
+    ],
+    [
+     13.11,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     14.87,
+     0.61,
+     "brick_brown",
+     0.25
+    ],
+    [
+     16.63,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     19.55,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     21.31,
+     0.61,
+     "brick_brown",
+     0.25
+    ],
+    [
+     23.07,
+     0.26,
+     "brick_brown",
+     0.2
+    ],
+    [
+     27.49,
+     0.61,
+     "brick_brown",
+     0.2
+    ]
+   ],
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "notes": "sv_W12_5m0c (Jul 2019, overcast, best exposure of the brick) shows s ~8-28 square-on; sv_W12_ZH2E and sv_c16 show the shaft and louvres. W12 is ~1.3 m behind W11 per walls.json; the photos show no strong step, the shaft may be the recessed part."
+  }
+ },
+ "roof": [
+  {
+   "what": "central mechanical spine: a long raised monitor/trough with light grey-white parapet sides, a row of small fan hoods inside",
+   "where": "along the roof centreline from ~5 m inside W0 to the south end, art ~(964,300) to (1000,237)",
+   "size_m": [
+    72,
+    4.5,
+    1.7
+   ],
+   "source": "ortho_2023aug, lidar 13.5 m, earth_W0_whole"
+  },
+  {
+   "what": "white domed exhaust fan hoods, ~1 m",
+   "where": "a row of 8 on the west half of the south roof, art ~(973,268) to (984,245); 3 more on the annex roof ~(973,226)",
+   "size_m": [
+    1.0,
+    1.0,
+    0.7
+   ],
+   "source": "ortho_2023aug"
+  },
+  {
+   "what": "white box penthouse / mechanical enclosure",
+   "where": "at the south end of the spine on its west side (approx art (986,236)); position a guess",
+   "size_m": [
+    6,
+    4,
+    2.5
+   ],
+   "source": "earth_W0_whole, earth_W2/W3_whole (2024); not clearly in the 2023 ortho or lidar"
+  },
+  {
+   "what": "cluster of 4-6 grey exhaust stacks",
+   "where": "near the east edge at the south end of the spine, approx art (998,245)",
+   "size_m": [
+    3,
+    3,
+    3
+   ],
+   "source": "earth 2024 views; ortho shows a white round object here"
+  },
+  {
+   "what": "parapet-enclosed mechanical well with fans",
+   "where": "south end, parallel to W8, ~4 m inside it",
+   "size_m": [
+    18,
+    4,
+    1.0
+   ],
+   "source": "ortho_2023aug"
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "C2",
+    "from_wall": "W0",
+    "s": [
+     9,
+     13.5
+    ],
+    "levels": [
+     1,
+     2,
+     3
+    ],
+    "look": "3-storey link block ~12 m long to C2, 11.3 m tall; covered brick walk-through at ground with concrete canopies; precast panels and dark ribbon window above"
+   },
+   {
+    "to": "B1",
+    "from_wall": "W4/W6 (annex)",
+    "s": null,
+    "levels": [
+     2,
+     3
+    ],
+    "look": "the white precast annex itself is the link: two floors of projecting window boxes over an open undercroft passage, abutting B1 along W5"
+   },
+   {
+    "to": "EIT",
+    "from_wall": "W10",
+    "s": [
+     0,
+     6.2
+    ],
+    "levels": "unknown",
+    "look": "lidar-only: ~10.5 m mass joins W10 to EIT; unseen"
+   }
+  ],
+  "neighbours": [
+   "C2 to the north, joined by the W0 link",
+   "B1 to the SW, joined by the annex (W5 shared)",
+   "EIT to the east across the service lane (W11/W12) and close to W9/W10",
+   "Peter Russell Rock Garden to the west (W1/W3 face it)",
+   "MC beyond the rock garden to the NW"
+  ],
+  "ground": [
+   "W0: concrete walk and grey pavers along the foot, lawn at the NE corner; red-brick paved plaza with a fountain to the NW",
+   "W1/W2: lawn either side of a flared grey concrete-paver path to the entrance; rock-garden boulders on the lawn",
+   "W3: lawn with a big tree at s 0-15, then the rock garden's grey-paver courtyard; a 1.5-2 m ivy/shrub bed with low concrete curb along the wall s 15-37",
+   "W4/W6: grey interlocking pavers run through the undercroft (a main N-S pedestrian route); planters either side",
+   "W7/W8: paved plaza; south of it a lawn with tall pines held up by a ~0.8 m rough grey limestone retaining wall",
+   "W11/W12: asphalt service lane with EIT's loading dock opposite; 2-3 m lawn strip with curb along W12 and the north part of W11; the court east of W11 s 0-15 / W10 / W9 is a lawn ~4 m above the lane"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "green steel wave rack",
+    "where": "along W0 s 5-11, 1 m out",
+    "count": 2,
+    "photo": "sv_W0_UMd4"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "green steel wave rack",
+    "where": "along W0 s 13-17 and s 21-24, 1.5 m out",
+    "count": 2,
+    "photo": "sv_W0_08gs"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "green steel wave rack",
+    "where": "W1 s 0-2, 2 m out (NW corner)",
+    "count": 1,
+    "photo": "sv_c1/c2"
+   },
+   {
+    "type": "planter",
+    "kind": "low round bed of red begonias",
+    "where": "W0 s ~14, 3 m out",
+    "count": 1,
+    "photo": "sv_W0_08gs"
+   },
+   {
+    "type": "boulder",
+    "kind": "pink-grey granite boulders ~0.8 m (rock garden)",
+    "where": "W1 s 3 and s 8, 2.5 m out on the lawn",
+    "count": 2,
+    "photo": "sv_c2"
+   },
+   {
+    "type": "sign",
+    "kind": "low dark building ID sign with white lettering on posts",
+    "where": "W1 s ~16.5, 3 m out, left of the entrance path",
+    "count": 1,
+    "photo": "sv_W1_A6h1"
+   },
+   {
+    "type": "bench",
+    "kind": "red-brown timber bench",
+    "where": "W2 s 2.7, 0.8 m out under the canopy",
+    "count": 1,
+    "photo": "sv_W1_A6h1"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "green steel wave rack",
+    "where": "W3 s ~22, 3 m out on the courtyard pavers",
+    "count": 1,
+    "photo": "sv_W3_ZKbU"
+   },
+   {
+    "type": "bin",
+    "kind": "black wheelie bin + white and blue plastic barrels (recycling)",
+    "where": "W4 s 1-5, 1 m inside the undercroft edge",
+    "count": 4,
+    "photo": "sv_W4_IGE0, sv_W3_Jlgu"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "steel racks, bikes parked",
+    "where": "under the annex along both side walls (W4 s 0-3 and s 20-23)",
+    "count": 2,
+    "photo": "sv_W4_IGE0, sv_W5_UkT"
+   },
+   {
+    "type": "planter",
+    "kind": "raised concrete planter ~6 x 2.5 x 0.9 m with ivy and a tree",
+    "where": "plaza SE of the annex, ~4 m off W7 / 5 m off W6's east end, art ~(989,213)",
+    "count": 1,
+    "photo": "sv_W7_suKe, sv_W6_mtvv"
+   },
+   {
+    "type": "planter",
+    "kind": "raised concrete planter wall ~0.9 m with shrubs",
+    "where": "W6 s 0-6, 2-4 m out (west side of the passage mouth)",
+    "count": 1,
+    "photo": "sv_W6_x9qr"
+   },
+   {
+    "type": "wall",
+    "kind": "rough grey limestone retaining wall ~0.8 m",
+    "where": "running ~35 m east from the planter, 4-8 m off W8, edging the pine lawn",
+    "count": 1,
+    "photo": "sv_W8_KvO, sv_c9"
+   },
+   {
+    "type": "tree",
+    "kind": "tall pines",
+    "where": "lawn south of W8, 5-15 m out",
+    "count": 8,
+    "photo": "sv_W8_KvO"
+   },
+   {
+    "type": "tree",
+    "kind": "large deciduous shade tree",
+    "where": "W3 s ~8, 6 m out",
+    "count": 1,
+    "photo": "sv_W3_yVGG"
+   },
+   {
+    "type": "tree",
+    "kind": "conifer",
+    "where": "W1 s ~2, 4 m out (NW corner) and W3 s ~14, 4 m out",
+    "count": 2,
+    "photo": "sv_c1, sv_W3_ZKbU"
+   },
+   {
+    "type": "bin",
+    "kind": "blue recycling bin",
+    "where": "W11 s ~19, 2 m out at the dock end",
+    "count": 1,
+    "photo": "sv_W11_YF4E"
+   },
+   {
+    "type": "planter",
+    "kind": "timber crate planter ~1.5 x 0.8 x 0.8 m",
+    "where": "W11 s ~38.5, 1.5 m out",
+    "count": 1,
+    "photo": "sv_W11_ZH2E"
+   },
+   {
+    "type": "utility",
+    "kind": "concrete drum (old manhole/valve cover) ~0.7 m",
+    "where": "W11 s ~41, 2.5 m out in the mulch bed",
+    "count": 1,
+    "photo": "sv_W11_ZH2E"
+   },
+   {
+    "type": "tree",
+    "kind": "small ash/locust trees",
+    "where": "W12 s 1, 5, 14, 26, ~2 m out on the lawn strip",
+    "count": 4,
+    "photo": "sv_W12_5m0c, sv_c16"
+   },
+   {
+    "type": "fountain",
+    "kind": "square pool with a large bronze split-bowl sculpture, red-brick paving, timber benches on low walls",
+    "where": "~12 m NW of the W0/W1 corner, art ~(941,306)",
+    "count": 1,
+    "photo": "sv_c0"
+   }
+  ]
+ },
+ "geometry_notes": [
+  "W6 line is ~3.5 m too far south for s 3-15: lidar is ground (0 m) 1-2 m inside it while the roof (11.8 m) starts ~4 m inside. Move W6 north ~3.5 m (or the annex's south face is set back from the B1 junction).",
+  "The annex (inside W4/W5/W6 and the W3 line extended) is open at ground for 3.6 m (a public walk-through); the model should hollow it with columns rather than draw a solid block. Its east side is ESC's brick west wall continuing the W3/W7 line (17.75 m) with glazed doors.",
+  "W4: lidar roof reaches ~2 m beyond the W4 line: the window boxes cantilever past it.",
+  "Ground is not flat: the lawn court east of W11 s 0-15, W10 and W9 is ~4.3 m above the west/south grade (DTM 335.0 vs 330.7-331.3); lidar roof heights of 8-9.6 m there are relative to that raised ground. The roof is one flat level at 342.9 m everywhere.",
+  "W0 has a 3-storey link block to C2 at s 9-13.5 (lidar 11.3 m) that is not in the footprint.",
+  "A ~10.5 m mass joins W10 to EIT (lidar), unseen in photos."
+ ],
+ "notes": "The main block is a plain late-1960s brown-brick slab whose identity is the rhythm of light-grey precast window strips (single at ends, paired elsewhere) between slim projecting brick pilasters; the white precast annex with its projecting window boxes over an open undercroft is the most recognisable piece, seen from the main N-S walkway. No web photos exist; everything is from Street View (2014-2019), the 2023 ortho and lidar."
+}
