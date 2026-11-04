@@ -1,10 +1,44 @@
 """facades.json (docs/refs/FACADE-SPEC.md) walls in the form arch.facade() draws."""
 
 
+import re
+
+_PAL = None
+
+
+def colour_name(v):
+    """Palette name for a spec colour: a name, "#hex (new: name)", or a bare hex (nearest swatch)."""
+    global _PAL
+    if not isinstance(v, str):
+        return v
+    m = re.search(r"\(new:\s*(\w+)\)", v)
+    if m:
+        return m.group(1)
+    if re.fullmatch(r"#[0-9a-fA-F]{6}", v.strip()):
+        if _PAL is None:
+            import lib
+            _PAL = lib.PALETTE["world"]
+        h = v.strip().lstrip("#")
+        c = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
+        return min(_PAL, key=lambda n: sum((int(_PAL[n][1 + 2 * i:3 + 2 * i], 16) - c[i]) ** 2 for i in range(3)))
+    return v
+
+
+def _fix_colours(o):
+    keys = ("wall", "colour", "glass", "frame", "fin_colour", "soffit_colour", "mullion_colour", "sill_colour")
+    if isinstance(o, dict):
+        return {k: (colour_name(v) if k in keys else _fix_colours(v)) for k, v in o.items()}
+    if isinstance(o, list):
+        return [_fix_colours(x) for x in o]
+    return o
+
+
 def to_facade(w, **extra):
     """One wall of facades.json -> arch.facade spec (None for hidden party walls)."""
     if w.get("hidden"):
         return None
+    w = _fix_colours(w)
+    w["bands"] = [[b[0], b[1], colour_name(b[2]), *b[3:]] for b in w.get("bands", []) if len(b) >= 3]
     cells = {}
     for k, v in (w.get("cells") or {}).items():
         r, _, b = k.partition("/")
