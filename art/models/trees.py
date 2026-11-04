@@ -100,6 +100,7 @@ class Mesh:
             s = min(sx, sy) if normalise == "uniform_xy" else None
             for v in bm.verts:
                 v.co = Vector(((v.co.x - cx) * (s or sx), (v.co.y - cy) * (s or sy), (v.co.z - lo.z) / max(hi.z - lo.z, 1e-6)))
+        bm.faces.index_update()
         faces = [(f.index, self.names[f[self.col]]) for f in bm.faces]
         ob = lib.mesh_object(name, bm)
         by = {}
@@ -127,7 +128,7 @@ def trunk(rnd, kind, limbs, fork, spread, r0=0.075, bark="bark"):
     return m
 
 
-def lobes(m, rnd, spots, dark, light, subdiv=1, jitter=0.08):
+def lobes(m, rnd, spots, dark, light, subdiv=1, jitter=0.04):
     for (x, y, z, r, flat) in spots:
         m.ico((x, y, z), (r, r, r * flat), dark, light, subdiv=subdiv, jitter=jitter, rnd=rnd)
 
@@ -151,7 +152,7 @@ def crown(kind, rnd):
         lobes(m, rnd, [(0, 0, 0.55, 0.55, 0.75)] + ring_spots(rnd, 6, 0.62, 0.45, 0.4, 0.7, zj=0.12, rj=0.25)
               + ring_spots(rnd, 2, 0.25, 0.75, 0.38, 0.7), d, l)
     elif kind == "locust":   # airy: small separate flattened lobes with gaps
-        lobes(m, rnd, ring_spots(rnd, 5, 0.6, 0.5, 0.3, 0.55, zj=0.15, rj=0.25) + ring_spots(rnd, 2, 0.2, 0.75, 0.3, 0.55), d, l, jitter=0.15)
+        lobes(m, rnd, ring_spots(rnd, 5, 0.6, 0.5, 0.3, 0.55, zj=0.15, rj=0.25) + ring_spots(rnd, 2, 0.2, 0.75, 0.3, 0.55), d, l, jitter=0.08)
     elif kind == "linden":   # upright oval to pyramidal: stacked lobes narrowing to the top
         spots = [(0, 0, 0.3, 0.6, 0.6), (0, 0, 0.62, 0.48, 0.55), (0, 0, 0.88, 0.28, 0.5)]
         spots += ring_spots(rnd, 3, 0.45, 0.3, 0.38, 0.6) + ring_spots(rnd, 3, 0.32, 0.6, 0.32, 0.6)
@@ -167,20 +168,20 @@ def crown(kind, rnd):
         spots = [(rnd.uniform(-0.15, 0.15), rnd.uniform(-0.15, 0.15), 0.8, 0.5, 0.45)]
         spots += ring_spots(rnd, 4, 0.55, 0.55, 0.38, 0.42, zj=0.2, rj=0.25)
         spots += ring_spots(rnd, 2, 0.6, 0.2, 0.3, 0.42, zj=0.08)
-        lobes(m, rnd, spots, d, l, jitter=0.12)
+        lobes(m, rnd, spots, d, l, jitter=0.07)
     elif kind == "cedar":    # narrow column with a rounded point
         lobes(m, rnd, [(0, 0, 0.25, 0.95, 0.35), (0, 0, 0.55, 0.8, 0.32), (0, 0, 0.8, 0.55, 0.25)], d, l, jitter=0.06)
         m.cone(0.85, 1.0, 0.35, d, l, sides=6, rnd=rnd)
     elif kind == "willow":   # dome with hanging curtains down to the crown base
-        lobes(m, rnd, [(0, 0, 0.75, 0.75, 0.35)] + ring_spots(rnd, 4, 0.45, 0.72, 0.4, 0.3), d, l)
-        n = 10
+        lobes(m, rnd, [(0, 0, 0.72, 0.75, 0.45)] + ring_spots(rnd, 4, 0.45, 0.7, 0.42, 0.42), d, l)
+        n = 12
         a0 = rnd.uniform(0, 6.28)
         for i in range(n):
             a = a0 + 2 * math.pi * i / n
             rr = rnd.uniform(0.75, 0.95)
             z0 = rnd.uniform(0.0, 0.15)
             # a flattened lobe hanging at the rim: a curtain strip
-            m.ico((rr * math.cos(a), rr * math.sin(a), (z0 + 0.7) / 2), (0.2, 0.2, (0.7 - z0) / 2), d, l, subdiv=1, jitter=0.05, rnd=rnd, up=0.6)
+            m.ico((rr * math.cos(a), rr * math.sin(a), (z0 + 0.7) / 2), (0.16, 0.16, (0.7 - z0) / 2), d, l, subdiv=1, jitter=0.05, rnd=rnd, up=0.6)
     elif kind == "ornamental":   # small round, a few lobes
         lobes(m, rnd, [(0, 0, 0.5, 0.6, 0.85)] + ring_spots(rnd, 3, 0.45, 0.5, 0.45, 0.8), d, l)
     elif kind == "shrub":    # low mound
@@ -190,7 +191,7 @@ def crown(kind, rnd):
 
 def trunk_for(kind, rnd):
     if kind in ("spruce", "cedar"):
-        return trunk(rnd, kind, 0, 1.0, 0, r0=0.06, bark="bark_dark")
+        return trunk(rnd, kind, 0, 1.0, 0, r0=0.045, bark="bark_dark")
     if kind == "pine":
         return trunk(rnd, kind, 3, 0.75, 0.4, r0=0.07, bark="bark_dark")
     if kind == "locust":
@@ -203,7 +204,7 @@ def trunk_for(kind, rnd):
         return trunk(rnd, kind, 3, 0.2, 0.3, r0=0.05)
     if kind == "linden":
         return trunk(rnd, kind, 3, 0.65, 0.3, r0=0.07)
-    return trunk(rnd, kind, 3, 0.6, 0.4, r0=0.07)
+    return trunk(rnd, kind, 3, 0.6, 0.4, r0=0.06)
 
 
 def build(model):

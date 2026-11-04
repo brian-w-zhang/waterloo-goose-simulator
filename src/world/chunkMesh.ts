@@ -2,7 +2,7 @@ import * as THREE from "three/webgpu";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { swatch } from "@/config";
 import { type Chunk, sampleHeight, terrainHeights } from "./decode";
-import type { Materials } from "./materials";
+import { type Materials, type TreeModel, TREE_KINDS, TREE_VARIANTS, loadTreeModels, treeModelsNow } from "./materials";
 import { buildSigns } from "./signs";
 import { facadeStyle } from "@/render/facade";
 
@@ -531,59 +531,89 @@ function platformGeometry(c: Chunk): THREE.BufferGeometry | null {
   return g;
 }
 
-function treeMeshes(c: Chunk, mats: Materials, geo: Materials["geo"]): THREE.Object3D[] {
-  const xyz = c.arrays.tree_xyz as Float32Array | undefined;
-  if (!xyz) return [];
+/**
+ * Trees from the lidar crowns (pipeline/build/vegetation.py): one art model per kind and variant
+ * (art/models/trees.py), instanced, each fitted to its tree: crown from the crown base to the top,
+ * stretched to the crown ellipse and turned to its axis; trunk from the ground to mid-crown.
+ * The models load once (a few KB each); a chunk built before they arrive fills its trees in then.
+ */
+function treeMeshes(c: Chunk, mats: Materials): THREE.Object3D[] {
+  if (!c.arrays.tree_xyz) return [];
+  const group = new THREE.Group();
+  group.name = "trees";
+  const models = treeModelsNow();
+  if (models) fillTrees(group, c, mats, models);
+  else loadTreeModels().then((m) => {
+    // evicted while loading: the chunk group has left the world
+    if (group.parent?.parent) fillTrees(group, c, mats, m);
+  }, (e: Error) => console.error("[world] tree models failed", e));
+  return [group];
+}
+
+function fillTrees(group: THREE.Group, c: Chunk, mats: Materials, models: TreeModel[][]) {
+  const xyz = c.arrays.tree_xyz as Float32Array;
   const hr = c.arrays.tree_hr as Float32Array;
   const kind = c.arrays.tree_kind as Uint8Array;
+  const shape = c.arrays.tree_shape as Float32Array | undefined;
   const n = kind.length;
-  const counts = [0, 0];
-  for (let k = 0; k < n; k++) counts[kind[k]]++;
-  const out: THREE.Object3D[] = [];
-  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(), p = new THREE.Vector3();
-  const tint = new THREE.Color();
-  // per-tree crown centre and radius (chunk-local), so a whole tree can fade as one (render/materials)
-  const centres = [new Float32Array(counts[0] * 4), new Float32Array(counts[1] * 4)], trunkCentres = new Float32Array(n * 4);
+  const hash = (k: number, s: number) => (((Math.sin(k * s + xyz[k * 3] * 0.37) * 43758.5453) % 1) + 1) % 1;
+  // which model each tree uses
+  const nk = TREE_KINDS.length;
+  const slot = new Int32Array(n);
+  const counts = new Map<number, number>();
+  for (let k = 0; k < n; k++) {
+    const kd = Math.min(kind[k], nk - 1);
+    const s = kd * 8 + Math.floor(hash(k, 91.7) * TREE_VARIANTS[kd]);
+    slot[k] = s;
+    counts.set(s, (counts.get(s) ?? 0) + 1);
+  }
+  const meshes = new Map<number, { crown: THREE.InstancedMesh; trunk: THREE.InstancedMesh; centres: Float32Array; fill: number }>();
   const withCentres = (g: THREE.BufferGeometry, a: Float32Array) => {
-    const c = g.clone();   // a full copy of a small tree mesh (about 100 vertices), owned by this chunk
-    c.setAttribute("tree", new THREE.InstancedBufferAttribute(a, 4));
-    c.userData.perChunk = true;   // disposed when the chunk is evicted (world/stream)
-    return c;
+    const cg = g.clone();   // a copy of a small tree mesh (a few hundred vertices), owned by this chunk
+    cg.setAttribute("tree", new THREE.InstancedBufferAttribute(a, 4));
+    cg.userData.perChunk = true;   // disposed when the chunk is evicted (world/stream)
+    return cg;
   };
-  const canopy = [new THREE.InstancedMesh(withCentres(geo.blob, centres[0]), mats.canopy, counts[0]),
-    new THREE.InstancedMesh(withCentres(geo.cone, centres[1]), mats.conifer, counts[1])];
-  const trunks = new THREE.InstancedMesh(withCentres(geo.trunk, trunkCentres), mats.trunk, n);
-  const fill = [0, 0];
+  for (const [s, cnt] of counts) {
+    const m = models[s >> 3][s & 7];
+    const centres = new Float32Array(cnt * 4);
+    const crown = new THREE.InstancedMesh(withCentres(m.crown, centres), mats.tree, cnt);
+    const trunk = new THREE.InstancedMesh(withCentres(m.trunk, centres), mats.tree, cnt);
+    crown.name = `tree_${TREE_KINDS[s >> 3]}_${s & 7}`;
+    trunk.name = `trunk_${TREE_KINDS[s >> 3]}_${s & 7}`;
+    meshes.set(s, { crown, trunk, centres, fill: 0 });
+  }
+  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3(), p = new THREE.Vector3();
+  const up = new THREE.Vector3(0, 1, 0);
+  const tint = new THREE.Color();
   for (let k = 0; k < n; k++) {
     const x = xyz[k * 3], y = xyz[k * 3 + 1], z = xyz[k * 3 + 2];
     const h = hr[k * 2], r = hr[k * 2 + 1];
-    const kd = kind[k];
-    const yaw = (Math.sin(k * 12.9898 + x) * 43758.5453) % (Math.PI * 2);
-    q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), yaw);
-    const crownH = kd === 1 ? h * 0.85 : Math.max(h * 0.62, r * 1.4);
-    const crownBase = h - crownH;
-    s.set(r, crownH, r);
-    p.set(x, y + crownBase, z);
-    m.compose(p, q, s);
-    canopy[kd].setMatrixAt(fill[kd], m);
-    const v = 0.92 + 0.16 * (((Math.sin(k * 78.233) * 43758.5453) % 1 + 1) % 1);
-    tint.setRGB(v, v, v);
-    canopy[kd].setColorAt(fill[kd], tint);
-    centres[kd].set([x, y + crownBase + crownH / 2, z, r], fill[kd] * 4);
-    trunkCentres.set([x, y + crownBase + crownH / 2, z, r], k * 4);
-    fill[kd]++;
-    s.set(Math.max(r * 0.09, 0.18), crownBase + crownH * 0.3, Math.max(r * 0.09, 0.18));
-    p.set(x, y, z);
-    m.compose(p, q, s);
-    trunks.setMatrixAt(k, m);
+    const base = shape ? Math.min(shape[k * 3], h * 0.8) : h * 0.35;
+    const ratio = shape ? shape[k * 3 + 1] : 1;
+    // an elliptical crown is turned to its axis (angle from east, counter-clockwise = yaw about +y)
+    const yaw = ratio > 1.12 ? shape![k * 3 + 2] : hash(k, 12.9898) * Math.PI * 2;
+    const rx = r * Math.sqrt(ratio), rz = r / Math.sqrt(ratio);
+    const crownH = Math.max(h - base, 0.5);
+    const e = meshes.get(slot[k])!;
+    const i = e.fill++;
+    q.setFromAxisAngle(up, yaw);
+    m4.compose(p.set(x, y + base, z), q, sc.set(rx, crownH, rz));
+    e.crown.setMatrixAt(i, m4);
+    const v = 0.9 + 0.18 * hash(k, 78.233);
+    e.crown.setColorAt(i, tint.setRGB(v, v * (0.98 + 0.04 * hash(k, 3.17)), v));
+    m4.compose(p.set(x, y, z), q, sc.set(rx, base + crownH * 0.5, rz));
+    e.trunk.setMatrixAt(i, m4);
+    e.centres.set([x, y + base + crownH / 2, z, r], i * 4);
   }
-  for (const im of [...canopy, trunks]) {
-    if (im.count === 0) continue;
-    im.castShadow = true;
-    im.receiveShadow = true;
-    out.push(im);
+  for (const e of meshes.values()) {
+    for (const im of [e.crown, e.trunk]) {
+      im.castShadow = true;
+      im.receiveShadow = true;
+      im.computeBoundingSphere();
+      group.add(im);
+    }
   }
-  return out;
 }
 
 function shrubCentres(c: Chunk): [number, number][] {
@@ -779,7 +809,7 @@ export function buildChunk(c: Chunk, mats: Materials, classes: string[], propKin
     m.name = "platforms";
     g.add(m);
   }
-  for (const o of treeMeshes(c, mats, mats.geo)) g.add(o);
+  for (const o of treeMeshes(c, mats)) g.add(o);
   for (const o of tuftMeshes(c, h, mats)) g.add(o);
   for (const o of propMeshes(c, mats, propKinds)) g.add(o);
   if (c.header.signs?.length) g.add(buildSigns(c.header.signs));

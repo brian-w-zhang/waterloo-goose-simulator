@@ -1,6 +1,8 @@
 import * as THREE from "three/webgpu";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { swatch } from "@/config";
+import { vec3 } from "three/tsl";
+import { loadModel } from "@/render/models";
 import {
   makeCanopyMaterial, makeFacadeMaterial, makeGroundMaterial, makePieceMaterial, makeVertexColorMaterial, makeWaterMaterial,
 } from "@/render/materials";
@@ -9,13 +11,11 @@ export interface Materials {
   ground: THREE.Material;
   pieces: THREE.Material;
   water: THREE.Material;
-  canopy: THREE.Material;
-  conifer: THREE.Material;
-  trunk: THREE.Material;
+  /** tree crowns and trunks: vertex colours from the art models, whole-tree fade (render/materials) */
+  tree: THREE.Material;
   vertexColor: THREE.Material;
   facade: (style: string) => THREE.Material;
-  geo: { blob: THREE.BufferGeometry; cone: THREE.BufferGeometry; trunk: THREE.BufferGeometry;
-    tufts: THREE.BufferGeometry[] };
+  geo: { tufts: THREE.BufferGeometry[] };
   props: Record<string, THREE.BufferGeometry>;
   door: THREE.BufferGeometry;
 }
@@ -118,25 +118,62 @@ function propGeometries(): Record<string, THREE.BufferGeometry> {
   };
 }
 
-function treeGeometries() {
-  // Deciduous crown: three soft spheres in a unit box (y 0 to 1, radius about 1).
-  const s = (r: number, x: number, y: number, z: number) => {
-    const g = new THREE.SphereGeometry(r, 7, 5);
-    g.scale(1, 0.5 / 0.6, 1);
-    g.translate(x, y, z);
-    g.deleteAttribute("uv");
-    return g;
-  };
-  const blob = mergeGeometries([s(0.82, 0, 0.5, 0), s(0.55, 0.42, 0.42, 0.18), s(0.5, -0.36, 0.5, -0.24)]);
-  const c1 = new THREE.ConeGeometry(1, 0.62, 9); c1.translate(0, 0.31, 0);
-  const c2 = new THREE.ConeGeometry(0.72, 0.55, 9); c2.translate(0, 0.68, 0);
-  [c1, c2].forEach((g) => g.deleteAttribute("uv"));
-  const cone = mergeGeometries([c1, c2]);
-  const trunk = new THREE.CylinderGeometry(0.8, 1, 1, 6);
-  trunk.translate(0, 0.5, 0);
-  trunk.deleteAttribute("uv");
-  return { blob, cone, trunk };
+/** Tree kinds, in the order of pipeline/build/vegetation.py KINDS (chunk array tree_kind). */
+export const TREE_KINDS = ["maple", "oak", "locust", "linden", "spruce", "pine", "cedar", "willow", "ornamental", "shrub"] as const;
+export const TREE_VARIANTS = [3, 3, 3, 3, 3, 3, 3, 3, 3, 2];
+
+/** One tree model (art/models/trees.py): crown in a unit box (x, z in [-1, 1], y 0 to 1 from crown
+ * base to top) and trunk (y 0 to 1 from the ground to mid-crown, x and z in crown radii). */
+export interface TreeModel { crown: THREE.BufferGeometry; trunk: THREE.BufferGeometry }
+
+let treeModels: TreeModel[][] | null = null;
+let treeModelsPromise: Promise<TreeModel[][]> | null = null;
+
+/** A GLB mesh as plain float attributes with its node transform applied (meshopt quantises
+ * positions and colours into normalised integers and puts the dequantisation in the node). */
+function bakedGeometry(mesh: THREE.Mesh): THREE.BufferGeometry {
+  mesh.updateWorldMatrix(true, false);
+  const src = mesh.geometry;
+  const g = new THREE.BufferGeometry();
+  const pos = src.getAttribute("position");
+  const p = new Float32Array(pos.count * 3);
+  const v = new THREE.Vector3();
+  for (let k = 0; k < pos.count; k++) {
+    v.fromBufferAttribute(pos, k).applyMatrix4(mesh.matrixWorld);
+    p.set([v.x, v.y, v.z], k * 3);
+  }
+  g.setAttribute("position", new THREE.BufferAttribute(p, 3));
+  const col = src.getAttribute("color");
+  const c = new Float32Array(pos.count * 3);
+  for (let k = 0; k < pos.count; k++) c.set(col ? [col.getX(k), col.getY(k), col.getZ(k)] : [1, 1, 1], k * 3);
+  g.setAttribute("color", new THREE.BufferAttribute(c, 3));
+  if (src.index) g.setIndex(Array.from({ length: src.index.count }, (_, k) => src.index!.getX(k)));
+  g.computeVertexNormals();
+  return g;
 }
+
+/** Load every tree model once; resolves to models[kind][variant]. */
+export function loadTreeModels(): Promise<TreeModel[][]> {
+  if (!treeModelsPromise) {
+    treeModelsPromise = Promise.all(TREE_KINDS.map((kind, k) => Promise.all(
+      Array.from({ length: TREE_VARIANTS[k] }, (_, v) => loadModel(`tree_${kind}_${v}`).then((gltf) => {
+        let crown: THREE.BufferGeometry | null = null, trunk: THREE.BufferGeometry | null = null;
+        gltf.scene.updateMatrixWorld(true);
+        gltf.scene.traverse((o) => {
+          const m = o as THREE.Mesh;
+          if (!m.isMesh) return;
+          if (m.name.startsWith("crown") || m.parent?.name.startsWith("crown")) crown = bakedGeometry(m);
+          else if (m.name.startsWith("trunk") || m.parent?.name.startsWith("trunk")) trunk = bakedGeometry(m);
+        });
+        if (!crown || !trunk) throw new Error(`tree_${kind}_${v}: no crown or trunk mesh`);
+        return { crown, trunk } as TreeModel;
+      }))))).then((m) => (treeModels = m));
+  }
+  return treeModelsPromise;
+}
+
+/** The tree models if they have loaded. */
+export function treeModelsNow(): TreeModel[][] | null { return treeModels; }
 
 /** Grass tuft (four leaning blades) and two flower clusters, about 0.3 m tall, vertex-coloured. */
 function tuftGeometries(): THREE.BufferGeometry[] {
@@ -182,22 +219,28 @@ function tuftGeometries(): THREE.BufferGeometry[] {
     mergeGeometries(shrubBase), mergeGeometries([...shrubBase.map((g) => g.clone()), ...dots])];
 }
 
+/** Crown fade of makeCanopyMaterial, colour from the models' vertex colours times the instance tint. */
+function makeTreeMaterial(): THREE.Material {
+  const m = makeCanopyMaterial("tree_canopy") as THREE.MeshToonNodeMaterial;
+  m.vertexColors = true;
+  m.colorNode = vec3(1);
+  return m;
+}
+
 export function makeMaterials(): Materials {
   const facades = new Map<string, THREE.Material>();
   return {
     ground: makeGroundMaterial(),
     pieces: makePieceMaterial(),
     water: makeWaterMaterial(),
-    canopy: makeCanopyMaterial("tree_canopy"),
-    conifer: makeCanopyMaterial("conifer"),
-    trunk: makeCanopyMaterial("trunk"),
+    tree: makeTreeMaterial(),
     vertexColor: makeVertexColorMaterial(),
     facade: (style) => {
       let m = facades.get(style);
       if (!m) { m = makeFacadeMaterial(style); facades.set(style, m); }
       return m;
     },
-    geo: { ...treeGeometries(), tufts: tuftGeometries() },
+    geo: { tufts: tuftGeometries() },
     props: propGeometries(),
     // a glazed double door in a pale frame, front face toward local +z
     door: mergeGeometries([

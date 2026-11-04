@@ -305,6 +305,8 @@ def main():
                 arrays["tree_xyz"] = np.c_[ts[:, 0] - e0, ty, n1 - ts[:, 1]].astype(np.float32).ravel()
                 arrays["tree_hr"] = np.c_[ts[:, 2], ts[:, 4]].astype(np.float32).ravel()
                 arrays["tree_kind"] = ts[:, 3].astype(np.uint8)
+                # crown base height, crown ellipse major/minor ratio, major-axis angle (rad, from east, CCW)
+                arrays["tree_shape"] = ts[:, 5:8].astype(np.float32).ravel()
             # props
             ps = pr[(pci == i) & (pcj == j)]
             if len(ps):
