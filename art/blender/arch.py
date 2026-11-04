@@ -517,6 +517,38 @@ def _band(kit, P, n, s0, s1, z0, z1, col, proj):
 
 def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
     t = (cell or {}).get("type")
+    if t == "stripes":
+        # alternating light and dark glass strips across the cell, narrow windows in the dark ones
+        m = cell.get("module", 1.9)
+        lw, lc = cell.get("light", [1.05, "glass_podium"])
+        dc = cell.get("dark", [0.85, "stripe_dark"])[1]
+        x = s0
+        while x < s1 - 1e-3:
+            xa, xb = x, min(x + lw, s1)
+            kit.quad(P(xa, z0), P(xb, z0), P(xb, z1), P(xa, z1), lc)
+            if xb < s1:
+                xc = min(x + m, s1)
+                kit.quad(P(xb, z0), P(xc, z0), P(xc, z1), P(xb, z1), dc)
+                _band(kit, P, n, xb - 0.04, xb + 0.04, z0, z1, "metal_silver", 0.12)
+            x += m
+        return
+    if t == "honeycomb":
+        hc = cell.get("_spec", {})
+        a2, b2 = P(s0, 0), P(s1, 0)
+        honeycomb(kit, (a2.x, a2.y), (b2.x, b2.y), z0, z1, hc.get("glass", "glass_blue"), hc.get("frame", "metal_silver"),
+                  cell_w=hc.get("mid_w", 6.2), cell_h=hc.get("hex_h", 9.4), chev=(hc.get("hex_h", 9.4) - hc.get("edge_w", 4.0)) / 2,
+                  bar=hc.get("member", 0.35) / 2, depth=hc.get("standoff", 0.8), mullion="mullion")
+        return
+    if t in ("curtain", "stair_tower"):
+        cell = {**cell, "type": "glass", "w": s1 - s0 - 0.02, "h": "full", "mullion_pitch": cell.get("pitch", 1.5),
+                "glass": cell.get("glass", "window_glass"), "depth": cell.get("recess", 0.05)}
+        t = "glass"
+    if t in ("solid", "pier", "mixed", "penthouse", "ribbed", "railing"):
+        cell = {"type": "blank", "colour": cell.get("colour", cell.get("glass", wall)) if t != "penthouse" else "penthouse_metal"}
+        t = "blank"
+    if t == "panel" and cell.get("colour") and not cell.get("depth"):
+        cell = {"type": "blank", "colour": cell["colour"]}
+        t = "blank"
     if t == "void":
         return                                   # open: nothing drawn (passages under bridges)
     if t == "panel" and cell.get("glass") and cell.get("depth"):
@@ -567,6 +599,9 @@ def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
         kit.quad(a1 + off, a1, a2, a2 + off, frame)
     # the pane, split by mullions and transoms (flush strips in the frame colour)
     nm, nt = cell.get("mullions", 0), cell.get("transoms", 0)
+    # specs sometimes list transom heights instead of a count
+    nm = len(nm) if isinstance(nm, list) else int(nm or 0)
+    nt = len(nt) if isinstance(nt, list) else int(nt or 0)
     strip = cell.get("strip", 0.07)
     xs = [x0 + (x1 - x0) * i / (nm + 1) for i in range(nm + 2)]
     ys = [y0 + (y1 - y0) * j / (nt + 1) for j in range(nt + 2)]

@@ -14,6 +14,7 @@ Form from the lidar and orthophoto (axis bearing ~63 deg, s along it from the fo
 """
 import arch
 import data
+import spec as fspec
 from mathutils import Vector
 
 META = {"world": True, "replaces": []}
@@ -68,39 +69,44 @@ def build():
     parts = data.building_parts("QNC")
     META["replaces"] = sorted({p["objectid"] for p in parts})
     k = arch.Kit("bld_qnc")
-    opts = dict(source="ndsm", simplify=0.8, merge_dh=1.3, min_area=10, min_width=2.0, axis=list(AXIS))
-    # the bar half (west) and the cube half (east) are traced separately so each keeps its own facade
-    for east in (False, True):
-        for tier in data.lidar_massing("QNC", exclude=[half_plane(not east)], **opts):
-            gy, h = tier["ground_y"], tier["h"]
-            z0, z1 = gy - 1.5, gy + h
-            ring = tier["rings"][0]
-            if h > 30 and h < 36 and area(ring) > 60:
-                kind, roof = "cube", "panel_white"      # the cube and its slightly lower rim
-            elif h > 27 or (h > 23 and area(ring) < 150):
-                kind, roof = "plant", "metal_silver"
-            elif h > 23:
-                kind, roof = "bar", "roof_gravel"
-            elif h > 15:
-                kind, roof = "bar", "roof_gravel"
+    fac, walls = data.facades("docs/refs/buildings/qnc")
+    # the cube glass photographs dark blue-grey behind the silver frame (Street View 2025, ArchDaily)
+    shared = {"honeycomb": {**fac["walls"]["W12"].get("honeycomb", {}), "glass": "stripe_dark"}}
+    specs = {wid: fspec.to_facade(w, shared=shared) for wid, w in fac["walls"].items()}
+    # upper faces (U0-U6) are walls too, with their own ends (facades.json, from lidar and the ortho)
+    for wid, w in fac["walls"].items():
+        if w.get("upper"):
+            walls.append({"id": wid, "art": [w["a"], w["b"]], "length_m": w["length_m"]})
+    cube = specs["W12"]
+    bar = specs["U0"]
+    podium = specs.get("W5") or specs["W4"]
+    for tier in data.lidar_massing("QNC", source="ndsm", simplify=0.8, merge_dh=1.3, min_area=10, min_width=2.0, axis=list(AXIS)):
+        gy, h = tier["ground_y"], tier["h"]
+        z1 = gy + h
+        ring = tier["rings"][0]
+        plant = (h > 36) or (h > 23 and area(ring) < 150)
+        default = cube if h > 30 else bar if h > 15 else podium
+        for r in [ring] + tier.get("holes", []):
+            if plant:
+                k.prism(r, gy - 1.5, z1, "metal_silver", "metal_silver")
             else:
-                kind, roof = "podium", "grass_shadow"
-            if kind == "plant":
-                k.tier(tier, z0, z1, "metal_silver", roof)
-                continue
-            walls(k, tier, z0, z1, kind)
-            for t in tier["tris"]:
-                a, b, c = (Vector((x, y, z1)) for x, y in t)
-                if (b - a).cross(c - a).z < 0:
-                    b, c = c, b
-                k.face([a, b, c], roof)
-            for i in range(len(ring)):
-                k.wall(ring[i], ring[(i + 1) % len(ring)], z1, z1 + 0.5, "panel_white" if kind == "cube" else "metal_silver")
+                fspec.draw_outline(k, r, gy, z1, walls, specs, default, tol=3.0)
+        if plant:
+            continue
+        roof = "panel_white" if h > 30 else "roof_gravel" if h > 15 else "grass_shadow"
+        for t in tier["tris"]:
+            A, B, C = (Vector((x, y, z1)) for x, y in t)
+            if (B - A).cross(C - A).z < 0:
+                B, C = C, B
+            k.face([A, B, C], roof)
+        for i in range(len(ring)):
+            k.wall(ring[i], ring[(i + 1) % len(ring)], z1, z1 + 0.5, "panel_white" if h > 15 else "metal_silver")
+    # the cube's roof: a screened plant yard with white exhaust stacks (facades.json roof)
     o, u = Vector(CENTRE), Vector(AXIS)
     v = Vector((-u.y, u.x))
     gy = max(p["ground_y"] for p in parts)
-    for ds, dt in ((22, -6), (22, 6), (32, -6), (32, 6)):
-        c = o + u * ds + v * dt
-        k.box((c.x, c.y, gy + 34.1 + 1.3), (6.0, 4.0, 2.6), "metal_silver", rot=math.atan2(u.y, u.x))
-        k.tube([(c.x, c.y, gy + 36.7), (c.x, c.y, gy + 39.5)], 0.6, "panel_white", sides=8)
+    for ds in (14, 22, 30, 38):
+        for dt in (-12, -4):
+            c = o + u * ds + v * dt
+            k.tube([(c.x, c.y, gy + 34.2), (c.x, c.y, gy + 38.5)], 0.55, "panel_white", sides=8)
     return [k.finish()]

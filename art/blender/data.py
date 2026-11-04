@@ -84,3 +84,46 @@ def wall_for(a, b, walls, tol=1.5):
         if d0 < tol and d1 < tol and s1 > s0 and s0 > -tol and s1 < L + tol:
             return w, max(0.0, s0)
     return None, 0.0
+
+
+def wall_pieces(a, b, walls, tol=1.5):
+    """Split a tier edge a-b into pieces by the documented walls it runs along:
+    [(pa, pb, wall or None, s_off)], in order from a to b. A wall matches when both its ends lie
+    within tol of the edge's line, it points the same way, and it overlaps the edge."""
+    import math
+    ax, ay = a
+    L = math.hypot(b[0] - ax, b[1] - ay)
+    if L < 1e-6:
+        return []
+    tx, ty = (b[0] - ax) / L, (b[1] - ay) / L
+    cuts = []
+    for w in walls:
+        (wa, wb) = w["art"]
+        da = abs(-(wa[0] - ax) * ty + (wa[1] - ay) * tx)
+        db = abs(-(wb[0] - ax) * ty + (wb[1] - ay) * tx)
+        wl = math.hypot(wb[0] - wa[0], wb[1] - wa[1])
+        if da > tol or db > tol or wl < 1e-6:
+            continue
+        if ((wb[0] - wa[0]) * tx + (wb[1] - wa[1]) * ty) / wl < 0.9:
+            continue                                   # opposite or skew wall
+        s0 = (wa[0] - ax) * tx + (wa[1] - ay) * ty
+        s1 = (wb[0] - ax) * tx + (wb[1] - ay) * ty
+        lo, hi = max(0.0, s0), min(L, s1)
+        if hi - lo > 0.5:
+            cuts.append((lo, hi, w, lo - s0))
+    cuts.sort(key=lambda c: c[0])
+    out, s = [], 0.0
+    P = lambda d: (ax + tx * d, ay + ty * d)
+    for lo, hi, w, off in cuts:
+        if lo < s:                                     # overlapping walls: trim the later one
+            off += s - lo
+            lo = s
+        if hi - lo < 0.3:
+            continue
+        if lo - s > 0.3:
+            out.append((P(s), P(lo), None, 0.0))
+        out.append((P(lo), P(hi), w, off))
+        s = hi
+    if L - s > 0.3:
+        out.append((P(s), P(L), None, 0.0))
+    return out
