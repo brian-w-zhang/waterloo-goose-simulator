@@ -2129,8 +2129,21 @@
    "length_m": 34.2,
    "confidence": "high",
    "summary": "party wall: abuts E3 (E3 walls.json W2) - not visible, do not draw a facade",
-   "hidden": true,
-   "notes": "sv_W13_a9_L (2019) shows E3's buff brick wall with a door and steel stair, which belongs to E3."
+   "notes": "Not a party wall: E3's spec shows a 10 m service lane between DC and E3 (lidar agrees). Plain corrugated wall until photographed.",
+   "rows": [
+    [
+     11.4,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     34.2,
+     "x"
+    ]
+   ],
+   "cells": {},
+   "wall": "panel_grey"
   },
   "W14": {
    "faces": "SE",
@@ -2169,7 +2182,8 @@
    "piers": [],
    "signs": [],
    "attached": [],
-   "notes": "belongs architecturally to E3 (buff brick, grey metal canopies)."
+   "notes": "belongs architecturally to E3 (buff brick, grey metal canopies). | Hidden: drawn by E3 (docs/refs/buildings/e3, its W0 entrance; same pano sv_c44), Nov 3 2026",
+   "hidden": true
   },
   "W15": {
    "faces": "NE",
@@ -2244,7 +2258,8 @@
    "piers": [],
    "signs": [],
    "attached": [],
-   "notes": "sv_W15_6VvN (Sep 2014)."
+   "notes": "sv_W15_6VvN (Sep 2014). | Hidden: drawn by E3 (docs/refs/buildings/e3, its W0 entrance; same pano sv_c44), Nov 3 2026",
+   "hidden": true
   },
   "W16": {
    "faces": "NW",
@@ -2318,7 +2333,8 @@
     }
    ],
    "attached": [],
-   "notes": "sv_W16_Cv0C (May 2025). Belongs to E3."
+   "notes": "sv_W16_Cv0C (May 2025). Belongs to E3. | Hidden: drawn by E3 (docs/refs/buildings/e3, its W0 entrance; same pano sv_c44), Nov 3 2026",
+   "hidden": true
   },
   "W17": {
    "faces": "NE",

@@ -97,6 +97,10 @@ def build(buildings, doors, path_tree, path_lines):
             continue
         seen.add((t["name"], round(e), round(n)))
         p = Point(e, n)
+        # a place inside any UW building (the Davis Centre library, campus cafes) is not a storefront,
+        # even when another building's wall is the nearest one
+        if any(fps[k].contains(p) and buildings[k]["owner"] in ("UNIVERSITY OF WATERLOO", "OTHER UW") for k in tree.query(p)):
+            continue
         cand = [i for i in tree.query(p.buffer(FASCIA_SNAP_M))]
         if not cand:
             continue

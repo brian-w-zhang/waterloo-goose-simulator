@@ -1,0 +1,4006 @@
+{
+ "building": "E3",
+ "sources_checked": [
+  "around/sv_W0_* (3), sv_W1_I0Ix, sv_W2_* (3), sv_W3_* (3), sv_W4..W39 (all), sv_c0..c45 (all 70/100)",
+  "around/earth_W*_whole (most are mis-aimed at roofs; W0 useful)",
+  "private/earth_orbit_000..315, earth_facade_0..3, earth_top",
+  "lidar nDSM profiles per wall and depth profiles (tools.art.study ndsm)"
+ ],
+ "dates_note": "Street View: May 2025 for the north addition (W0, W1, W33-W39), the east road (W24-W31) and the plaza; Jul 2019 for the west lane (W2, W3) and W10, W12; Sep 2014 for the yard, the courtyard, the lanes and the south-east (W4-W9, W11, W13-W23). Earth 2024. The porte-cochere at W29/W30 is post-2014.",
+ "colours": {
+  "brick": {
+   "hex": "#cbb497",
+   "palette": "brick_buff",
+   "where": "all brick, old and new. Earth (sunlit S face) #dcae98 with Earth's pink cast; SV under overcast #887052 (old) / #7b674c-#8e7d6b (new, mottled with scattered darker brown bricks). Same swatch as DC's e3_brick."
+  },
+  "base": {
+   "hex": "#c9c3b6",
+   "palette": "concrete",
+   "where": "precast/concrete base of the addition (overcast #a9a399) and old wall plinths"
+  },
+  "fins": {
+   "hex": "#2f343b",
+   "palette": "penthouse_metal",
+   "where": "charcoal mullion fins between window groups on the addition (#1f2227 overcast)"
+  },
+  "corrugated_grey": {
+   "hex": "#a9afb3",
+   "palette": "metal_shade",
+   "where": "W1 horizontally ribbed grey cladding"
+  },
+  "khaki_metal": {
+   "hex": "#a9a290",
+   "palette": "dc_corrugated",
+   "where": "ribbed khaki metal bands on the newer east wing's upper storey (U4) and parts of U5"
+  },
+  "tower_panels": {
+   "hex": "#6f7775",
+   "palette": "prop_metal",
+   "where": "bridge tower large-format panels (W31)"
+  },
+  "rollups": {
+   "hex": "#5a514c",
+   "palette": "brick_charcoal_tower",
+   "where": "dark bronze roll-up doors and ribbed fascias in the service yard (W5, W7)"
+  },
+  "canopy_louvres": {
+   "hex": "#2f343b",
+   "palette": "penthouse_metal",
+   "where": "porte-cochere louvre screen"
+  },
+  "canopy_fascia": {
+   "hex": "#6a5c52",
+   "palette": "roof_mansard",
+   "where": "porte-cochere bronze panel fascia (#585041 overcast)"
+  },
+  "orange_doors": {
+   "hex": "#e0a020 (new: door_orange)",
+   "palette": null,
+   "where": "painted doors in the courtyard passage (W14/W15), 2014 photos; low priority"
+  },
+  "frames": {
+   "hex": "#c4c9cc",
+   "palette": "metal_silver",
+   "where": "window frames on the addition and clerestories"
+  },
+  "old_frames": {
+   "hex": "#5a6466",
+   "palette": "prop_lamp",
+   "where": "dark frames of the old clerestory windows (W12)"
+  }
+ },
+ "geometry_notes": [
+  "E3 is two buildings in one footprint: the 1960s buff-brick lab complex (flat roofs 4-7 m, a 9.2 m central clerestory high bay, 11-13.5 m blocks at the SW corner) and a 4-storey 2010s addition at the north (14.4 m) with a newer 1-2 storey brick wing along the east road (W33-W36) and the E5 bridge tower (W31).",
+  "DC's spec puts an 'E3 entrance' in DC's footprint (DC W14-W16). Its W16 photo (sv_W16_Cv0C) is the same pano as E3's sv_c44_Cv0C, which shows E3's north entrance on E3 W0 s 31-37 (art ~(1107-1113, 347-350)), ~20 m north of DC W16. To avoid drawing the entrance twice, DC W16 should probably be plain brick / glass link, or hidden; E3 W0 carries the entrance (same doors/canopy/sign description as DC's).",
+  "DC's W13 is marked as a party wall with E3 W2, but the photos and lidar show a ~10 m asphalt service lane between DC's south lobe and E3 W2 (sv_W2_-SkkM, sv_c0). Both walls are visible and E3 W2 is specified.",
+  "W1 s 20-36 (9.7 m) and the 9.4 m mass between the addition and W2's 6 m strip are lidar-only; the 9.4 mass has no documented faces (its edges fall back to the nearest wall).",
+  "The lidar over W32 and W33 s 0-6 (14.4-15.2 m) is the E5 bridge and its tower, not the 1-storey brick wing (4.6 m) under it.",
+  "Lidar 12-15 m in the courtyard (W14, W15 s 12-22) and at W7 b is tree canopy (conifers, maple), not building.",
+  "W29 s 3.5-8.5 lidar 8 m, 5 m deep, is the post-2014 porte-cochere, not a roof.",
+  "Upper faces U0-U3 (central clerestory box), U4 (east wing second storey) and U5 (addition's SE face above the 9.4 m roof) are added from lidar blobs; positions +-1.5 m."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 37.4,
+   "confidence": "high",
+   "summary": "north face of the 4-storey 2010s E3 addition on the plaza shared with DC: buff brick with dark-framed glazing groups and charcoal fins; tall storefront ground floor on a precast/concrete base, three upper storeys of 3-pane window groups between brick bands, G2N Lab roll-up door, plain brick pier with TAXI STAND sign, then the glazed north entrance (two pairs of white-framed doors, silver flat canopy, curtain wall to the roof, black E3 sign) at the west (b) end",
+   "height_m": 14.4,
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     3.1,
+     "l2"
+    ],
+    [
+     3.1,
+     "l3"
+    ],
+    [
+     3.1,
+     "l4"
+    ],
+    [
+     0.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "pier"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     3.0,
+     "dock"
+    ],
+    [
+     4.0,
+     "brickpier"
+    ],
+    [
+     5.6,
+     "entrance"
+    ],
+    [
+     1.4,
+     "signpier"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 4.0,
+     "h": 3.4,
+     "sill": 0.95,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 3.4,
+     "sill": 0.95
+    },
+    "ground/dock": {
+     "type": "door",
+     "kind": "rollup",
+     "w": 2.6,
+     "h": 3.0,
+     "colour": "metal_silver",
+     "frame": "penthouse_metal",
+     "note": "G2N Lab roll-up door in a charcoal surround; a charcoal louvre panel (2.6 x 1.2) fills the bay above the door to the band; small blue 'G2N Lab' sign over the door"
+    },
+    "ground/entrance": {
+     "type": "door",
+     "w": 5.0,
+     "h": 2.4,
+     "leaves": 4,
+     "glazed": true,
+     "frame": "panel_white",
+     "canopy": [
+      1.8,
+      "metal_silver"
+     ],
+     "note": "two pairs of white-framed glass doors in a full-height storefront (glass also left of and above the doors up to the band); flat silver canopy at ~3.6 m across the whole bay"
+    },
+    "*/pier": null,
+    "*/brickpier": null,
+    "*/signpier": null,
+    "parapet/*": null,
+    "parapet/entrance": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/win": {
+     "type": "window",
+     "w": 4.0,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 1.2
+    },
+    "l2/dock": {
+     "type": "window",
+     "w": 2.6,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/entrance": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/win": {
+     "type": "window",
+     "w": 4.0,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 1.2
+    },
+    "l3/dock": {
+     "type": "window",
+     "w": 2.6,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/entrance": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/win": {
+     "type": "window",
+     "w": 4.0,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 1.2
+    },
+    "l4/dock": {
+     "type": "window",
+     "w": 2.6,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/entrance": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.95,
+     "concrete",
+     0
+    ],
+    [
+     14.25,
+     14.4,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 36.6,
+     "z": 0.9,
+     "w": 0.7,
+     "h": 2.1,
+     "text": "E3 / Engineering 3",
+     "colour": "panel_black",
+     "accent": "yellow honeycomb strip on top (UW building sign totem fixed to the wall beside the doors)",
+     "on": "wall"
+    },
+    {
+     "s": 25.0,
+     "z": 3.15,
+     "w": 0.9,
+     "h": 0.25,
+     "text": "G2N Lab",
+     "colour": "door_blue",
+     "on": "wall"
+    },
+    {
+     "s": 28.6,
+     "z": 1.7,
+     "w": 0.45,
+     "h": 0.35,
+     "text": "TAXI STAND",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "entrance canopy (flat, silver metal, ~1.8 m deep, soffit downlights) over s 31.4-37",
+    "galvanised bike rack (5 hoops on a rail) at s 26-29.5, 0.8 m out"
+   ],
+   "notes": "sv_W0_iZkC (s 5), sv_W0_pqZu (s 15), sv_W0_lW6E (s 26) and sv_c44_Cv0C (May 2025, entrance square-on); earth_W0_whole (2024) for the 3 upper storeys and the full-height curtain over the entrance. Ground glazing groups are 3 panes wide x 2 high (lower pane taller); upper groups 3 x 2 with a short top lite. Fins are charcoal metal strips between groups, stopping at each brick band. The base is ~0.95 m at the east end and drops to ~0.3 m at the door bay (grade rises westward). This entrance is the one the DC spec describes as its W16 (sv_W16_Cv0C is this same pano): it is on E3 W0 s 31-37, not inside DC's footprint (see geometry_notes). The entrance bay may project ~0.5 m from the wall plane (sv_W1 shows a short brick return) - not certain."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 35.9,
+   "confidence": "medium",
+   "summary": "west side of the addition facing the DC south lobe across a lawn: full-height vertical glass slot at the corner, then a tall grey horizontally-corrugated metal wall with a ground-floor ribbon window on a concrete base (s 1-20, 14.4 m); s 20-36 lower (9.7 m): green-tinted glass link toward DC then buff brick",
+   "height_m": 14.4,
+   "tiers": [
+    [
+     0,
+     20,
+     14.4
+    ],
+    [
+     20,
+     35.9,
+     9.7
+    ]
+   ],
+   "rows": [
+    [
+     0.9,
+     "plinth"
+    ],
+    [
+     2.6,
+     "ground"
+    ],
+    [
+     10.9,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "slot"
+    ],
+    [
+     18.8,
+     "clad"
+    ],
+    [
+     5.0,
+     "link"
+    ],
+    [
+     10.9,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/slot": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "plinth/slot": null,
+    "ground/clad": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.0,
+     "h": 2.3,
+     "sill": 0.1,
+     "glass": "window_dark",
+     "frame": "penthouse_metal"
+    },
+    "plinth/clad": null,
+    "upper/clad": null,
+    "*/link": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "*/brick": {
+     "type": "panel",
+     "colour": "brick_buff"
+    }
+   },
+   "wall": "metal_shade",
+   "bands": [
+    [
+     0.0,
+     0.9,
+     "concrete",
+     0
+    ],
+    [
+     14.25,
+     14.4,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "DC's 'E3 vestibule' walls (DC W14-W16) touch this wall at about s 24-27"
+   ],
+   "notes": "sv_W1_I0Ix and sv_W2_I0Ix (May 2025, oblique from the NW). Cladding is horizontally ribbed grey metal, measured #5f6466 under overcast against DC's champagne #676660 in the same frame (DC palette dc_corrugated #a9a290), so ~#98a0a3 in daylight -> metal_shade. The corrugated wall sits slightly behind the brick entrance block of W0. s 20-36 is only seen far off behind DC's lobe: the green glass link and the brick are a low-confidence reading."
+  },
+  "W2": {
+   "faces": "NW",
+   "length_m": 50.1,
+   "confidence": "medium",
+   "summary": "long plain buff-brick lab wall on the service lane between E3 and DC's south lobe: no windows, one steel door on a landing with a black steel stair near the west end, wall lamps, a concrete base that deepens toward the west corner as the lane falls",
+   "height_m": 6.3,
+   "rows": [
+    [
+     6.1,
+     "wall"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     42.6,
+     "plain"
+    ],
+    [
+     1.1,
+     "door"
+    ],
+    [
+     6.4,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "prop_lamp",
+     "frame": "prop_lamp",
+     "sill": 1.1
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.7,
+     "concrete",
+     0
+    ],
+    [
+     6.1499999999999995,
+     6.3,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "steel landing (1.4 x 1.2 m at 1.1 m) with a 5-step black steel stair and handrails, s 42-45",
+    "wall pack lamps at s ~38 and ~46, z 4.5"
+   ],
+   "notes": "sv_W2_-SkkM (Jul 2019) and sv_c0_r4ij (Sep 2014) from the W2/W3 corner. The concrete base is ~0.3 m at the east end and ~1.3 m at the west corner. A slightly lighter section at the far (east) end of the wall is unclear. There is a ~10 m asphalt service lane between this wall and DC (not a party wall)."
+  },
+  "W3": {
+   "faces": "SW",
+   "length_m": 33.1,
+   "confidence": "medium",
+   "summary": "west lab wall on the lane facing EIT: buff brick, a clerestory ribbon of dark windows just under the coping over the north two-thirds, three lighter patches of bricked-in tall windows near the north end, a steel door on a landing with a stair, equipment stored along the base",
+   "height_m": 6.6,
+   "rows": [
+    [
+     0.5,
+     "plinth"
+    ],
+    [
+     4.0,
+     "wall"
+    ],
+    [
+     1.35,
+     "clere"
+    ],
+    [
+     0.75,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "plain"
+    ],
+    [
+     8.8,
+     "clere"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     11.0,
+     "clere"
+    ],
+    [
+     11.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "clere/clere": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "sill": 0.15,
+     "h": 1.05
+    },
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "prop_lamp",
+     "frame": "prop_lamp",
+     "sill": 0.6
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.5,
+     "concrete",
+     0
+    ],
+    [
+     6.449999999999999,
+     6.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "steel landing and stair at the door (s ~10-11)",
+    "bricked-in window ghosts: three 1.2 x 2.4 m patches of lighter brick at s 1-6, z 1.5-3.9 (sv_W3_PUhv)"
+   ],
+   "notes": "sv_W3_PUhv (Sep 2014), sv_W3_IUTs and sv_W3_VSLC (Jul 2019), sv_c0. The clerestory reads as a continuous ribbon of ~12 two-pane windows (white/silver frames) from the corner; the south third (s 22-33) is plain brick with a lamp. Steel beams and rusty tanks stored along the base."
+  },
+  "W4": {
+   "faces": "SE",
+   "length_m": 9.3,
+   "confidence": "medium",
+   "summary": "open-fronted storage shed at the south end of the west lane: open bay with a dark interior under a deep roof, a beige vertical-ribbed metal fascia above, brick end pier",
+   "height_m": 6.7,
+   "rows": [
+    [
+     5.0,
+     "open"
+    ],
+    [
+     1.7,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     8.3,
+     "bay"
+    ]
+   ],
+   "cells": {
+    "open/bay": {
+     "type": "void",
+     "depth": 6.0,
+     "note": "open shed, dark brown interior, steel posts"
+    },
+    "fascia/bay": {
+     "type": "panel",
+     "colour": "siding_beige"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.55,
+     6.7,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W4_lMuH (Sep 2014) and sv_W7_apjz (left edge). The fascia colour is a guess from a sunlit but distant view (#897c65 in the shade side)."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 11.7,
+   "confidence": "medium",
+   "summary": "service-yard wall: buff brick with a small and a large dark-bronze roll-up door, a dark ribbed metal fascia over the large door",
+   "height_m": 6.2,
+   "rows": [
+    [
+     4.6,
+     "ground"
+    ],
+    [
+     1.6,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "b"
+    ],
+    [
+     2.9,
+     "small"
+    ],
+    [
+     1.4,
+     "b"
+    ],
+    [
+     5.4,
+     "big"
+    ],
+    [
+     1.2,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/small": {
+     "type": "door",
+     "kind": "rollup",
+     "glazed": false,
+     "colour": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "w": 2.7,
+     "h": 3.2
+    },
+    "ground/big": {
+     "type": "door",
+     "kind": "rollup",
+     "glazed": false,
+     "colour": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "w": 5.0,
+     "h": 4.4
+    },
+    "top/big": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower",
+     "note": "vertical-ribbed metal fascia"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.05,
+     6.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W7_apjz, sv_W5_yHa0 (Sep 2014). Door colour measured #413c33-#4c4437 in shade."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 9.4,
+   "confidence": "low",
+   "summary": "short yard return: buff brick, plain",
+   "height_m": 6.2,
+   "rows": [
+    [
+     6.2,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     9.4,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.05,
+     6.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W6_qcQm (Sep 2014) mostly shows the red dumpster in the yard."
+  },
+  "W7": {
+   "faces": "SW",
+   "length_m": 14.3,
+   "confidence": "medium",
+   "summary": "back of the service yard: low buff-brick wall with a recessed dark roll-up door, a yellow dust-collector stack beside it, then the tall block at the south (b) end",
+   "height_m": 5.5,
+   "rows": [
+    [
+     4.2,
+     "ground"
+    ],
+    [
+     1.3,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "b"
+    ],
+    [
+     3.6,
+     "door"
+    ],
+    [
+     7.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "kind": "rollup",
+     "glazed": false,
+     "colour": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "w": 3.2,
+     "h": 3.6
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     5.35,
+     5.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "yellow cyclone dust collector with a silver duct, ~1.2 m dia x 4 m, just north of the door, 1 m out"
+   ],
+   "notes": "sv_W7_apjz, sv_c3 (Sep 2014). The last 2 m (s 12-14) reaches the 12.6 m block."
+  },
+  "W8": {
+   "faces": "NW",
+   "length_m": 21.8,
+   "confidence": "medium",
+   "summary": "north face of the tall south-west lab block over the yard: buff brick 11-13.5 m, a small window near mid-height, a wide upper window at the east end, a white roll-up door, black louvre band along the top",
+   "height_m": 13.4,
+   "rows": [
+    [
+     4.5,
+     "ground"
+    ],
+    [
+     4.4,
+     "mid"
+    ],
+    [
+     3.3,
+     "high"
+    ],
+    [
+     1.2,
+     "louvre"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "b"
+    ],
+    [
+     3.6,
+     "door"
+    ],
+    [
+     2.0,
+     "b"
+    ],
+    [
+     2.4,
+     "w"
+    ],
+    [
+     11.8,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "kind": "rollup",
+     "w": 3.4,
+     "h": 3.8,
+     "colour": "panel_white",
+     "frame": "prop_lamp"
+    },
+    "mid/w": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.1,
+     "sill": 1.6,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "high/b": null,
+    "louvre/*": {
+     "type": "louvre",
+     "colour": "penthouse_metal"
+    },
+    "*/*": null,
+    "louvre/b": {
+     "type": "louvre",
+     "colour": "penthouse_metal"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     13.25,
+     13.4,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W8_j-Yi, sv_W8_lMuH, sv_W7_apjz right edge (Sep 2014). The louvre band and door positions are approximate; lidar steps from 13.5 to 11.3 m at s ~12."
+  },
+  "W9": {
+   "faces": "SW",
+   "length_m": 12.3,
+   "confidence": "medium",
+   "summary": "west end of the tall south-west block facing PHY: buff brick with one long 4-pane window low down, otherwise plain",
+   "height_m": 11.5,
+   "rows": [
+    [
+     0.8,
+     "low"
+    ],
+    [
+     1.4,
+     "win"
+    ],
+    [
+     9.3,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     3.5,
+     "b"
+    ],
+    [
+     4.6,
+     "w"
+    ],
+    [
+     4.2,
+     "b"
+    ]
+   ],
+   "cells": {
+    "win/w": {
+     "type": "window",
+     "w": 4.4,
+     "h": 1.3,
+     "mullions": 3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     11.35,
+     11.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 9.2,
+     "z": 1.6,
+     "w": 0.3,
+     "h": 0.45,
+     "text": "no parking",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "yellow-and-black bollard at the corner"
+   ],
+   "notes": "sv_W9_KCs3, sv_c6 (Sep 2014)."
+  },
+  "W10": {
+   "faces": "SE",
+   "length_m": 10.0,
+   "confidence": "low",
+   "summary": "south-west corner return: plain buff brick, chain-link fence and a small concrete pad at the east end",
+   "height_m": 11.3,
+   "rows": [
+    [
+     11.3,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     10.0,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     11.15,
+     11.3,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "chain-link fence enclosure ~2 m high at s 7-10"
+   ],
+   "notes": "sv_W10_PuxO (Jul 2019)."
+  },
+  "W11": {
+   "faces": "SW",
+   "length_m": 13.9,
+   "confidence": "medium",
+   "summary": "south-west face toward PHY: buff brick with a brown double door with lites and a 3-pane window beside it, tall block above",
+   "height_m": 11.0,
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     8.0,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     4.5,
+     "b"
+    ],
+    [
+     1.8,
+     "door"
+    ],
+    [
+     0.4,
+     "b"
+    ],
+    [
+     2.6,
+     "w"
+    ],
+    [
+     4.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 1.7,
+     "h": 2.2,
+     "leaves": 2,
+     "glazed": false,
+     "colour": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "note": "brown double door, small upper lites"
+    },
+    "ground/w": {
+     "type": "window",
+     "w": 2.5,
+     "h": 0.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     10.85,
+     11.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "yellow bollards either side of the door"
+   ],
+   "notes": "sv_W11_v-RK (Sep 2014). s 12-14 drops to 7.6 m."
+  },
+  "W12": {
+   "faces": "SE",
+   "length_m": 60.9,
+   "confidence": "medium",
+   "summary": "long south lab wall on the service road facing E2: buff brick, a clerestory of 4-pane dark windows in groups between narrow brick piers just under the coping (s 2-41), two steel doors with concrete steps, a large grey louvre and a lower section at the east end where it turns into the courtyard",
+   "height_m": 7.0,
+   "rows": [
+    [
+     4.3,
+     "wall"
+    ],
+    [
+     1.1,
+     "clere"
+    ],
+    [
+     1.6,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "b"
+    ],
+    [
+     4.5,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     1.0,
+     "cldoor"
+    ],
+    [
+     3.5,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     1.0,
+     "cldoor"
+    ],
+    [
+     2.8,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     4.3,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     4.3,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     4.3,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     4.3,
+     "cl"
+    ],
+    [
+     0.45,
+     "p"
+    ],
+    [
+     4.3,
+     "cl"
+    ],
+    [
+     9.950000000000003,
+     "b"
+    ],
+    [
+     2.6,
+     "louvre"
+    ],
+    [
+     8.9,
+     "b"
+    ]
+   ],
+   "cells": {
+    "clere/cl": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.1,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "sill": 0.05,
+     "h": 1.05
+    },
+    "clere/cldoor": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.1,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "sill": 0.05,
+     "h": 1.05
+    },
+    "wall/cldoor": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "prop_lamp",
+     "frame": "prop_lamp"
+    },
+    "wall/louvre": {
+     "type": "louvre",
+     "w": 2.4,
+     "h": 1.6,
+     "sill": 2.4,
+     "colour": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.85,
+     7.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "concrete steps (1.2 x 0.6 m, 2 risers) at each door",
+    "wall pack lamps under the clerestory at ~12 m spacing",
+    "fenced rooftop-unit / AC pad on a concrete plinth with chain-link at s 0-3 (sv_W12_-NQW)"
+   ],
+   "notes": "sv_W12_GA2D, sv_W12_-NQW (Jul 2019), sv_W12_XrEJ (Aug 2015), earth_orbit_000 (the whole south wall). Measured from the 2.1 m door: clerestory sill 4.3 m, 1.05 m tall; groups 4.3 m (4 panes) with 0.45 m brick piers. Doors under clerestory groups at s ~7.5 and ~13.5. Lidar drops to 5.5-6 m for s 42-50 (lower east part)."
+  },
+  "W13": {
+   "faces": "NE",
+   "length_m": 14.3,
+   "confidence": "low",
+   "summary": "courtyard west side: 2-storey buff brick with a grey concrete floor band, ground-floor window walls in grey concrete frames, upper tall windows with dark spandrels",
+   "height_m": 7.6,
+   "rows": [
+    [
+     0.4,
+     "plinth"
+    ],
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     0.5,
+     "band"
+    ],
+    [
+     3.7,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     3.6,
+     "w"
+    ],
+    [
+     0.5,
+     "b"
+    ],
+    [
+     3.6,
+     "w"
+    ],
+    [
+     5.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 3.4,
+     "h": 2.6,
+     "sill": 0.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "concrete"
+    },
+    "upper/w": {
+     "type": "window",
+     "w": 1.4,
+     "h": 2.6,
+     "sill": 0.4,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "lower lite is a dark spandrel panel"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     3.4,
+     3.9,
+     "concrete",
+     0.05
+    ],
+    [
+     7.449999999999999,
+     7.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 2.0,
+     "z": 1.4,
+     "w": 0.3,
+     "h": 0.4,
+     "text": "NO SMOKING IN COURTYARD",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [],
+   "notes": "sv_W14_ogI2 left side (Sep 2014). Could be partly E2's wall: the courtyard is shared and the walls registered to the lidar may be off by a few metres."
+  },
+  "W14": {
+   "faces": "SE",
+   "length_m": 11.9,
+   "confidence": "low",
+   "summary": "courtyard back (north) wall: buff brick with a grey louvre high up; a glazed 2-storey link/stair with slim vertical mullions at the east end over a covered passage with orange doors",
+   "height_m": 7.0,
+   "rows": [
+    [
+     3.3,
+     "ground"
+    ],
+    [
+     3.7,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     6.5,
+     "b"
+    ],
+    [
+     1.6,
+     "louv"
+    ],
+    [
+     3.8,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "upper/louv": {
+     "type": "louvre",
+     "w": 1.5,
+     "h": 0.8,
+     "sill": 1.8,
+     "colour": "metal_silver"
+    },
+    "upper/glass": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 0.6,
+     "transom_pitch": 3.5,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/glass": {
+     "type": "void",
+     "depth": 3.0,
+     "note": "covered passage; orange-painted doors on both sides"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.85,
+     7.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "courtyard benches and green plastic chairs at the foot of the wall"
+   ],
+   "notes": "sv_W14_ogI2, sv_W13_UveX (inside the passage: two orange doors, #e0a020-ish), Sep 2014. The tall conifers and a red Japanese maple in the courtyard make the lidar read 12-15 m here."
+  },
+  "W15": {
+   "faces": "SW",
+   "length_m": 35.3,
+   "confidence": "low",
+   "summary": "courtyard east side: buff brick with a grey concrete band at ~3.3 m; glazed link with slim vertical mullions over a passage with orange doors at the north end, a 3 m brick stair pier, a single glazed door, then a long ivy-covered brick wall with a silver duct box at the parapet; the south part is a 1-storey wall",
+   "height_m": 10.4,
+   "tiers": [
+    [
+     0,
+     10,
+     10.4
+    ],
+    [
+     10,
+     25,
+     6.5
+    ],
+    [
+     25,
+     35.3,
+     4.0
+    ]
+   ],
+   "rows": [
+    [
+     3.3,
+     "ground"
+    ],
+    [
+     0.3,
+     "band"
+    ],
+    [
+     3.0,
+     "l2"
+    ],
+    [
+     3.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     4.2,
+     "link"
+    ],
+    [
+     3.0,
+     "b"
+    ],
+    [
+     1.6,
+     "door"
+    ],
+    [
+     26.5,
+     "ivy"
+    ]
+   ],
+   "cells": {
+    "ground/link": {
+     "type": "void",
+     "depth": 4.0,
+     "note": "open passage to the north lane, orange doors"
+    },
+    "l2/link": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 0.55,
+     "transom_pitch": 3.0,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "top/link": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 0.55,
+     "transom_pitch": 3.8,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.1,
+     "h": 2.3,
+     "glazed": true,
+     "frame": "metal_silver",
+     "note": "dark transom panel above, blue band visible inside"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     3.3,
+     3.6,
+     "concrete",
+     0.03
+    ],
+    [
+     10.25,
+     10.4,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "silver metal duct box (~3 x 1.5 x 1.5 m) cantilevered from the parapet at s ~10-13",
+    "ivy over most of s 12-35",
+    "bike rack (wave, 6 bikes) on the grass at s 18-22, 2 m out",
+    "roof railing at the south end"
+   ],
+   "notes": "sv_W15_XpQ0, sv_W15_WIAf, sv_c18 (Sep 2014). The ivy is a strong feature: draw the s 12-35 wall face mostly green (hedge) if the kit allows."
+  },
+  "W16": {
+   "faces": "SE",
+   "length_m": 30.9,
+   "confidence": "low",
+   "summary": "low 1-storey connector abutting E2 (~3 m gap at most): ivy-covered buff brick, dark glazed vestibule doors near the west end",
+   "height_m": 3.9,
+   "rows": [
+    [
+     3.6,
+     "ground"
+    ],
+    [
+     0.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "b"
+    ],
+    [
+     5.0,
+     "vest"
+    ],
+    [
+     24.4,
+     "ivy"
+    ]
+   ],
+   "cells": {
+    "ground/vest": {
+     "type": "door",
+     "w": 4.0,
+     "h": 2.4,
+     "leaves": 2,
+     "glazed": true,
+     "frame": "metal_silver",
+     "note": "dark storefront with a black fascia, blue band inside"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W16_szyx and sv_c10/c13 are taken from the courtyard and mostly show E2. Mostly hidden; low priority."
+  },
+  "W17": {
+   "faces": "NE",
+   "length_m": 29.2,
+   "confidence": "low",
+   "summary": "east face toward CPH: plain buff brick with a dark steel door, a low brick planter ledge with ivy along the base",
+   "height_m": 7.0,
+   "tiers": [
+    [
+     0,
+     12,
+     7.0
+    ],
+    [
+     12,
+     29.2,
+     4.3
+    ]
+   ],
+   "rows": [
+    [
+     7.0,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     21.0,
+     "plain"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     7.2,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "prop_lamp",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.85,
+     7.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "raised brick planter, 0.8 m high x 1 m deep with a concrete cap, ivy on top, along s 12-29"
+   ],
+   "notes": "sv_c16, sv_c17, sv_c20 (Sep 2014), sv_W17_AEyH (door)."
+  },
+  "W18": {
+   "faces": "NW",
+   "length_m": 23.4,
+   "confidence": "low",
+   "summary": "south side of the narrow pedestrian lane: plain buff brick",
+   "height_m": 5.5,
+   "rows": [
+    [
+     5.5,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     23.4,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     5.35,
+     5.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W18_* are brick close-ups; sv_c19 down the lane."
+  },
+  "W19": {
+   "faces": "SE",
+   "length_m": 13.8,
+   "confidence": "low",
+   "summary": "north side of the narrow lane: buff brick with a ground-level ribbon of windows and a door; a 2-storey glazed link bridges the lane at its west end",
+   "height_m": 10.2,
+   "rows": [
+    [
+     0.3,
+     "plinth"
+    ],
+    [
+     1.4,
+     "ground"
+    ],
+    [
+     8.5,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "b"
+    ],
+    [
+     9.5,
+     "rib"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     1.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.2,
+     "h": 1.2,
+     "sill": 0.1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.1,
+     "glazed": false,
+     "colour": "prop_lamp",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     10.049999999999999,
+     10.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "glazed 2-storey link across the lane at its west end (~4 m wide), slim mullions"
+   ],
+   "notes": "sv_c19 (Sep 2014); placement along the wall is approximate."
+  },
+  "W20": {
+   "faces": "NE",
+   "length_m": 17.0,
+   "confidence": "medium",
+   "summary": "east face of a 2-3 storey brick block on the lawn: buff brick with two ribbons of white-framed windows (upper a regular row of ~8 units, lower a looser row)",
+   "height_m": 10.0,
+   "rows": [
+    [
+     0.5,
+     "plinth"
+    ],
+    [
+     3.3,
+     "ground"
+    ],
+    [
+     3.4,
+     "l2"
+    ],
+    [
+     2.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     15.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.85,
+     "h": 1.2,
+     "sill": 1.3,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.85,
+     "h": 1.2,
+     "sill": 1.4,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     9.85,
+     10.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W20_m2_H, sv_c21, sv_c22 (Sep 2014). Lidar falls from 10.2 to 8.3 m along the wall."
+  },
+  "W21": {
+   "faces": "S",
+   "length_m": 5.7,
+   "confidence": "low",
+   "summary": "short jog: plain buff brick",
+   "height_m": 6.0,
+   "rows": [
+    [
+     6.0,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     5.7,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     5.85,
+     6.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W21__b6O, sv_W22_tXDT (Sep 2014): brick only."
+  },
+  "W22": {
+   "faces": "SW",
+   "length_m": 6.1,
+   "confidence": "low",
+   "summary": "short jog: plain buff brick",
+   "height_m": 6.6,
+   "rows": [
+    [
+     6.6,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     6.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.449999999999999,
+     6.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W21__b6O, sv_W22_tXDT (Sep 2014): brick only."
+  },
+  "W23": {
+   "faces": "SE",
+   "length_m": 21.2,
+   "confidence": "medium",
+   "summary": "south-east face on the lawn: plain buff brick, a dark steel door with a sign near the west end, a taller plain brick box behind the east half",
+   "height_m": 8.0,
+   "tiers": [
+    [
+     0,
+     11,
+     6.7
+    ],
+    [
+     11,
+     21.2,
+     8.0
+    ]
+   ],
+   "rows": [
+    [
+     8.0,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "b"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     18.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "panel_black",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     7.85,
+     8.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 3.4,
+     "z": 1.6,
+     "w": 0.4,
+     "h": 0.3,
+     "text": "no entry",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [],
+   "notes": "sv_W23_EsCR, sv_c23 (Sep 2014)."
+  },
+  "W24": {
+   "faces": "NE",
+   "length_m": 10.3,
+   "confidence": "high",
+   "summary": "brick box on the east road: a large black roll-up door with a black man door beside it behind three yellow bollards; a concrete penthouse with a round ventilator dome on the roof",
+   "height_m": 7.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     3.4,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "b"
+    ],
+    [
+     0.9,
+     "mdoor"
+    ],
+    [
+     3.0,
+     "door"
+    ],
+    [
+     3.4,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "kind": "rollup",
+     "w": 2.9,
+     "h": 3.9,
+     "colour": "panel_black",
+     "frame": "panel_black"
+    },
+    "ground/mdoor": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "panel_black",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     7.55,
+     7.7,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 5.4,
+     "z": 3.6,
+     "w": 0.4,
+     "h": 0.4,
+     "text": "3",
+     "colour": "panel_white",
+     "on": "door"
+    }
+   ],
+   "attached": [
+    "three yellow steel bollards 1 m out at s 3, 6.5, 7.5"
+   ],
+   "notes": "sv_W24_cK4K, sv_c26 (May 2025). Penthouse (concrete, ~4 x 4 x 2.5 m, roof_light) with a silver dome ventilator sits behind s 3-7; lidar 10.9 there."
+  },
+  "W25": {
+   "faces": "NW",
+   "length_m": 6.1,
+   "confidence": "medium",
+   "summary": "north return of the box: buff brick with a dark 3-pane horizontal window band",
+   "height_m": 7.4,
+   "rows": [
+    [
+     2.6,
+     "low"
+    ],
+    [
+     1.4,
+     "win"
+    ],
+    [
+     3.4,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     4.0,
+     "w"
+    ],
+    [
+     1.1,
+     "b"
+    ]
+   ],
+   "cells": {
+    "win/w": {
+     "type": "window",
+     "w": 3.8,
+     "h": 1.2,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     7.25,
+     7.4,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "hedge along the base"
+   ],
+   "notes": "sv_W25_lREi (Sep 2014)."
+  },
+  "W26": {
+   "faces": "NE",
+   "length_m": 13.4,
+   "confidence": "medium",
+   "summary": "low 1-storey east entrance wing: dark glass double doors under a grey fascia band, a small window with blinds and a dark 3-pane window band; the tall brick box of W24 rises behind the first 3 m",
+   "height_m": 3.9,
+   "tiers": [
+    [
+     0,
+     3.2,
+     7.9
+    ],
+    [
+     3.2,
+     13.4,
+     3.9
+    ]
+   ],
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     0.9,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     3.2,
+     "b"
+    ],
+    [
+     2.6,
+     "entry"
+    ],
+    [
+     0.6,
+     "b"
+    ],
+    [
+     2.0,
+     "sw"
+    ],
+    [
+     0.8,
+     "b"
+    ],
+    [
+     3.0,
+     "band"
+    ],
+    [
+     1.2,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/entry": {
+     "type": "door",
+     "w": 2.2,
+     "h": 2.5,
+     "leaves": 2,
+     "glazed": true,
+     "frame": "panel_black",
+     "note": "dark storefront, small sign 'Lab' above"
+    },
+    "fascia/entry": {
+     "type": "panel",
+     "colour": "panel_grey",
+     "projection": 0.3
+    },
+    "ground/sw": {
+     "type": "window",
+     "w": 1.9,
+     "h": 0.9,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "ground/band": {
+     "type": "window",
+     "w": 2.8,
+     "h": 0.75,
+     "sill": 1.6,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     3.75,
+     3.9,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "clipped hedge (1.2 m) along s 4-13, 1 m out",
+    "two yellow-topped black bollards at s 0-1"
+   ],
+   "notes": "sv_W26_tMmA, sv_c28 (May 2025)."
+  },
+  "W27": {
+   "faces": "NE",
+   "length_m": 5.1,
+   "confidence": "low",
+   "summary": "corner of a 2-storey brick box with a vent pipe on the roof edge: plain buff brick, a dark steel door",
+   "height_m": 6.5,
+   "rows": [
+    [
+     6.5,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     3.6,
+     "b"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     0.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "panel_black",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.35,
+     6.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "galvanised exhaust pipe up the wall corner to above the roof"
+   ],
+   "notes": "sv_W27_63dN, sv_c29 (May 2025)."
+  },
+  "W28": {
+   "faces": "NW",
+   "length_m": 9.3,
+   "confidence": "medium",
+   "summary": "north face of the 2-storey brick box: a high band of 5 dark windows under the coping, plain below",
+   "height_m": 6.5,
+   "rows": [
+    [
+     3.9,
+     "low"
+    ],
+    [
+     1.3,
+     "band"
+    ],
+    [
+     1.3,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "b"
+    ],
+    [
+     6.5,
+     "rib"
+    ],
+    [
+     1.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "band/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.3,
+     "h": 1.1,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.35,
+     6.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W28_WIeh, sv_W29_Xdxr left side (Sep 2014)."
+  },
+  "W29": {
+   "faces": "NE",
+   "length_m": 15.5,
+   "confidence": "medium",
+   "summary": "east service entrance: 1-storey buff brick with a recessed glazed double door and a steel door (2014); since ~2020 a large porte-cochere covers its north half and the notch beyond: black horizontal-louvre screen over a bronze panel fascia on grey steel posts with yellow-striped concrete bases, brick piers and a black roll-up door underneath",
+   "height_m": 5.2,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     1.2,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "b"
+    ],
+    [
+     2.0,
+     "entry"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     9.0,
+     "canopy"
+    ]
+   ],
+   "cells": {
+    "ground/entry": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "leaves": 2,
+     "glazed": true,
+     "frame": "panel_black",
+     "note": "recessed 1 m under a grey fascia"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.15,
+     "glazed": false,
+     "colour": "prop_lamp",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     5.05,
+     5.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "porte-cochere (see site.canopies): ~15 m wide x 5-6 m deep, roof at ~6 m, louvre screen top ~8 m, over s ~6-15.5 and on across the W29/W30 gap"
+   ],
+   "notes": "sv_W29_Xdxr (Sep 2014: no canopy yet, vans parked, four mushroom roof ventilators on the parapet line); sv_c31 and sv_W27_63dN (May 2025: canopy). Lidar 8.0 m over s 3.5-8.5, 5 m deep = the canopy."
+  },
+  "W30": {
+   "faces": "NW",
+   "length_m": 9.8,
+   "confidence": "low",
+   "summary": "south side of the service notch: old buff brick with a 2-pane window high up and a 'service vehicles only' sign; under the porte-cochere since ~2020",
+   "height_m": 7.0,
+   "tiers": [
+    [
+     0,
+     2.5,
+     7.7
+    ],
+    [
+     2.5,
+     9.8,
+     5.3
+    ]
+   ],
+   "rows": [
+    [
+     3.0,
+     "low"
+    ],
+    [
+     1.2,
+     "win"
+    ],
+    [
+     2.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     5.5,
+     "b"
+    ],
+    [
+     2.6,
+     "w"
+    ],
+    [
+     1.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "win/w": {
+     "type": "window",
+     "w": 2.5,
+     "h": 1.0,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     6.85,
+     7.0,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 6.0,
+     "z": 2.2,
+     "w": 0.8,
+     "h": 0.4,
+     "text": "SERVICE VEHICLES ONLY",
+     "colour": "panel_navy",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "four blue recycling carts along the base (2014)"
+   ],
+   "notes": "sv_W31_nN5E left side (Sep 2014)."
+  },
+  "W31": {
+   "faces": "NE",
+   "length_m": 9.8,
+   "confidence": "medium",
+   "summary": "back of the notch = foot of the E5 bridge tower: large-format charcoal-grey panels; a black roll-up door in a lower panel box, a glazed single door, a full-height glass stair strip with white mullions, and the grey panel shaft rising to the bridge at ~15 m",
+   "height_m": 15.2,
+   "tiers": [
+    [
+     0,
+     3.4,
+     5.8
+    ],
+    [
+     3.4,
+     9.8,
+     15.2
+    ]
+   ],
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     12.2,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     3.4,
+     "rollup"
+    ],
+    [
+     1.2,
+     "gdoor"
+    ],
+    [
+     2.2,
+     "stair"
+    ],
+    [
+     3.0,
+     "shaft"
+    ]
+   ],
+   "cells": {
+    "ground/rollup": {
+     "type": "door",
+     "kind": "rollup",
+     "w": 2.8,
+     "h": 2.9,
+     "colour": "panel_black",
+     "frame": "prop_metal"
+    },
+    "ground/gdoor": {
+     "type": "door",
+     "w": 1.1,
+     "h": 2.3,
+     "glazed": true,
+     "frame": "metal_silver"
+    },
+    "upper/stair": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.1,
+     "transom_pitch": 2.4,
+     "glass": "glass_blue",
+     "frame": "panel_white"
+    },
+    "*/*": null
+   },
+   "wall": "prop_metal",
+   "bands": [
+    [
+     15.049999999999999,
+     15.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bridge to E5 leaves at the top (level ~10.5-15 m)"
+   ],
+   "notes": "sv_W31_nN5E, sv_W32_zWbR (Sep 2014), sv_c31 (May 2025). Panels ~1.3 x 1.3 m with fine joints; measured #4f5154 overcast -> prop_metal."
+  },
+  "W32": {
+   "faces": "SE",
+   "length_m": 10.0,
+   "confidence": "medium",
+   "summary": "north side of the notch: 1-storey newer buff brick box (mottled, darker headers) with a grey steel door, two high louvres and a 2-pane window; the bridge passes overhead",
+   "height_m": 4.6,
+   "rows": [
+    [
+     2.3,
+     "low"
+    ],
+    [
+     1.1,
+     "hi"
+    ],
+    [
+     1.2,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "b"
+    ],
+    [
+     1.3,
+     "door"
+    ],
+    [
+     1.2,
+     "lv1"
+    ],
+    [
+     1.0,
+     "b"
+    ],
+    [
+     2.6,
+     "lv2"
+    ],
+    [
+     0.4,
+     "b"
+    ],
+    [
+     2.6,
+     "w"
+    ],
+    [
+     0.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "low/door": {
+     "type": "door",
+     "w": 1.2,
+     "h": 2.2,
+     "glazed": false,
+     "colour": "prop_metal",
+     "frame": "prop_metal"
+    },
+    "hi/lv1": {
+     "type": "louvre",
+     "w": 0.6,
+     "h": 0.8,
+     "colour": "prop_metal"
+    },
+    "hi/lv2": {
+     "type": "louvre",
+     "w": 2.5,
+     "h": 0.6,
+     "colour": "prop_metal"
+    },
+    "low/w": {
+     "type": "window",
+     "w": 2.5,
+     "h": 1.0,
+     "sill": 1.1,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.449999999999999,
+     4.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "yellow gas meter and piping at s 5-6",
+    "security camera at the a corner"
+   ],
+   "notes": "sv_W31_nN5E, sv_W32_zWbR (Sep 2014). Rows are approximate (the door spans low+mid). Lidar reads 14.4 m here only because the bridge is overhead."
+  },
+  "W33": {
+   "faces": "NE",
+   "length_m": 18.3,
+   "confidence": "high",
+   "summary": "east road front of the newer 1-storey brick wing under the E5 bridge: mottled buff brick with three 2-pane windows and wall lamps, a louvre near the bridge; the bridge tower's 15 m panel shaft occupies the first metres (s 0-6 lidar is bridge + tower)",
+   "height_m": 4.6,
+   "rows": [
+    [
+     4.6,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "b"
+    ],
+    [
+     0.6,
+     "louv"
+    ],
+    [
+     2.2,
+     "b"
+    ],
+    [
+     2.4,
+     "w"
+    ],
+    [
+     2.8,
+     "b"
+    ],
+    [
+     2.4,
+     "w"
+    ],
+    [
+     2.6,
+     "b"
+    ],
+    [
+     2.4,
+     "w"
+    ],
+    [
+     1.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.1,
+     "sill": 1.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/louv": {
+     "type": "louvre",
+     "w": 0.5,
+     "h": 0.6,
+     "sill": 3.0,
+     "colour": "prop_metal"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0,
+     0.25,
+     "concrete",
+     0
+    ],
+    [
+     4.449999999999999,
+     4.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "round concrete bridge column (~1.3 m dia) about 3 m out from s ~3",
+    "wall pack lamps at z 3.3 over s 5 and s 17"
+   ],
+   "notes": "sv_W33_0n2a (May 2025, the whole wall), sv_W33_5O66, sv_c35, sv_c36. The face steps forward ~0.3 m at s ~12.5 (vertical joint). Behind, set back ~8 m, the 2-storey upper face U2 with khaki metal and a ribbon of windows."
+  },
+  "W34": {
+   "faces": "NW",
+   "length_m": 5.0,
+   "confidence": "medium",
+   "summary": "short north return of the 1-storey wing: mottled buff brick with one 2-pane window",
+   "height_m": 4.6,
+   "rows": [
+    [
+     4.6,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     1.3,
+     "b"
+    ],
+    [
+     2.4,
+     "w"
+    ],
+    [
+     1.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.1,
+     "sill": 1.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.449999999999999,
+     4.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W34_6VvN (Sep 2014)."
+  },
+  "W35": {
+   "faces": "NE",
+   "length_m": 8.0,
+   "confidence": "high",
+   "summary": "1-storey wing front set back 5 m: mottled buff brick with two 2-pane windows and a wall lamp",
+   "height_m": 4.6,
+   "rows": [
+    [
+     4.6,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "b"
+    ],
+    [
+     2.2,
+     "w"
+    ],
+    [
+     2.4,
+     "b"
+    ],
+    [
+     2.2,
+     "w"
+    ],
+    [
+     0.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 2.1,
+     "h": 1.1,
+     "sill": 1.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.449999999999999,
+     4.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W33_0n2a right part, sv_W35_0n2a (May 2025)."
+  },
+  "W36": {
+   "faces": "NW",
+   "length_m": 4.6,
+   "confidence": "medium",
+   "summary": "short north return: plain mottled buff brick",
+   "height_m": 4.7,
+   "rows": [
+    [
+     4.7,
+     "ground"
+    ]
+   ],
+   "bays": [
+    [
+     4.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.55,
+     4.7,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W36_L644 (Sep 2014)."
+  },
+  "W37": {
+   "faces": "NE",
+   "length_m": 14.0,
+   "confidence": "high",
+   "summary": "east face of the 4-storey addition on the road: a glazed entrance/stair bay (curtain wall full height, pair of doors, silver canopy) at the south end, then buff brick with two 3.3 m window groups per storey split by a charcoal fin, same banding as W0",
+   "height_m": 13.5,
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     3.1,
+     "l2"
+    ],
+    [
+     3.1,
+     "l3"
+    ],
+    [
+     2.4,
+     "l4"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.2,
+     "entry"
+    ],
+    [
+     1.2,
+     "b"
+    ],
+    [
+     3.3,
+     "win"
+    ],
+    [
+     0.5,
+     "fin"
+    ],
+    [
+     3.3,
+     "win"
+    ],
+    [
+     2.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/entry": {
+     "type": "door",
+     "w": 1.6,
+     "h": 2.4,
+     "leaves": 2,
+     "glazed": true,
+     "frame": "metal_silver",
+     "canopy": [
+      1.6,
+      "metal_silver"
+     ],
+     "note": "pair of glazed doors in a full-height storefront; silver flat canopy at ~3.4 m"
+    },
+    "*/entry": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/pier": null,
+    "*/b": null,
+    "ground/win": {
+     "type": "window",
+     "w": 3.3,
+     "h": 3.4,
+     "sill": 0.95,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 3.4,
+     "sill": 0.95
+    },
+    "parapet/*": null,
+    "parapet/entry": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.55,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/win": {
+     "type": "window",
+     "w": 3.3,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 1.2
+    },
+    "l3/win": {
+     "type": "window",
+     "w": 3.3,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 1.2
+    },
+    "l4/win": {
+     "type": "window",
+     "w": 3.3,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 1.2
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0,
+     0.5,
+     "concrete",
+     0
+    ],
+    [
+     13.35,
+     13.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "black bollard with a light 2 m out at s ~12"
+   ],
+   "notes": "sv_W39_-Vky (May 2025, square-on), sv_c40. Lidar 13.5 here vs 14.4 on W0: the top storey is shorter or the parapet lower."
+  },
+  "W38": {
+   "faces": "NW",
+   "length_m": 4.5,
+   "confidence": "medium",
+   "summary": "narrow north jog of the addition: buff brick with a stack of narrow single windows (one per storey)",
+   "height_m": 13.6,
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     3.1,
+     "l2"
+    ],
+    [
+     3.1,
+     "l3"
+    ],
+    [
+     3.0,
+     "l4"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "b"
+    ],
+    [
+     1.0,
+     "w"
+    ],
+    [
+     1.9,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 0.9,
+     "h": 3.0,
+     "sill": 0.9,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/w": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.9,
+     "sill": 1.2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.9,
+     "sill": 1.2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/w": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.9,
+     "sill": 1.2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0,
+     0.4,
+     "concrete",
+     0
+    ],
+    [
+     13.45,
+     13.6,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_c41, sv_W39_-Vky right edge."
+  },
+  "W39": {
+   "faces": "NE",
+   "length_m": 4.6,
+   "confidence": "medium",
+   "summary": "corner return of the addition: glazed strip in a charcoal surround at every storey, brick between",
+   "height_m": 13.8,
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     3.1,
+     "l2"
+    ],
+    [
+     3.1,
+     "l3"
+    ],
+    [
+     3.2,
+     "l4"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "b"
+    ],
+    [
+     2.8,
+     "w"
+    ],
+    [
+     1.0,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/w": {
+     "type": "window",
+     "w": 2.6,
+     "h": 3.4,
+     "sill": 0.95,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l2/w": {
+     "type": "window",
+     "w": 2.6,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 2.6,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/w": {
+     "type": "window",
+     "w": 2.6,
+     "h": 1.9,
+     "sill": 1.2,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0,
+     0.6,
+     "concrete",
+     0
+    ],
+    [
+     13.65,
+     13.8,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_c41/c42 (May 2025). Which of W38/W39 carries the narrow and which the wider glazing is uncertain."
+  },
+  "U0": {
+   "upper": true,
+   "a": [
+    1127.0,
+    250.6
+   ],
+   "b": [
+    1150.8,
+    262.9
+   ],
+   "z0": 6.8,
+   "faces": "SE",
+   "length_m": 26.8,
+   "confidence": "medium",
+   "summary": "central high-bay lab roof box: a continuous clerestory of narrow vertical white-framed windows on all four sides under a grey-brown fascia",
+   "height_m": 9.2,
+   "rows": [
+    [
+     2.0,
+     "clere"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     26.8,
+     "rib"
+    ]
+   ],
+   "cells": {
+    "clere/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.9,
+     "h": 1.7,
+     "sill": 0.25,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": null
+   },
+   "wall": "brick_charcoal",
+   "bands": [
+    [
+     8.8,
+     9.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_orbit_000/090/180 (2024): the raised box in the middle of the roof with a band of narrow vertical lights; corners from the 9.2 m lidar blob (rect 1118-1151 x 251-280). Rows are metres above z0. Fascia/wall colour between the lights reads grey-brown (guess brick_charcoal)."
+  },
+  "U1": {
+   "upper": true,
+   "a": [
+    1150.8,
+    262.9
+   ],
+   "b": [
+    1141.8,
+    280.4
+   ],
+   "z0": 6.8,
+   "faces": "NE",
+   "length_m": 19.7,
+   "confidence": "medium",
+   "summary": "central high-bay lab roof box: a continuous clerestory of narrow vertical white-framed windows on all four sides under a grey-brown fascia",
+   "height_m": 9.2,
+   "rows": [
+    [
+     2.0,
+     "clere"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     19.7,
+     "rib"
+    ]
+   ],
+   "cells": {
+    "clere/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.9,
+     "h": 1.7,
+     "sill": 0.25,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": null
+   },
+   "wall": "brick_charcoal",
+   "bands": [
+    [
+     8.8,
+     9.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_orbit_000/090/180 (2024): the raised box in the middle of the roof with a band of narrow vertical lights; corners from the 9.2 m lidar blob (rect 1118-1151 x 251-280). Rows are metres above z0. Fascia/wall colour between the lights reads grey-brown (guess brick_charcoal)."
+  },
+  "U2": {
+   "upper": true,
+   "a": [
+    1141.8,
+    280.4
+   ],
+   "b": [
+    1117.9,
+    268.1
+   ],
+   "z0": 6.8,
+   "faces": "NW",
+   "length_m": 26.9,
+   "confidence": "medium",
+   "summary": "central high-bay lab roof box: a continuous clerestory of narrow vertical white-framed windows on all four sides under a grey-brown fascia",
+   "height_m": 9.2,
+   "rows": [
+    [
+     2.0,
+     "clere"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     26.9,
+     "rib"
+    ]
+   ],
+   "cells": {
+    "clere/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.9,
+     "h": 1.7,
+     "sill": 0.25,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": null
+   },
+   "wall": "brick_charcoal",
+   "bands": [
+    [
+     8.8,
+     9.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_orbit_000/090/180 (2024): the raised box in the middle of the roof with a band of narrow vertical lights; corners from the 9.2 m lidar blob (rect 1118-1151 x 251-280). Rows are metres above z0. Fascia/wall colour between the lights reads grey-brown (guess brick_charcoal)."
+  },
+  "U3": {
+   "upper": true,
+   "a": [
+    1117.9,
+    268.1
+   ],
+   "b": [
+    1127.0,
+    250.6
+   ],
+   "z0": 6.8,
+   "faces": "SW",
+   "length_m": 19.7,
+   "confidence": "medium",
+   "summary": "central high-bay lab roof box: a continuous clerestory of narrow vertical white-framed windows on all four sides under a grey-brown fascia",
+   "height_m": 9.2,
+   "rows": [
+    [
+     2.0,
+     "clere"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     19.7,
+     "rib"
+    ]
+   ],
+   "cells": {
+    "clere/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.9,
+     "h": 1.7,
+     "sill": 0.25,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": null
+   },
+   "wall": "brick_charcoal",
+   "bands": [
+    [
+     8.8,
+     9.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_orbit_000/090/180 (2024): the raised box in the middle of the roof with a band of narrow vertical lights; corners from the 9.2 m lidar blob (rect 1118-1151 x 251-280). Rows are metres above z0. Fascia/wall colour between the lights reads grey-brown (guess brick_charcoal)."
+  },
+  "U4": {
+   "upper": true,
+   "a": [
+    1163.3,
+    331.4
+   ],
+   "b": [
+    1154.0,
+    349.3
+   ],
+   "z0": 4.6,
+   "faces": "NE",
+   "length_m": 20.2,
+   "confidence": "medium",
+   "summary": "second storey of the newer east wing, set back ~8 m behind W33 (3 m behind W35): a ribbon of white-framed windows between khaki ribbed metal bands",
+   "height_m": 9.2,
+   "rows": [
+    [
+     0.5,
+     "sill"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     20.2,
+     "rib"
+    ]
+   ],
+   "cells": {
+    "win/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 0.6,
+     "h": 1.7,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/*": null
+   },
+   "wall": "dc_corrugated",
+   "bands": [
+    [
+     9.0,
+     9.2,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W33_0n2a, sv_W35_0n2a, sv_W39_-Vky left edge (May 2025). Khaki/olive horizontally ribbed metal measured #666253 overcast (~#a39d85 in daylight) - close to dc_corrugated. Line placed from the lidar step 4.6 -> 9.2 m (depth profiles on W33/W35); +-1.5 m."
+  },
+  "U5": {
+   "upper": true,
+   "a": [
+    1119.4,
+    322.7
+   ],
+   "b": [
+    1157.2,
+    341.6
+   ],
+   "z0": 9.4,
+   "faces": "SE",
+   "length_m": 42.3,
+   "confidence": "low",
+   "summary": "south-east face of the 4-storey addition above the 9.4 m roofs: buff brick top storey with 3-pane window groups and charcoal fins like W0, khaki metal on the east third",
+   "height_m": 14.3,
+   "rows": [
+    [
+     1.2,
+     "band"
+    ],
+    [
+     2.0,
+     "l4"
+    ],
+    [
+     1.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "b"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     4.0,
+     "win"
+    ],
+    [
+     0.6,
+     "fin"
+    ],
+    [
+     17.3,
+     "metal"
+    ]
+   ],
+   "cells": {
+    "l4/win": {
+     "type": "window",
+     "w": 4.0,
+     "h": 1.9,
+     "sill": 0.0,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/fin": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "w": 0.6,
+     "h": 1.9,
+     "sill": 0.0
+    },
+    "*/metal": {
+     "type": "panel",
+     "colour": "dc_corrugated"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     14.1,
+     14.3,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Only glimpsed: sv_W33_0n2a right half and earth_orbit_000/090. Line from the 12-16.5 m lidar blob. Window layout is a guess copied from W0."
+  }
+ },
+ "roof": [
+  {
+   "what": "grey membrane flat roofs with silver/white metal copings",
+   "where": "whole complex at 4-7 m; 9.2 m on the central high bay; 11-13.5 m on the SW block; 14.4 m on the addition",
+   "size_m": [
+    146,
+    147,
+    0
+   ]
+  },
+  {
+   "what": "central high-bay box with clerestory (see U0-U3)",
+   "where": "art (1118-1151, 251-280)",
+   "size_m": [
+    27,
+    20,
+    2.4
+   ]
+  },
+  {
+   "what": "large mechanical enclosure, light grey louvred panels with a grey screen, plus exhaust stacks",
+   "where": "on the addition roof near its south-west part, art ~(1115-1128, 335-345)",
+   "size_m": [
+    12,
+    6,
+    2.5
+   ]
+  },
+  {
+   "what": "concrete penthouse with a silver dome ventilator",
+   "where": "behind W24 s 3-7",
+   "size_m": [
+    4,
+    4,
+    2.5
+   ]
+  },
+  {
+   "what": "four aluminium mushroom roof ventilators in a row",
+   "where": "along the parapet behind W29, ~2 m in",
+   "size_m": [
+    0.6,
+    0.6,
+    0.9
+   ]
+  },
+  {
+   "what": "white rooftop units / boxes (several)",
+   "where": "scattered on the low roofs, e.g. near the SW block and the east wing",
+   "size_m": [
+    2.5,
+    1.5,
+    1.5
+   ]
+  },
+  {
+   "what": "silver duct box cantilevered at the parapet",
+   "where": "W15 s ~10-13",
+   "size_m": [
+    3,
+    1.5,
+    1.5
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "E5",
+    "from_wall": "W31/W32 (bridge tower in the service notch)",
+    "s": [
+     0,
+     10
+    ],
+    "levels": [
+     3
+    ],
+    "look": "enclosed glazed bridge, two bands of blue-grey glass in white/silver frames over a grey soffit, carried on round light-grey concrete columns (~1.3 m dia), runs NE over the east road, the ION tracks and Ring Road to E5; floor ~10.5 m, top ~15 m"
+   },
+   {
+    "to": "DC",
+    "from_wall": "W1",
+    "s": [
+     20,
+     25
+    ],
+    "levels": [
+     1,
+     2
+    ],
+    "look": "short green-tinted glass link toward DC's south lobe (low confidence; DC's red-portal glass link is on DC's side)"
+   }
+  ],
+  "canopies": [
+   {
+    "what": "porte-cochere",
+    "where": "in front of W29 s ~6-15.5 and across the W29/W30 gap to the bridge tower",
+    "size_m": [
+     15,
+     6,
+     8
+    ],
+    "look": "black horizontal-louvre screen (2 m tall) on top of a bronze panel fascia band (1 m) at ~6 m, grey round steel posts on yellow-striped concrete bases; brick piers, a black roll-up door and glass doors beneath",
+    "photo": "sv_c31_WDNg (May 2025)"
+   }
+  ],
+  "neighbours": [
+   "DC to the north and north-west: its south lobe across a ~10 m service lane from W2 and across a lawn from W1; the north plaza (W0) is shared",
+   "EIT to the west across the W3 lane",
+   "PHY to the south-west (W8-W11 yard and lane)",
+   "E2 to the south across the service road (W12) and around the courtyard (W13-W16)",
+   "CPH to the south-east (W17-W23 lawns)",
+   "E5 and the ION tracks to the north-east across the east road, linked by the bridge"
+  ],
+  "ground": [
+   "grey interlocking concrete pavers on the north plaza in front of W0 and along the east road sidewalk (W33-W39)",
+   "asphalt service lanes along W2/W3 (west), the yard W4-W8, the south road along W12 and the east road",
+   "lawn with a low segmental-block retaining wall along W1 (toward DC)",
+   "courtyard (W13-W15): pavers, mulch beds, big blue spruce, pines and a red Japanese maple",
+   "lawns along W17-W23 and W25-W27 with clipped hedges along the east road"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised hoop rack on a rail, 5 hoops",
+    "where": "along W0, s 26-29.5, 0.8 m out",
+    "count": 1,
+    "photo": "sv_W0_lW6E"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised inverted-U",
+    "where": "beside the W0 entrance near the W0/W1 corner, 1 m out",
+    "count": 2,
+    "photo": "sv_W1_I0Ix"
+   },
+   {
+    "type": "sign",
+    "kind": "TAXI STAND (red-on-white plaque on the wall)",
+    "where": "W0 s 28.6, z 1.7",
+    "count": 1,
+    "photo": "sv_c44_Cv0C"
+   },
+   {
+    "type": "bollard",
+    "kind": "black post bollard with light",
+    "where": "W37/W38 corner, 2 m out",
+    "count": 1,
+    "photo": "sv_W39_-Vky"
+   },
+   {
+    "type": "sign",
+    "kind": "pedestrian crossing / street signs on posts",
+    "where": "east road at the W38/W0 corner",
+    "count": 2,
+    "photo": "sv_c41_hQBF"
+   },
+   {
+    "type": "bridge_column",
+    "kind": "round light-grey concrete column ~1.3 m dia",
+    "where": "3 m out from W33 s ~3 and further NE along the bridge",
+    "count": 3,
+    "photo": "sv_W33_5O66"
+   },
+   {
+    "type": "recycling_cart",
+    "kind": "blue wheeled carts",
+    "where": "along W30 in the service notch",
+    "count": 4,
+    "photo": "sv_W31_nN5E"
+   },
+   {
+    "type": "bollard",
+    "kind": "yellow steel",
+    "where": "in front of W24 roll-up door, 1 m out",
+    "count": 3,
+    "photo": "sv_W24_cK4K"
+   },
+   {
+    "type": "bollard",
+    "kind": "yellow and black",
+    "where": "W26 s 0-1 and either side of the W11 door",
+    "count": 4,
+    "photo": "sv_W26_tMmA"
+   },
+   {
+    "type": "hedge",
+    "kind": "clipped deciduous hedge 1.2 m",
+    "where": "along W26/W27 s 4-13, 1 m out",
+    "count": 1,
+    "photo": "sv_W27_63dN"
+   },
+   {
+    "type": "dumpster",
+    "kind": "red 40-yard roll-off bin (2014)",
+    "where": "service yard in front of W6/W7, ~6 m out",
+    "count": 1,
+    "photo": "sv_W6_qcQm"
+   },
+   {
+    "type": "storage",
+    "kind": "stacked green and rusty steel I-beams on timbers",
+    "where": "along W12 s 0-20, 1 m out, and along W3",
+    "count": 3,
+    "photo": "sv_W12_GA2D"
+   },
+   {
+    "type": "storage",
+    "kind": "rusty tanks, drums and pallets",
+    "where": "W2/W3 corner and W3 s 0-12",
+    "count": 2,
+    "photo": "sv_c0_r4ij"
+   },
+   {
+    "type": "tree",
+    "kind": "blue spruce + pines + red Japanese maple",
+    "where": "courtyard W13-W15",
+    "count": 4,
+    "photo": "sv_c10, sv_W14_ogI2"
+   },
+   {
+    "type": "tree",
+    "kind": "deciduous shade trees",
+    "where": "lawns off W17/W20/W23",
+    "count": 4,
+    "photo": "sv_c22, sv_W23_W7ml"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "wave rack",
+    "where": "courtyard grass off W15 s 18-22",
+    "count": 1,
+    "photo": "sv_W15_WIAf"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised rack inside a low steel fence",
+    "where": "under/next to the porte-cochere at W29",
+    "count": 1,
+    "photo": "sv_c31_WDNg"
+   }
+  ]
+ }
+}
