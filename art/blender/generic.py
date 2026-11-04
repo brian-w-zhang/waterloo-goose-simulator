@@ -75,7 +75,7 @@ def build_generic(k, abbrev, style=None, **o):
     opts = {"source": "ndsm", "simplify": 0.8, "merge_dh": 1.2, "min_area": 10, "min_width": 2.0}
     if not o.get("round"):
         opts["axis"] = list(axis)       # round buildings (RCH) keep their traced curves
-    for key in ("max_h", "open", "exclude", "skip_objectids", "merge_dh", "simplify", "min_area"):
+    for key in ("max_h", "cap_h", "open", "exclude", "skip_objectids", "merge_dh", "simplify", "min_area"):
         if key in o:
             opts[key] = o[key]
     tiers = data.lidar_massing(abbrev, **opts)
@@ -87,7 +87,7 @@ def build_generic(k, abbrev, style=None, **o):
     # a photo-read facade spec, when the building has one, draws every documented wall
     import re
     import spec as fspec
-    bdir = "docs/refs/buildings/" + re.sub(r"[^a-z0-9]+", "-", abbrev.lower()).strip("-")
+    bdir = o.get("dir") or "docs/refs/buildings/" + re.sub(r"[^a-z0-9]+", "-", abbrev.lower()).strip("-")
     fac, walls = data.facades(bdir)
     if fac:
         specs = {wid: fspec.to_facade(w) for wid, w in fac["walls"].items()}

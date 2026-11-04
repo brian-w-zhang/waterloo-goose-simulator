@@ -1,0 +1,1480 @@
+{
+ "building": "oid388",
+ "name": "University Shops Plaza west strip (170 University Ave W, units 1A-14)",
+ "sources_checked": [
+  "around/sv_W9_V2MBnw1EpEg9-YjrwirBhw_70 (Aug 2023)",
+  "around/sv_W9_xuL_Wj17IJecsbqI9hEE_A_70",
+  "around/sv_W9_GA6-UoKumgtmk0-syU-cAA_70",
+  "around/sv_W9_U9iiOAFOHzNPkANs0gpAlA_70",
+  "around/sv_W9_92x6bPMrefnH3nxJQdskOQ_70",
+  "around/sv_W9_bUj-f7-PLuOUpJTNJN-oNQ_70",
+  "around/sv_W9_WLvK6j5oxDBtxNbo-CPoiQ_70",
+  "around/sv_c10_fpi_uPgbJH1t0VrGXM1qJg_100",
+  "around/sv_c8_15sn83nEb4IkZualk8Uo5A_70",
+  "around/sv_c5_eAF-r2itnPiRl2kyVPzQ6A_70 (May 2025)",
+  "around/sv_c11_zd4HUxjW0gQt-VVukwFu1g_70 (Oct 2020)",
+  "around/sv_W0_zd4HUxjW0gQt-VVukwFu1g_100 (Oct 2020)",
+  "around/sv_W1_aaQtUIDW24nw23gxo7KAkA_100 (Oct 2020)",
+  "around/sv_W5_V2MBnw1EpEg9-YjrwirBhw_100",
+  "around/earth_W9_whole|l|m|r",
+  "around/earth_W2_whole|m",
+  "around/earth_W0_whole",
+  "places/places_by_building.json",
+  "places/university-shops-plaza/NOTES.md"
+ ],
+ "colours": {
+  "fascia_siding": {
+   "hex": "#cfc1ae",
+   "palette": "siding_beige",
+   "where": "horizontal vinyl siding sign band, gables, end walls (SV under-exposed x1.5)"
+  },
+  "columns": {
+   "hex": "#c9ad94",
+   "palette": "brick_buff",
+   "where": "square stucco columns between storefronts and kiosk corners"
+  },
+  "roof": {
+   "hex": "#83746a",
+   "palette": "roof_shingle",
+   "where": "brown asphalt shingle roof over the whole strip"
+  },
+  "block": {
+   "hex": "#9a7065",
+   "palette": "brick_dark",
+   "where": "red-brown vertically scored split-face block on end and rear walls, kiosk brick panels"
+  },
+  "frames": {
+   "hex": "#c4c9cc",
+   "palette": "metal_silver",
+   "where": "clear-anodised storefront frames (Sweet Dreams and kiosk are black)"
+  },
+  "sign_red": {
+   "hex": "#c8202e",
+   "palette": "#c8202e (new: sign_red)",
+   "where": "red sign text/panels (ISM, Pharmasave, Kabob Hut)"
+  },
+  "sign_blue": {
+   "hex": "#1f4fa8",
+   "palette": "#1f4fa8 (new: sign_blue)",
+   "where": "BMO bands"
+  },
+  "sign_yellow": {
+   "hex": "#f0c330",
+   "palette": "#f0c330 (new: sign_yellow)",
+   "where": "Sowon board"
+  }
+ },
+ "walls": {
+  "W9": {
+   "faces": "NE",
+   "length_m": 86.7,
+   "confidence": "high",
+   "summary": "University Shops Plaza west strip, shopfront side onto the lot: one storey of aluminium storefronts between tan stucco columns, tan horizontal-siding sign fascia, brown shingle roof sloping up to the ridge; two front gables (Indian Sweet Master entry at s 8.8-12.6, Kabob Hut at s 51.4-57.9); 13 storefronts from Hakka Nation (University Ave end) to Sweet Dreams (inland end)",
+   "height_m": 7.7,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "brickpier"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     4.25,
+     "hakka_glass"
+    ],
+    [
+     1.0,
+     "hakka_door"
+    ],
+    [
+     2.2,
+     "hakka_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     0.15,
+     "ismgable_glass"
+    ],
+    [
+     1.4,
+     "ismgable_door"
+    ],
+    [
+     1.9,
+     "ismgable_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     4.15,
+     "ism_glass"
+    ],
+    [
+     1.8,
+     "ism_door"
+    ],
+    [
+     2.3,
+     "ism_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     7.75,
+     "farah_glass"
+    ],
+    [
+     1.8,
+     "farah_door"
+    ],
+    [
+     4.5,
+     "farah_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.0,
+     "izna_door"
+    ],
+    [
+     3.4,
+     "izna_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.15,
+     "alley_glass"
+    ],
+    [
+     1.0,
+     "alley_door"
+    ],
+    [
+     1.7,
+     "alley_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     0.45,
+     "mengami_glass"
+    ],
+    [
+     1.0,
+     "mengami_door"
+    ],
+    [
+     4.0,
+     "mengami_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     4.35,
+     "kabob_glass"
+    ],
+    [
+     1.0,
+     "kabob_door"
+    ],
+    [
+     0.8,
+     "kabob_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     3.55,
+     "harveys_glass"
+    ],
+    [
+     1.0,
+     "harveys_door"
+    ],
+    [
+     2.0,
+     "harveys_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.95,
+     "sowon_glass"
+    ],
+    [
+     1.0,
+     "sowon_door"
+    ],
+    [
+     1.9,
+     "sowon_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     3.85,
+     "pharma_glass"
+    ],
+    [
+     1.0,
+     "pharma_door"
+    ],
+    [
+     1.7,
+     "pharma_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.0,
+     "clinic_door"
+    ],
+    [
+     3.8,
+     "clinic_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.95,
+     "sweet_glass"
+    ],
+    [
+     1.0,
+     "sweet_door"
+    ],
+    [
+     1.4,
+     "sweet_glass"
+    ]
+   ],
+   "cells": {
+    "store/hakka_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/hakka_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/ismgable_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/ismgable_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/ism_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/ism_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 1,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/farah_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/farah_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 1,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/izna_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/izna_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/alley_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/alley_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/mengami_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/mengami_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/kabob_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/kabob_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/harveys_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/harveys_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/sowon_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/sowon_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/pharma_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/pharma_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/clinic_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/clinic_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/sweet_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/sweet_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff",
+     "note": "tan stucco column 0.35 m"
+    },
+    "store/brickpier": {
+     "type": "panel",
+     "colour": "brick_dark",
+     "note": "red-brown brick pier at the open passage to the BMO kiosk"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "bands": [
+    [
+     4.1,
+     4.25,
+     "siding_beige",
+     0.15
+    ]
+   ],
+   "piers": [
+    "tan stucco columns 0.35 m at each unit boundary (s 1.0, 8.8, 12.6, 15.5, 21.2, 27.7, 33.0, 35.6, 40.4, 45.6, 51.4, 57.9, 64.8, 70.0, 76.9, 82.1, 86.4)"
+   ],
+   "gables": [
+    {
+     "s": [
+      8.8,
+      12.6
+     ],
+     "apex_m": 6.2,
+     "projection": 1.0,
+     "cladding": "siding_beige",
+     "side_slopes": "#b5483e red metal (steel_red)",
+     "note": "entry gable, ISM logo disc in it"
+    },
+    {
+     "s": [
+      51.4,
+      57.9
+     ],
+     "apex_m": 6.8,
+     "projection": 0.8,
+     "cladding": "siding_beige",
+     "side_slopes": "roof_shingle",
+     "note": "Kabob Hut gable; the main roof also steps up ~0.3 m here (two roof sections meet at s ~51)"
+    }
+   ],
+   "units": [
+    {
+     "unit": "hakka",
+     "s": [
+      1.0,
+      8.8
+     ],
+     "tenant": "Hakka Nation",
+     "unit_no": "1A/1B",
+     "storefront": "aluminium storefront, 3 lites; door position a guess (hidden behind a dumpster and U-Haul in Aug 2023)",
+     "graphics": "none visible",
+     "source": "around/sv_W9_V2MBnw1EpEg9-YjrwirBhw_70"
+    },
+    {
+     "unit": "ismgable",
+     "s": [
+      8.8,
+      12.6
+     ],
+     "tenant": "Indian Sweet Master (entry gable)",
+     "unit_no": "1B",
+     "storefront": "front-gabled entry vestibule projecting ~1 m: tan siding gable with red metal side slopes, recessed aluminium glass door with sidelight",
+     "graphics": "",
+     "source": "around/sv_W9_xuL_Wj17IJecsbqI9hEE_A_70"
+    },
+    {
+     "unit": "ism",
+     "s": [
+      12.6,
+      21.2
+     ],
+     "tenant": "Indian Sweet Master",
+     "unit_no": "1B-3",
+     "storefront": "two storefront lites split by a stucco column at s 15.5, centre double door",
+     "graphics": "white frosted film on the lower 1.0 m with small round logos; \"COMING SOON\" poster (Aug 2023)",
+     "source": "around/sv_W9_xuL_Wj17IJecsbqI9hEE_A_70"
+    },
+    {
+     "unit": "farah",
+     "s": [
+      21.2,
+      35.6
+     ],
+     "tenant": "Farah Foods (sign: FARAH FOODS, 24Hrs, 7 Days a Week) + BMO ATM",
+     "unit_no": "4, 5, 6A",
+     "storefront": "three bays between columns at 27.7 and 33.0; centre double door; the last bay (33-35.6) holds The 6ix Vape counter and the lotto window",
+     "graphics": "black-and-white chalkboard-style grocery murals over the whole left bay (\"quality dairy\" etc); colourful posters (Monster, Summer Sale) right of the door; \"6ix Vape\" white panel and red \"Lotto Tickets / Fast Cash ATM / Phone Cards / Stamps\" poster at 33-35.6",
+     "source": "around/sv_W9_GA6-UoKumgtmk0-syU-cAA_70"
+    },
+    {
+     "unit": "izna",
+     "s": [
+      35.6,
+      40.4
+     ],
+     "tenant": "Izna Poke Plus",
+     "unit_no": "6B",
+     "storefront": "door at the left, then 2 lites",
+     "graphics": "neon OPEN sign; small menu posters",
+     "source": "around/sv_W9_U9iiOAFOHzNPkANs0gpAlA_70"
+    },
+    {
+     "unit": "alley",
+     "s": [
+      40.4,
+      45.6
+     ],
+     "tenant": "The Alley",
+     "unit_no": "7-8",
+     "storefront": "full-height glass, centre door, tables visible inside",
+     "graphics": "neon OPEN; a few small menu decals",
+     "source": "around/sv_W9_U9iiOAFOHzNPkANs0gpAlA_70"
+    },
+    {
+     "unit": "mengami",
+     "s": [
+      45.6,
+      51.4
+     ],
+     "tenant": "Mengami 麵晟",
+     "unit_no": "9?",
+     "storefront": "door at the left end, 3 lites; light wood chairs inside",
+     "graphics": "neon OPEN; small logo decal on door",
+     "source": "around/sv_W9_92x6bPMrefnH3nxJQdskOQ_70"
+    },
+    {
+     "unit": "kabob",
+     "s": [
+      51.4,
+      57.9
+     ],
+     "tenant": "Kabob Hut (Persian Cuisine)",
+     "unit_no": "9",
+     "storefront": "front-gabled bay projecting ~0.8 m; full glass with low red-brown brick kneewall/planter ledge 0.3 m along the base; door at the right",
+     "graphics": "menu poster in the left lite",
+     "source": "around/sv_W9_92x6bPMrefnH3nxJQdskOQ_70"
+    },
+    {
+     "unit": "harveys",
+     "s": [
+      57.9,
+      64.8
+     ],
+     "tenant": "Harvey's",
+     "unit_no": "10",
+     "storefront": "4 lites, door right of centre",
+     "graphics": "\"Buffalo\" promo poster left, \"OPEN UNTIL 2AM\" white-on-black decal on the right lites, neon OPEN",
+     "source": "around/sv_W9_bUj-f7-PLuOUpJTNJN-oNQ_70"
+    },
+    {
+     "unit": "sowon",
+     "s": [
+      64.8,
+      70.0
+     ],
+     "tenant": "Sowon Korea Dining (sign: SOWON ... FRIED CHICKEN & KOREAN DINING)",
+     "unit_no": "11",
+     "storefront": "dark door in the middle, lites either side",
+     "graphics": "full-window food photo graphics: left lite landscape with stone-bowl dishes \"Pork Bone Soup\"/\"BIBIMBAP\", right lite yellow menu poster",
+     "source": "around/sv_W9_bUj-f7-PLuOUpJTNJN-oNQ_70"
+    },
+    {
+     "unit": "pharma",
+     "s": [
+      70.0,
+      76.9
+     ],
+     "tenant": "Campus Pharmasave (sign: PHARMASAVE Campus Pharmacy)",
+     "unit_no": "12",
+     "storefront": "4 lites, door right of centre",
+     "graphics": "red bottom panels: \"thank you for supporting LOCAL\", \"All student drug plans/coverage accepted\" with maple leaf; white \"Transferring your prescriptions is quick & easy\" panel",
+     "source": "around/sv_W9_WLvK6j5oxDBtxNbo-CPoiQ_70"
+    },
+    {
+     "unit": "clinic",
+     "s": [
+      76.9,
+      82.1
+     ],
+     "tenant": "Waterloo Walk-in Clinic",
+     "unit_no": "13",
+     "storefront": "door at the left, 3 lites",
+     "graphics": "blue panel \"WALK-IN CLINIC OPEN / No Appointments Necessary!\", photo decals of doctors, \"Students Welcome\" strip",
+     "source": "around/sv_W9_WLvK6j5oxDBtxNbo-CPoiQ_70"
+    },
+    {
+     "unit": "sweet",
+     "s": [
+      82.1,
+      86.7
+     ],
+     "tenant": "Sweet Dreams Teashop (sign: sweet dreams teashop)",
+     "unit_no": "14",
+     "storefront": "door centre-right; glazing wraps round the NW corner onto W0",
+     "graphics": "hand-painted blue/teal mural graphics over most of the glass (origami, bubble tea)",
+     "source": "around/sv_W9_WLvK6j5oxDBtxNbo-CPoiQ_70"
+    }
+   ],
+   "signs": [
+    {
+     "s": 5.1,
+     "z": 2.7,
+     "w": 5.4,
+     "h": 0.6,
+     "colour": "panel_black",
+     "text": "HAKKA #NATION",
+     "text_colour": "panel_white",
+     "logo": "orange '#'-like slash between the words (crossed chopsticks)",
+     "unit": "hakka",
+     "on": "fascia"
+    },
+    {
+     "s": 10.7,
+     "z": 4.3,
+     "w": 1.0,
+     "h": 1.2,
+     "colour": "panel_white",
+     "text": "",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "oval white disc with red line drawing of a woman with hands together (Indian Sweet Master logo), centred on the entry gable",
+     "unit": "ismgable",
+     "on": "fascia"
+    },
+    {
+     "s": 17.0,
+     "z": 2.7,
+     "w": 7.4,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "indian sweet master / AUTHENTIC INDIAN FLAVOUR",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red lowercase serif name; small red strip below with white caps 'AUTHENTIC INDIAN FLAVOUR'",
+     "unit": "ism",
+     "on": "fascia"
+    },
+    {
+     "s": 24.7,
+     "z": 2.7,
+     "w": 3.4,
+     "h": 0.65,
+     "colour": "#1f4fa8 (new: sign_blue)",
+     "text": "BMO ATM",
+     "text_colour": "panel_white",
+     "logo": "red BMO roundel between 'BMO' and '| ATM'",
+     "unit": "farah",
+     "on": "fascia"
+    },
+    {
+     "s": 30.8,
+     "z": 2.7,
+     "w": 8.8,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "24Hrs  FARAH FOODS  7 Days a Week",
+     "text_colour": "panel_white",
+     "logo": "white ovals with black text '24Hrs' (left) and '7 Days a Week' (right); big white serif FARAH, smaller FOODS",
+     "unit": "farah",
+     "on": "fascia"
+    },
+    {
+     "s": 38.2,
+     "z": 2.75,
+     "w": 3.2,
+     "h": 0.6,
+     "colour": "panel_white",
+     "text": "IZNA POKE PLUS / POKE BOWLS AND KOREAN RICE BOWLS",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red poke bowl icon with 'IZNA POKE PLUS' at the left",
+     "unit": "izna",
+     "on": "fascia"
+    },
+    {
+     "s": 43.4,
+     "z": 2.75,
+     "w": 3.1,
+     "h": 0.6,
+     "colour": "#e8e2d2 (new: sign_cream)",
+     "text": "THE ALLEY / it's time for tea",
+     "text_colour": "panel_black",
+     "logo": "black deer (stag) head with antlers rising 0.6 m above the board top at its left end; small 'da' roundel",
+     "unit": "alley",
+     "on": "fascia"
+    },
+    {
+     "s": 45.8,
+     "z": 2.9,
+     "w": 0.5,
+     "h": 0.5,
+     "colour": "panel_white",
+     "text": "",
+     "text_colour": "panel_black",
+     "logo": "round clock face on a blade bracket, perpendicular to the wall",
+     "unit": "alley",
+     "on": "fascia"
+    },
+    {
+     "s": 48.6,
+     "z": 2.75,
+     "w": 4.6,
+     "h": 0.6,
+     "colour": "#b39a74 (new: sign_wood)",
+     "text": "MENGAMI/麵晟 Asian Fusion",
+     "text_colour": "panel_black",
+     "logo": "black geometric eye/ramen-bowl emblem at the left; 'Asian Fusion' small in red",
+     "unit": "mengami",
+     "on": "fascia"
+    },
+    {
+     "s": 54.0,
+     "z": 4.3,
+     "w": 2.8,
+     "h": 1.9,
+     "colour": "siding_beige",
+     "text": "kaBob HUT",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red channel letters on the gable, roof-line arch over the word and a smile/moustache under the O's (eyes); letters directly on siding",
+     "unit": "kabob",
+     "on": "fascia"
+    },
+    {
+     "s": 55.1,
+     "z": 3.0,
+     "w": 3.9,
+     "h": 0.45,
+     "colour": "siding_beige",
+     "text": "Persian Cuisine",
+     "text_colour": "panel_white",
+     "logo": "white channel letters directly on the siding fascia",
+     "unit": "kabob",
+     "on": "fascia"
+    },
+    {
+     "s": 61.2,
+     "z": 2.8,
+     "w": 4.8,
+     "h": 0.6,
+     "colour": "siding_beige",
+     "text": "HARVEY'S",
+     "text_colour": "#d4502e (new: harveys_orange)",
+     "logo": "orange-red channel letters directly on siding, no board",
+     "unit": "harveys",
+     "on": "fascia"
+    },
+    {
+     "s": 67.3,
+     "z": 2.7,
+     "w": 4.5,
+     "h": 0.6,
+     "colour": "#f0c330 (new: sign_yellow)",
+     "text": "519-208-5888 SOWON DINE-IN TAKE OUT | LLBO / FRIED CHICKEN & KOREAN DINING",
+     "text_colour": "panel_black",
+     "logo": "two lines; 'CHICKEN' in red; small yellow roundel",
+     "unit": "sowon",
+     "on": "fascia"
+    },
+    {
+     "s": 73.2,
+     "z": 2.7,
+     "w": 6.1,
+     "h": 0.7,
+     "colour": "panel_white",
+     "text": "PHARMASAVE Campus Pharmacy",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "left 2/3 is a red panel with white 'PHARMASAVE' (mortar-and-pestle 'S'), right third white with black 'Campus Pharmacy'",
+     "unit": "pharma",
+     "on": "fascia"
+    },
+    {
+     "s": 79.5,
+     "z": 2.7,
+     "w": 4.1,
+     "h": 0.65,
+     "colour": "panel_white",
+     "text": "Waterloo Walk-In Clinic",
+     "text_colour": "panel_black",
+     "logo": "black italic text with a red cross and a speed-line arrow at the left",
+     "unit": "clinic",
+     "on": "fascia"
+    },
+    {
+     "s": 84.6,
+     "z": 2.65,
+     "w": 3.6,
+     "h": 0.75,
+     "colour": "brick_charcoal_tower",
+     "text": "sweet dreams teashop",
+     "text_colour": "panel_white",
+     "logo": "white origami crane/lotus at the left, spaced 't e a s h o p' under the script; five black gooseneck barn lamps along the top",
+     "unit": "sweet",
+     "on": "fascia"
+    }
+   ],
+   "attached": [
+    "BMO Cash ATM kiosk (W5-W8) joined at s 0 by the roof over an open breezeway",
+    "covered sidewalk is not deep: the fascia is about flush with the columns (eave overhang ~0.3 m)"
+   ],
+   "notes": "Positions from the six Aug 2023 Street View panos at 10-14 m (scale x1.5 correction found from overlaps, closes on the wall length within 0.7 m). Fascia bottom ~2.6 m, top ~4.2 m (door 2.2 m as scale). Sign texts copied from the boards (Aug 2023). Google Maps also lists 'Waterloo BBQ House' (2.4 stars) and 'The 6ix vape' here: no BBQ sign in 2023; The 6ix Vape is a counter inside Farah's lotto bay (white '6ix Vape' panel in the window, s ~33.5). Hakka Nation is OSM unit 1A; a 2025 listing sells a Hakka franchise in unit 1B so the unit numbers may have shifted."
+  },
+  "W0": {
+   "faces": "NW",
+   "length_m": 13.2,
+   "confidence": "medium",
+   "summary": "inland end gable: tan siding gable with the Sweet Dreams storefront glass wrapping the corner; red-brown split-face block on the rest",
+   "height_m": 7.0,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.6,
+     "fascia"
+    ],
+    [
+     2.8,
+     "gable"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     4.0,
+     "sweet_glass"
+    ],
+    [
+     8.85,
+     "block"
+    ]
+   ],
+   "cells": {
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff"
+    },
+    "store/sweet_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "store/block": {
+     "type": "panel",
+     "colour": "brick_dark",
+     "note": "red-brown vertically scored split-face block"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 5.0,
+     "z": 3.0,
+     "w": 0.45,
+     "h": 0.6,
+     "colour": "panel_white",
+     "text": "NO PARKING FIRE ROUTE BY-LAW NO 76-34",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red circle-slash P",
+     "on": "siding"
+    }
+   ],
+   "attached": [
+    "black gooseneck wall lamp at the W9 corner"
+   ],
+   "notes": "sv_W0_zd4HUxjW0gQt (Oct 2020): the glass on the corner bay carried bubble-tea graphics then; the block share of the wall is a guess from the oblique sv_W1 view."
+  },
+  "W1": {
+   "faces": "W",
+   "length_m": 9.6,
+   "confidence": "medium",
+   "summary": "service end facing the Pho Anh Vu block: red-brown split-face block wall under the tan siding fascia, with two tenant signs facing Phillip-side traffic",
+   "height_m": 6.5,
+   "rows": [
+    [
+     2.9,
+     "wall"
+    ],
+    [
+     1.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     9.6,
+     "block"
+    ]
+   ],
+   "cells": {
+    "wall/block": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 2.0,
+     "z": 3.0,
+     "w": 2.4,
+     "h": 0.5,
+     "colour": "panel_white",
+     "text": "DENTAL CLINIC Dr. M. ... 519-886-9998",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red title, black small print (2020; the dental clinic may be gone)",
+     "on": "fascia"
+    },
+    {
+     "s": 6.5,
+     "z": 3.0,
+     "w": 4.4,
+     "h": 0.5,
+     "colour": "panel_white",
+     "text": "Waterloo Walk-In Clinic & Pharmacy WE ACCEPT ALL DRUG PLANS",
+     "text_colour": "panel_black",
+     "logo": "red cross + left arrow; '& Pharmacy' on a black panel at the right end",
+     "on": "fascia"
+    }
+   ],
+   "notes": "sv_W1_aaQtUIDW24nw23gxo7KAkA_100 (Oct 2020). Tan concrete-block dumpster enclosure walls (1.8 m) start at the corner with W2."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 81.8,
+   "confidence": "low",
+   "summary": "rear/service wall toward the ION tracks and E5: red-brown block, no storefronts, small service doors, many wall-mounted exhaust hoods and lights under the eave; shingle roof slopes up from a ~3.8 m eave",
+   "height_m": 7.7,
+   "rows": [
+    [
+     3.8,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     81.8,
+     "rear"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_dark",
+   "notes": "From Earth only (earth_W2_whole/m): the roof has two sections (seam near the middle, the NW half sits a little higher), with skylight hatches and vent stacks; the rear wall reads red-brown/taupe. Service door count unknown (guess one steel door per unit, 13)."
+  },
+  "W3": {
+   "faces": "SE",
+   "length_m": 9.3,
+   "confidence": "low",
+   "summary": "University Ave end of the strip, inside/next to the breezeway: tan siding fascia over red-brown block, a side door",
+   "height_m": 6.5,
+   "rows": [
+    [
+     2.6,
+     "wall"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     9.3,
+     "block"
+    ]
+   ],
+   "cells": {
+    "wall/block": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "notes": "only seen far off in sv_c5 (May 2025) behind trees"
+  },
+  "W4": {
+   "faces": "SE",
+   "length_m": 5.4,
+   "confidence": "low",
+   "summary": "short return at the kiosk join, same as W3",
+   "height_m": 6.0,
+   "rows": [
+    [
+     2.6,
+     "wall"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     5.4,
+     "block"
+    ]
+   ],
+   "cells": {
+    "wall/block": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige"
+  },
+  "W5": {
+   "faces": "SE",
+   "length_m": 13.5,
+   "confidence": "medium",
+   "summary": "BMO Cash ATM kiosk (W5-W8): small hip-roofed pavilion with tan siding fascia, blue BMO band, glass + red-brown brick panels and tan stucco columns",
+   "height_m": 5.2,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     3.0,
+     "glass"
+    ],
+    [
+     3.0,
+     "brick"
+    ],
+    [
+     7.15,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff"
+    },
+    "store/glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "store/brick": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 3.5,
+     "z": 2.65,
+     "w": 5.0,
+     "h": 0.65,
+     "colour": "#1f4fa8 (new: sign_blue)",
+     "text": "BMO Cash ATM",
+     "text_colour": "panel_white",
+     "logo": "red BMO roundel between BMO and 'Cash ATM'",
+     "on": "fascia"
+    }
+   ],
+   "notes": "sv_W5_/sv_c10 (Aug 2023). The blue band runs on the two lot-facing faces (W6 NE, W7 NW) too: both have a glass lite + door/brick panel. Hip roof, roof_shingle, apex ~5.2 m."
+  },
+  "W6": {
+   "faces": "NE",
+   "length_m": 5.6,
+   "confidence": "medium",
+   "summary": "kiosk lot face: glass ATM door with sidelight, red Canada Post box in front",
+   "height_m": 5.2,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     3.7,
+     "glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff"
+    },
+    "store/door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "frame": "panel_black"
+    },
+    "store/glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 2.8,
+     "z": 2.65,
+     "w": 4.6,
+     "h": 0.65,
+     "colour": "#1f4fa8 (new: sign_blue)",
+     "text": "BMO Cash ATM",
+     "text_colour": "panel_white",
+     "logo": "red BMO roundel",
+     "on": "fascia"
+    }
+   ]
+  },
+  "W7": {
+   "faces": "NW",
+   "length_m": 5.7,
+   "confidence": "medium",
+   "summary": "kiosk NW face: one glass lite and a red-brown brick panel under the blue BMO band",
+   "height_m": 5.2,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.6,
+     "glass"
+    ],
+    [
+     2.75,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff"
+    },
+    "store/glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.3,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "store/brick": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 2.9,
+     "z": 2.65,
+     "w": 4.6,
+     "h": 0.65,
+     "colour": "#1f4fa8 (new: sign_blue)",
+     "text": "BMO Cash ATM",
+     "text_colour": "panel_white",
+     "logo": "red BMO roundel",
+     "on": "fascia"
+    }
+   ]
+  },
+  "W8": {
+   "faces": "NW",
+   "length_m": 6.7,
+   "confidence": "low",
+   "summary": "open breezeway between the kiosk and the strip, under the roof: tan siding fascia over an open passage (lot to the University Ave lawn)",
+   "height_m": 5.2,
+   "rows": [
+    [
+     2.6,
+     "open"
+    ],
+    [
+     1.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     6.7,
+     "passage"
+    ]
+   ],
+   "cells": {
+    "open/passage": {
+     "type": "void"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige"
+  }
+ },
+ "roof": [
+  {
+   "what": "brown shingle roof, eave ~4.2 m on the lot side, ridge ~7.7 m (lidar); a cross-gable roof rather than a flat roof with a mansard",
+   "where": "whole strip; two sections meeting near s 51 of W9 (Kabob Hut), the inland section ~0.3 m higher"
+  },
+  {
+   "what": "front gables",
+   "where": "W9 s 8.8-12.6 (red metal side slopes) and s 51.4-57.9"
+  },
+  {
+   "what": "round galvanised exhaust stacks/fans (3-4) and a grey satellite dish",
+   "where": "near the ridge above Indian Sweet Master (dish ~s 18) and Izna/The Alley (stack ~s 41)",
+   "size_m": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  {
+   "what": "skylight hatches and small vents",
+   "where": "rear slope, ~10 along"
+  },
+  {
+   "what": "BMO kiosk hip roof",
+   "where": "W5-W8, apex ~5.2 m"
+  }
+ ],
+ "geometry_notes": "Footprint is good. The lidar height 7.7 m is the ridge: model a pitched roof from a ~4.2 m eave on the lot side and ~3.8 m at the rear, not a 7.7 m box. W8 is an open breezeway under the roof between the kiosk and the strip, not a wall.",
+ "site": {
+  "neighbours": [
+   "170-university-avenue-west (Pho Anh Vu block) at the inland NW end across a 6 m service lane",
+   "the BMO kiosk is part of this footprint (W5-W8)",
+   "ION LRT tracks and a grass strip behind W2",
+   "University Ave W lawn and the University of Waterloo stone sign beyond the kiosk"
+  ],
+  "ground": [
+   "2.5 m concrete sidewalk along W9 with a curb, then nose-in stalls (yellow lines, ~2.7 m pitch) directly against the curb",
+   "big cracked asphalt lot with a 2-way aisle and a second double row of stalls ~20-30 m out",
+   "river-stone landscape island with boulders and a young tree at the University Ave entrance east of the kiosk",
+   "asphalt service lane behind the NW end with tan block dumpster enclosures"
+  ],
+  "entities": [
+   {
+    "type": "light_pole",
+    "kind": "tall single-head dark grey pole on a round concrete base",
+    "where": "lot, opposite W9 s ~15, ~25 m out (sv_c8) and opposite s ~75, ~22 m out (sv_c11)",
+    "count": 2
+   },
+   {
+    "type": "bollard",
+    "kind": "yellow steel pipe bollards with red bands",
+    "where": "NW corner of W9 at s 86-88, 1-3 m out",
+    "count": 3,
+    "photo": "sv_c11_zd4HUxjW0gQt"
+   },
+   {
+    "type": "hydrant",
+    "kind": "yellow body red cap",
+    "where": "NW corner, between the bollards, s ~87, 2 m out",
+    "count": 1
+   },
+   {
+    "type": "sign",
+    "kind": "blue accessible-parking sign on a post",
+    "where": "W9 s ~81, at the curb",
+    "count": 1,
+    "photo": "sv_W9_WLvK6j5oxDBtxNbo"
+   },
+   {
+    "type": "sign",
+    "kind": "white 'UNIVERSITY SHOPS PLAZA ONLY' parking notice on a column/post",
+    "where": "W9 s ~82 (column) and s ~20 (window)",
+    "count": 2
+   },
+   {
+    "type": "bin",
+    "kind": "black plastic waste bins",
+    "where": "W9 s 21-22.5, against the column",
+    "count": 2
+   },
+   {
+    "type": "a_frame",
+    "kind": "black sandwich board (Pharmasave 'Waterloo's student pharmacy' / Harvey's 'Angus')",
+    "where": "W9 s ~71 and s ~65, 0.5 m out",
+    "count": 2
+   },
+   {
+    "type": "patio",
+    "kind": "black metal bistro tables with chairs",
+    "where": "Sweet Dreams, W9 s 83-87, on the sidewalk",
+    "count": 3
+   },
+   {
+    "type": "lamp",
+    "kind": "black gooseneck barn lamps over the Sweet Dreams sign",
+    "where": "W9 s 83-86, z 3.4",
+    "count": 5
+   },
+   {
+    "type": "bike",
+    "kind": "parked bicycles",
+    "where": "NW corner s ~86",
+    "count": 2
+   },
+   {
+    "type": "mailbox",
+    "kind": "red Canada Post street letter box",
+    "where": "in front of the kiosk NE face (W6), 1 m out",
+    "count": 1,
+    "photo": "sv_c10_fpi_uPgbJH1t0VrGXM1qJg_100"
+   },
+   {
+    "type": "utility_pole",
+    "kind": "wood hydro pole with transformers",
+    "where": "on the grass south of the kiosk near University Ave",
+    "count": 2
+   },
+   {
+    "type": "dumpster",
+    "kind": "tan concrete-block enclosure with lidded bins",
+    "where": "behind W1/W2 NW corner",
+    "count": 1
+   }
+  ]
+ }
+}

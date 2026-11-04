@@ -510,6 +510,10 @@ def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None, z_from=None):
             col = sg.get("colour", "panel_white")
             col = col if isinstance(col, str) and not col.startswith("#") else "panel_white"
             _band(kit, P, n, max(0.0, ss - sg["w"] / 2), min(L, ss + sg["w"] / 2), z0 + zz, z0 + zz + sg["h"], col, 0.08)
+            if sg.get("text"):
+                tc = sg.get("text_colour") or "panel_white"
+                tc = tc if isinstance(tc, str) and not tc.startswith("#") else "panel_white"
+                sign_text(kit, P, n, ss, z0 + zz + sg["h"] / 2, sg["w"] * 0.9, sg["h"] * 0.62, str(sg["text"]), tc)
     if spec.get("coping"):
         ch, col, proj = spec["coping"]
         _band(kit, P, n, 0, L, top, top + ch, col, proj)
@@ -664,3 +668,37 @@ def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
     if cell["type"] == "door" and cell.get("canopy"):
         cd, cc = cell["canopy"]
         _band(kit, P, n, x0 - 0.4, x1 + 0.4, y1 + 0.15, y1 + 0.35, cc, cd)
+
+
+def sign_text(kit, P, n, s_mid, z_mid, max_w, max_h, text, colour):
+    """Letters on a sign board: Blender text converted to mesh, fitted inside max_w x max_h,
+    standing 0.12 m proud of the wall (the board is 0.08)."""
+    import bpy
+    text = " ".join(text.split())[:60]
+    if not text:
+        return
+    cu = bpy.data.curves.new("sign_text", "FONT")
+    cu.body = text
+    cu.align_x, cu.align_y = "CENTER", "CENTER"
+    cu.extrude = 0.02
+    ob = bpy.data.objects.new("sign_text", cu)
+    bpy.context.scene.collection.objects.link(ob)
+    dg = bpy.context.evaluated_depsgraph_get()
+    me = ob.evaluated_get(dg).to_mesh()
+    xs = [v.co.x for v in me.vertices] or [0.0]
+    ys = [v.co.y for v in me.vertices] or [0.0]
+    w, h = max(xs) - min(xs), max(ys) - min(ys)
+    k = min(max_w / max(w, 1e-3), max_h / max(h, 1e-3))
+    cx, cy = (max(xs) + min(xs)) / 2, (max(ys) + min(ys)) / 2
+    base = n * 0.12
+    for poly in me.polygons:
+        pts = []
+        for vi in poly.vertices:
+            co = me.vertices[vi].co
+            p = P(s_mid + (co.x - cx) * k, z_mid + (co.y - cy) * k) + base + n * co.z * k
+            pts.append(p)
+        if len(pts) >= 3:
+            kit.face(pts, colour)
+    ob.evaluated_get(dg).to_mesh_clear()
+    bpy.data.objects.remove(ob)
+    bpy.data.curves.remove(cu)

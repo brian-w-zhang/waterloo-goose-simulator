@@ -1,0 +1,1064 @@
+{
+ "building": "oid10769",
+ "name": "University Shops Plaza north row, east part (170 University Ave W, units 24/26-39)",
+ "sources_checked": [
+  "around/sv_W3_2baGRTrE5rg4kAK0AvME3g_70 (Aug 2023)",
+  "around/sv_W3_KwooYJZhi8bDezwgLjXgSw_70",
+  "around/sv_W3_tFDVZ6HdxboFbx97T9_UXQ_70",
+  "around/sv_W3_Usko__5S9cwOWTZ_e8K8Wg_70",
+  "around/sv_W3_q-mLSCFcFjNETPc54glrHQ_70",
+  "around/sv_W3_whZSwkfUzhh8zXNdSrzIxA_70",
+  "around/sv_W3_waRQrbj_ij7N8lu-wIFyFw_70",
+  "around/sv_W2_p-LDZaajZrZuLt8dsH8sUg_100",
+  "around/sv_W4_Hcn03ZD3CC49rJP5iOM7Bg_100",
+  "around/earth_W3_whole",
+  "around/earth_W0_whole",
+  "places/places_by_building.json",
+  "places/university-shops-plaza/NOTES.md"
+ ],
+ "colours": {
+  "fascia_siding": {
+   "hex": "#c8b9a0",
+   "palette": "siding_beige",
+   "where": "sign band, gables"
+  },
+  "columns": {
+   "hex": "#cbb497",
+   "palette": "brick_buff",
+   "where": "square stucco columns and the round porch columns"
+  },
+  "roof": {
+   "hex": "#8d7d70",
+   "palette": "roof_shingle",
+   "where": "front shingle slope"
+  },
+  "brick": {
+   "hex": "#a27a6e",
+   "palette": "brick_dark",
+   "where": "end walls"
+  },
+  "pita_red": {
+   "hex": "#b0202a",
+   "palette": "#b0202a (new: pita_red)",
+   "where": "Pita Factory columns"
+  }
+ },
+ "walls": {
+  "W3": {
+   "faces": "SE",
+   "length_m": 82.2,
+   "confidence": "high",
+   "summary": "north row east part, shopfronts onto the lot: tan siding fascia over aluminium storefronts between tan stucco columns, brown shingle mansard slope above; a raised central section (s 32-53) with two large front gables and a projecting porch gable over Slap Burgers; 12 storefronts from Pita Factory (west) to Fantastic Wok (east)",
+   "height_m": 6.0,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "redpier"
+    ],
+    [
+     8.15,
+     "pita_glass"
+    ],
+    [
+     1.0,
+     "pita_door"
+    ],
+    [
+     1.1,
+     "pita_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.55,
+     "tokyo_glass"
+    ],
+    [
+     1.0,
+     "tokyo_door"
+    ],
+    [
+     3.8,
+     "tokyo_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     4.05,
+     "baba_glass"
+    ],
+    [
+     1.8,
+     "baba_door"
+    ],
+    [
+     2.3,
+     "baba_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.35,
+     "conv_glass"
+    ],
+    [
+     1.0,
+     "conv_door"
+    ],
+    [
+     2.5,
+     "conv_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.15,
+     "fresh_glass"
+    ],
+    [
+     1.0,
+     "fresh_door"
+    ],
+    [
+     3.2,
+     "fresh_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.65,
+     "slap_glass"
+    ],
+    [
+     1.0,
+     "slap_door"
+    ],
+    [
+     4.5,
+     "slap_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     5.15,
+     "vacant_glass"
+    ],
+    [
+     1.0,
+     "vacant_door"
+    ],
+    [
+     0.7,
+     "vacant_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.25,
+     "tong_glass"
+    ],
+    [
+     1.0,
+     "tong_door"
+    ],
+    [
+     3.3,
+     "tong_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.25,
+     "yun_glass"
+    ],
+    [
+     1.0,
+     "yun_door"
+    ],
+    [
+     2.7,
+     "yun_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.25,
+     "yang_glass"
+    ],
+    [
+     1.0,
+     "yang_door"
+    ],
+    [
+     2.4,
+     "yang_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.25,
+     "vapor_glass"
+    ],
+    [
+     1.0,
+     "vapor_door"
+    ],
+    [
+     2.8,
+     "vapor_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.65,
+     "wok_glass"
+    ],
+    [
+     1.0,
+     "wok_door"
+    ],
+    [
+     4.2,
+     "wok_glass"
+    ]
+   ],
+   "cells": {
+    "store/pita_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/pita_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/tokyo_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/tokyo_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/baba_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/baba_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 1,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/conv_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/conv_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/fresh_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/fresh_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/slap_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/slap_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/vacant_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/vacant_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/tong_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/tong_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/yun_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/yun_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/yang_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/yang_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/vapor_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/vapor_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/wok_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/wok_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff",
+     "note": "tan stucco column 0.35 m"
+    },
+    "store/redpier": {
+     "type": "panel",
+     "colour": "#b0202a (new: pita_red)",
+     "note": "Pita Factory's red-painted columns (also at s 5.6 and 10.6)"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "bands": [
+    [
+     4.1,
+     4.25,
+     "siding_beige",
+     0.15
+    ]
+   ],
+   "piers": [
+    "tan stucco columns at unit boundaries; Pita Factory's three are painted red"
+   ],
+   "gables": [
+    {
+     "s": [
+      32.0,
+      53.0
+     ],
+     "apex_m": 8.0,
+     "projection": 0.6,
+     "cladding": "siding_beige",
+     "note": "two overlapping large gables (apexes ~s 40 and ~s 47) clad in siding; the central section's fascia steps forward ~0.6 m"
+    },
+    {
+     "s": [
+      37.7,
+      46.4
+     ],
+     "apex_m": 6.3,
+     "projection": 1.6,
+     "cladding": "siding_beige",
+     "note": "porch gable over Slap Burgers on 2 round tan columns; the white Slap board sits in its base"
+    }
+   ],
+   "units": [
+    {
+     "unit": "pita",
+     "s": [
+      0.0,
+      10.6
+     ],
+     "tenant": "Pita Factory (2023 sign); Google now lists Mom’s Pan Fried Bun at #26A",
+     "unit_no": "24-26?",
+     "storefront": "two bays between red columns (s 0.6, 5.6, 10.6); 3 lites per bay, door near the east end",
+     "graphics": "papered/whitened lower glass (closed or renovating in 2023), menu poster by the door",
+     "source": "around/sv_W3_KwooYJZhi8bDezwgLjXgSw_70"
+    },
+    {
+     "unit": "tokyo",
+     "s": [
+      10.6,
+      18.3
+     ],
+     "tenant": "Tokyo Smoke (2023 sign); Google now lists Hero Tea Waterloo, unit 27",
+     "unit_no": "27",
+     "storefront": "4 lites, door in the middle",
+     "graphics": "white text decals \"Recreational Cannabis Store\", \"Now Open\"; frosted lower glass",
+     "source": "around/sv_W3_KwooYJZhi8bDezwgLjXgSw_70"
+    },
+    {
+     "unit": "baba",
+     "s": [
+      18.3,
+      26.8
+     ],
+     "tenant": "Baba Chicken Grill (sign: 快宜美 Baba B Grill)",
+     "unit_no": "28-29",
+     "storefront": "5 lites, double door right of centre",
+     "graphics": "neon OPEN; yellow \"B\" logo decal; pink A-frame menu board outside",
+     "source": "around/sv_W3_tFDVZ6HdxboFbx97T9_UXQ_70"
+    },
+    {
+     "unit": "conv",
+     "s": [
+      26.8,
+      32.0
+     ],
+     "tenant": "University Convenience (sign: UNIVERSITY 649 CONVENIENCE)",
+     "unit_no": "30",
+     "storefront": "3 lites, door centre",
+     "graphics": "neon ATM and OPEN signs, lotto/price posters; a white ice chest/vending box outside",
+     "source": "around/sv_W3_tFDVZ6HdxboFbx97T9_UXQ_70"
+    },
+    {
+     "unit": "fresh",
+     "s": [
+      32.0,
+      37.7
+     ],
+     "tenant": "Fresh Burrito",
+     "unit_no": "31",
+     "storefront": "first bay under the central gable; door left, 3 lites",
+     "graphics": "green round Fresh Burrito decal, neon OPEN, menu posters",
+     "source": "around/sv_W3_Usko__5S9cwOWTZ_e8K8Wg_70"
+    },
+    {
+     "unit": "slap",
+     "s": [
+      37.7,
+      45.2
+     ],
+     "tenant": "Slap Burgers",
+     "unit_no": "32",
+     "storefront": "under a projecting front porch gable on two round tan columns (s ~39.3, 45.1, ~1.5 m out): door at the left, 3 tall lites",
+     "graphics": "burger photo poster lower right, neon OPEN",
+     "source": "around/sv_W3_Usko__5S9cwOWTZ_e8K8Wg_70"
+    },
+    {
+     "unit": "vacant",
+     "s": [
+      45.2,
+      52.4
+     ],
+     "tenant": "(no sign, red film; Google: Dine Stination)",
+     "unit_no": "33-34",
+     "storefront": "4 lites + door at the east end",
+     "graphics": "red/maroon geometric triangle film over the lower 1.4 m with thin white diagonal lines (fit-out, Aug 2023)",
+     "source": "around/sv_W3_q-mLSCFcFjNETPc54glrHQ_70"
+    },
+    {
+     "unit": "tong",
+     "s": [
+      52.4,
+      59.3
+     ],
+     "tenant": "(sign being installed Aug 2023, 3 Chinese characters; Google: Hou Kee or Dine Stination)",
+     "unit_no": "34-35?",
+     "storefront": "4 lites; door a guess",
+     "graphics": "same red geometric film as the unit to the west (same fit-out); small round logo decal on the door",
+     "source": "around/sv_W3_q-mLSCFcFjNETPc54glrHQ_70"
+    },
+    {
+     "unit": "yun",
+     "s": [
+      59.3,
+      64.6
+     ],
+     "tenant": "Yunshang Rice Noodle 云尚米线",
+     "unit_no": "35",
+     "storefront": "door left of centre, 3 lites",
+     "graphics": "food posters, chairs visible inside",
+     "source": "around/sv_W3_whZSwkfUzhh8zXNdSrzIxA_70"
+    },
+    {
+     "unit": "yang",
+     "s": [
+      64.6,
+      69.6
+     ],
+     "tenant": "Yang's Braised Chicken Rice 杨铭宇黄焖鸡米饭",
+     "unit_no": "36",
+     "storefront": "door left of centre, 3 lites",
+     "graphics": "\"NOW OPEN\" poster, LED OPEN sign",
+     "source": "around/sv_W3_whZSwkfUzhh8zXNdSrzIxA_70"
+    },
+    {
+     "unit": "vapor",
+     "s": [
+      69.6,
+      75.0
+     ],
+     "tenant": "The Friendly Vapour (sign: The Friendly Vapor)",
+     "unit_no": "37",
+     "storefront": "blue-tinted frosted lower band, door left of centre",
+     "graphics": "neon OPEN; frosted glass",
+     "source": "around/sv_W3_waRQrbj_ij7N8lu-wIFyFw_70"
+    },
+    {
+     "unit": "wok",
+     "s": [
+      75.0,
+      82.2
+     ],
+     "tenant": "Fantastic Wok (sign: 美記 知味餐厅 Fantastic! WOK)",
+     "unit_no": "38-39",
+     "storefront": "5 lites, door left of centre",
+     "graphics": "menu photo boards across the upper lites",
+     "source": "around/sv_W3_waRQrbj_ij7N8lu-wIFyFw_70"
+    }
+   ],
+   "signs": [
+    {
+     "s": 6.6,
+     "z": 2.75,
+     "w": 7.6,
+     "h": 0.7,
+     "colour": "#c8202e (new: sign_red)",
+     "text": "PITA FACTORY  HOT & HEALTHY EATING",
+     "text_colour": "#f0c330 (new: sign_yellow)",
+     "logo": "bold yellow 'PITA FACTORY'; right third a deeper-red panel with white 'HOT & HEALTHY EATING' in two lines",
+     "unit": "pita",
+     "on": "fascia"
+    },
+    {
+     "s": 5.7,
+     "z": 3.5,
+     "w": 0.9,
+     "h": 1.0,
+     "colour": "#c8202e (new: sign_red)",
+     "text": "PITA FACTORY Always Fresh",
+     "text_colour": "panel_white",
+     "logo": "round double-sided blade sign on top of the fascia, perpendicular to the wall: red ring, white centre with a cartoon chef",
+     "unit": "pita",
+     "on": "fascia"
+    },
+    {
+     "s": 15.2,
+     "z": 2.75,
+     "w": 5.6,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "TOKYO SMOKE",
+     "text_colour": "panel_white",
+     "logo": "red dot before the text; charcoal-grey box",
+     "unit": "tokyo",
+     "on": "fascia"
+    },
+    {
+     "s": 22.6,
+     "z": 2.75,
+     "w": 7.0,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "快宜美 Baba B Grill / DINE-IN TAKE-OUT 519-208-8897",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red Chinese characters and red script 'Baba' + 'Grill', a big yellow 'B' between them; small white print below",
+     "unit": "baba",
+     "on": "fascia"
+    },
+    {
+     "s": 29.0,
+     "z": 2.75,
+     "w": 5.4,
+     "h": 0.65,
+     "colour": "#e2412b (new: sign_redorange)",
+     "text": "UNIVERSITY 649 CONVENIENCE",
+     "text_colour": "#f0c330 (new: sign_yellow)",
+     "logo": "Lotto 6/49 ball logo in a white box at the left with small white 'UNIVERSITY' above it; large yellow serif CONVENIENCE",
+     "unit": "conv",
+     "on": "fascia"
+    },
+    {
+     "s": 31.9,
+     "z": 3.6,
+     "w": 0.6,
+     "h": 0.6,
+     "colour": "panel_black",
+     "text": "",
+     "text_colour": "#f0c330 (new: sign_yellow)",
+     "logo": "black round blade sign with the Fresh Burrito logo, at the corner of the gable section",
+     "unit": "fresh",
+     "on": "fascia"
+    },
+    {
+     "s": 35.2,
+     "z": 2.85,
+     "w": 4.1,
+     "h": 0.55,
+     "colour": "panel_black",
+     "text": "FRESH BURRITO / Burritos · Bowls · Tacos · Quesadillas  MEXICAN GRILL",
+     "text_colour": "panel_white",
+     "logo": "'FRESH' in lime green, 'BURRITO' white; round yellow/green logo at the left",
+     "unit": "fresh",
+     "on": "fascia"
+    },
+    {
+     "s": 41.9,
+     "z": 2.85,
+     "w": 5.2,
+     "h": 0.75,
+     "colour": "panel_white",
+     "text": "Slap Burgers",
+     "text_colour": "#2a8c8c (new: slap_teal)",
+     "logo": "teal retro script, on a white board set in the porch gable",
+     "unit": "slap",
+     "on": "fascia"
+    },
+    {
+     "s": 55.6,
+     "z": 2.8,
+     "w": 5.0,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "(3 Chinese characters, unreadable) + white English subtitle ending 'Cuisine'",
+     "text_colour": "panel_white",
+     "logo": "white disc with a red open ring at the left; raised white characters; sign being mounted in Aug 2023",
+     "unit": "tong",
+     "on": "fascia"
+    },
+    {
+     "s": 63.2,
+     "z": 2.75,
+     "w": 3.6,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "云尚米线 YUNSHANG RICE NOODLE",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "black-and-white bowl/brush logo at the left; red characters, white English",
+     "unit": "yun",
+     "on": "fascia"
+    },
+    {
+     "s": 66.8,
+     "z": 2.75,
+     "w": 3.5,
+     "h": 0.65,
+     "colour": "panel_black",
+     "text": "黄焖雞米飯 YANG'S BRAISED CHICKEN RICE",
+     "text_colour": "#f0c330 (new: sign_yellow)",
+     "logo": "small gold seal '杨铭宇' at the left; yellow characters, yellow/red English; same black board continues from Yunshang",
+     "unit": "yang",
+     "on": "fascia"
+    },
+    {
+     "s": 71.6,
+     "z": 2.75,
+     "w": 4.4,
+     "h": 0.65,
+     "colour": "#1f4fa8 (new: sign_blue)",
+     "text": "The Friendly Vapor / Waterloo 电子烟",
+     "text_colour": "panel_white",
+     "logo": "bold white sans; small white tag at the lower right",
+     "unit": "vapor",
+     "on": "fascia"
+    },
+    {
+     "s": 78.6,
+     "z": 2.75,
+     "w": 5.2,
+     "h": 0.65,
+     "colour": "panel_white",
+     "text": "美記 知味餐厅 Fantastic! WOK",
+     "text_colour": "#c8202e (new: sign_red)",
+     "logo": "red square seal '美記' at the left, red brush characters, black 'Fantastic! WOK'",
+     "unit": "wok",
+     "on": "fascia"
+    }
+   ],
+   "notes": "Positions from seven Aug 2023 Street View panos (some watermarked 2024); the x1.5 scale fits, then the chain was stretched to the wall (s = (est-5.5)*1.077) to match the Earth view (gable section s 31-52). Column positions +-1 m. Tenant churn: Pita Factory and Tokyo Smoke (2023 signs) are not on the current Google list, which shows Mom's Pan Fried Bun (#26A) and Hero Tea (unit 27) here instead, so these two boards may have changed; OSM's Super Chicken (26) and Phoenix Cannabis (27) are outdated. The vacant red-film unit and the half-installed sign next to it are probably Dine Stination and/or Hou Kee (Google). Molly Bloom's is a separate building to the east."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 7.0,
+   "confidence": "medium",
+   "summary": "west end of the shopfront part: Pita Factory's corner: red-brown brick below the tan siding, a red column, hipped gable end with the Pita Factory roundel; timber pergola patio in front",
+   "height_m": 6.5,
+   "rows": [
+    [
+     2.6,
+     "wall"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "redpier"
+    ],
+    [
+     6.3,
+     "brick"
+    ],
+    [
+     0.35,
+     "redpier"
+    ]
+   ],
+   "cells": {
+    "wall/redpier": {
+     "type": "panel",
+     "colour": "#b0202a (new: pita_red)"
+    },
+    "wall/brick": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 3.5,
+     "z": 4.4,
+     "w": 1.1,
+     "h": 1.1,
+     "colour": "#c8202e (new: sign_red)",
+     "text": "PITA FACTORY Always Fresh",
+     "text_colour": "panel_white",
+     "logo": "round chef logo high in the gable",
+     "on": "gable"
+    },
+    {
+     "s": 5.6,
+     "z": 3.0,
+     "w": 1.3,
+     "h": 0.6,
+     "colour": "panel_white",
+     "text": "ALWAYS FRESH · GET STUFFED · EXCITING GREEK PLATTERS! MEXICAN GRILL PITAS",
+     "text_colour": "panel_black",
+     "logo": "changeable-letter marquee box with a blue Pepsi strip at the bottom",
+     "on": "siding"
+    }
+   ],
+   "attached": [
+    "timber pergola (6 posts, slatted top, ~2.7 m) over a fenced patio 7 x 4 m in front of W2, black picket fence, 2 segmental-block planters"
+   ],
+   "notes": "sv_W2_p-LDZaajZrZuLt8dsH8sUg_100 and sv_W3_2baG (Aug 2023)."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 6.5,
+   "confidence": "medium",
+   "summary": "set-back west end at the rear: red-brown brick wall under siding, vinyl 'FACTORY DINNER' banner",
+   "height_m": 6.0,
+   "rows": [
+    [
+     2.6,
+     "wall"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     6.5,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "wall/brick": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 3.0,
+     "z": 1.6,
+     "w": 2.7,
+     "h": 0.75,
+     "colour": "panel_white",
+     "text": "FACTORY DINNER",
+     "text_colour": "panel_black",
+     "logo": "vinyl banner with a plate of food photo and a sauce bottle",
+     "on": "brick"
+    }
+   ],
+   "notes": "sv_W2_p-LDZaajZrZuLt8dsH8sUg_100; a small red fabric awning/umbrella at the far rear corner."
+  },
+  "W0": {
+   "faces": "NW",
+   "length_m": 79.7,
+   "confidence": "low",
+   "summary": "rear facing the E7 lot: plain flat-topped brown/taupe wall ~5-6 m with a parapet, no shopfronts, a few service doors; flat roof behind the front shingle slope",
+   "height_m": 6.0,
+   "rows": [
+    [
+     6.0,
+     "wall"
+    ]
+   ],
+   "bays": [
+    [
+     79.7,
+     "rear"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_brown",
+   "notes": "Earth only (earth_W0_whole): the parapet steps once near the middle (raised gable section); grass strip and a curb then E7's surface lot behind. Colour and door count are guesses."
+  },
+  "W4": {
+   "faces": "NE",
+   "length_m": 15.3,
+   "confidence": "low",
+   "summary": "east end facing Molly Bloom's across a drive: red-brown brick with the tan siding fascia/gable return",
+   "height_m": 6.0,
+   "rows": [
+    [
+     2.6,
+     "wall"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     15.3,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "wall/brick": {
+     "type": "panel",
+     "colour": "brick_dark"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "notes": "far view in sv_W4_Hcn03ZD3CC49rJP5iOM7Bg_100 (Aug 2023)."
+  }
+ },
+ "roof": [
+  {
+   "what": "brown shingle mansard slope across the front from the 4.2 m eave to ~6 m, flat membrane roof behind with ~15 rooftop units",
+   "where": "whole block"
+  },
+  {
+   "what": "two big front gables and a porch gable",
+   "where": "W3 s 32-53, apex ~8 m"
+  },
+  {
+   "what": "hip/gable end with the Pita Factory roundel",
+   "where": "west end over W2"
+  }
+ ],
+ "geometry_notes": "Footprint OK; lidar 6.0 m is the flat-roof parapet. Add the raised gable section on W3 s 32-53 (apex ~8 m) and the Slap porch (1.6 m forward, s 37.7-46.4). Williams Fresh Cafe is NOT in this building (it is at the east end of oid17445).",
+ "site": {
+  "neighbours": [
+   "oid17445 (Williams) ~15 m west across a drive",
+   "Molly Bloom's Irish Pub (separate building) east across a drive",
+   "E7 and its surface lot behind (north)"
+  ],
+  "ground": [
+   "2.5 m concrete sidewalk with curb, nose-in stalls with yellow lines",
+   "accessible stalls with blue paint at both ends"
+  ],
+  "entities": [
+   {
+    "type": "planter",
+    "kind": "square charcoal/grey segmental-block planter ~1.0 x 0.6 m with perennials",
+    "where": "sidewalk along W3 at s ~3, 8, 22, 34, 41, 46, 70, 77, 1.5 m out",
+    "count": 8,
+    "photo": "sv_W3_Kwoo / Usko / waRQ"
+   },
+   {
+    "type": "patio",
+    "kind": "timber pergola with black picket fence, picnic tables",
+    "where": "in front of W2 (Pita Factory), 7 x 4 m",
+    "count": 1
+   },
+   {
+    "type": "bin",
+    "kind": "black waste bins",
+    "where": "W3 s ~16 and s ~70, against the columns",
+    "count": 2
+   },
+   {
+    "type": "a_frame",
+    "kind": "pink menu A-frame",
+    "where": "Baba Grill, W3 s ~21, 0.5 m out",
+    "count": 1
+   },
+   {
+    "type": "vending",
+    "kind": "white ice chest/vending box",
+    "where": "University Convenience, W3 s ~31.5",
+    "count": 1
+   },
+   {
+    "type": "sign",
+    "kind": "white 'UNIVERSITY SHOPS PLAZA ONLY' parking notice",
+    "where": "on the column at W3 s ~52.4, and on posts at the west and east ends",
+    "count": 3
+   },
+   {
+    "type": "sign",
+    "kind": "blue accessible-parking sign on a post",
+    "where": "W3 s ~80, at the curb; and at the west end by the pergola",
+    "count": 2
+   },
+   {
+    "type": "hydrant",
+    "kind": "red fire hydrant",
+    "where": "past the east end, ~4 m east of W3 b, 3 m out",
+    "count": 1
+   },
+   {
+    "type": "light_pole",
+    "kind": "tall single-head dark grey pole",
+    "where": "curb island at the east end facing Molly Bloom's, and one by the west drive",
+    "count": 2
+   },
+   {
+    "type": "bike",
+    "kind": "parked bicycle",
+    "where": "W3 s ~49",
+    "count": 1
+   }
+  ]
+ }
+}

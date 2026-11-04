@@ -118,7 +118,7 @@ def ndsm_tiers(parts, excl, spec):
     out = []
     for g, v in rasterio.features.shapes(lab, mask=lab > 0, transform=T):
         poly = Polygon(g["coordinates"][0], g["coordinates"][1:]).buffer(0)
-        lv = float(levels[int(v) - 1])
+        lv = min(float(levels[int(v) - 1]), spec.get("cap_h", 1e9))   # cap_h: walls stop at the eave (pitched roofs)
         if lv <= spec.get("max_h", 1e9):
             out.append([poly, lv, gy])
     return out
@@ -127,7 +127,9 @@ def ndsm_tiers(parts, excl, spec):
 def main(spec_path, out_path):
     spec = json.loads(Path(spec_path).read_text())
     blds = json.loads((ROOT / "data" / "build" / "art" / "buildings.json").read_text())
-    parts = [b for b in blds.values() if (b["abbrev"] or "").strip() == spec["abbrev"] and b["objectid"] not in spec.get("skip_objectids", [])]
+    ab = spec["abbrev"]
+    match = (lambda b: b["objectid"] == int(ab[3:])) if ab.startswith("oid") and ab[3:].isdigit() else (lambda b: (b["abbrev"] or "").strip() == ab)
+    parts = [b for b in blds.values() if match(b) and b["objectid"] not in spec.get("skip_objectids", [])]
     excl = unary_union([Polygon(r) for r in spec.get("exclude", [])]) if spec.get("exclude") else None
     tiers = []
     if spec.get("source") == "ndsm":

@@ -34,6 +34,10 @@ MODELS = {
     "bld_dwe": dict(abbrev="DWE"),
     "bld_sch": dict(abbrev="SCH"),
     "bld_uc": dict(abbrev="UC"),
+    # University Shops Plaza (tier 3): strips by City OBJECTID, signs read off Street View
+    "bld_plaza_west": dict(abbrev="oid388", dir="docs/refs/buildings/oid388", cap_h=4.2, merge_dh=5.0, extra="shingle_roof"),
+    "bld_plaza_north": dict(abbrev="oid10769", dir="docs/refs/buildings/oid10769", cap_h=4.2, merge_dh=5.0, extra="shingle_roof"),
+    "bld_plaza_lazeez": dict(abbrev="oid17445", dir="docs/refs/buildings/oid17445", cap_h=4.2, merge_dh=5.0, extra="shingle_roof"),
 }
 META = {}
 
@@ -87,7 +91,27 @@ def csb_stack(k, tiers):
     k.tube([(x, y, gy + 59.5), (x, y, gy + 62.6)], 2.35, "brick_charcoal_tower", sides=16)
 
 
-EXTRAS = {"observatory": observatory, "pac_mansard": pac_mansard, "csb_stack": csb_stack}
+def shingle_roof(k, tiers, eave=4.2, rise=3.4, depth=4.0):
+    """University Shops Plaza (facades.json geometry_notes): brown shingled slopes rise from the
+    storefront fascia (eave ~4.2 m) to a flat top ~3.4 m higher; the lidar tops are the ridge."""
+    import math
+    for t in tiers:
+        ring = arch.ccw(t["rings"][0])
+        gy = t["ground_y"]
+        top = arch.inset(ring, depth)
+        for i in range(len(ring)):
+            a, b = ring[i], ring[(i + 1) % len(ring)]
+            ta, tb = top[i], top[(i + 1) % len(ring)]
+            k.quad((*a, gy + eave), (*b, gy + eave), (*tb, gy + eave + rise), (*ta, gy + eave + rise), "roof_shingle")
+            # shingle courses: thin dark lines along the slope
+            for f in (0.25, 0.5, 0.75):
+                p0 = (a[0] + (ta[0] - a[0]) * f, a[1] + (ta[1] - a[1]) * f, gy + eave + rise * f + 0.01)
+                p1 = (b[0] + (tb[0] - b[0]) * f, b[1] + (tb[1] - b[1]) * f, gy + eave + rise * f + 0.01)
+                k.tube([p0, p1], 0.025, "roof_mansard", sides=3)
+        k.roof(top, gy + eave + rise, "roof_gravel")
+
+
+EXTRAS = {"shingle_roof": shingle_roof, "observatory": observatory, "pac_mansard": pac_mansard, "csb_stack": csb_stack}
 
 
 def build(model):

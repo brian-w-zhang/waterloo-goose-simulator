@@ -21,8 +21,12 @@ def buildings():
 
 
 def building_parts(abbrev):
-    """Every footprint part carrying this City abbreviation (a building can have several)."""
-    out = [b for b in buildings() if (b["abbrev"] or "").strip() == abbrev]
+    """Every footprint part carrying this City abbreviation (a building can have several); "oid<N>"
+    names an unabbreviated building by its City OBJECTID (the plaza strips)."""
+    if abbrev.startswith("oid") and abbrev[3:].isdigit():
+        out = [b for b in buildings() if b["objectid"] == int(abbrev[3:])]
+    else:
+        out = [b for b in buildings() if (b["abbrev"] or "").strip() == abbrev]
     if not out:
         raise KeyError(f"no building {abbrev!r} in {ART / 'buildings.json'}")
     return out

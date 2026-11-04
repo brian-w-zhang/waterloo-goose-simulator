@@ -1,0 +1,1476 @@
+{
+ "building": "AHS EXP",
+ "sources_checked": [
+  "around/sv_W0_EjhDVRXdPG4LnKKgAv0KLw_70/_100 (May 2025)",
+  "around/sv_W1_8w6O, sv_W1_Tx73, sv_W1_kncP (May 2025)",
+  "around/sv_W2_AEZU, sv_c0_AEZU (May 2025)",
+  "around/sv_c14_qIiF, sv_c15/c16_EjhD (May 2025)",
+  "around/earth_W0..W9_whole, earth_W1_l/m/r, earth_W2_l/m/r, earth_corner_*",
+  "private/earth_orbit_000..315, earth_facade_0..3, earth_detail_0a..3c",
+  "private/ortho_2023aug via review/art/ahs_exp_study.jpg (lidar + ortho)",
+  "private/web/uw029 (2014 rendering), uw030 (W1/W2 corner, c2016-20), uw031 (entrance at dusk)",
+  "Street View sv_W2_Jf18/rblX, sv_W3..W9, sv_c1..c13 are Sep 2014 and show the site before the building: ignored except for neighbours"
+ ],
+ "photo_dates": "Street View May 2025 covers W0-W2 only; Earth 2024 covers every face; web photos 2016-2022; 2014 rendering. Every 2014 Street View panorama predates construction.",
+ "colours": {
+  "brick": {
+   "hex": "#a5604c judged by eye (SV overcast #7e5a46-#856a5d, Earth sunlit #d59b88)",
+   "palette": "brick_red",
+   "where": "all brick: W1 pier and parapet frame, W2/W3 base, tower corner masses on U0/U1, W0/W9 base, W4 and W8 ends. Redder and a little darker than the BMH/LHI orange brick next door (sv_c14, both in one frame)"
+  },
+  "siding": {
+   "hex": "#484e58 (uw030 shade); Earth sun #9da2b3",
+   "palette": "brick_slate",
+   "where": "horizontally ribbed charcoal metal siding over level 3 and up on W2 (s 11+), W3, U0 (s 0-1.5) and between the U1 ribbons"
+  },
+  "dark_box_glass": {
+   "hex": "#545962 (sv_W1_Tx73)",
+   "palette": "stripe_dark",
+   "where": "projecting curtain-wall box over levels 2-3 on W1 and the W2 corner"
+  },
+  "box_frame": {
+   "hex": "#272825",
+   "palette": "penthouse_metal",
+   "where": "deep black frame and mullions of the box, entrance canopy, top copings"
+  },
+  "clear_glass": {
+   "palette": "window_glass",
+   "where": "storefront ribbons, top-floor ribbon, curtain walls, glass slots, entrance vestibule; frames clear aluminium metal_silver"
+  },
+  "grey_band": {
+   "hex": "#6e7677 (sv_W0)",
+   "palette": "window_dark",
+   "where": "opaque grey glass band on top of the entrance vestibule (W0/W9)"
+  },
+  "parapet_metal": {
+   "palette": "metal_silver",
+   "where": "light metal parapet fascias of the 2-storey east wing (W4, W6-W8, U2) and the W5 strip"
+  },
+  "service_door": {
+   "hex": "#6a5850 judged by eye",
+   "palette": "roof_mansard",
+   "where": "brown double service door on W3"
+  },
+  "sign": {
+   "palette": "panel_black",
+   "where": "HLTH sign panel on W0; yellow accent flower_yellow"
+  }
+ },
+ "geometry_notes": [
+  "The building is a 4-storey tower and a 2-storey L-shaped wing. The tower is the clean rectangle (671.8,514.3) (689.5,479.2) (717.6,493.4) (699.9,528.6), flat roof at 18.7 m (lidar 18.7). The lidar's 19.7 m tier at its E side is the same flat roof (drainage crickets or snow), not a step. The 18.7/9.7 massing outline zig-zags along the tower's NE side ((717.3,494.4) (708.9,509.3) (707.1,505.5) (711.5,499.5) ...): it should be the straight line U1.",
+  "The wing (lidar 9.7 m) wraps the tower's SE and NE sides: W4, U2, W6, W7, W8, the jog W8b-W9a, W9, W0. A 4.5 m one-storey strip lies between U2 and W5. walls.json has no walls above the wing roof, so the tower's upper SE and NE faces are given here as U0, U1 and U2 ('upper': true, art ends a/b, z0).",
+  "CONFLICT with lhi/facades.json: AHS W5 s 0-9.5 lies on LHI W0's line. AHS EXP (built about 2014-16) covers the old LHI portico plaza, the area (716-722, 474-485) where LHI's spec puts its stucco entrance portico, and its bike rack at (727-731, 486-490): this is now inside the 9.7 m wing (lidar, earth_W5_whole, earth_detail_2a). LHI's W0 entrance, its portico canopy and that rack come from Sep 2014 Street View and should be hidden or dropped. LHI's 'AHS directly N/NE across the portico plaza' is out of date.",
+  "BMH: W6 lies within 0.3 m of BMH W12 s 25-36 (BMH 7.5 m tall there). BMH W13 (the old recessed glazed stair face by the LHI plaza) now sits at the joint between AHS W5 b and W6 a, so it is enclosed. BMH W3's 'hidden' bay s 8-18 agrees with AHS's link touching BMH around (711-713, 516-525).",
+  "Two short edges are missing from walls.json. (1) W8 b -> W9 a ((711.4,521.9) (712.7,525.1) (710.2,524.2), about 2.6 m) faces NW at the back of the dead-end gap between W9 and BMH W3: brick with a black service door at the top of a short ramp (sv_W0). (2) W5 b -> W6 a ((732.7,479.8) -> (731.4,482.6), about 3 m) is the joint with BMH W13.",
+  "W0 stands 1.4 m proud of the W1 line (the vestibule projects past the brick pier), as in walls.json."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 7.0,
+   "confidence": "high",
+   "summary": "main entrance: 2-storey glass vestibule standing 1.4 m proud of W1, two pairs of glass doors under a cantilevered dark steel-and-glass canopy, black 'HLTH' sign on a narrow brick pier at the a end, grey glass band at the top",
+   "height_m": 9.4,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.7,
+     "pier"
+    ],
+    [
+     1.1,
+     "side"
+    ],
+    [
+     1.8,
+     "door"
+    ],
+    [
+     1.8,
+     "door"
+    ],
+    [
+     1.6,
+     "side"
+    ]
+   ],
+   "cells": {
+    "ground/pier": null,
+    "ground/side": {
+     "type": "glass",
+     "w": 0.95,
+     "h": 3.7,
+     "sill": 0.05,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.75,
+     "h": 3.7,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "aluminium double doors 2.4 m high with a glass transom above to the canopy"
+    },
+    "l2/*": {
+     "type": "glass",
+     "w": 0.98,
+     "h": 3.5,
+     "sill": 0.05,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "big clear panes (about 1.8 m wide), short row at the bottom then one tall row; pendant lights inside (sv_W0, uw031)"
+    },
+    "band/*": {
+     "type": "panel",
+     "colour": "window_dark",
+     "note": "opaque grey spandrel glass band (sv_W0 #6e7677)"
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     3.45,
+     3.7,
+     "penthouse_metal",
+     1.8
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 0.35,
+     "z": 0.6,
+     "w": 0.6,
+     "h": 2.4,
+     "text": "HLTH / Expansion EXP",
+     "colour": "panel_black",
+     "on": "wall",
+     "note": "tall black UW building-code panel: yellow 'HLTH', small white 'Expansion EXP' under it (uw031, sv_W0)"
+    },
+    {
+     "s": 0.35,
+     "z": 2.75,
+     "w": 0.6,
+     "h": 0.25,
+     "text": "",
+     "colour": "flower_yellow",
+     "on": "wall",
+     "note": "yellow hexagon-pattern cap at the top of the black panel"
+    }
+   ],
+   "attached": [
+    "canopy: dark steel frame with a glass top, about 7.5 m wide and 1.8 m deep, cantilevered at about 3.5 m over both door pairs; it runs just past the b end to the W1 brick pier (uw031, sv_W0). Drawn as the 1.8 m band at 3.45-3.7",
+    "W9 (the vestibule's NE side) is brick below and glass above, so the brick pier at s 0-0.7 is the end of that return"
+   ],
+   "notes": "sv_W0 (May 2025, square-on, about 40 px/m) for the layout and heights (doors 2.4 m, canopy 3.5 m, glass box top about 8.7-9.4 m; lidar 9.7). Door-pair positions are \u00b10.3 m. The upper mullions really fall at about 1.8 m spacing; here they follow the ground bays."
+  },
+  "W1": {
+   "faces": "NW",
+   "length_m": 31.5,
+   "confidence": "high",
+   "summary": "Ring Road face: red-brown brick frame (4.6 m pier at the a end, thick brick parapet) around a projecting black-framed dark curtain-wall box over levels 2-3, a clear glass ribbon on level 4 and a full-length storefront ribbon on level 1",
+   "height_m": 18.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     3.8,
+     "l2"
+    ],
+    [
+     4.8,
+     "l3"
+    ],
+    [
+     3.0,
+     "l4"
+    ],
+    [
+     2.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     4.6,
+     "pier"
+    ],
+    [
+     26.9,
+     "box"
+    ]
+   ],
+   "cells": {
+    "ground/box": {
+     "type": "glass",
+     "w": 0.99,
+     "h": 3.6,
+     "sill": 0.4,
+     "mullion_pitch": 1.68,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "ground-floor storefront ribbon on a 0.4 m grey precast base; transom at about 2/3 height"
+    },
+    "l2/box": {
+     "type": "window",
+     "w": 0.97,
+     "h": 3.6,
+     "sill": 0.15,
+     "colour": "penthouse_metal",
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.6,
+     "depth": 0.1,
+     "hood": {
+      "projection": 0.5,
+      "fin_w": 0.35,
+      "head": 0.25,
+      "fin_colour": "penthouse_metal",
+      "soffit_colour": "penthouse_metal"
+     },
+     "note": "lower half of the projecting dark curtain-wall box: vision row over a dark spandrel"
+    },
+    "l3/box": {
+     "type": "window",
+     "w": 0.97,
+     "h": 4.5,
+     "sill": 0.1,
+     "colour": "penthouse_metal",
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.5,
+     "depth": 0.1,
+     "hood": {
+      "projection": 0.5,
+      "fin_w": 0.35,
+      "head": 0.25,
+      "fin_colour": "penthouse_metal",
+      "soffit_colour": "penthouse_metal"
+     },
+     "note": "upper half of the box: two dark vision rows over an opaque dark spandrel row; black cap frame on top"
+    },
+    "l4/box": {
+     "type": "glass",
+     "w": 0.99,
+     "h": 2.7,
+     "sill": 0.15,
+     "mullion_pitch": 1.65,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "top-floor clear glass ribbon, flush with the brick, directly above the box cap"
+    },
+    "*/pier": null,
+    "parapet/*": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.4,
+     "concrete",
+     0.03
+    ],
+    [
+     18.55,
+     18.7,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 2.6,
+     "z": 1.1,
+     "w": 0.4,
+     "h": 0.3,
+     "text": "small building plaque",
+     "colour": "panel_white",
+     "on": "wall",
+     "note": "small light plaque on the pier, utility boxes at its foot (sv_W1_Tx73)"
+    }
+   ],
+   "attached": [
+    "the dark box wraps the b corner onto W2 for about 7.5 m with a glass-to-glass corner (uw030, sv_W2_AEZU)",
+    "the box stands about 0.5 m proud of the brick with a deep black frame: thick cap at about 12.7-13.0 m and a black fascia at its foot at about 4.1-4.4 m (sv_W1_Tx73)"
+   ],
+   "notes": "Bay widths from earth_W1_whole and earth_W1_l (pier 4.5-5.0 m) and sv_W1_Tx73 (16 storefront panes, about 1.68 m). Storey heights are a compromise: Earth meshes stretch the parapet and SV pitch compresses the top. Brick/siding change on W2 at 8.1 m and NE-face ribbons at 9.9-11.9 and 13.7-15.8 m fix the floor lines at about 4.3 / 8.1 / 12.9 m. Inside the box SV shows from the top: dark vision row, thin band, dark vision row, opaque dark spandrel, thin band, more transparent L2 vision row, dark spandrel. The mullions are about 1.6 m with narrow vent strips; not reproduced. 2014 rendering uw029 agrees."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 39.4,
+   "confidence": "high",
+   "summary": "parking-lot face: the dark box wraps the NW corner (s 0-7.5) beside a full-height glass slot; the rest is charcoal horizontally-ribbed metal siding over a 2-storey brick base, with a recessed dark louvre panel and a hooded ribbon window in the siding and a 2-storey glazed corner at the S end",
+   "height_m": 18.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     3.8,
+     "l2"
+    ],
+    [
+     4.8,
+     "l3"
+    ],
+    [
+     3.0,
+     "l4"
+    ],
+    [
+     2.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     7.5,
+     "box"
+    ],
+    [
+     3.5,
+     "slot"
+    ],
+    [
+     5.6,
+     "siding"
+    ],
+    [
+     13.0,
+     "louvre"
+    ],
+    [
+     3.4,
+     "glaze"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     5.2,
+     "glaze"
+    ]
+   ],
+   "cells": {
+    "ground/*": null,
+    "l2/*": null,
+    "l3/*": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "l4/*": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "ground/box": {
+     "type": "glass",
+     "w": 0.99,
+     "h": 3.6,
+     "sill": 0.4,
+     "mullion_pitch": 1.68,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "ground-floor storefront ribbon on a 0.4 m grey precast base; transom at about 2/3 height"
+    },
+    "l2/box": {
+     "type": "window",
+     "w": 0.97,
+     "h": 3.6,
+     "sill": 0.15,
+     "colour": "penthouse_metal",
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.6,
+     "depth": 0.1,
+     "hood": {
+      "projection": 0.5,
+      "fin_w": 0.35,
+      "head": 0.25,
+      "fin_colour": "penthouse_metal",
+      "soffit_colour": "penthouse_metal"
+     },
+     "note": "lower half of the projecting dark curtain-wall box: vision row over a dark spandrel"
+    },
+    "l3/box": {
+     "type": "window",
+     "w": 0.97,
+     "h": 4.5,
+     "sill": 0.1,
+     "colour": "penthouse_metal",
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.5,
+     "depth": 0.1,
+     "hood": {
+      "projection": 0.5,
+      "fin_w": 0.35,
+      "head": 0.25,
+      "fin_colour": "penthouse_metal",
+      "soffit_colour": "penthouse_metal"
+     },
+     "note": "upper half of the box: two dark vision rows over an opaque dark spandrel row; black cap frame on top"
+    },
+    "l4/box": {
+     "type": "glass",
+     "w": 0.99,
+     "h": 2.7,
+     "sill": 0.15,
+     "mullion_pitch": 1.65,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "top-floor clear glass ribbon, flush with the brick, directly above the box cap"
+    },
+    "parapet/box": null,
+    "ground/slot": {
+     "type": "glass",
+     "w": 0.99,
+     "h": 3.6,
+     "sill": 0.4,
+     "mullion_pitch": 1.68,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "ground-floor storefront ribbon on a 0.4 m grey precast base; transom at about 2/3 height"
+    },
+    "l2/slot": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l3/slot": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l4/slot": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "parapet/slot": null,
+    "l3/louvre": {
+     "type": "window",
+     "w": 0.97,
+     "h": 2.3,
+     "sill": 0.4,
+     "colour": "brick_slate",
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "mullion_pitch": 2.2,
+     "depth": 0.1,
+     "hood": {
+      "projection": 0.3,
+      "fin_w": 0.08,
+      "head": 0.15,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     },
+     "note": "ribbon window z 8.5-10.8 in the siding with a light-grey projecting head and jambs (uw030, earth_W2_whole)"
+    },
+    "l4/louvre": {
+     "type": "louvre",
+     "w": 0.97,
+     "h": "full",
+     "colour": "brick_slate",
+     "glass": "penthouse_metal",
+     "frame": "panel_black",
+     "depth": 0.12,
+     "note": "large recessed dark louvre/screen panel about 13 x 3.9 m, z about 12.3-16.2 (uw030 dark slats; earth shows its outline)"
+    },
+    "ground/glaze": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/glaze": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 0.9,
+     "h": 3.9,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "single glazed door in the corner curtain wall (earth_W2_whole s about 33-34); exact position \u00b11 m"
+    },
+    "l2/door": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.03
+    ],
+    [
+     18.55,
+     18.7,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "two small dark wall lamps on the brick at s about 12 and 28, z about 2.5 (earth_W2_whole)",
+    "the 2-storey glazing at s 29.6-39.4 turns the S corner onto W3 s 0-3.1"
+   ],
+   "notes": "earth_W2_whole (2024, square-on, 33 px/m) for every s and z: glass slot s 7.4-11, siding from s 11 and above z 7.9-8.1, ribbon s 16.7-29.8 z 8.5-10.8, louvre s 16.6-30.6 z 12.3-16.2, lower glazing s 29.4-38.4. The brick parapet over s 0-11 is the top of the brick frame round the box. Siding colour: Earth's sunlit SE face reads light blue-grey (#9da2b3) but SV May 2025 and uw030 show dark charcoal (#484e58), so brick_slate. The siding is ribbed horizontally; facade() can do this with 'ribbed' but spec.to_facade does not pass it on."
+  },
+  "W3": {
+   "faces": "SE",
+   "length_m": 20.2,
+   "confidence": "medium",
+   "summary": "service face over the paved yard: 2-storey glazed corner at the a end, then a brick base with a level-2 ribbon of windows, a wide brown service door and two small louvres; charcoal siding above level 2",
+   "height_m": 18.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     3.8,
+     "l2"
+    ],
+    [
+     4.8,
+     "l3"
+    ],
+    [
+     3.0,
+     "l4"
+    ],
+    [
+     2.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.1,
+     "corner"
+    ],
+    [
+     0.4,
+     "edge"
+    ],
+    [
+     0.9,
+     "rib"
+    ],
+    [
+     2.8,
+     "door"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.2,
+     "louv"
+    ],
+    [
+     5.0,
+     "rib"
+    ],
+    [
+     1.2,
+     "louv"
+    ],
+    [
+     1.7,
+     "rib"
+    ],
+    [
+     2.9,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/*": null,
+    "l3/*": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "l4/*": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "ground/corner": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/corner": {
+     "type": "glass",
+     "w": 0.97,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/*": null,
+    "l2/rib": {
+     "type": "glass",
+     "w": 1.0,
+     "h": 1.3,
+     "sill": 0.6,
+     "mullion_pitch": 1.4,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "ribbon z 4.9-6.2 with a light sill strip under it, s 3.5-17.3"
+    },
+    "l2/door": {
+     "type": "glass",
+     "w": 1.0,
+     "h": 1.3,
+     "sill": 0.6,
+     "mullion_pitch": 1.4,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/louv": {
+     "type": "glass",
+     "w": 1.0,
+     "h": 1.3,
+     "sill": 0.6,
+     "mullion_pitch": 1.4,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 2.4,
+     "h": 2.7,
+     "mullions": 1,
+     "glass": "roof_mansard",
+     "frame": "penthouse_metal",
+     "note": "solid brown-painted double service door (earth_W3_whole, earth_detail_2c)"
+    },
+    "ground/louv": {
+     "type": "louvre",
+     "w": 1.1,
+     "h": 0.6,
+     "sill": 1.9,
+     "glass": "brick_charcoal_tower",
+     "frame": "penthouse_metal"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.03
+    ],
+    [
+     4.65,
+     4.8,
+     "metal_silver",
+     0.05
+    ],
+    [
+     18.55,
+     18.7,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "small wall lamp over the service door at s about 5.5, z about 3.5 (earth_W3_whole)",
+    "the brick planter of W4 sits in the corner just past the b end"
+   ],
+   "notes": "Only Earth 2024 shows this face (earth_W3_whole about 50 px/m, earth_detail_2c, earth_orbit_000); Street View here is from Sep 2014, before the building. A vertical siding joint runs up from the edge of the corner glazing (s 3.1). The ribbon's sill band (4.65-4.8) is drawn the full width; really it stops at s 3.5 and s 17.3."
+  },
+  "W4": {
+   "faces": "SW",
+   "length_m": 16.0,
+   "confidence": "low",
+   "summary": "SW end of the 2-storey east wing, facing the planter yard: brick for 3 m next to the tower, then 2-storey clear curtain wall that turns the corner onto the wing's glazed SE face",
+   "height_m": 9.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     1.1,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "brick"
+    ],
+    [
+     13.0,
+     "glaze"
+    ]
+   ],
+   "cells": {
+    "*/brick": null,
+    "ground/glaze": {
+     "type": "glass",
+     "w": 0.98,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/glaze": {
+     "type": "glass",
+     "w": 0.98,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "planting bed in front (see site.entities)"
+   ],
+   "notes": "earth_W4_whole, earth_detail_3a, earth_orbit_000 (Earth only, mostly in shade). Whether there is a door into the yard is not visible: guess none. The metal parapet band is light grey like the SE glazed face (earth_W5_whole)."
+  },
+  "W5": {
+   "faces": "SE",
+   "length_m": 17.3,
+   "confidence": "low",
+   "summary": "one-storey (4.5 m) strip along the old LHI front: s 0-9.5 is back-to-back with LHI W0 (not visible); s 9.5-17.3 is a low glazed face at the north end of LHI's open-air walkway",
+   "height_m": 4.5,
+   "rows": [
+    [
+     4.0,
+     "ground"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     9.5,
+     "party"
+    ],
+    [
+     7.8,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "*/party": null,
+    "ground/glass": {
+     "type": "glass",
+     "w": 0.97,
+     "h": 3.5,
+     "sill": 0.1,
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "small glazed face seen only from above (earth_detail_2a, bottom centre, by the purple-leaf maple); probably an entrance from the walkway: guess"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Lidar tier 4.5 m, about 3-4 m deep, along this line. LHI's spec still draws W0 as its entrance with a portico in front. That is from Sep 2014 photos, before AHS EXP; see geometry_notes."
+  },
+  "W6": {
+   "faces": "E",
+   "length_m": 12.5,
+   "confidence": "low",
+   "summary": "east end of the 2-storey wing, back-to-back with BMH W12 s 25-36 (BMH is 7.5 m there); only the top 2.2 m shows, as a light metal parapet over BMH's roof",
+   "height_m": 9.7,
+   "rows": [
+    [
+     7.5,
+     "behind"
+    ],
+    [
+     2.2,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     12.5,
+     "x"
+    ]
+   ],
+   "cells": {
+    "behind/*": null,
+    "upper/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "walls.json puts W6 within 0.3 m of BMH W12. Not seen in any photo; the 2014 sv_W6 shows BMH's own brick and bikes before AHS was built."
+  },
+  "W7": {
+   "faces": "N",
+   "length_m": 12.1,
+   "confidence": "low",
+   "summary": "angled courtyard return of the east wing: 2-storey curtain wall like W8, light metal parapet",
+   "height_m": 9.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     1.1,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     12.1,
+     "glaze"
+    ]
+   ],
+   "cells": {
+    "ground/glaze": {
+     "type": "glass",
+     "w": 0.98,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/glaze": {
+     "type": "glass",
+     "w": 0.98,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "metal_silver",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W8_whole left edge and earth_detail_1b left (glazed return with some solid metal panels near the far end). No Street View after 2014."
+  },
+  "W8": {
+   "faces": "NE",
+   "length_m": 26.3,
+   "confidence": "medium",
+   "summary": "courtyard face (BMH's curved-path courtyard): 2-storey clear curtain wall with a spandrel line at level 2 and a deep light-grey metal parapet; short brick piece at the b end against BMH",
+   "height_m": 9.7,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     1.1,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     24.8,
+     "glaze"
+    ],
+    [
+     1.5,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "ground/glaze": {
+     "type": "glass",
+     "w": 0.99,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/glaze": {
+     "type": "glass",
+     "w": 0.99,
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "parapet/glaze": {
+     "type": "panel",
+     "colour": "metal_silver"
+    },
+    "*/brick": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     4.2,
+     4.45,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W8_whole, earth_detail_1b, earth_facade_1 (2024). Heavy mullions every few metres with thinner ones between; the 1.5 m pitch is the average. The b-end brick (about 1.5 m) meets BMH's brick tower (BMH W4/W3 corner)."
+  },
+  "W9": {
+   "faces": "NE",
+   "length_m": 10.0,
+   "confidence": "low",
+   "summary": "NE side of the entrance link, facing a 2.3-3.7 m dead-end gap to BMH W3: brick ground storey, big clear panes on level 2, grey glass band on top",
+   "height_m": 9.4,
+   "rows": [
+    [
+     4.3,
+     "ground"
+    ],
+    [
+     3.4,
+     "l2"
+    ],
+    [
+     1.3,
+     "band"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.0,
+     "x"
+    ]
+   ],
+   "cells": {
+    "ground/*": null,
+    "l2/*": {
+     "type": "glass",
+     "w": 0.98,
+     "h": "full",
+     "mullion_pitch": 1.7,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "band/*": {
+     "type": "panel",
+     "colour": "window_dark"
+    },
+    "coping/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "galvanised-railed ramp in the gap rising to a black service door at the back of the gap (see site.entities)"
+   ],
+   "notes": "uw031 (left half: brick below, tall clear panes with pendant lights above) and earth_detail_0c (the link is a narrow 2-storey glass box with a long flat roof running back between AHS and BMH). How far back along the face the level-2 glass runs is not visible: assumed the whole face."
+  },
+  "U0": {
+   "upper": true,
+   "a": [
+    707.53,
+    488.22
+   ],
+   "b": [
+    717.6,
+    493.4
+   ],
+   "z0": 9.7,
+   "faces": "SE",
+   "length_m": 11.3,
+   "confidence": "medium",
+   "summary": "tower's SE face above the east-wing roof: a strip of siding, a full-height glass slot (stair) and a brick corner mass",
+   "height_m": 18.7,
+   "rows": [
+    [
+     3.2,
+     "l3"
+    ],
+    [
+     3.0,
+     "l4"
+    ],
+    [
+     2.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "siding"
+    ],
+    [
+     3.8,
+     "slot"
+    ],
+    [
+     6.0,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/siding": {
+     "type": "panel",
+     "colour": "brick_slate"
+    },
+    "l3/slot": {
+     "type": "glass",
+     "w": 0.95,
+     "h": "full",
+     "mullion_pitch": 1.3,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l4/slot": {
+     "type": "glass",
+     "w": 0.95,
+     "h": "full",
+     "mullion_pitch": 1.3,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "parapet/slot": {
+     "type": "glass",
+     "w": 0.95,
+     "h": "full",
+     "mullion_pitch": 1.3,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "*/brick": null
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     18.55,
+     18.7,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Line: the tower's SE side from W3 b to the E corner (W1 direction from W2 b, 31.5 m). The slot is at s 1.5-5.3 here, i.e. 21.7-25.5 m along the whole SE side: earth_W5_whole puts it at about 22.8-26.6, earth_W6/earth_orbit_000 at about 17-25. The slot glass runs right up to the roof edge (earth_W5_whole, earth_W6_whole)."
+  },
+  "U1": {
+   "upper": true,
+   "a": [
+    717.6,
+    493.4
+   ],
+   "b": [
+    699.87,
+    528.57
+   ],
+   "z0": 9.7,
+   "faces": "NE",
+   "length_m": 39.4,
+   "confidence": "medium",
+   "summary": "tower's NE face above the east wing and entrance link: brick corner masses at both ends, between them siding with two long ribbon windows (levels 3 and 4)",
+   "height_m": 18.7,
+   "rows": [
+    [
+     3.2,
+     "l3"
+    ],
+    [
+     3.0,
+     "l4"
+    ],
+    [
+     2.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     7.0,
+     "pier"
+    ],
+    [
+     26.6,
+     "rib"
+    ],
+    [
+     5.8,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "*/pier": null,
+    "l3/rib": {
+     "type": "window",
+     "w": 0.99,
+     "h": 2.0,
+     "sill": 0.2,
+     "colour": "brick_slate",
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "mullion_pitch": 2.0,
+     "depth": 0.1
+    },
+    "l4/rib": {
+     "type": "window",
+     "w": 0.99,
+     "h": 2.1,
+     "sill": 0.8,
+     "colour": "brick_slate",
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "mullion_pitch": 2.0,
+     "depth": 0.1
+    },
+    "parapet/rib": {
+     "type": "panel",
+     "colour": "brick_slate"
+    }
+   },
+   "wall": "brick_red",
+   "bands": [
+    [
+     18.55,
+     18.7,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W8_whole (about 43 px/m vertically above the wing roof: ribbons at z 9.9-11.9 and 13.7-15.8), earth_detail_1b, earth_W9_whole, earth_W6_whole. Pier widths \u00b11.5 m (oblique views). sv_c14 (2025) sees this face's N end edge-on as glazing past the brick corner: consistent with the ribbons. In sun the siding here reads light grey like the SE face."
+  },
+  "U2": {
+   "upper": true,
+   "a": [
+    714.7,
+    474.3
+   ],
+   "b": [
+    731.6,
+    483.2
+   ],
+   "z0": 4.5,
+   "faces": "SE",
+   "length_m": 19.1,
+   "confidence": "medium",
+   "summary": "east wing's upper SE face, set 3-3.6 m behind W5 and standing above the 4.5 m strip and LHI's roof: one storey of clear vertical-mullion curtain wall under a light metal parapet",
+   "height_m": 9.7,
+   "rows": [
+    [
+     4.4,
+     "glass"
+    ],
+    [
+     0.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     19.1,
+     "x"
+    ]
+   ],
+   "cells": {
+    "glass/*": {
+     "type": "glass",
+     "w": 0.99,
+     "h": "full",
+     "mullion_pitch": 1.8,
+     "transoms": 1,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "metal_silver"
+    }
+   },
+   "wall": "metal_silver",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W5_whole (square-on, about 42 px/m) and earth_detail_2a. The glass turns the SW corner onto W4. Line from the 9.7 m lidar tier edge."
+  }
+ },
+ "roof": [
+  {
+   "what": "lab exhaust fan cluster: 3-4 tall silver cylindrical stacks on a common base",
+   "where": "tower roof about (697,500) (lidar 21 m blob; earth_orbit_*)",
+   "size_m": [
+    6.0,
+    2.5,
+    3.0
+   ]
+  },
+  {
+   "what": "small silver rooftop unit",
+   "where": "tower roof about (700,507)",
+   "size_m": [
+    1.5,
+    1.5,
+    1.2
+   ]
+  },
+  {
+   "what": "small silver rooftop unit / hatch",
+   "where": "tower roof about (693,484) near the S corner",
+   "size_m": [
+    1.2,
+    1.2,
+    1.0
+   ]
+  },
+  {
+   "what": "light-grey membrane roof with a dark 'X' of drainage lines, thin dark coping",
+   "where": "tower roof",
+   "size_m": [
+    31.5,
+    39.4,
+    0
+   ]
+  },
+  {
+   "what": "a few small vents and two small grey units along the tower wall",
+   "where": "east-wing roof at the foot of U0/U1 (earth_W5_whole, earth_W6_whole)",
+   "size_m": [
+    1.0,
+    1.0,
+    0.8
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [],
+  "neighbours": [
+   "BMH: its north wing's west end (W2/W3, brick tower with a dark-glass bay) is 2.3-3.7 m NE of W9 across a dead-end gap; its old west face W12 is back-to-back with W6; the BMH courtyard with the curved path is in front of W7/W8",
+   "LHI directly S: its old W0 front is now back-to-back with W5; LHI's open-air walkway (W11) ends at W5 s 9.5-17.3",
+   "Ring Road along W1/W0 to the NW; visitor parking lot W and SW of W2; paved service yard and parking SE of W3/W4"
+  ],
+  "ground": [
+   "grey interlocking concrete paver plaza in front of W0 running to Ring Road, where a rainbow-painted crosswalk crosses (sv_c14, sv_W0)",
+   "mown lawn 6-8 m deep along W1 between the building and the paver sidewalk on Ring Road; clipped low shrub bed along the W1 base (s 5-31, 0-1.5 m out)",
+   "lawn and a concrete walk along W2, shrub strip at the foot of the W2 brick (s 11-29); the parking lot beyond",
+   "concrete-paved service yard and parking in front of W3/W4",
+   "BMH courtyard lawn with a curved concrete path and trees in front of W7/W8"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised inverted-U hoops on a ground rail, 4 hoops",
+    "where": "plaza edge NW of W1 s 0-3, about 6-8 m out (about (697,538))",
+    "count": 1,
+    "photo": "sv_W0, sv_c14, sv_W1_Tx73"
+   },
+   {
+    "type": "bin",
+    "kind": "black and blue multi-stream waste/recycling bins",
+    "where": "against the W1 brick pier just past W0 b, 0.5 m out",
+    "count": 2,
+    "photo": "sv_W0, uw031"
+   },
+   {
+    "type": "sign",
+    "kind": "stop sign on a galvanised pole",
+    "where": "plaza curb about (701,543), 9 m NW of W0",
+    "count": 1,
+    "photo": "sv_W0"
+   },
+   {
+    "type": "planter",
+    "kind": "square concrete planter box with flowers",
+    "where": "plaza near the curb about (710,543)",
+    "count": 1,
+    "photo": "sv_c14"
+   },
+   {
+    "type": "sign",
+    "kind": "black wayfinding sign on two posts: 'Ring Rd - East Visitor Parking / Columbia St W North Campus Visitor Parking'",
+    "where": "lawn in front of W1 near the b end, about W1 s 25, 6 m out",
+    "count": 1,
+    "photo": "sv_W2_AEZU, uw030"
+   },
+   {
+    "type": "hydrant",
+    "kind": "red fire hydrant",
+    "where": "lawn off the W1/W2 corner, about 7 m out",
+    "count": 1,
+    "photo": "sv_W2_AEZU, uw030"
+   },
+   {
+    "type": "tree",
+    "kind": "young deciduous street trees (honey locust type), staked",
+    "where": "lawn in front of W1 at s about 2, 14 and 27, about 5-6 m out",
+    "count": 3,
+    "photo": "sv_W1_Tx73, uw030"
+   },
+   {
+    "type": "tree",
+    "kind": "large mature round-headed deciduous tree (maple/linden)",
+    "where": "lawn off W2 near s 5, about 8-10 m out",
+    "count": 1,
+    "photo": "sv_W2_AEZU, uw030"
+   },
+   {
+    "type": "tree",
+    "kind": "young deciduous tree",
+    "where": "W2 s about 14, 3 m out",
+    "count": 1,
+    "photo": "sv_W2_AEZU"
+   },
+   {
+    "type": "planter",
+    "kind": "rectangular planting bed of low junipers on red-brown pavers, concrete curb",
+    "where": "in front of W4 s 4-13, 1-6 m out (the corner of W3 b and W4)",
+    "count": 1,
+    "photo": "earth_detail_3a, earth_orbit_000, ortho"
+   },
+   {
+    "type": "ramp",
+    "kind": "short concrete ramp with galvanised handrails up to a black steel service door",
+    "where": "in the gap between W9 and BMH W3, from W0 a back about 8 m",
+    "count": 1,
+    "photo": "sv_W0"
+   }
+  ]
+ }
+}

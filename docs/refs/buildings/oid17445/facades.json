@@ -1,0 +1,669 @@
+{
+ "building": "oid17445",
+ "name": "University Shops Plaza north row, west part (170 University Ave W, units 19-24)",
+ "sources_checked": [
+  "around/sv_W2_rnkp4clC23O6KJ4M07_n8Q_70 (Aug 2023)",
+  "around/sv_W2_ax1BCs7CZDqbaL4QOaPtIA_70",
+  "around/sv_W2_YTktWcWqvyad12lyUyoHTQ_70",
+  "around/sv_W3_97w0Wmcq0mjs-azSjOd_kA_100",
+  "around/sv_W0_PRxjPr467-2AcQumoo_Rpg_100 (Oct 2020)",
+  "around/sv_W1_Bb1XNg5pTiNhYx_0n-n1pA_100 (Oct 2020)",
+  "around/earth_W0_whole",
+  "places/places_by_building.json",
+  "places/university-shops-plaza/NOTES.md"
+ ],
+ "colours": {
+  "fascia_siding": {
+   "hex": "#c0ad93",
+   "palette": "siding_beige",
+   "where": "sign band, gable ends"
+  },
+  "columns": {
+   "hex": "#ceb097",
+   "palette": "brick_buff",
+   "where": "stucco columns"
+  },
+  "roof": {
+   "hex": "#97836e",
+   "palette": "roof_shingle",
+   "where": "shingle roof; Williams gable siding is a darker taupe, also roof_shingle"
+  },
+  "block": {
+   "hex": "#9a7065",
+   "palette": "brick_dark",
+   "where": "end and rear walls"
+  },
+  "williams_brick": {
+   "hex": "#b8724f",
+   "palette": "brick_orange",
+   "where": "Williams patio wall (W3)"
+  },
+  "lazeez_red": {
+   "hex": "#d23c3a",
+   "palette": "#d23c3a (new: lazeez_red)",
+   "where": "Lazeez boards"
+  }
+ },
+ "walls": {
+  "W2": {
+   "faces": "SE",
+   "length_m": 40.9,
+   "confidence": "high",
+   "summary": "north row west part, shopfronts onto the lot: tan siding fascia over aluminium storefronts between tan stucco columns, brown shingle roof sloping up behind; Rani Chettinad, Seoul Soul, iPotato, Lazeez (2 units) and the projecting front-gabled Williams Fresh Cafe at the east end",
+   "height_m": 7.0,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.85,
+     "rani_glass"
+    ],
+    [
+     1.0,
+     "rani_door"
+    ],
+    [
+     1.2,
+     "rani_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     0.95,
+     "seoul_glass"
+    ],
+    [
+     1.0,
+     "seoul_door"
+    ],
+    [
+     2.9,
+     "seoul_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.15,
+     "ipotato_glass"
+    ],
+    [
+     1.0,
+     "ipotato_door"
+    ],
+    [
+     2.5,
+     "ipotato_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     2.15,
+     "lazeez_glass"
+    ],
+    [
+     1.0,
+     "lazeez_door"
+    ],
+    [
+     9.8,
+     "lazeez_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     1.55,
+     "williams_glass"
+    ],
+    [
+     1.8,
+     "williams_door"
+    ],
+    [
+     7.3,
+     "williams_glass"
+    ]
+   ],
+   "cells": {
+    "store/rani_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/rani_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/seoul_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/seoul_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/ipotato_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/ipotato_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/lazeez_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "store/lazeez_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 0,
+     "transoms": 1,
+     "frame": "metal_silver"
+    },
+    "store/williams_glass": {
+     "type": "glass",
+     "h": 2.7,
+     "mullion_pitch": 1.0,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower"
+    },
+    "store/williams_door": {
+     "type": "door",
+     "h": 2.2,
+     "glass": true,
+     "mullions": 1,
+     "transoms": 1,
+     "frame": "brick_charcoal_tower"
+    },
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff",
+     "note": "tan stucco column 0.35 m"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "bands": [
+    [
+     4.1,
+     4.25,
+     "siding_beige",
+     0.15
+    ]
+   ],
+   "piers": [
+    "tan stucco columns at s 0, 5.4, 10.6, 16.6, 23.2, 29.9"
+   ],
+   "gables": [
+    {
+     "s": [
+      29.9,
+      40.9
+     ],
+     "apex_m": 6.6,
+     "projection": 1.2,
+     "cladding": "roof_shingle (dark taupe siding)",
+     "fascia": "siding_beige band 2.7-3.4 m under the gable",
+     "note": "Williams pavilion; its storefront posts are dark brown, the low kneewall cream"
+    }
+   ],
+   "units": [
+    {
+     "unit": "rani",
+     "s": [
+      0.0,
+      5.4
+     ],
+     "tenant": "Rani Chettinad (The Indian Kitchen)",
+     "unit_no": "19",
+     "storefront": "glass from the corner column, door right of centre; glazing wraps the SW corner onto W1 (3 lites there)",
+     "graphics": "neon OPEN; small posters",
+     "source": "around/sv_W2_rnkp4clC23O6KJ4M07_n8Q_70"
+    },
+    {
+     "unit": "seoul",
+     "s": [
+      5.4,
+      10.6
+     ],
+     "tenant": "Seoul Soul (Korean Restaurant)",
+     "unit_no": "20",
+     "storefront": "dark-framed door left of centre, lites either side",
+     "graphics": "big food-photo posters: \"Korean BBQ\" left, \"Authentic Korean Cuisine\" menu board and stone-bowl photo right",
+     "source": "around/sv_W2_rnkp4clC23O6KJ4M07_n8Q_70"
+    },
+    {
+     "unit": "ipotato",
+     "s": [
+      10.6,
+      16.6
+     ],
+     "tenant": "iPotato",
+     "unit_no": "21",
+     "storefront": "storefront mostly hidden behind a van in 2023; door position a guess",
+     "graphics": "\"SHAWARMA ... POTATO\" decals on the glass (ax1B), neon OPEN",
+     "source": "around/sv_W2_ax1BCs7CZDqbaL4QOaPtIA_70"
+    },
+    {
+     "unit": "lazeez",
+     "s": [
+      16.6,
+      29.9
+     ],
+     "tenant": "Lazeez Shawarma",
+     "unit_no": "22-23",
+     "storefront": "two former units; continuous glass with a column at s ~23.2; door near the left end (customer entering in ax1B)",
+     "graphics": "neon OPEN in the right unit; menu boards visible inside",
+     "source": "around/sv_W2_ax1BCs7CZDqbaL4QOaPtIA_70"
+    },
+    {
+     "unit": "williams",
+     "s": [
+      29.9,
+      40.9
+     ],
+     "tenant": "Williams Fresh Cafe",
+     "unit_no": "24",
+     "storefront": "projecting front-gabled pavilion ~1.2 m forward of the strip: 8 full-height dark-bronze framed lites between dark brown posts (s 30.4, 31.8, 36.7, 37.9, 40.6), double door at the left, low 0.35 m kneewall",
+     "graphics": "none; tables and chairs visible inside",
+     "source": "around/sv_W2_YTktWcWqvyad12lyUyoHTQ_70"
+    }
+   ],
+   "signs": [
+    {
+     "s": 3.2,
+     "z": 2.55,
+     "w": 3.4,
+     "h": 1.15,
+     "colour": "panel_black",
+     "text": "Rani Chettinad / The Indian Kitchen",
+     "text_colour": "panel_white",
+     "logo": "big red chilli-shaped 'C' with a green stem; white 'Rani' with a small crown, white 'hettinad'; 'The Indian Kitchen' in red below; the box returns 0.4 m round the SW corner with a red side panel",
+     "unit": "rani",
+     "on": "fascia"
+    },
+    {
+     "s": 7.6,
+     "z": 2.55,
+     "w": 5.3,
+     "h": 1.15,
+     "colour": "panel_black",
+     "text": "SEOUL SOUL / Korean Restaurant 519.884.6053",
+     "text_colour": "panel_white",
+     "logo": "red-and-blue rooster at the left; both O's are red/yellow taeguk swirls; a curved black awning-like cap 0.3 m along the top edge",
+     "unit": "seoul",
+     "on": "fascia"
+    },
+    {
+     "s": 13.6,
+     "z": 2.75,
+     "w": 4.4,
+     "h": 0.65,
+     "colour": "#d8d4cc (new: sign_lightgrey)",
+     "text": "iPOTATO",
+     "text_colour": "#c99a2e (new: sign_gold)",
+     "logo": "red flame-shaped 'i'; raised gold serif channel letters for POTATO",
+     "unit": "ipotato",
+     "on": "fascia"
+    },
+    {
+     "s": 19.8,
+     "z": 2.8,
+     "w": 4.4,
+     "h": 0.55,
+     "colour": "#d23c3a (new: lazeez_red)",
+     "text": "Lazeez MEDITERRANEAN GRILL",
+     "text_colour": "panel_white",
+     "logo": "white round emblem at the left; 'Lazeez' in white brush script",
+     "unit": "lazeez",
+     "on": "fascia"
+    },
+    {
+     "s": 26.4,
+     "z": 2.8,
+     "w": 4.6,
+     "h": 0.55,
+     "colour": "#d23c3a (new: lazeez_red)",
+     "text": "FALAFEL · WRAPS · SALADS Lazeez",
+     "text_colour": "panel_white",
+     "logo": "white round emblem at the right end",
+     "unit": "lazeez",
+     "on": "fascia"
+    },
+    {
+     "s": 35.4,
+     "z": 4.2,
+     "w": 3.7,
+     "h": 1.4,
+     "colour": "roof_shingle",
+     "text": "Williams / Fresh Cafe",
+     "text_colour": "panel_white",
+     "logo": "white script 'Williams' channel letters on the dark taupe siding gable, green 'Fresh Cafe' with a green leaf swoosh under it",
+     "unit": "williams",
+     "on": "fascia"
+    }
+   ],
+   "attached": [
+    "Williams' patio wraps round the east end (W3)"
+   ],
+   "notes": "Positions from three Aug 2023 Street View panos (scale x1.5 as on oid388; rnkp and YTkt agree, ax1B is ~1.5 m short so the middle units are +-1 m). The north-row unit list in the plaza NOTES starts oid10769 at Williams, but the photos and Google put Williams here at the east end of oid17445 (unit 24 by sequence, a guess). Sign texts exact as on the Aug 2023 boards. iPotato was listed for sale in 2025-26."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 15.7,
+   "confidence": "medium",
+   "summary": "west end facing the Hazukido/Pho Anh Vu block: red-brown split-face block with Rani Chettinad's corner glazing at the lot end, tan siding fascia and gable",
+   "height_m": 6.8,
+   "rows": [
+    [
+     2.6,
+     "store"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     8.6,
+     "block"
+    ],
+    [
+     0.35,
+     "pier"
+    ],
+    [
+     6.4,
+     "rani_glass"
+    ],
+    [
+     0.35,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "store/block": {
+     "type": "panel",
+     "colour": "brick_dark",
+     "note": "vertically scored split-face block, ~0.2 m modules"
+    },
+    "store/pier": {
+     "type": "panel",
+     "colour": "brick_buff"
+    },
+    "store/rani_glass": {
+     "type": "glass",
+     "h": 2.6,
+     "mullion_pitch": 1.6,
+     "transom_pitch": 2.6,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "signs": [
+    {
+     "s": 13.0,
+     "z": 3.1,
+     "w": 0.35,
+     "h": 0.55,
+     "colour": "panel_white",
+     "text": "FIRE ROUTE",
+     "text_colour": "panel_black",
+     "logo": "P with arrows",
+     "on": "siding"
+    }
+   ],
+   "notes": "sv_W1_Bb1XNg5pTiNhYx (Oct 2020, Chen's family-dinner posters then). The block/glass split along the wall is a guess (the photo is 2.4 m away)."
+  },
+  "W0": {
+   "faces": "NW",
+   "length_m": 41.7,
+   "confidence": "low",
+   "summary": "rear facing E7 and the service lane: red-brown split-face block, tan siding fascia, shingle roof sloping up to the ridge; wall-mounted exhaust hoods and lights",
+   "height_m": 7.0,
+   "rows": [
+    [
+     3.8,
+     "wall"
+    ],
+    [
+     0.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     41.7,
+     "rear"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_dark",
+   "bands": [
+    [
+     3.8,
+     4.4,
+     "siding_beige",
+     0.1
+    ]
+   ],
+   "signs": [
+    {
+     "s": 39.5,
+     "z": 3.0,
+     "w": 2.0,
+     "h": 0.8,
+     "colour": "panel_black",
+     "text": "CHEN'S RESTAURANT 519-884-9836",
+     "text_colour": "#e8682e (new: sign_orange)",
+     "logo": "orange inner panel with white text in a black box; Oct 2020, probably gone",
+     "on": "siding"
+    }
+   ],
+   "notes": "sv_W0_PRxjPr467 (Oct 2020) and earth_W0_whole. Green Waste Management roll-off bins stand in the lane at the west end."
+  },
+  "W3": {
+   "faces": "NE",
+   "length_m": 21.9,
+   "confidence": "medium",
+   "summary": "east end: Williams patio side: orange-red brick wall with a glazed patio door, timber pergola along the wall, black steel picket fence round a patio of bistro tables",
+   "height_m": 6.6,
+   "rows": [
+    [
+     2.6,
+     "wall"
+    ],
+    [
+     1.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "brick"
+    ],
+    [
+     1.8,
+     "door"
+    ],
+    [
+     4.6,
+     "brick"
+    ],
+    [
+     1.0,
+     "win"
+    ],
+    [
+     9.5,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "wall/brick": {
+     "type": "panel",
+     "colour": "brick_orange"
+    },
+    "wall/door": {
+     "type": "door",
+     "w": 1.6,
+     "h": 2.2,
+     "glass": true,
+     "mullions": 1,
+     "frame": "panel_black"
+    },
+    "wall/win": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.0,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/*": null
+   },
+   "wall": "siding_beige",
+   "attached": [
+    "timber pergola (4x4 posts, slatted top) along s 0-8, 2.5 m deep, 2.7 m high",
+    "black steel picket fence enclosing the patio, ~1.1 m high, 8 x 4 m"
+   ],
+   "notes": "sv_W3_97w0Wmcq0mjs (Aug 2023). Lot-end s=0 is at the SE corner; brick bay positions approximate."
+  }
+ },
+ "roof": [
+  {
+   "what": "brown shingle gable roof, eave ~4.2 m front, ridge ~7.0 m (lidar)",
+   "where": "whole block"
+  },
+  {
+   "what": "Williams front gable",
+   "where": "W2 s 29.9-40.9, apex ~6.6 m"
+  },
+  {
+   "what": "tall galvanised exhaust stacks (2) and fans (3-4)",
+   "where": "over iPotato/Lazeez (s 14-22) near the ridge",
+   "size_m": [
+    0.6,
+    0.6,
+    1.5
+   ]
+  },
+  {
+   "what": "grey satellite dish",
+   "where": "east end over the patio"
+  }
+ ],
+ "geometry_notes": "Footprint OK. W2 should get a ~1.2 m forward bump for the Williams pavilion (s 29.9-40.9). Height 7.0 m is the ridge.",
+ "site": {
+  "neighbours": [
+   "Hazukido + Pho Anh Vu (170-university-avenue-west) touching/next to the west end",
+   "E7 directly behind across a service lane",
+   "oid10769 (Pita Factory end) ~15 m east across a drive"
+  ],
+  "ground": [
+   "2.5 m concrete sidewalk with curb, nose-in stalls with yellow lines against it",
+   "landscaped curb island with shrubs east of Williams",
+   "asphalt service lane behind with a guard rail to E7's walk"
+  ],
+  "entities": [
+   {
+    "type": "light_pole",
+    "kind": "tall single-head dark grey pole",
+    "where": "NE corner by the Williams patio, ~6 m out from W3",
+    "count": 1,
+    "photo": "sv_W3_97w0Wmcq0mjs"
+   },
+   {
+    "type": "sign",
+    "kind": "white 'UNIVERSITY SHOPS PLAZA ONLY' parking notice on a post",
+    "where": "W2 s ~41, at the patio corner",
+    "count": 1
+   },
+   {
+    "type": "sign",
+    "kind": "small parking sign on a post",
+    "where": "W3 patio corner",
+    "count": 1
+   },
+   {
+    "type": "patio",
+    "kind": "black metal tables and chairs inside a black picket fence under a pergola",
+    "where": "along W3, 0-8 m, 3 m out",
+    "count": 6
+   },
+   {
+    "type": "dumpster",
+    "kind": "green steel front-load bin",
+    "where": "behind the NE corner, in the lane",
+    "count": 1
+   },
+   {
+    "type": "dumpster",
+    "kind": "green roll-off containers (Waste Management)",
+    "where": "rear lane at the west end of W0",
+    "count": 2,
+    "photo": "sv_W0_PRxjPr467 (2020)"
+   },
+   {
+    "type": "shrubs",
+    "kind": "planted island",
+    "where": "SE of Williams, 4-10 m out",
+    "count": 1
+   }
+  ]
+ }
+}
