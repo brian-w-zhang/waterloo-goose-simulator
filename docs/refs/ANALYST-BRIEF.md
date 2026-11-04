@@ -15,6 +15,8 @@ Read first:
   light [w, colour], dark [w, colour]), honeycomb, and "hood" on a window (projection, fin_w,
   fin_colour, soffit_colour). Cells: "row/bay" keys, "*" wildcards, null = plain wall. Bands
   [z_from, z_to, colour, projection]; projection 0 recolours the wall of the rows it covers.
+  "undercut": [height, depth] on a wall sets its rows below `height` back by `depth` metres under the
+  floors above (recessed ground floors, arcades), with a soffit.
   Colours: palette names from config/palette.json ("world"); if nothing is within about 12 Lab,
   write "#hex (new: short_name)". Rows are metres from the building's ground; bays are metres along
   the wall from its end a to end b (building on your left walking a to b).

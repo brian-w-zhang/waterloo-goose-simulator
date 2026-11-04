@@ -421,7 +421,11 @@
     "cantilever over s 1-16: upper storeys project ~3 m, sloped light-grey soffit with recessed downlights, thin dark-grey fascia at z ~5.8",
     "brick block s 27-50 (ground-l3) projects ~0.5-1 m proud of the l4-l5 mint band; at s 34-54 the brick rises to ~20 m as a separate tall block over the band (earth_W0_whole/r)"
    ],
-   "notes": "Bay positions from SV ray hits: jrLX (May 2025) s 7, FVaS s 19, EVmt s 28, VxUr s 40, 5m0c s 54. Window counts from earth_W0_whole (11 punched vision panes at 3.0 m in the l4/l5 band s 3-34). Entrance glass spans s ~15.5-27 (the vestibule's east return is glazed, seen in jrLX). Exact l3 layout over the entrance (a projecting brick box s ~17-31 with 2 small windows) simplified."
+   "notes": "Bay positions from SV ray hits: jrLX (May 2025) s 7, FVaS s 19, EVmt s 28, VxUr s 40, 5m0c s 54. Window counts from earth_W0_whole (11 punched vision panes at 3.0 m in the l4/l5 band s 3-34). Entrance glass spans s ~15.5-27 (the vestibule's east return is glazed, seen in jrLX). Exact l3 layout over the entrance (a projecting brick box s ~17-31 with 2 small windows) simplified.",
+   "undercut": [
+    4.4,
+    2.75
+   ]
   },
   "W1": {
    "faces": "SW",
@@ -1536,7 +1540,11 @@
    "attached": [
     "glazed/ribbed-metal bridge to E3 at the north end (W10/W11), level 2"
    ],
-   "notes": "Ground from three close 2014/2019 SVs (s 6, 23, 32). Upper layout from earth_W9_whole (ribbons: l2 s 6.6-15.7, l3 s 6.5-18.4; brick upper block s 0-14; mint bands s 14-32). Lidar puts this side at ~21-22.5 m, not 25."
+   "notes": "Ground from three close 2014/2019 SVs (s 6, 23, 32). Upper layout from earth_W9_whole (ribbons: l2 s 6.6-15.7, l3 s 6.5-18.4; brick upper block s 0-14; mint bands s 14-32). Lidar puts this side at ~21-22.5 m, not 25.",
+   "undercut": [
+    4.4,
+    2.75
+   ]
   },
   "W10": {
    "faces": "SE",

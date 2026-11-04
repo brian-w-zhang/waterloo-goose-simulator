@@ -409,7 +409,7 @@ def dome(kit, centre, r, z, colour, segs=12, rings=5):
 
 # -- authored facades ------------------------------------------------------------------------------
 
-def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
+def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None, z_from=None):
     """One wall drawn from an authored spec (read off that wall's Street View and Earth photos).
 
     spec = {
@@ -455,7 +455,8 @@ def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
         if z_top is not None and z >= z_top - 1e-3:
             break
         zb = z + hgt if z_top is None else min(z + hgt, z_top)
-        rows.append((z, zb, kind))
+        if z_from is None or zb > z_from + 1e-3:
+            rows.append((max(z, z_from) if z_from is not None else z, zb, kind))
         z = zb
     top = z
     cells = spec.get("cells", {})
@@ -489,7 +490,7 @@ def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
                     _band(kit, P, n, 0, L, z, z + rib["pitch"] * 0.35, rib["colour"], 0.03)
                     z += rib["pitch"]
     for zf, zt, col, proj in spec.get("bands", []):
-        if not proj:
+        if not proj or (z_from is not None and z0 + zt <= z_from):
             continue
         if z_top is None or z0 + zf < z_top:
             _band(kit, P, n, 0, L, z0 + zf, min(z0 + zt, z_top or 1e9), col, proj)

@@ -54,6 +54,9 @@ def to_facade(w, **extra):
         if isinstance(c, dict) and c.get("see"):
             c["_spec"] = (extra.get("shared") or {}).get(c["see"].split(".")[-1], w.get(c["see"].split(".")[-1], {}))
     # signs and banners: flat panels on the wall (text is not drawn; colour and size are)
+    uc = w.get("undercut")
+    if isinstance(uc, (list, tuple)) and len(uc) >= 2:
+        out["undercut"] = (float(uc[0]), float(uc[1]))
     out["signs"] = [sg for sg in w.get("signs", []) if isinstance(sg, dict) and all(k in sg for k in ("s", "w", "h"))]
     cp = w.get("coping")
     if isinstance(cp, (list, tuple)) and len(cp) >= 2:
@@ -84,8 +87,23 @@ def _piece(k, a, b, gy, top, w, s_off, specs, default, plinth):
     if base >= top - 0.05:
         k.wall(a, b, gy - plinth, top, sp.get("wall", "concrete"))
         return
-    k.wall(a, b, gy - plinth, base, sp.get("wall", "concrete"))
-    arch.facade(k, a, b, base, sp, full=w["length_m"] if w else None, s_off=s_off if w else 0.0, z_top=top)
+    full = w["length_m"] if w else None
+    so = s_off if w else 0.0
+    uc = sp.get("undercut")
+    if uc and top > base + uc[0] + 0.5:
+        # ground floor set back under the floors above: lower rows on an inner line, a soffit
+        import math
+        L = math.dist(a, b)
+        tx, ty = (b[0] - a[0]) / L, (b[1] - a[1]) / L
+        ia = (a[0] - ty * uc[1], a[1] + tx * uc[1])
+        ib = (b[0] - ty * uc[1], b[1] + tx * uc[1])
+        k.wall(ia, ib, gy - plinth, base, sp.get("wall", "concrete"))
+        arch.facade(k, ia, ib, base, sp, full=full, s_off=so, z_top=base + uc[0])
+        k.quad((*a, base + uc[0]), (*b, base + uc[0]), (*ib, base + uc[0]), (*ia, base + uc[0]), "concrete")
+        arch.facade(k, a, b, base, sp, full=full, s_off=so, z_top=top, z_from=base + uc[0])
+    else:
+        k.wall(a, b, gy - plinth, base, sp.get("wall", "concrete"))
+        arch.facade(k, a, b, base, sp, full=full, s_off=so, z_top=top)
     if top > base + sum(r[0] for r in sp["rows"]) + 0.05:
         # the spec is shorter than this outline (a taller tier): finish the wall plainly
         k.wall(a, b, base + sum(r[0] for r in sp["rows"]), top, sp.get("wall", "concrete"))
