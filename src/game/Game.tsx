@@ -2,7 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { swatchHex } from "@/config";
+import { AreaToast } from "@/ui/AreaToast";
+import { Controls } from "@/ui/Controls";
+import { TaskToast, TodoCard } from "@/ui/Notebook";
+import { ScoreBadge } from "@/ui/Score";
+import { TeleportWipe } from "@/ui/TeleportWipe";
 import { type HudState, startGame } from "./engine";
+import { HOTSPOTS } from "./hotspot";
 import Minimap from "./Minimap";
 import { startStyleScene } from "./styleScene";
 
@@ -14,12 +20,10 @@ const CREDITS = [
   "Not affiliated with the University of Waterloo, House House or Panic.",
 ];
 
-const panel: React.CSSProperties = {
-  position: "absolute", background: swatchHex("panel", "ui"), color: swatchHex("text", "ui"),
-  borderRadius: 14, padding: "12px 16px", fontSize: 15, lineHeight: 1.45, boxShadow: `0 4px 0 ${swatchHex("accent", "ui")}`,
-  userSelect: "none",
-};
+/** Within this many metres of a hotspot anchor the goose is "in" it (the area name is shown on entry). */
+const AREA_RADIUS_M = 45;
 
+/** The HUD: styling lives in app/globals.css (palette "ui" colours as --ui-* variables), components in src/ui/. */
 export default function Game() {
   const ref = useRef<HTMLCanvasElement>(null);
   const [hud, setHud] = useState<HudState | null>(null);
@@ -50,63 +54,50 @@ export default function Game() {
     return () => { cancelled = true; stop?.(); };
   }, [isStyle]);
 
+  const g = hud ? window.__wgs?.goose.state() : undefined;
+  const away = g ? Math.min(...HOTSPOTS.map((h) => Math.hypot(h.anchor.x - g.x, h.anchor.z - g.z))) : 0;
+  const near = !!g && away < AREA_RADIUS_M;
+
   return (
     <>
       <canvas ref={ref} style={{ width: "100vw", height: "100vh" }} />
       {fatal && (
-        <div role="alert" style={{ ...panel, top: "40%", left: "50%", transform: "translate(-50%, -50%)", maxWidth: 520 }}>
-          <div style={{ fontWeight: 700, marginBottom: 6 }}>The campus could not load</div>
+        <div role="alert" className="hud hud-card fatal">
+          <div style={{ fontWeight: 800, marginBottom: 6 }}>The campus could not load</div>
           <div style={{ fontSize: 13, opacity: 0.8 }}>{fatal}</div>
           <div style={{ fontSize: 13, marginTop: 8 }}>Check that <code>npm run pipeline</code> has built <code>public/world</code>, then reload.</div>
         </div>
       )}
       {hud && !isTest && (
         <>
-          <div style={{ ...panel, top: 16, left: 16, minWidth: 280 }}>
-            <div style={{ fontWeight: 700, marginBottom: 2 }}>Goose to-do list · {hud.area}</div>
-            <div style={{ fontSize: 12, opacity: 0.7, marginBottom: 6 }}>{hud.clock}</div>
-            {hud.tasks.map((t) => (
-              <div key={t.text} style={{ textDecoration: t.done ? "line-through" : "none", opacity: t.done ? 0.55 : 1 }}>
-                {t.done ? "✓" : "○"} {t.text}
-              </div>
-            ))}
-          </div>
-          <div style={{ ...panel, top: 16, right: 16, textAlign: "right", minWidth: 150 }}>
-            <div style={{ fontSize: 12, opacity: 0.7 }}>MENACE</div>
-            <div style={{ fontSize: 26, fontWeight: 800 }}>{hud.menace.banked.toLocaleString()}</div>
-            {hud.menace.pending > 0 && (
-              <div style={{ fontWeight: 700 }}>+{hud.menace.pending.toLocaleString()} × {hud.menace.multiplier.toFixed(1)}
-                <div style={{ height: 4, background: swatchHex("accent", "ui"), width: `${(hud.menace.window / 4) * 100}%`, borderRadius: 2, marginTop: 3, marginLeft: "auto" }} />
-              </div>
-            )}
-          </div>
+          <TodoCard area={near || !g ? hud.area : `${hud.area} · ${away < 1000 ? `${Math.round(away / 10) * 10} m` : `${(away / 1000).toFixed(1)} km`}`} clock={hud.clock} tasks={hud.tasks} />
+          <ScoreBadge m={hud.menace} />
           <Minimap />
-          {hud.toast && (
-            <div style={{ ...panel, top: 16, left: "50%", transform: "translateX(-50%)", fontWeight: 700 }}>✓ {hud.toast}</div>
-          )}
-          {title && (
-            <div style={{ ...panel, top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", padding: "24px 32px" }}>
-              <div style={{ fontSize: 30, fontWeight: 800 }}>Waterloo Goose Simulator</div>
-              <div style={{ marginTop: 6 }}>A Canada goose is loose on the University of Waterloo campus.</div>
-              <div style={{ marginTop: 4, opacity: 0.75, fontSize: 13 }}>The campus is built from open map data: City of Waterloo footprints, Ontario lidar, OpenStreetMap.</div>
-              <div style={{ marginTop: 14, fontWeight: 700 }}>Press any key or click to start</div>
+          <AreaToast area={hud.area} near={near} />
+          {hud.toast && <TaskToast text={hud.toast} />}
+          {hud.prompt && (
+            <div className="hud hud-card prompt">
+              <span className="kbd">{hud.prompt.split(":")[0]}</span>{hud.prompt.split(":").slice(1).join(":").trim()}
             </div>
           )}
-          {hud.prompt && <div style={{ ...panel, bottom: 70, left: "50%", transform: "translateX(-50%)" }}>{hud.prompt}</div>}
-          <div style={{ ...panel, bottom: 16, left: 16, fontSize: 13, padding: "8px 12px" }}>
-            WASD move · Shift run · Space honk · G grab · C crouch · F flap · right-drag turn · wheel zoom · click ground: teleport · M map
-          </div>
-          <div style={{ ...panel, bottom: 16, right: 16, fontSize: 12, padding: "6px 10px", cursor: "pointer" }}
-            onClick={() => setCredits((c) => !c)}>
-            © OpenStreetMap contributors · credits
-          </div>
+          {!title && <Controls />}
+          <div className="hud credits-link" onClick={() => setCredits((c) => !c)}>© OpenStreetMap contributors · credits</div>
           {credits && (
-            <div style={{ ...panel, bottom: 56, right: 16, maxWidth: 420, fontSize: 13 }}>
-              <div style={{ fontWeight: 700, marginBottom: 6 }}>Waterloo Goose Simulator</div>
+            <div className="hud hud-card credits">
+              <b>Waterloo Goose Simulator</b>
               {CREDITS.map((c) => <div key={c}>{c}</div>)}
               <div style={{ marginTop: 6, opacity: 0.7 }}>Renderer: {hud.backend}</div>
             </div>
           )}
+          {title && (
+            <div className="hud title-card">
+              <h1>Waterloo Goose Simulator</h1>
+              <p>A Canada goose is loose on the University of Waterloo campus. It has a to-do list.</p>
+              <p className="small">The campus is built from open map data: City of Waterloo footprints, Ontario lidar, OpenStreetMap.</p>
+              <div className="go"><span className="kbd">any key</span> or click to start</div>
+            </div>
+          )}
+          <TeleportWipe />
         </>
       )}
     </>

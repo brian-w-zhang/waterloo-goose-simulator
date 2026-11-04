@@ -1,5 +1,5 @@
 import * as THREE from "three/webgpu";
-import { campus, swatchHex } from "@/config";
+import { campus } from "@/config";
 import { Goose, type GooseInput } from "@/goose/goose";
 import { type Network, WalkGraph } from "@/nav/graph";
 import { bakeNavMesh, type NavBake, planner as navPlanner } from "@/nav/navmesh";
@@ -59,6 +59,11 @@ export interface GameHandle {
   audit(): { badVertices: number; buildingMismatch: string[]; loaded: string[] };
   goose: {
     place(x: number, z: number): Promise<void>;
+    /** Player teleport with the transition (flap, paper iris wipe, chunk load behind it, iris open); `label`
+     * names the destination on the wipe. Inputs are ignored while it runs; a second call during one is dropped. */
+    teleport(x: number, z: number, label?: string): Promise<void>;
+    /** True while a teleport transition runs. */
+    teleporting(): boolean;
     /** Run the simulation for `seconds` with a fixed input; returns the goose position afterwards. */
     simulate(seconds: number, input: Partial<GooseInput> & { mx?: number; my?: number }): Promise<{ x: number; y: number; z: number; ground: number }>;
     state(): { x: number; y: number; z: number; yaw: number; speed: number; grounded: boolean };
@@ -87,6 +92,9 @@ export interface WalkResult {
 }
 
 declare global { interface Window { __wgs?: GameHandle } }
+
+/** Teleport transition phases, sent as a "wgs:teleport" window event for the HUD's iris wipe (src/ui/TeleportWipe.tsx). */
+export interface TeleportEvent { phase: "out" | "in" | "done"; x: number; y: number; label?: string; ms: number }
 
 export interface HudState { clock: string; menace: { banked: number; pending: number; multiplier: number; window: number; lastBail: number };
   area: string; tasks: { text: string; done: boolean }[]; prompt: string; holding: string | null; backend: string; toast: string }
@@ -258,6 +266,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
   canvas.addEventListener("contextmenu", noMenu);
 
   const readInput = (): GooseInput => {
+    // teleport transition: no player input; the goose flaps while the iris closes
+    if (tele) return { move: new THREE.Vector2(), run: false, crouch: false, honk: false, flap: tele === "out" };
     const mv = new THREE.Vector2(
       (keys.has("KeyD") || keys.has("ArrowRight") ? 1 : 0) - (keys.has("KeyA") || keys.has("ArrowLeft") ? 1 : 0),
       (keys.has("KeyW") || keys.has("ArrowUp") ? 1 : 0) - (keys.has("KeyS") || keys.has("ArrowDown") ? 1 : 0));
@@ -325,6 +335,47 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     if (!goose.attached) goose.attach(physics, p); else goose.place(p);
     physics.world.step();
   };
+
+  // ---- teleport transition (UI): flap, the HUD's paper iris closes on the goose, the destination chunks
+  // load behind it, the goose is placed, the iris opens on it while the camera settles in from a bit further out
+  let tele: "out" | "in" | null = null;
+  const TELE_OUT_MS = 420, TELE_IN_MS = 480;
+  const gooseOnScreen = () => {
+    const p = goose.position.clone().setY(goose.position.y + 0.4).project(camera);
+    const r = canvas.getBoundingClientRect();
+    return { x: r.left + (p.x * 0.5 + 0.5) * r.width, y: r.top + (0.5 - p.y * 0.5) * r.height };
+  };
+  const teleEvent = (detail: TeleportEvent) => window.dispatchEvent(new CustomEvent<TeleportEvent>("wgs:teleport", { detail }));
+  const sleep = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
+  const teleport = async (x: number, z: number, label?: string) => {
+    if (tele) return;
+    tele = "out";
+    try {
+      teleEvent({ phase: "out", ...gooseOnScreen(), label, ms: TELE_OUT_MS });
+      // the load starts now, behind the closing iris; the goose is placed once both are done
+      const loading = stream.update(x, z);
+      await Promise.all([sleep(TELE_OUT_MS), loading]);
+      tele = "in";
+      await handle.goose.place(x, z);
+      const dist = follow.dist, from = Math.max(dist, Math.min(dist * 1.45, CAM.play_max_distance_m * 1.2));
+      follow.dist = from;
+      placeCamera();
+      teleEvent({ phase: "in", ...gooseOnScreen(), label, ms: TELE_IN_MS });
+      const t0 = performance.now();
+      await new Promise<void>((res) => {
+        const ease = () => {
+          const k = Math.min((performance.now() - t0) / (TELE_IN_MS + 250), 1);
+          follow.dist = dist + (from - dist) * (1 - k) ** 3;
+          if (k < 1) setTimeout(ease, 16); else res();
+        };
+        ease();
+      });
+    } finally {
+      tele = null;
+      teleEvent({ phase: "done", x: 0, y: 0, label, ms: 0 });
+    }
+  };
+  // ---- end teleport transition
 
   const handle: GameHandle = {
     hotspot: { grab: () => null, honk: () => undefined, npcs: () => [], tasks: () => [], items: () => [], music: () => "silent", navmeshes: () => [], events: () => [], crowd: () => 0 },
@@ -399,6 +450,8 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     },
     goose: {
       place: async (x, z) => { await spawn(x, z); followGoose = true; follow.x = x; follow.z = z; },
+      teleport: (x, z, label) => teleport(x, z, label),
+      teleporting: () => tele !== null,
       simulate: async (seconds, inp) => {
         const input: GooseInput = { move: new THREE.Vector2(inp.mx ?? 0, inp.my ?? 0), run: !!inp.run,
           crouch: !!inp.crouch, honk: !!inp.honk, flap: !!inp.flap };
@@ -553,11 +606,11 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
     setTimeout(() => { if (toast === t.text) { toast = ""; onHud?.(hud()); } }, 3200);
   };
   const grab = () => { hotspot?.grabOrDrop(); onHud?.(hud()); };
-  const onGrabKey = (e: KeyboardEvent) => { if (e.code === "KeyG" && !e.repeat) grab(); };
+  const onGrabKey = (e: KeyboardEvent) => { if (e.code === "KeyG" && !e.repeat && !tele) grab(); };
   // left click: cast a ray from the camera through the pointer; teleport only onto ground
   // (an up-facing hit at terrain height), never onto a roof or into a wall
   const onMouse = (e: MouseEvent) => {
-    if (e.button !== 0 || dragged || free) return;
+    if (e.button !== 0 || dragged || free || tele) return;
     const r = canvas.getBoundingClientRect();
     const ndc = new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
     const ray = new THREE.Raycaster();
@@ -572,7 +625,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       console.debug(`[wgs] click at ${p.x.toFixed(1)}, ${p.z.toFixed(1)} is not open ground (normal y ${hit.normal.y.toFixed(2)}, ${(p.y - ground).toFixed(2)} m above it)`);
       return;
     }
-    void handle.goose.place(p.x, p.z);
+    void handle.goose.teleport(p.x, p.z);
   };
   window.addEventListener("keydown", onGrabKey);
   canvas.addEventListener("click", onMouse);
@@ -590,7 +643,7 @@ export async function startGame(canvas: HTMLCanvasElement, onHud?: (h: HudState)
       let el = labels[k];
       if (!el) {
         el = document.createElement("div");
-        el.style.cssText = `position:absolute;transform:translate(-50%,-100%);padding:3px 9px;border-radius:10px;font:600 14px ui-rounded,system-ui,sans-serif;white-space:nowrap;background:${swatchHex("panel", "ui")};color:${swatchHex("text", "ui")}`;
+        el.className = "wgs-speech"; // styled in app/globals.css
         speechLayer.appendChild(el);
         labels[k] = el;
       }
