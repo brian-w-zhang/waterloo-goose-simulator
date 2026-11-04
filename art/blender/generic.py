@@ -79,6 +79,11 @@ def build_generic(k, abbrev, style=None, **o):
         if key in o:
             opts[key] = o[key]
     tiers = data.lidar_massing(abbrev, **opts)
+    every = tiers
+    if o.get("skip_tiers"):
+        # tiers the script models itself (PAC's mansard slopes come out of the lidar as steps)
+        lo_, hi_ = o["skip_tiers"]
+        tiers = [t for t in tiers if not (lo_ <= t["h"] <= hi_)]
     # a photo-read facade spec, when the building has one, draws every documented wall
     import re
     import spec as fspec
@@ -89,7 +94,9 @@ def build_generic(k, abbrev, style=None, **o):
         for wid, w in fac["walls"].items():
             if w.get("upper") and w.get("a"):
                 walls.append({"id": wid, "art": [w["a"], w["b"]], "length_m": w["length_m"]})
-        main = max((sp for sp in specs.values() if sp), key=lambda sp: sum(r[0] for r in sp["rows"]))
+        # edges no photo documents (setbacks, courts) take the building's typical wall: the spec of
+        # its longest documented wall
+        main = specs[max((wid for wid, sp in specs.items() if sp), key=lambda wid: fac["walls"][wid].get("length_m", 0))]
         for tier in tiers:
             gy, h = tier["ground_y"], tier["h"]
             z1 = gy + h
@@ -102,7 +109,7 @@ def build_generic(k, abbrev, style=None, **o):
                     B, C = C, B
                 k.face([A, B, C], o.get("roof_high", (1e9, roof))[1] if h >= o.get("roof_high", (1e9,))[0] else roof)
         if o.get("extra"):
-            o["extra"](k, tiers)
+            o["extra"](k, every)
         return sorted({p["objectid"] for p in parts})
     for tier in tiers:
         gy, h = tier["ground_y"], tier["h"]

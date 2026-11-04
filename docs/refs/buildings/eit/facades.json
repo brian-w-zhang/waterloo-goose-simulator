@@ -1,0 +1,2091 @@
+{
+ "building": "EIT",
+ "sources_checked": [
+  "around/sv_W0_* (5 panos 2014-2025)",
+  "around/sv_W1_*",
+  "around/sv_W2_*",
+  "around/sv_W3_*",
+  "around/sv_W4_/W5_/W6_/W7_/W8_ dJgp, TYGj, zcBI, p_Tyg",
+  "around/sv_W9_* (3)",
+  "around/sv_W10_*, sv_W11_* (2)",
+  "around/sv_W12_* (2)",
+  "around/sv_c0,c1,c3,c7,c10-c17",
+  "around/earth_W*_whole and W0 thirds",
+  "private/earth_orbit_000/045 (+ contact sheet of all)",
+  "review/art/eit_study.jpg (lidar + ortho)",
+  "private/web/eit_uw017, uw022, uw023, uw024 (c2002)"
+ ],
+ "dating": "Street View 2014-2019 for most walls, May 2025 for W0 east end and the NE corner (sv_c17); no visible changes between 2014 and 2025 apart from new galvanised bike racks on W0. Earth 2024. Architect photos c2002 match the present building.",
+ "colours": {
+  "brick": {
+   "hex": "#cbb497",
+   "palette": "brick_buff",
+   "where": "all brick: warm yellow-tan buff brick; sunlit faces read paler (#e2d0bf), north side in shade #a0866d; same brick on the south wing"
+  },
+  "siding": {
+   "hex": "#c4c9cc",
+   "palette": "metal_silver",
+   "where": "top ~6 m of the tower (mechanical/lab-exhaust storey) and the bridge: horizontally ribbed aluminium, silver-white (#d8e1e8 sampled in sun)"
+  },
+  "white_panel": {
+   "hex": "#e6e6e2",
+   "palette": "panel_white",
+   "where": "smooth white panels on the south wing east end (W6/W7), W3 west block, W4"
+  },
+  "mint_glass": {
+   "hex": "#8fb0ae",
+   "palette": "glass_teal",
+   "where": "all glazing: pale mint-green glass, opaque mint spandrels in the curtain bands (sampled #8ca599)"
+  },
+  "vision_glass": {
+   "hex": "#6f8088",
+   "palette": "window_dark",
+   "where": "darker vision panes within the mint bands"
+  },
+  "frames": {
+   "hex": "#c4c9cc",
+   "palette": "metal_silver",
+   "where": "mullions, copings, canopies, cantilever fascias"
+  },
+  "soffits": {
+   "hex": "#c9c3b6",
+   "palette": "concrete",
+   "where": "sloped undersides of the cantilevers, light grey"
+  },
+  "service_concrete": {
+   "hex": "#c9c3b6",
+   "palette": "concrete",
+   "where": "painted concrete enclosure and loading dock (W1-W3)"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 54.4,
+   "confidence": "medium-high",
+   "height_m": 25.0,
+   "summary": "north front on the Engineering lane, main entrance: buff brick, ground storey recessed under a ~3 m cantilever for s 1-16 with bike racks; glazed entrance vestibule with flat canopy and the building name on the glass at s 16-27; a buff-brick block runs to grade from s 27; levels 4-5 in the east half are a continuous mint curtain band; top ~6 m is ribbed silver siding",
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     4.0,
+     "l2"
+    ],
+    [
+     3.8,
+     "l3"
+    ],
+    [
+     3.4,
+     "l4"
+    ],
+    [
+     3.4,
+     "l5"
+    ],
+    [
+     6.0,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "corner"
+    ],
+    [
+     3.0,
+     "under"
+    ],
+    [
+     3.0,
+     "under"
+    ],
+    [
+     3.0,
+     "under"
+    ],
+    [
+     3.0,
+     "under"
+    ],
+    [
+     3.0,
+     "under"
+    ],
+    [
+     3.3,
+     "ent_l"
+    ],
+    [
+     3.0,
+     "door"
+    ],
+    [
+     5.0,
+     "ent_r"
+    ],
+    [
+     3.5,
+     "tallwin"
+    ],
+    [
+     3.4,
+     "tallwin2"
+    ],
+    [
+     7.6,
+     "block_a"
+    ],
+    [
+     7.6,
+     "block_b"
+    ],
+    [
+     4.8,
+     "nw"
+    ]
+   ],
+   "cells": {
+    "ground/under": {
+     "type": "panel",
+     "glass": "brick_buff",
+     "depth": 3.0,
+     "h": "full",
+     "note": "undercroft: the storeys above cantilever ~3 m; recessed brick wall behind with two window rows (basement clerestory z 0.2-1.3, main row z 3.0-4.0), 5 grey cylinder wall lamps at z ~2.7 between them; soffit slopes up from ~4.3 m at the wall to ~5.8 m at the fascia, painted light grey; thin dark-grey metal fascia line"
+    },
+    "l2/under": null,
+    "l3/under": {
+     "type": "window",
+     "w": 1.3,
+     "h": 1.4,
+     "sill": 0.4,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "punched windows at 3 m pitch in the brick band (earth_W0_whole)"
+    },
+    "l4/*": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l5/*": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    },
+    "*/corner": null,
+    "ground/ent_l": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.4,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "glazed vestibule; white letters 'CENTRE FOR ENVIRONMENTAL AND INFORMATION TECHNOLOGY' on the glass above the canopy"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 2.0,
+     "h": 2.4,
+     "leaves": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "canopy": [
+      1.6,
+      "metal_silver"
+     ],
+     "note": "pair of aluminium glass doors; thin flat silver canopy ~4 m wide at z ~3.0 spanning s 15.5-20.5; square precast column at s ~21 (sv_W0_FVaS, EVmt)"
+    },
+    "l2/ent_l": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/door": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "ground/ent_r": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.3,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "two-storey glazed hall wall, 3 mullions x 4 transoms, set ~1 m behind the brick face"
+    },
+    "l2/ent_r": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/ent_r": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.4,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/tallwin": {
+     "type": "window",
+     "w": 0.9,
+     "h": 3.6,
+     "sill": 0.8,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "two-storey window (ground+l2 read as one opening) with a grey metal spandrel band at the floor line (sv_W0_EVmt, VxUr)"
+    },
+    "l2/tallwin": {
+     "type": "window",
+     "w": 0.9,
+     "h": 2.0,
+     "sill": 0.2,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "ground/tallwin2": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.2,
+     "glass": "metal_silver",
+     "note": "solid grey service door in the brick pier (sv_W0_FVaS)"
+    },
+    "ground/block_a": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.6,
+     "sill": 1.0,
+     "mullions": 4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/block_a": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.8,
+     "sill": 0.3,
+     "mullions": 4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "ground/block_b": {
+     "type": "window",
+     "w": 0.55,
+     "h": 1.3,
+     "sill": 1.0,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/block_b": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.8,
+     "sill": 0.3,
+     "mullions": 4,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "long 5-pane strip, s ~36-45 (sv_W0_VxUr)"
+    },
+    "l3/block_a": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "mullions": 3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/block_b": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "mullions": 3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l4/block_a": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l4/block_b": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l5/block_a": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.5,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "4 punched windows ~1.6 m"
+    },
+    "l5/block_b": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.5,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "*/nw": null,
+    "top/nw": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.3,
+     4.6,
+     "prop_metal",
+     0.05
+    ],
+    [
+     19.0,
+     19.2,
+     "metal_silver",
+     0.1
+    ],
+    [
+     24.8,
+     25.0,
+     "metal_silver",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 18.5,
+     "z": 3.2,
+     "w": 3.0,
+     "h": 0.6,
+     "text": "CENTRE FOR ENVIRONMENTAL AND INFORMATION TECHNOLOGY (3 lines, small white caps on the glass)",
+     "colour": "panel_white",
+     "on": "vestibule glass above canopy"
+    },
+    {
+     "s": 14.2,
+     "z": 1.6,
+     "w": 0.4,
+     "h": 0.25,
+     "text": "FIRE DEPT CONNECTION",
+     "colour": "steel_red",
+     "on": "wall plate"
+    }
+   ],
+   "attached": [
+    "cantilever over s 1-16: upper storeys project ~3 m, sloped light-grey soffit with recessed downlights, thin dark-grey fascia at z ~5.8",
+    "brick block s 27-50 (ground-l3) projects ~0.5-1 m proud of the l4-l5 mint band; at s 34-54 the brick rises to ~20 m as a separate tall block over the band (earth_W0_whole/r)"
+   ],
+   "notes": "Bay positions from SV ray hits: jrLX (May 2025) s 7, FVaS s 19, EVmt s 28, VxUr s 40, 5m0c s 54. Window counts from earth_W0_whole (11 punched vision panes at 3.0 m in the l4/l5 band s 3-34). Entrance glass spans s ~15.5-27 (the vestibule's east return is glazed, seen in jrLX). Exact l3 layout over the entrance (a projecting brick box s ~17-31 with 2 small windows) simplified."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 35.7,
+   "confidence": "medium",
+   "height_m": 25.0,
+   "summary": "west side on a small parking lot: the tower end (s 0-13) in buff brick with ground storey recessed under a cantilever at the NW corner, ribbon windows, siding top; then the low courtyard wing (2 storeys, mint curtain glass under a thin flat roof slab) and a grey painted-concrete service enclosure with a steel ramp, nitrogen tank and bollards",
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     4.0,
+     "l2"
+    ],
+    [
+     3.8,
+     "l3"
+    ],
+    [
+     3.4,
+     "l4"
+    ],
+    [
+     3.4,
+     "l5"
+    ],
+    [
+     6.0,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     5.5,
+     "cant"
+    ],
+    [
+     3.0,
+     "pier"
+    ],
+    [
+     4.5,
+     "svc"
+    ],
+    [
+     11.5,
+     "wing"
+    ],
+    [
+     11.2,
+     "encl"
+    ]
+   ],
+   "cells": {
+    "ground/cant": {
+     "type": "panel",
+     "glass": "brick_buff",
+     "depth": 2.5,
+     "h": "full",
+     "note": "recessed brick ground under the NW-corner cantilever, 1 ribbon window z 3.0-4.0 (4 panes) and 1 low window z 0.4-1.6, 2 wall lamps (sv_W1_ZH2E, sv_c0)"
+    },
+    "l2/cant": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.5,
+     "sill": 1.6,
+     "mullions": 4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/*": {
+     "type": "window",
+     "w": 0.75,
+     "h": 1.4,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "ribbon windows (earth_W1_whole)"
+    },
+    "l4/*": {
+     "type": "window",
+     "w": 0.75,
+     "h": 1.4,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l5/*": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.4,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    },
+    "*/pier": null,
+    "top/pier": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    },
+    "ground/svc": {
+     "type": "door",
+     "w": 0.8,
+     "h": 2.8,
+     "glass": "metal_silver",
+     "mullions": 2,
+     "note": "grey overhead door ~2.4 m + louvred double door + single door + small window with green 'GEO ENG' sticker (sv_W1_ZH2E); concrete steps with handrail at the right"
+    },
+    "l2/svc": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.0,
+     "sill": 1.5,
+     "mullions": 4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "ground/wing": {
+     "type": "window",
+     "w": 0.45,
+     "h": 1.0,
+     "sill": 2.0,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "brick lower storey of the low wing, one ribbon window; nitrogen tank enclosure in front at s ~24"
+    },
+    "l2/wing": {
+     "type": "glass",
+     "h": 0.8,
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "mint curtain wall under a thin projecting flat roof slab (silver fascia, ~1.5 m overhang) at z ~8.6 (sv_W1_YF4E, uw023)"
+    },
+    "l3/wing": null,
+    "l4/wing": null,
+    "l5/wing": null,
+    "top/wing": null,
+    "ground/encl": {
+     "type": "door",
+     "w": 0.1,
+     "h": 2.2,
+     "glass": "concrete",
+     "colour": "concrete",
+     "note": "painted concrete enclosure ~4.5 m high, grey-beige, one white steel door, one wall louvre; galvanised steel ramp with railings up to the door; terrace railing (black steel pickets) on top"
+    },
+    "l2/encl": null,
+    "l3/encl": null,
+    "l4/encl": null,
+    "l5/encl": null,
+    "top/encl": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     24.8,
+     25.0,
+     "metal_silver",
+     0.1
+    ]
+   ],
+   "signs": [],
+   "attached": [
+    "NW corner cantilever ~2.5 m over s 0-5.5 (z 4.4 up)",
+    "black steel picket railing along the courtyard terrace edge at z ~4.5-5.6 over s 25-36",
+    "steel grating ramp with galvanised rails along the enclosure face, s ~26-34"
+   ],
+   "notes": "The walls.json line is a straight cut through a stepped facade: the low wing and enclosure faces stand ~3-5 m inside the line (lidar). The tower part is ~13 m long; rows above l2 apply only there (lidar clip). Low-wing glazing reads as the 'long glazed band with flat canopy' of uw022/uw023 (2002)."
+  },
+  "W2": {
+   "faces": "SW",
+   "length_m": 16.2,
+   "confidence": "medium",
+   "height_m": 4.5,
+   "summary": "service yard face: grey-beige painted concrete enclosure with white steel door, vent louvre and steel ramp, then the loading dock recess under the courtyard-terrace slab with a 3.5 m overhead door, black dock bumpers; terrace railing on top",
+   "rows": [
+    [
+     1.2,
+     "dock"
+    ],
+    [
+     3.3,
+     "door"
+    ]
+   ],
+   "bays": [
+    [
+     7.0,
+     "encl"
+    ],
+    [
+     9.2,
+     "dock"
+    ]
+   ],
+   "cells": {
+    "door/encl": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "panel_white",
+     "note": "white steel door + wall louvre to its right"
+    },
+    "dock/dock": {
+     "type": "panel",
+     "colour": "concrete_raw",
+     "note": "dock platform edge with 5 black rubber bumpers"
+    },
+    "door/dock": {
+     "type": "door",
+     "w": 3.5,
+     "h": 3.0,
+     "glass": "concrete_cool",
+     "frame": "panel_black",
+     "note": "overhead sectional door, yellow notice sign; recessed ~2 m under the terrace slab"
+    }
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     3.9,
+     4.5,
+     "concrete",
+     0.3
+    ],
+    [
+     4.5,
+     5.6,
+     "panel_black",
+     0.0
+    ]
+   ],
+   "notes": "sv_W2_YF4E / sv_c1 (Jul 2017). The black band stands for the open steel picket railing (1.1 m) on the terrace edge, not a solid wall."
+  },
+  "W3": {
+   "faces": "NW",
+   "length_m": 23.6,
+   "confidence": "medium-low",
+   "height_m": 14.0,
+   "summary": "north face of the south wing over the service yard and the courtyard terrace: concrete loading dock at grade (overhead door, door, bumpers, dumpster), terrace slab at ~4.5 m, then buff brick with a long two-row mint curtain band (l3) and a white smooth-panel block with small windows at the west end",
+   "rows": [
+    [
+     4.5,
+     "dock"
+    ],
+    [
+     4.4,
+     "terrace"
+    ],
+    [
+     4.3,
+     "band"
+    ],
+    [
+     0.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     14.0,
+     "glass"
+    ],
+    [
+     7.0,
+     "white"
+    ],
+    [
+     2.6,
+     "low"
+    ]
+   ],
+   "cells": {
+    "dock/*": {
+     "type": "door",
+     "w": 3.4,
+     "h": 3.2,
+     "glass": "concrete_cool",
+     "frame": "panel_black",
+     "colour": "concrete",
+     "note": "painted concrete dock wall, overhead door, grey steel door, wall lamps"
+    },
+    "terrace/glass": {
+     "type": "window",
+     "w": 0.85,
+     "h": 0.8,
+     "sill": 2.6,
+     "mullions": 10,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "brick at terrace level with a low clerestory strip; 4 sloped glazed skylight frames lean on its base (uw017)"
+    },
+    "band/glass": {
+     "type": "glass",
+     "h": 0.95,
+     "mullion_pitch": 1.3,
+     "transom_pitch": 2.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "long mint curtain band (earth_W3_whole, uw017)"
+    },
+    "terrace/white": {
+     "type": "window",
+     "w": 0.25,
+     "h": 1.2,
+     "glass": "window_dark",
+     "colour": "panel_white"
+    },
+    "band/white": {
+     "type": "window",
+     "w": 0.15,
+     "h": 1.6,
+     "glass": "window_dark",
+     "colour": "panel_white",
+     "note": "slit window"
+    },
+    "*/low": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "parapet/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.4,
+     4.6,
+     "concrete",
+     0.3
+    ],
+    [
+     4.6,
+     5.7,
+     "panel_black",
+     0.0
+    ]
+   ],
+   "notes": "The loading dock seen in sv_W3_YF4E (2017) is under the terrace slab; the brown-brick building with grey panels on its right is a neighbour, not EIT. Upper floors from earth_W3_whole and the 2002 courtyard photo uw017 (pre-dates nothing obvious). White block colour sampled #d4d8dc in sun."
+  },
+  "W4": {
+   "faces": "SE",
+   "length_m": 7.7,
+   "confidence": "low",
+   "height_m": 14.0,
+   "summary": "short re-entrant face at the south wing's west end: white smooth panels with a tall narrow vertical glazed slot",
+   "rows": [
+    [
+     14.0,
+     "all"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "plain"
+    ],
+    [
+     1.2,
+     "slot"
+    ],
+    [
+     3.5,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "all/slot": {
+     "type": "glass",
+     "h": 0.85,
+     "transom_pitch": 1.8,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "all/plain": null
+   },
+   "wall": "panel_white",
+   "notes": "earth_W4_whole only; no Street View. Gap of ~3.6 m between W3 end and W4 start in walls.json."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 14.6,
+   "confidence": "low",
+   "height_m": 14.0,
+   "summary": "west end of the south wing toward the pine lawn: pale buff brick, a white panel cap at the NW corner, two ribbon windows rows of mint glass",
+   "rows": [
+    [
+     4.8,
+     "ground"
+    ],
+    [
+     4.6,
+     "l2"
+    ],
+    [
+     3.8,
+     "l3"
+    ],
+    [
+     0.8,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     2.5,
+     "white"
+    ],
+    [
+     11.0,
+     "rib"
+    ],
+    [
+     1.1,
+     "end"
+    ]
+   ],
+   "cells": {
+    "l2/rib": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "mullions": 5,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/rib": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.6,
+     "mullions": 6,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "almost full-width ribbon (earth_W5_whole)"
+    },
+    "*/white": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "ground/*": null,
+    "*/end": null
+   },
+   "wall": "brick_buff",
+   "notes": "Lower storey hidden by pines in all images; assumed plain brick with stepped concrete plinth like W6."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 23.1,
+   "confidence": "medium",
+   "height_m": 14.0,
+   "summary": "south front on the paved plaza: pale buff brick block to grade at the west (stepped concrete plinth), then a 5.5 m high open through-passage under the wing (s ~10-23) leading to the south entrance; upper storeys over it in buff brick (west) and white smooth panels (east) with ribbon and punched mint windows",
+   "rows": [
+    [
+     5.5,
+     "ground"
+    ],
+    [
+     4.2,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     0.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     10.0,
+     "solid"
+    ],
+    [
+     4.0,
+     "pass_w"
+    ],
+    [
+     5.0,
+     "pass_m"
+    ],
+    [
+     4.1,
+     "pass_e"
+    ]
+   ],
+   "cells": {
+    "ground/solid": null,
+    "ground/pass_w": {
+     "type": "void",
+     "note": "open passage, light-grey soffit with round downlights at ~5.5 m; through it the courtyard/service side is visible (sv_W6_zcBI)"
+    },
+    "ground/pass_m": {
+     "type": "void"
+    },
+    "ground/pass_e": {
+     "type": "void"
+    },
+    "l2/solid": null,
+    "l2/pass_w": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.0,
+     "sill": 0.4,
+     "mullions": 6,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "ribbon window just above the passage soffit"
+    },
+    "l2/pass_m": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.0,
+     "sill": 0.4,
+     "mullions": 5,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/pass_e": {
+     "type": "window",
+     "w": 0.7,
+     "h": 1.0,
+     "sill": 0.6,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "l3/solid": {
+     "type": "window",
+     "w": 0.45,
+     "h": 1.5,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "window box with sloped head (earth_W6_whole)"
+    },
+    "l3/pass_w": {
+     "type": "window",
+     "w": 0.55,
+     "h": 1.3,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/pass_m": {
+     "type": "window",
+     "w": 0.4,
+     "h": 1.3,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/pass_e": {
+     "type": "window",
+     "w": 0.5,
+     "h": 1.4,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "parapet/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.6,
+     "concrete",
+     0.05
+    ],
+    [
+     5.4,
+     5.6,
+     "prop_metal",
+     0.05
+    ]
+   ],
+   "notes": "Passage position from sv_W6_zcBI (s 11-19 at the image) and sv_W4_dJgp; the east ~9 m of the upper storeys are white smooth panels (sampled #d4d8dc sunlit), the rest brick that reads almost white in full sun (#cec6bd-#e2d0bf) and tan in shade; one brick colour is used. Earth window layout and SV disagree by a few metres; Earth used for l3."
+  },
+  "W7": {
+   "faces": "NE",
+   "length_m": 10.8,
+   "confidence": "low",
+   "height_m": 14.0,
+   "summary": "east side of the south wing over the passage: white smooth panels/brick with one square window per upper storey; at grade the passage continues and the south entrance (glass double doors with a flat canopy, 5 concrete steps, steel handrails) sits at its back",
+   "rows": [
+    [
+     5.5,
+     "ground"
+    ],
+    [
+     4.2,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     0.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.5,
+     "a"
+    ],
+    [
+     2.0,
+     "win"
+    ],
+    [
+     5.3,
+     "b"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "void"
+    },
+    "l2/win": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.5,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/win": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.5,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    }
+   },
+   "wall": "panel_white",
+   "notes": "earth_W7_whole; sv_W7_dJgp (2014). Whether the ground is open passage along all of W7 is a guess."
+  },
+  "W8": {
+   "faces": "SE",
+   "length_m": 43.9,
+   "confidence": "medium-low",
+   "height_m": 22.5,
+   "summary": "south-east side: west end is the recessed south entrance under the wing; middle stretch rises above the roofs of the low brick neighbour (lower ~8-11 m hidden); east 18 m is the tower's SE block: buff brick with alternating projecting mint ribbon bays and punched window pairs, ground recessed behind a concrete landing with railings",
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     4.0,
+     "l2"
+    ],
+    [
+     3.8,
+     "l3"
+    ],
+    [
+     3.4,
+     "l4"
+    ],
+    [
+     3.4,
+     "l5"
+    ],
+    [
+     3.5,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     6.0,
+     "entry"
+    ],
+    [
+     17.0,
+     "mid"
+    ],
+    [
+     6.0,
+     "se1"
+    ],
+    [
+     7.5,
+     "se2"
+    ],
+    [
+     7.4,
+     "se3"
+    ]
+   ],
+   "cells": {
+    "ground/entry": {
+     "type": "door",
+     "w": 2.2,
+     "h": 2.4,
+     "leaves": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "canopy": [
+      1.2,
+      "metal_silver"
+     ],
+     "note": "south entrance: aluminium glass double doors + sidelight, flat canopy, 5 concrete steps and steel handrails (sv_W7, sv_W6_TYGj)"
+    },
+    "l2/entry": null,
+    "ground/mid": {
+     "type": "panel",
+     "colour": "brick_brown",
+     "note": "hidden behind / shared with the low neighbour"
+    },
+    "l2/mid": null,
+    "l3/mid": {
+     "type": "window",
+     "w": 0.25,
+     "h": 1.4,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l4/mid": {
+     "type": "window",
+     "w": 0.5,
+     "h": 1.4,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l5/mid": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    },
+    "top/mid": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    },
+    "ground/se1": {
+     "type": "panel",
+     "glass": "brick_buff",
+     "depth": 2.5,
+     "h": "full",
+     "note": "recessed ground behind raised concrete landing, steel pipe railings, grey door, ramp down along W9"
+    },
+    "ground/se2": {
+     "type": "panel",
+     "glass": "brick_buff",
+     "depth": 2.5,
+     "h": "full"
+    },
+    "ground/se3": {
+     "type": "panel",
+     "glass": "brick_buff",
+     "depth": 2.5,
+     "h": "full"
+    },
+    "l2/se1": {
+     "type": "window",
+     "w": 0.7,
+     "h": 1.3,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/se2": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.4,
+     "mullions": 6,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "hood": {
+      "projection": 0.8,
+      "fin_w": 0.25,
+      "fin_colour": "brick_buff",
+      "soffit_colour": "brick_buff"
+     },
+     "note": "projecting brick box with ribbon window"
+    },
+    "l2/se3": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.4,
+     "mullions": 6,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "hood": {
+      "projection": 0.8,
+      "fin_w": 0.25,
+      "fin_colour": "brick_buff",
+      "soffit_colour": "brick_buff"
+     }
+    },
+    "l3/se1": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.4,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/se2": {
+     "type": "window",
+     "w": 0.55,
+     "h": 1.4,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/se3": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.4,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l4/se1": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.4,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l4/se2": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.4,
+     "mullions": 5,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "hood": {
+      "projection": 0.8,
+      "fin_w": 0.25,
+      "fin_colour": "brick_buff",
+      "soffit_colour": "brick_buff"
+     }
+    },
+    "l4/se3": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.4,
+     "mullions": 5,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "hood": {
+      "projection": 0.8,
+      "fin_w": 0.25,
+      "fin_colour": "brick_buff",
+      "soffit_colour": "brick_buff"
+     }
+    },
+    "l5/se1": {
+     "type": "window",
+     "w": 0.5,
+     "h": 1.4,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l5/se2": {
+     "type": "glass",
+     "h": 0.8,
+     "mullion_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "top glazed band set back under a thin flat silver canopy"
+    },
+    "l5/se3": {
+     "type": "glass",
+     "h": 0.8,
+     "mullion_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     19.0,
+     19.15,
+     "metal_silver",
+     0.9
+    ]
+   ],
+   "notes": "SE-corner block from sv_W8_p_Tyg (2019) and sv_c10/c11/c12 (2014): ground recessed, two projecting ribbon boxes (l2, l4) alternate with punched windows (l3, l5 on the side). The low brick neighbour (1 storey, louvres, black coping) runs along s ~6-35 in front of the lower storeys; middle-stretch layout from earth_W8_whole only."
+  },
+  "W9": {
+   "faces": "NE",
+   "length_m": 31.9,
+   "confidence": "medium",
+   "height_m": 22.5,
+   "summary": "east side on the service lane to E3: ground storey recessed under a ~3 m cantilever (buff brick, large mint windows, low clerestory row, wall lamps, bike racks); above, a buff brick block with wide ribbon windows (s 0-23) and mint curtain bands with siding top over the north part; glazed bridge to E3 leaves the north end at level 2",
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     4.0,
+     "l2"
+    ],
+    [
+     3.8,
+     "l3"
+    ],
+    [
+     3.4,
+     "l4"
+    ],
+    [
+     3.4,
+     "l5"
+    ],
+    [
+     3.5,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     2.5,
+     "corner"
+    ],
+    [
+     4.0,
+     "brick"
+    ],
+    [
+     9.0,
+     "rib"
+    ],
+    [
+     7.5,
+     "rib2"
+    ],
+    [
+     8.9,
+     "north"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "panel",
+     "glass": "brick_buff",
+     "depth": 3.0,
+     "h": "full",
+     "note": "recessed brick wall: large windows z 1.7-3.8 (upper vision panes over opaque mint spandrel glass, 6 bays ~1.1 m), basement clerestory strip z 0.1-0.9, grey cylinder wall lamps; ~3 m sloped soffit (sv_W9_LO7w, -SkkM)"
+    },
+    "l2/corner": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/brick": null,
+    "l2/rib": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "mullions": 6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/rib2": {
+     "type": "glass",
+     "h": 0.7,
+     "mullion_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "projecting glazed bay toward the bridge"
+    },
+    "l2/north": {
+     "type": "glass",
+     "h": 0.7,
+     "mullion_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/corner": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.5,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/brick": null,
+    "l3/rib": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "mullions": 7,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/rib2": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "mullions": 6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l3/north": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l4/corner": {
+     "type": "glass",
+     "h": 0.8,
+     "mullion_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "glazed corner"
+    },
+    "l4/brick": null,
+    "l4/rib": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l4/rib2": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l4/north": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l5/*": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    },
+    "l5/rib2": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l5/north": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.3,
+     4.6,
+     "prop_metal",
+     0.05
+    ]
+   ],
+   "signs": [],
+   "attached": [
+    "glazed/ribbed-metal bridge to E3 at the north end (W10/W11), level 2"
+   ],
+   "notes": "Ground from three close 2014/2019 SVs (s 6, 23, 32). Upper layout from earth_W9_whole (ribbons: l2 s 6.6-15.7, l3 s 6.5-18.4; brick upper block s 0-14; mint bands s 14-32). Lidar puts this side at ~21-22.5 m, not 25."
+  },
+  "W10": {
+   "faces": "SE",
+   "length_m": 17.3,
+   "confidence": "medium",
+   "height_m": 10.0,
+   "summary": "south side of the bridge to E3: one-storey box on a mid-span board-formed concrete pier, open below (5 m clear); mint glass box at the EIT end, smooth/ribbed white-silver metal over the span with a short window strip near E3",
+   "rows": [
+    [
+     5.0,
+     "open"
+    ],
+    [
+     1.0,
+     "beam"
+    ],
+    [
+     3.2,
+     "bridge"
+    ],
+    [
+     0.8,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "glass"
+    ],
+    [
+     8.0,
+     "metal"
+    ],
+    [
+     3.5,
+     "strip"
+    ],
+    [
+     0.8,
+     "end"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void"
+    },
+    "bridge/glass": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.3,
+     "transom_pitch": 1.4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "beam/glass": {
+     "type": "panel",
+     "colour": "glass_teal"
+    },
+    "bridge/strip": {
+     "type": "window",
+     "w": 0.95,
+     "h": 0.5,
+     "mullions": 4,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "bridge/end": {
+     "type": "panel",
+     "colour": "glass_teal"
+    }
+   },
+   "wall": "metal_silver",
+   "notes": "sv_W10_gR8t (2014), sv_c14. Pier ~1.2 m square, s ~8. Ribbing reads smooth in sun."
+  },
+  "W11": {
+   "faces": "NW",
+   "length_m": 20.4,
+   "confidence": "medium",
+   "height_m": 10.0,
+   "summary": "north side of the bridge: horizontally ribbed silver metal box, open below; 2-row mint glass box at the EIT end (s 14-20.4) and a 4-pane window strip near E3 (s 1-6); square board-formed concrete piers at E3 end and mid-span",
+   "rows": [
+    [
+     5.0,
+     "open"
+    ],
+    [
+     0.8,
+     "beam"
+    ],
+    [
+     3.4,
+     "bridge"
+    ],
+    [
+     0.8,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "end"
+    ],
+    [
+     5.5,
+     "strip"
+    ],
+    [
+     7.5,
+     "metal"
+    ],
+    [
+     6.4,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void"
+    },
+    "bridge/strip": {
+     "type": "window",
+     "w": 0.95,
+     "h": 0.55,
+     "mullions": 3,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "bridge/glass": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.6,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "beam/glass": {
+     "type": "panel",
+     "colour": "glass_teal"
+    }
+   },
+   "wall": "metal_silver",
+   "notes": "sv_W11_53aN (2019), sv_W11_EA_y (2014), sv_c15 (pier close-up)."
+  },
+  "W12": {
+   "faces": "NE",
+   "length_m": 23.8,
+   "confidence": "medium",
+   "height_m": 25.0,
+   "summary": "north-east side on the lane: buff brick base with a basement clerestory row and a ribbon row, mint curtain bands at l3-l5 under the siding over the south 15 m, and the NE-corner brick block (s 17-24) where the W0 cantilever wraps around",
+   "rows": [
+    [
+     4.4,
+     "ground"
+    ],
+    [
+     4.0,
+     "l2"
+    ],
+    [
+     3.8,
+     "l3"
+    ],
+    [
+     3.4,
+     "l4"
+    ],
+    [
+     3.4,
+     "l5"
+    ],
+    [
+     6.0,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     2.25,
+     "b"
+    ],
+    [
+     2.25,
+     "b"
+    ],
+    [
+     2.25,
+     "b"
+    ],
+    [
+     2.25,
+     "b"
+    ],
+    [
+     2.25,
+     "b"
+    ],
+    [
+     2.25,
+     "b"
+    ],
+    [
+     2.0,
+     "b"
+    ],
+    [
+     2.6,
+     "gap"
+    ],
+    [
+     5.7,
+     "ne"
+    ]
+   ],
+   "cells": {
+    "ground/b": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.0,
+     "sill": 0.15,
+     "mullions": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "basement clerestory strip, alternating mint opaque and vision panes"
+    },
+    "ground/gap": null,
+    "ground/ne": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.2,
+     "sill": 2.9,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/b": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.3,
+     "sill": 0.5,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l2/gap": null,
+    "l2/ne": null,
+    "l3/b": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l4/b": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l5/b": {
+     "type": "glass",
+     "h": 0.85,
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "continuous mint-green curtain glazing: darker vision panes ~1.4 m wide at 3.0 m pitch alternating with opaque mint spandrel glass; silver mullions"
+    },
+    "l3/gap": null,
+    "l4/gap": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l5/gap": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "l3/ne": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.2,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l4/ne": {
+     "type": "window",
+     "w": 0.6,
+     "h": 1.2,
+     "mullions": 2,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "l5/ne": {
+     "type": "window",
+     "w": 0.5,
+     "h": 1.4,
+     "mullions": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "top/*": {
+     "type": "panel",
+     "colour": "metal_silver",
+     "note": "horizontally ribbed (fine corrugation ~5 cm) silver-white aluminium siding, vertical seams every ~5-6 m, no windows: mechanical/lab-exhaust storey (uw023, uw024, earth_W0_l)"
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     24.8,
+     25.0,
+     "metal_silver",
+     0.1
+    ]
+   ],
+   "notes": "sv_W12_53aN, sv_W12_RtlwV (2019), sv_c17 (May 2025, best overall view of the NE corner), earth_W12_whole (7 vision panes at ~2.25 m in each mint band, s 0.7-15). Roof notch with mechanical units behind the siding at s ~10-17 (earth_W12_whole)."
+  }
+ },
+ "roof": [
+  {
+   "what": "main roof of the U-shaped tower, light grey membrane",
+   "where": "north and east arms at 24-25.5 m (lidar); SE part ~21-22.5 m",
+   "size_m": [
+    54,
+    45,
+    0
+   ]
+  },
+  {
+   "what": "siding parapet/screen walls ~6 m tall enclosing the top storey, with a notch on W12 showing grey mechanical units",
+   "where": "perimeter of the tower top"
+  },
+  {
+   "what": "grey rooftop unit with 4 round fans",
+   "where": "NW part of the tower roof (orbit_045)",
+   "size_m": [
+    3.0,
+    1.8,
+    1.2
+   ]
+  },
+  {
+   "what": "square penthouse boxes ~4x4x2.5 m, light grey",
+   "where": "west arm near the courtyard edge (2) and centre (1)",
+   "size_m": [
+    4,
+    4,
+    2.5
+   ]
+  },
+  {
+   "what": "thin dark mast with weather instruments (~5 m), plus a railing on the highest roof",
+   "where": "east arm near the inner courtyard edge (orbit_045, uw023)",
+   "size_m": [
+    0.2,
+    0.2,
+    5
+   ]
+  },
+  {
+   "what": "inner upper roof at ~18 m inside the U (purple in lidar), with siding walls rising around it",
+   "where": "centre-west of the tower"
+  },
+  {
+   "what": "low brown/red sloped roof with a curved edge over the atrium/multipurpose room, railing along its top",
+   "where": "centre, between tower and courtyard terrace (~9-10 m)",
+   "size_m": [
+    16,
+    8,
+    1.5
+   ]
+  },
+  {
+   "what": "south wing flat roof at ~14 m with a white skylight/hatch box ~3x2x1 m",
+   "where": "south wing middle"
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "E3 (likely; horizontally ribbed precast building east across the service lane)",
+    "from_wall": "W9/W12 corner, walls W10-W11",
+    "s": [
+     0,
+     3
+    ],
+    "levels": [
+     2
+    ],
+    "look": "one-storey box, underside ~5 m, top ~10 m; horizontally ribbed silver metal with a 2-row mint glass box at the EIT end and a short window strip near E3; carried on square board-formed concrete piers (~1.2-1.4 m) mid-span and at the E3 end"
+   }
+  ],
+  "neighbours": [
+   "E3 (likely) ~15 m east across the service lane, joined by the bridge",
+   "a low 1-storey buff-brown brick link building with louvres and a black coping in front of W8, behind it a 3-storey brown brick building with ribbon windows (south-east)",
+   "orange-red brick 3-storey building with dark spandrel panels and stone bands just east of the south plaza (likely C2; guess)",
+   "brown brick building with grey concrete panels directly west of the loading dock (W3), likely PHY or ESC (guess)",
+   "horizontally banded tan precast building across the north lane (Engineering, visible in sv_W0_jrLX)"
+  ],
+  "ground": [
+   "north (W0): asphalt lane with curb, ~6 m wide grey interlocking-paver apron in front of the recessed ground and the entrance; lawn strip from s ~28 west",
+   "west (W1): asphalt parking lot (~6 stalls, yellow lines) against the wall, curbed grass islands at its north end",
+   "south-west (W2/W3): sunken asphalt service yard with trench drain, loading dock, painted concrete walls, steel ramp",
+   "south (W5/W6): lawn with large pines and deciduous trees; grey interlocking-paver plaza and walk leading into the passage and to the south entrance",
+   "east (W9): narrow asphalt service lane between EIT and E3 with a paved walk along EIT and a concrete ramp with galvanised rails down to the SE-corner landing",
+   "north-east (W12): grass strip with a sandy path along the wall, asphalt lane",
+   "courtyard terrace (~4.5 m above the yard, between tower, low wing and south wing): buff concrete pavers, raised concrete and block planters with native plants, benches, sloped glazed skylights (uw017, uw022, ortho)"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised loop (wave) racks on rails",
+    "where": "along W0, s 2-14, 1.5 m out",
+    "count": 6,
+    "photo": "sv_W0_jrLX (May 2025)"
+   },
+   {
+    "type": "wall_lamp",
+    "kind": "grey half-cylinder wall lamps",
+    "where": "recessed ground wall of W0, s 3-14, z 2.7",
+    "count": 5,
+    "photo": "sv_W0_jrLX"
+   },
+   {
+    "type": "sign",
+    "kind": "red FIRE DEPT CONNECTION plate + siamese connection",
+    "where": "W0 s ~14, on the wall",
+    "count": 1,
+    "photo": "sv_W0_jrLX"
+   },
+   {
+    "type": "bin",
+    "kind": "square grey concrete ash/litter bin",
+    "where": "W0 s ~15, beside the entrance, 0.5 m out",
+    "count": 1,
+    "photo": "sv_W0_FVaS"
+   },
+   {
+    "type": "lamp",
+    "kind": "tall black pole lamp",
+    "where": "north of the NE corner, ~12 m out from W0 s 0",
+    "count": 1,
+    "photo": "sv_c17"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised loop racks",
+    "where": "along W9, s 15-30, 1 m out",
+    "count": 4,
+    "photo": "sv_W9_LO7w, sv_W10_gR8t"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised inverted-U on a rail",
+    "where": "W1 s ~6, at the wall under the cantilever",
+    "count": 1,
+    "photo": "sv_W1_ZH2E"
+   },
+   {
+    "type": "tank",
+    "kind": "white vertical liquid-nitrogen tank ~2 m dia x 4 m in a chain-link enclosure on a concrete pad",
+    "where": "W1 s ~22-25, 2 m out",
+    "count": 1,
+    "photo": "sv_W1_YF4E"
+   },
+   {
+    "type": "bollard",
+    "kind": "black steel bollards with yellow tops",
+    "where": "W1 s ~20-23, 4 m out, guarding the tank",
+    "count": 3,
+    "photo": "sv_W1_YF4E"
+   },
+   {
+    "type": "ramp",
+    "kind": "galvanised steel grating ramp with pipe rails",
+    "where": "W1 s 26-34 / W2 s 0-6, along the enclosure",
+    "count": 1,
+    "photo": "sv_W2_YF4E"
+   },
+   {
+    "type": "dumpster",
+    "kind": "blue front-load dumpster 'Waste Connections'",
+    "where": "W3 loading dock, ~3 m out",
+    "count": 1,
+    "photo": "sv_W3_YF4E"
+   },
+   {
+    "type": "bench",
+    "kind": "brown wooden slat bench on concrete legs, with a square concrete bin beside it",
+    "where": "south lawn at the W5/W6 corner, ~4 m out from W6 s 2",
+    "count": 1,
+    "photo": "sv_W4_dJgp"
+   },
+   {
+    "type": "planter",
+    "kind": "large round concrete planter with red/pink begonias",
+    "where": "south plaza east of the passage, ~8 m out from W6 s 20-23",
+    "count": 2,
+    "photo": "sv_W7_dJgp (Sep 2014)"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised pipe railings on the raised concrete landing and down the ramp",
+    "where": "SE corner (W8 s 36-44, W9 s 0-8)",
+    "count": 1,
+    "photo": "sv_c10, sv_W8_p_Tyg"
+   },
+   {
+    "type": "bin",
+    "kind": "blue recycling carts",
+    "where": "W8 SE corner landing",
+    "count": 2,
+    "photo": "sv_c10 (2014)"
+   },
+   {
+    "type": "tree",
+    "kind": "tall white pines and a young maple",
+    "where": "south lawn, 5-15 m out from W5/W6",
+    "count": 5,
+    "photo": "sv_W5_dJgp, sv_c7"
+   },
+   {
+    "type": "tree",
+    "kind": "blue spruce",
+    "where": "west of the NW corner across the parking lot",
+    "count": 1,
+    "photo": "sv_W1_ZH2E"
+   }
+  ]
+ },
+ "geometry_notes": [
+  "W1 is a straight line through a stepped facade: only s 0-13 is the 24 m tower face; the low wing (~9 m) and the service enclosure (~4.5 m) faces stand 3-5 m inside the line (lidar, sv_W1_YF4E).",
+  "The east and south-east arms of the tower top out at ~21-22.5 m (lidar), the north arm and NW at 24-25.5 m; walls.json gives 25 m for all.",
+  "W10/W11 are the bridge to E3 (open underneath from 0 to ~5 m), not a wing; the lidar strip at 9-10.5 m is the bridge roof.",
+  "There is a ~3.6 m gap between W3's end (1006.4, 240.0) and W4's start (1008.1, 236.8).",
+  "Cantilevers: ~3 m on W0 s 1-16 and W9 (whole length), ~2.5 m at the NW corner on W1 and at the SE corner; the lidar footprint is the upper-storey outline, so the ground-storey walls there stand 2.5-3 m inside.",
+  "W6/W7 ground is an open through-passage ~5.5 m high under the south wing leading to the south entrance; the footprint treats it as solid.",
+  "Courtyard terrace (~4.5 m) and loading dock below it sit between the tower, the low wing and the south wing; no wall in walls.json describes the terrace-facing faces except W3's upper part."
+ ]
+}

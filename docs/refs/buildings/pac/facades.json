@@ -1,0 +1,1420 @@
+{
+ "building": "PAC",
+ "sources_checked": [
+  "around/sv_*_70 and _100 (all 22 wall + 20 corner shots; every Street View is Sep 2014 / Aug 2015, i.e. before the 2021 SLC/PAC expansion; sv_W14_CIHM and sv_c7 are black)",
+  "around/earth_corner_0..29 (2024; corners 0-7, 14-29 usable)",
+  "around/earth_W*_whole/_l/_m/_r (2024; almost all are shot from over the roof looking outward, so they show roofs and neighbours, not the wall itself; W17_whole is empty sky)",
+  "private/earth_facade_0..3, earth_detail_0a..3c, earth_orbit_*, earth_top (2024)",
+  "private/ortho_2023aug.jpg with walls.json drawn on (/tmp only)",
+  "lidar nDSM sampled 1.5/4/8 m inside every wall and across the gym (tools.art.study ndsm)",
+  "private/web/pac_* (Muraz Flickr aerials Jan-Feb 2022, Athletics Sep 2021)",
+  "../slc/walls.json + ../slc/facades.json (shared walls with the expansion)"
+ ],
+ "dating": "All Street View is 2014/2015 and predates the 2021 expansion, which was built on the lawn east of PAC: the 2014 east-side entrance views (sv_W14, W15, W16, W17, W18, c8-c13) no longer show the current state. The west, south and north walls are unchanged in Earth 2024 except that the east mansard has been re-clad in light metal.",
+ "form": "1970 PAC: a near-square (about 45 m) gymnasium with a flat white membrane roof at ~14.5-15.5 m, ringed by a ~2.5 m light silver metal fascia band, under which four dark slate standing-seam mansard slopes fall to plain red-brown brick walls at ~8-9.5 m. A board-formed concrete stair/vent tower (~4 m square, to ~18 m, NE one ~19.4 m) stands at each corner of the white roof, each wrapped at its foot by a steep dark-metal hipped 'skirt' roof over a one-storey (~4.2 m) brick corner pavilion holding a glazed entrance: Blue North (NW, on W2), Blue South (SW, on W9, name a guess), Red South (SE, on W11), Red North (NE, on W17, now inside the expansion). A plain flat-roofed brick block (pool/annex, ~6 m) extends north (W0, W19, W20); a low east wing (W14) with four roof boxes links to SLC; a 6 m brick lean-to sits on the west wall (W6).",
+ "colours": {
+  "brick": {
+   "hex": "#8a6a5c",
+   "palette": "brick_slc",
+   "where": "every wall: one medium red-brown brick, stretcher bond with light mortar. SV raw is under-exposed (#4f3a34-#49392f, x1.6 gives #7e5d53, Lab 3.6 from brick_slc); sunlit sv_W19 reads #be9e89 (over-exposed). Same brick as the 1968 SLC, so brick_slc keeps the two buildings matched"
+  },
+  "coping": {
+   "hex": "#46403a",
+   "palette": "roof_mansard",
+   "where": "thin dark brown metal coping on every brick parapet (sv_W4, sv_W0)"
+  },
+  "foundation": {
+   "palette": "concrete",
+   "where": "exposed light grey poured-concrete foundation, stained, under the brick of W0 and W19 (taller where the ground falls to the north) and a narrow strip on W20"
+  },
+  "mansard": {
+   "hex": "#42505a",
+   "palette": "brick_slate",
+   "where": "standing-seam sloped roofs on the N, S and W sides of the gym and all four corner hip 'skirts' (Earth 2024 reads blue-grey; SV 2014 dark grey). Lab 2.7 from brick_slate"
+  },
+  "mansard_east": {
+   "palette": "roof_metal",
+   "where": "east mansard slope only: re-clad in light galvanised/silver standing seam (earth_facade_0, corner_6, W14_m 2024)"
+  },
+  "fascia_band": {
+   "hex": "#c9d0d6",
+   "palette": "metal_silver",
+   "where": "~2.5 m vertical metal band between the top of the mansards and the white roof edge, all four sides (sv_W3 sample, Lab 3.0); a darker ribbed/louvred strip runs along its lower half in sv_W3/W10 (window_dark)"
+  },
+  "main_roof": {
+   "palette": "roof_membrane",
+   "where": "white gym roof with a row of dark drain dots round its edge"
+  },
+  "low_roofs": {
+   "palette": "roof_gravel",
+   "where": "north block and the corner pavilions: dark grey-brown membrane (ortho)"
+  },
+  "towers": {
+   "hex": "#b4ab9a",
+   "palette": "concrete_raw",
+   "where": "board-formed concrete corner towers (SV reads warm khaki-grey; concrete_raw chosen for material, dc_corrugated is the Lab-nearest)"
+  },
+  "entrance_fascia": {
+   "hex": "#6a5d57",
+   "palette": "roof_mansard",
+   "where": "brown vertically ribbed metal fascia/canopy boxes over the four corner entrances (sv_W4, sv_W10; Lab 2.5)"
+  },
+  "sign_band": {
+   "palette": "penthouse_metal",
+   "where": "black band under each entrance fascia carrying the entrance name in cream/white letters"
+  },
+  "door_frames": {
+   "palette": "mullion",
+   "where": "white/silver aluminium entrance doors and frames"
+  },
+  "door_red": {
+   "palette": "steel_red",
+   "where": "red horizontal rail panels across the Red South / Red North doors at ~1.0-1.3 m"
+  },
+  "door_blue": {
+   "hex": "#3f7fc0",
+   "palette": null,
+   "new_swatch": "door_blue",
+   "where": "bright blue rail panels across the Blue North (and presumably Blue South) doors (sv_W4). Nearest ion_accent at 13.5"
+  },
+  "service_doors": {
+   "palette": "penthouse_metal",
+   "where": "black painted steel doors (W20, W10)"
+  },
+  "louvres": {
+   "hex": "#74635a",
+   "palette": "roof_mansard",
+   "where": "bronze/brown horizontal-blade louvres over the W20 doors; dark grey vertical louvre in the W1 recess (prop_lamp)"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "W",
+   "length_m": 36.7,
+   "confidence": "high",
+   "summary": "north block west wall: one long blank wall of red-brown brick over an exposed concrete foundation that grows toward the north as the lawn falls away; dark coping; a sunken concrete service ramp at the south end",
+   "height_m": 6.0,
+   "rows": [
+    [
+     1.0,
+     "foundation"
+    ],
+    [
+     4.75,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     36.7,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     0.0,
+     1.0,
+     "concrete",
+     0.0
+    ],
+    [
+     5.75,
+     6.0,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "sunken concrete ramp/areaway with ~1 m retaining walls along s 30-36.7, 0-3 m out, dropping to a basement service door at the W1 corner (sv_W0_ni-DM)",
+    "small wall-pack light near the top at s ~6 (sv_W0_-Ls9)"
+   ],
+   "notes": "Foundation band is ~1.3 m tall at the north end (a) and runs out to 0 by s ~30 (sv_W0 x3, sv_c15); the model can taper it or keep 1.0 m. Lidar parapet 5-8 m because of the falling ground; ~6 m above the foundation top at the north."
+  },
+  "W1": {
+   "faces": "N",
+   "length_m": 5.8,
+   "confidence": "medium",
+   "summary": "service recess between the north block and the NW pavilion: dark grey vertical louvre panel over a sunken areaway with pipe railing; exterior steel/timber stair up to the pavilion roof",
+   "height_m": 4.2,
+   "rows": [
+    [
+     3.95,
+     "ground"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "pier"
+    ],
+    [
+     2.8,
+     "louvre"
+    ],
+    [
+     1.4,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/louvre": {
+     "type": "louvre",
+     "w": 2.6,
+     "h": 3.3,
+     "colour": "prop_lamp",
+     "blades": "vertical"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.95,
+     4.2,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "black pipe railing round the areaway, 1.1 m",
+    "stair to the roof seen in sv_W2_100 at the re-entrant"
+   ],
+   "notes": "sv_W2_100 and sv_W3_100 (2014) x 150-390. Exact split between W1 and the east end of W2 is approximate."
+  },
+  "W2": {
+   "faces": "N",
+   "length_m": 14.5,
+   "confidence": "high",
+   "summary": "NW corner pavilion north face: 'Blue North' entrance (five glazed doors with blue rail panels) recessed under a brown ribbed fascia at the east end, plain brick to the west corner; the dark hipped skirt and concrete tower rise behind",
+   "height_m": 4.2,
+   "rows": [
+    [
+     2.5,
+     "ground"
+    ],
+    [
+     0.5,
+     "sign"
+    ],
+    [
+     1.0,
+     "fascia"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "pier"
+    ],
+    [
+     5.0,
+     "entrance"
+    ],
+    [
+     8.0,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/entrance": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.4,
+     "count": 5,
+     "mullions": 4,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "rail": [
+      1.0,
+      1.25,
+      "#3f7fc0 (new: door_blue)"
+     ],
+     "recess": 1.5
+    },
+    "sign/entrance": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "projection": 0.3
+    },
+    "fascia/entrance": {
+     "type": "panel",
+     "colour": "roof_mansard",
+     "ribbed": true,
+     "projection": 0.3
+    },
+    "*/pier": null,
+    "*/plain": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.95,
+     4.2,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 3.5,
+     "z": 2.75,
+     "w": 2.4,
+     "h": 0.3,
+     "text": "Blue North",
+     "colour": "panel_white",
+     "on": "black band under fascia, left aligned"
+    }
+   ],
+   "attached": [
+    "concrete litter bin by the west door jamb (sv_W4)",
+    "small surface-mounted box/conduit at the base near the west corner"
+   ],
+   "notes": "sv_W4/W5/W3 (Sep 2014), still the same in earth_corner_19-23 (2024). Doors: white aluminium, glazed, with a solid blue rail band at ~1.0-1.25 m; leaf count 5-6 (left edge cropped in sv_W4)."
+  },
+  "W3": {
+   "faces": "W",
+   "length_m": 15.3,
+   "confidence": "medium",
+   "summary": "NW pavilion west face: plain brick, with a recessed group of five tall slit windows between brick fins near the south end",
+   "height_m": 4.2,
+   "rows": [
+    [
+     0.6,
+     "base"
+    ],
+    [
+     2.6,
+     "slits"
+    ],
+    [
+     0.75,
+     "top"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.3,
+     "plain"
+    ],
+    [
+     4.0,
+     "slit_group"
+    ],
+    [
+     1.0,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "slits/slit_group": {
+     "type": "window",
+     "w": 0.45,
+     "h": 2.5,
+     "count": 5,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "penthouse_metal",
+     "recess": 0.4
+    },
+    "*/plain": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.95,
+     4.2,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Slits seen only in Earth 2024 (earth_detail_2b x 500-610, earth_facade_2 x 660-710, corner_21); position near the south end is read from those and from the notch in the ortho; count 4-5. sv_W3_100 shows the north part blank."
+  },
+  "W5": {
+   "faces": "W",
+   "length_m": 10.1,
+   "confidence": "high",
+   "summary": "gym west wall (north part): tall blank brick under the dark west mansard",
+   "height_m": 9.3,
+   "rows": [
+    [
+     9.05,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     9.05,
+     9.3,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "lidar 9.3 at the wall; earth_detail_2a/2b, corner_24/25. No openings visible."
+  },
+  "W6": {
+   "faces": "W",
+   "length_m": 16.2,
+   "confidence": "medium",
+   "summary": "one-storey-and-a-half brick lean-to on the gym west wall: blank brick box ~6 m with a light silver metal cap/coping and a pale metal roof; downpipe at the south end",
+   "height_m": 6.0,
+   "rows": [
+    [
+     5.6,
+     "wall"
+    ],
+    [
+     0.4,
+     "cap"
+    ]
+   ],
+   "bays": [
+    [
+     16.2,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     5.6,
+     6.0,
+     "metal_silver",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "downpipe at s ~15.5 (earth_detail_2a)"
+   ],
+   "notes": "No Street View reaches the west side; Earth 2024 only (corner_24/25, detail_2a). The gym brick wall continues 3.5 m higher behind it (lidar 9.5 at 4 m in). Openings not visible through the trees; treat as blank."
+  },
+  "W7": {
+   "faces": "W",
+   "length_m": 10.3,
+   "confidence": "high",
+   "summary": "gym west wall (south part): tall blank brick under the west mansard",
+   "height_m": 9.5,
+   "rows": [
+    [
+     9.25,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.3,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     9.25,
+     9.5,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "lidar 9.4-9.7; corner_26-29."
+  },
+  "W8": {
+   "faces": "W",
+   "length_m": 16.6,
+   "confidence": "medium",
+   "summary": "SW corner pavilion west face: plain brick with a recessed group of five tall slit windows near the north end, under the SW hipped skirt",
+   "height_m": 4.0,
+   "rows": [
+    [
+     0.6,
+     "base"
+    ],
+    [
+     2.5,
+     "slits"
+    ],
+    [
+     0.65,
+     "top"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.8,
+     "plain"
+    ],
+    [
+     4.0,
+     "slit_group"
+    ],
+    [
+     9.8,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "slits/slit_group": {
+     "type": "window",
+     "w": 0.45,
+     "h": 2.4,
+     "count": 5,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "penthouse_metal",
+     "recess": 0.4
+    },
+    "*/plain": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.75,
+     4.0,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "small white wall light / sign at ~s 9, z 2 (corner_28)"
+   ],
+   "notes": "Earth 2024 only (earth_corner_28/29, earth_facade_2 x 1240-1290). Mirrors the NW pavilion's slit group."
+  },
+  "W9": {
+   "faces": "S",
+   "length_m": 17.1,
+   "confidence": "low",
+   "summary": "SW pavilion south face: plain brick from the west, then a recessed glazed entrance (about six white-framed bays) under a fascia at the east end where the plaza steps arrive; presumably 'Blue South'",
+   "height_m": 4.2,
+   "rows": [
+    [
+     2.5,
+     "ground"
+    ],
+    [
+     0.5,
+     "sign"
+    ],
+    [
+     1.0,
+     "fascia"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     10.0,
+     "plain"
+    ],
+    [
+     6.0,
+     "entrance"
+    ],
+    [
+     1.1,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/entrance": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.4,
+     "count": 6,
+     "mullions": 5,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "rail": [
+      1.0,
+      1.25,
+      "#3f7fc0 (new: door_blue)"
+     ],
+     "recess": 1.5
+    },
+    "sign/entrance": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "projection": 0.3
+    },
+    "fascia/entrance": {
+     "type": "panel",
+     "colour": "roof_mansard",
+     "ribbed": true,
+     "projection": 0.3
+    },
+    "*/plain": null,
+    "*/pier": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.95,
+     4.2,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 11.0,
+     "z": 2.75,
+     "w": 2.4,
+     "h": 0.3,
+     "text": "Blue South (guess)",
+     "colour": "panel_white",
+     "on": "black band under fascia"
+    }
+   ],
+   "attached": [
+    "broad concrete steps from the SW plaza up to the entrance landing, s 9-17, 0-6 m out (earth_facade_1 left)"
+   ],
+   "notes": "Only earth_facade_1 (zoom /x 330-400) and earth_detail_1a show it, half hidden by a tree. The entrance name and rail colour are inferred from the Blue North / Red South pattern (Blue = west gym side, Red = east). Lidar rises to 6 m near the east end (pavilion core under the hip)."
+  },
+  "W10": {
+   "faces": "S",
+   "length_m": 36.9,
+   "confidence": "high",
+   "summary": "gym south wall on the PAC/SLC plaza: tall blank red-brown brick, one black steel service door near each end, dark coping; the dark south mansard with two light vertical seam stripes rises behind to the silver fascia band",
+   "height_m": 8.3,
+   "rows": [
+    [
+     2.3,
+     "ground"
+    ],
+    [
+     5.75,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.6,
+     "plain"
+    ],
+    [
+     1.1,
+     "door"
+    ],
+    [
+     29.4,
+     "plain"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     2.6,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.2,
+     "mullions": 0,
+     "solid": true,
+     "colour": "penthouse_metal"
+    },
+    "*/plain": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     8.05,
+     8.3,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 3.2,
+     "z": 2.5,
+     "w": 0.4,
+     "h": 0.3,
+     "text": "(small white door sign/light)",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 34.3,
+     "z": 2.5,
+     "w": 0.4,
+     "h": 0.3,
+     "text": "(small white door sign/light)",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "2.5-4 m deep bed of red-brown pavers/mulch with two large conifers/round trees between the wall and the plaza at s 9-30 (earth_facade_1, sv_W10)",
+    "black post-top lamp at s ~31, 4 m out (sv_W10)"
+   ],
+   "notes": "Door positions from earth_facade_1 (x 480 and x 975 of a 430-1020 span) and sv_W10 (east door beside the delivery bay). Lidar 8.1-8.4."
+  },
+  "W11": {
+   "faces": "S",
+   "length_m": 17.6,
+   "confidence": "high",
+   "summary": "SE corner pavilion south face: 'Red South' entrance, six white-framed glazed doors with red rail panels recessed under a brown ribbed fascia and black name band, reached by broad concrete steps; to the east a plain one-storey brick block with a raised lawn planter in front; the SE concrete tower and hipped skirt rise over the entrance",
+   "height_m": 4.2,
+   "rows": [
+    [
+     2.5,
+     "ground"
+    ],
+    [
+     0.5,
+     "sign"
+    ],
+    [
+     1.0,
+     "fascia"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     6.5,
+     "entrance"
+    ],
+    [
+     9.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/entrance": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.4,
+     "count": 6,
+     "mullions": 5,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "mullion",
+     "rail": [
+      1.0,
+      1.3,
+      "steel_red"
+     ],
+     "recess": 1.8
+    },
+    "sign/entrance": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "projection": 0.3
+    },
+    "fascia/entrance": {
+     "type": "panel",
+     "colour": "roof_mansard",
+     "ribbed": true,
+     "projection": 0.3
+    },
+    "*/pier": null,
+    "*/plain": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.95,
+     4.2,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 5.3,
+     "z": 2.75,
+     "w": 2.0,
+     "h": 0.3,
+     "text": "Red South",
+     "colour": "panel_white",
+     "on": "black band under fascia, centred over the doors"
+    }
+   ],
+   "attached": [
+    "broad concrete steps (yellow-capped bollards on the lower flight) from the plaza up to the entrance, s 1-9, 0-12 m out, two central steel handrails (sv_W10, sv_W13)",
+    "raised lawn planter with concrete edge and shrubs in front of the brick block, s 9-17.6, 0-6 m out"
+   ],
+   "notes": "sv_W10/W13/c3/c4 (Aug 2015); earth_facade_1 (2024) shows the same six glazed bays. Above the fascia the pavilion brick continues to ~6 m under the hipped skirt at s 0-8 (lidar 8.6 at s 1 is the tower corner)."
+  },
+  "W12": {
+   "faces": "E",
+   "length_m": 12.9,
+   "confidence": "medium",
+   "summary": "east face of the SE brick block beside the SLC link steps: plain brick, dark coping",
+   "height_m": 4.0,
+   "rows": [
+    [
+     3.75,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     12.9,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     3.75,
+     4.0,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "planter continues round the corner"
+   ],
+   "notes": "earth_corner_6/7, sv_W13 (oblique)."
+  },
+  "W13": {
+   "faces": "S",
+   "length_m": 9.8,
+   "confidence": "low",
+   "summary": "south end of the low east wing where the SLC glazed link arrives: low white-framed glazing ribbon under a white fascia",
+   "height_m": 5.0,
+   "rows": [
+    [
+     1.0,
+     "base"
+    ],
+    [
+     2.6,
+     "glazing"
+    ],
+    [
+     1.1,
+     "fascia"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     9.8,
+     "ribbon"
+    ]
+   ],
+   "cells": {
+    "glazing/ribbon": {
+     "type": "glass",
+     "style": "ribbon",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 2.6,
+     "glass": "window_glass",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "SLC one-storey glazed link (SLC W9/W10) joins at the east end, s ~8-9.8"
+   ],
+   "notes": "sv_W13 x 815-920 (2015) shows a white-framed glazed piece left of the link at the top of the steps; may belong to the link itself. Low confidence."
+  },
+  "W14": {
+   "faces": "E",
+   "length_m": 45.0,
+   "confidence": "low",
+   "summary": "low east wing toward SLC: brick with a continuous ribbon of white-framed clerestory windows along the top; mostly hidden behind a lower roofed strip and a light well; the north end now meets the 2021 expansion",
+   "height_m": 6.0,
+   "rows": [
+    [
+     3.6,
+     "lower"
+    ],
+    [
+     1.6,
+     "clerestory"
+    ],
+    [
+     0.55,
+     "top"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     32.0,
+     "ribbon"
+    ],
+    [
+     13.0,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "clerestory/ribbon": {
+     "type": "glass",
+     "style": "ribbon",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "*/shared": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     5.75,
+     6.0,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "a ~6 m wide low flat-roofed strip (lidar 2.3-5 m) runs along the outside of s 0-32, then a dark light well, then the PAC/SLC plaza",
+    "four white roof boxes (skylight/AHU hoods ~2.5 m) sit on the wing's roof in a row ~6-8 m in from this wall at s 8-28 (ortho, earth_W14_m)"
+   ],
+   "notes": "The clerestory ribbon is read from earth_corner_6 (row of ~14 tall lights running north) and the 2014 SV of the windows facing the plaza (sv_W14_h, sv_c8/c9). In 2014 the north part had the 'PHYSICAL ACTIVITIES COMPLEX' entrance court; since 2021 the expansion arm occupies it (see W15-W17)."
+  },
+  "W15": {
+   "faces": "N",
+   "length_m": 9.5,
+   "confidence": "high",
+   "summary": "shared wall: coincides (reversed) with SLC W4, the expansion's west arm; interior since 2021, do not draw a facade",
+   "height_m": 7.0,
+   "rows": [
+    [
+     7.0,
+     "shared"
+    ]
+   ],
+   "bays": [
+    [
+     9.5,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "void"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "SLC walls.json W4 runs (745.8,369.1)->(763.4,364.1) on the same line. 2014 SV (sv_W15) shows the old brick wall and east entrance that the expansion now encloses."
+  },
+  "W16": {
+   "faces": "E",
+   "length_m": 14.8,
+   "confidence": "high",
+   "summary": "shared wall: identical (reversed) to SLC W3; interior since 2021",
+   "height_m": 8.0,
+   "rows": [
+    [
+     8.0,
+     "shared"
+    ]
+   ],
+   "bays": [
+    [
+     14.8,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "void"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Ortho 2023 shows the expansion roof (with its four big exhaust stacks) directly against this line. sv_W16 (2014) with the 'PHYSICAL ACTIVITIES COMPLEX' sign and an entrance is obsolete."
+  },
+  "W17": {
+   "faces": "N",
+   "length_m": 14.3,
+   "confidence": "medium",
+   "summary": "shared wall: coincides with SLC W2; held the 'Red North' entrance (red-rail glazed doors under a brown fascia, sv_W17 2014), which now opens into the expansion",
+   "height_m": 4.2,
+   "rows": [
+    [
+     4.2,
+     "shared"
+    ]
+   ],
+   "bays": [
+    [
+     14.3,
+     "shared"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "void"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "If the expansion is not modelled against it, draw it like W11 mirrored: brick s 0-6, Red North doors s 6-10.5 under fascia, brick to s 14.3, plus a horizontal louvre on the W18 recess (sv_W17, sv_c11-c13)."
+  },
+  "W18": {
+   "faces": "N",
+   "length_m": 5.7,
+   "confidence": "low",
+   "summary": "NE re-entrant by the north block: brick with a broad horizontal-blade louvre and an exterior steel stair to the roof (2014); now inside the low glazed link to the expansion",
+   "height_m": 7.5,
+   "rows": [
+    [
+     1.0,
+     "base"
+    ],
+    [
+     2.0,
+     "louvre"
+    ],
+    [
+     4.25,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "pier"
+    ],
+    [
+     4.5,
+     "louvre"
+    ],
+    [
+     0.6,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "louvre/louvre": {
+     "type": "louvre",
+     "w": 4.3,
+     "h": 1.8,
+     "colour": "metal_silver",
+     "blades": "horizontal"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.25,
+     7.5,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "steel stair with railing up to the pavilion roof (sv_W17, sv_W19_OvCC left)"
+   ],
+   "notes": "SLC facades.json says the expansion meets PAC here through a low link with a sloped glazed roof (ortho). Probably mostly hidden now."
+  },
+  "W19": {
+   "faces": "E",
+   "length_m": 37.2,
+   "confidence": "high",
+   "summary": "north block east wall on the service walk to the expansion: long blank brick wall over an exposed concrete foundation that deepens northward; sunken stair with black railing at the south end",
+   "height_m": 6.0,
+   "rows": [
+    [
+     0.9,
+     "foundation"
+    ],
+    [
+     4.85,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     37.2,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/*": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     0.0,
+     0.9,
+     "concrete",
+     0.0
+    ],
+    [
+     5.75,
+     6.0,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "stair down to a basement areaway with black steel pipe railing along s 0-8, 0-2 m out (sv_W19_OvCC)"
+   ],
+   "notes": "sv_W19 x3 (2014): foundation ~0.5 m at s 0 rising to ~1.3 m at s 37. The 2014 lawn, bench and young tree in front are gone: since 2021 a ~7 m paved service walk separates this wall from the expansion's charcoal-brick climbing-wall pavilion (earth_facade_3, detail_3c)."
+  },
+  "W20": {
+   "faces": "N",
+   "length_m": 31.4,
+   "confidence": "high",
+   "summary": "north block north wall on the path: blank brick with two service doors near the west end, each a black steel double door under a bronze horizontal louvre of the same width; small wall lights",
+   "height_m": 5.8,
+   "rows": [
+    [
+     0.3,
+     "foundation"
+    ],
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.55,
+     "louvre"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     20.8,
+     "plain"
+    ],
+    [
+     2.2,
+     "service"
+    ],
+    [
+     4.6,
+     "plain"
+    ],
+    [
+     2.2,
+     "service"
+    ],
+    [
+     1.6,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/service": {
+     "type": "door",
+     "w": 2.0,
+     "h": 2.6,
+     "mullions": 1,
+     "solid": true,
+     "colour": "penthouse_metal"
+    },
+    "louvre/service": {
+     "type": "louvre",
+     "w": 2.0,
+     "h": 2.3,
+     "colour": "roof_mansard",
+     "blades": "horizontal"
+    },
+    "*/plain": null
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.0
+    ],
+    [
+     5.55,
+     5.8,
+     "roof_mansard",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "two small wall-pack lights at z ~5 near the west corner (sv_c15)",
+    "small vents low on the wall"
+   ],
+   "notes": "sv_c15 (2014, at the NW corner) shows the nearer door+louvre ~1.5 m from the corner and a second one further east; earth_facade_3 (2024) shows both pale louvres at ~s 22 and ~s 28 of the wall."
+  }
+ },
+ "roof": [
+  {
+   "what": "white membrane gym roof",
+   "where": "square between the four towers, about 44 x 44 m, centred art ~(706, 362)",
+   "height_m": 15.0,
+   "notes": "lidar 13.6-15.7 (slight fall to the north); dark drain dots in a ring ~1 m in from the edge"
+  },
+  {
+   "what": "silver metal fascia band",
+   "where": "all four edges of the white roof, vertical, from ~12.5 to ~15 m; lower ~1 m has a darker ribbed/louvred strip (window_dark)",
+   "colour": "metal_silver"
+  },
+  {
+   "what": "mansard slopes",
+   "where": "N, S, W and E sides of the gym, falling from ~12.5 m at the fascia to the brick wall tops (~8.3 m S, ~9.4 m W) over ~8-9 m horizontal; brick_slate standing seam (two lighter vertical stripes on the south slope); the east slope roof_metal (light silver, re-clad)",
+   "colour": "brick_slate"
+  },
+  {
+   "what": "corner towers",
+   "where": "NW (689.6, 387.5), NE (733.2, 374.7), SW (676.9, 343.8), SE (720.8, 330.9); ~4 x 4 m board-formed concrete, top ~18 m (NE 19.4 m); small openings/louvres in the top 1.5 m (sv_W10 shows white-framed openings on the SW tower top)",
+   "colour": "concrete_raw"
+  },
+  {
+   "what": "hipped skirts",
+   "where": "steep dark metal pyramid-frustum roofs wrapping the foot of each tower, from ~11 m down to the corner pavilion roof at ~5 m, about 10 x 10 m at the base",
+   "colour": "brick_slate"
+  },
+  {
+   "what": "north block flat roof",
+   "where": "x 701-742, y 393-437, ~6 m, dark grey membrane with three small hatches near the gym",
+   "colour": "roof_gravel"
+  },
+  {
+   "what": "four roof boxes",
+   "where": "on the east wing roof in a row parallel to W14, ~2.5 x 2.5 x 2 m, white/light grey",
+   "colour": "metal_silver"
+  },
+  {
+   "what": "NE corner skylight",
+   "where": "small pyramid skylight on the NE pavilion roof near W16/W17 (ortho)"
+  },
+  {
+   "what": "three small roof hatches",
+   "where": "north mansard, evenly spaced (earth_facade_3)"
+  }
+ ],
+ "geometry_notes": [
+  "Footprint walls are right, but the massing is not one 15 m prism: the gym core is a ~45 m square with a 15 m white roof, mansards down to 8.3-9.5 m brick walls, four ~18 m concrete towers with hipped skirts, one-storey (~4 m) corner pavilions (W2/W3, W8/W9, W11/W12), a ~6 m north block (W0/W19/W20), a 6 m west lean-to (W6) and a ~6 m east wing (W13/W14). walls.json height_m 15 is only the gym roof.",
+  "W15, W16 and W17 coincide exactly (reversed) with SLC walls W4, W3 and W2: they are shared with the 2021 expansion and should not both be drawn as exterior facades. SLC's spec treats its W2/W3 as exterior; one of the two specs has to give way (photos and ortho say the expansion arm is built against PAC here).",
+  "Ground falls ~2-3 m from the south plaza to the north path; W0 and W19 show exposed concrete foundation tapering from ~1.3 m (north) to 0.",
+  "Earth wall shots earth_W*_whole for this building are taken from above the roof looking outward and show neighbours, not the walls."
+ ],
+ "site": {
+  "bridges": [],
+  "connections": [
+   "glazed one-storey SLC link arrives at the W13/W14 corner (SLC W9/W10)",
+   "2021 SLC/PAC expansion built against W15-W17 and joined to the NE entrance (Red North) via a low glazed-roof link near W18"
+  ],
+  "neighbours": [
+   "SLC east, across the PAC/SLC plaza and attached",
+   "SLC/PAC expansion (charcoal brick climbing-wall pavilion) ~7 m east of W19 across a service walk",
+   "Columbia Icefield/north campus parking and Laurel Creek trail beyond the north path",
+   "Ring Road / plaza to the south, Matthews Hall area west across the lawn"
+  ],
+  "ground": [
+   "south: the large PAC/SLC plaza of buff concrete pavers in a ~6 m grid of square bays with red-brown paver planting beds and benches (earth_facade_1), stepping down east to the delivery bay and accessible parking at the foot of the Red South steps",
+   "south-west: stepped concrete terrace and planting beds rising to the W9 entrance",
+   "west: lawn with large deciduous trees right up to W5-W8; asphalt service drive and small parking court along W2/W3 (painted stalls) from the north path; a small concrete utility/stair kiosk ~10 m north-west of W3",
+   "north: asphalt path along W20 and a curving asphalt walk with meadow planting beyond; lawn sloping down along W0",
+   "east: paved concrete service walk (~7 m) between W19 and the expansion"
+  ],
+  "entities": [
+   {
+    "type": "sign",
+    "kind": "low white panel sign 'PHYSICAL ACTIVITIES COMPLEX' on two black posts",
+    "where": "in the lawn east of W16 at the old east entrance, ~8 m out (2014; probably removed by the expansion)",
+    "count": 1,
+    "photo": "sv_W16 (2014)"
+   },
+   {
+    "type": "lamp",
+    "kind": "black post-top lamp ~4.5 m",
+    "where": "W10 s ~31, 4 m out",
+    "count": 1,
+    "photo": "sv_W10"
+   },
+   {
+    "type": "bollard",
+    "kind": "black bollards with yellow caps along the lower step nosing",
+    "where": "foot of the Red South steps, W11 s 0-17, 10-12 m out",
+    "count": 12,
+    "photo": "sv_W13"
+   },
+   {
+    "type": "tree",
+    "kind": "two tall conifers/round deciduous trees in the bed",
+    "where": "W10 s ~12 and ~24, 2 m out",
+    "count": 2,
+    "photo": "earth_facade_1, sv_W10"
+   },
+   {
+    "type": "bin",
+    "kind": "square concrete litter bin",
+    "where": "W2 s ~6.5, 0.5 m out",
+    "count": 1,
+    "photo": "sv_W4"
+   },
+   {
+    "type": "bench",
+    "kind": "timber slat bench on concrete legs",
+    "where": "by the service court NW of W3, ~6 m out",
+    "count": 1,
+    "photo": "sv_W2_100"
+   },
+   {
+    "type": "railing",
+    "kind": "black steel pipe railing round a basement stair/areaway",
+    "where": "W19 s 0-8, 0-2 m out; W1 areaway",
+    "count": 2,
+    "photo": "sv_W19_OvCC, sv_W2_100"
+   },
+   {
+    "type": "retaining_wall",
+    "kind": "concrete ramp walls ~1 m",
+    "where": "W0 s 30-36.7, 0-3 m out",
+    "count": 1,
+    "photo": "sv_W0_ni-DM"
+   },
+   {
+    "type": "tree",
+    "kind": "large deciduous shade trees",
+    "where": "west lawn 3-10 m off W5-W8 (three) and NW of W3 (one)",
+    "count": 4,
+    "photo": "earth_facade_2, ortho"
+   },
+   {
+    "type": "parking",
+    "kind": "accessible stalls and delivery bay",
+    "where": "south of W10 east end / W11, 12-20 m out",
+    "count": 4,
+    "photo": "sv_W10, earth_facade_1"
+   }
+  ]
+ }
+}

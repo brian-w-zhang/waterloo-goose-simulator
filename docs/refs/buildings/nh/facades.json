@@ -1,0 +1,1898 @@
+{
+ "building": "NH",
+ "sources_checked": [
+  "around/earth_W*_whole.jpg (17; W16 is a roof view)",
+  "around/earth_W6_l|m|r, earth_corner_0-26 (2024)",
+  "around/sv_*_70/_100 (all; Sep 2014 except sv_c2 May 2025; sv_W16/sv_c25 black)",
+  "private/ortho_2025summer.jpg, review/art/nh_study.jpg (lidar)",
+  "private/web/web_01 (2014 rendering), web_02 (2010)",
+  "NOTES.md"
+ ],
+ "dating": "Every Street View except sv_c2 is Sep 2014: the 1971 wing is current, but the 2015 addition is a concrete frame in scaffolding. The addition is specified from Earth 2024 plus sv_c2 (May 2025). Earth over-reddens the brick of both parts.",
+ "colours": {
+  "brick_1971": {
+   "hex": "#bfa286",
+   "palette": "brick_buff",
+   "where": "all 1971 walls W3-W11. Sunlit SV 2014 #b2a88b-#c9ac91 (tan); Earth #cb9a86 (pinker). Lab 6.7 to brick_buff. Reads as a light tan-brown, clearly lighter and yellower than the 2015 brick"
+  },
+  "brick_2015": {
+   "hex": "#a98670",
+   "palette": "brick_brown",
+   "where": "addition walls W0, W2, W14-W16. sv_c2 2025 overcast #694f3a, exposure-corrected; Earth #c09a92. A redder, darker brown than the 1971 brick (side by side in sv_c2)"
+  },
+  "base_course": {
+   "hex": "#d3c2b1",
+   "palette": "precast_cream",
+   "where": "light concrete base course at grade on the 1971 wing"
+  },
+  "sloped_sill": {
+   "hex": "#869193",
+   "palette": "roof_metal",
+   "where": "dark grey sloped metal sills in the level-2 recesses"
+  },
+  "recess_shadow": {
+   "hex": "#473e35",
+   "palette": "brick_charcoal_tower",
+   "where": "soffit/shadow over the level-2 recess"
+  },
+  "window_frames_1971": {
+   "palette": "prop_lamp",
+   "where": "dark bronze aluminium frames; the glass reads pale because of white vertical blinds (window_glass)"
+  },
+  "white_box": {
+   "hex": "#e4e4e5",
+   "palette": "panel_white",
+   "where": "metal-clad upper volume of the addition, 13.6-21 m, windowless"
+  },
+  "green_glass": {
+   "hex": "#729084",
+   "palette": "duct_teal",
+   "where": "ribbon windows and clerestories of the addition (Earth); the green tint is confirmed in sv_c2 (#5f7c6e)"
+  },
+  "dark_glass": {
+   "hex": "#627376",
+   "palette": "window_dark",
+   "where": "atrium tower W1, link W12/W13, tall windows"
+  },
+  "curtain_frames": {
+   "hex": "#586565",
+   "palette": "prop_lamp",
+   "where": "mullions and spandrels of the 2015 glazing, canopy frame"
+  },
+  "window_surround": {
+   "palette": "metal_silver",
+   "where": "pale frame around the tall windows of W0/W16"
+  },
+  "wood_slats": {
+   "hex": "#d9925b",
+   "palette": null,
+   "new_swatch": "wood_slat",
+   "where": "horizontal cedar slat cladding on the east terrace podium and stair (W8/W9). Nearest brick_orange at 14.7"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "W",
+   "length_m": 29.0,
+   "confidence": "medium",
+   "summary": "2015 addition, Ring Road face: red-brown brick; four tall two-storey windows with pale frames, a long green-glass clerestory ribbon above the northern three, high brick parapet; the south ~9 m is lower (~14 m) with the white metal box rising behind",
+   "height_m": 17.2,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     6.8,
+     "tall"
+    ],
+    [
+     1.4,
+     "band"
+    ],
+    [
+     2.8,
+     "clere"
+    ],
+    [
+     4.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "e0"
+    ],
+    [
+     5.1,
+     "big"
+    ],
+    [
+     1.2,
+     "g1"
+    ],
+    [
+     4.9,
+     "big"
+    ],
+    [
+     1.4,
+     "g2"
+    ],
+    [
+     4.8,
+     "big"
+    ],
+    [
+     1.4,
+     "g3"
+    ],
+    [
+     4.8,
+     "big4"
+    ],
+    [
+     4.4,
+     "e1"
+    ]
+   ],
+   "cells": {
+    "tall/big": {
+     "type": "window",
+     "w": 0.96,
+     "h": 0.97,
+     "sill": 0.1,
+     "mullions": 1,
+     "transoms": 4,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "hood": {
+      "projection": 0.15,
+      "fin_w": 0.25,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver",
+      "head": 0.25
+     }
+    },
+    "tall/big4": {
+     "type": "window",
+     "w": 0.96,
+     "h": 0.97,
+     "sill": 0.1,
+     "mullions": 1,
+     "transoms": 4,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "hood": {
+      "projection": 0.15,
+      "fin_w": 0.25,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver",
+      "head": 0.25
+     }
+    },
+    "clere/e0": {
+     "type": "glass",
+     "h": 0.9,
+     "sill": 0.15,
+     "mullion_pitch": 1.6,
+     "transoms": 1,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "clere/big": {
+     "type": "glass",
+     "h": 0.9,
+     "sill": 0.15,
+     "mullion_pitch": 1.6,
+     "transoms": 1,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "clere/g1": {
+     "type": "glass",
+     "h": 0.9,
+     "sill": 0.15,
+     "mullion_pitch": 1.6,
+     "transoms": 1,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "clere/g2": {
+     "type": "glass",
+     "h": 0.9,
+     "sill": 0.15,
+     "mullion_pitch": 1.6,
+     "transoms": 1,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.45,
+     "concrete",
+     0.0
+    ]
+   ],
+   "coping": [
+    0.2,
+    "metal_silver",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "the clerestory runs s 0.6-18.5 only (over the first three tall windows); over the fourth window (s 19.8-24.6) the wall is plain brick",
+    "at s ~20-29 the brick parapet steps down to ~13.8 m; the white metal-clad box (19.5-21 m) stands set back behind it (earth_W0_whole, earth_corner_1)"
+   ],
+   "notes": "Measured on earth_W0_whole (Earth 2024, ~41 px/m): windows s 1.0-6.1, 7.3-12.2, 13.6-18.4, 19.8-24.6, z ~1.8-8.4; clerestory z ~9.8-12.4; parapet 17.2. Window detail from sv_c2 (May 2025, the only recent SV): dark green-grey glass, many horizontal transoms, dark mullions, pale precast/metal surround. All other SV of this wall is Sep 2014 construction. a = north end."
+  },
+  "W1": {
+   "faces": "W",
+   "length_m": 6.5,
+   "confidence": "medium",
+   "summary": "full-height glass stair/atrium tower at the SW corner of the 2015 addition: dark-framed curtain wall, pale grey spandrel band at each floor",
+   "height_m": 19.5,
+   "rows": [
+    [
+     19.5,
+     "curtain"
+    ]
+   ],
+   "bays": [
+    [
+     6.5,
+     "tower"
+    ]
+   ],
+   "cells": {
+    "curtain/tower": {
+     "type": "curtain",
+     "pitch": 1.6,
+     "transom_pitch": 1.95,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "recess": 0.05
+    }
+   },
+   "wall": "prop_lamp",
+   "notes": "sv_c2 (2025): 3 lites across, two lites per floor plus an opaque light grey glass spandrel at each slab; glass reads green-grey (#627376 overcast). Wraps onto the west end of W2 (s 0-3). Height from the lidar lavender tier (19.5), not seen to the top."
+  },
+  "W2": {
+   "faces": "S",
+   "length_m": 17.1,
+   "confidence": "low",
+   "summary": "south face of the 2015 addition over the main entrance: plain red-brown brick to ~13.6 m with the white metal box nearly flush above to 19.5; the glass tower wraps its west end; the low glazed entrance vestibule stands in front at grade",
+   "height_m": 19.5,
+   "rows": [
+    [
+     4.5,
+     "l1"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     1.6,
+     "parapet"
+    ],
+    [
+     5.9,
+     "white"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "glass"
+    ],
+    [
+     14.1,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "*/glass": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "transom_pitch": 1.95,
+     "glass": "window_dark",
+     "frame": "prop_lamp"
+    },
+    "white/brick": {
+     "type": "panel",
+     "colour": "panel_white"
+    },
+    "*/*": null
+   },
+   "wall": "brick_brown",
+   "attached": [
+    "glazed entrance vestibule in front at grade: lidar 4.5 m strip x 883-900, y 100-106; dark-framed glass walls, a glass-and-steel canopy (prop_lamp frame) projecting ~2.5 m west toward Ring Road at ~3.6 m; glass double doors on its west face (sv_c2)"
+   ],
+   "notes": "From earth_W2_whole and earth_corner_5 (2024): no windows seen in the brick between the glass tower and the east end. 2014 SV shows only scaffolding. White box flush or nearly flush above (lidar lavender reaches this line)."
+  },
+  "W3": {
+   "faces": "NW",
+   "length_m": 9.5,
+   "confidence": "low",
+   "summary": "1971 wing's north end facing the entrance plaza: buff brick, one bay of the recessed-level-2 type between plain ends",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "end"
+    ],
+    [
+     7.5,
+     "A"
+    ],
+    [
+     1.0,
+     "end"
+    ]
+   ],
+   "cells": {
+    "l1/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.35,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "brick_charcoal_tower",
+     "depth": 1.2,
+     "sill": 0.65,
+     "sill_colour": "roof_metal",
+     "note": "deep recessed window: dark sloped metal sill z 3.7-4.35, glass 4.35-5.7, dark soffit/shadow 5.7-6.7 (sv_c12, sv_c11)"
+    },
+    "l3/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "piers": [
+    [
+     1.0,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     8.5,
+     0.45,
+     "brick_buff",
+     0.25
+    ]
+   ],
+   "notes": "sv_W3 / sv_c5 (Sep 2014, construction) show the recessed level-2 window and ribbons on this end; in 2025 (sv_c2) it sits behind the entrance vestibule and link, mostly hidden."
+  },
+  "W4": {
+   "faces": "SW",
+   "length_m": 28.5,
+   "confidence": "medium",
+   "summary": "1971 Ring Road face, north part: buff-brown brick with narrow projecting piers; per bay a flush ribbon window on the ground floor, a deep-recessed level-2 window over a dark sloped sill, and a flush ribbon at level 3 under a 2.3 m solid brick fascia",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     2.3,
+     "end"
+    ],
+    [
+     6.0,
+     "A"
+    ],
+    [
+     6.0,
+     "A"
+    ],
+    [
+     6.0,
+     "A"
+    ],
+    [
+     6.0,
+     "A"
+    ],
+    [
+     2.2,
+     "end"
+    ]
+   ],
+   "cells": {
+    "l1/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.35,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "brick_charcoal_tower",
+     "depth": 1.2,
+     "sill": 0.65,
+     "sill_colour": "roof_metal",
+     "note": "deep recessed window: dark sloped metal sill z 3.7-4.35, glass 4.35-5.7, dark soffit/shadow 5.7-6.7 (sv_c12, sv_c11)"
+    },
+    "l3/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "piers": [
+    [
+     2.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     8.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     14.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     20.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     26.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ]
+   ],
+   "notes": "Bay type from sv_W4_*, the left side of sv_c6 and sv_W5_CiRox_100; earth_W4_whole is blurred by a tree, so 4 bays of ~6 m is a best fit, not a count. Ground drops toward Ring Road: the ground floor is partly below the planted berm (sv_W4_Q5Sw). This face sits 3.8 m behind W5's line. a = north end."
+  },
+  "W5": {
+   "faces": "SW",
+   "length_m": 24.3,
+   "confidence": "medium",
+   "summary": "1971 Ring Road face, south part: the old main entrance at the north end, a two-storey deep brick portal (brick column on its north side, white soffit with downlights) reached by wide concrete steps with galvanised railings; south of it three bays of flush ribbon windows on all three floors between piers",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "col"
+    ],
+    [
+     5.0,
+     "portal"
+    ],
+    [
+     0.6,
+     "p"
+    ],
+    [
+     5.6,
+     "B"
+    ],
+    [
+     5.6,
+     "B"
+    ],
+    [
+     5.6,
+     "B"
+    ],
+    [
+     0.4,
+     "end"
+    ]
+   ],
+   "cells": {
+    "l1/portal": {
+     "type": "door",
+     "w": 2.4,
+     "h": 2.4,
+     "leaves": 2,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "depth": 3.5
+    },
+    "l2/portal": {
+     "type": "window",
+     "w": 0.98,
+     "h": 0.98,
+     "sill": 0.0,
+     "glass": "brick_buff",
+     "frame": "brick_buff",
+     "depth": 3.5,
+     "note": "open recess continuing up to a white soffit at ~z 7.6"
+    },
+    "l1/B": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/B": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l3/B": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "piers": [
+    [
+     7.1,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     12.7,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     18.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     23.9,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     0.75,
+     1.5,
+     "brick_buff",
+     0.4
+    ]
+   ],
+   "notes": "sv_W5_CiRox_100 / sv_c6 (Sep 2014): portal at s ~1.5-7, about 8 risers up from the Ring Road sidewalk; a passenger loading zone sign. sv_W5_WDV: flush ribbons (about 7 panes per bay) on all floors, no level-2 recess on this stretch. Pier positions differ by ~1 m between the two panos. a = north end."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 48.6,
+   "confidence": "high",
+   "summary": "1971 long south face over the lawn: buff-brown brick, seven 5.9 m bays between narrow projecting piers, each with a flush ground ribbon, a deep-recessed level-2 window over a dark sloped metal sill, a flush level-3 ribbon, and a continuous 2.3 m brick fascia; plain end bays",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     3.8,
+     "endw"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     5.9,
+     "A"
+    ],
+    [
+     3.5,
+     "ende"
+    ]
+   ],
+   "cells": {
+    "l1/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.35,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "brick_charcoal_tower",
+     "depth": 1.2,
+     "sill": 0.65,
+     "sill_colour": "roof_metal",
+     "note": "deep recessed window: dark sloped metal sill z 3.7-4.35, glass 4.35-5.7, dark soffit/shadow 5.7-6.7 (sv_c12, sv_c11)"
+    },
+    "l3/A": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "l1/endw": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l1/ende": {
+     "type": "window",
+     "w": 0.85,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l3/ende": {
+     "type": "window",
+     "w": 0.85,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "piers": [
+    [
+     3.8,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     9.7,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     15.6,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     21.5,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     27.4,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     33.3,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     39.2,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     45.1,
+     0.45,
+     "brick_buff",
+     0.25
+    ]
+   ],
+   "notes": "Bays counted on earth_W6_whole (27.5 px/m) and earth_corner_10/12; detail from sv_c11 (west end) and sv_c12 (east end), Sep 2014 sunlit. East end bay: flush windows at levels 1 and 3, plain brick at level 2. West end: ground window only. The recessed glass looks pale (white blinds). a = west end."
+  },
+  "W7": {
+   "faces": "NE",
+   "length_m": 16.9,
+   "confidence": "high",
+   "summary": "1971 east end facing the east plaza: buff brick, three bays (narrow, wide, narrow) between a single and a doubled pier, flush ribbon windows on all three floors, a solid grey steel door in the wide bay at grade",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "end"
+    ],
+    [
+     3.6,
+     "n"
+    ],
+    [
+     0.6,
+     "p"
+    ],
+    [
+     1.6,
+     "door"
+    ],
+    [
+     6.4,
+     "w"
+    ],
+    [
+     0.6,
+     "p"
+    ],
+    [
+     3.7,
+     "n"
+    ]
+   ],
+   "cells": {
+    "l1/n": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/n": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l3/n": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "l1/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.2,
+     "glass": "brick_charcoal",
+     "frame": "brick_charcoal"
+    },
+    "l2/door": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l3/door": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "l1/w": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/w": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "piers": [
+    [
+     4.0,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     12.6,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     13.2,
+     0.45,
+     "brick_buff",
+     0.25
+    ]
+   ],
+   "notes": "sv_W7_100 (Sep 2014) square-on. Door solid grey (#7c766d) at the south end of the wide bay with ribbons beside it. a = south end."
+  },
+  "W8": {
+   "faces": "SE",
+   "length_m": 5.6,
+   "confidence": "medium",
+   "summary": "recessed bay between the east end and the stair tower: at grade a pair of grey steel doors under a dark louvre; above, the raised terrace with tube railing and a glazed door; top floor a ribbon under a white soffit",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     5.6,
+     "r"
+    ]
+   ],
+   "cells": {
+    "l1/r": {
+     "type": "door",
+     "w": 1.9,
+     "h": 2.3,
+     "leaves": 2,
+     "glass": "brick_charcoal",
+     "frame": "brick_charcoal"
+    },
+    "l2/r": {
+     "type": "door",
+     "w": 2.4,
+     "h": 2.4,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "depth": 0.6
+    },
+    "l3/r": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.3,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "stucco_white",
+     "depth": 1.5,
+     "sill": 0.6
+    }
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "attached": [
+    "the east terrace (z ~3.7) runs in front: concrete deck with galvanised tube railing; its podium walls are clad in horizontal cedar-coloured wood slats (#d9925b) (sv_c12, sv_c14, sv_W7_100)"
+   ],
+   "notes": "sv_W8, sv_c12, sv_W7_100 (Sep 2014)."
+  },
+  "W9": {
+   "faces": "NE",
+   "length_m": 11.5,
+   "confidence": "medium",
+   "summary": "east stair tower (taller than the wing, ~15 m) in buff brick with a full-height dark vertical louvre slot; the big outdoor stair (yellow nosings) climbs past it to the east terrace",
+   "height_m": 15.0,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     11.3,
+     "tower"
+    ]
+   ],
+   "bays": [
+    [
+     1.9,
+     "b"
+    ],
+    [
+     1.6,
+     "slot"
+    ],
+    [
+     2.0,
+     "b"
+    ],
+    [
+     6.0,
+     "podium"
+    ]
+   ],
+   "cells": {
+    "tower/slot": {
+     "type": "louvre",
+     "w": 0.98,
+     "h": 0.95,
+     "sill": 0.2,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.2
+    },
+    "l1/podium": {
+     "type": "panel",
+     "colour": "#d9925b (new: wood_slat)"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "notes": "sv_c15, sv_c16, sv_c19 (Sep 2014). Tower width and height are guesses (lidar 13.5-15 here). The podium part is the stair/terrace wall in wood slats."
+  },
+  "W10": {
+   "faces": "NW",
+   "length_m": 15.0,
+   "confidence": "low",
+   "summary": "back of the east tower and terrace toward the north service court: buff brick, mostly plain, one short level-3 ribbon",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "p"
+    ],
+    [
+     6.0,
+     "r"
+    ],
+    [
+     4.0,
+     "p"
+    ]
+   ],
+   "cells": {
+    "l3/r": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "notes": "Trees hide it from SV (sv_W10, Sep 2014); earth_corner_17/19 show a mainly blank brick face with a few windows. Guess."
+  },
+  "W11": {
+   "faces": "N",
+   "length_m": 29.3,
+   "confidence": "low",
+   "summary": "1971 north face toward the service court and parking: buff brick, five bays of flush ribbon windows on all three floors between piers",
+   "height_m": 12.3,
+   "rows": [
+    [
+     3.7,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     2.4,
+     "l3"
+    ],
+    [
+     2.3,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "end"
+    ],
+    [
+     5.4,
+     "B"
+    ],
+    [
+     5.4,
+     "B"
+    ],
+    [
+     5.4,
+     "B"
+    ],
+    [
+     5.4,
+     "B"
+    ],
+    [
+     5.4,
+     "B"
+    ],
+    [
+     1.1,
+     "end"
+    ]
+   ],
+   "cells": {
+    "l1/B": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l2/B": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.4,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 1.0
+    },
+    "l3/B": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.5,
+     "mullion_pitch": 0.9,
+     "glass": "window_glass",
+     "frame": "prop_lamp",
+     "depth": 0.12,
+     "sill": 0.8
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     0.0,
+     0.35,
+     "precast_cream",
+     0.0
+    ]
+   ],
+   "piers": [
+    [
+     1.2,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     6.6,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     12.0,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     17.4,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     22.8,
+     0.45,
+     "brick_buff",
+     0.25
+    ],
+    [
+     28.2,
+     0.45,
+     "brick_buff",
+     0.25
+    ]
+   ],
+   "notes": "earth_W11_whole, earth_corner_25 (2024): piers and flush ribbons on the upper floors; ground floor hidden. No recessed level 2 seen here (unlike W4/W6). Bay count approximate; the level-1 ribbons are a guess."
+  },
+  "W12": {
+   "faces": "NE",
+   "length_m": 6.4,
+   "confidence": "low",
+   "summary": "2015 glazed link between the 1971 wing and the addition: dark green-grey curtain wall with lighter teal panes in vertical strips, slab bands every floor",
+   "height_m": 14.0,
+   "rows": [
+    [
+     14.0,
+     "curtain"
+    ]
+   ],
+   "bays": [
+    [
+     6.4,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "curtain/glass": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "transom_pitch": 1.95,
+     "glass": "window_dark",
+     "frame": "prop_lamp"
+    }
+   },
+   "wall": "prop_lamp",
+   "notes": "Earth only (earth_corner_14/16/17, earth_W12/W13_whole, 2024): dark glass #688474 with a column of brighter teal panes (duct_teal) near the corner. No Street View (court side)."
+  },
+  "W13": {
+   "faces": "E",
+   "length_m": 7.0,
+   "confidence": "low",
+   "summary": "2015 glazed link between the 1971 wing and the addition: dark green-grey curtain wall with lighter teal panes in vertical strips, slab bands every floor",
+   "height_m": 14.0,
+   "rows": [
+    [
+     14.0,
+     "curtain"
+    ]
+   ],
+   "bays": [
+    [
+     7.0,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "curtain/glass": {
+     "type": "curtain",
+     "pitch": 1.5,
+     "transom_pitch": 1.95,
+     "glass": "window_dark",
+     "frame": "prop_lamp"
+    }
+   },
+   "wall": "prop_lamp",
+   "notes": "Earth only (earth_corner_14/16/17, earth_W12/W13_whole, 2024): dark glass #688474 with a column of brighter teal panes (duct_teal) near the corner. No Street View (court side)."
+  },
+  "W14": {
+   "faces": "S",
+   "length_m": 10.6,
+   "confidence": "low",
+   "summary": "short south face of the addition's east block above the link roof: red-brown brick with a green-glass ribbon window on the top floor",
+   "height_m": 13.6,
+   "rows": [
+    [
+     3.9,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     1.9,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "e"
+    ],
+    [
+     8.6,
+     "rib"
+    ],
+    [
+     1.0,
+     "e"
+    ]
+   ],
+   "cells": {
+    "l3/rib": {
+     "type": "glass",
+     "h": 1.5,
+     "sill": 1.5,
+     "mullion_pitch": 1.3,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "brick_brown",
+   "notes": "Seen only over the 1971 roof in earth_W6_m / earth_corner_14 (2024); the lower floors are hidden by the link, so l1/l2 are left plain."
+  },
+  "W15": {
+   "faces": "E",
+   "length_m": 24.8,
+   "confidence": "medium",
+   "summary": "east face of the addition toward the service court: red-brown brick, long green-glass ribbon windows (7-8 dark-framed panes) on floors 2 and 3, white metal box set back above the south ~17 m, bridge leaving northward behind the north end",
+   "height_m": 13.6,
+   "rows": [
+    [
+     3.9,
+     "l1"
+    ],
+    [
+     3.9,
+     "l2"
+    ],
+    [
+     3.9,
+     "l3"
+    ],
+    [
+     1.9,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.7,
+     "e0"
+    ],
+    [
+     19.0,
+     "rib"
+    ],
+    [
+     2.1,
+     "e1"
+    ]
+   ],
+   "cells": {
+    "l2/rib": {
+     "type": "glass",
+     "h": 1.5,
+     "sill": 1.6,
+     "mullion_pitch": 1.3,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "l3/rib": {
+     "type": "glass",
+     "h": 1.5,
+     "sill": 1.6,
+     "mullion_pitch": 1.3,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "l1/rib": {
+     "type": "glass",
+     "h": 1.5,
+     "sill": 1.2,
+     "mullion_pitch": 1.3,
+     "glass": "duct_teal",
+     "frame": "prop_lamp",
+     "note": "GUESS: hidden by trees in every view"
+    },
+    "*/*": null
+   },
+   "wall": "brick_brown",
+   "coping": [
+    0.15,
+    "metal_silver",
+    0.03
+   ],
+   "notes": "earth_W15_whole (2024, ~44 px/m): ribbons s 3.7-22.7, one storey (3.75 m) apart, the top one ~2.6 m below the parapet. White box (top 21 m) set back ~1 m behind the parapet over s ~1-17. sv_W15_* (Sep 2014) show only construction. a = south end."
+  },
+  "W16": {
+   "faces": "N",
+   "length_m": 33.1,
+   "confidence": "low",
+   "summary": "north face of the addition: lower east block (13.6 m) with the enclosed bridge leaving northward at s ~6-12; the west 20 m is the tall (17.2 m) brick block with three tall pale-framed windows and the green clerestory ribbon, same design as W0",
+   "height_m": 17.2,
+   "rows": [
+    [
+     1.6,
+     "base"
+    ],
+    [
+     6.8,
+     "tall"
+    ],
+    [
+     1.4,
+     "band"
+    ],
+    [
+     2.8,
+     "clere"
+    ],
+    [
+     4.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "e"
+    ],
+    [
+     3.4,
+     "rib"
+    ],
+    [
+     5.1,
+     "bridge"
+    ],
+    [
+     1.0,
+     "j"
+    ],
+    [
+     1.5,
+     "g"
+    ],
+    [
+     5.0,
+     "big"
+    ],
+    [
+     1.4,
+     "g"
+    ],
+    [
+     5.0,
+     "big"
+    ],
+    [
+     1.4,
+     "g"
+    ],
+    [
+     5.0,
+     "big"
+    ],
+    [
+     1.3,
+     "g"
+    ]
+   ],
+   "cells": {
+    "tall/big": {
+     "type": "window",
+     "w": 0.96,
+     "h": 0.97,
+     "sill": 0.1,
+     "mullions": 1,
+     "transoms": 4,
+     "glass": "window_dark",
+     "frame": "prop_lamp",
+     "hood": {
+      "projection": 0.15,
+      "fin_w": 0.25,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver",
+      "head": 0.25
+     }
+    },
+    "clere/big": {
+     "type": "glass",
+     "h": 0.9,
+     "sill": 0.15,
+     "mullion_pitch": 1.6,
+     "transoms": 1,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "clere/g": {
+     "type": "glass",
+     "h": 0.9,
+     "sill": 0.15,
+     "mullion_pitch": 1.6,
+     "transoms": 1,
+     "glass": "duct_teal",
+     "frame": "prop_lamp"
+    },
+    "tall/rib": {
+     "type": "glass",
+     "h": 1.5,
+     "sill": 4.7,
+     "mullion_pitch": 1.3,
+     "glass": "duct_teal",
+     "frame": "prop_lamp",
+     "note": "GUESS: W15's ribbons assumed to continue round the corner"
+    },
+    "*/*": null
+   },
+   "wall": "brick_brown",
+   "bands": [
+    [
+     0.0,
+     0.45,
+     "concrete",
+     0.0
+    ]
+   ],
+   "coping": [
+    0.2,
+    "metal_silver",
+    0.05
+   ],
+   "attached": [
+    "enclosed bridge north from s ~6.4-11.5 (lidar strip x 905-910) at about z 9-13: pale grey/white metal cladding with a continuous glazed band (earth_W15_whole, earth_corner_26); its destination to the north is not verified from these photos"
+   ],
+   "notes": "Only earth_corner_26 shows this face (3 tall windows + clerestory on the west part, matching W0); earth_W16_whole is a roof view; both SV for W16 are black (indoor). a = east end."
+  }
+ },
+ "roof": [
+  {
+   "what": "1971 roof: grey-brown gravel membrane (roof_gravel) with a brick parapet edge",
+   "where": "whole wing"
+  },
+  {
+   "what": "pentagonal sunken roof court (light-well) with buff brick walls, a triangular glass skylight pyramid and small HVAC units on its floor",
+   "where": "centre of the 1971 roof, lidar ~x 917-936, y 66-80",
+   "size_m": [
+    20,
+    14,
+    3.5
+   ]
+  },
+  {
+   "what": "white domed mushroom roof vents",
+   "where": "about 6 scattered on the 1971 roof, mostly west of the light-well",
+   "size_m": [
+    0.8,
+    0.8,
+    0.5
+   ]
+  },
+  {
+   "what": "brick stair/elevator box rising ~1.5 m above the 1971 roof",
+   "where": "NW corner near W3 (ortho_2025summer px 240-300, 175-250)",
+   "size_m": [
+    4,
+    6,
+    1.5
+   ]
+  },
+  {
+   "what": "white metal-clad box, windowless, light membrane roof (roof_membrane)",
+   "where": "top of the addition, lidar x 890-916, y 106-132 at 21 m; a lower part x 881-900, y 106-122 at 19.5 m",
+   "size_m": [
+    26,
+    26,
+    7.5
+   ]
+  },
+  {
+   "what": "lower addition roofs in light membrane with brick parapets",
+   "where": "NW block 17.2 m, NE block 13.6 m"
+  }
+ ],
+ "geometry_notes": [
+  "The glazed entrance vestibule (lidar 4.5 m, x 883-900, y 100-106) in front of W2 is not in walls.json; model it as a glass box with a canopy facing Ring Road.",
+  "The white box should be its own volume, set back ~1 m behind W15 and behind W0's south part, nearly flush over W2; walls.json follows the brick faces.",
+  "W0 has two heights: the north ~20 m of the face is the 17.2 m block, the south ~9 m steps down to ~13.8 m with the white box behind.",
+  "The W4/W5 junction is a 3.8 m step (W4 set back); the short connecting wall carries the portal's brick column.",
+  "The east stair tower (W9) rises to ~15 m, above the 12.3 m wing; the external stair and terrace podium (z ~3.7) on W8/W9/W10 are not in the massing."
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "building to the north (not verified)",
+    "from_wall": "W16",
+    "s": [
+     6.4,
+     11.5
+    ],
+    "levels": [
+     3
+    ],
+    "look": "enclosed, pale grey/white metal cladding with a continuous glazed band, z ~9-13 (earth_W15_whole, earth_corner_26)"
+   }
+  ],
+  "neighbours": [
+   "Ring Road along W0-W5 to the west (bus 'ONLY' lay-by markings in front of W4/W5)",
+   "service court and parking north of W10/W11, between the wing and the addition's east face W15"
+  ],
+  "ground": [
+   "grey concrete interlocking pavers on the Ring Road sidewalk and the 2015 entrance plaza (sv_c2)",
+   "lawn sloping down south of W6, with a worn dirt desire path",
+   "east plaza at W7: grey pavers with a red-brown paver border",
+   "planted berms of junipers along W4/W5"
+  ],
+  "entities": [
+   {
+    "type": "sign",
+    "kind": "UW black monolith wayfinding sign reading NH",
+    "where": "Ring Road edge by the 2015 entrance steps, ~6 m out from the W3/W4 corner",
+    "count": 1,
+    "photo": "sv_c2 (2025)"
+   },
+   {
+    "type": "stairs",
+    "kind": "concrete steps and ramp with galvanised rails and a raised flower planter",
+    "where": "in front of the W2 vestibule toward Ring Road",
+    "count": 1,
+    "photo": "sv_c2"
+   },
+   {
+    "type": "stairs",
+    "kind": "wide concrete steps with galvanised tube railings",
+    "where": "W5 s 0-8, 0-8 m out",
+    "count": 1,
+    "photo": "sv_W5_CiRox_100"
+   },
+   {
+    "type": "bench",
+    "kind": "red-brown wooden bench set into a concrete planter wall",
+    "where": "W5 north end / W4 south end, ~8 m out",
+    "count": 1,
+    "photo": "sv_c6"
+   },
+   {
+    "type": "sign",
+    "kind": "passenger loading zone pole sign",
+    "where": "W5 s ~9, 6 m out at the road",
+    "count": 1,
+    "photo": "sv_W5_CiRox_100"
+   },
+   {
+    "type": "picnic_table",
+    "kind": "wooden picnic table",
+    "where": "east plaza, W7 s 2-6, 5 m out",
+    "count": 2,
+    "photo": "sv_W7_100"
+   },
+   {
+    "type": "bike_locker",
+    "kind": "grey steel bike lockers",
+    "where": "W7 s ~14, 1 m out",
+    "count": 2,
+    "photo": "sv_W7_100, sv_c12"
+   },
+   {
+    "type": "bin",
+    "kind": "green slatted recycling bin and maroon perforated trash can",
+    "where": "east plaza edge, W7 s 0-3, 8-10 m out",
+    "count": 2,
+    "photo": "sv_W7_100"
+   },
+   {
+    "type": "bench",
+    "kind": "red-brown wooden bench against the wall",
+    "where": "W7 s ~7, against the wall",
+    "count": 1,
+    "photo": "sv_W7_100"
+   },
+   {
+    "type": "boulder",
+    "kind": "limestone armour stones",
+    "where": "south edge of the east plaza, W7 s ~0, 10 m out",
+    "count": 3,
+    "photo": "sv_W7_100, sv_c12"
+   },
+   {
+    "type": "stairs",
+    "kind": "long outdoor concrete stair with yellow nosings and black steel rails up to the east terrace",
+    "where": "along W9, from grade up to z ~3.7",
+    "count": 1,
+    "photo": "sv_c15, sv_c16"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "grey wave/triangle rack",
+    "where": "foot of the east stair, W9 s ~10, 5 m out",
+    "count": 1,
+    "photo": "sv_c15"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole with flat disc 'mushroom' head",
+    "where": "beside the east stair, W9 s ~8, 6 m out",
+    "count": 1,
+    "photo": "sv_c14"
+   },
+   {
+    "type": "sign",
+    "kind": "older UW sign 'IRA G. NEEDLES HALL', black letters on a white panel on two black posts",
+    "where": "lawn NE of the east stair, ~12 m out from W8 (2014; may have been replaced since)",
+    "count": 1,
+    "photo": "sv_c14"
+   },
+   {
+    "type": "tree",
+    "kind": "young pine and maples on the east lawn; mature maples along W6",
+    "where": "east lawn and south lawn",
+    "count": 8,
+    "photo": "sv_c12, sv_c11"
+   }
+  ]
+ }
+}

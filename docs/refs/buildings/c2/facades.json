@@ -1,0 +1,339 @@
+{
+  "building": "C2",
+  "sources_checked": [
+    "around/sv_W0_JlXJtOWX-h_lgzPscbegkg_100", "around/sv_W1_rqyqI1FCjm69MmicbgbZMA_100",
+    "around/sv_W2_qJVEWojSxQbtC5IB8xekhA_100", "around/sv_W2_WUJAvmVnv66AAAaKZCbALA_100",
+    "around/sv_W2_Egle0pTlZpMtogBSeRFHPQ_100", "around/sv_W2_e6-nyFaRI3BePvV8qwXuyg_100",
+    "around/sv_W3_IFrrKteHe7X-z4usKS1jxw_100", "around/sv_W4_ZKdaLD3GzQa1fgjEr_RZ8Q_100",
+    "around/sv_W5_kndHd9ORSke4pckl52jPLg_100", "around/sv_W6_1SAHf0wH_zjv7JQpowxduw_100",
+    "around/sv_W7_U_QtZS0PzKTEyAMpUClUmw_100", "around/sv_W7_rDEP82yz7eQIg_jEhiHPBA_100",
+    "around/sv_W8_eA_k-Mqn68vKfo2l7rTPGQ_100", "around/sv_W9_gkXcKaW_tUO3ecHQ2P4FVQ_100",
+    "around/sv_W9_y-qNpzHlONEWmq28KenKfg_100", "around/sv_W11_fOyjKbSXp8ea5gyZkqEMAA_100",
+    "around/sv_W11_hAGrTtFjAXyzz9WDptaI0g_100", "around/sv_c0_0bQnAeZHLSKwt1Lz80hF-g_70",
+    "around/sv_c3_njXwf8BhLdp7jTqHXSVF8A_70", "around/sv_c4_mP3vNp-bWj_n4hhI6cI-9w_100",
+    "around/sv_c6_UMd4LPmJ1tEb5hs13_ZYkw_100", "around/sv_c8_5m0cHz55S7SmdAUEBaiF7A_100",
+    "around/sv_c10_LUNax2lY8cSnZSSazuw9Eg_100", "around/sv_c13_xYd1lKMcJQuBlz8XVi3thQ_100",
+    "around/sv_c15_39u-IGlSh42gjHasGsaqyA_100", "around/earth_W*_whole (all)", "around/earth_corner_* (all)",
+    "private/earth_detail_3c", "private/ortho_2023aug", "review/art/c2_study.jpg (lidar)",
+    "private/web/c2_misc012_flickr (2022 sign photo)"
+  ],
+  "photo_dates": "Street View almost all Sep 2014 (W10 Aug 2015, c8 Jul 2019); Earth mesh 2024; ortho Aug 2023. No 2023-2025 Street View exists around C2, so small objects (bins, bikes, roof-terrace furniture) may have changed.",
+  "colours": {
+    "brick": {"hex": "#b69377", "palette": "brick_brown", "where": "all brick walls: a uniform warm tan-brown modular brick, stretcher bond. Sampled sunlit on the NE/E block #c5a683-#cbad8f (sv_c10), NE shade #a28771 (sv_W11); the NW and SW faces in shade read mid-brown in Street View. brick_brown (6 Lab) is the compromise; in hard sun it reads as brick_buff"},
+    "concrete": {"hex": "#c9c3b6", "palette": "concrete", "where": "the bush-hammered concrete stair/shaft towers on W2, the ground-floor base walls, the corner piers and the NE annex (W11 base sampled #b2aea4 in shade, panel_grey/concrete_raw 1-2 Lab)"},
+    "concrete_white": {"hex": "#e8e8e4", "palette": "panel_white", "where": "the shaft towers and the walls behind them on the SE side (W8/W9) read white in sun (sv_W9_y #f1f1ef); probably painted or just very light concrete in full sun. Guess: use panel_white there; if it looks wrong next to the W2 towers, use concrete everywhere"},
+    "coping": {"hex": "#93b8a2", "palette": "glass_teal", "where": "green patinated copper flashing on every parapet and on the NE annex. The 2023 ortho outlines every roof edge in pale teal; W11 annex coping visibly verdigris in sv_W11. glass_teal is 10-11 Lab away: OK"},
+    "glass": {"hex": "#6f8088", "palette": "window_dark", "where": "dark reflective ribbon glass"},
+    "frame": {"hex": "#373a44", "palette": "panel_black", "where": "black or dark bronze window and door frames and mullions"},
+    "bridge_ribbed": {"hex": "#a39a86", "palette": "dc_corrugated", "where": "horizontally ribbed beige metal cladding bands on the DC bridge"},
+    "bridge_panel": {"hex": "#b19a6b", "palette": "dirt", "where": "smooth yellow-tan metal panel band on the DC bridge between the ribbed bands (10.6 Lab to dirt; a palette swatch with a better name would be welcome)"},
+    "bridge_fascia": {"hex": "#2a3240", "palette": "panel_black", "where": "dark navy or charcoal fascia band under the DC bridge"},
+    "bridge_red": {"hex": "#c23630", "palette": "#c23630 (new: bridge_red)", "where": "red painted steel posts, crossbeams and tie rods holding the DC bridge. Sunlit raw #6c1f20 is under-exposed; the hue is a saturated signal red, 13.8 Lab from steel_red"},
+    "tank_white": {"hex": "#d1d5da", "palette": "metal_silver", "where": "liquid-gas storage tank and the finned aluminium vaporiser at W9"},
+    "loading_door": {"hex": "#7e807f", "palette": "concrete_deep", "where": "grey sectional overhead doors at the W8 dock"},
+    "plaza_brick": {"hex": "#a85a48", "palette": "brick_red", "where": "red-brick pavers of the fountain square SW of W6 (ortho; Street View is under-exposed)"}
+  },
+  "common": {
+    "storeys": "3 storeys plus a 4th-level mechanical penthouse. Main parapet 12.5 m (lidar 11.9-12.8); the SW low block (W5/W6) is 8.6 m; the penthouse is 17.8 m; the concrete shaft towers are 16.2-16.8 m.",
+    "ribbon_rule": "every opening above the ground is a horizontal ribbon window, cut straight into the brick with no sill or head trim: black frames, dark glass, mullions about 0.9-1.2 m apart. L2 ribbons are about 1.2-1.6 m tall (sill about 5.2 m), L3 ribbons about 1.4 m (sill about 9.2 m). Each brick section has one or two ribbons per floor, and ribbons on L2 and L3 line up vertically",
+    "ground_rule": "the ground floor is a light concrete base or recessed glazing under the brick, which oversails it by about 0.3-1.5 m. Concrete piers stand at the corners where the ground is cut away (NW corner entrance, E corner entrance)",
+    "towers": "bush-hammered concrete shaft/stair towers with horizontal form joints about 1.2 m apart and visible tie holes. They run full height and rise about 4 m above the brick parapet, 2 on W2 and 2 on W9, and give the NW and SE fronts a tower-brick-tower rhythm"
+  },
+  "walls": {
+    "W0": {
+      "faces": "NW", "length_m": 8.4, "confidence": "medium",
+      "summary": "NE wing's short north face, entirely under the DC bridge: one-storey light concrete service block with a louvre and a black double door, brick wall above behind the bridge",
+      "height_m": 11.2,
+      "rows": [[3.0, "ground"], [1.7, "under_bridge"], [5.0, "bridge"], [1.2, "top"], [0.3, "coping"]],
+      "bays": [[2.5, "plain"], [2.6, "louvre"], [0.4, "plain"], [1.7, "door"], [1.2, "plain"]],
+      "cells": {
+        "ground/plain": {"type": "panel", "colour": "concrete"},
+        "ground/louvre": {"type": "louvre", "w": 2.5, "h": 0.6, "sill": 1.7, "colour": "concrete_deep"},
+        "ground/door": {"type": "door", "w": 1.6, "h": 2.2, "mullions": 1, "glass": "panel_black", "frame": "panel_black", "note": "solid black steel double door with a small wall lamp above"},
+        "under_bridge/*": null, "bridge/*": null, "top/*": null
+      },
+      "wall": "brick_brown",
+      "bands": [[0.0, 3.0, "concrete", 0]],
+      "coping": [0.3, "glass_teal", 0.05],
+      "attached": ["DC bridge runs along the whole wall on the outside, level 2 (soffit about 4.7 m, top about 9.7 m), about 4 m out, and carries on NE to DC: see site.bridges", "red H-frame posts at s about 0 and about 7, about 4 m out (sv_W0, sv_c13)"],
+      "notes": "sv_W0 (2014). The concrete block's door and louvre are measured against the 2.1 m door. The brick above is barely visible behind the bridge."
+    },
+    "W1": {
+      "faces": "NW", "length_m": 7.2, "confidence": "medium",
+      "summary": "recessed bit between the bridge and the NW entrance: low projecting brick block (about 2.6 m) with a stone coping at ground, L2 ribbon window above it, large L3 glazing",
+      "height_m": 12.0,
+      "rows": [[2.7, "ground"], [4.5, "l2"], [4.5, "l3"], [0.3, "coping"]],
+      "bays": [[0.6, "pier"], [5.4, "win"], [1.2, "pier"]],
+      "cells": {
+        "ground/*": {"type": "panel", "colour": "brick_brown", "depth": -2.0, "note": "low brick volume projects about 2 m in front of the wall, flat coping in concrete; it continues to the W2 return"},
+        "l2/win": {"type": "glass", "w": 5.2, "h": 1.2, "sill": 0.3, "mullion_pitch": 1.05, "glass": "window_dark", "frame": "panel_black"},
+        "l3/win": {"type": "glass", "w": 5.4, "h": 1.6, "sill": 2.0, "mullion_pitch": 1.2, "glass": "window_dark", "frame": "panel_black"},
+        "*/pier": null
+      },
+      "wall": "brick_brown",
+      "coping": [0.3, "glass_teal", 0.05],
+      "attached": ["W2's NE end projects about 3 m beyond this wall: the return (under 5 m) is plain brick"],
+      "notes": "sv_W1 and sv_W0 (2014). The L2 ribbon sits just above the low block's coping."
+    },
+    "W2": {
+      "faces": "NW", "length_m": 43.1, "confidence": "high",
+      "summary": "long north front on the lawn and the path to DC: two brick sections and two tall bush-hammered concrete shaft towers (tower, brick, tower, brick), L2/L3 ribbon windows, ground floor mostly ivy-covered concrete base with clerestory or full glazing; recessed main entrance at the NE end, glazed corner entrance at the SW end",
+      "height_m": 12.5,
+      "rows": [[2.6, "ground"], [4.6, "l2"], [5.0, "l3"], [0.3, "coping"]],
+      "bays": [[1.2, "pier"], [4.8, "entrance"], [5.5, "tower"], [0.8, "pier"], [5.7, "win_a"], [1.8, "pier"], [4.7, "win_b"], [0.5, "pier"], [7.5, "tower"], [0.4, "pier"], [5.6, "win_c"], [1.8, "blank"], [3.3, "corner"]],
+      "cells": {
+        "ground/entrance": {"type": "door", "w": 4.6, "h": 2.4, "mullions": 5, "transoms": 1, "recess": 1.5, "glass": "window_dark", "frame": "panel_black", "note": "recessed about 1.5 m under the brick: black double door at the left, then 3 tall sidelights; brick reveal at the NE side with a 1 m concrete plinth; concrete threshold apron (sv_W2_qJVE)"},
+        "l2/entrance": {"type": "glass", "w": 4.5, "h": 1.2, "sill": 2.6, "mullion_pitch": 1.1, "glass": "window_dark", "frame": "panel_black"},
+        "l3/entrance": {"type": "glass", "w": 4.5, "h": 1.4, "sill": 2.0, "mullion_pitch": 1.1, "glass": "window_dark", "frame": "panel_black"},
+        "*/tower": {"type": "panel", "colour": "concrete", "depth": -0.6, "note": "full-height concrete shaft about 0.6 m proud of the brick, rising to 16.8 m (first) and 16.3 m (second). Horizontal form joints at about 1.2 m in the top 3 m, tie holes on about a 1.2 m grid; ivy at the foot"},
+        "ground/win_a": {"type": "glass", "w": 5.7, "h": 1.9, "sill": 0.3, "mullion_pitch": 1.4, "glass": "window_dark", "frame": "panel_black", "recess": 0.3, "note": "tall ground windows, heavily ivy-covered (sv_W2_WUJ)"},
+        "ground/win_b": {"type": "window", "w": 4.6, "h": 0.6, "sill": 1.3, "mullions": 4, "glass": "window_dark", "frame": "panel_black", "recess": 0.3, "note": "clerestory strip over a 1.3 m concrete base"},
+        "ground/win_c": {"type": "glass", "w": 5.6, "h": 2.2, "sill": 0.2, "mullion_pitch": 1.4, "glass": "window_dark", "frame": "panel_black", "recess": 0.4, "note": "storefront glazing (sv_W2_Egle)"},
+        "ground/blank": {"type": "panel", "colour": "concrete", "note": "1.8 m wide concrete pier at the ground, flush with the brick above"},
+        "ground/corner": {"type": "door", "w": 3.0, "h": 2.5, "mullions": 2, "recess": 1.5, "glass": "window_dark", "frame": "panel_black", "note": "NW corner entrance: the ground storey is cut away under the brick at the W2/W3 corner, with black-framed glazing and a double door, a square bronze ceiling lantern in the soffit, and a light concrete soffit (sv_c0)"},
+        "l2/win_a": {"type": "glass", "w": 5.7, "h": 1.2, "sill": 2.6, "mullion_pitch": 1.15, "glass": "window_dark", "frame": "panel_black"},
+        "l3/win_a": {"type": "glass", "w": 5.6, "h": 1.4, "sill": 2.0, "mullion_pitch": 1.15, "glass": "window_dark", "frame": "panel_black"},
+        "l2/win_b": {"type": "glass", "w": 4.7, "h": 1.2, "sill": 2.6, "mullion_pitch": 1.0, "glass": "window_dark", "frame": "panel_black"},
+        "l3/win_b": {"type": "glass", "w": 4.7, "h": 1.4, "sill": 2.0, "mullion_pitch": 1.0, "glass": "window_dark", "frame": "panel_black"},
+        "l2/win_c": {"type": "glass", "w": 4.6, "h": 1.3, "sill": 2.6, "mullion_pitch": 1.15, "glass": "window_dark", "frame": "panel_black", "offset": -0.5},
+        "l3/win_c": {"type": "glass", "w": 4.6, "h": 1.4, "sill": 2.0, "mullion_pitch": 1.15, "glass": "window_dark", "frame": "panel_black", "offset": -0.5},
+        "*/pier": null, "l2/blank": null, "l3/blank": null, "l2/corner": null, "l3/corner": null
+      },
+      "wall": "brick_brown",
+      "bands": [[0.0, 1.2, "concrete", 0]],
+      "coping": [0.3, "glass_teal", 0.05],
+      "signs": [{"s": 11.5, "z": 0.6, "w": 2.2, "h": 0.5, "text": "CHEMISTRY 2", "colour": "panel_white", "on": "free-standing sign on two black posts, black frame, black text on white, about 1.5 m out in the ivy bed (sv_W2_qJVE; Flickr 2022)"}],
+      "attached": ["ivy ground cover in a 1.5-2 m bed along the base from s about 8 to 38; ivy climbs the tower feet and the ground windows", "curved concrete planter or retaining wall in front of the entrance at s about -2 to 1 (sv_W1)"],
+      "notes": "Tower positions combine three Street View frames with the lidar (16.8 m at s 7-10 and 16.3 m at s 25-31). Street View poses disagree by about 2-3 m, so the tower edges are good to about ±1 m. Ribbon sizes are from sv_W2_Egle (about 31 px/m). The ground floor sits low because the lawn rises toward the wall: the brick soffit is about 2.6 m above the outside grade."
+    },
+    "W3": {
+      "faces": "SW", "length_m": 16.1, "confidence": "medium",
+      "summary": "west end on the herringbone-paved forecourt toward MC: full-height black-framed ground glazing under oversailing brick, wide L2 ribbon, L3 ribbon; corner entrance at the NW end",
+      "height_m": 12.7,
+      "rows": [[3.2, "ground"], [4.3, "l2"], [4.9, "l3"], [0.3, "coping"]],
+      "bays": [[3.0, "corner"], [4.4, "brick"], [8.2, "win"], [0.5, "pier"]],
+      "cells": {
+        "ground/corner": {"type": "door", "w": 2.4, "h": 2.5, "mullions": 2, "recess": 1.5, "glass": "window_dark", "frame": "panel_black", "note": "continuation of the W2/W3 corner entrance (sv_c0)"},
+        "ground/brick": {"type": "glass", "h": 3.0, "mullion_pitch": 1.45, "glass": "window_dark", "frame": "panel_black", "recess": 0.6},
+        "ground/win": {"type": "glass", "h": 3.0, "mullion_pitch": 1.45, "glass": "window_dark", "frame": "panel_black", "recess": 0.6, "note": "one band of full-height glazing on a 0.25 m concrete curb, from s 3 to about 15.6"},
+        "ground/pier": {"type": "panel", "colour": "concrete"},
+        "l2/win": {"type": "glass", "w": 8.0, "h": 1.8, "sill": 2.0, "mullion_pitch": 1.4, "transom_pitch": 0, "glass": "window_dark", "frame": "panel_black"},
+        "l3/win": {"type": "glass", "w": 8.0, "h": 1.4, "sill": 1.6, "mullion_pitch": 1.2, "glass": "window_dark", "frame": "panel_black"},
+        "l3/brick": {"type": "glass", "w": 4.0, "h": 1.4, "sill": 1.6, "mullion_pitch": 1.2, "glass": "window_dark", "frame": "panel_black", "note": "guess: sv_W3 shows only the bottom of this row"},
+        "l2/brick": null, "*/corner": null, "l2/pier": null, "l3/pier": null
+      },
+      "wall": "brick_brown",
+      "coping": [0.3, "glass_teal", 0.05],
+      "attached": ["the brick oversails the ground glazing by about 0.6 m"],
+      "notes": "sv_W3 and sv_W4 (2014). The L3 row is barely in frame; Earth shows ribbons there. The tall L2 ribbon (about 1.8 m) is clear."
+    },
+    "W4": {
+      "faces": "NW", "length_m": 7.6, "confidence": "medium",
+      "summary": "blank NW end of the two-storey SW block: brick over a 3 m light concrete base, no windows",
+      "height_m": 8.6,
+      "rows": [[3.0, "ground"], [5.3, "upper"], [0.3, "coping"]],
+      "bays": [[2.5, "main"], [5.1, "end"]],
+      "cells": {"ground/*": {"type": "panel", "colour": "concrete"}, "upper/*": null},
+      "wall": "brick_brown",
+      "coping": [0.3, "glass_teal", 0.05],
+      "notes": "sv_W4. s 0-2.5 belongs to the 12.7 m main block (lidar), so the brick there runs to 12.7 m. The rest is the 8.6 m end."
+    },
+    "W5": {
+      "faces": "SW", "length_m": 11.6, "confidence": "high",
+      "summary": "two-storey low block on the fountain plaza: light concrete ground storey with a high clerestory strip, brick upper storey with one long L2 ribbon, flat brick parapet; the 3rd storey is set back about 8 m behind (see geometry_notes)",
+      "height_m": 8.6,
+      "rows": [[3.3, "ground"], [5.0, "l2"], [0.3, "coping"]],
+      "bays": [[0.5, "pier"], [10.6, "win"], [0.5, "pier"]],
+      "cells": {
+        "ground/win": {"type": "window", "w": 10.4, "h": 0.5, "sill": 2.5, "mullions": 11, "glass": "window_dark", "frame": "panel_black", "note": "clerestory strip high in the concrete base"},
+        "l2/win": {"type": "glass", "w": 10.4, "h": 1.5, "sill": 0.7, "mullion_pitch": 1.05, "glass": "window_dark", "frame": "panel_black"},
+        "*/pier": null
+      },
+      "wall": "brick_brown",
+      "bands": [[0.0, 3.3, "concrete", 0]],
+      "coping": [0.3, "glass_teal", 0.05],
+      "notes": "sv_c3, sv_W5, sv_c4 (2014). The L2 ribbon sits directly on the concrete base's top line plus about 0.7 m of brick."
+    },
+    "W6": {
+      "faces": "SW", "length_m": 10.1, "confidence": "high",
+      "summary": "two-storey low block on the fountain plaza, 1-2 m proud of W5: large storefront glazing at ground with big white letters, brick upper with one long L2 ribbon, metal railing on the roof edge; wall lamp and CCTV dome at the top right",
+      "height_m": 8.6,
+      "rows": [[3.3, "ground"], [5.0, "l2"], [0.3, "coping"]],
+      "bays": [[0.4, "pier"], [9.3, "win"], [0.4, "pier"]],
+      "cells": {
+        "ground/win": {"type": "glass", "w": 9.0, "h": 2.4, "sill": 0.6, "mullion_pitch": 1.5, "glass": "window_dark", "frame": "panel_black", "note": "concrete base 0.6 m below it"},
+        "l2/win": {"type": "glass", "w": 9.2, "h": 1.5, "sill": 1.0, "mullion_pitch": 1.1, "glass": "window_dark", "frame": "panel_black"},
+        "*/pier": null
+      },
+      "wall": "brick_brown",
+      "bands": [[0.0, 0.6, "concrete", 0], [3.3, 3.45, "concrete", 0.05]],
+      "coping": [0.3, "glass_teal", 0.05],
+      "signs": [{"s": 6.5, "z": 1.6, "w": 4.0, "h": 0.8, "text": "CLUB (white vinyl letters on the glass; the full name is cut off in the photos; probably a student lounge or club room)", "colour": "panel_white", "on": "glass"}],
+      "attached": ["galvanised pipe railing about 1.1 m tall on the low roof edge, set back about 1 m (sv_W5, sv_c3)", "box wall lamp at s about 8, z about 7; CCTV camera at the top corner"],
+      "notes": "sv_W6, sv_W5, sv_c3 (2014). In c3 the setback 3rd storey above has its own ribbon behind the railing."
+    },
+    "W7": {
+      "faces": "SE", "length_m": 27.2, "confidence": "medium",
+      "summary": "south face on the passage to ESC: mostly blank brick on a 1.2 m concrete base; the ESC link bridges off it at s 13-23 with an open covered passage under it and a glazed C2 entrance in the passage",
+      "height_m": 12.6,
+      "rows": [[3.4, "ground"], [4.0, "l2"], [4.9, "l3"], [0.3, "coping"]],
+      "bays": [[6.0, "low_end"], [7.0, "brick"], [10.0, "link"], [4.2, "brick_e"]],
+      "cells": {
+        "ground/link": {"type": "door", "w": 4.2, "h": 2.6, "mullions": 4, "transoms": 1, "recess": 0.3, "glass": "window_dark", "frame": "panel_black", "offset": -2.0, "note": "glazed double door and sidelights under the link's concrete soffit (about 3.4 m), with a box wall lamp above; to its right a concrete wall with a 3-bike wave rack (sv_W7_rDEP)"},
+        "ground/*": {"type": "panel", "colour": "concrete", "h": 1.2, "sill": 0.0},
+        "l2/link": null, "l3/link": null,
+        "l2/*": null, "l3/*": null
+      },
+      "wall": "brick_brown",
+      "bands": [[0.0, 1.2, "concrete", 0]],
+      "coping": [0.3, "glass_teal", 0.05],
+      "attached": ["ESC link (two-storey bridge) leaves at s about 13-23, see site.bridges", "s 0-6 is the 8.6 m low block's end: parapet at 8.6 m there (lidar)"],
+      "notes": "Earth corner_6/7 show a short L2 ribbon on this face near the link (east of it); not drawn because its exact s is unclear. sv_W7_U's pose (s 6.5) conflicts with what it shows: a brick mass over an open passage with MC behind. That is most likely the link seen from the east, i.e. a pose error."
+    },
+    "W8": {
+      "faces": "SE", "length_m": 11.0, "confidence": "medium",
+      "summary": "loading dock: one-storey light concrete dock block with two grey sectional overhead doors and an open covered bay; brick wall with L2/L3 ribbons set back above it; dumpsters in front",
+      "height_m": 12.6,
+      "rows": [[4.2, "dock"], [3.4, "l2"], [4.7, "l3"], [0.3, "coping"]],
+      "bays": [[2.0, "brick"], [1.6, "plain"], [2.5, "door"], [0.3, "plain"], [2.5, "door"], [0.4, "plain"], [1.7, "bay"]],
+      "cells": {
+        "dock/door": {"type": "panel", "colour": "concrete_deep", "w": 2.4, "h": 2.8, "sill": 0.0, "note": "sectional overhead door, a row of 3-4 small windows at about 1.6 m; flat black lintel"},
+        "dock/bay": {"type": "void", "w": 1.6, "h": 2.9, "note": "open recessed loading bay, dark inside"},
+        "dock/plain": {"type": "panel", "colour": "panel_white"},
+        "dock/brick": null,
+        "l2/*": {"type": "glass", "w": 4.0, "h": 0.9, "sill": 0.3, "mullion_pitch": 1.0, "glass": "window_dark", "frame": "panel_black"},
+        "l3/*": {"type": "glass", "w": 4.0, "h": 1.1, "sill": 1.4, "mullion_pitch": 1.0, "glass": "window_dark", "frame": "panel_black"},
+        "l2/brick": null, "l3/brick": null
+      },
+      "wall": "brick_brown",
+      "coping": [0.3, "glass_teal", 0.05],
+      "notes": "sv_W8 and sv_c8 (2014/2019). Lidar puts the dock roof at 4.2-4.3 m from s 2 to 11, with the brick wall about 4 m behind it. The upper ribbons belong to that set-back wall: if the drawing can't set the wall back, put them on the brick above the dock."
+    },
+    "W9": {
+      "faces": "SE", "length_m": 27.2, "confidence": "medium",
+      "summary": "service face on the road to EIT: tall white concrete shafts alternate with narrow brick bays carrying three rows of ribbon windows; a white liquid-gas tank and a finned aluminium vaporiser stand in fenced pens in front; blank brick block at the E end oversailing a recessed glazed ground",
+      "height_m": 12.3,
+      "rows": [[3.4, "ground"], [4.0, "l2"], [4.6, "l3"], [0.3, "coping"]],
+      "bays": [[6.0, "shaft"], [4.5, "bay"], [2.5, "recess"], [6.0, "shaft"], [8.2, "block"]],
+      "cells": {
+        "*/shaft": {"type": "panel", "colour": "panel_white", "depth": -0.3, "note": "rises to 16.7 m (first) and 16.3 m (second)"},
+        "*/recess": {"type": "panel", "colour": "panel_white", "depth": 0.8, "note": "white set-back wall behind the vaporiser"},
+        "ground/bay": {"type": "glass", "w": 4.2, "h": 1.6, "sill": 0.6, "mullion_pitch": 0.9, "glass": "window_dark", "frame": "panel_black"},
+        "l2/bay": {"type": "glass", "w": 4.2, "h": 1.0, "sill": 1.4, "mullion_pitch": 0.9, "glass": "window_dark", "frame": "panel_black"},
+        "l3/bay": {"type": "glass", "w": 4.2, "h": 1.0, "sill": 1.6, "mullion_pitch": 0.9, "glass": "window_dark", "frame": "panel_black"},
+        "ground/block": {"type": "glass", "w": 2.4, "h": 1.6, "sill": 0.5, "mullions": 2, "recess": 1.5, "glass": "window_dark", "frame": "panel_black", "note": "ground storey recessed about 1.5 m under the brick block, white base wall; one window"},
+        "l2/block": null, "l3/block": null
+      },
+      "wall": "brick_brown",
+      "coping": [0.3, "glass_teal", 0.05],
+      "notes": "sv_W9_gkX and sv_W9_y (2014), Earth corner_6-9. The two Street View poses disagree by about 3 m on where the shafts are; the shaft s-ranges follow the lidar (16.7 m at s 1-7, 16.3 m at s 14-19). The brick in the bays reads lighter buff here, in full sun."
+    },
+    "W10": {
+      "faces": "NE", "length_m": 6.0, "confidence": "medium",
+      "summary": "E corner entrance: blank brick upper floors oversail a recessed glazed ground floor with entrance doors and a square concrete corner pier; concrete steps and a ramp with galvanised railings",
+      "height_m": 12.2,
+      "rows": [[3.3, "ground"], [8.6, "upper"], [0.3, "coping"]],
+      "bays": [[1.0, "pier"], [5.0, "entrance"]],
+      "cells": {
+        "ground/pier": {"type": "panel", "colour": "concrete"},
+        "ground/entrance": {"type": "door", "w": 3.0, "h": 2.4, "mullions": 3, "transoms": 1, "recess": 2.0, "glass": "window_dark", "frame": "panel_black"},
+        "upper/*": null
+      },
+      "wall": "brick_brown",
+      "coping": [0.3, "glass_teal", 0.05],
+      "attached": ["concrete stair (4-5 risers) and ramp with galvanised pipe railings in front, s 0-6, 0-4 m out (sv_c10, sv_W10)"],
+      "notes": "sv_c10 (2015), sv_W10"
+    },
+    "W11": {
+      "faces": "NE", "length_m": 23.7, "confidence": "high",
+      "summary": "NE face to the accessible parking lot: one huge windowless tan brick wall with two vertical control joints, standing behind a projecting one-storey concrete annex (about 2.8 m tall, about 2.5 m deep) with a verdigris copper coping and a long horizontal louvre",
+      "height_m": 11.0,
+      "rows": [[2.8, "annex"], [7.9, "brick"], [0.3, "coping"]],
+      "bays": [[1.2, "plain"], [0.6, "box"], [1.2, "plain"], [1.0, "standpipe"], [7.2, "plain"], [4.6, "louvre"], [7.9, "plain"]],
+      "cells": {
+        "annex/plain": {"type": "panel", "colour": "concrete", "depth": -2.5},
+        "annex/box": {"type": "panel", "colour": "concrete_shadow", "w": 0.6, "h": 0.7, "sill": 1.0, "depth": -2.65, "note": "grey electrical box"},
+        "annex/standpipe": {"type": "panel", "colour": "concrete", "depth": -2.5, "note": "yellow gas standpipe and a hooded vent in front: see site.entities"},
+        "annex/louvre": {"type": "louvre", "w": 4.6, "h": 0.7, "sill": 0.8, "colour": "concrete_shadow", "depth": -2.4},
+        "brick/*": null
+      },
+      "wall": "brick_brown",
+      "bands": [[2.75, 2.9, "glass_teal", 2.6]],
+      "coping": [0.3, "glass_teal", 0.05],
+      "piers": [],
+      "attached": ["concrete annex projects about 2.5 m along s 0-24 with its own flat gravel roof and copper coping (Earth corner_10-12, lidar 2.2-2.9 m outside the wall)", "vertical control joints in the brick at s about 3.8 and 10.2"],
+      "notes": "sv_W11_fOy, sv_W11_hAG (2014), Earth corner_10-12. The DC bridge's red posts stand just past the W0 end."
+    }
+  },
+  "setback_faces": {
+    "SW_upper": {
+      "where": "the 12.7 m main block's SW face, about 6-8 m behind W5/W6 above their 8.6 m roof (not in walls.json)",
+      "look": "one brick storey, 8.6-12.7 m: a long ribbon (about 1.0 m tall) just above the low roof's railing, brick above, glass_teal coping. In sv_c3 its left part steps up about 0.6 m",
+      "photos": "sv_c3, sv_W5, sv_W6"
+    },
+    "SE_above_dock": {
+      "where": "brick wall about 4 m behind the W8 dock block",
+      "look": "brick with ribbons at about 5.0 and 9.0 m (see W8 cells)"
+    }
+  },
+  "geometry_notes": [
+    "W5/W6 (and W7 s 0-6, W4 s 2.5-7.6) are a two-storey 8.6 m low block. The 12.7 m main block's SW face stands about 6-8 m behind it as a setback storey with a railing at its foot; the lidar tiers should show this, so check it's not flattened to 12.7 m.",
+    "Penthouse: one central mechanical box, 17.8 m, about 32 x 13 m, sitting about 8 m in from W9 and parallel to it (ortho px 540-1060 x 440-810). Light grey or white concrete; Earth shows a large louvred panel on its NW and NE faces and a few small strip windows on the NW face.",
+    "Four concrete shaft towers rise to 16.2-16.8 m: W2 s 6-11.5 and s 24.5-32, W9 s 0-6 and s 13-19, each about 1-2 m deep into the plan. They read as separate chimneys above the 12.5 m roof (Earth W2_whole).",
+    "W11 concrete annex (2.8 m tall, about 2.5 m deep) projects outside the traced wall line along its whole length; walls.json follows the brick.",
+    "W8 dock block (4.2 m) is the traced line; the brick main wall is about 4 m behind it.",
+    "ESC link: lidar about 10.5 m, between W7 s about 13-23 and ESC's north wall, about 5 m long N-S; its ground floor is an open covered passage.",
+    "Ground floors are recessed under the brick at the NW corner entrance (W2 s 39.8-43.1 + W3 s 0-3), the NE entrance (W2 s 1.2-6) and the E entrance (W10)."
+  ],
+  "roof": [
+    {"what": "central mechanical penthouse", "where": "centre, parallel to W9 about 8 m in", "size_m": [32, 13, 5.2], "colour": "concrete", "notes": "large light blue-grey louvre panels about 5 x 2.5 m on its NW and NE faces (Earth); white exhaust domes and a skylight box on top (ortho)"},
+    {"what": "concrete shaft towers", "where": "W2 s 6-11.5 and s 24.5-32; W9 s 0-6 and s 13-19", "size_m": [6, 2, 4.0], "colour": "concrete", "notes": "flat tops, a few small vents"},
+    {"what": "bundle of 4-5 horizontal stainless exhaust ducts", "where": "on the penthouse roof's NW edge near its centre (ortho px 790-880, 510-570)", "size_m": [5, 2.5, 1.2], "colour": "metal_silver"},
+    {"what": "small mushroom exhaust fans and domed vents", "where": "scattered: about 6 on the main roof, 3 on the penthouse", "size_m": [0.9, 0.9, 0.8], "colour": "metal_silver"},
+    {"what": "silver exhaust duct run", "where": "main roof W half, near the W2 SW tower (ortho px 440-540, 670-710)", "size_m": [7, 0.6, 0.6], "colour": "metal_silver"},
+    {"what": "roof terrace with colourful furniture (red, yellow, orange chairs or planters) and a timber planter grid", "where": "on the 8.6 m low-block roof behind W6's railing (ortho px 300-400, 950-1060, 2023)", "size_m": [6, 8, 0.8], "colour": "prop_wood"},
+    {"what": "white dome (radome or satellite enclosure)", "where": "on the low roof at the W8/W9 corner, near the tank (ortho px 865-905, 775-810)", "size_m": [2.5, 2.5, 2], "colour": "panel_white"}
+  ],
+  "site": {
+    "bridges": [
+      {"to": "DC", "from_wall": "W0", "s": [0, 8.4], "levels": [2], "look": "enclosed bridge running along the outside of W0 and on NE about 20 m to DC: rounded corners; horizontally ribbed beige metal bands (dc_corrugated) top and bottom, a smooth yellow-tan panel band (dirt) between, a ribbon of windows above, and a dark navy fascia (panel_black) at the soffit. Soffit about 4.7 m, top about 9.7 m, about 4 m wide. Carried on red steel H-frames (two posts plus a crossbeam at about 4.5 m) on round concrete footings, with red diagonal tie rods to the bridge side (sv_W0, sv_c13, sv_c15)"},
+      {"to": "ESC", "from_wall": "W7", "s": [13, 23], "levels": [2, 3], "look": "two-storey link about 10.5 m tall. SW face: brick top fascia, L3 glazed ribbon, brick spandrel, L2 glazed ribbon, grey concrete band, and a flat concrete canopy at about 3.4 m over an open ground passage. SE face mostly blank brick over the passage opening (sv_W6, sv_c3, sv_c4, sv_W7_U, sv_W7_rDEP)"}
+    ],
+    "neighbours": [
+      "MC about 15-20 m W across the herringbone forecourt and the fountain plaza (W3/W5/W6)",
+      "ESC directly S, joined by the link at W7",
+      "DC NE, joined by the bridge from W0",
+      "EIT SE across the service road and loading court (W8/W9)",
+      "accessible parking lot about 8-12 m NE of W11 (yellow-hatched spaces)"
+    ],
+    "ground": [
+      "W2: lawn with a 1.5-2 m ivy bed at the wall base; grey concrete-paver path along the wall (about 3 m out) with a cross path to the NE entrance",
+      "W3/W4: grey herringbone concrete pavers with two round concrete tree planters, red-brick accents",
+      "W5/W6: asphalt plaza; the red-brick fountain square SW of W6; a cobblestone strip with bike racks along MC",
+      "W7: concrete-paver passage; curved concrete planter with junipers and begonias near s 24-27",
+      "W8/W9: asphalt service road and loading court; lawn in front of W9 with fenced gas pens",
+      "W10/W11: asphalt road and parking with a narrow concrete-paver walk at the annex foot; lawn with pines toward the bridge"
+    ],
+    "entities": [
+      {"type": "sign", "kind": "CHEMISTRY 2 building name sign, white panel with black text in a black frame on two black posts", "where": "W2 s 11.5, 1.5 m out in the ivy bed", "count": 1, "photo": "sv_W2_qJVE; Flickr 2022"},
+      {"type": "fountain", "kind": "square concrete pool about 3 x 3 m with a large grey-bronze open half-shell sculpture (about 2 m) on a red-brick square about 9 x 9 m", "where": "about 6 m out from W6 at s about 7.6 (art about 938,306)", "count": 1, "photo": "sv_W6, sv_c3, sv_c4, ortho"},
+      {"type": "bench", "kind": "long timber-slat benches on concrete bases with galvanised pipe armrests, around the fountain square", "where": "edges of the fountain square, 4-10 m out from W6", "count": 4, "photo": "sv_W6, sv_c3"},
+      {"type": "planter", "kind": "round concrete tree planter about 2.2 m across with a small honey-locust tree", "where": "W3 s 4 and s 13, 3 m out", "count": 2, "photo": "sv_W3, sv_W4"},
+      {"type": "planter", "kind": "curved low concrete planter with junipers and red begonias", "where": "W7 s 24-27 into W8 s 0-1, 1-3 m out", "count": 1, "photo": "sv_c6, sv_W7_U"},
+      {"type": "planter", "kind": "curved concrete retaining wall / planter edge", "where": "W1/W2 junction, 1-4 m out in front of the NE entrance", "count": 1, "photo": "sv_W1"},
+      {"type": "boulder", "kind": "granite boulder about 1.2 m", "where": "near the W2/W3 corner, about 8 m out from W2 at s about 42", "count": 1, "photo": "sv_W2_e6"},
+      {"type": "lamp", "kind": "black pole lamp about 4.5 m with a flat disc head", "where": "W2 s 21, about 9 m out; W9 s 20, about 6 m out; W11 s 17, about 4 m out", "count": 3, "photo": "sv_W2_Egle, sv_W9_y, sv_W11_hAG"},
+      {"type": "bike_rack", "kind": "galvanised wave rack, 3-5 bikes", "where": "W7 s 20, 1 m out (in the passage under the ESC link); W10 s 2, 3 m out by the steps", "count": 2, "photo": "sv_W7_rDEP, sv_c10"},
+      {"type": "tank", "kind": "white vertical liquid-gas tank about 2.5 m across and about 10 m tall, in a chain-link fenced pen about 5 x 3 m with piping", "where": "W9 s 2-5, 1-4 m out", "count": 1, "photo": "sv_W8, sv_W9_gkX, sv_c6"},
+      {"type": "vaporiser", "kind": "finned aluminium ambient vaporiser about 1.5 x 1.5 x 6 m in a chain-link pen", "where": "W9 s 11-13, 1-3 m out", "count": 1, "photo": "sv_W9_gkX, sv_W9_y"},
+      {"type": "dumpster", "kind": "blue front-load cardboard dumpster (BFI) plus 4-6 blue recycling carts and a green cart", "where": "W8 s 0-6, 2-5 m out", "count": 1, "photo": "sv_W8, sv_c6"},
+      {"type": "bin", "kind": "black front-load dumpster", "where": "W8 s 8-10, 3 m out", "count": 1, "photo": "sv_c6, sv_c8"},
+      {"type": "bollard", "kind": "yellow steel gas standpipe guard frame about 1.2 m", "where": "W11 s 3.5, 2.7 m out (against the annex)", "count": 1, "photo": "sv_W11_fOy"},
+      {"type": "railing", "kind": "galvanised pipe railings on the steps and ramp", "where": "W10 s 0-6, 1-5 m out; W11 s 0-1", "count": 2, "photo": "sv_c10, sv_W11_fOy"},
+      {"type": "tree", "kind": "large white pines", "where": "W0/W11 corner, 3-8 m out, among the DC bridge posts", "count": 3, "photo": "sv_c13, sv_W11_hAG"},
+      {"type": "tree", "kind": "large deciduous shade trees (horse-chestnut, maple)", "where": "W2 s 30-40, 8-12 m out; across the service road from W9", "count": 3, "photo": "sv_W2_e6, sv_c6"},
+      {"type": "fire_hydrant", "kind": "red hydrant", "where": "across the service road from W9 at s about 30, 15 m out", "count": 1, "photo": "sv_c8"},
+      {"type": "sign", "kind": "no-parking fire-route sign on a post", "where": "service road SE of W9, about 14 m out", "count": 1, "photo": "sv_c8"}
+    ]
+  }
+}

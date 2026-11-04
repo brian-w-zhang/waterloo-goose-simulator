@@ -16,7 +16,7 @@ MODELS = {
     "bld_stc": dict(abbrev="STC"),
     "bld_eit": dict(abbrev="EIT"),
     "bld_m3": dict(abbrev="M3"),
-    "bld_pac": dict(abbrev="PAC", blank=False, roof="roof_metal", roof_high=(10.5, "roof_membrane"), h=1.3, sill=1.0),
+    "bld_pac": dict(abbrev="PAC", extra="pac_mansard", skip_tiers=(10.0, 16.5), blank=False, roof="roof_metal", roof_high=(10.5, "roof_membrane"), h=1.3, sill=1.0),
     "bld_nh": dict(abbrev="NH"),
     "bld_gsc": dict(abbrev="GSC"),
     "bld_phy": dict(abbrev="PHY", extra="observatory"),
@@ -48,7 +48,37 @@ def observatory(k, tiers):
     arch.dome(k, (cx, cy), 2.6, z + 1.2, "panel_white")
 
 
-EXTRAS = {"observatory": observatory}
+def pac_mansard(k, tiers):
+    """PAC (facades.json roof and geometry_notes): dark slate standing-seam slopes rise from the brick
+    walls (~9.3 m) to a silver fascia band (12.5-15 m) round the white membrane roof of the gym."""
+    import math
+    def area(t):
+        r = t["rings"][0]
+        return abs(sum(r[i][0] * r[(i + 1) % len(r)][1] - r[(i + 1) % len(r)][0] * r[i][1] for i in range(len(r)))) / 2
+    gyms = [t for t in tiers if 13 <= t["h"] <= 16.5]
+    if not gyms:
+        return
+    gym = max(gyms, key=area)        # the gym, not a corner tower
+    ring = arch.ccw(gym["rings"][0])
+    gy, top = gym["ground_y"], gym["ground_y"] + gym["h"]
+    low = arch.inset(ring, -6.0)       # the slopes run ~6 m out to the brick walls (Earth orbit views)
+    k.roof(ring, top, "roof_membrane")
+    for i in range(len(ring)):
+        a, b = ring[i], ring[(i + 1) % len(ring)]
+        la, lb = low[i], low[(i + 1) % len(ring)]
+        k.quad((*la, gy + 9.3), (*lb, gy + 9.3), (*b, gy + 12.4), (*a, gy + 12.4), "brick_slate")
+        k.wall(a, b, gy + 12.4, top + 0.3, "metal_silver")
+        k.wall(la, lb, gy + 8.0, gy + 9.3, "brick_slc")
+        # standing seams: thin ridges down the slope every 1.2 m
+        L = math.dist(a, b)
+        for j in range(1, int(L / 1.2)):
+            f = j * 1.2 / L
+            p0 = (la[0] + (lb[0] - la[0]) * f, la[1] + (lb[1] - la[1]) * f, gy + 9.35)
+            p1 = (a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, gy + 12.4)
+            k.tube([p0, p1], 0.05, "penthouse_metal", sides=3)
+
+
+EXTRAS = {"observatory": observatory, "pac_mansard": pac_mansard}
 
 
 def build(model):
