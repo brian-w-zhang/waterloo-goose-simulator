@@ -2,7 +2,7 @@ import * as THREE from "three/webgpu";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { swatch } from "@/config";
 
-/** Canada goose built from code primitives; faces +z, feet at y = 0, about 0.9 m tall with the neck up. */
+/** Fallback Canada goose built from code primitives (used if public/models/goose.glb fails to load); faces +z, feet at y = 0, about 0.9 m tall with the neck up. */
 
 type Painter = (p: THREE.Vector3) => string;
 
@@ -35,7 +35,8 @@ export interface GooseRig {
   body: THREE.Group;        // bob, roll, pitch
   neck: THREE.Mesh;         // tube rebuilt each frame along the neck curve
   head: THREE.Group;
-  lowerBill: THREE.Mesh;
+  /** a point at the bill (grab socket); the procedural bill mesh, or an anchor on the skinned jaw bone */
+  lowerBill: THREE.Object3D;
   wings: [THREE.Group, THREE.Group];
   legs: [THREE.Group, THREE.Group];
   feet: [THREE.Mesh, THREE.Mesh];
@@ -158,6 +159,8 @@ export function makeGoose(material: THREE.Material): GooseRig {
   const lowerBill = new THREE.Mesh(painted(new THREE.ConeGeometry(0.022, 0.07, 8).rotateX(Math.PI / 2).scale(1, 0.4, 1), () => "bill"), material);
   lowerBill.position.set(0, -0.012, 0.125);
   head.add(lowerBill);
+  // procedural head meshes are hidden when the skinned model takes over (rig.head itself stays: worn items live on it)
+  for (const m of [headMesh, upperBill, lowerBill]) m.userData.procedural = true;
   body.add(head);
 
   // legs and webbed feet (dark grey-black)

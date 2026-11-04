@@ -11,7 +11,7 @@ npm run pipeline                 # fetch open data into data/raw (once), build p
 npm run build && npm start       # http://localhost:3100  (WebGPU, WebGL2 fallback with ?webgl)
 ```
 
-Controls: WASD move, Shift run (F while running: flap boost), Space honk, G grab and drop, C crouch (bow), F flap, right-drag or Q and E turn the camera, mouse wheel zoom, left-click the ground to teleport there, M campus map (click a place or a spot to teleport), V free camera. The to-do list and clock sit top left, the Menace score top right, credits bottom right.
+Controls: WASD move, Shift run (F while running: flap boost), Space honk, G grab and drop, C crouch (bow), F flap (tap: a hop; hold: fly up to about 3.5 m for a couple of seconds, steer with WASD, keep holding to glide down, let go to drop), right-drag or Q and E turn the camera, mouse wheel zoom, left-click the ground to teleport there, M campus map (click a place or a spot to teleport), V free camera. The to-do list and clock sit top left, the Menace score top right, credits bottom right.
 
 Optional: `?jev=1` lets the Jev model on the Vercel AI Gateway choose what a character does after giving up a chase. It needs `AI_GATEWAY_API_KEY` in `.env` (read only by the server route `app/api/decide/route.ts`), and falls back to recorded answers and then a deterministic mock.
 
@@ -32,6 +32,7 @@ With the production server running (`npm run build && npm start`):
 | `node tools/playtest.mjs` | Plays all three hotspots with real key presses, records a video, writes `review/playtest/playtest.json` (`WGS_WEBGL=1` for WebGL2) |
 | `node tools/scenario_tug.mjs`, `scenario_hat.mjs`, `scenario_drag.mjs` | Tug-of-war, the hard hat (bow to be dressed), dragging on the Rapier joint |
 | `node tools/goose_strip.mjs` | Goose pose strip: idle, walk, run, honk, crouch, flap, swim |
+| `node tools/goose_flight.mjs` | Goose flight check: hold F and W, climb to the cap, glide, land; strip and height trace |
 | `node tools/gallery.mjs` | Two game-camera angles of every key building |
 | `node tools/ref_compare.mjs DC` | Reference photos in `docs/refs/DC/` beside the game rendered from each photo's pose (`review/refs/`) |
 | `node tools/map_shot.mjs` | Minimap, map teleport, right-drag camera and ground-click teleport |
