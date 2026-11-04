@@ -1,0 +1,2059 @@
+{
+ "building": "ERC",
+ "sources_checked": [
+  "around/sv_W0_WhlVRt6wQ90wJGzDozUYOQ_70/_100",
+  "around/sv_W0_M48kWSkmlGsA1j27Te4wTg_70/_100",
+  "around/sv_W0_lr0PfaZrF-lUayUu-TzYgw_70/_100",
+  "around/sv_W1_K6aNAEJ2miwus97wGdwdog_70",
+  "around/sv_W2_5n_vAEdxuMSQxl48LK2lQw_70/_100",
+  "around/sv_W3_*",
+  "around/sv_W4_*",
+  "around/sv_W5_iZp1xaTATFUeDmr2vAPMQw_70",
+  "around/sv_W6_* (look at M3, not ERC)",
+  "around/sv_W7_K_QrQig9G9lEGdRtW7fdNw_70/_100",
+  "around/sv_W7_ff6rkd5_Xg5nDr8pENFxFA_70/_100",
+  "around/sv_W8_b2MeToTVpO4OUkFl4s4Vsg_70",
+  "around/sv_c0..c11 (c4,c5,c6,c7,c9,c10,c11 most useful)",
+  "around/earth_W*_whole, earth_W0_l/m/r",
+  "around/earth_corner_0..11",
+  "private/ortho_2023aug.jpg",
+  "lidar via tools.art.study ERC + overlay of walls.json on the nDSM"
+ ],
+ "dating": "All Street View is Sep 2014 (sunny); Google Earth 3D is 2024. No visible changes between them. No web or Commons photos exist for ERC.",
+ "orientation_key": "W0 NW (Alumni Lane lawn / parking side), W1-W3 SW (treed lawn, main entrance in the W1/W2 notch), W4/W5 S stair tower + south entrance, W6 SE (walkway to M3), W7/W8 NE (service drive, loading door, parking)",
+ "colours": {
+  "brick": {
+   "hex": "#c29c89",
+   "palette": "brick_buff_sun",
+   "where": "all brick: light salmon/orange-buff brick with pale mortar, the dominant material on every wall. Sunlit SV #af8e79-#a58c76, sunlit Earth #d4ab99-#d8b39e; shade SV reads #786258 or darker. brick_buff_sun is 7.4 Lab away; if it renders too grey, a warmer swatch ~#c29c89 would be closer"
+  },
+  "panels": {
+   "hex": "#e3e2de",
+   "palette": "panel_white",
+   "where": "light warm-grey/white insulated metal panels with fine horizontal joints: the upper-floor 'boxes' at the E, W and N corners, the L3 band, entrance piers, canopies, ledges and parapet copings (sunlit sv_c6 W6)"
+  },
+  "glass": {
+   "hex": "#8fb0ae",
+   "palette": "glass_teal",
+   "where": "distinctly green-tinted glass in every window, glazed boxes and curtain walls (dark green #33554e in shade)"
+  },
+  "frames": {
+   "palette": "metal_silver",
+   "where": "clear-anodised aluminium window frames, storefronts, glazed-box surrounds"
+  },
+  "service": {
+   "palette": "metal_shade",
+   "where": "louvres, grey steel service doors, roll-up door surround"
+  },
+  "plinth": {
+   "palette": "concrete",
+   "where": "exposed concrete foundation strip 0.2-0.6 m tall under the brick (deeper where grade falls, sv_W0_M48k)"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 33.9,
+   "confidence": "medium",
+   "summary": "long NW side facing the Alumni Lane lawn: salmon-buff brick with light metal-panel 'boxes' on the upper floors; projecting glazed box window strip at the N end (s 0.6-3); a cream louvred box over a ground ribbon window under a ledge (s 3.8-12.2); stepped brick middle with a grey double service door (s 18.5-20.4); two louvres and a cream corner box with one L3 window group at the W end",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "e"
+    ],
+    [
+     2.4,
+     "gbox"
+    ],
+    [
+     0.8,
+     "e2"
+    ],
+    [
+     8.4,
+     "cbox"
+    ],
+    [
+     4.3,
+     "step"
+    ],
+    [
+     2.0,
+     "b"
+    ],
+    [
+     1.9,
+     "svc"
+    ],
+    [
+     3.6,
+     "b"
+    ],
+    [
+     1.6,
+     "lv1"
+    ],
+    [
+     1.4,
+     "b"
+    ],
+    [
+     3.0,
+     "lv2"
+    ],
+    [
+     0.4,
+     "ce"
+    ],
+    [
+     3.5,
+     "cwin"
+    ]
+   ],
+   "cells": {
+    "*/e": null,
+    "*/b": null,
+    "l3/e": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/b": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/e": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/b": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/gbox": {
+     "type": "window",
+     "w": 2.2,
+     "h": 0.85,
+     "sill": 1.6,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.45,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "gwin/gbox": {
+     "type": "glass",
+     "w": 2.2,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.45,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "ledge/gbox": {
+     "type": "glass",
+     "w": 2.2,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.45,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "l2/gbox": {
+     "type": "glass",
+     "w": 2.2,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.45,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "l3/gbox": {
+     "type": "glass",
+     "w": 2.2,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "panel_white",
+     "hood": {
+      "projection": 0.45,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "*/e2": null,
+    "l3/e2": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/e2": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/cbox": null,
+    "gwin/cbox": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "sill": 0.1,
+     "mullions": 4,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "ledge/cbox": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/cbox": {
+     "type": "louvre",
+     "w": 0.9,
+     "h": 3.6,
+     "sill": 0.5,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08,
+     "colour": "panel_white"
+    },
+    "l3/cbox": {
+     "type": "louvre",
+     "w": 0.9,
+     "h": 3.4,
+     "sill": 0.2,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08,
+     "colour": "panel_white"
+    },
+    "base/step": null,
+    "gwin/step": null,
+    "ledge/step": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/step": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/step": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/svc": {
+     "type": "door",
+     "w": 1.9,
+     "h": 2.45,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08,
+     "note": "grey steel double service door, flush grey metal panel above it to ~4.5 m (sv_W0_M48k); concrete walk out to the path"
+    },
+    "gwin/svc": {
+     "type": "window",
+     "w": 1.9,
+     "h": 1.9,
+     "sill": 0.0,
+     "mullions": 0,
+     "transoms": 3,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.06
+    },
+    "l2/svc": {
+     "type": "window",
+     "w": 1.4,
+     "h": 1.4,
+     "sill": 1.0,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "guess: Earth W0_m shows a light square above the door at ~z 6-8; not visible in SV"
+    },
+    "gwin/lv1": {
+     "type": "louvre",
+     "w": 1.4,
+     "h": 1.5,
+     "sill": 0.4,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08
+    },
+    "gwin/lv2": {
+     "type": "louvre",
+     "w": 2.8,
+     "h": 1.5,
+     "sill": 0.4,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08
+    },
+    "l2/lv1": null,
+    "l2/b": null,
+    "ledge/lv2": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/lv2": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/lv2": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.7,
+     "sill": 0.7,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "base/ce": null,
+    "gwin/ce": null,
+    "ledge/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/cwin": null,
+    "gwin/cwin": null,
+    "ledge/cwin": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/cwin": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/cwin": {
+     "type": "window",
+     "w": 0.92,
+     "h": 1.7,
+     "sill": 0.7,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "glazed box window at s 0.6-3.0 stands ~0.45 m proud, silver frame, from z ~1.6 to ~13.5 (sv_c9 shows its ground-floor pane ~2.2 x 3 m; earth_W0_whole the full-height strip)",
+    "cream panel boxes (s 3.8-12.2 and s 27.5-33.9, wrapping onto W1) stand ~0.3-0.5 m proud of the brick with a ~0.4 m deep projecting ledge/soffit at z ~4.6-5.0 that shelters the ground ribbon window (sv_W0_WhlV, sv_c9)",
+    "wall-pack lights at z ~4.4 over the ribbon window (s ~8) and over the service door (s ~19.5); small CCTV camera and grey conduit near s 27 (sv_W0_lr0P)"
+   ],
+   "notes": "SV all Sep 2014 and the wall is in shade; Earth 2024 texture is smeared (bluish grey reads as the light panels, pink as brick). Brick/panel split follows earth_W0_whole: brick to the L2 floor (z 5) at s 12-16.5, brick through L2 (to z 9.3) at s 16.5-27.5, panels above. The s 3.8-12.2 upper box is drawn as a louvre screen: sv_c9 shows horizontal louvre slats on it above the ledge, earth shows a large flat rectangle with no windows (medium-low confidence; could be blank panel). Louvre positions s 24-25.6 and 27-30 from sv_W0_lr0P (approx +-1.5 m)."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 9.0,
+   "confidence": "low",
+   "summary": "west end of the NW range, inside the entrance notch: glazed lobby wall at ground under the main-entrance canopy, cream panel upper floors (continuation of the W0 corner box) with one 4-light window group on L3",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "e"
+    ],
+    [
+     6.0,
+     "lob"
+    ],
+    [
+     1.5,
+     "e"
+    ]
+   ],
+   "cells": {
+    "base/e": null,
+    "gwin/e": null,
+    "base/lob": {
+     "type": "glass",
+     "w": 5.8,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "gwin/lob": {
+     "type": "glass",
+     "w": 5.8,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "ledge/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/e": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l3/lob": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.7,
+     "sill": 0.7,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "the main-entrance canopy (lidar 4.9 m, ~3.5 m deep) runs along the foot of this wall and round onto W2: flat light metal-panel fascia ~0.5 m deep, white soffit (sv_W2_5n_v, sv_W0_lr0P)"
+   ],
+   "notes": "Mostly hidden by trees in every view. Ground glazing from sv_c11 (glass facing west left of the brick W3 block) and the lidar canopy; upper floors from earth_corner_10 and earth_W1_whole (cream with one window group at the top floor). L2 may have a window too (hidden)."
+  },
+  "W2": {
+   "faces": "NW",
+   "length_m": 6.7,
+   "confidence": "medium",
+   "summary": "MAIN ENTRANCE: in the notch facing the Alumni Lane path; aluminium storefront (double doors + sidelights + transom, green glass) under a flat metal canopy at ~4.5 m, cream panel pier to its left; above it a narrow full-height glazed strip with a T-shaped head; brick L1-L2, cream L3",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     3.0,
+     "entry"
+    ],
+    [
+     1.7,
+     "bw"
+    ]
+   ],
+   "cells": {
+    "*/b": null,
+    "l3/b": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/pier": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "gwin/pier": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "ledge/pier": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/pier": null,
+    "l3/pier": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/entry": {
+     "type": "door",
+     "w": 2.9,
+     "h": 2.45,
+     "mullions": 3,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "depth": 0.2,
+     "canopy": [
+      3.0,
+      "panel_white"
+     ],
+     "note": "double glazed aluminium doors with a sidelight either side (sv_W2_5n_v, sv_W0_lr0P)"
+    },
+    "gwin/entry": {
+     "type": "window",
+     "w": 2.9,
+     "h": 1.9,
+     "sill": 0.0,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "depth": 0.2
+    },
+    "ledge/entry": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/entry": {
+     "type": "glass",
+     "w": 1.4,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "l3/entry": {
+     "type": "glass",
+     "w": 1.4,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "panel_white"
+    },
+    "base/bw": {
+     "type": "window",
+     "w": 0.8,
+     "h": 1.0,
+     "sill": 1.3,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "gwin/bw": null,
+    "ledge/bw": null,
+    "l2/bw": {
+     "type": "glass",
+     "w": 0.6,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "l3/bw": {
+     "type": "glass",
+     "w": 0.6,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "panel_white"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "flat canopy over the entrance: z ~4.4-4.9, projecting ~3 m, light grey metal fascia and soffit, a wall-pack light on the brick left of it (sv_W2_5n_v); it wraps along W1",
+    "the glazed strip over the doors (s ~2.5-3.9, z 5-13) ends in a horizontal glazed arm at the top, a 'T' (sv_W0_lr0P)",
+    "galvanised handrails on the steps of the walk leading to the doors (sv_W0_lr0P, sv_c10)"
+   ],
+   "notes": "Seen square-ish only from the NW (sv_W2_5n_v, sv_W0_lr0P, Sep 2014). Narrow glazed strip at the far (SW) edge s ~5.8-6.4 also full-height (sv_W0_lr0P right). Fire-alarm bell box on the brick at s ~0.5, z 1.2."
+  },
+  "W3": {
+   "faces": "SW",
+   "length_m": 21.4,
+   "confidence": "medium",
+   "summary": "SW side toward the treed lawn: brick through L2 with small punched windows at ground, two 4-light window groups on L2 and L3 at the NW half, a full-height vertical glazed strip at s 10.4-12, cream panel top floor",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "e"
+    ],
+    [
+     3.8,
+     "r1"
+    ],
+    [
+     3.8,
+     "r2"
+    ],
+    [
+     2.0,
+     "b"
+    ],
+    [
+     1.6,
+     "gs"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     2.6,
+     "p1"
+    ],
+    [
+     2.6,
+     "p2"
+    ],
+    [
+     2.7,
+     "p3"
+    ]
+   ],
+   "cells": {
+    "*/e": null,
+    "*/b": null,
+    "l3/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/r1": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.2,
+     "sill": 1.2,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "base/r2": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.2,
+     "sill": 1.2,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "base/p1": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.2,
+     "sill": 1.2,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "base/p2": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.2,
+     "sill": 1.2,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "base/p3": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.2,
+     "sill": 1.2,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver"
+    },
+    "gwin/*": null,
+    "ledge/*": null,
+    "l2/r1": {
+     "type": "window",
+     "w": 0.95,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun"
+    },
+    "l2/r2": {
+     "type": "window",
+     "w": 0.95,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun"
+    },
+    "l3/r1": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.8,
+     "sill": 0.7,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "l3/r2": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.8,
+     "sill": 0.7,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "base/gs": {
+     "type": "glass",
+     "w": 1.4,
+     "h": 1.5,
+     "sill": 1.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "gwin/gs": {
+     "type": "glass",
+     "w": 1.4,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "ledge/gs": {
+     "type": "glass",
+     "w": 1.4,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "l2/gs": {
+     "type": "glass",
+     "w": 1.4,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "l3/gs": {
+     "type": "glass",
+     "w": 1.4,
+     "h": 4.2,
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "panel_white"
+    },
+    "l2/p1": null,
+    "l2/p2": null,
+    "l2/p3": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [],
+   "notes": "Lower floors hidden by big maples in Earth; ground windows counted in sv_c11/sv_c0 (Sep 2014: 5 small near-square windows, deep-set, sill ~1.2 m; positions approximate). L2/L3 groups and the glazed strip from earth_W3_whole and earth_corner_10 (2024). L2 at s 13-21 unseen (guess plain brick)."
+  },
+  "W4": {
+   "faces": "SW",
+   "length_m": 4.2,
+   "confidence": "medium",
+   "summary": "SW face of the south stair tower (lidar 18.3 m, ~3.7 m above the main roof): a projecting green-glass box bay with silver frames and landing transoms from z 3.3 nearly to the top, brick base",
+   "height_m": 18.3,
+   "rows": [
+    [
+     3.3,
+     "base"
+    ],
+    [
+     11.3,
+     "glass"
+    ],
+    [
+     3.0,
+     "top"
+    ],
+    [
+     0.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "e"
+    ],
+    [
+     3.4,
+     "bay"
+    ],
+    [
+     0.4,
+     "e"
+    ]
+   ],
+   "cells": {
+    "*/e": null,
+    "base/bay": null,
+    "parapet/*": null,
+    "glass/bay": {
+     "type": "glass",
+     "w": 3.3,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.6,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "top/bay": {
+     "type": "glass",
+     "w": 3.3,
+     "h": 2.6,
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.6,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "the glass bay projects ~0.6 m with a silver metal sill/soffit at z ~3.3 and wraps ~1.3 m round onto W5 (sv_c2, sv_W5_iZp1, earth_corner_2/4)"
+   ],
+   "notes": "Stair landings visible through the glass (sv_c2). Height from lidar."
+  },
+  "W5": {
+   "faces": "SE",
+   "length_m": 10.9,
+   "confidence": "medium",
+   "summary": "SE end of the south tower plus the recessed green curtain-wall lobby/stair strip (south entrance, toward M3): glazed bay return at s 0-1.3, brick tower face s 1.3-6.8 (to 18.3 m), full-height curtain wall s 6.8-10.9 (to main roof) with glazed doors and a flat canopy at ~3 m",
+   "height_m": 18.3,
+   "rows": [
+    [
+     2.6,
+     "base"
+    ],
+    [
+     2.4,
+     "mid"
+    ],
+    [
+     9.6,
+     "up"
+    ],
+    [
+     3.0,
+     "top"
+    ],
+    [
+     0.7,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.3,
+     "bay"
+    ],
+    [
+     5.5,
+     "t"
+    ],
+    [
+     4.1,
+     "lobby"
+    ]
+   ],
+   "cells": {
+    "base/bay": null,
+    "mid/bay": {
+     "type": "glass",
+     "w": 1.2,
+     "h": 1.6,
+     "sill": 0.7,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.6,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "up/bay": {
+     "type": "glass",
+     "w": 1.2,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.6,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "top/bay": {
+     "type": "glass",
+     "w": 1.2,
+     "h": 2.6,
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.6,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "parapet/bay": null,
+    "*/t": null,
+    "base/lobby": {
+     "type": "door",
+     "w": 1.9,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "depth": 0.3,
+     "offset": 0.6,
+     "canopy": [
+      1.6,
+      "panel_white"
+     ],
+     "note": "pair of glazed aluminium doors with push-button operator, curtain-wall sidelights (sv_c4, sv_c5)"
+    },
+    "mid/lobby": {
+     "type": "glass",
+     "w": 4.0,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "up/lobby": {
+     "type": "glass",
+     "w": 4.0,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun"
+    },
+    "top/lobby": {
+     "type": "void"
+    },
+    "parapet/lobby": {
+     "type": "void"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "flat metal canopy over the S doors at z ~3.0, projecting ~1.6 m (sv_c4/c5); a second shallow ledge at ~5 m over the lobby glass (sv_W5_iZp1 top right)",
+    "curtain wall is set back ~1.4 m from the tower face (walls.json jog W5b->W6a) and capped by a light metal fascia at the main roof line (earth_corner_4)",
+    "wall-pack light on the brick pier at s ~6.5, z 3.5 (sv_c5)"
+   ],
+   "notes": "Rows top/parapet over the lobby bay are void: the lobby strip stops at the main roof (~14.6 m) while the tower rises to 18.3 m (lidar). Grey-green curtain glass reads dark green in shade."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 29.8,
+   "confidence": "medium",
+   "summary": "SE side along the M3 walkway: brick pier with a full-height dark vertical louvre strip and a steel door at the SW end, a brick zone with 4-light groups on L2 (in brick) and L3 (in cream), then the big cream panel corner box (s 15-29.8) on L2-L3 overhanging a ground ribbon window under a projecting ledge",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "pier"
+    ],
+    [
+     1.0,
+     "lv"
+    ],
+    [
+     1.4,
+     "dr"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     8.0,
+     "w"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     0.6,
+     "ce"
+    ],
+    [
+     13.6,
+     "cw"
+    ],
+    [
+     0.6,
+     "ce"
+    ]
+   ],
+   "cells": {
+    "*/pier": null,
+    "*/b": null,
+    "l3/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/lv": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 2.0,
+     "sill": 0.5,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08
+    },
+    "gwin/lv": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 2.1,
+     "sill": 0.0,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08
+    },
+    "ledge/lv": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 0.4,
+     "sill": 0.0,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08
+    },
+    "l2/lv": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 4.3,
+     "sill": 0.0,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08
+    },
+    "base/dr": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.2,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.08,
+     "note": "grey steel door (sv_c6)"
+    },
+    "gwin/*": null,
+    "ledge/*": null,
+    "l2/dr": null,
+    "l2/w": {
+     "type": "window",
+     "w": 0.85,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 4,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun"
+    },
+    "l3/w": {
+     "type": "window",
+     "w": 0.85,
+     "h": 1.9,
+     "sill": 0.7,
+     "mullions": 4,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "base/ce": null,
+    "gwin/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "ledge/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/cw": null,
+    "gwin/cw": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "sill": 0.1,
+     "mullions": 6,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "ledge/cw": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/cw": {
+     "type": "window",
+     "w": 0.9,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 6,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "l3/cw": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.9,
+     "sill": 0.7,
+     "mullions": 6,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    }
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "cream corner box (s 15-29.8, wrapping onto W7 s 0-8.5) stands ~0.5 m proud of the brick on L2-L3 with a ~0.5 m deep grey metal ledge/soffit at z ~4.6-5.0 over the ground ribbon window (sv_c6, sv_W7_K_Qr)",
+    "wall-pack lights at z ~4.3 at s ~9 and s ~17 (sv_c6)"
+   ],
+   "notes": "Square-on Street View of this wall does not exist (the W6 panos sit on the M3 path looking at M3); read from sv_c6 (oblique from the E, Sep 2014), sv_c4/c5 and earth_corner_2/6 (2024). Bay positions +-1.5 m. Panels show fine horizontal joints ~0.6 m apart."
+  },
+  "W7": {
+   "faces": "NE",
+   "length_m": 24.3,
+   "confidence": "high",
+   "summary": "NE side on the service drive: cream corner box (s 0-8.5) on L2-L3 over a 4-light ground ribbon window under a ledge; brick through L2 beyond with a punched window, grey man door and a grey roll-up loading door (s 19.5-21.8) under a projecting glazed box strip; 4-light groups on L2 and L3",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.3,
+     "ce"
+    ],
+    [
+     8.2,
+     "cw"
+    ],
+    [
+     1.0,
+     "b"
+    ],
+    [
+     5.5,
+     "g1"
+    ],
+    [
+     1.8,
+     "pw"
+    ],
+    [
+     1.4,
+     "g2"
+    ],
+    [
+     0.9,
+     "md"
+    ],
+    [
+     0.4,
+     "b"
+    ],
+    [
+     2.3,
+     "ohd"
+    ],
+    [
+     2.5,
+     "nb"
+    ]
+   ],
+   "cells": {
+    "*/b": null,
+    "l3/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "parapet/*": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/ce": null,
+    "gwin/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "ledge/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/ce": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "base/cw": null,
+    "gwin/cw": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "sill": 0.1,
+     "mullions": 3,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "ledge/cw": {
+     "type": "blank",
+     "colour": "panel_white"
+    },
+    "l2/cw": {
+     "type": "window",
+     "w": 0.95,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 4,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "l3/cw": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.9,
+     "sill": 0.7,
+     "mullions": 4,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "gwin/*": null,
+    "ledge/*": null,
+    "base/g1": null,
+    "base/g2": null,
+    "l2/g1": {
+     "type": "window",
+     "w": 0.95,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun"
+    },
+    "l3/g1": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.9,
+     "sill": 0.7,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "l2/pw": {
+     "type": "window",
+     "w": 1.0,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun"
+    },
+    "l3/pw": {
+     "type": "window",
+     "w": 1.0,
+     "h": 1.9,
+     "sill": 0.7,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "l2/g2": {
+     "type": "window",
+     "w": 0.9,
+     "h": 2.4,
+     "sill": 0.9,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "brick_buff_sun"
+    },
+    "l3/g2": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.9,
+     "sill": 0.7,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "colour": "panel_white"
+    },
+    "base/pw": {
+     "type": "window",
+     "w": 1.5,
+     "h": 1.2,
+     "sill": 1.2,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "note": "punched window, white sill (sv_W7_ff6r)"
+    },
+    "base/md": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "metal_shade",
+     "frame": "metal_shade",
+     "depth": 0.06,
+     "note": "grey steel man door with a small yellow sign beside it"
+    },
+    "base/ohd": {
+     "type": "door",
+     "w": 2.3,
+     "h": 2.45,
+     "glass": "metal_silver",
+     "frame": "metal_shade",
+     "depth": 0.15,
+     "transoms": 4,
+     "note": "grey-white roll-up loading door in a light grey metal surround, ~3.5 m high (sv_W7_ff6r)"
+    },
+    "gwin/ohd": {
+     "type": "window",
+     "w": 2.3,
+     "h": 1.05,
+     "sill": 0.0,
+     "mullions": 0,
+     "transoms": 1,
+     "glass": "metal_silver",
+     "frame": "metal_shade",
+     "depth": 0.15
+    },
+    "ledge/ohd": {
+     "type": "glass",
+     "w": 2.0,
+     "h": 0.2,
+     "sill": 0.2,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.4,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "l2/ohd": {
+     "type": "glass",
+     "w": 2.0,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.4,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "l3/ohd": {
+     "type": "glass",
+     "w": 2.0,
+     "h": "full",
+     "sill": 0.0,
+     "glass": "glass_teal",
+     "frame": "metal_silver",
+     "mullions": 1,
+     "transom_pitch": 1.5,
+     "colour": "brick_buff_sun",
+     "hood": {
+      "projection": 0.4,
+      "fin_w": 0.12,
+      "fin_colour": "metal_silver",
+      "soffit_colour": "metal_silver"
+     }
+    },
+    "*/nb": null,
+    "l3/nb": null,
+    "parapet/nb": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [
+    "cream corner box (continuation of W6's) ~0.5 m proud with a projecting ledge at z ~4.6-5.0 over the ground ribbon window s 0.3-8 (sv_W7_K_Qr: 4 lights, brick sill wall below)",
+    "projecting glazed box strip s 19.7-21.5 from z ~5 to ~13.5, silver frame, ~0.4 m proud, directly over the loading door (sv_W7_ff6r, earth_W7_whole)",
+    "wall-pack lights over the ribbon window (s ~5) and between the man door and the loading door (s ~17.5, z 4.2)",
+    "concrete bollard/curb block at the right jamb of the loading door (sv_W7_ff6r)"
+   ],
+   "notes": "Earth W7 whole (2024) and sv_c6 agree: L2/L3 4-light groups at s ~0.6-8.9 and ~9.6-18; brick reaches the L3 floor from s ~9; s 21.5-24.3 brick full height into the W8 jog. The K_Qr pano's computed position is ~5 m off (it puts the corner at s 5); layout follows the corner, not the pano. Two L2/L3 group bays (g1/pw/g2) together make the second 4-5 light group."
+  },
+  "W8": {
+   "faces": "NE",
+   "length_m": 12.2,
+   "confidence": "high",
+   "summary": "NE face of the north block: plain salmon-buff brick full height, one glazed aluminium double door with a tall transom light at s ~1-3 near the jog with W7",
+   "height_m": 14.6,
+   "rows": [
+    [
+     2.5,
+     "base"
+    ],
+    [
+     2.1,
+     "gwin"
+    ],
+    [
+     0.4,
+     "ledge"
+    ],
+    [
+     4.3,
+     "l2"
+    ],
+    [
+     4.3,
+     "l3"
+    ],
+    [
+     1.0,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "e"
+    ],
+    [
+     2.0,
+     "door"
+    ],
+    [
+     9.4,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/e": null,
+    "*/b": null,
+    "parapet/*": null,
+    "base/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.15,
+     "note": "double glazed aluminium doors, push bars, no canopy (sv_c7, sv_W8_b2Me)"
+    },
+    "gwin/door": {
+     "type": "window",
+     "w": 1.8,
+     "h": 1.2,
+     "sill": 0.0,
+     "mullions": 0,
+     "transoms": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "depth": 0.15
+    },
+    "ledge/door": null,
+    "l2/door": null,
+    "l3/door": null
+   },
+   "wall": "brick_buff_sun",
+   "bands": [
+    [
+     0.0,
+     0.3,
+     "concrete",
+     0.02
+    ]
+   ],
+   "piers": [],
+   "coping": [
+    0.15,
+    "panel_white",
+    0.05
+   ],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_c7/sv_c8/sv_W8 (Sep 2014, sunlit) and earth_corner_9/earth_W8_whole (2024): no other openings. The N block's parapet reads a touch higher than the main roof (lidar 15.3-15.4 at its edge)."
+  }
+ },
+ "roof": [
+  {
+   "what": "flat light grey membrane roof with a white metal-capped parapet ~0.5-0.8 m above the roof deck",
+   "where": "whole main block, roof deck ~14.1 m, parapet top ~14.6-15.3 m",
+   "size_m": null,
+   "source": "lidar, earth orbits"
+  },
+  {
+   "what": "dark grey grated mechanical well / screened enclosure with a ~1.5 m grid of dark panels, low light-grey curb walls around it",
+   "where": "roof centre-north, roughly art (838-858, 505-525), L-shaped in the ortho (a ~12 x 12 m square plus a ~6 m arm to the NE)",
+   "size_m": [
+    12,
+    12,
+    0.8
+   ],
+   "source": "ortho_2023aug, earth_W7_whole, earth_W8_whole"
+  },
+  {
+   "what": "raised tan/wood-coloured equipment platform with small units on it",
+   "where": "SW of the well, ~art (835-845, 497-505)",
+   "size_m": [
+    7,
+    5,
+    1.5
+   ],
+   "source": "ortho_2023aug (light tan rectangle), lidar 15-16.5 m"
+  },
+  {
+   "what": "cluster of 4-6 silver lab exhaust fans with tall stacks, joined by silver ducts",
+   "where": "on the NW edge of the well, ~art (847-851, 520-524)",
+   "size_m": [
+    4,
+    3,
+    3.5
+   ],
+   "source": "lidar 18 m spike, ortho, earth_W0_m"
+  },
+  {
+   "what": "south stair tower rising ~3.7 m above the roof, brick, flat cap",
+   "where": "S corner, behind W4/W5, ~7 x 7 m",
+   "size_m": [
+    7,
+    7,
+    3.7
+   ],
+   "source": "lidar 18.3 m"
+  },
+  {
+   "what": "small white rooftop units / hatches",
+   "where": "scattered: near the E corner and the N block",
+   "size_m": [
+    1.5,
+    1.5,
+    1.0
+   ],
+   "source": "earth orbits"
+  }
+ ],
+ "site": {
+  "bridges": [],
+  "neighbours": [
+   "M3 ~6-8 m to the SE across a concrete walkway (W6)",
+   "CSB to the NE across the service drive",
+   "BMH to the W/NW beyond Alumni Lane lawn; central plant smokestack visible to the E",
+   "parking lots to the N and NW"
+  ],
+  "ground": [
+   "W0: sloping lawn along the wall with an asphalt path ~6-8 m out; concrete walk from the path to the service door at s ~19",
+   "W1/W2: concrete walk with a few steps and galvanised handrails from the asphalt path up to the main entrance under the canopy; mulched tree beds with the Alumni Lane trees west of it",
+   "W3: lawn under large maples, a worn gravel desire path near the S corner",
+   "W4/W5: lawn; concrete apron in front of the south entrance joining the M3 walkway",
+   "W6: grass strip then a ~2.5 m concrete walkway between ERC and M3; M3's ramp with galvanised rails opposite",
+   "W7: lawn at s 0-15, asphalt service drive and loading apron at s 15-24 leading to the NE parking lot",
+   "W8: asphalt path along the face, lawn and parking beyond"
+  ],
+  "entities": [
+   {
+    "type": "sign",
+    "kind": "white monument sign 'ENERGY RESEARCH CENTRE' (dark text on white, ~2.5 x 1 m) on the lawn",
+    "where": "off the E corner, ~art (884,503), beside the service drive",
+    "count": 1,
+    "photo": "sv_c6"
+   },
+   {
+    "type": "sign",
+    "kind": "brown wooden 'ALUMNI LANE' interpretive board on two posts",
+    "where": "NW of the W corner by the path, ~art (815,529)",
+    "count": 1,
+    "photo": "sv_c10"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole lamp with a flat disc head ~4 m",
+    "where": "W0, s ~33, ~8 m out by the entrance walk",
+    "count": 1,
+    "photo": "sv_W0_lr0P"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised pipe handrails at the entrance steps",
+    "where": "W2 entrance walk, 3-8 m out",
+    "count": 2,
+    "photo": "sv_W0_lr0P, sv_c10"
+   },
+   {
+    "type": "railing",
+    "kind": "galvanised stair handrails down to the parking lot",
+    "where": "NW of W0's W end, ~art (812,527)",
+    "count": 1,
+    "photo": "sv_c10"
+   },
+   {
+    "type": "wall_light",
+    "kind": "dark bronze wall-pack lights",
+    "where": "W0 s 8 and 19.5; W2 left of canopy; W5 s 6.5; W6 s 9 and 17; W7 s 5 and 17.5 (z ~4.2)",
+    "count": 8,
+    "photo": "various"
+   },
+   {
+    "type": "utility",
+    "kind": "small grey box with two round fan grilles at the wall foot",
+    "where": "W7 s ~23, 0.5 m out",
+    "count": 1,
+    "photo": "sv_c6"
+   },
+   {
+    "type": "tree",
+    "kind": "large deciduous maples (Alumni Lane class trees)",
+    "where": "along W1-W3, 5-15 m out; and NW of W0's W end",
+    "count": 8,
+    "photo": "sv_c0, sv_c11, sv_W1, earth_corner_0"
+   },
+   {
+    "type": "utility",
+    "kind": "square concrete pad with grating/hatch",
+    "where": "between W5/W6 and M3, ~art (848,482)",
+    "count": 1,
+    "photo": "earth_corner_2"
+   }
+  ]
+ },
+ "geometry_notes": [
+  "walls.json sits outside the lidar edge on the SW and SE sides: W3 ~2-3 m and W5/W6 ~1-2 m too far out (overlay of walls on the nDSM); the W6 Street View panos (on the M3 walkway) land 0.8-1.0 m INSIDE W6's line, confirming W6 should move ~2 m NW",
+  "the W1/W2 notch: lidar shows the SW range stepping out only ~3 m past W1, not 6.7 m; a 4.9 m-high canopy fills the notch along W1 (draw it as the entrance canopy)",
+  "W7/W8 jog: lidar shows the N block only ~1-2 m proud of W7, walls.json has ~3.8 m",
+  "S stair tower behind W4/W5 (~7 x 7 m) rises to 18.3 m vs the 14.1 m roof (+ ~0.5-1 m parapet); the recessed lobby curtain wall at W5 s 6.8-10.9 stops at the main roof line",
+  "walls.json omits the short jogs W3b->W4a (~3.8 m, NW-facing tower side, brick), W5b->W6a (~1.4 m, lobby reveal, glazed) and W7b->W8a (~4 m, SE-facing N block side: brick with the W7 glazed strip turning onto it)",
+  "storeys: 3 (ground ~5.0 m lab floor, L2 and L3 ~4.3 m), parapet ~1 m; height_m 15.5 in walls.json is the parapet/equipment max, not the roof"
+ ],
+ "notes": "ERC reads as a 3-storey light salmon-brick lab block whose upper floors are wrapped at three corners by flush-joint off-white metal panel boxes that cantilever slightly over ground-floor ribbon windows; green glass throughout, projecting silver-framed glass box windows (N corner of W0, S tower W4, over the W7 loading door), and a taller brick stair tower at the S corner. No lettering on the building itself."
+}
