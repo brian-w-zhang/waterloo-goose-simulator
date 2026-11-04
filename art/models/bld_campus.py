@@ -24,7 +24,7 @@ MODELS = {
     "bld_lhi": dict(abbrev="LHI"),
     "bld_e3": dict(abbrev="E3"),
     "bld_bmh": dict(abbrev="BMH"),
-    "bld_csb": dict(abbrev="CSB"),
+    "bld_csb": dict(abbrev="CSB", extra="csb_stack", max_h=21.0),   # above 21 m the lidar saw steam
     "bld_ahs_exp": dict(abbrev="AHS EXP"),
     "bld_com": dict(abbrev="COM"),
     "bld_e2": dict(abbrev="E2"),
@@ -78,7 +78,16 @@ def pac_mansard(k, tiers):
             k.tube([p0, p1], 0.05, "penthouse_metal", sides=3)
 
 
-EXTRAS = {"observatory": observatory, "pac_mansard": pac_mansard}
+def csb_stack(k, tiers):
+    """CSB's freestanding smokestack (facades.json geometry_notes: art 923.5, 521.5, about 62.6 m
+    tall), brown brick, with a dark band at the top and the breeching duct."""
+    gy = min(t["ground_y"] for t in tiers)
+    x, y = 923.5, 521.5
+    k.tube([(x, y, gy - 1.0), (x, y, gy + 59.5)], 2.3, "brick_dark", sides=16)
+    k.tube([(x, y, gy + 59.5), (x, y, gy + 62.6)], 2.35, "brick_charcoal_tower", sides=16)
+
+
+EXTRAS = {"observatory": observatory, "pac_mansard": pac_mansard, "csb_stack": csb_stack}
 
 
 def build(model):

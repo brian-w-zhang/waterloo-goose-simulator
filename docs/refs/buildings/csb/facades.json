@@ -1,0 +1,1203 @@
+{
+ "building": "CSB",
+ "name": "Central Services Building (UW central heating/cooling plant, with the UW smokestack)",
+ "sources_checked": [
+  "around/sv_*_70 and _100 (all 17 wall poses + 12 corner poses): W7/W8/W6/W3 and c0/c1/c10/c11 Sep 2014 (sunny); W0/W1/W2/W9/W10/W11 and c2-c9 Jul 2019 (overcast); sv_W8_K_8T and c2 carry 2025 watermarks",
+  "around/earth_W*_whole, earth_W7/W8/W11_l|m|r, earth_corner_0-11 (2024, sunny; the louvre screens and fans mesh badly)",
+  "private/ortho_2023aug.jpg (walls drawn on it), ortho_2025summer.jpg, ortho_2026spring.jpg",
+  "lidar nDSM sampled 1 m and 4 m inside / 2 m and 5 m outside every wall, plus a 1 m grid over the stack (review/art/csb_study.jpg)",
+  "commons/ and private/web/: none exist (NOTES.md: 0 web images)",
+  "gsc/facades.json for the GSC side of the gap behind W8"
+ ],
+ "dating": "Most current views: 2019 Street View of the north/east sides (W0-W2, W9-W11) and the 2024 Earth mesh; the lawn sides (W6-W8) are Sep 2014 Street View only. The 2023-2026 orthos show two changes since those photos: the big brown steel tank on the berm NW of W6 is gone (sand/construction in 2023, lawn in 2025), and a new single-storey annexe with two rooftop units stands against W6 by 2025 (see geometry_notes). A light grey equipment cabinet off the W7/W8 corner appears in the 2023+ orthos but not in 2014 Street View.",
+ "colours": {
+  "brick": {
+   "hex": "#8c6e58",
+   "palette": "brick_slc",
+   "where": "all brick: boiler-house lawn walls W5-W7 and W9, cooling-tower block base W2/W3/W10, NE wing W0/W1/W11 and the W10 low block. Medium-dark brown, stretcher bond, dark-flecked. Samples are all shaded/overcast: W7 2014 shade #4f382b, W9 2019 overcast #564939, W11 #6d5e50, W10 #594734; ~1.6x exposure correction gives #8a6550-#8f7860. In the sunny 2014 frames it reads redder (brick_dark #9e6a58 would also be defensible for W6/W7); 2019 frames of W9 and W10 side by side show the same brick on the boiler house and the cooling block"
+  },
+  "beige_panels": {
+   "hex": "#dad9d5",
+   "palette": "precast_cream",
+   "where": "smooth cream end-wall cladding of the boiler house: the SE gable W8 (from s 0.6 to the end, ground to 20.3 m) and (guess, Earth) the NW gable / W4. Sunlit SV 2014 #dad9d5-#dfdedd, overcast 2019 #9b826e, Earth #e5d0c2; faint vertical panel joints every ~3 m; reads warm cream, darker than white"
+  },
+  "louvre_screen": {
+   "hex": "#8a8a86",
+   "palette": "roof_metal",
+   "where": "cooling-tower screen W2/W3/W10 and the hidden NE face, 9.4-16.0 m: closely spaced horizontal metal louvre slats (~0.25 m pitch). Overcast #555551-#696a6a, corrected ~#8a8a86"
+  },
+  "dark_band": {
+   "hex": "#737272",
+   "palette": "prop_metal",
+   "where": "0.8 m dark grey metal band between the clerestory and the louvre screen on the cooling block, slightly proud (#5f5f5c-#737272 overcast)"
+  },
+  "silver_louvres": {
+   "hex": "#b4b3ae",
+   "palette": "metal_shade",
+   "where": "3 m band of framed silver louvre panels at the top of the boiler house's tall end (W9 and the SW face above the roof): #7c7b78 overcast, Earth #a9b7c4"
+  },
+  "fascia": {
+   "hex": "#5d574b",
+   "palette": "brick_charcoal_tower",
+   "where": "dark brown-grey metal fascias of the NE wing / carport (0.9 m) and low block, thin copings on the 7.2 m walls, steel man doors"
+  },
+  "clerestory": {
+   "palette": "window_dark",
+   "where": "clerestory ribbon on the cooling block: white frames (panel_white) and dark glass, a few panes opaque white; W3 has only two windows, the rest dark panels (brick_charcoal_tower)"
+  },
+  "wall_louvres": {
+   "hex": "#84807a",
+   "palette": "panel_grey",
+   "where": "rectangular aluminium wall louvres on W3/W6/W7 (light grey-beige, #494744 in shade)"
+  },
+  "overhead_doors": {
+   "palette": "prop_metal",
+   "where": "grey overhead door 24 and its steel man door (#3b3b3a overcast)"
+  },
+  "carport_backwall": {
+   "hex": "#7d7a76",
+   "palette": "brick_charcoal",
+   "where": "painted concrete-block back wall of the carport (mauve-grey in shade); soffit is light ribbed metal (metal_panel)"
+  },
+  "stack": {
+   "hex": "#a48e7b",
+   "palette": "brick_buff_sun",
+   "where": "the 62 m round brick smokestack: buff-brown brick, sunlit 2014 #a48e7b, overcast 2019 #685d50-#6e6256 (Earth #b69389)"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 8.2,
+   "confidence": "medium",
+   "summary": "north end of the one-storey NE wing: a solid brown brick end wall (4.5 m) under the dark carport fascia; it closes the north end of the carport and faces the lawn and the service-drive bend",
+   "height_m": 4.5,
+   "rows": [
+    [
+     3.6,
+     "wall"
+    ],
+    [
+     0.9,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     8.2,
+     "w"
+    ]
+   ],
+   "cells": {
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W0_4mgl, sv_c6/c7/W2 (Jul 2019, 11-20 m away): plain brick, no openings, dark fascia continuing from W11; concrete curb at its foot on the drive side, lawn on the west."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 4.7,
+   "confidence": "low",
+   "summary": "short return of the NE wing back to the cooling block's NW face: 4.5 m brick with the dark fascia",
+   "height_m": 4.5,
+   "rows": [
+    [
+     3.6,
+     "wall"
+    ],
+    [
+     0.9,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     4.7,
+     "w"
+    ]
+   ],
+   "cells": {
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Not seen square-on (behind the pines in sv_W1_g4ea / c6); assumed to continue W0. Lidar 4 m."
+  },
+  "W2": {
+   "faces": "NW",
+   "length_m": 19.8,
+   "confidence": "medium",
+   "summary": "NW face of the cooling-tower block (16 m): brown brick base, a continuous clerestory ribbon of white-framed windows at 7.6-8.6 m, a dark grey band, then 6.6 m of horizontal grey louvre screen hiding the cooling fans; a wall louvre under the ribbon at the SW end",
+   "height_m": 16.0,
+   "rows": [
+    [
+     7.6,
+     "base"
+    ],
+    [
+     1.0,
+     "clere"
+    ],
+    [
+     0.8,
+     "band"
+    ],
+    [
+     6.6,
+     "screen"
+    ]
+   ],
+   "bays": [
+    [
+     17.4,
+     "c"
+    ],
+    [
+     1.6,
+     "lv"
+    ],
+    [
+     0.8,
+     "e"
+    ]
+   ],
+   "cells": {
+    "clere/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "base/lv": {
+     "type": "louvre",
+     "w": 1.2,
+     "h": 0.9,
+     "sill": 6.4,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    },
+    "band/*": {
+     "type": "panel",
+     "colour": "prop_metal"
+    },
+    "screen/*": {
+     "type": "louvre",
+     "w": 1.0,
+     "h": 1.0,
+     "sill": 0.0,
+     "glass": "roof_metal",
+     "frame": "brick_charcoal",
+     "depth": 0.03
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.55,
+     7.65,
+     "panel_white",
+     0.06
+    ],
+    [
+     8.6,
+     9.4,
+     "prop_metal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "steel pipe guardrail along the top of the screen (visible from the west)"
+   ],
+   "notes": "sv_c6/c7/W2 (Jul 2019): from the north the right-hand face of the block. ~14 lites visible over most of the face at ~1.2-1.4 m pitch, white frames, some panes opaque white. The lower brick is hidden by the NE wing (W0/W1) and the pines; assumed plain. Row heights from W3 (sv_c11 crop, 46 px/m: windows z 8.0-8.8 above a berm) and lidar (deck ~9 m, screen top 15-16 m); +-0.4 m."
+  },
+  "W3": {
+   "faces": "SW",
+   "length_m": 14.6,
+   "confidence": "medium",
+   "summary": "SW face of the cooling-tower block: brick base with a steel door and a low louvre at the north end, a big wall louvre right under the clerestory, only two clerestory windows (the rest dark panels), dark band, louvre screen; a brown board fence screens the south half at ground",
+   "height_m": 16.0,
+   "rows": [
+    [
+     7.6,
+     "base"
+    ],
+    [
+     1.0,
+     "clere"
+    ],
+    [
+     0.8,
+     "band"
+    ],
+    [
+     6.6,
+     "screen"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "e"
+    ],
+    [
+     1.4,
+     "door"
+    ],
+    [
+     0.3,
+     "e"
+    ],
+    [
+     2.4,
+     "lvA"
+    ],
+    [
+     2.4,
+     "lvB"
+    ],
+    [
+     2.4,
+     "m"
+    ],
+    [
+     2.0,
+     "w2"
+    ],
+    [
+     3.1,
+     "e2"
+    ]
+   ],
+   "cells": {
+    "base/door": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.1,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    },
+    "base/lvA": {
+     "type": "louvre",
+     "w": 2.0,
+     "h": 1.3,
+     "sill": 6.2,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    },
+    "base/lvB": {
+     "type": "louvre",
+     "w": 2.0,
+     "h": 1.4,
+     "sill": 0.1,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    },
+    "clere/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "clere/lvA": {
+     "type": "window",
+     "w": 1.8,
+     "h": 0.75,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "clere/w2": {
+     "type": "window",
+     "w": 1.8,
+     "h": 0.75,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "band/*": {
+     "type": "panel",
+     "colour": "prop_metal"
+    },
+    "screen/*": {
+     "type": "louvre",
+     "w": 1.0,
+     "h": 1.0,
+     "sill": 0.0,
+     "glass": "roof_metal",
+     "frame": "brick_charcoal",
+     "depth": 0.03
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.55,
+     7.65,
+     "panel_white",
+     0.06
+    ],
+    [
+     8.6,
+     9.4,
+     "prop_metal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "downpipe/control joint at s ~7.3",
+    "wall-pack lamp at s ~1.5, z 2.6 over the door",
+    "guardrail and a short silver vent stack on top of the screen near s 6"
+   ],
+   "notes": "sv_c11_NwRB (Sep 2014) cropped at ~40 px/m: door s 0.6-2.0, big louvre s 2.2-4.5 at z 6.3-7.6, low louvre s 4.5-6.9, clerestory windows s 2.9-4.9 and 9.5-11.3, fence from s 7.5. Pano heading for this frame is ~10 deg off, so positions are scaled from the face width, +-0.7 m."
+  },
+  "W4": {
+   "faces": "NW",
+   "length_m": 9.1,
+   "confidence": "low",
+   "summary": "NW face of the boiler house's tall end, in the nook between the cooling block and the low NW wing: brick at the bottom (guess), cream panels up to 20.3 m",
+   "height_m": 20.3,
+   "rows": [
+    [
+     7.2,
+     "low"
+    ],
+    [
+     13.1,
+     "high"
+    ]
+   ],
+   "bays": [
+    [
+     9.1,
+     "w"
+    ]
+   ],
+   "cells": {
+    "low/*": {
+     "type": "panel",
+     "colour": "brick_slc"
+    }
+   },
+   "wall": "precast_cream",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Only Earth (earth_W4_whole, earth_W6_whole, corner_10, 2024) shows it: a pale, plain face above the 7.2 m wing roof (pale in shade like the W8 cream, not the pink-brown Earth gives the brick). Ground level is a dark nook behind the fence (sv_c11). Lidar 19-21 m for s 4-9."
+  },
+  "W5": {
+   "faces": "NE",
+   "length_m": 5.8,
+   "confidence": "low",
+   "summary": "NE end of the low NW wing (7.2 m): plain brick behind the board-fenced equipment yard",
+   "height_m": 7.2,
+   "rows": [
+    [
+     7.2,
+     "w"
+    ]
+   ],
+   "bays": [
+    [
+     5.8,
+     "w"
+    ]
+   ],
+   "cells": {},
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.05,
+     7.2,
+     "brick_charcoal_tower",
+     0.04
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Hidden behind the fence and the 2025 annexe in every view; assumed like W6."
+  },
+  "W6": {
+   "faces": "NW",
+   "length_m": 21.6,
+   "confidence": "medium",
+   "summary": "NW side of the low wing: 7.2 m plain brown brick with a thin dark coping and one wall louvre near the west corner",
+   "height_m": 7.2,
+   "rows": [
+    [
+     2.7,
+     "low"
+    ],
+    [
+     1.4,
+     "mid"
+    ],
+    [
+     3.1,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     19.4,
+     "p"
+    ],
+    [
+     1.2,
+     "lv"
+    ],
+    [
+     1.0,
+     "e"
+    ]
+   ],
+   "cells": {
+    "mid/lv": {
+     "type": "louvre",
+     "w": 1.1,
+     "h": 1.25,
+     "sill": 0.05,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.05,
+     7.2,
+     "brick_charcoal_tower",
+     0.04
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "downpipe at the W7 corner"
+   ],
+   "notes": "sv_c0/c10/c11/W6 (Sep 2014) see it at a grazing angle under a yellow-leaved tree: plain brick, louvre ~1.5 m from the W7 corner at the same height as W7's high louvre. Since 2024-25 a new annexe covers roughly s 11-21.6 of this wall (2025/2026 orthos; no photos), so the louvre may now be inside it."
+  },
+  "W7": {
+   "faces": "SW",
+   "length_m": 30.1,
+   "confidence": "high",
+   "summary": "long SW eave wall of the boiler house on the lawn: 7.2 m of plain brown brick with a thin dark coping, one high grey louvre near the west end, three low louvres at ~1 m sill and two wall-pack lamps",
+   "height_m": 7.2,
+   "rows": [
+    [
+     2.0,
+     "low"
+    ],
+    [
+     2.4,
+     "mid"
+    ],
+    [
+     2.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     3.8,
+     "p"
+    ],
+    [
+     1.2,
+     "hl"
+    ],
+    [
+     5.1,
+     "p"
+    ],
+    [
+     1.4,
+     "ll"
+    ],
+    [
+     5.7,
+     "p"
+    ],
+    [
+     1.4,
+     "ll"
+    ],
+    [
+     7.1,
+     "p"
+    ],
+    [
+     1.4,
+     "ll"
+    ],
+    [
+     3.0,
+     "p"
+    ]
+   ],
+   "cells": {
+    "mid/hl": {
+     "type": "louvre",
+     "w": 1.15,
+     "h": 1.3,
+     "sill": 0.7,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    },
+    "low/ll": {
+     "type": "louvre",
+     "w": 1.4,
+     "h": 0.95,
+     "sill": 0.85,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.05,
+     7.2,
+     "brick_charcoal_tower",
+     0.04
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "wall-pack lamps (bronze box) at s ~6.7 and ~26.3, z ~4.8",
+    "faint vertical control joints at s ~12 and ~19",
+    "parapet steps up a few cm at s ~12 (west part slightly higher)"
+   ],
+   "notes": "sv_W7_Obxs (square-on, 12.6 m), _lOqV and _3uPa (Sep 2014, wall in shade). Obxs puts the W7/W8 corner at s 26.8 instead of 30.1, so its positions were stretched (x1.15 about s 4.4) and averaged with lOqV/3uPa: high louvre centre 4.4 (z 2.7-4.0), low louvres 10.8, 17.9, 26.4, lamps 6.7 and 26.3; +-1 m. Scale 52 px/m at 12 m from the 7.2 m lidar height. The monopitch roof rises behind this eave (not visible from the lawn)."
+  },
+  "W8": {
+   "faces": "SE",
+   "length_m": 30.5,
+   "confidence": "medium",
+   "summary": "SE gable of the boiler house: smooth cream panels whose top follows the monopitch roof from 7.4 m up to ~18 m, then steps up to the 20.3 m flat-topped tall end; a brick corner strip at the west corner, a bronze steel door at 1.9 m reached by a black steel stair; the north 2/3 stands 1-4 m behind GSC's one-storey west wing",
+   "height_m": 20.3,
+   "rows": [
+    [
+     1.9,
+     "plinth"
+    ],
+    [
+     2.3,
+     "door"
+    ],
+    [
+     3.2,
+     "low"
+    ],
+    [
+     12.9,
+     "upper"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "q"
+    ],
+    [
+     4.6,
+     "p"
+    ],
+    [
+     1.1,
+     "d"
+    ],
+    [
+     24.2,
+     "p"
+    ]
+   ],
+   "cells": {
+    "plinth/q": {
+     "type": "panel",
+     "colour": "brick_slc"
+    },
+    "door/q": {
+     "type": "panel",
+     "colour": "brick_slc"
+    },
+    "low/q": {
+     "type": "panel",
+     "colour": "brick_slc"
+    },
+    "door/d": {
+     "type": "door",
+     "w": 0.95,
+     "h": 2.15,
+     "glass": "brick_charcoal_tower",
+     "frame": "brick_charcoal_tower"
+    }
+   },
+   "wall": "precast_cream",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "black steel stair with landing and pipe railings: landing in front of the door (s 5.2-6.4, z 1.9), flight running down towards s ~8.5 along the wall, ~1.1 m wide",
+    "wall-pack lamp above the door at s ~5.7, z ~4.3",
+    "from s ~13 to the end the lower ~5 m is in the 1-4 m gap behind GSC's W7 (4.9 m roof): hidden, plain cream (GSC spec: 'W8's north end meets its white block wall (black steel stair)')"
+   ],
+   "notes": "sv_W8_FPL3 and sv_c1 (Sep 2014, sunlit) and earth_W8_whole/corner_1/corner_3 (2024). Wall top profile (s, z): (0, 7.4) (2.9, 7.4) (22.0, 18.0) then vertical to 20.3 and flat to the end; read from Earth W8 (36 px/m) and checked against the lidar (8-10 m at s 0-6, 20 m at s 22-26). Brick corner strip s 0-0.6 up to the eave only. Door s 5.2-6.3 from FPL3 ray casting; door sill ~1.9 m from the stair's ~9 risers."
+  },
+  "W9": {
+   "faces": "NE",
+   "length_m": 11.8,
+   "confidence": "medium",
+   "summary": "NE face of the boiler house's tall end, behind the smokestack: brown brick to 20.3 m, a ribbon of dark windows at ~7-7.8 m, a 3 m band of silver louvre panels at the top, the steel-scissor-gated door 22 on a raised landing at the north end, and the big dark breeching duct leaving the face at ~12-15 m for the stack",
+   "height_m": 20.3,
+   "rows": [
+    [
+     4.0,
+     "g"
+    ],
+    [
+     3.0,
+     "m1"
+    ],
+    [
+     0.8,
+     "rib"
+    ],
+    [
+     9.4,
+     "m2"
+    ],
+    [
+     3.1,
+     "lv"
+    ]
+   ],
+   "bays": [
+    [
+     9.4,
+     "p"
+    ],
+    [
+     1.4,
+     "d22"
+    ],
+    [
+     1.0,
+     "e"
+    ]
+   ],
+   "cells": {
+    "g/d22": {
+     "type": "door",
+     "w": 1.3,
+     "h": 2.6,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.3
+    },
+    "rib/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.4,
+     "glass": "window_dark",
+     "frame": "brick_charcoal_tower"
+    },
+    "lv/*": {
+     "type": "louvre",
+     "w": 1.0,
+     "h": 1.0,
+     "sill": 0.0,
+     "glass": "metal_shade",
+     "frame": "metal_silver",
+     "depth": 0.05,
+     "mullions": 4
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 11.2,
+     "z": 2.4,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "22",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "breeching duct: dark grey metal box/duct ~3 m square leaving the face at s ~0-3, z ~11.5-15, spanning ~5 m NE to the stack (earth_corner_3, sv_W8_K_8T)",
+    "raised concrete landing with yellow bollards, blue bins and pallets in front of door 22, steps down along W10"
+   ],
+   "notes": "sv_W9_hmDu _70/_100 and sv_c3 (Jul 2019); the stack hides s 0-6. Scale 18 px/m from the 20.3 m top: ribbon z 7.0-7.8, louvre band 17.2-20.3 in ~5 framed panels, door 22 z 0-2.6. Ribbon extent behind the stack is a guess (seen s 6-9.5). Door 22 sits at the inside corner with W10 (its scissor gate seen in sv_W10_xZfI_100). The lidar puts this face 2-3 m SW of the outline (ground 1 m inside at s 3-10)."
+  },
+  "W10": {
+   "faces": "SE",
+   "length_m": 28.5,
+   "confidence": "medium",
+   "summary": "SE side: s 0-19 the cooling-tower block (brick base with the open raised loading bay 23 behind an aluminium railing, clerestory ribbon, dark band, louvre screen to 16 m); s 19-28.5 the one-storey brick low block (4.5 m) with grey overhead door 24 + man door in a shallow recess and the open drive-in bay 25, dark fascia",
+   "height_m": 16.0,
+   "rows": [
+    [
+     4.0,
+     "g"
+    ],
+    [
+     0.5,
+     "gf"
+    ],
+    [
+     3.1,
+     "b"
+    ],
+    [
+     1.0,
+     "clere"
+    ],
+    [
+     0.8,
+     "band"
+    ],
+    [
+     6.6,
+     "screen"
+    ]
+   ],
+   "bays": [
+    [
+     6.0,
+     "p"
+    ],
+    [
+     3.0,
+     "d23"
+    ],
+    [
+     10.0,
+     "p2"
+    ],
+    [
+     0.5,
+     "lp"
+    ],
+    [
+     2.6,
+     "d24"
+    ],
+    [
+     1.0,
+     "d24m"
+    ],
+    [
+     0.9,
+     "lp"
+    ],
+    [
+     3.6,
+     "d25"
+    ],
+    [
+     0.9,
+     "lp"
+    ]
+   ],
+   "cells": {
+    "g/d23": {
+     "type": "window",
+     "w": 2.9,
+     "h": 2.75,
+     "sill": 1.15,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.4
+    },
+    "g/d24": {
+     "type": "door",
+     "w": 2.4,
+     "h": 2.6,
+     "glass": "prop_metal",
+     "frame": "prop_metal",
+     "transoms": 5,
+     "depth": 1.0
+    },
+    "g/d24m": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.1,
+     "glass": "prop_metal",
+     "frame": "brick_charcoal_tower",
+     "depth": 1.0
+    },
+    "g/d25": {
+     "type": "door",
+     "w": 3.0,
+     "h": 3.4,
+     "glass": "panel_black",
+     "frame": "brick_charcoal_tower",
+     "depth": 0.3
+    },
+    "gf/lp": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "gf/d24": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "gf/d24m": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "gf/d25": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    },
+    "clere/*": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "band/*": {
+     "type": "panel",
+     "colour": "prop_metal"
+    },
+    "screen/*": {
+     "type": "louvre",
+     "w": 1.0,
+     "h": 1.0,
+     "sill": 0.0,
+     "glass": "roof_metal",
+     "frame": "brick_charcoal",
+     "depth": 0.03
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [
+    [
+     7.55,
+     7.65,
+     "panel_white",
+     0.06
+    ],
+    [
+     8.6,
+     9.4,
+     "prop_metal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 9.4,
+     "z": 3.4,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "23",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 21.4,
+     "z": 3.3,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "24",
+     "colour": "panel_white",
+     "on": "wall"
+    },
+    {
+     "s": 25.7,
+     "z": 3.6,
+     "w": 0.3,
+     "h": 0.3,
+     "text": "25",
+     "colour": "panel_white",
+     "on": "wall"
+    }
+   ],
+   "attached": [
+    "aluminium pipe railing across the sill of bay 23 (z ~1.2-2.2)",
+    "concrete steps with a steel handrail running down along the wall from the door 22/23 landing (s ~0-6) to the yard at s ~12 (ground falls ~1.2 m eastward)",
+    "door 24 and its man door sit ~1 m back under the low block's roof edge"
+   ],
+   "notes": "sv_W10_xZfI _70/_100, sv_c3, sv_W9_hmDu, sv_W8_K_8T (2019; K8 2025 watermark). s 7-19 of the base is privacy-blurred in the 2019 frames: plain brick assumed. Door 23 position disagrees between frames (s 5-9 vs 11-12 after shifting the face 2.5 m out, see geometry_notes): s 6-9 taken. Low-block doors scaled to the 9.5 m block (raw ray positions came out 25% short). Rows: brick to 7.6, white sill, clerestory 7.6-8.6 (~14 lites, white frames), dark band 8.6-9.4, screen 9.4-16. The upper rows only exist over s 0-19."
+  },
+  "W11": {
+   "faces": "NE",
+   "length_m": 31.9,
+   "confidence": "high",
+   "summary": "street face of the one-storey NE wing (4.5 m): s 0-11.9 solid brown brick; s 11.9-31.9 an open carport 8.3 m deep (bike parking and staff cars) under a deep dark fascia on four black steel posts with yellow bollard sleeves; the cooling block's louvre screen rises behind it",
+   "height_m": 4.5,
+   "rows": [
+    [
+     3.6,
+     "g"
+    ],
+    [
+     0.9,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     11.9,
+     "solid"
+    ],
+    [
+     20.0,
+     "cp"
+    ]
+   ],
+   "cells": {
+    "g/cp": {
+     "type": "panel",
+     "w": 1.0,
+     "h": 1.0,
+     "sill": 0.0,
+     "glass": "brick_charcoal",
+     "frame": "brick_slc",
+     "sill_colour": "asphalt",
+     "depth": 8.3
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "brick_charcoal_tower"
+    }
+   },
+   "wall": "brick_slc",
+   "bands": [],
+   "piers": [
+    [
+     14.3,
+     0.2,
+     "penthouse_metal",
+     0.1
+    ],
+    [
+     18.3,
+     0.2,
+     "penthouse_metal",
+     0.1
+    ],
+    [
+     22.9,
+     0.2,
+     "penthouse_metal",
+     0.1
+    ],
+    [
+     26.9,
+     0.2,
+     "penthouse_metal",
+     0.1
+    ]
+   ],
+   "signs": [
+    {
+     "s": 18.3,
+     "z": 1.5,
+     "w": 0.35,
+     "h": 0.5,
+     "text": "VISITOR PARKING -> / UW VEHICLES ONLY <-",
+     "colour": "panel_white",
+     "on": "post"
+    }
+   ],
+   "attached": [
+    "yellow bollard sleeves on every post, 0-1.3 m",
+    "bronze wall-pack lights on the fascia at s ~13 and ~29",
+    "carport soffit: light ribbed metal at 3.6 m (metal_panel) with ceiling lights; back wall painted concrete block with wall lights, galvanised bike racks along it for ~25 bikes",
+    "a wall-pack lamp on the solid part near s 11"
+   ],
+   "notes": "sv_W11_pA4F, _X6Aw, _g4ea and sv_c9 (Jul 2019, 4-7 m away): solid/carport boundary s 11.9, posts at 14.3, 18.1-18.3, 22.9, 26.6-26.9 (ray casting, +-0.5 m), north end wall at 31.9. The carport is drawn as one deep recessed panel (back wall colour as 'glass'); its side reveals are the brick end walls. Depth = W0 length / the cooling block's NE face line (8.3 m)."
+  }
+ },
+ "geometry_notes": [
+  "The lidar's 27-39 m blob over the SE half of the monopitch (art x 900-913, y 506-520) is the stack's steam plume, not structure: the boiler house tops out at 20.3 m.",
+  "Smokestack: round buff-brown brick, 62.6 m in the lidar, centre art (923.5, 521.5), ~5.5 m diameter at the base tapering to ~4.5 m at the cap; it stands free ~5 m NE of W9 and ~10 m SE of W10 s 5, tied to the boiler house by the breeching duct. Not in walls.json.",
+  "Boiler house roof is a monopitch: eave 7.2 m along W7, rising ENE to ~18 m at W8 s 22; the last ~8.5 m (W8 s 22-30.5, through to W4/W9) is a flat-topped tall end at 20.3 m. W8's top profile (s, z): (0, 7.4) (2.9, 7.4) (22.0, 18.0) (22.0, 20.3) (30.5, 20.3).",
+  "The tall end's SW face above the roof (z ~18-20.3, not in walls.json) carries the same 3 m silver louvre band as W9 (earth_W7_m, earth_W6_whole, earth_corner_1).",
+  "Low NW wing: flat 7.2 m roof, ~5.8 m deep along W6 (W5 is its NE end). The monopitch's NW gable wall rises from it on a line from W4 b (901.1, 535.0) parallel to W8 to W7 s ~6; pale cream like W8 in Earth (earth_W6_whole). Not in walls.json.",
+  "W9's real face is 2-3 m SW of the outline (lidar is ground 1 m inside for s 3-10, 20 m 4 m inside); W8 s 28-30.5 is ground 4 m inside, so the W8/W9 corner overshoots; the 16 m samples just inside W9 s 0-2 / W8 s 27-30 are the breeching duct.",
+  "W10 s 0-18: the cooling block's SE face is ~2-3 m SE of the outline (lidar 7-13 m 2 m outside, deck 8-10 m 1 m inside, fans 16-17 m 4 m inside); s 19-28.5 (low block, 4.5-5 m) is on the line.",
+  "Cooling-tower block: louvre screen walls to 16.0 m around an open-topped court; roof deck ~9 m; two 3-fan cooling units (~10 x 3.5 m each, fans ~2.5 m) at ~14-15 m. Its NE face (not in walls.json) runs on the line through W2 a parallel to W11, 8.3 m behind it, above the carport roof: same rows as W2 (clerestory lites in groups of 2-4 with dark posts, sv_c6 crop) over a painted-block lower wall that is the carport's back wall.",
+  "NE wing (W0, W1, W11 and W10 s 19-28.5) is one storey at 4.5 m; it projects 4.7 m NW of the cooling block's NW face (W1).",
+  "New since 2024 (2025 and 2026 orthos only, no photos): a single-storey annexe ~10 m along W6 (s ~11-21.6) x ~8 m out to the NW, light roof with two large grey rooftop units (generator/chiller enclosures?); height unknown (~4-5 m from its shadow). The 2023 ortho shows its foundations being formed. The brown steel tank (~7 m diameter, ~5-6 m tall, on a berm ~10 m NW of W6) seen in 2014 Street View and the lidar is gone by 2023."
+ ],
+ "roof": [
+  {
+   "what": "light grey monopitch membrane/metal roof",
+   "where": "boiler house between W7 (eave 7.2 m) and the tall end (~18 m)",
+   "colour": "metal_silver (Earth #c2c6cb)",
+   "details": "row of 4 small square roof hatches/vents ~4 m above the eave, 2 more higher up (earth_W7_m, ortho)"
+  },
+  {
+   "what": "two silver flues ~0.6 m diameter, ~3 m above the roof",
+   "where": "tall end flat roof (20.3 m), near its SE edge around W8 s ~24-27",
+   "size_m": [
+    0.6,
+    0.6,
+    3.0
+   ]
+  },
+  {
+   "what": "small exhausts and a ladder hatch",
+   "where": "tall end roof",
+   "size_m": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "what": "two cooling-tower units, three ~2.5 m fans each, grey-green casings with orange-red pipework",
+   "where": "inside the cooling block's louvre screen, side by side parallel to W2",
+   "size_m": [
+    10,
+    3.5,
+    5.5
+   ]
+  },
+  {
+   "what": "steel pipe guardrail on the screen top and a short silver vent stack",
+   "where": "cooling block, near the W3 side"
+  },
+  {
+   "what": "flat roof with a roof hatch and a small exhaust box",
+   "where": "low NW wing (7.2 m)"
+  },
+  {
+   "what": "flat roof with dark fascia",
+   "where": "NE wing / carport (4.5 m)"
+  }
+ ],
+ "site": {
+  "bridges": [],
+  "neighbours": [
+   "GSC (General Services Complex) abuts the SE: its one-storey west wing (W5-W7, 4.9 m) stands 1-4 m off W8 s ~13-30 and its vehicle-maintenance garage (bays 15-20) faces the CSB ramp/yard",
+   "ERC (Energy Research Centre) ~15 m SW across the lawn and asphalt path from W7/W8",
+   "service drive and staff parking along W11/W0 (to Columbia St side), GSC service yard to the east"
+  ],
+  "ground": [
+   "W6/W7: mown lawn right to the brick (no paving); an asphalt footpath curves past ~10-14 m off W7, with a grassy berm to the NW",
+   "W8: lawn falling to the SE, a long low concrete edging/walk from the W7/W8 corner towards GSC",
+   "W9/W10: cracked asphalt service ramp rising from the GSC yard to a raised concrete landing at doors 22/23, low concrete retaining wall along its south edge; light concrete quarter-circle apron in front of W10 s ~8-18",
+   "W11/W0: asphalt drive and carport floor, concrete curbs; lawn with a steel pipe guardrail NW of W0",
+   "NW of W6: sand/construction (2023) then the new annexe and lawn with scattered concrete blocks (2025)"
+  ],
+  "entities": [
+   {
+    "type": "smokestack",
+    "kind": "round buff-brown brick chimney (UW Smokestack), plain shaft with a vertical lightning cable, ~62 m",
+    "where": "art (923.5, 521.5); ~5 m off W9, ~10 m off W10 s 5",
+    "count": 1,
+    "photo": "sv_W9_hmDu, sv_c3/c4, earth_corner_3"
+   },
+   {
+    "type": "duct",
+    "kind": "breeching: dark grey metal box duct ~3 m square",
+    "where": "from W9 s ~0-3 at z 11.5-15 to the stack, ~5 m long",
+    "count": 1,
+    "photo": "earth_corner_3, sv_W8_K_8T"
+   },
+   {
+    "type": "stair",
+    "kind": "black steel exterior stair with landing and pipe railings",
+    "where": "W8 s 5.2-8.5, 0-1.2 m out (to the door at z 1.9)",
+    "count": 1,
+    "photo": "sv_W8_FPL3, sv_c1 (2014)"
+   },
+   {
+    "type": "utility_cabinet",
+    "kind": "light grey equipment enclosure ~3 x 3.5 m, ~2 m tall (guess)",
+    "where": "off the W7/W8 corner: W8 s 0.5-4, 0.5-4 m out",
+    "count": 1,
+    "photo": "ortho 2023/2025/2026 (not in 2014 SV)"
+   },
+   {
+    "type": "fence",
+    "kind": "brown-stained vertical board fence ~2 m enclosing gas meters/pipework",
+    "where": "around the W3/W4/W5 nook: along W3 s 7.5-14.6 ~1 m out and in front of W5/W6 s 0-5, 0-4 m out",
+    "count": 1,
+    "photo": "sv_c11, sv_W6 (2014), ortho 2025"
+   },
+   {
+    "type": "landing",
+    "kind": "raised concrete landing with yellow-capped bollards, steps and steel handrail",
+    "where": "inside corner of W9/W10 (doors 22/23), steps down along W10 s ~0-12",
+    "count": 1,
+    "photo": "sv_W9_hmDu, sv_W10_xZfI (2019)"
+   },
+   {
+    "type": "bollard",
+    "kind": "yellow steel bollard sleeves on the carport posts",
+    "where": "W11 s 14.3, 18.3, 22.9, 26.9 on the post line",
+    "count": 4,
+    "photo": "sv_W11_*"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised steel wave/grid racks along the carport back wall",
+    "where": "W11 s 13-31, 7.5-8 m in (against the back wall)",
+    "count": 6,
+    "photo": "sv_W11_X6Aw, _pA4F, _g4ea"
+   },
+   {
+    "type": "railing",
+    "kind": "black steel pipe guardrail, two rails, ~1 m",
+    "where": "lawn edge NW of W0/W2, from W0 a ~2 m out running ~15 m north-west along the drive",
+    "count": 1,
+    "photo": "sv_c6/c7, sv_W0"
+   },
+   {
+    "type": "rock",
+    "kind": "large pale limestone boulder",
+    "where": "on the lawn by the curb ~8 m north of W0",
+    "count": 1,
+    "photo": "sv_c7"
+   },
+   {
+    "type": "sign",
+    "kind": "ENERGY RESEARCH CENTRE ground sign: brown metal box on a concrete plinth (ERC's)",
+    "where": "W7 s ~19, ~4 m out",
+    "count": 1,
+    "photo": "sv_W7_Obxs (2014)"
+   },
+   {
+    "type": "tree",
+    "kind": "small deciduous tree (yellow in Sep)",
+    "where": "W6/W7 corner, ~3 m out of W6 s ~19",
+    "count": 1,
+    "photo": "sv_c0, sv_W6"
+   },
+   {
+    "type": "tree",
+    "kind": "two tall white pines and a spruce",
+    "where": "NW of W0/W2, 3-8 m out",
+    "count": 3,
+    "photo": "sv_c6/c7"
+   }
+  ]
+ }
+}
