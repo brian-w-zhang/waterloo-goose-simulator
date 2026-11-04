@@ -459,6 +459,13 @@ def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
         z = zb
     top = z
     cells = spec.get("cells", {})
+    # flush bands (projection 0) recolour the wall of the rows they cover instead of covering windows
+    flush = [(z0 + zf, z0 + zt, col) for zf, zt, col, proj in spec.get("bands", []) if not proj]
+    def row_wall(za, zb):
+        for fa, fb, col in flush:
+            if min(zb, fb) - max(za, fa) > 0.5 * (zb - za):
+                return col
+        return wall
     s = 0.0
     for bw, bk in bays:
         # the part of this bay on the segment, in segment coordinates
@@ -466,11 +473,24 @@ def facade(kit, a, b, z0, spec, full=None, s_off=0.0, z_top=None):
         if a1 - a0 > 1e-3:
             whole = abs((a1 - a0) - bw) < 1e-3
             for za, zb, rk in rows:
-                cell = cells.get((rk, bk), cells.get((rk, "*"), cells.get(("*", bk))))
+                # most specific first: row/bay, row/*, */bay, */*; an explicit null means plain wall
+                cell = next((cells[k_] for k_ in ((rk, bk), (rk, "*"), ("*", bk), ("*", "*")) if k_ in cells), None)
                 # a bay cut by the segment end keeps its wall colour only (no half windows)
-                _cell(kit, P, n, a0, a1, za, zb, cell if whole else ({"type": "blank", "colour": cell.get("colour", wall)} if cell else None), wall)
+                rw = row_wall(za, zb)
+                _cell(kit, P, n, a0, a1, za, zb, cell if whole else ({"type": "blank", "colour": cell.get("colour", rw)} if cell else None), rw)
         s += bw
+    rib = spec.get("ribbed")
+    if rib:
+        # corrugated metal rows: thin horizontal ridges a little proud of the wall
+        for za, zb, rk in rows:
+            if rk in rib["rows"]:
+                z = za + rib["pitch"] / 2
+                while z < zb - rib["pitch"] / 4:
+                    _band(kit, P, n, 0, L, z, z + rib["pitch"] * 0.35, rib["colour"], 0.03)
+                    z += rib["pitch"]
     for zf, zt, col, proj in spec.get("bands", []):
+        if not proj:
+            continue
         if z_top is None or z0 + zf < z_top:
             _band(kit, P, n, 0, L, z0 + zf, min(z0 + zt, z_top or 1e9), col, proj)
     for sp, pw, col, proj in spec.get("piers", []):
@@ -496,13 +516,32 @@ def _band(kit, P, n, s0, s1, z0, z1, col, proj):
 
 
 def _cell(kit, P, n, s0, s1, z0, z1, cell, wall):
-    if not cell or cell.get("type") == "blank":
+    t = (cell or {}).get("type")
+    if t == "void":
+        return                                   # open: nothing drawn (passages under bridges)
+    if not cell or t in ("blank", "panel", "solid_to"):
         kit.quad(P(s0, z0), P(s1, z0), P(s1, z1), P(s0, z1), (cell or {}).get("colour", wall))
         return
+    cell = dict(cell)
+    if t == "glass_gable":
+        cell["type"] = "glass"
     W, H = s1 - s0, z1 - z0
     frac = lambda v, full: v * full if v <= 1.0 else v
+    if cell.get("h") == "full":
+        cell["h"] = H - 0.08
+        cell.setdefault("sill", 0.04)
+    if cell["type"] == "glass" and "w" not in cell:
+        cell["w"] = W - 0.1                      # ribbon or curtain glass runs the whole bay
+    if "recess" in cell:
+        cell["depth"] = cell["recess"]
+    if "leaves" in cell:
+        cell.setdefault("mullions", max(0, cell["leaves"] - 1))
     ww = min(W - 0.05, frac(cell.get("w", 0.6), W))
     hh = min(H - 0.05, frac(cell.get("h", 0.55), H))
+    if cell.get("mullion_pitch"):
+        cell["mullions"] = max(0, round(ww / cell["mullion_pitch"]) - 1)
+    if cell.get("transom_pitch"):
+        cell["transoms"] = max(0, round(hh / cell["transom_pitch"]) - 1)
     sill = cell.get("sill", 0.0 if cell["type"] in ("door", "glass") else (H - hh) * 0.55)
     sill = min(sill, H - hh)
     x0 = s0 + (W - ww) / 2 + cell.get("offset", 0.0)

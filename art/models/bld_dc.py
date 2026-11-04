@@ -27,6 +27,7 @@ from mathutils import Vector
 import arch
 import data
 import lib
+import spec as fspec
 
 META = {"world": True, "replaces": [21642, 33305]}
 
@@ -39,6 +40,9 @@ CURVE_T = 15.5         # where the curve meets the top strip
 CORE_H = 11.2
 CROSS = (-24.0, -10.0, 15.7)
 DUCTS = [-57.0, -32.0, -2.5, 17.5, 37.5, 55.5]
+
+# corrugated metal rows on every wing (facades.json colours: corrugated_metal)
+RIB = {"rows": ["rib", "upper_rib", "ground_rib"], "pitch": 0.32, "colour": "dc_corrugated_shade"}
 
 WING = {"storey": 2.85, "bay": 3.0, "w": 1.5, "h": 1.25, "sill": 0.8, "depth": 0.22, "first": 0.2,
         "top_margin": 1.0, "glass": "window_dark", "frame": "cream_panel"}
@@ -117,7 +121,7 @@ def build():
     for side in (-1, 1):
         prof = [(t, ground + z) for t, z in bar_profile(side)]
         nseg = len(prof)
-        cols = ["glass_teal"] * nseg
+        cols = ["glass_vault"] * nseg
         cols[-1] = None                                     # bottom: not drawn
         idx_top = 9 if side < 0 else None
         # find edges by geometry: horizontal at BAR_TOP -> roof; vertical at BAR_IN -> clerestory
@@ -129,11 +133,21 @@ def build():
                 cols[e] = "window_dark"
             elif abs(za - zb) < 1e-6 and za <= ground + 0.01:
                 cols[e] = None
-        k.extrude_profile(prof, cols, (o.x, o.y), (u.x, u.y), -hu, hu, caps="glass_teal",
-                          ribs=(2.4, 0.18, "mullion", "glass_teal"), rows=(1.5, 0.14, "mullion"))
+        k.extrude_profile(prof, cols, (o.x, o.y), (u.x, u.y), -hu, hu, caps="glass_vault",
+                          ribs=(2.4, 0.18, "mullion", "glass_vault"), rows=(1.5, 0.14, "mullion"))
     # central block and its higher cross section
-    core = [to_xy(s, t) for s, t in ((-hu, -BAR_IN), (hu, -BAR_IN), (hu, BAR_IN), (-hu, BAR_IN))]
-    k.prism(core, ground - 2, ground + CORE_H, "cream_panel", "roof_gravel", windows=WING)
+    # facade specs read off the photos (docs/refs/buildings/dc/facades.json)
+    fac, walls = data.facades("docs/refs/buildings/dc")
+    specs = {wid: fspec.to_facade(w, ribbed=RIB) for wid, w in fac["walls"].items()}
+    default = fspec.to_facade(fac["walls"]["W2"], ribbed=RIB, bays=[(2.6, "panel"), (2.4, "pair")] * 4, repeat=True)
+    default["bays"] = "pq"
+    default["bay_w"] = 2.5
+    default["repeat"] = True
+    default["cells"] = {**default["cells"], ("*", "p"): None, ("band", "q"): default["cells"].get(("band", "pair")),
+                        ("ground", "*"): None, ("ground", "q"): default["cells"].get(("band", "pair"))}
+    core = arch.ccw([to_xy(s, t) for s, t in ((-hu, -BAR_IN), (hu, -BAR_IN), (hu, BAR_IN), (-hu, BAR_IN))])
+    fspec.draw_outline(k, core, ground, ground + CORE_H, walls, specs, default)
+    k.roof(core, ground + CORE_H, "roof_gravel")
     s0, s1, hc = CROSS
     k.prism([to_xy(s, t) for s, t in ((s0, -BAR_IN), (s1, -BAR_IN), (s1, BAR_IN), (s0, BAR_IN))],
             ground + CORE_H - 0.1, ground + hc, "window_dark", "roof_metal")
@@ -147,12 +161,12 @@ def build():
                 ang = math.pi / 2 * q / 6
                 path.append((side * (CURVE_T + a * math.cos(ang)), ground + CURVE_LOW + b * math.sin(ang)))
             path.append((side * (CURVE_T - 2.5), ground + BAR_TOP + off))
-            k.tube([(*to_xy(s, t), z) for t, z in path], 0.75, "duct_teal", sides=10)
+            k.tube([(*to_xy(s, t), z) for t, z in path], 0.75, "duct_steelblue", sides=10)
             # red collar two thirds up the vertical run
             k.tube([(*to_xy(s, side * (HALF_W + off)), ground + CORE_H + 0.2), (*to_xy(s, side * (HALF_W + off)), ground + CORE_H + 0.6)],
                    0.85, "steel_red", sides=10)
             hx, hy = to_xy(s, side * (CURVE_T - 3.8))
-            k.box((hx, hy, ground + BAR_TOP + 0.9), (2.2, 3.2, 1.8), "metal_silver", rot=math.atan2(u.y, u.x))
+            k.box((hx, hy, ground + BAR_TOP + 0.9), (2.2, 3.2, 1.8), "duct_steelblue", rot=math.atan2(u.y, u.x))
     # the rest: lidar tiers (wings, the north-west arm, the south-east annex); low ones are sawtooths
     for tier in massing(ground):
         ring = tier["rings"][0]
@@ -161,6 +175,11 @@ def build():
         if h < 8 and area > 250:
             sawtooth(k, ring, gy - 1.5, h, ground)
         else:
-            k.prism(ring, gy - 1.5, gy + h, "cream_panel", "roof_gravel", windows=WING if h > 6 else None,
-                    parapet=(0.35, 0.6), coping="metal_silver")
+            for r in [ring] + tier.get("holes", []):
+                fspec.draw_outline(k, r, gy, gy + h, walls, specs, default)
+            for t in tier["tris"]:
+                A, B, C = (Vector((x, y, gy + h)) for x, y in t)
+                if (B - A).cross(C - A).z < 0:
+                    B, C = C, B
+                k.face([A, B, C], "roof_gravel")
     return [k.finish()]

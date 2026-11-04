@@ -1,0 +1,4011 @@
+{
+ "building": "DC",
+ "sources_checked": [
+  "around/sv_W0_* (9 panos, Aug 2015)",
+  "around/sv_W1_j9Rr",
+  "around/sv_W2_* (5)",
+  "around/sv_W3..W7_*",
+  "around/sv_W8_* (6)",
+  "around/sv_W9_* (2014, 2025)",
+  "around/sv_W10..W17_* (2014-2025)",
+  "around/earth_W*_whole + thirds",
+  "private/ortho_2023aug.jpg",
+  "private/earth_top.jpg",
+  "commons/* (8)",
+  "private/web/dc_dc010, dc011, dc012, dc_cm021, dc_uw009"
+ ],
+ "colours": {
+  "corrugated_metal": {
+   "hex": "#a9a290",
+   "palette": "panel_grey",
+   "where": "horizontal corrugated (round-profile) metal spandrel bands on every wing; reads warm champagne-bronze in shade (#4e4435 dc012), near-white silver in direct sun (#d5d0c7 W2), #9d9585 under overcast (W9 2025). panel_grey is the closest swatch; a warmer 'dc_corrugated' #a9a290 would be truer"
+  },
+  "flat_band_panels": {
+   "hex": "#c4c2b4",
+   "palette": "concrete",
+   "where": "flat vertical-seam champagne metal panels in the window bands and ground floor (#c0c4bf overcast 2025, #c8cdd1 sun, olive-khaki in evening shade)"
+  },
+  "flashing": {
+   "hex": "#c4c9cc",
+   "palette": "metal_silver",
+   "where": "thin rounded silver-green flashing strips at every band edge, window frames, storefront mullions"
+  },
+  "coping": {
+   "hex": "#3c4650",
+   "palette": "prop_lamp",
+   "where": "dark charcoal-blue metal coping on all parapets and the podium fascias"
+  },
+  "sawtooth_box": {
+   "hex": "#dad9d9",
+   "palette": "panel_white",
+   "where": "pale silver fluted metal walls of both sawtooth boxes (sunlit W6)"
+  },
+  "box_coping": {
+   "hex": "#5d8b8a",
+   "palette": "duct_teal",
+   "where": "teal/green coping of the sawtooth boxes (commons notes, W6)"
+  },
+  "red_steel": {
+   "hex": "#b7444c",
+   "palette": "steel_red",
+   "where": "masts, canopies, portals, bridge columns, tie rods, sawtooth beams (overcast W9 2025 #b7444c, dist 9)"
+  },
+  "vault_glass": {
+   "hex": "#4a7180",
+   "palette": "NEW glass_vault",
+   "where": "curved glass bars and glass gables, stair towers, glazed bridge: deep blue-teal (sun #27526e, overcast #5c7f85); glass_teal #8fb0ae is too pale, window_dark is the closest existing (6.6 from the overcast value)"
+  },
+  "window_glass": {
+   "hex": "#6f8088",
+   "palette": "window_dark",
+   "where": "punched windows and storefront ribbons"
+  },
+  "ducts": {
+   "hex": "#4e7583",
+   "palette": "duct_teal",
+   "where": "duct elbows: measured #4e7583 in 2025 sun (12 from duct_teal; a bluer 'duct_steelblue' #4f7682 would match better)"
+  },
+  "pavers": {
+   "hex": "#ada9a8",
+   "palette": "concrete_cool",
+   "where": "grey interlocking concrete pavers on both entrance plazas, the W2 courtyard walks and the sidewalks"
+  },
+  "e3_brick": {
+   "hex": "#cbb497",
+   "palette": "brick_buff",
+   "where": "E3 vestibule walls W14-W16"
+  }
+ },
+ "walls": {
+  "W0": {
+   "faces": "NW",
+   "length_m": 133.2,
+   "confidence": "medium",
+   "summary": "north end of the whole building along Ring Road: NE wing (3 storeys) | east glass bar end (glass gable, north door) | central block 3 storeys | west glass bar end | 69 m west wing (3 storeys, service frontage with bins and a wood-fenced enclosure, 2-storey curtain wall and a 4th-storey penthouse at the west end). Horizontal corrugated champagne-bronze metal bands alternating with flat champagne window bands.",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     3.0,
+     "gable"
+    ],
+    [
+     2.6,
+     "gable_door"
+    ],
+    [
+     4.2,
+     "gable"
+    ],
+    [
+     1.9,
+     "tower"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     1.0,
+     "single"
+    ],
+    [
+     0.45,
+     "pier"
+    ],
+    [
+     1.9,
+     "tower"
+    ],
+    [
+     9.8,
+     "gable"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     1.4,
+     "service_door"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     1.9,
+     "pair"
+    ],
+    [
+     2.3,
+     "panel"
+    ],
+    [
+     2.5,
+     "pier"
+    ],
+    [
+     13.0,
+     "glazed2"
+    ],
+    [
+     6.7,
+     "end"
+    ]
+   ],
+   "cells": {
+    "ground/pair": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/panel": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/pier": null,
+    "ground/single": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "band/pair": {
+     "type": "window",
+     "w": 1.9,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "band/single": {
+     "type": "window",
+     "w": 1.0,
+     "h": 1.1,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "band/panel": null,
+    "*/pier": null,
+    "*/panel": null,
+    "*/gable": {
+     "type": "glass_gable",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "end of a glass bar; the duct housing tower closes the inner side"
+    },
+    "*/gable_door": {
+     "type": "glass_gable",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "end of a glass bar; the duct housing tower closes the inner side",
+     "door": {
+      "w": 2.0,
+      "h": 2.4,
+      "leaves": 2,
+      "frame": "metal_silver",
+      "note": "north entrance doors in the base of the east bar gable (55ls)"
+     }
+    },
+    "*/tower": {
+     "type": "solid_to",
+     "z": 16.5,
+     "colour": "panel_grey",
+     "note": "vertical corrugated-metal shaft (housing/stair) at the inner edge of the bar, rises to the 16.5 m strip"
+    },
+    "ground/service_door": {
+     "type": "door",
+     "w": 1.4,
+     "h": 2.3,
+     "leaves": 2,
+     "solid": true,
+     "colour": "panel_grey",
+     "frame": "steel_red",
+     "note": "service door in a red steel frame (8Xs)"
+    },
+    "band/service_door": null,
+    "*/glazed2": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.3,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "note": "ground+2nd floor curtain wall under the penthouse (aShV); 3rd-floor band carries pairs above it"
+    },
+    "band/glazed2": {
+     "type": "window",
+     "w": 1.9,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "*/end": null,
+    "ground/end": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    }
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "red steel mast (round, ~0.35 m, ~9 m tall with a short horizontal outrigger arm near 6 m) at s ~21, 3 m out, beside the east-bar gable (55ls)",
+    "penthouse on the west wing roof: s 114-133, full wing depth (12.6 m), top ~15.9 m, corrugated champagne with a 1 m dark louvre band (prop_lamp) 1.5 m below its top, rounded corners, caged steel ladder on its east face",
+    "glass bar ends rise above the 11.4 m parapet to 16.5 m (gables), with dark teal duct housings visible behind on the roof"
+   ],
+   "notes": "Bar-end positions taken from the lidar geometry in bld_dc.py (east bar t 9.5..21.2 -> s 22.2-33.9, west bar s 52.9-64.6) because the 2015 SV poses disagree by 5-8 m. Window rhythm: NE wing and west wing use 2-pane window pairs (1.9-2.4 m) at ~4.2-5 m pitch (8Xs, 55ls), the central block 10 single ~1 m windows per band (55ls). West-wing ground floor is solid flat panels (service side) except the curtain wall at s 113-127 (aShV). Photos: sv_W0_55ls, 8Xs4, aShV, da-n (all Aug 2015), earth_W0_l/m/r (2024). In evening SV the bands read olive-khaki; in daylight they read pale champagne/silver."
+  },
+  "W1": {
+   "faces": "SW",
+   "length_m": 12.6,
+   "confidence": "medium",
+   "summary": "west end of the west wing, 4 storeys (penthouse flush): two-storey curtain wall at the base, corrugated above with a dark louvre band; the 2-storey glazed bridge to MC leaves from it on red steel portals",
+   "height_m": 15.9,
+   "rows": [
+    [
+     7.4,
+     "curtain"
+    ],
+    [
+     1.4,
+     "band"
+    ],
+    [
+     2.6,
+     "rib"
+    ],
+    [
+     1.1,
+     "louvre"
+    ],
+    [
+     3.0,
+     "rib"
+    ],
+    [
+     0.4,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "corner"
+    ],
+    [
+     11.4,
+     "glass"
+    ],
+    [
+     0.6,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "curtain/glass": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.3,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "note": "curtain wall spanning ground..2nd floor (0-7.4 m)"
+    },
+    "band/glass": {
+     "type": "window",
+     "w": 1.2,
+     "h": 1.1,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05,
+     "note": "row of 5 small square windows"
+    },
+    "louvre/glass": {
+     "type": "louvre",
+     "h": 1.0,
+     "colour": "prop_lamp"
+    },
+    "*/corner": null,
+    "rib/glass": null,
+    "coping/glass": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     7.4,
+     8.8,
+     "concrete",
+     0.0
+    ],
+    [
+     15.5,
+     15.9,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bridge to MC: s 1-11.6, levels 2-3 (z ~4.8-11.2), see site.bridges"
+   ],
+   "notes": "sv_W1_j9Rr (Sep 2014). Penthouse appears flush with this end wall; corners rounded (r ~1 m) like the dc012 detail."
+  },
+  "W2": {
+   "faces": "SE",
+   "length_m": 70.1,
+   "confidence": "medium",
+   "summary": "south face of the west wing onto the DC/MC courtyard: 3 storeys, full-length ground-floor storefront glazing (red chairs inside) with white benches along it, corrugated + champagne window bands above with 2-pane pairs, a couple of 2-storey glazed bays near the west end, penthouse above s 0-19",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "pier"
+    ],
+    [
+     7.5,
+     "std"
+    ],
+    [
+     7.0,
+     "glassbay"
+    ],
+    [
+     4.0,
+     "std"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     3.0,
+     "door"
+    ],
+    [
+     2.0,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     6.1,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 2.4,
+     "h": 2.4,
+     "leaves": 2,
+     "glazed": true,
+     "frame": "metal_silver",
+     "note": "glazed double doors within the storefront (e7pK, s ~39)"
+    },
+    "band/pair": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "band/std": {
+     "type": "window",
+     "w": 1.9,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "*/panel": null,
+    "*/pier": null,
+    "rib/*": null,
+    "parapet/*": null,
+    "rib/glassbay": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.3,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "2nd floor fully glazed 4 x 2 grid over rib+band rows"
+    },
+    "band/glassbay": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    }
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "penthouse above s 0-19 (see W0), its south face corrugated with a dark louvre band"
+   ],
+   "notes": "sv_W2_8LCM, aAV7, 5OfF, e7pK (Sep 2014), earth_W2_*. Positions of the glazed bays differ between photos by ~5 m (SV pose error) so treat s 8-15 as approximate. Ground storefront mullions ~1.6 m, frames silver, interior red furniture visible."
+  },
+  "W3": {
+   "faces": "NW",
+   "length_m": 22.7,
+   "confidence": "medium",
+   "summary": "north face of the west sawtooth box: blank pale silver vertically-fluted metal wall ~4.8 m with a teal coping, one plain metal door near the east end; the red beams of the sawtooth roof project as red portals",
+   "height_m": 4.85,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "plain"
+    ],
+    [
+     1.2,
+     "door"
+    ],
+    [
+     19.5,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.1,
+     "h": 2.2,
+     "solid": true,
+     "colour": "metal_silver",
+     "note": "flush metal door"
+    },
+    "*/plain": null,
+    "coping/door": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     4.6,
+     4.85,
+     "duct_teal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "the three red sawtooth valley beams end on this face at s ~5.7, 11.4, 17.0, each carried by a red round column ~1 m out (portal)"
+   ],
+   "notes": "sv_W3_itKL (Sep 2014): long blank fluted wall along the walkway between the box and the west wing. Wall top follows the sawtooth profile (4 teeth, glass slopes rising to ~7 m) - drawn by the existing sawtooth massing."
+  },
+  "W4": {
+   "faces": "SW",
+   "length_m": 15.9,
+   "confidence": "medium",
+   "summary": "west face of the west sawtooth box: blank fluted pale silver metal, teal coping",
+   "height_m": 4.85,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     15.9,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     4.6,
+     4.85,
+     "duct_teal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W4_5OfF (Sep 2014) shows it as a plain white box with a red cap beam at its south-east corner."
+  },
+  "W5": {
+   "faces": "S",
+   "length_m": 22.7,
+   "confidence": "medium",
+   "summary": "south face of the west sawtooth box onto the west entrance plaza: blank fluted pale silver wall, red portal frames (round columns + deep red I-beams with round holes) at the sawtooth valleys, bikes parked along it",
+   "height_m": 4.85,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     22.7,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     4.6,
+     4.85,
+     "duct_teal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "3 red portals at s ~5.7, 11.4, 17.0: red round column 0.4 m dia standing ~1 m out, carrying the valley beam (0.6 m deep red I-beam with circular holes) that projects ~1.5 m beyond the wall at z 4.2-4.9"
+   ],
+   "notes": "sv_W5_YzYE, 0Nuv, W6_7IG2 (Sep 2014); commons DC_entrance_red_frames_closeup_2010 (same arrangement on the east box)."
+  },
+  "W6": {
+   "faces": "SW",
+   "length_m": 15.8,
+   "confidence": "high",
+   "summary": "west main entrance: the outer face of the west glass bar comes to the ground here between the sawtooth box and the SW podium; glass doors under a red steel canopy hung from red masts with diagonal tie rods; red stair visible inside",
+   "height_m": 16.5,
+   "rows": [
+    [
+     2.6,
+     "doors"
+    ],
+    [
+     13.9,
+     "vault"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "glass"
+    ],
+    [
+     5.4,
+     "entrance"
+    ],
+    [
+     5.4,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "doors/glass": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "vault glazing to the ground"
+    },
+    "vault/*": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "the bar's curved glass (already modelled)"
+    },
+    "doors/entrance": {
+     "type": "door",
+     "w": 5.0,
+     "h": 2.5,
+     "leaves": 4,
+     "glazed": true,
+     "frame": "metal_silver",
+     "canopy": [
+      2.2,
+      "steel_red"
+     ],
+     "note": "two pairs of glazed doors in a dark glazed vestibule; flat red canopy at z ~3.0 on red pipe posts, tied back by diagonal red rods to the masts"
+    }
+   },
+   "wall": "glass_vault",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "2 red masts ~9 m flanking the canopy at s ~5 and ~10.5, 0.5 m out, with short outrigger arms",
+    "1 freestanding red mast ~11 m tall with a horizontal outrigger arm (~3 m) at ~8.5 m, on a concrete base, at s ~9, 7 m out on the plaza",
+    "duct elbow (teal) at the s -2.5 station lands just south of this wall onto the podium roof"
+   ],
+   "notes": "sv_W6_7IG2, sv_W7_k5fz (Sep 2014). Mirror of the east entrance W23."
+  },
+  "W7": {
+   "faces": "NW",
+   "length_m": 15.2,
+   "confidence": "medium",
+   "summary": "north end of the SW podium at the west entrance plaza: one storey, flat champagne panels with 3 large windows, corrugated fascia band and dark coping, rounded outer corner; upper storeys step back behind",
+   "height_m": 4.6,
+   "rows": [
+    [
+     3.2,
+     "ground"
+    ],
+    [
+     1.2,
+     "fascia"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "pier"
+    ],
+    [
+     2.6,
+     "win"
+    ],
+    [
+     1.6,
+     "pier"
+    ],
+    [
+     2.6,
+     "win"
+    ],
+    [
+     1.6,
+     "pier"
+    ],
+    [
+     2.6,
+     "win"
+    ],
+    [
+     2.7,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/pier": null,
+    "fascia/*": null,
+    "coping/*": null
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     3.2,
+     4.4,
+     "panel_grey",
+     0.0
+    ],
+    [
+     4.4,
+     4.6,
+     "prop_lamp",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W6, sv_W7 (Sep 2014). Rounded corner (r ~1.5 m) at end b."
+  },
+  "W8": {
+   "faces": "SW",
+   "length_m": 66.8,
+   "confidence": "medium",
+   "summary": "south-west face toward C2/MC: s 0-10 one-storey podium (as W7), s 10-66.8 three storeys of corrugated bands with 2-pane window pairs at ~5 m pitch; ground floor flat champagne panels with tall windows, a door with steps and railing at s ~28, accessible parking in front at s 35-50; enclosed bridge to C2 leaves at s 15-19",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "pier"
+    ],
+    [
+     2.6,
+     "lowwin"
+    ],
+    [
+     2.0,
+     "pier"
+    ],
+    [
+     3.0,
+     "lowwin"
+    ],
+    [
+     0.9,
+     "pier"
+    ],
+    [
+     2.5,
+     "pier"
+    ],
+    [
+     2.4,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.4,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.4,
+     "gwin"
+    ],
+    [
+     2.4,
+     "pier"
+    ],
+    [
+     2.0,
+     "door"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     2.6,
+     "pier"
+    ],
+    [
+     2.0,
+     "gwin"
+    ],
+    [
+     1.4,
+     "corner"
+    ],
+    [
+     0.9,
+     "pier"
+    ]
+   ],
+   "tiers": [
+    [
+     0,
+     10,
+     4.6
+    ],
+    [
+     10,
+     66.8,
+     11.4
+    ]
+   ],
+   "cells": {
+    "ground/lowwin": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/gwin": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.3,
+     "leaves": 2,
+     "solid": true,
+     "colour": "concrete",
+     "note": "pair of flat panel doors reached by 3 concrete steps with a black steel handrail (kaiP)"
+    },
+    "ground/pier": {
+     "type": "panel",
+     "colour": "concrete",
+     "note": "flat champagne metal panels with vertical seams every ~0.9 m"
+    },
+    "band/*": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "band/pier": null,
+    "*/corner": null,
+    "rib/*": null,
+    "parapet/*": null,
+    "band/corner": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bridge to C2 at s 15-19, level 2 (see site.bridges)",
+    "small wall lamp (black box) over the door at s ~28, z 3"
+   ],
+   "notes": "sv_W8_39u, AJpX, kaiP, zSm7, LUNa, Ffoj (2014-2015). Upper-band pairs at ~5 m pitch counted on zSm7 (8 pairs in view). Upper floors over s 0-10 are set back (one-storey front), modelled by tiers. SW corner (end b) rounded."
+  },
+  "W9": {
+   "faces": "SE",
+   "length_m": 47.8,
+   "confidence": "high",
+   "summary": "south end (west part) on the service road: 3 storeys, corrugated bands with light champagne window bands holding small single windows ~0.9 m, a full-height glass stair bay (4 panes wide) at s 14-19, ground-floor ribbon glazing from s 19 to the bridge; grass berm in front",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "corner"
+    ],
+    [
+     3.0,
+     "plain"
+    ],
+    [
+     3.2,
+     "win4"
+    ],
+    [
+     6.3,
+     "plain"
+    ],
+    [
+     4.8,
+     "stair"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     1.0,
+     "vest"
+    ]
+   ],
+   "cells": {
+    "ground/plain": {
+     "type": "panel",
+     "colour": "concrete",
+     "note": "flat champagne metal panels with vertical seams every ~0.9 m"
+    },
+    "ground/win4": {
+     "type": "window",
+     "w": 3.0,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/single": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/panel": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/vest": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "band/win4": {
+     "type": "window",
+     "w": 3.0,
+     "h": 1.1,
+     "mullions": 3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "band/single": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.1,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "band/panel": null,
+    "band/plain": null,
+    "*/corner": null,
+    "rib/*": null,
+    "parapet/*": null,
+    "*/stair": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.15,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "full-height glazed stair bay, flush, runs through all rows to the parapet"
+    }
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "2-storey bridge to the south lobe leaves at s 47.8 (b end) over the service road; its red portal (two red round columns on 1 m concrete plinths, red cross beam at z ~4.6) stands 1-3 m out at s ~42-48",
+    "small louvre vents in the upper band at s ~21 and ~36"
+   ],
+   "notes": "sv_W9_miDj, uhci, tNcn (May 2025, most current), KmZc (2014). The south ends of the glass bars sit behind/above this face (earth_W13 shows the arched glass gables rising behind the 3-storey wall)."
+  },
+  "W10": {
+   "faces": "SW",
+   "length_m": 22.6,
+   "confidence": "high",
+   "summary": "south-west side of the two-storey bridge from the main block to the south lobe across the service road: corrugated with window strips, dark soffit, red round columns at each kerb with red X tie rods across the side",
+   "height_m": 11.4,
+   "rows": [
+    [
+     4.6,
+     "open"
+    ],
+    [
+     0.6,
+     "soffit"
+    ],
+    [
+     1.3,
+     "rib"
+    ],
+    [
+     1.2,
+     "band"
+    ],
+    [
+     1.4,
+     "rib"
+    ],
+    [
+     1.2,
+     "band"
+    ],
+    [
+     1.1,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "edge"
+    ],
+    [
+     16.6,
+     "span"
+    ],
+    [
+     3.0,
+     "edge"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void",
+     "note": "open underneath: the service road (6.5 m asphalt, yellow centre line) and two paver sidewalks pass under"
+    },
+    "soffit/*": null,
+    "band/span": {
+     "type": "glass",
+     "h": 1.1,
+     "mullion_pitch": 1.5,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "window strip on the left half of the upper band, flat panels elsewhere"
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.6,
+     5.2,
+     "prop_lamp",
+     0.0
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "red round columns (0.4 m) at s ~3 and ~19.5 on 1 m concrete plinths, rising the full bridge height; red X tie rods across the side between them; red cross-beam under the soffit"
+   ],
+   "notes": "sv_W10_wA-c (May 2025)."
+  },
+  "W11": {
+   "faces": "NW",
+   "length_m": 14.3,
+   "confidence": "low",
+   "summary": "south lobe, north face west of the bridge (faces the main block across the road): 3 storeys corrugated, glazed vestibule at the bridge end, a 4-pane ground window group",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     4.0,
+     "vest"
+    ],
+    [
+     2.5,
+     "plain"
+    ],
+    [
+     2.4,
+     "win4"
+    ],
+    [
+     5.4,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "ground/vest": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "rib/vest": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/win4": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "band/win4": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "*/plain": null,
+    "*/vest": null,
+    "*/win4": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W11_tNcn (May 2025), only the ground part is clear."
+  },
+  "W12": {
+   "faces": "SW",
+   "length_m": 32.1,
+   "confidence": "low",
+   "summary": "south lobe west face on the service road: 3 storeys corrugated with champagne window bands (pairs), glazed corner at the north end, mostly solid ground floor with one window group",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "glasscorner"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.0,
+     "panel"
+    ],
+    [
+     3.0,
+     "gwin"
+    ],
+    [
+     4.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/glasscorner": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.3,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "note": "glazed corner, full height"
+    },
+    "band/pair": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "ground/gwin": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W12_CenG, EJKQ, b9yh (Sep 2014, construction staging in front then). End b meets E3's buff brick across a narrow service lane."
+  },
+  "W13": {
+   "faces": "SE",
+   "length_m": 34.2,
+   "confidence": "high",
+   "summary": "party wall: abuts E3 (E3 walls.json W2) - not visible, do not draw a facade",
+   "hidden": true,
+   "notes": "sv_W13_a9_L (2019) shows E3's buff brick wall with a door and steel stair, which belongs to E3."
+  },
+  "W14": {
+   "faces": "SE",
+   "length_m": 8.1,
+   "confidence": "low",
+   "summary": "E3 entrance vestibule (buff brick) caught in the DC footprint: brick wall",
+   "height_m": 4.5,
+   "rows": [
+    [
+     4.2,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     8.1,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.2,
+     4.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "belongs architecturally to E3 (buff brick, grey metal canopies)."
+  },
+  "W15": {
+   "faces": "NE",
+   "length_m": 4.6,
+   "confidence": "medium",
+   "summary": "E3 vestibule NE face: buff brick with a single glazed door under a grey flat canopy and a tall glazed panel",
+   "height_m": 4.5,
+   "rows": [
+    [
+     4.2,
+     "wall"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.4,
+     "pier"
+    ],
+    [
+     1.6,
+     "door"
+    ],
+    [
+     0.6,
+     "pier"
+    ],
+    [
+     1.6,
+     "glass"
+    ],
+    [
+     0.4,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "wall/door": {
+     "type": "door",
+     "w": 1.0,
+     "h": 2.3,
+     "glazed": true,
+     "frame": "prop_lamp",
+     "sidelight": 0.5,
+     "canopy": [
+      1.2,
+      "metal_silver"
+     ]
+    },
+    "wall/glass": {
+     "type": "window",
+     "w": 1.4,
+     "h": 3.4,
+     "sill": 0.3,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [
+    [
+     4.2,
+     4.5,
+     "metal_silver",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W15_6VvN (Sep 2014)."
+  },
+  "W16": {
+   "faces": "NW",
+   "length_m": 8.2,
+   "confidence": "high",
+   "summary": "E3 north entrance (buff brick): two pairs of white-framed glass doors under a long grey flat canopy, curtain glazing above, black E3 sign panel",
+   "height_m": 7.5,
+   "rows": [
+    [
+     3.0,
+     "doors"
+    ],
+    [
+     4.2,
+     "glass"
+    ],
+    [
+     0.3,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     6.0,
+     "entrance"
+    ],
+    [
+     1.4,
+     "signpier"
+    ]
+   ],
+   "cells": {
+    "doors/entrance": {
+     "type": "door",
+     "w": 5.6,
+     "h": 2.4,
+     "leaves": 4,
+     "glazed": true,
+     "frame": "panel_white",
+     "canopy": [
+      1.5,
+      "metal_silver"
+     ]
+    },
+    "glass/entrance": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.4,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "brick_buff",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 7.4,
+     "z": 1.0,
+     "w": 0.7,
+     "h": 2.0,
+     "text": "E3 / Engineering 3",
+     "colour": "#1f1f1f",
+     "accent": "yellow honeycomb strip on top",
+     "on": "wall"
+    }
+   ],
+   "attached": [],
+   "notes": "sv_W16_Cv0C (May 2025). Belongs to E3."
+  },
+  "W17": {
+   "faces": "NE",
+   "length_m": 23.1,
+   "confidence": "medium",
+   "summary": "south lobe east face: 3 storeys, deep bronze corrugated ground storey with a louvre, champagne bands with 2-3-pane windows above, rounded corner, glass stair tower at the north corner, glass link to E3 at the south end",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "link"
+    ],
+    [
+     2.0,
+     "panel"
+    ],
+    [
+     1.8,
+     "pair"
+    ],
+    [
+     1.4,
+     "panel"
+    ],
+    [
+     1.8,
+     "pair"
+    ],
+    [
+     1.4,
+     "panel"
+    ],
+    [
+     1.8,
+     "pair"
+    ],
+    [
+     2.5,
+     "panel"
+    ],
+    [
+     3.6,
+     "win3"
+    ],
+    [
+     0.8,
+     "panel"
+    ],
+    [
+     3.0,
+     "stair"
+    ]
+   ],
+   "cells": {
+    "*/link": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.3,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "note": "2-storey glass link to E3"
+    },
+    "band/pair": {
+     "type": "window",
+     "w": 1.8,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "band/win3": {
+     "type": "window",
+     "w": 3.4,
+     "h": 1.1,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/stair": {
+     "type": "glass",
+     "h": "full",
+     "mullion_pitch": 1.0,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "note": "glass stair tower rising slightly above the parapet"
+    },
+    "ground/louvre": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 0.6,
+     "colour": "prop_lamp"
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "ground storey is corrugated (no windows) except a small louvre at s ~12, z 2"
+   ],
+   "notes": "sv_W17_Cv0C (May 2025)."
+  },
+  "W18": {
+   "faces": "NW",
+   "length_m": 16.6,
+   "confidence": "low",
+   "summary": "south lobe north face east of the bridge, facing the main block across the service road: corrugated 3 storeys with band windows (pairs) and a glazed vestibule under the bridge",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "plain"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     3.6,
+     "vest"
+    ]
+   ],
+   "cells": {
+    "band/pair": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "ground/vest": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Not directly photographed; inferred from W9 tNcn and W17 views."
+  },
+  "W19": {
+   "faces": "NE",
+   "length_m": 22.5,
+   "confidence": "medium",
+   "summary": "north-east side of the 2-storey bridge over the service road: fully glazed curtain (2 storeys) with red X tie rods and a red round column at each end",
+   "height_m": 11.4,
+   "rows": [
+    [
+     4.6,
+     "open"
+    ],
+    [
+     0.6,
+     "soffit"
+    ],
+    [
+     6.0,
+     "glass"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     3.0,
+     "edge"
+    ],
+    [
+     16.5,
+     "span"
+    ],
+    [
+     3.0,
+     "edge"
+    ]
+   ],
+   "cells": {
+    "open/*": {
+     "type": "void"
+    },
+    "glass/*": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 3.0,
+     "glass": "glass_vault",
+     "frame": "mullion"
+    },
+    "*/*": null
+   },
+   "wall": "glass_vault",
+   "bands": [
+    [
+     4.6,
+     5.2,
+     "prop_lamp",
+     0.0
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "red columns at s ~3 and ~19.5, red X tie rods in front of the glass"
+   ],
+   "notes": "sv_W17_Cv0C right side (May 2025); commons DC_glazed_bridge_and_vault_from_E5_2012 shows the same X-braced glazed bridge."
+  },
+  "W20": {
+   "faces": "SE",
+   "length_m": 18.7,
+   "confidence": "medium",
+   "summary": "south end east of the bridge: as W9 - 3 storeys corrugated, small single windows in the bands, ribbon glazing at ground, rounded SE corner",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     2.0,
+     "vest"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     0.9,
+     "panel"
+    ],
+    [
+     0.9,
+     "single"
+    ],
+    [
+     1.3,
+     "panel"
+    ],
+    [
+     0.9,
+     "plain"
+    ],
+    [
+     2.3,
+     "pier"
+    ],
+    [
+     1.5,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/corner": null,
+    "band/single": {
+     "type": "window",
+     "w": 0.9,
+     "h": 1.1,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "right side of sv_W9_tNcn (May 2025)."
+  },
+  "W21": {
+   "faces": "NE",
+   "length_m": 67.5,
+   "confidence": "medium",
+   "summary": "east podium along Ring Road in front of the east glass bar: stepped - 3 storeys s 0-46, 2 storeys s 46-55, 1 storey s 55-67.5 toward the east entrance; corrugated + champagne bands with window pairs, rounded SE corner; the 1-storey end has big windows in flat champagne panels",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "corner"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     1.6,
+     "panel"
+    ],
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     3.0,
+     "gwin"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     3.0,
+     "gwin"
+    ],
+    [
+     1.4,
+     "pier"
+    ],
+    [
+     2.0,
+     "pier"
+    ]
+   ],
+   "tiers": [
+    [
+     0,
+     46.5,
+     11.4
+    ],
+    [
+     46.5,
+     55.5,
+     7.9
+    ],
+    [
+     55.5,
+     67.5,
+     4.6
+    ]
+   ],
+   "cells": {
+    "ground/*": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/gwin": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/pier": {
+     "type": "panel",
+     "colour": "concrete",
+     "note": "flat champagne metal panels with vertical seams every ~0.9 m"
+    },
+    "band/pair": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "teal duct elbows of the east bar rise behind the podium roof at the 6 stations"
+   ],
+   "notes": "No Street View on this side; from earth_W21_* (2024) and commons DC_entrance_plaza_east_2025 / east_facade_from_rail_corridor_2014. The 1-storey tier has a corrugated fascia 1.2 m and dark coping like W7. Window counts on Earth are approximate (guess)."
+  },
+  "W22": {
+   "faces": "NW",
+   "length_m": 9.8,
+   "confidence": "medium",
+   "summary": "end of the east podium at the east entrance plaza: one storey, flat champagne panels with one large window and a glazed door, corrugated fascia, dark coping",
+   "height_m": 4.6,
+   "rows": [
+    [
+     3.2,
+     "ground"
+    ],
+    [
+     1.2,
+     "fascia"
+    ],
+    [
+     0.2,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     3.6,
+     "win"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     2.4,
+     "door"
+    ],
+    [
+     1.6,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/win": {
+     "type": "window",
+     "w": 3.4,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 2.0,
+     "h": 2.4,
+     "leaves": 2,
+     "glazed": true,
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "concrete",
+   "bands": [
+    [
+     3.2,
+     4.4,
+     "panel_grey",
+     0.0
+    ],
+    [
+     4.4,
+     4.6,
+     "prop_lamp",
+     0.1
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "commons DC_entrance_plaza_east_2025: red-framed bike rack/orange seating and red posts under the podium edge near the doors (the red posts are a short covered walk to the entrance)."
+  },
+  "W23": {
+   "faces": "NE",
+   "length_m": 15.4,
+   "confidence": "high",
+   "summary": "east main entrance on the east glass bar face (mirror of W6): glazed vestibule doors under a red flat canopy hung by diagonal red rods from two red masts with outrigger arms; tall freestanding red mast on the plaza",
+   "height_m": 16.5,
+   "rows": [
+    [
+     2.6,
+     "doors"
+    ],
+    [
+     13.9,
+     "vault"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "glass"
+    ],
+    [
+     5.4,
+     "entrance"
+    ],
+    [
+     5.0,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "doors/glass": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "vault glazing to the ground"
+    },
+    "vault/*": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "the bar's curved glass (already modelled)"
+    },
+    "doors/entrance": {
+     "type": "door",
+     "w": 5.0,
+     "h": 2.5,
+     "leaves": 4,
+     "glazed": true,
+     "frame": "metal_silver",
+     "canopy": [
+      2.2,
+      "steel_red"
+     ],
+     "note": "two pairs of glazed doors in a dark glazed vestibule; flat red canopy at z ~3.0 on red pipe posts, tied back by diagonal red rods to the masts"
+    }
+   },
+   "wall": "glass_vault",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "red canopy ~6 x 2.2 m at z ~3.2 with diagonal red tie rods up to 2 red masts (~9 m) at its ends",
+    "freestanding red mast ~11 m with an outrigger arm at s ~1, 8 m out (south side of the plaza)",
+    "black 3-stream waste station beside the doors at s ~12"
+   ],
+   "notes": "commons DC_entrance_plaza_east_2025, DC_entrance_red_frames_closeup_2010, web dc_uw009, dc_cm021."
+  },
+  "W24": {
+   "faces": "SE",
+   "length_m": 19.5,
+   "confidence": "high",
+   "summary": "south face of the north-east sawtooth box onto the east entrance plaza: blank pale fluted metal with teal coping; two-three red portal frames (big round red columns, deep red I-beams with round holes) standing in front",
+   "height_m": 4.85,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     19.5,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     4.6,
+     4.85,
+     "duct_teal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "red portals at s ~4.9, 9.75, 14.6 (sawtooth valleys): red round column ~0.45 m dia, ~1 m out, carrying the projecting red valley beam at z 4.2-4.9"
+   ],
+   "notes": "commons DC_entrance_red_frames_closeup_2010 and DC_east_facade_from_rail_corridor_2014 (two portals clearly visible; a third likely)."
+  },
+  "W25": {
+   "faces": "NE",
+   "length_m": 15.9,
+   "confidence": "medium",
+   "summary": "east face of the NE sawtooth box toward Ring Road: blank pale fluted metal, teal coping",
+   "height_m": 4.85,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     15.9,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     4.6,
+     4.85,
+     "duct_teal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "commons east_facade_from_rail_corridor_2014; earth_W25."
+  },
+  "W26": {
+   "faces": "N",
+   "length_m": 19.7,
+   "confidence": "low",
+   "summary": "north face of the NE box in the narrow service gap to the NE wing: blank fluted metal, red beam ends",
+   "height_m": 4.85,
+   "rows": [
+    [
+     4.6,
+     "wall"
+    ],
+    [
+     0.25,
+     "coping"
+    ]
+   ],
+   "bays": [
+    [
+     19.7,
+     "plain"
+    ]
+   ],
+   "cells": {
+    "*/plain": null
+   },
+   "wall": "panel_white",
+   "bands": [
+    [
+     4.6,
+     4.85,
+     "duct_teal",
+     0.08
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "red valley beam ends project ~1 m"
+   ],
+   "notes": "Not photographed square-on (guess by symmetry with W3)."
+  },
+  "W27": {
+   "faces": "NE",
+   "length_m": 4.9,
+   "confidence": "low",
+   "summary": "short exposed piece of the east glass bar face at the back of the service gap",
+   "height_m": 16.5,
+   "rows": [
+    [
+     16.5,
+     "vault"
+    ]
+   ],
+   "bays": [
+    [
+     4.9,
+     "glass"
+    ]
+   ],
+   "cells": {
+    "*/*": {
+     "type": "glass",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.25,
+     "glass": "glass_vault",
+     "frame": "mullion",
+     "top": "follows the bar profile: vertical to 11.8 m on the outer side, quarter-round shoulder up to the 16.5 m top strip",
+     "note": "end of a glass bar; the duct housing tower closes the inner side"
+    }
+   },
+   "wall": "glass_vault",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "skip-size wall; vault glazing."
+  },
+  "W28": {
+   "faces": "SE",
+   "length_m": 20.4,
+   "confidence": "low",
+   "summary": "south face of the NE wing into the service gap: 3 storeys corrugated with window pairs",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "pier"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     2.6,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     1.5,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "band/pair": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "ground/pair": {
+     "type": "window",
+     "w": 2.2,
+     "h": 2.4,
+     "sill": 0.2,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Earth only (guess)."
+  },
+  "W29": {
+   "faces": "NE",
+   "length_m": 12.3,
+   "confidence": "low",
+   "summary": "east end of the NE wing toward Ring Road: 3 storeys corrugated, two window pairs per band, rounded corners, ribbon glazing at ground",
+   "height_m": 11.4,
+   "rows": [
+    [
+     2.7,
+     "ground"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     2.2,
+     "rib"
+    ],
+    [
+     1.5,
+     "band"
+    ],
+    [
+     1.3,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "corner"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     4.5,
+     "panel"
+    ],
+    [
+     2.4,
+     "pair"
+    ],
+    [
+     1.5,
+     "corner"
+    ]
+   ],
+   "cells": {
+    "ground/pair": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "ground/panel": {
+     "type": "glass",
+     "sill": 0.25,
+     "h": 2.4,
+     "mullion_pitch": 1.6,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "continuous ribbon of storefront glazing, silver mullions, flat champagne kick panel below"
+    },
+    "band/pair": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.15,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "recess": 0.05
+    },
+    "*/*": null
+   },
+   "wall": "panel_grey",
+   "bands": [
+    [
+     4.85,
+     4.95,
+     "metal_silver",
+     0.05
+    ],
+    [
+     6.35,
+     6.45,
+     "metal_silver",
+     0.05
+    ],
+    [
+     8.55,
+     8.65,
+     "metal_silver",
+     0.05
+    ],
+    [
+     10.05,
+     10.15,
+     "metal_silver",
+     0.05
+    ],
+    [
+     4.9,
+     6.4,
+     "concrete",
+     0.0
+    ],
+    [
+     8.6,
+     10.1,
+     "concrete",
+     0.0
+    ],
+    [
+     11.25,
+     11.45,
+     "prop_lamp",
+     0.12
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "earth_W29 (2024), commons east_facade_2014 far left."
+  }
+ },
+ "roof": [
+  {
+   "what": "teal duct elbows (inverted J) rising up the outer glass of both bars and curving over onto the 16.5 m strip",
+   "where": "stations s = -57, -32, -2.5, 17.5, 37.5, 55.5 on both sides (already modelled)",
+   "size_m": [
+    1.4,
+    1.4,
+    6
+   ],
+   "colour": "duct_teal",
+   "note": "commons notes a red collar ring two-thirds up each duct (not confirmed in 2025 photos; optional)"
+  },
+  {
+   "what": "duct housings on the 16.5 m strips",
+   "where": "one per duct, on the top strip",
+   "size_m": [
+    2.2,
+    3.2,
+    1.8
+   ],
+   "colour": "sides dark teal-grey (duct_teal), tops light (roof_membrane)",
+   "note": "55ls/8Xs show the housings as dark green-grey rounded-top boxes, not white; the model's white housings read wrong from the ground"
+  },
+  {
+   "what": "corrugated shaft towers at the inner edge of each bar end",
+   "where": "both ends of both bars (W0 s 32-34 and 53-55; south ends behind W9/W20)",
+   "size_m": [
+    1.9,
+    4,
+    16.5
+   ],
+   "colour": "panel_grey"
+  },
+  {
+   "what": "penthouse on the west wing",
+   "where": "west end of the wing, W0 s 114-133 / W2 s 0-19, full wing depth",
+   "size_m": [
+    19,
+    12.6,
+    4.5
+   ],
+   "colour": "panel_grey with a 1 m prop_lamp louvre band near the top, rounded corners, caged ladder on the east face"
+  },
+  {
+   "what": "sawtooth skylights",
+   "where": "west box (W3-W5) and NE box (W24-W26)",
+   "size_m": [
+    22,
+    16,
+    2.2
+   ],
+   "colour": "cyan glass slopes (glass_teal) between 3 steel_red valley beams that project beyond the box faces as portals"
+  },
+  {
+   "what": "small roof vents and goosenecks",
+   "where": "scattered on wing roofs (ortho)",
+   "size_m": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "colour": "metal_silver"
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "MC",
+    "from_wall": "W1",
+    "s": [
+     1,
+     11.6
+    ],
+    "levels": [
+     2,
+     3
+    ],
+    "look": "two storeys of curtain glazing with a corrugated band between, carried over an open bike-parking arcade on red steel portal frames (round red columns on raised concrete plinth-benches, deep red cross beams), dark grey soffit; red diagonal tie rods off red masts on its south side (sv_W1, sv_W2_8LCM, commons lit_bridges_night_2009)"
+   },
+   {
+    "to": "C2 (probably; Chemistry 2 to the south-west)",
+    "from_wall": "W8",
+    "s": [
+     15,
+     19
+    ],
+    "levels": [
+     2
+    ],
+    "look": "one-storey enclosed bridge, dark charcoal soffit and sides, on red portal frames (two red round columns on concrete footings with a red cross beam) (sv_W8_AJpX, 2014)"
+   },
+   {
+    "to": "DC south lobe (and on to E3)",
+    "from_wall": "W9/W20 (between them)",
+    "s": [
+     47.8,
+     50.7
+    ],
+    "levels": [
+     2,
+     3
+    ],
+    "look": "2-storey bridge over the service road, ~16.5 m clear span, ~3-4 m wide: SW side corrugated with window strips (W10), NE side fully glazed (W19); red round columns on concrete plinths at both kerbs, red X tie rods on the sides"
+   }
+  ],
+  "neighbours": [
+   "MC to the west/south-west, joined by the glazed bridge from W1",
+   "C2 to the south-west across a lawn and service lot, bridge from W8",
+   "E3 directly south: the DC south lobe (W10-W20) abuts E3 along W13, E3's buff-brick north entrance vestibule (W14-W16) sits in the footprint",
+   "Ring Road wraps the north (W0 side, with a parking lot) and the east (W21 side); the ION line and Research & Technology station beyond to the east",
+   "M3 and the General Services Complex north/north-west across Ring Road"
+  ],
+  "ground": [
+   "W0: 2-4 m concrete walk along the wall, 6-8 m lawn strip with trees, then the north parking lot (asphalt, yellow stall lines, accessible stalls near s 30-45) and Ring Road ~28 m out; the west-wing frontage (s 65-110) is an asphalt service apron/loop with a grass island",
+   "W2: DC/MC courtyard - grey interlocking paver walk ~3.5 m wide along the wall, lawn beyond with diagonal paver paths, mulched beds round the trees",
+   "west entrance plaza (W5/W6/W7): large grey paver plaza continuous with the courtyard walks, lawn and pines along W8",
+   "W8: lawn with large pines, an asphalt lot with accessible stalls in front of s 32-52, concrete steps to the door at s 28",
+   "W9/W20: grass berm (~5 m) sloping down to a grey paver sidewalk and the asphalt service road; road continues south under the bridge between segmental-block retaining walls",
+   "W21: lawn with columnar trees and concrete/paver paths down to Ring Road; east entrance plaza (W22-W24) of grey pavers"
+  ],
+  "entities": [
+   {
+    "type": "bike_rack",
+    "kind": "galvanised loop racks",
+    "where": "W0 s 18-24 and s 33-37 (both sides of the north gable door), 2 m out",
+    "count": 2,
+    "photo": "sv_W0_55ls"
+   },
+   {
+    "type": "lamp",
+    "kind": "tall grey street light, cobra head",
+    "where": "along W0 at s ~20, 60, 100, ~22-28 m out (edge of parking / Ring Road)",
+    "count": 3,
+    "photo": "sv_W0_55ls, 8Xs4"
+   },
+   {
+    "type": "sign",
+    "kind": "parking regulation signs on grey posts",
+    "where": "W0 s 25-60, 10-12 m out along the lawn edge",
+    "count": 4,
+    "photo": "sv_W0_55ls"
+   },
+   {
+    "type": "bin",
+    "kind": "blue recycling carts",
+    "where": "W0 s 75-79 against the wall",
+    "count": 7,
+    "photo": "sv_W0_8Xs4"
+   },
+   {
+    "type": "bin",
+    "kind": "green dumpster",
+    "where": "W0 s ~88, 1 m out",
+    "count": 1,
+    "photo": "sv_W0_8Xs4"
+   },
+   {
+    "type": "fence",
+    "kind": "grey weathered wooden board fence enclosure (garbage/loading), ~2.2 m high, with a red steel frame entrance at its west end",
+    "where": "W0 s 88-102, 0-6 m out",
+    "count": 1,
+    "photo": "sv_W0_8Xs4, aShV"
+   },
+   {
+    "type": "tree",
+    "kind": "large pine",
+    "where": "W0 s ~100, 8 m out and s ~120, 6 m out",
+    "count": 2,
+    "photo": "sv_W0_aShV"
+   },
+   {
+    "type": "hydrant",
+    "kind": "red fire hydrant",
+    "where": "W0 s ~128, 20 m out",
+    "count": 1,
+    "photo": "sv_W0_da-n"
+   },
+   {
+    "type": "geese",
+    "kind": "Canada geese on the lawn",
+    "where": "W0 s 30-45, 6-10 m out",
+    "count": 5,
+    "photo": "sv_W0_55ls"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised racks under the MC bridge",
+    "where": "W1 s 0-12, 3-10 m out (under the bridge)",
+    "count": 3,
+    "photo": "sv_W1_j9Rr"
+   },
+   {
+    "type": "bench",
+    "kind": "raised concrete plinth block used as seating, ~8 x 1.2 x 0.6 m, carrying the bridge's red columns",
+    "where": "W1 s 2-11, ~10 m out",
+    "count": 1,
+    "photo": "sv_W1_j9Rr"
+   },
+   {
+    "type": "bin",
+    "kind": "blue and white recycling/waste bins",
+    "where": "W2 s 2-8, 2 m out",
+    "count": 6,
+    "photo": "sv_W2_8LCM"
+   },
+   {
+    "type": "bench",
+    "kind": "white slatted backless benches",
+    "where": "along W2 s 10-60, 1.5 m out",
+    "count": 10,
+    "photo": "sv_W2_5OfF, aAV7"
+   },
+   {
+    "type": "table",
+    "kind": "wooden picnic tables",
+    "where": "W2 s ~28 and ~45, 6-8 m out on the lawn",
+    "count": 2,
+    "photo": "sv_W2_5OfF, aAV7"
+   },
+   {
+    "type": "tree",
+    "kind": "purple-leaf maple (Crimson King)",
+    "where": "W2 s ~16, 25, 35, 52, 8-10 m out",
+    "count": 4,
+    "photo": "sv_W2_5OfF, aAV7"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised wave/loop racks, usually full",
+    "where": "along W5 s 2-20, 1 m out, and at the W7/W8 corner",
+    "count": 4,
+    "photo": "sv_W5_YzYE, sv_W6_7IG2"
+   },
+   {
+    "type": "lamp",
+    "kind": "tall red steel mast with outrigger arm",
+    "where": "west plaza, W6 s ~9, 7 m out",
+    "count": 1,
+    "photo": "sv_W6_7IG2"
+   },
+   {
+    "type": "bin",
+    "kind": "concrete cylinder ash/waste bin",
+    "where": "W8 s ~2, 14 m out on the plaza",
+    "count": 1,
+    "photo": "sv_W8_39u"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole lamp",
+    "where": "W8 s ~0, 16 m out; W9 s ~30, 8 m out",
+    "count": 2,
+    "photo": "sv_W8_39u, sv_W9_uhci"
+   },
+   {
+    "type": "sign",
+    "kind": "black wayfinding post with yellow cap (building name/number)",
+    "where": "W9 s ~10, 4 m out on the berm",
+    "count": 1,
+    "photo": "sv_W9_miDj (2025)"
+   },
+   {
+    "type": "tree",
+    "kind": "large pines",
+    "where": "W8 s 15-25, 3-8 m out",
+    "count": 3,
+    "photo": "sv_W8_AJpX"
+   },
+   {
+    "type": "planter",
+    "kind": "square tapered exposed-aggregate concrete planters with canna",
+    "where": "east plaza in front of W22, 6-15 m out",
+    "count": 2,
+    "photo": "commons DC_entrance_plaza_east_2025"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised loop racks",
+    "where": "east plaza, along W22 and W24",
+    "count": 3,
+    "photo": "commons DC_entrance_plaza_east_2025, red_frames_closeup_2010"
+   },
+   {
+    "type": "bin",
+    "kind": "black 3-stream waste station",
+    "where": "W23 s ~12, 1 m out",
+    "count": 1,
+    "photo": "commons DC_entrance_plaza_east_2025"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole lamp with round disc head",
+    "where": "east side walk, ~20 m out from W21 s 60",
+    "count": 1,
+    "photo": "commons DC_entrance_plaza_east_2025"
+   },
+   {
+    "type": "lamp",
+    "kind": "tall red steel mast with outrigger arm",
+    "where": "east plaza, W23 s ~1, 8 m out",
+    "count": 1,
+    "photo": "commons DC_entrance_plaza_east_2025"
+   }
+  ]
+ },
+ "notes": "Coordinates: s per walls.json. Rows STD = ground 0-2.7 (glazing/panels), corrugated 2.7-4.9, champagne window band 4.9-6.4, corrugated 6.4-8.6, band 8.6-10.1, corrugated parapet 10.1-11.4 with dark coping; measured on sv_W8_zSm7 and sv_W0_55ls (storey ~3.6-3.7 m). 'tiers' (extra key) gives [s0, s1, height] where a wall steps down. Cell types beyond the spec example: 'glass' (curtain/ribbon with mullion_pitch), 'glass_gable', 'solid_to', 'louvre', 'panel', 'void'. Walls W13 (party wall with E3) and W14-W16 (E3's brick vestibule) are E3 architecture inside the DC footprint."
+}
