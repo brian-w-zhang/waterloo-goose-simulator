@@ -192,8 +192,8 @@ def ellipsoid(name, centre, radii, seg=16, rings=10):
 def rounded_box(name, centre, size, levels=2):
     bm = bmesh.new()
     bmesh.ops.create_cube(bm, size=1.0)
-    for v in bm.verts:
-        v.co = V(v.co.x * size.x, v.co.y * size.y, v.co.z * size.z)
+    for v in bm.verts:   # size: half extents
+        v.co = V(v.co.x * size.x * 2, v.co.y * size.y * 2, v.co.z * size.z * 2)
     ob = lib.mesh_object(name, bm)
     m = ob.modifiers.new("sub", "SUBSURF")
     m.levels = levels
@@ -575,12 +575,23 @@ def hair(style, d, lod):
             # a horseshoe fringe round the back at ear height
             return -0.04 * k < rel.z < 0.035 * k and back > 0.35
         line = {"long": 0.045, "curly": 0.03}.get(style, 0.055) * k   # forehead hairline height
-        nape = {"long": -0.06, "bun": -0.05, "ponytail": -0.05, "curly": -0.06, "buzz": -0.04}.get(style, -0.055) * k
-        side = -0.01 * k
+        nape = {"long": -0.12, "bun": -0.05, "ponytail": -0.05, "curly": -0.06, "buzz": -0.04}.get(style, -0.055) * k
+        side = (-0.075 if style == "long" else -0.01) * k
         z = line + (side - line) * min(back * 2, 1) if back < 0.5 else side + (nape - side) * (back - 0.5) * 2
         return rel.z > z
 
     bmesh.ops.delete(bm, geom=[vv for vv in bm.verts if not keep(vv.co)], context="VERTS")
+    for vv in bm.verts:
+        rel = vv.co - hc
+        if style == "long" and rel.z < 0.02 * k:
+            # falls straight past the cheeks instead of hugging the jaw
+            f = 1 + 0.5 * min((0.02 * k - rel.z) / (0.1 * k), 1)
+            vv.co.x = hc.x + rel.x * f
+            vv.co.y = hc.y + rel.y * (1 + 0.25 * min((0.02 * k - rel.z) / (0.1 * k), 1))
+        if style == "curly":
+            n = rel.normalized()
+            bump = 0.5 + 0.5 * math.sin(n.x * 17) * math.sin(n.y * 17 + 1) * math.sin(n.z * 15)
+            vv.co += n * bump * 0.02 * k
     bm.to_mesh(me)
     bm.free()
     sol = cap.modifiers.new("solid", "SOLIDIFY")
@@ -590,19 +601,12 @@ def hair(style, d, lod):
     s2 = (12, 8) if lod == 0 else (8, 6)
     if style == "long":
         # hair down the back to the shoulder blades and a lock each side of the face
-        parts.append(rounded_box("hair_back", hc + V(0, 0.07 * k, -0.13 * k), V(0.105, 0.045, 0.12) * k, 2 if lod == 0 else 1))
-        for s in (1, -1):
-            parts.append(ellipsoid("lock", hc + V(s * 0.095 * k, 0.005 * k, -0.06 * k), V(0.03, 0.06, 0.09) * k, *s2))
+        parts.append(rounded_box("hair_back", hc + V(0, 0.075 * k, -0.15 * k), V(0.12, 0.05, 0.11) * k, 2 if lod == 0 else 1))
     elif style == "bun":
         parts.append(ellipsoid("bun", hc + V(0, 0.085 * k, 0.085 * k), V(0.055, 0.05, 0.05) * k, *s2))
     elif style == "ponytail":
         parts.append(ellipsoid("tie", hc + V(0, 0.105 * k, 0.02 * k), V(0.03, 0.03, 0.03) * k, *s2))
         parts.append(ellipsoid("tail", hc + V(0, 0.13 * k, -0.08 * k), V(0.035, 0.035, 0.11) * k, *s2))
-    elif style == "curly" and lod == 0:
-        # a few lumps break the silhouette into curls
-        for a in range(8):
-            ang = a / 8 * 2 * math.pi
-            parts.append(ellipsoid("curl", hc + V(math.sin(ang) * hr.x * 1.1, math.cos(ang) * hr.y * 1.1 + 0.01 * k, 0.05 * k + 0.02 * k * (a % 2)), V(0.045, 0.045, 0.04) * k, 8, 6))
     return join(parts, f"hair_{style}" + ("_lod1" if lod else ""))
 
 
@@ -1226,7 +1230,7 @@ def build_person(variant, offset=None, lods=(0, 1), with_hair=None, with_hat=Non
         b, g = body(v, d, lod)
         cut_mesh(b, cuts(v, d))
         paint_slots(b, body_slot(v, d, g, segs), DEFAULT)
-        b = decimate(b, 1900 if lod == 0 else 560)
+        b = decimate(b, int(__import__("os").environ.get("PEOPLE_TRIS", 1900)) if lod == 0 else 560)
         recolour(b, DEFAULT)
         weight_body(b, g, segs, d)
         hd = head(d, lod)
@@ -1276,13 +1280,29 @@ def build(model):
 
 # ---------------------------------------------------------------- preview (contact sheet)
 
-def preview(out, clip=None, frame=0):
+PREVIEW_LOOKS = {
+    "hoodie": dict(skin="skin_b", hair="hair_dark", top="cloth_red", bottom="denim"),
+    "backpack": dict(skin="skin_e", hair="hair_black", top="cloth_cream", over="cloth_green", bottom="cloth_khaki", acc="bag_black"),
+    "dress": dict(skin="skin_f", hair="hair_black", top="cloth_gold", bottom="cloth_black"),
+    "puffer": dict(skin="skin_d", hair="hair_blond", top="cloth_navy", bottom="cloth_black", hat="cloth_maroon"),
+    "tee": dict(skin="skin_c", hair="hair_dark", top="cloth_teal", bottom="cloth_grey", hat="cloth_navy"),
+    "coat": dict(skin="skin_a", hair="hair_grey", top="cloth_cream", over="cloth_navy", bottom="cloth_grey", acc="cloth_maroon"),
+    "worker": dict(skin="skin_c", hair="hair_dark", top="cloth_green", over="hivis", bottom="cloth_green"),
+    "apron": dict(skin="skin_e", hair="hair_auburn", top="cloth_white", over="cloth_red", bottom="cloth_navy"),
+}
+
+
+def preview(out, clip=None, frame=0, view="front"):
     lib.clear()
     looks = [("hoodie", "short", None), ("backpack", "curly", None), ("dress", "bun", None), ("puffer", "buzz", "toque"),
              ("tee", "ponytail", "cap"), ("coat", "bald", None), ("worker", "short", "hardhat"), ("apron", "long", None)]
     for i, (variant, style, hat_kind) in enumerate(looks):
-        objs = build_person(variant, offset=V((i - 3.5) * 0.75, 0, 0), lods=(0,), with_hair=[style], with_hat=[hat_kind] if hat_kind else [])
+        objs = build_person(variant, offset=V((i - 3.5) * 0.75, 0, 0) if view == "front" else V(0, (i - 3.5) * 0.75, 0),
+                            lods=(0,), with_hair=[style], with_hat=[hat_kind] if hat_kind else [])
         rig = objs[0]
+        look = {**DEFAULT, **PREVIEW_LOOKS[variant]}
+        for o in objs[1:]:
+            recolour(o, look)
         if clip:
             act = bpy.data.actions[clip] if clip in bpy.data.actions else next(a for a in bpy.data.actions if a.name.startswith(clip))
             rig.animation_data.action = act
@@ -1301,6 +1321,9 @@ def preview(out, clip=None, frame=0):
     cam.data.ortho_scale = 6.2
     cam.location = V(0, -9, 2.6)
     cam.rotation_euler = (math.radians(80), 0, 0)
+    if view == "side":
+        cam.location = V(9, 0, 2.6)
+        cam.rotation_euler = (math.radians(80), 0, math.radians(90))
     scene.camera = cam
     try:
         scene.render.engine = "BLENDER_WORKBENCH"
@@ -1322,4 +1345,4 @@ def preview(out, clip=None, frame=0):
 
 if __name__ == "__main__" and "preview" in sys.argv:
     a = sys.argv[sys.argv.index("preview") + 1:]
-    preview(a[0], a[1] if len(a) > 1 else None, a[2] if len(a) > 2 else 0)
+    preview(a[0], a[1] if len(a) > 1 else None, a[2] if len(a) > 2 else 0, a[3] if len(a) > 3 else "front")

@@ -753,7 +753,7 @@ def act_run(t):
 
 
 def act_crouch(t):
-    pose = gait(t, cycle=0.36, duty=0.65, lift=0.035, bob=0.01, roll=0.06, hip_drop=0.085, toe_curl=0.4)
+    pose = gait(t, cycle=0.44, duty=0.65, lift=0.035, bob=0.01, roll=0.06, hip_drop=0.085, toe_curl=0.4)
     pose["body"]["q"] = R(AX, 0.14) @ pose["body"]["q"]
     tau = 2 * math.pi
     neck_pose(pose, 0.95, 0.4, -0.5, -0.4, head_pitch=0.12 + 0.03 * math.sin(2 * tau * t),
@@ -775,9 +775,9 @@ def air_body(pose, t, beat):
     pose["hips"] = dict(loc=Vector((0, 0, 0.015 * beat)))
     pose["body"] = dict(q=R(AX, -0.05 + 0.03 * beat))
     for sfx in ("l", "r"):
-        pose[f"shin_{sfx}"] = dict(q=R(AX, 1.0))
-        pose[f"tarsus_{sfx}"] = dict(q=R(AX, 0.55))
-        pose[f"foot_{sfx}"] = dict(q=R(AX, 0.5))
+        pose[f"shin_{sfx}"] = dict(q=R(AX, 1.05))
+        pose[f"tarsus_{sfx}"] = dict(q=R(AX, 0.35))
+        pose[f"foot_{sfx}"] = dict(q=R(AX, 1.6))
     neck_pose(pose, 0.85, 0.25, -0.25, -0.35, head_pitch=0.25 - 0.05 * beat)
     pose["tail"] = dict(q=R(AX, -0.15))
 
@@ -814,8 +814,8 @@ def act_swim(t):
     pose["body"] = dict(q=R(AX, -0.06 + 0.02 * math.sin(tau * t)) @ R(AY, 0.03 * math.sin(tau * t)))
     for sfx, ph in (("l", 0.0), ("r", 0.5)):
         k = math.sin(tau * (t + ph))
-        pose[f"shin_{sfx}"] = dict(q=R(AX, 0.45 + 0.35 * k))
-        pose[f"tarsus_{sfx}"] = dict(q=R(AX, 0.5 + 0.3 * k))
+        pose[f"shin_{sfx}"] = dict(q=R(AX, 0.85 + 0.3 * k))
+        pose[f"tarsus_{sfx}"] = dict(q=R(AX, 0.55 + 0.3 * k))
         pose[f"foot_{sfx}"] = dict(q=R(AX, -0.2 + 0.6 * k))
     neck_pose(pose, -0.08, 0.06, 0.02, 0.0, head_pitch=0.02 * math.sin(tau * t), yaw=0.12 * math.sin(tau * t * 0.5))
     pose["tail"] = dict(q=R(AX, -0.12) @ R(AZ, 0.1 * math.sin(tau * t)))

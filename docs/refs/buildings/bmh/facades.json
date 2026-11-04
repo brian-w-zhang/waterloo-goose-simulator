@@ -1,0 +1,3150 @@
+{
+ "building": "BMH",
+ "sources_checked": [
+  "around/sv_W0..W31 (_70 and _100), sv_c0..c62 (Street View: Sep 2014 trekker on the paths; May 2025 car on Ring Road for W0-W2, c0, c43, c52-c62)",
+  "around/earth_W*_whole, earth_W12_l|m|r (Earth 2024; most cameras sit behind BMH's own roof and show roof only, so they were used for roofs and colour only)",
+  "private/earth_orbit_*, review/art/bmh_study.jpg (lidar bands, ortho 2023, orbits)",
+  "per-wall lidar profiles (nDSM 1.5 m inside / 2 m outside each wall)",
+  "lhi/facades.json and lhi/walls.json (shared passage, bridge, sign)"
+ ],
+ "identity_notes": [
+  "The catalogue's BMH footprint (bmh + bmh-31068-0) is several buildings of different dates fused together, and they read very differently: (1) the ORIGINAL B.C. Matthews Hall (late 1960s/70s): darker brown-red brick, long continuous ribbon windows with dark-bronze frames, ground floors set back behind square brick piers with a sloping dark-metal skirt (W23-W27 east block, 3 storeys, 11.5 m), and the 2-storey middle block (W10-W12, W21, 7.5 m) with punched upper windows and bronze-panel-framed ground windows; (2) the 2003 Teeple 'Lyle S. Hallman Institute' work in lighter orange-red brick with grey-aluminium curtain walls: the north wing W1-W9 (3-storey curtain wall between brick towers, the main LHI entrance canopy at W0/W31 with the 'LYLE S. HALLMAN INSTITUTE FOR HEALTH PROMOTION' panel, sv_W0, sv_W1, 2025), and the south block W14-W17 (see next note); (3) a 1-storey orange-brick wing W18-W20 with a timber slat fence and white soffit, and the beige-panel 'APPLIED HEALTH SCIENCES' entrance on W22.",
+  "LHI's spec says a brick block east of the LHI N-S passage carries the LHI name sign but is catalogued as BMH. CONFIRMED. sv_W15_-Lcfn (Sep 2014, camera at about (746,443) looking 339 deg) shows it square-on: the passage runs NNW between LHI (cantilevered brick, left) and this block (right), under a glazed level-2 bridge; the block's SE face is BMH W15, and the bronze letters 'LYLE S. HALLMAN / INSTITUTE / FOR HEALTH PROMOTION' sit on its level-2 brick at about s 8-11.5. The 'N-S passage' is the slit along BMH W14 / LHI W11 (W14 runs at 330 deg), which is why the lidar shows 0-1 m there. The brick (orange-red, light mortar) and the details (aluminium ribbon glazing, beige-soffit glazed corner box on a thin steel post) match Teeple's LHI, not the old BMH. Google Earth labels a pin 'Lyle Hallman North' over the southern part of this footprint (bmh_study.jpg, lower-left orbit view). So W14-W17 (and probably the W18-W20 low wing) are really part of LHI that the City outline merged into BMH. The model can keep them in BMH's mesh but should colour and detail them like LHI (brick_orange); a second, wall-mounted copy of the same sign is on BMH W0 at the north (Ring Road) entrance, and a free-standing monument sign 'B. C. MATTHEWS HALL / LYLE S. HALLMAN INSTITUTE FOR HEALTH PROMOTION' stands on the lawn in front of W20."
+ ],
+ "colours": {
+  "bmh_brick": {
+   "hex": "#9e6a58 judged by eye; sunlit SV washes to #d3a086, shade to #5c4946, overcast 2025 #6d4f36",
+   "palette": "brick_dark",
+   "where": "original BMH: east block W23-W27, middle block W10-W12, W21, W22 sides, W25 service tower. Browner and darker than the LHI brick"
+  },
+  "lhi_brick": {
+   "hex": "#c27c5e (same brick as LHI's spec)",
+   "palette": "brick_orange",
+   "where": "2003 Teeple work: W1/W29/W30 entrance tower, W2 west pier, W4 and W8 brick, W14-W17 sign block, W18-W20 low wing"
+  },
+  "curtain": {
+   "palette": "window_glass",
+   "where": "north-wing curtain walls W2, W5-W7; frames clear aluminium metal_silver"
+  },
+  "dark_glass": {
+   "hex": "#3f4a58 judged by eye",
+   "palette": "stripe_dark",
+   "where": "level-2 tinted glazing band on W2/W5-W7 and the dark-glass stair strips on W1/W29 and the W28 link"
+  },
+  "bronze": {
+   "hex": "#3b3334 (SV W10, shade)",
+   "palette": "panel_black",
+   "where": "old-BMH window frames, the sloping hood on W10 and the sloping skirts under the ground windows on W24/W26"
+  },
+  "bronze_panel": {
+   "hex": "#8a7d68 judged by eye (khaki-bronze metal)",
+   "palette": "panel_grey",
+   "where": "panel surrounds of the ground window groups on W12 (3 panels over each group). panel_grey is about 12 Lab away; acceptable"
+  },
+  "beige_panel": {
+   "hex": "#d3c3a8 (SV W22)",
+   "palette": "siding_beige",
+   "where": "entrance portal on W22, the W15 glazed corner-box surround, soffits of the W20 wing"
+  },
+  "louvre": {
+   "hex": "#5a483e (SV W25)",
+   "palette": "brick_charcoal_tower",
+   "where": "the two tall bronze louvre panels on the W25 service tower"
+  },
+  "coping": {
+   "palette": "penthouse_metal",
+   "where": "thin dark metal coping on all parapets"
+  }
+ },
+ "geometry_notes": [
+  "North wing courtyard face W4-W8 is drawn about 2.5-3 m too far north: lidar profiles across W5 and W7 stay at 12 m for 2.5-3 m outside the line, then drop to 0. W23 is about 1.5-2 m too far north as well (the real face is further S).",
+  "W14 s 0-5 is not building (nDSM 1.0-1.3 m): the footprint's NW end of W14 overlaps the open walkway/passage between LHI W11 and this block.",
+  "W13 (6.6 m) sits under a 5 m roof plane (lidar 5 m everywhere around it): it is the low roof/portico zone by the LHI entrance plaza; LHI's spec owns the portico. Treat W13 as a recessed glazed stair wall under that roof.",
+  "W0 and W31 (3.5-3.9 m) are the outline of the north entrance canopy, not walls: a thin flat canopy on the brick vestibule, one brick pier at its west end (sv_W0, sv_W1). Draw a canopy slab about 3.3 m up with a 0.35 m dark fascia, not a 3.7 m box.",
+  "W20 is a 3.5 m one-storey wing about 5 m deep; behind it a 7.5 m wall (not in walls.json) carries a row of about 14 small square clerestory windows (about 0.7 x 0.6 m at z 5.4-6.0, pitch about 1.4 m) under a brick parapet (sv_W20_1AJ, earth_W18/W20). The same 7.5 m wall shows behind W18.",
+  "The east block (W23-W27) roof is 11.4 m but W25 (service/stair tower) is 13.6 m; W1 (LHI entrance tower) is 13.0 m with a lower front mass at about 11.8 m (two stepped brick masses, sv_W1).",
+  "Ground is nearly flat around the north and east; it falls about 1.5-2 m toward the south (W15-W20 lawns slope down to the SE, low brick retaining wall and steps at W15 s 15-19)."
+ ],
+ "walls": {
+  "W0": {
+   "faces": "N",
+   "length_m": 10.2,
+   "confidence": "high",
+   "summary": "north (Ring Road) entrance of the LHI wing: a thin flat canopy over a short brick vestibule carrying a stone sign panel; recessed dark doors",
+   "height_m": 3.7,
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     0.7,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     3.5,
+     "vestibule"
+    ],
+    [
+     2.2,
+     "sign"
+    ],
+    [
+     1.6,
+     "doors"
+    ],
+    [
+     1.9,
+     "open"
+    ]
+   ],
+   "cells": {
+    "ground/doors": {
+     "type": "door",
+     "w": 1.6,
+     "h": 2.3,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "panel_black",
+     "frame": "panel_black",
+     "note": "dark brown solid-looking double door, recessed about 1 m (sv_W0)"
+    },
+    "ground/sign": {
+     "type": "panel",
+     "colour": "limestone",
+     "w": 2.0,
+     "h": 1.1
+    },
+    "ground/open": {
+     "type": "void"
+    },
+    "*/pier": null,
+    "ground/vestibule": null,
+    "fascia/*": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    }
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [
+    {
+     "s": [
+      0,
+      1.0
+     ],
+     "z_top": 3.3,
+     "colour": "brick_orange",
+     "note": "square brick pier carrying the canopy's west corner (sv_W1)"
+    }
+   ],
+   "signs": [
+    {
+     "s": 5.6,
+     "z": 2.0,
+     "w": 2.0,
+     "h": 1.0,
+     "text": "LYLE S. HALLMAN / INSTITUTE / FOR HEALTH PROMOTION",
+     "colour": "panel_black",
+     "on": "panel",
+     "note": "dark serif capitals on a pale stone panel (sv_W0, sv_W1 2025)"
+    }
+   ],
+   "attached": [
+    "canopy: flat slab about 3.3 m up, 0.35 m dark-grey fascia, white soffit with downlights, projecting 4-6 m north from the tower over the walk (sv_W0, sv_c59)"
+   ],
+   "notes": "Lidar 3.7 m: this outline is the canopy. Sign panel position from sv_W0/sv_W1 (May 2025)."
+  },
+  "W1": {
+   "faces": "NW",
+   "length_m": 8.4,
+   "confidence": "high",
+   "summary": "LHI entrance tower facing Ring Road: tall plain orange brick, two stepped masses, a full-height dark-glass stair strip at the b (west) corner",
+   "height_m": 13.0,
+   "rows": [
+    [
+     1.9,
+     "base"
+    ],
+    [
+     9.1,
+     "tall"
+    ],
+    [
+     2.0,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     5.6,
+     "brick"
+    ],
+    [
+     2.8,
+     "strip"
+    ]
+   ],
+   "cells": {
+    "tall/strip": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.4,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal",
+     "note": "dark glass in a dark frame, slightly proud of the brick, wraps the corner onto W2"
+    },
+    "*/brick": null,
+    "base/strip": null,
+    "top/strip": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     12.8,
+     13.0,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [
+    {
+     "s": [
+      0,
+      5.6
+     ],
+     "z_top": 11.8,
+     "colour": "brick_orange",
+     "note": "front mass is about 1 m lower than the rear mass (sv_W1, sv_c59); the step shows as two coping lines"
+    }
+   ],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W1, sv_c59 (May 2025)."
+  },
+  "W2": {
+   "faces": "NW",
+   "length_m": 28.3,
+   "confidence": "high",
+   "summary": "north-wing Ring Road face: 3-storey aluminium curtain wall between brick towers; level 2 a band of dark tinted glass, level 3 light glass with white-framed hopper vents; brick pier and dark bay at the west end",
+   "height_m": 11.4,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.4,
+     "l3"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "jamb"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     0.6,
+     "jamb"
+    ],
+    [
+     4.3,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "ground/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "light glass, bottom transom at 0.6 m behind a concrete planter wall"
+    },
+    "l2/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 0.9,
+     "glass": "stripe_dark",
+     "frame": "metal_silver",
+     "note": "dark blue-grey tinted band, the darkest thing on the face"
+    },
+    "l3/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.0,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "each module has a small white-framed hopper vent near the sill"
+    },
+    "parapet/cw": {
+     "type": "panel",
+     "colour": "metal_silver"
+    },
+    "*/jamb": {
+     "type": "panel",
+     "colour": "metal_silver"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.2,
+     11.4,
+     "penthouse_metal",
+     0.3
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "concrete planter walls / seat walls 0.5 m high along s 2-26, about 1.5 m out, with shrubs behind them (sv_W2_Q, 2014)",
+    "west pier: orange brick, 4.3 m wide, full height; its W3 return carries a projecting dark-glass bay"
+   ],
+   "notes": "Module count (14 at about 1.6 m) from sv_c59/sv_c62 (2025); thin roof overhang with dark fascia over the curtain wall."
+  },
+  "W3": {
+   "faces": "W",
+   "length_m": 18.2,
+   "confidence": "low",
+   "summary": "north wing's west end, mostly hidden by the AHS Expansion: brick with a projecting dark-glass bay at the N corner; the AHS glass entrance vestibule ('HLTH') abuts the S half",
+   "height_m": 11.5,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     7.1,
+     "upper"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "edge"
+    ],
+    [
+     2.8,
+     "bay"
+    ],
+    [
+     4.7,
+     "brick"
+    ],
+    [
+     10.2,
+     "hidden"
+    ]
+   ],
+   "cells": {
+    "upper/bay": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal",
+     "note": "projects about 0.5 m in a dark frame (sv_W3_-fBn, sv_c62)"
+    },
+    "ground/bay": null,
+    "*/brick": null,
+    "*/edge": null,
+    "*/hidden": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.3,
+     11.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "AHS Expansion 2-storey glass entrance box against s 8-18 (sv_c0 2025; belongs to ahs-exp)",
+    "gap of about 3 m to the AHS Expansion beyond (lidar)"
+   ],
+   "notes": "Sep 2014 photos from this side predate or straddle the AHS Expansion build; trust sv_c0 (May 2025)."
+  },
+  "W4": {
+   "faces": "SE",
+   "length_m": 4.7,
+   "confidence": "medium",
+   "summary": "courtyard side: orange brick tower with a projecting dark-glass bay window (levels 2-3)",
+   "height_m": 11.5,
+   "rows": [
+    [
+     3.0,
+     "ground"
+    ],
+    [
+     8.0,
+     "upper"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "brick"
+    ],
+    [
+     2.7,
+     "bay"
+    ],
+    [
+     1.0,
+     "brick"
+    ]
+   ],
+   "cells": {
+    "upper/bay": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 0.9,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "fascia_copper",
+     "note": "dark glass in a bronze-brown frame projecting about 0.5 m (sv_W6 left)"
+    },
+    "*/brick": null,
+    "ground/bay": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.3,
+     11.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W6_sq, sv_W5 (2014)."
+  },
+  "W5": {
+   "faces": "SE",
+   "length_m": 5.2,
+   "confidence": "medium",
+   "summary": "courtyard curtain wall, light glass with white operable panels",
+   "height_m": 11.7,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     5.2,
+     "cw"
+    ]
+   ],
+   "cells": {
+    "*/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "white opaque panels and white-framed vents mixed into the grid (sv_W6)"
+    },
+    "parapet/cw": {
+     "type": "panel",
+     "colour": "fascia_copper"
+    }
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.5,
+     11.7,
+     "penthouse_metal",
+     0.4
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "thin copper-brown roof edge overhang (sv_W6). Wall line about 3 m too far N (geometry_notes)."
+  },
+  "W6": {
+   "faces": "SE",
+   "length_m": 6.0,
+   "confidence": "medium",
+   "summary": "courtyard curtain wall, light glass with white operable panels",
+   "height_m": 11.7,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     6.0,
+     "cw"
+    ]
+   ],
+   "cells": {
+    "*/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "white opaque panels and white-framed vents mixed into the grid (sv_W6)"
+    },
+    "parapet/cw": {
+     "type": "panel",
+     "colour": "fascia_copper"
+    }
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.5,
+     11.7,
+     "penthouse_metal",
+     0.4
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "thin copper-brown roof edge overhang (sv_W6). Wall line about 3 m too far N (geometry_notes)."
+  },
+  "W7": {
+   "faces": "SE",
+   "length_m": 17.8,
+   "confidence": "medium",
+   "summary": "main courtyard curtain wall: a slightly proud full-height dark-glass bay at s 0-4, then 3 storeys of grid glazing: light level 1, dark tinted band at level 2, light level 3 with white vents; brick pier at b",
+   "height_m": 11.7,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     3.6,
+     "l2"
+    ],
+    [
+     3.6,
+     "l3"
+    ],
+    [
+     0.6,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     4.0,
+     "bay"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.6,
+     "cw"
+    ],
+    [
+     1.0,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "*/bay": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 0.6,
+     "glass": "stripe_dark",
+     "frame": "fascia_copper"
+    },
+    "ground/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 0.5,
+     "glass": "stripe_dark",
+     "frame": "fascia_copper"
+    },
+    "l3/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 1.2,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "white-framed vents"
+    },
+    "parapet/*": {
+     "type": "panel",
+     "colour": "fascia_copper"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.5,
+     11.7,
+     "penthouse_metal",
+     0.4
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W6_sq, sv_W5 (2014). Brick base 0.5 m under the ground glazing. Line about 3 m too far N."
+  },
+  "W8": {
+   "faces": "SE",
+   "length_m": 8.3,
+   "confidence": "medium",
+   "summary": "courtyard entrance corner: tall brick-framed glazed bay (stair) with a precast surround, then glazed double doors under a small bronze canopy",
+   "height_m": 11.6,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     7.2,
+     "upper"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "brick"
+    ],
+    [
+     3.0,
+     "bay"
+    ],
+    [
+     1.0,
+     "brick"
+    ],
+    [
+     1.5,
+     "cw"
+    ],
+    [
+     2.2,
+     "door"
+    ]
+   ],
+   "cells": {
+    "*/bay": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.0,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "precast_cream",
+     "note": "cream precast frame 0.25 m round the opening"
+    },
+    "ground/door": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.4,
+     "mullions": 1,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_black",
+     "canopy": [
+      1.0,
+      "fascia_copper"
+     ]
+    },
+    "upper/door": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.1,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "fascia_copper"
+    },
+    "*/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 0.8,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "panel_black"
+    },
+    "*/brick": null
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "bench in front of the bay"
+   ],
+   "notes": "sv_W8 (2014)."
+  },
+  "W9": {
+   "faces": "S",
+   "length_m": 6.7,
+   "confidence": "low",
+   "summary": "dark-glazed link face between the north wing and the old middle block, continuing the W8 entrance glazing",
+   "height_m": 10.6,
+   "rows": [
+    [
+     3.9,
+     "ground"
+    ],
+    [
+     6.2,
+     "upper"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     6.7,
+     "cw"
+    ]
+   ],
+   "cells": {
+    "*/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.3,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "panel_black"
+    }
+   },
+   "wall": "brick_dark",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W9 (2014), oblique."
+  },
+  "W10": {
+   "faces": "W",
+   "length_m": 19.5,
+   "confidence": "high",
+   "summary": "old BMH courtyard face: 2 storeys of dark brown brick; continuous ground ribbon window under a long sloping dark-metal hood with a brown panel band; continuous upper ribbon window; plain brick parapet",
+   "height_m": 7.5,
+   "rows": [
+    [
+     0.6,
+     "base"
+    ],
+    [
+     2.2,
+     "g"
+    ],
+    [
+     0.8,
+     "panelband"
+    ],
+    [
+     0.4,
+     "hood"
+    ],
+    [
+     2.0,
+     "u"
+    ],
+    [
+     1.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.5,
+     "edge"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     1.0,
+     "rib"
+    ],
+    [
+     0.5,
+     "edge"
+    ]
+   ],
+   "cells": {
+    "g/rib": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.9,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "panelband/*": {
+     "type": "panel",
+     "colour": "panel_black",
+     "note": "brown-bronze vertical-board fascia under the hood"
+    },
+    "u/rib": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.5,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/edge": null
+   },
+   "wall": "brick_dark",
+   "bands": [
+    [
+     3.6,
+     4.0,
+     "panel_black",
+     1.2
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "the hood: a dark standing-seam metal roof slope about 1.2 m deep, rising from about 3.6 m at its outer edge back to about 4.2 m at the wall, running the full length and wrapping onto W11 s 0-4 (sv_W10_Kyt, sv_W11)"
+   ],
+   "notes": "sv_W10_Kyt (2014). The N end meets the W9/W8 glazing; the S end wraps onto W11. Mullion pitch about 1 m."
+  },
+  "W11": {
+   "faces": "N",
+   "length_m": 12.7,
+   "confidence": "medium",
+   "summary": "old BMH: hooded ground ribbon wraps the corner at s 0-4, then a blank brick mass; at s 8.5-12.7 the upper floor projects over a recessed ground floor with a door, with a 3-light window in the projection",
+   "height_m": 7.5,
+   "rows": [
+    [
+     3.6,
+     "g"
+    ],
+    [
+     0.4,
+     "hood"
+    ],
+    [
+     3.0,
+     "u"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     4.0,
+     "rib"
+    ],
+    [
+     4.5,
+     "blank"
+    ],
+    [
+     4.2,
+     "over"
+    ]
+   ],
+   "cells": {
+    "g/rib": {
+     "type": "window",
+     "w": 0.95,
+     "h": 1.9,
+     "mullions": 3,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "u/over": {
+     "type": "window",
+     "w": 2.4,
+     "h": 0.9,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "g/over": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "panel_black",
+     "frame": "panel_black",
+     "note": "single dark door at the back of the recess"
+    },
+    "*/blank": null,
+    "u/rib": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.2,
+    1.5
+   ],
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "undercut applies only to s 8.5-12.7 (corner with W12)"
+   ],
+   "notes": "sv_W11, sv_c12, sv_c13 (2014). Lidar shows 3.8 m at the W end; probably the line clips the projection."
+  },
+  "W12": {
+   "faces": "W",
+   "length_m": 36.8,
+   "confidence": "medium",
+   "summary": "old BMH west face: 2 storeys dark brown brick; open undercut corner at the N end; ground floor in groups of 6-light ribbon windows framed by khaki-bronze metal panels between brick piers; a long row of small square punched windows upstairs; glazed stair tower at the S end",
+   "height_m": 7.5,
+   "rows": [
+    [
+     0.7,
+     "base"
+    ],
+    [
+     1.8,
+     "g"
+    ],
+    [
+     1.0,
+     "gpanel"
+    ],
+    [
+     1.0,
+     "mid"
+    ],
+    [
+     1.1,
+     "u"
+    ],
+    [
+     1.9,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     4.5,
+     "under"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     4.7,
+     "grp"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     4.7,
+     "grp"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     4.7,
+     "grp"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     4.7,
+     "grp"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     4.7,
+     "grp"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     3.0,
+     "stair"
+    ],
+    [
+     0.8,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g/grp": {
+     "type": "window",
+     "w": 4.0,
+     "h": 1.6,
+     "mullions": 5,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "gpanel/grp": {
+     "type": "panel",
+     "colour": "panel_grey",
+     "note": "three khaki-bronze metal panels; the panel frame also runs down both sides of the window group"
+    },
+    "base/grp": {
+     "type": "panel",
+     "colour": "panel_grey"
+    },
+    "u/grp": {
+     "type": "window",
+     "w": 0.75,
+     "h": 0.95,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black",
+     "note": "punched square windows at about 1.25 m pitch; 4 per group, also over the piers: about 26 along s 1-33"
+    },
+    "u/pier": {
+     "type": "window",
+     "w": 0.75,
+     "h": 0.95,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "u/under": {
+     "type": "window",
+     "w": 2.4,
+     "h": 0.9,
+     "mullions": 2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "g/under": {
+     "type": "void"
+    },
+    "base/under": {
+     "type": "void"
+    },
+    "gpanel/under": null,
+    "*/stair": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.8,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "glazed stair tower with a brick pier each side, slightly proud (sv_W12_y34)"
+    },
+    "*/pier": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.2,
+    3.0
+   ],
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "undercut only at s 0-4.5 (open corner under the upper floor, door at the back, bikes parked there in 2014)",
+    "AHS Expansion stands about 5-10 m west of s 0-25 and close against s 25-36 (lidar)"
+   ],
+   "notes": "sv_W12_aho, sv_W12_y34, sv_W12_sq, sv_c12/c13 (2014). Trekker positions disagree by several metres: aho98 puts the open undercut at the S end of the 3 groups it shows, y34 and sq at the N end. The N-end undercut is certain (W11 and c12/c13 show it from both sides); the 5 groups and the stair position are from y34 and the wall length, \u00b12 m."
+  },
+  "W13": {
+   "faces": "SW",
+   "length_m": 6.6,
+   "confidence": "low",
+   "summary": "recessed glazed stair/entrance face under the low roof by the LHI portico plaza",
+   "height_m": 5.0,
+   "rows": [
+    [
+     4.5,
+     "g"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     4.6,
+     "glass"
+    ],
+    [
+     1.0,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g/glass": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.0,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "*/pier": null,
+    "parapet/glass": null
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "sand-stucco LHI portico columns and slab just W (LHI spec)"
+   ],
+   "notes": "sv_W13, sv_c14, sv_c15 (2014) show glazed doors and a brick wall with 'FOR ...' letters near the portico; low confidence on which face is which."
+  },
+  "W14": {
+   "faces": "SW",
+   "length_m": 23.0,
+   "confidence": "medium",
+   "summary": "LHI-style orange-brick side wall along the 2 m walkway/passage shared with LHI W11: mostly blank, a few punched windows with white frames; low ivy-covered brick wall and black rail on the walkway",
+   "height_m": 7.0,
+   "rows": [
+    [
+     3.4,
+     "g"
+    ],
+    [
+     3.2,
+     "u"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     5.0,
+     "open"
+    ],
+    [
+     4.0,
+     "blank"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     5.4,
+     "blank"
+    ],
+    [
+     1.6,
+     "win"
+    ],
+    [
+     5.4,
+     "blank"
+    ]
+   ],
+   "cells": {
+    "u/win": {
+     "type": "window",
+     "w": 1.5,
+     "h": 1.0,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "g/win": {
+     "type": "window",
+     "w": 1.0,
+     "h": 0.6,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "*/blank": null,
+    "*/open": {
+     "type": "void"
+    }
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     6.8,
+     7.0,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "the walkway: asphalt/paver ramp about 2 m wide between W14 and LHI W11 (sv_c16, sv_c17)"
+   ],
+   "notes": "sv_W14_OuC, sv_W14_hd55, sv_c16/c17 (2014). Window positions guessed (only two seen). s 0-5 is not building (geometry_notes)."
+  },
+  "W15": {
+   "faces": "SE",
+   "length_m": 19.6,
+   "confidence": "high",
+   "summary": "the LHI-signed block (catalogued BMH): orange brick, aluminium ribbon glazing at level 2 continuing from the passage bridge, bronze 'LYLE S. HALLMAN INSTITUTE FOR HEALTH PROMOTION' letters on the brick, two small ground windows, a cantilevered glazed corner box on a thin steel post at the E end",
+   "height_m": 7.2,
+   "rows": [
+    [
+     0.8,
+     "base"
+    ],
+    [
+     1.9,
+     "g"
+    ],
+    [
+     0.3,
+     "sill"
+    ],
+    [
+     2.7,
+     "l2"
+    ],
+    [
+     1.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     2.7,
+     "lowwin"
+    ],
+    [
+     3.0,
+     "rib"
+    ],
+    [
+     1.5,
+     "brick"
+    ],
+    [
+     1.0,
+     "small"
+    ],
+    [
+     2.0,
+     "signbay"
+    ],
+    [
+     1.0,
+     "small"
+    ],
+    [
+     1.4,
+     "brick"
+    ],
+    [
+     6.0,
+     "box"
+    ]
+   ],
+   "cells": {
+    "l2/lowwin": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.55,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "l2/rib": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.55,
+     "glass": "window_glass",
+     "frame": "metal_silver"
+    },
+    "g/lowwin": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.8,
+     "mullions": 0,
+     "transoms": 2,
+     "glass": "window_glass",
+     "frame": "panel_white",
+     "note": "stacked three-light window in white frames"
+    },
+    "g/small": {
+     "type": "window",
+     "w": 0.9,
+     "h": 0.65,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "l2/box": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.5,
+     "transom_pitch": 0.6,
+     "glass": "window_glass",
+     "frame": "metal_silver",
+     "note": "cantilevered glazed box projecting about 1.5 m, beige panel sides and soffit at about 2.6 m, one thin grey steel post at its outer corner"
+    },
+    "g/box": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "panel_black",
+     "frame": "panel_black",
+     "note": "brick wall with a service door under the box"
+    },
+    "*/pier": null,
+    "*/brick": null,
+    "*/signbay": null,
+    "base/*": null,
+    "sill/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     7.0,
+     7.2,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [
+    {
+     "s": 10.2,
+     "z": 4.1,
+     "w": 2.6,
+     "h": 1.1,
+     "text": "LYLE S. HALLMAN / INSTITUTE / FOR HEALTH PROMOTION",
+     "colour": "panel_black",
+     "on": "wall",
+     "note": "dark bronze serif capitals in three lines on the level-2 brick (sv_W15_-Lcfn, 2014)"
+    }
+   ],
+   "attached": [
+    "glazed level-2 bridge from LHI W10 lands at s 0 (in LHI's spec)",
+    "low brick retaining wall with concrete steps beside the box at s 15-19 (sv_W15_olk)"
+   ],
+   "notes": "Scale from sv_W15_-Lcfn (frontal) against the 19.6 m length: about 31 px/m, \u00b10.7 m. Lidar 7.2 m at s 0-12 and 5.4 m at s 15-19 (the box roof is lower)."
+  },
+  "W16": {
+   "faces": "NE",
+   "length_m": 5.2,
+   "confidence": "low",
+   "summary": "short orange-brick return with one window and a door",
+   "height_m": 6.0,
+   "rows": [
+    [
+     3.0,
+     "g"
+    ],
+    [
+     2.6,
+     "u"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     1.2,
+     "win"
+    ],
+    [
+     1.2,
+     "b"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     0.8,
+     "b"
+    ]
+   ],
+   "cells": {
+    "u/win": {
+     "type": "window",
+     "w": 1.0,
+     "h": 1.2,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "g/door": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "brick_dark",
+     "frame": "panel_black"
+    },
+    "*/b": null,
+    "g/win": null,
+    "u/door": null
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W16 (2014)."
+  },
+  "W17": {
+   "faces": "NE",
+   "length_m": 4.3,
+   "confidence": "low",
+   "summary": "orange brick, blank but for a wall louvre high up",
+   "height_m": 6.7,
+   "rows": [
+    [
+     5.0,
+     "g"
+    ],
+    [
+     1.3,
+     "u"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "b"
+    ],
+    [
+     1.0,
+     "louvre"
+    ],
+    [
+     1.8,
+     "b"
+    ]
+   ],
+   "cells": {
+    "u/louvre": {
+     "type": "louvre",
+     "w": 0.8,
+     "h": 0.5,
+     "colour": "metal_silver"
+    },
+    "*/b": null,
+    "g/louvre": null
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W16, sv_W18 (2014)."
+  },
+  "W18": {
+   "faces": "SE",
+   "length_m": 8.6,
+   "confidence": "medium",
+   "summary": "one-storey orange-brick link: door at the a end, a high horizontal window, a small silver louvre",
+   "height_m": 4.2,
+   "rows": [
+    [
+     2.6,
+     "g"
+    ],
+    [
+     1.2,
+     "high"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.6,
+     "b"
+    ],
+    [
+     1.0,
+     "door"
+    ],
+    [
+     1.2,
+     "b"
+    ],
+    [
+     2.0,
+     "win"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     0.8,
+     "louvre"
+    ],
+    [
+     1.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "g/door": {
+     "type": "door",
+     "w": 0.9,
+     "h": 2.2,
+     "glass": "panel_grey",
+     "frame": "panel_grey"
+    },
+    "high/win": {
+     "type": "window",
+     "w": 1.8,
+     "h": 0.9,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "metal_silver"
+    },
+    "high/louvre": {
+     "type": "louvre",
+     "w": 0.6,
+     "h": 0.4,
+     "colour": "metal_silver"
+    },
+    "*/b": null,
+    "g/win": null,
+    "g/louvre": null,
+    "high/door": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     4.0,
+     4.2,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W18 (2014). Lidar falls 4.4 to 3.4 m along it (ground slopes)."
+  },
+  "W19": {
+   "faces": "NE",
+   "length_m": 5.8,
+   "confidence": "low",
+   "summary": "short brick step at the SW end of the low wing, a window under the wide white soffit",
+   "height_m": 3.5,
+   "rows": [
+    [
+     3.1,
+     "g"
+    ],
+    [
+     0.4,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "b"
+    ],
+    [
+     2.6,
+     "win"
+    ],
+    [
+     1.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "g/win": {
+     "type": "window",
+     "w": 2.4,
+     "h": 1.6,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    },
+    "*/b": null
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "guess from sv_W18/sv_c25."
+  },
+  "W20": {
+   "faces": "SE",
+   "length_m": 21.1,
+   "confidence": "high",
+   "summary": "one-storey orange-brick wing on the south lawn: a run of large white-framed three-light windows under a flat roof with a dark fascia and a deep white soffit; timber slat fence on a small terrace at the SW end; white stucco end pier at the NE end",
+   "height_m": 3.6,
+   "rows": [
+    [
+     0.8,
+     "base"
+    ],
+    [
+     1.8,
+     "win"
+    ],
+    [
+     0.4,
+     "head"
+    ],
+    [
+     0.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.1,
+     "unit"
+    ],
+    [
+     2.4,
+     "b"
+    ],
+    [
+     0.9,
+     "stucco"
+    ]
+   ],
+   "cells": {
+    "win/unit": {
+     "type": "window",
+     "w": 1.95,
+     "h": 1.75,
+     "mullions": 2,
+     "transoms": 1,
+     "glass": "window_dark",
+     "frame": "panel_white"
+    },
+    "fascia/*": {
+     "type": "panel",
+     "colour": "penthouse_metal",
+     "note": "dark fascia over a white soffit projecting about 0.8 m"
+    },
+    "*/stucco": {
+     "type": "panel",
+     "colour": "stucco_white"
+    },
+    "*/b": null,
+    "base/unit": null,
+    "head/unit": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     2.95,
+     3.05,
+     "stucco_white",
+     0.8
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "timber slat fence about 1.1 m high (horizontal boards, weathered tan, wood posts) along s 0-9, about 1.5 m out, enclosing a small terrace (sv_W18)",
+    "behind the wing, set back about 5 m: the 7.5 m old-BMH wall with ~14 small clerestory windows (geometry_notes)"
+   ],
+   "notes": "sv_W20_1AJ, sv_W20_5yK, sv_W19, sv_W18 (2014). 8 units at about 2.1 m read off sv_W20_1AJ (5 units seen in its right half) plus sv_W18."
+  },
+  "W21": {
+   "faces": "NE",
+   "length_m": 10.3,
+   "confidence": "medium",
+   "summary": "old-BMH brick face at the south entrance court: one upper window, two small slit windows low, bike racks along it; the low wing's end abuts at s 0-1.5",
+   "height_m": 7.5,
+   "rows": [
+    [
+     3.6,
+     "g"
+    ],
+    [
+     3.4,
+     "u"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "low"
+    ],
+    [
+     2.5,
+     "b"
+    ],
+    [
+     0.6,
+     "slit"
+    ],
+    [
+     0.6,
+     "b"
+    ],
+    [
+     0.6,
+     "slit"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     1.4,
+     "win"
+    ],
+    [
+     1.6,
+     "b"
+    ]
+   ],
+   "cells": {
+    "g/slit": {
+     "type": "window",
+     "w": 0.45,
+     "h": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "u/win": {
+     "type": "window",
+     "w": 1.3,
+     "h": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/b": null,
+    "*/low": null,
+    "u/slit": null,
+    "g/win": null
+   },
+   "wall": "brick_dark",
+   "bands": [
+    [
+     7.3,
+     7.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W21 (2014). In 2014 this brick reads lighter/orange in full sun; it is the same old-BMH brick as W12 (which is in shade)."
+  },
+  "W22": {
+   "faces": "SE",
+   "length_m": 10.3,
+   "confidence": "high",
+   "summary": "'Applied Health Sciences' south entrance: a 2-storey beige metal-panel portal with a recessed glazed upper floor and glazed doors, between brick walls",
+   "height_m": 7.4,
+   "rows": [
+    [
+     2.8,
+     "g"
+    ],
+    [
+     0.9,
+     "mid"
+    ],
+    [
+     2.9,
+     "u"
+    ],
+    [
+     0.8,
+     "top"
+    ]
+   ],
+   "bays": [
+    [
+     1.0,
+     "b"
+    ],
+    [
+     1.0,
+     "win"
+    ],
+    [
+     1.5,
+     "b"
+    ],
+    [
+     0.8,
+     "frame"
+    ],
+    [
+     4.2,
+     "portal"
+    ],
+    [
+     0.8,
+     "frame"
+    ],
+    [
+     1.0,
+     "b"
+    ]
+   ],
+   "cells": {
+    "*/frame": {
+     "type": "panel",
+     "colour": "siding_beige"
+    },
+    "top/portal": {
+     "type": "panel",
+     "colour": "siding_beige"
+    },
+    "mid/portal": {
+     "type": "panel",
+     "colour": "siding_beige"
+    },
+    "u/portal": {
+     "type": "panel",
+     "glass": "window_glass",
+     "depth": 1.0,
+     "note": "recessed 4-light glazing with a dark soffit"
+    },
+    "g/portal": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.3,
+     "mullions": 1,
+     "transoms": 0,
+     "glass": "window_dark",
+     "frame": "metal_silver",
+     "note": "double glazed doors centred, dark-glass sidelights each side; 'APPLIED HEALTH SCIENCES' white lettering on the door glass"
+    },
+    "u/win": {
+     "type": "window",
+     "w": 1.0,
+     "h": 1.0,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/b": null,
+    "g/win": null,
+    "mid/win": null,
+    "top/win": null,
+    "mid/b": null,
+    "top/b": null
+   },
+   "wall": "brick_dark",
+   "bands": [],
+   "piers": [],
+   "signs": [
+    {
+     "s": 6.0,
+     "z": 1.6,
+     "w": 0.6,
+     "h": 0.3,
+     "text": "APPLIED HEALTH SCIENCES",
+     "colour": "panel_white",
+     "on": "door glass"
+    }
+   ],
+   "attached": [
+    "red/salmon bench beside the doors",
+    "bike racks against the brick at s 0-3 and on W21 (sv_W22, sv_W21)"
+   ],
+   "notes": "sv_W22, sv_W21 (2014)."
+  },
+  "W23": {
+   "faces": "S",
+   "length_m": 17.6,
+   "confidence": "low",
+   "summary": "old-BMH east block south face, assumed like W24/W26: recessed ground behind brick piers, two continuous ribbon windows",
+   "height_m": 11.4,
+   "rows": [
+    [
+     1.0,
+     "skirt"
+    ],
+    [
+     2.6,
+     "g"
+    ],
+    [
+     1.6,
+     "band2"
+    ],
+    [
+     1.2,
+     "r2"
+    ],
+    [
+     1.6,
+     "band3"
+    ],
+    [
+     1.2,
+     "r3"
+    ],
+    [
+     2.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     7.0,
+     "bay"
+    ],
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     7.0,
+     "bay"
+    ],
+    [
+     1.2,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g/*": {
+     "type": "window",
+     "w": 0.7,
+     "h": 2.2,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black",
+     "note": "ground ribbon windows set back under the upper floors"
+    },
+    "skirt/*": {
+     "type": "panel",
+     "colour": "panel_black",
+     "note": "sloping dark metal skirt from the ground up to the sills (covers a lightwell)"
+    },
+    "r2/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "r3/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/pier": null,
+    "skirt/pier": null,
+    "band2/*": null,
+    "band3/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.6,
+    1.8
+   ],
+   "bands": [
+    [
+     11.2,
+     11.4,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "Hidden by a big tree in sv_W23 (2014); earth_W23 shows two ribbon bands. Line about 1.5-2 m too far N."
+  },
+  "W24": {
+   "faces": "E",
+   "length_m": 24.2,
+   "confidence": "high",
+   "summary": "old-BMH east block, east face: ground floor recessed about 1.8 m behind square brick piers, windows over a sloping dark metal skirt; brick spandrel bands with two continuous bronze-framed ribbon windows above",
+   "height_m": 11.4,
+   "rows": [
+    [
+     1.0,
+     "skirt"
+    ],
+    [
+     2.6,
+     "g"
+    ],
+    [
+     1.6,
+     "band2"
+    ],
+    [
+     1.2,
+     "r2"
+    ],
+    [
+     1.6,
+     "band3"
+    ],
+    [
+     1.2,
+     "r3"
+    ],
+    [
+     2.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     6.2,
+     "bay"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     6.2,
+     "bay"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     6.2,
+     "bay"
+    ],
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     1.2,
+     "bay"
+    ]
+   ],
+   "cells": {
+    "g/*": {
+     "type": "window",
+     "w": 0.7,
+     "h": 2.2,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black",
+     "note": "ground ribbon windows set back under the upper floors"
+    },
+    "skirt/*": {
+     "type": "panel",
+     "colour": "panel_black",
+     "note": "sloping dark metal skirt from the ground up to the sills (covers a lightwell)"
+    },
+    "r2/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "r3/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/pier": null,
+    "skirt/pier": null,
+    "band2/*": null,
+    "band3/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.6,
+    1.8
+   ],
+   "bands": [
+    [
+     11.2,
+     11.4,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W24_Ko, sv_W24_Tt3, sv_c33 (2014). Door in the recess at the 2nd pier (s about 7.5)."
+  },
+  "W26": {
+   "faces": "N",
+   "length_m": 25.2,
+   "confidence": "high",
+   "summary": "old-BMH east block, north face: same as W24; three recessed ground bays between brick piers, sloped dark skirts, two ribbon windows",
+   "height_m": 11.4,
+   "rows": [
+    [
+     1.0,
+     "skirt"
+    ],
+    [
+     2.6,
+     "g"
+    ],
+    [
+     1.6,
+     "band2"
+    ],
+    [
+     1.2,
+     "r2"
+    ],
+    [
+     1.6,
+     "band3"
+    ],
+    [
+     1.2,
+     "r3"
+    ],
+    [
+     2.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     6.8,
+     "bay"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     7.0,
+     "bay"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     7.0,
+     "bay"
+    ],
+    [
+     1.2,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g/*": {
+     "type": "window",
+     "w": 0.7,
+     "h": 2.2,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black",
+     "note": "ground ribbon windows set back under the upper floors"
+    },
+    "skirt/*": {
+     "type": "panel",
+     "colour": "panel_black",
+     "note": "sloping dark metal skirt from the ground up to the sills (covers a lightwell)"
+    },
+    "r2/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "r3/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/pier": null,
+    "skirt/pier": null,
+    "band2/*": null,
+    "band3/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.6,
+    1.8
+   ],
+   "bands": [
+    [
+     11.2,
+     11.4,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W26_Jco, sv_W26_S3r (2014), sv_c43 (2025, shows both ribbons)."
+  },
+  "W27": {
+   "faces": "W",
+   "length_m": 17.2,
+   "confidence": "medium",
+   "summary": "old-BMH east block, west face over the garden by the LHI north entrance: same as W26",
+   "height_m": 11.4,
+   "rows": [
+    [
+     1.0,
+     "skirt"
+    ],
+    [
+     2.6,
+     "g"
+    ],
+    [
+     1.6,
+     "band2"
+    ],
+    [
+     1.2,
+     "r2"
+    ],
+    [
+     1.6,
+     "band3"
+    ],
+    [
+     1.2,
+     "r3"
+    ],
+    [
+     2.2,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.2,
+     "pier"
+    ],
+    [
+     7.2,
+     "bay"
+    ],
+    [
+     1.0,
+     "pier"
+    ],
+    [
+     6.6,
+     "bay"
+    ],
+    [
+     1.2,
+     "pier"
+    ]
+   ],
+   "cells": {
+    "g/*": {
+     "type": "window",
+     "w": 0.7,
+     "h": 2.2,
+     "mullions": 0,
+     "glass": "window_dark",
+     "frame": "panel_black",
+     "note": "ground ribbon windows set back under the upper floors"
+    },
+    "skirt/*": {
+     "type": "panel",
+     "colour": "panel_black",
+     "note": "sloping dark metal skirt from the ground up to the sills (covers a lightwell)"
+    },
+    "r2/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "r3/*": {
+     "type": "glass",
+     "kind": "ribbon",
+     "mullion_pitch": 0.75,
+     "transom_pitch": 1.2,
+     "glass": "window_dark",
+     "frame": "panel_black"
+    },
+    "*/pier": null,
+    "skirt/pier": null,
+    "band2/*": null,
+    "band3/*": null,
+    "parapet/*": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.6,
+    1.8
+   ],
+   "bands": [
+    [
+     11.2,
+     11.4,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_W27, sv_c44 (2014)."
+  },
+  "W25": {
+   "faces": "NE",
+   "length_m": 17.8,
+   "confidence": "high",
+   "summary": "old-BMH service tower (13.6 m) at the NE corner: tall plain brick with two full-height bronze louvre panels; ground recessed behind brick piers with service doors, dumpsters, recycling carts and bike racks",
+   "height_m": 13.6,
+   "rows": [
+    [
+     3.8,
+     "g"
+    ],
+    [
+     9.4,
+     "upper"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.5,
+     "b"
+    ],
+    [
+     2.6,
+     "louvre"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     5.2,
+     "bay"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     2.6,
+     "louvre"
+    ],
+    [
+     0.8,
+     "pier"
+    ],
+    [
+     2.0,
+     "bay2"
+    ],
+    [
+     1.5,
+     "b"
+    ]
+   ],
+   "cells": {
+    "upper/louvre": {
+     "type": "louvre",
+     "colour": "brick_charcoal_tower",
+     "note": "bronze-brown horizontal slats, full height above the recess"
+    },
+    "g/louvre": {
+     "type": "door",
+     "w": 1.6,
+     "h": 2.3,
+     "mullions": 1,
+     "glass": "panel_black",
+     "frame": "panel_black"
+    },
+    "g/bay": {
+     "type": "door",
+     "w": 1.6,
+     "h": 2.3,
+     "mullions": 1,
+     "glass": "panel_black",
+     "frame": "panel_black",
+     "note": "dark double service door"
+    },
+    "g/bay2": {
+     "type": "louvre",
+     "colour": "panel_black"
+    },
+    "*/pier": null,
+    "*/b": null,
+    "upper/bay": null,
+    "upper/bay2": null
+   },
+   "wall": "brick_dark",
+   "undercut": [
+    3.6,
+    1.5
+   ],
+   "bands": [
+    [
+     13.4,
+     13.6,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "wall-pack light at about 6 m above the centre door"
+   ],
+   "notes": "sv_W25 (2014), sv_c38/c39."
+  },
+  "W28": {
+   "faces": "N",
+   "length_m": 6.4,
+   "confidence": "medium",
+   "summary": "recessed dark-glass link between the old east block and the LHI tower, with glazed entrance doors at the bottom",
+   "height_m": 10.6,
+   "rows": [
+    [
+     3.2,
+     "g"
+    ],
+    [
+     7.0,
+     "upper"
+    ],
+    [
+     0.4,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     0.8,
+     "b"
+    ],
+    [
+     4.8,
+     "cw"
+    ],
+    [
+     0.8,
+     "b"
+    ]
+   ],
+   "cells": {
+    "upper/cw": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.2,
+     "transom_pitch": 1.1,
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal"
+    },
+    "g/cw": {
+     "type": "door",
+     "w": 1.8,
+     "h": 2.3,
+     "mullions": 1,
+     "glass": "window_dark",
+     "frame": "penthouse_metal"
+    },
+    "*/b": null
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "sv_c43 (2025), sv_W28 (2014). A narrow brick stair tower with a glazed slot stands on the east block side (W27 b end)."
+  },
+  "W29": {
+   "faces": "NE",
+   "length_m": 4.9,
+   "confidence": "medium",
+   "summary": "east face of the LHI entrance tower: orange brick with a full-height dark-glass strip next to the link",
+   "height_m": 11.5,
+   "rows": [
+    [
+     1.5,
+     "base"
+    ],
+    [
+     9.5,
+     "tall"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     1.6,
+     "strip"
+    ],
+    [
+     3.3000000000000003,
+     "b"
+    ]
+   ],
+   "cells": {
+    "tall/strip": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal"
+    },
+    "*/b": null,
+    "base/strip": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.3,
+     11.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "tall ornamental grasses in a planting bed in front (sv_W29, sv_W30)"
+   ],
+   "notes": "sv_W29, sv_W30, earth_W29/W30."
+  },
+  "W30": {
+   "faces": "NE",
+   "length_m": 5.7,
+   "confidence": "medium",
+   "summary": "east face of the LHI entrance tower: orange brick with a full-height dark-glass strip next to the link",
+   "height_m": 11.5,
+   "rows": [
+    [
+     1.5,
+     "base"
+    ],
+    [
+     9.5,
+     "tall"
+    ],
+    [
+     0.5,
+     "parapet"
+    ]
+   ],
+   "bays": [
+    [
+     5.7,
+     "b"
+    ]
+   ],
+   "cells": {
+    "tall/strip": {
+     "type": "glass",
+     "kind": "curtain",
+     "mullion_pitch": 1.6,
+     "transom_pitch": 1.0,
+     "glass": "stripe_dark",
+     "frame": "penthouse_metal"
+    },
+    "*/b": null,
+    "base/strip": null
+   },
+   "wall": "brick_orange",
+   "bands": [
+    [
+     11.3,
+     11.5,
+     "penthouse_metal",
+     0.05
+    ]
+   ],
+   "piers": [],
+   "signs": [],
+   "attached": [
+    "tall ornamental grasses in a planting bed in front (sv_W29, sv_W30)"
+   ],
+   "notes": "sv_W29, sv_W30, earth_W29/W30."
+  },
+  "W31": {
+   "faces": "SE",
+   "length_m": 9.1,
+   "confidence": "medium",
+   "summary": "inner edge of the north entrance canopy (not a wall); lidar 3.9 m",
+   "height_m": 3.9,
+   "rows": [
+    [
+     3.3,
+     "open"
+    ],
+    [
+     0.6,
+     "fascia"
+    ]
+   ],
+   "bays": [
+    [
+     9.1,
+     "c"
+    ]
+   ],
+   "cells": {
+    "open/c": {
+     "type": "void"
+    },
+    "fascia/c": {
+     "type": "panel",
+     "colour": "penthouse_metal"
+    }
+   },
+   "wall": "brick_orange",
+   "bands": [],
+   "piers": [],
+   "signs": [],
+   "attached": [],
+   "notes": "see W0 and geometry_notes; sv_c10, sv_c47-49 (2014)."
+  }
+ },
+ "roof": [
+  {
+   "what": "round skylight/vent drum with a sloped cap, about 4 m across",
+   "where": "centre of the old middle block, about (752,499)",
+   "size_m": [
+    4,
+    4,
+    2.5
+   ],
+   "note": "lidar spot about 10 m; visible in every Earth orbit as a bronze-capped cone"
+  },
+  {
+   "what": "sloped glazed roof with white ribs at about 0.8 m pitch (atrium/rooflight), L-shaped, sloping down from the east block toward the middle block",
+   "where": "along x 778-786 for y 508-545 and along y 536-545 for x 760-785",
+   "size_m": [
+    5,
+    40,
+    2.5
+   ],
+   "note": "lidar 12-13 m strip; earth_W10/W13 views. Width and slope guessed"
+  },
+  {
+   "what": "small rooftop units and vents, light grey",
+   "where": "scattered on the middle block (about 6) and north wing (3)",
+   "size_m": [
+    1.5,
+    1.5,
+    1.0
+   ]
+  }
+ ],
+ "site": {
+  "bridges": [
+   {
+    "to": "LHI",
+    "from_wall": "W15",
+    "s": [
+     0,
+     1
+    ],
+    "levels": [
+     2
+    ],
+    "look": "LHI's glazed level-2 bridge over the passage lands on the a end of W15 (see lhi/facades.json; do not draw twice)"
+   }
+  ],
+  "neighbours": [
+   "LHI directly SW across the 2 m walkway (W14) and the paved N-S passage",
+   "AHS Expansion 3-10 m W of W3/W12 (4 storeys, grey slate cladding)",
+   "Ring Road and parking along the north (W0-W2, W26)",
+   "open lawn with paths to the south and east (W15-W24)"
+  ],
+  "ground": [
+   "grey concrete pavers along Ring Road and under the W0 canopy",
+   "courtyard plaza between W7, W10 and W11: light grey square pavers with red-brown and charcoal accent stripes and dark diamond inlays (sv_W8, sv_W10)",
+   "asphalt service drive and bike parking at W25",
+   "concrete apron at the W21/W22 south entrance",
+   "lawn sloping down to the SE on the south side; planted beds with tall ornamental grasses at W27-W30"
+  ],
+  "entities": [
+   {
+    "type": "sign",
+    "kind": "monument sign: concrete base with two cream panels 'B. C. MATTHEWS HALL' / 'LYLE S. HALLMAN INSTITUTE FOR HEALTH PROMOTION', about 1.4 x 1.6 m",
+    "where": "lawn SE of W20, about (786,485), facing SE",
+    "count": 1,
+    "photo": "sv_W20_1AJ, sv_c27"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised hoop/wave racks",
+    "where": "along W21 s 2-10 and W22 s 0-3, 1 m out",
+    "count": 4,
+    "photo": "sv_W21, sv_W22"
+   },
+   {
+    "type": "bike_rack",
+    "kind": "galvanised racks between concrete bollard blocks",
+    "where": "W25 s 1-8, under the recess",
+    "count": 3,
+    "photo": "sv_W25"
+   },
+   {
+    "type": "bin",
+    "kind": "blue wheeled recycling carts",
+    "where": "W25 s 7-10, 3 m out",
+    "count": 4,
+    "photo": "sv_W25"
+   },
+   {
+    "type": "dumpster",
+    "kind": "one grey and one blue front-load bin",
+    "where": "W25 s 10-14, 1 m out",
+    "count": 2,
+    "photo": "sv_W25"
+   },
+   {
+    "type": "bin",
+    "kind": "blue/black recycling station",
+    "where": "under the W0 canopy, s 5, against the vestibule",
+    "count": 1,
+    "photo": "sv_W0"
+   },
+   {
+    "type": "scooter_rack",
+    "kind": "orange share e-scooters lined up (2025)",
+    "where": "under the W0 canopy, s 2-5",
+    "count": 8,
+    "photo": "sv_W0, sv_W1"
+   },
+   {
+    "type": "hydrant",
+    "kind": "red fire hydrant",
+    "where": "by the walk 4 m N of W0 s 9, about (747,563)",
+    "count": 1,
+    "photo": "sv_W0"
+   },
+   {
+    "type": "lamp",
+    "kind": "black post lamp with a round head",
+    "where": "N of W27 near the W29 beds, about (764,557)",
+    "count": 1,
+    "photo": "sv_W27, sv_W31"
+   },
+   {
+    "type": "planter",
+    "kind": "square grey concrete planter (2025)",
+    "where": "Ring Road walk in front of W2, s 6 and s 20, 4 m out",
+    "count": 2,
+    "photo": "sv_W1, sv_c59"
+   },
+   {
+    "type": "bench",
+    "kind": "wooden bench",
+    "where": "in front of W2, s 12 and s 24, 2.5 m out",
+    "count": 2,
+    "photo": "sv_c59"
+   },
+   {
+    "type": "sign",
+    "kind": "black wayfinding sign 'Ring Rd West/East, Visitor Parking'",
+    "where": "in front of W2 s 16, 4 m out",
+    "count": 1,
+    "photo": "sv_c59"
+   },
+   {
+    "type": "tree",
+    "kind": "small flowering ornamental trees (white blossom in May)",
+    "where": "along W2, s 2-22, 2-3 m out",
+    "count": 6,
+    "photo": "sv_W1, sv_c59"
+   },
+   {
+    "type": "bench",
+    "kind": "black steel slat bench",
+    "where": "courtyard: W10 s 6 and s 10 (1 m out), W8 s 3, and one at the courtyard's E side",
+    "count": 4,
+    "photo": "sv_W10_Kyt, sv_W8"
+   },
+   {
+    "type": "table",
+    "kind": "black steel picnic table with attached seats",
+    "where": "courtyard near W11/W12 corner, about (743,523)",
+    "count": 2,
+    "photo": "sv_c12, sv_c13, sv_W8"
+   },
+   {
+    "type": "bin",
+    "kind": "round dark green litter bin",
+    "where": "courtyard centre, about (749,526)",
+    "count": 1,
+    "photo": "sv_W8, sv_W10_Kyt"
+   },
+   {
+    "type": "lamp",
+    "kind": "black pole lamp",
+    "where": "courtyard, about (749,522)",
+    "count": 1,
+    "photo": "sv_W10_Kyt"
+   },
+   {
+    "type": "tree",
+    "kind": "small deciduous trees",
+    "where": "courtyard beds along W7, about 3 m out at s 5 and s 12",
+    "count": 3,
+    "photo": "sv_W6, sv_W8"
+   },
+   {
+    "type": "bin",
+    "kind": "yellow 'Library Book Return' box",
+    "where": "lawn N of W26, about (772,579)",
+    "count": 1,
+    "photo": "sv_c43 (2025)"
+   },
+   {
+    "type": "tree",
+    "kind": "large white pines",
+    "where": "along W24 and W26, 3-6 m out",
+    "count": 6,
+    "photo": "sv_W24, sv_W26, sv_c39"
+   },
+   {
+    "type": "tree",
+    "kind": "young maples",
+    "where": "S lawn: in front of W20 s 18 (3 m out), W18 s 3 (6 m out), W16 (5 m out)",
+    "count": 3,
+    "photo": "sv_W16, sv_W18, sv_W20_1AJ"
+   }
+  ]
+ }
+}

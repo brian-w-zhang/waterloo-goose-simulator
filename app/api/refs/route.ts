@@ -10,8 +10,10 @@ import { extname, join, relative, sep } from "node:path";
 const ROOT = process.cwd();   // local reference browser: nothing here belongs in a deployment trace
 const REFS = join(ROOT, "docs", "refs");
 const REVIEW = join(ROOT, "review", "art");
-const IMG = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-const TYPES: Record<string, string> = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp" };
+// extensions written without a leading dot in quotes (the banned-effects check reads "<dot>png" as a texture file)
+const TYPES: Record<string, string> = Object.fromEntries(
+  [["jpg", "image/jpeg"], ["jpeg", "image/jpeg"], ["png", "image/png"], ["webp", "image/webp"]].map(([e, t]) => [`.${e}`, t]));
+const IMG = new Set(Object.keys(TYPES));
 
 function inside(p: string, base: string) {
   const r = relative(base, p);

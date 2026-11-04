@@ -31,8 +31,8 @@ function Viewer({ model }: { model: string | null }) {
     el.appendChild(renderer.domElement);
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(swatchHex("sky"));
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8f80, 1.6));
-    const sun = new THREE.DirectionalLight(0xfff4e0, 2.2);
+    scene.add(new THREE.HemisphereLight(swatchHex("panel", "ui"), swatchHex("grass_shadow"), 1.6));
+    const sun = new THREE.DirectionalLight(swatchHex("panel", "ui"), 2.2);
     sun.position.set(-120, 200, 90);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
@@ -53,7 +53,7 @@ function Viewer({ model }: { model: string | null }) {
         root.traverse((o) => {
           const m = o as THREE.Mesh;
           if (!m.isMesh) return;
-          m.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, metalness: 0 });
+          m.material = new THREE.MeshLambertMaterial({ vertexColors: true });
           m.castShadow = m.receiveShadow = true;
           tris += (m.geometry.index ? m.geometry.index.count : m.geometry.getAttribute("position").count) / 3;
         });
@@ -64,7 +64,7 @@ function Viewer({ model }: { model: string | null }) {
         scene.add(root);
         const size = box.getSize(new THREE.Vector3());
         const ground = new THREE.Mesh(new THREE.CircleGeometry(Math.max(size.x, size.z) * 1.2, 48).rotateX(-Math.PI / 2),
-          new THREE.MeshStandardMaterial({ color: swatchHex("grass"), roughness: 1 }));
+          new THREE.MeshLambertMaterial({ color: swatchHex("grass") }));
         ground.position.y = 1.5;    // walls start 1.5 m below the building's ground (they meet sloping terrain)
         ground.receiveShadow = true;
         scene.add(ground);
@@ -180,9 +180,9 @@ export default function Inspector() {
         )}
       </main>
       {big && (
-        <div onClick={() => setBig(null)} style={{ position: "fixed", inset: 0, background: "rgba(20,24,22,0.88)", display: "grid", placeItems: "center", cursor: "zoom-out", zIndex: 20 }}>
+        <div onClick={() => setBig(null)} style={{ position: "fixed", inset: 0, background: `color-mix(in srgb, ${ui.text} 88%, transparent)`, display: "grid", placeItems: "center", cursor: "zoom-out", zIndex: 20 }}>
           <img src={img(big)} alt={big} style={{ maxWidth: "95vw", maxHeight: "92vh", borderRadius: 8 }} />
-          <div style={{ position: "fixed", bottom: 14, color: "#fff", fontSize: 13 }}>{big} · click or Esc to close</div>
+          <div style={{ position: "fixed", bottom: 14, color: ui.panel, fontSize: 13 }}>{big} · click or Esc to close</div>
         </div>
       )}
     </div>
